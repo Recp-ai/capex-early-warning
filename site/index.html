@@ -253,7 +253,8 @@ th { color: var(--ink-2); font-weight: 600; }
   // Stacked bars: capex by calendar quarter, one segment per company, fixed slot order.
   function stackedBars(el, buckets, tickers, names) {
     el.innerHTML = "";
-    const qs = Object.keys(buckets).slice(-10);
+    // skip quarters only partly reported (e.g. Oracle's offset fiscal quarter lands first)
+    const qs = Object.keys(buckets).filter(q => Object.keys(buckets[q]).length >= Math.min(3, tickers.length)).slice(-10);
     if (!qs.length) { el.innerHTML = '<div class="sub">No filings data yet.</div>'; return; }
     const slots = ["--s1", "--s2", "--s3", "--s4", "--s5"];
     const W = Math.max(300, el.clientWidth || 680), H = 220, m = { l: 52, r: 8, t: 8, b: 22 };
@@ -382,7 +383,7 @@ th { color: var(--ink-2); font-weight: 600; }
         <div class="card"><div class="chart-title"><b>Taiwan AI-server group: median YoY revenue</b><span>${esc(tw.latest_period || "")}</span></div><div class="chart" id="c-tw"></div></div>
       </section>
       <section class="card" style="margin-bottom:16px"><h2>Taiwan monthly revenue · ${esc(tw.latest_period || "")}</h2>
-        <div class="scroll"><table class="tw"><thead><tr><th>Code</th><th>Company</th><th>Revenue (NT$M)</th><th>MoM</th><th>YoY</th><th>YTD YoY</th></tr></thead><tbody>${twRows || '<tr><td colspan="6">No data yet</td></tr>'}</tbody></table></div>
+        <div class="scroll"><table class="tw"><thead><tr><th>Code</th><th>Company</th><th>Revenue (NT$B)</th><th>MoM</th><th>YoY</th><th>YTD YoY</th></tr></thead><tbody>${twRows || '<tr><td colspan="6">No data yet</td></tr>'}</tbody></table></div>
       </section>
       <section class="card"><h2>Running log</h2>
         <div class="scroll"><table><thead><tr><th>Week</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th></tr></thead><tbody>${logRows}</tbody></table></div>
