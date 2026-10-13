@@ -112,7 +112,9 @@ def agg_qoq(buckets: dict[str, dict[str, float]]) -> tuple[str | None, float | N
     return cur, (None if pc is None else round(pc, 2)), len(common)
 
 
-def score_filings(edgar: dict, cfg: dict) -> dict:
+def score_filings(edgar: dict, cfg: dict, leases: dict | None = None) -> dict:
+    """Capex, free cash flow and lease signals. `leases` is cew.leases.run() output: totals of
+    leases signed but not yet commenced, each read from a sentence found verbatim in a filing."""
     h = cfg["hyperscaler_filings"]
     if not edgar["companies"]:
         return {"score": 0, "reasons": ["No EDGAR data this week"], "data_ok": False}
@@ -141,6 +143,13 @@ def score_filings(edgar: dict, cfg: dict) -> dict:
         reasons.append(f"New lease assets (data-center leases starting) {lq}: {lqoq:+.1f}% QoQ")
         if lqoq <= h["new_lease_assets_qoq"]:
             score += 1
+    nq, nqoq, nn = agg_qoq((leases or {}).get("by_quarter") or {})
+    threshold = h.get("leases_not_commenced_qoq")
+    if nqoq is not None:
+        reasons.append(f"Leases signed but not yet commenced {nq}: {nqoq:+.1f}% QoQ ({nn} companies)")
+        if threshold is not None and nqoq <= threshold:
+            score += 1
+            reasons.append(f"Not-yet-commenced leases fell {abs(threshold):.0f}% or more QoQ (+1)")
     return {"score": min(score, 3), "reasons": reasons, "data_ok": True}
 
 
@@ -159,3 +168,55 @@ def composite(scores: dict[str, dict], cfg: dict) -> dict:
     if hot and level == "GREEN":
         level = "AMBER"
     return {"total": round(total, 2), "max": max_total, "level": level, "alert": alert, "hot_categories": hot}
+
+
+# ---------------------------------------------------------------- run-to-run checks
+def run_scores(row: dict | None) -> dict[str, int] | None:
+    """Category scores from a data/runs.csv row or a report's "scores" dict."""
+    if not row:
+        return None
+    out = {}
+    for k, _ in CATEGORIES:
+        v = row.get(k)
+        v = v.get("score") if isinstance(v, dict) else v
+        try:
+            out[k] = int(float(v))
+        except (TypeError, ValueError):
+            pass
+    return out or None
+
+
+def confirmation(scores: dict[str, dict], previous: list[dict[str, int]], cfg: dict) -> dict:
+    """Categories at min_score or more in each of the last `consecutive_runs` runs (this one included).
+    `previous` holds earlier runs' scores, oldest first."""
+    c = cfg.get("confirmation") or {}
+    n, min_score, min_cats = c.get("consecutive_runs", 2), c.get("min_score", 2), c.get("min_categories", 2)
+    runs = [s for s in previous if s][-(n - 1):] if n > 1 else []
+    runs = runs + [{k: v["score"] for k, v in scores.items()}]
+    sustained = []
+    if len(runs) >= n:
+        sustained = [k for k, _ in CATEGORIES if all(r.get(k) is not None and r[k] >= min_score for r in runs)]
+    return {"met": len(sustained) >= min_cats, "categories": sustained, "runs": n,
+            "min_score": min_score, "min_categories": min_cats}
+
+
+def jumps(scores: dict[str, dict], previous: dict[str, int] | None, cfg: dict) -> dict[str, int]:
+    """Categories that rose `jump_points` or more since the previous run: {category: change}."""
+    pts = (cfg.get("confirmation") or {}).get("jump_points", 2)
+    if not previous:
+        return {}
+    return {k: scores[k]["score"] - previous[k] for k, _ in CATEGORIES
+            if k in scores and k in previous and scores[k]["score"] - previous[k] >= pts}
+
+
+def event_email_reason(comp: dict, scores: dict[str, dict], previous: dict[str, int] | None,
+                       previous_level: str | None, cfg: dict) -> str | None:
+    """Why an event-day run should email (None = stay quiet): level change or a big category move."""
+    move = (cfg.get("email") or {}).get("event_category_move", 2)
+    if previous_level and comp["level"] != previous_level:
+        return f"level changed {previous_level} -> {comp['level']}"
+    if previous is None:
+        return "no previous run to compare with"
+    moved = [f"{k} {scores[k]['score'] - previous[k]:+d}" for k, _ in CATEGORIES
+             if k in scores and k in previous and abs(scores[k]["score"] - previous[k]) >= move]
+    return ("moved " + ", ".join(moved)) if moved else None

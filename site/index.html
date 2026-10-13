@@ -99,6 +99,21 @@ th { color: var(--ink-2); font-weight: 600; }
 .btn:disabled { opacity: .5; cursor: default; }
 .run-msg { margin-top: 10px; min-height: 1.5em; }
 @media (max-width: 760px) { .run select, .run-go input { font-size: 16px; } } /* no zoom-on-focus on iOS */
+.badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: var(--ink-2);
+  border: 1px solid var(--ring); border-radius: 999px; padding: 0 7px; line-height: 18px; white-space: nowrap; vertical-align: 1px; }
+.badge .dot { width: 7px; height: 7px; }
+.evidence li { margin-bottom: 6px; }
+.ev-sum { color: var(--ink-2); }
+.flag { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12.5px; font-weight: 600;
+  color: var(--ink); background: color-mix(in srgb, var(--warning) 18%, transparent); border-radius: 6px; padding: 2px 8px; }
+.conf { margin-top: 6px; font-size: 12.5px; color: var(--ink-2); }
+td.wrap { white-space: normal; min-width: 130px; text-align: left; }
+th.left, td.left { text-align: left; }
+.lvl { display: inline-flex; align-items: center; gap: 6px; }
+.lvl .dot { width: 8px; height: 8px; }
+.mtd { font-size: 13px; color: var(--ink-2); }
+.mtd b { color: var(--ink); font-size: 15px; }
+.events-next { margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
 </style>
 </head>
 <body>
@@ -112,7 +127,7 @@ th { color: var(--ink-2); font-weight: 600; }
   </header>
   <div id="app"></div>
   <section class="card run" id="run" hidden></section>
-  <p class="sub" style="margin-top:28px">Automated weekly research summary from public data (FRED, SEC EDGAR, TWSE) and Claude news research. Not investment advice.</p>
+  <p class="sub" style="margin-top:28px">Automated research summary (weekly, plus the morning after listed events) from public data (FRED, SEC EDGAR, TWSE) and Claude news research. Not investment advice.</p>
 </main>
 
 <script>
@@ -136,7 +151,14 @@ th { color: var(--ink-2); font-weight: 600; }
   const LEVEL = {
     GREEN: { color: "--good", icon: "●", label: "Green — no material warning" },
     AMBER: { color: "--warning", icon: "▲", label: "Amber — warning signs building" },
-    RED: { color: "--critical", icon: "■", label: "Red — multiple confirmed warnings" },
+    RED: { color: "--critical", icon: "■", label: "Red — multiple warnings" },
+  };
+  const CATS = ["credit", "ai_lab_financing", "taiwan_supply_chain", "hyperscaler_filings", "supplier_signals", "physical_buildout"];
+  const LEVEL_DOT = { GREEN: "--good", AMBER: "--warning", RED: "--critical" };
+  const BADGE = {
+    verified: ["--good", "verified", "The page contains the claim's numbers and names"],
+    unverified: ["--warning", "unverified", "The page loaded but the claim's numbers or names were not found"],
+    unreachable: ["--muted", "unreachable", "The page could not be fetched (paywall, block, timeout or not a web page)"],
   };
   const SCORE_COLOR = ["--good", "--warning", "--serious", "--critical"];
   const SCORE_LABEL = ["Calm", "Weak signal", "Several signals", "Strong warning"];
@@ -169,6 +191,16 @@ th { color: var(--ink-2); font-weight: 600; }
   const usd = v => v == null || isNaN(v) ? "—" : "$" + (v > 0 && v < 0.01 ? Number(v).toFixed(4) : Number(v).toFixed(2));
   const perM = v => "$" + (v < 1 ? Number(v).toFixed(2) : String(+Number(v).toFixed(2)));
   const short = id => String(id || "").replace(/^claude-/, "");
+  const runTime = ts => ts ? String(ts).slice(0, 16).replace("T", " ") + " UTC" : "";
+  const shortDate = d => d ? `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8, 10)}` : "";
+  const triggerLabel = t => !t || t === "schedule" ? "weekly run" : t === "manual" ? "manual run"
+    : t.startsWith("event:") ? "event: " + t.slice(6).split("+").join(", ") : t;
+  const badge = (st, title) => BADGE[st] ? `<span class="badge" title="${esc(title || BADGE[st][2])}"><i class="dot" style="background:var(${BADGE[st][0]})"></i>${BADGE[st][1]}</span>` : "";
+  const lvlDot = l => `<span class="lvl"><span class="dot" style="background:var(${LEVEL_DOT[l] || "--muted"})"></span>${esc(l || "—")}</span>`;
+  const upcoming = () => {
+    const today = new Date().toISOString().slice(0, 10);
+    return ((state.runs || {}).upcoming_events || []).filter(e => e.date >= today);
+  };
 
   // ---------------------------------------------------------------- charts
   function niceTicks(lo, hi, n = 4) {
@@ -341,18 +373,31 @@ th { color: var(--ink-2); font-weight: 600; }
     }
     const comp = L.composite, lv = LEVEL[comp.level] || LEVEL.GREEN;
     const a = (L.claude || {}).assessment || {};
-    $("#asof").textContent = `Week of ${L.date} · next update Saturday`;
+    const next = upcoming()[0];
+    $("#asof").textContent = `${L.run_id ? "Run " + runTime(L.run_id) : "Week of " + L.date} · ${triggerLabel(L.trigger)} · ` +
+      `next: Saturday${next ? ` or after ${next.name} (${shortDate(next.date)})` : ""}`;
     const names = Object.fromEntries(Object.entries(L.data.edgar || {}).map(([t, c]) => [t, c.name]));
+    const catName = Object.fromEntries(L.categories);
+    const jumps = comp.jumps || {}, conf = comp.confirmation || null;
+    const levelText = comp.level === "RED" && conf ? (comp.red_confirmed ? "RED · confirmed" : "RED · unconfirmed") : comp.level;
+    let levelSub = lv.label;
+    if (comp.level === "RED" && conf) levelSub = comp.red_confirmed
+      ? `Red — confirmed: ${conf.categories.length} categories at ${conf.min_score}+ for ${conf.runs} runs in a row`
+      : `Red — unconfirmed: needs ${conf.min_categories} categories at ${conf.min_score}+ in ${conf.runs} consecutive runs`;
 
     const catCards = L.categories.map(([key, label]) => {
       const s = L.scores[key] || { score: 0, reasons: [] };
       const meter = [1, 2, 3].map(i => `<span style="${i <= s.score ? `background:var(${SCORE_COLOR[s.score]})` : ""}"></span>`).join("");
-      const ev = (s.evidence || []).length ? `<details class="evidence"><summary>${s.evidence.length} source${s.evidence.length > 1 ? "s" : ""}</summary><ul class="reasons">` +
-        s.evidence.map(e => `<li>${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc((e.url.match(/^https?:\/\/([^/]+)/) || [])[1] || "link")}</a></li>`).join("") + "</ul></details>" : "";
+      const evs = s.evidence || [];
+      const count = st => evs.filter(e => e.status === st).length;
+      const tally = ["verified", "unreachable", "unverified"].filter(count).map(st => `${count(st)} ${st}`).join(" · ");
+      const ev = evs.length ? `<details class="evidence"><summary>${evs.length} source${evs.length > 1 ? "s" : ""}${tally ? ` <span class="ev-sum">· ${tally}</span>` : ""}</summary><ul class="reasons">` +
+        evs.map(e => `<li>${badge(e.status, e.check)} ${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source === "edgar" ? "SEC filing" : (String(e.url).match(/^https?:\/\/([^/]+)/) || [])[1] || "link")}</a></li>`).join("") + "</ul></details>" : "";
+      const jump = jumps[key] ? `<div class="flag">▲ ${signed(jumps[key], 0)} since the last run · worth a check</div>` : "";
       return `<div class="card"><div class="cat-head"><h2 style="margin:0">${esc(label)}</h2>
         <span class="level" style="font-size:13px;font-weight:600"><span class="dot" style="background:var(${SCORE_COLOR[s.score]})"></span>${s.score}/3 · ${SCORE_LABEL[s.score]}</span></div>
         <div class="meter" aria-hidden="true">${meter}</div>
-        <ul class="reasons">${(s.reasons || []).map(r => `<li>${esc(r)}</li>`).join("")}</ul>${ev}</div>`;
+        <ul class="reasons">${(s.reasons || []).map(r => `<li>${esc(r)}</li>`).join("")}</ul>${jump}${ev}</div>`;
     }).join("");
 
     const F = (L.data.fred || {});
@@ -374,23 +419,37 @@ th { color: var(--ink-2); font-weight: 600; }
     const tw = L.data.taiwan || {};
     const twRows = (tw.latest || []).map(r => `<tr><td>${esc(r.code)}</td><td>${esc(r.name)}</td><td>${fmt(+r.revenue / 1e6, 0)}</td><td>${signed(+r.mom_pct)}%</td><td>${signed(+r.yoy_pct)}%</td><td>${signed(+r.ytd_yoy_pct)}%</td></tr>`).join("");
 
+    const leases = (((L.filing_text || {}).leases) || {}).companies || {};
     const capRows = Object.entries(L.data.edgar || {}).map(([t, c]) => {
-      const cap = c.capex || {}, fcf = c.free_cash_flow || {};
-      return `<tr><td>${esc(c.name)}</td><td>${esc(cap.quarter_end || "—")}</td><td>${fmtB(cap.value)}</td><td>${signed(cap.qoq_pct)}%</td><td>${signed(cap.yoy_pct)}%</td><td>${fmtB(fcf.value)}</td></tr>`;
+      const cap = c.capex || {}, fcf = c.free_cash_flow || {}, ls = leases[t] || {};
+      const lsCell = ls.total_usd == null ? "—" : `<a href="${esc(ls.url)}" target="_blank" rel="noopener" title="${esc((ls.amounts || []).map(x => x.sentence).join("\n\n"))}">${fmtB(ls.total_usd)}</a>` +
+        (ls.qoq_pct == null ? "" : ` · ${signed(ls.qoq_pct)}%`);
+      return `<tr><td>${esc(c.name)}</td><td>${esc(cap.quarter_end || "—")}</td><td>${fmtB(cap.value)}</td><td>${signed(cap.qoq_pct)}%</td><td>${signed(cap.yoy_pct)}%</td><td>${fmtB(fcf.value)}</td><td>${lsCell}</td></tr>`;
     }).join("");
 
     const logRows = (log || []).slice().reverse().slice(0, 26).map(r => `<tr><td>${esc(r.date)}</td><td>${esc(r.level)}</td><td>${esc(r.composite)}</td>` +
-      ["credit", "ai_lab_financing", "taiwan_supply_chain", "hyperscaler_filings", "supplier_signals", "physical_buildout"].map(k => `<td>${esc(r[k])}</td>`).join("") +
+      CATS.map(k => `<td>${esc(r[k])}</td>`).join("") +
       `<td>${fmt(+r.sp500, 0)}</td><td>${fmt(+r.nasdaq100, 0)}</td><td>${fmt(+r.ust10y, 2)}</td><td>${fmt(+r.brent, 1)}</td>` +
       `<td>${r.research_model ? esc(short(r.research_model) + " / " + short(r.assessment_model)) : "—"}</td><td>${r.cost_usd ? usd(+r.cost_usd) : "—"}</td></tr>`).join("");
+
+    const R = state.runs || {}, month = new Date().toISOString().slice(0, 7);
+    const mtd = (R.spend_by_month || {})[month] || { cost_usd: 0, runs: 0 };
+    const runRows = (R.runs || []).map(r => `<tr><td>${esc(runTime(r.timestamp))}</td><td class="wrap">${esc(triggerLabel(r.trigger))}</td>` +
+      `<td class="left">${lvlDot(r.level)}</td><td>${esc(r.composite)}</td>` + CATS.map(k => `<td>${esc(r[k])}</td>`).join("") +
+      `<td>${r.research_model ? esc(short(r.research_model) + " / " + short(r.assessment_model)) : "—"}</td>` +
+      `<td>${r.tokens === "" || r.tokens == null ? "—" : fmt(+r.tokens, 0)}</td><td>${r.searches === "" || r.searches == null ? "—" : esc(r.searches)}</td>` +
+      `<td>${r.cost_usd ? usd(+r.cost_usd) : "—"}</td></tr>`).join("");
+    const nextEvents = upcoming().slice(0, 6).map(e => `${shortDate(e.date)} ${esc(e.name)}${e.verified ? "" : "*"}`).join(" · ");
 
     const errs = Object.entries(L.errors || {});
     app.innerHTML = `
       <section class="hero">
         <div class="card">
-          <div class="level"><span class="dot" style="background:var(${lv.color})"></span>${esc(comp.level)}</div>
+          <div class="level"><span class="dot" style="background:var(${lv.color})"></span>${esc(levelText)}</div>
           <div class="big">${comp.total}<small> / ${comp.max}</small></div>
-          <div class="sub">${esc(lv.label)}${comp.hot_categories && comp.hot_categories.length ? " · hot: " + comp.hot_categories.join(", ") : ""}</div>
+          <div class="sub">${esc(levelSub)}${comp.hot_categories && comp.hot_categories.length ? " · hot: " + comp.hot_categories.map(k => catName[k] || k).join(", ") : ""}</div>
+          ${conf && conf.categories.length ? `<div class="conf">At ${conf.min_score}+ for ${conf.runs} runs in a row: ${esc(conf.categories.map(k => catName[k] || k).join(", "))}</div>` : ""}
+          ${Object.keys(jumps).length ? `<div class="flag">▲ Check: ${esc(Object.entries(jumps).map(([k, d]) => `${catName[k] || k} ${signed(d, 0)}`).join(", "))} since the last run</div>` : ""}
         </div>
         <div class="card"><h2>${esc(a.headline || "This week")}</h2>
           <div class="digest">${md(a.digest_markdown || "_Claude digest unavailable this week. Scores shown are the rule-based ones._")}</div>
@@ -401,7 +460,7 @@ th { color: var(--ink-2); font-weight: 600; }
       <section class="card" style="margin-bottom:16px">
         <div class="chart-title"><b>Hyperscaler capex by calendar quarter</b><span>from SEC filings</span></div>
         <div class="chart" id="c-capex"></div>
-        <div class="scroll" style="margin-top:12px"><table><thead><tr><th>Company</th><th>Quarter end</th><th>Capex</th><th>QoQ</th><th>YoY</th><th>Free cash flow</th></tr></thead><tbody>${capRows}</tbody></table></div>
+        <div class="scroll" style="margin-top:12px"><table><thead><tr><th>Company</th><th>Quarter end</th><th>Capex</th><th>QoQ</th><th>YoY</th><th>Free cash flow</th><th title="Leases signed but not yet commenced, from the latest 10-Q/10-K text; QoQ change">Leases not yet started</th></tr></thead><tbody>${capRows}</tbody></table></div>
       </section>
       <section class="grid charts">${chartCards}
         <div class="card"><div class="chart-title"><b>Taiwan AI-server group: median YoY revenue</b><span>${esc(tw.latest_period || "")}</span></div><div class="chart" id="c-tw"></div></div>
@@ -409,8 +468,14 @@ th { color: var(--ink-2); font-weight: 600; }
       <section class="card" style="margin-bottom:16px"><h2>Taiwan monthly revenue · ${esc(tw.latest_period || "")}</h2>
         <div class="scroll"><table class="tw"><thead><tr><th>Code</th><th>Company</th><th>Revenue (NT$B)</th><th>MoM</th><th>YoY</th><th>YTD YoY</th></tr></thead><tbody>${twRows || '<tr><td colspan="6">No data yet</td></tr>'}</tbody></table></div>
       </section>
-      <section class="card"><h2>Running log</h2>
-        <div class="scroll"><table><thead><tr><th>Week</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th><th>Models</th><th>Cost</th></tr></thead><tbody>${logRows}</tbody></table></div>
+      <section class="card" style="margin-bottom:16px"><h2>Running log <span class="sub">· one row per day</span></h2>
+        <div class="scroll"><table><thead><tr><th>Date</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th><th>Models</th><th>Cost</th></tr></thead><tbody>${logRows}</tbody></table></div>
+      </section>
+      <section class="card"><div class="chart-title"><b>Runs</b><span class="mtd">Month to date: <b>${usd(mtd.cost_usd)}</b> API spend · ${mtd.runs} run${mtd.runs === 1 ? "" : "s"}</span></div>
+        <div class="scroll"><table><thead><tr><th>Time</th><th class="left">Trigger</th><th class="left">Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>Models (research / scoring)</th><th>Tokens</th><th>Searches</th><th>Cost</th></tr></thead>
+        <tbody>${runRows || '<tr><td colspan="14">Runs appear here from the first run with this version.</td></tr>'}</tbody></table></div>
+        ${R.total_runs > (R.runs || []).length ? `<div class="sub" style="margin-top:8px">Last ${(R.runs || []).length} of ${R.total_runs} runs; all are in data/runs.csv.</div>` : ""}
+        ${nextEvents ? `<div class="events-next">Next event-day runs (07:30 UTC+8 the morning after): ${nextEvents}${upcoming().some(e => !e.verified) ? " · <span title=\"Date not yet confirmed on the official source\">* unverified date</span>" : ""}</div>` : ""}
       </section>
       ${errs.length ? `<p class="errors">Data issues this run: ${errs.map(([k, v]) => esc(k + ": " + String(v).slice(0, 160))).join(" · ")}</p>` : ""}`;
 
@@ -422,7 +487,7 @@ th { color: var(--ink-2); font-weight: 600; }
   // ---------------------------------------------------------------- run now panel
   // Lives outside #app so re-renders (theme, resize) keep the selections and the passcode field.
   const CACHE_W = 1.25, CACHE_R = 0.1; // prompt-cache multipliers, as in cew/models.py
-  const STEP_LABEL = { research: "Research", assessment: "Scoring & digest" };
+  const STEP_LABEL = { research: "Research", assessment: "Scoring & digest", leases: "Lease footnotes", earnings: "Press releases" };
   const wait = ms => new Promise(r => setTimeout(r, ms));
   let polling = false;
 
@@ -574,9 +639,9 @@ th { color: var(--ink-2); font-weight: 600; }
 
   const get = u => fetch(u + "?v=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
   function loadAll() {
-    return Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json"), get("data/models.json")])
-      .then(([latest, charts, log, models]) => {
-        state = { latest, charts: charts || {}, log: log || [], models };
+    return Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json"), get("data/models.json"), get("data/runs.json")])
+      .then(([latest, charts, log, models, runs]) => {
+        state = { latest, charts: charts || {}, log: log || [], models, runs: runs || {} };
         render();
         updateRunPanel();
       });

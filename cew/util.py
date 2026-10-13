@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import csv
+import html as htmllib
 import json
 import os
+import re
 import time
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -31,6 +33,10 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def now_utc() -> datetime:
+    return datetime.now(timezone.utc).replace(microsecond=0)
+
+
 def session(user_agent: str | None = None) -> requests.Session:
     s = requests.Session()
     s.headers["User-Agent"] = user_agent or "capex-early-warning/1.0"
@@ -52,6 +58,37 @@ def get_json(sess: requests.Session, url: str, params: dict | None = None,
             last = e
             time.sleep(2 * (attempt + 1))
     raise RuntimeError(f"GET failed for {url}: {last}")
+
+
+def get_text(sess: requests.Session, url: str, retries: int = 3, timeout: int = 120) -> str:
+    """GET a text/HTML document with simple retry/backoff (SEC archive pages)."""
+    last: Exception | None = None
+    for attempt in range(retries):
+        try:
+            r = sess.get(url, timeout=timeout)
+            if r.status_code in (429, 500, 502, 503, 504):
+                raise requests.HTTPError(f"HTTP {r.status_code}", response=r)
+            r.raise_for_status()
+            return r.text
+        except requests.RequestException as e:
+            last = e
+            time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"GET failed for {url}: {last}")
+
+
+_BLOCK_END = re.compile(r"(?i)<br\s*/?>|</(?:p|div|tr|li|h[1-6]|table|section|article|blockquote)\s*>")
+
+
+def html_to_text(src: str) -> str:
+    """Readable text from HTML: one line per block element, whitespace collapsed."""
+    s = re.sub(r"(?is)<(script|style|head|noscript|template)\b[^>]*>.*?</\1\s*>", " ", src)
+    s = re.sub(r"(?is)<ix:header>.*?</ix:header>", " ", s)  # hidden inline-XBRL facts in SEC filings
+    s = re.sub(r"\s+", " ", s)  # line breaks in the HTML source are just spaces
+    s = _BLOCK_END.sub("\n", s)
+    s = re.sub(r"(?s)<!--.*?-->|<[^>]+>", " ", s)
+    s = htmllib.unescape(s).replace("\xa0", " ").replace("\u200b", "")
+    lines = (re.sub(r"[ \t\r\f\v]+", " ", line).strip() for line in s.split("\n"))
+    return "\n".join(line for line in lines if line)
 
 
 def write_json(path: Path, obj: Any) -> None:

@@ -1,7 +1,7 @@
 // Vercel function behind the dashboard's "Run now" panel. Node, no dependencies.
 //   POST /api/run  {passcode, research_model, assessment_model, send_email, save_as_default}
 //                  -> dispatches .github/workflows/weekly.yml on main and returns the run URL
-//   GET  /api/run  -> {status, conclusion} of the latest run
+//   GET  /api/run  -> {status, conclusion} of the latest manual (workflow_dispatch) run
 // Vercel environment variables: RUN_PASSCODE, GITHUB_TOKEN (fine-grained, this repo only),
 // optional GITHUB_REPO ("owner/name"; defaults to the repo Vercel deploys from).
 // Never put either secret in a response, an error, or a log line.
@@ -146,7 +146,8 @@ function configured() {
 
 async function handleStatus(res) {
   configured();
-  const r = await gh("GET", runsPath({ per_page: "1" }));
+  // Manual runs only: the daily event-day check (a scheduled run) must not look like the run just started.
+  const r = await gh("GET", runsPath({ event: "workflow_dispatch", per_page: "1" }));
   if (!r.ok) throw ghFail("reading the latest run", r);
   const run = (r.data.workflow_runs || [])[0];
   return send(res, 200, { status: run ? run.status : null, conclusion: run ? run.conclusion : null },

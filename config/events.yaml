@@ -1,0 +1,151 @@
+# Dated events that trigger an extra "event-day" run.
+# A daily check at 23:30 UTC (07:30 UTC+8) runs the full pipeline when an event below fell on the
+# US Eastern calendar day that is just ending, unless a run already happened that day.
+#
+# date      US Eastern calendar date of the release or decision (TSMC reports at 14:00 Taipei,
+#           which is early morning of the same date in New York).
+# name      tag used in the run trigger, e.g. "event:MSFT-earnings" (letters, digits, "." and "-").
+# type      fomc | cpi | earnings. Earnings for a ticker listed under `hyperscalers` in
+#           signals.yaml also pull the earnings press release (8-K Item 2.02, Exhibit 99.1) from EDGAR.
+# verified  true only if the date was seen on the official source (federalreserve.gov, bls.gov, or
+#           the company's own investor-relations site / newsroom): on a page opened directly, or on
+#           at least two official pages that agree. Dates from a single official page seen only in
+#           a search summary, third-party calendars or last year's pattern are verified: false.
+#           Re-check unverified dates when the company announces them.
+# Checked on 2026-10-13. Add the 2027 dates before the end of the year (the run log warns 30 days ahead).
+
+events:
+  - date: 2026-10-14
+    name: CPI
+    type: cpi
+    title: "CPI for September 2026"
+    time_et: "08:30"
+    verified: true
+    source: https://www.bls.gov/schedule/news_release/cpi.htm
+    note: "Also on https://www.bls.gov/cpi/ and the BLS October 2026 release calendar (seen in search results; pages not opened)."
+
+  - date: 2026-10-15
+    name: TSMC-earnings
+    type: earnings
+    ticker: TSMC
+    title: "TSMC Q3 2026 earnings conference"
+    time_et: "02:00 (14:00 Taipei)"
+    verified: true
+    source: https://investor.tsmc.com/english/quarterly-results/2026/q3
+    note: "Same date on investor.tsmc.com/english/financial-calendar and /quarterly-results/teleconference (seen in search results; pages not opened)."
+
+  - date: 2026-10-21
+    name: META-earnings
+    type: earnings
+    ticker: META
+    title: "Meta Q3 2026 earnings (quarter ended Sep 30, 2026)"
+    time_et: "after close; call 16:30"
+    verified: false
+    source: https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Third-Quarter-2026-Results/default.aspx
+    note: "Meta's own release of Oct 12 says Oct 21, but it was seen only in a search summary (page could not be opened). Older third-party calendars still show Oct 28."
+
+  - date: 2026-10-28
+    name: FOMC
+    type: fomc
+    title: "FOMC decision (Oct 27-28 meeting)"
+    time_et: "14:00"
+    verified: true
+    source: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+    note: "Also on https://www.federalreserve.gov/newsevents/2026-october.htm and in the Sep 15-16 minutes (seen in search results; pages not opened)."
+
+  - date: 2026-10-28
+    name: GOOGL-earnings
+    type: earnings
+    ticker: GOOGL
+    title: "Alphabet Q3 2026 earnings (quarter ended Sep 30, 2026)"
+    time_et: "after close; call 16:30"
+    verified: false
+    source: https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Date-of-Third-Quarter-2026-Financial-Results-Conference-Call-2026-8tpGZsLS6v/default.aspx
+    note: "Alphabet's own release of Oct 6 says Oct 28, but it was seen only in a search summary (page could not be opened)."
+
+  - date: 2026-10-28
+    name: MSFT-earnings
+    type: earnings
+    ticker: MSFT
+    title: "Microsoft FY27 Q1 earnings (quarter ended Sep 30, 2026)"
+    time_et: "after close; webcast 17:30"
+    verified: true
+    source: https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1
+    note: "Page opened: 'Wednesday, October 28, 2026'; microsoft.com/en-us/investor also says the next earnings release is on October 28, 2026."
+
+  - date: 2026-10-29
+    name: AMZN-earnings
+    type: earnings
+    ticker: AMZN
+    title: "Amazon Q3 2026 earnings (quarter ended Sep 30, 2026)"
+    time_et: "after close"
+    verified: false
+    source: https://ir.aboutamazon.com/
+    note: "Estimate: not announced as of Oct 13. Wall Street Horizon (unconfirmed), MarketBeat and TipRanks list Thu Oct 29; Amazon usually reports on a Thursday."
+
+  - date: 2026-11-03
+    name: AMD-earnings
+    type: earnings
+    ticker: AMD
+    title: "AMD Q3 2026 earnings"
+    time_et: "after close; call 17:00"
+    verified: true
+    source: https://ir.amd.com/news-events/press-releases/detail/1300/amd-to-report-fiscal-third-quarter-2026-financial-results
+    note: "AMD's release of Oct 6; same date on newsroom.amd.com and the ir.amd.com IR calendar (seen in search results; pages not opened)."
+
+  - date: 2026-11-10
+    name: CPI
+    type: cpi
+    title: "CPI for October 2026"
+    time_et: "08:30"
+    verified: true
+    source: https://www.bls.gov/schedule/news_release/cpi.htm
+    note: "Also on https://www.bls.gov/schedule/2026/11_sched_list.htm (seen in search results; pages not opened). A funding lapse could move it."
+
+  - date: 2026-11-17
+    name: NVDA-earnings
+    type: earnings
+    ticker: NVDA
+    title: "NVIDIA Q3 FY2027 earnings"
+    time_et: "after close; call 17:00"
+    verified: false
+    source: https://investor.nvidia.com/
+    note: "From the CFO's remark on the Aug 26, 2026 call as quoted by third-party transcripts; NVIDIA's own date release isn't out yet (expected late October). NVIDIA usually reports on Wednesdays, so re-check."
+
+  - date: 2026-12-09
+    name: FOMC
+    type: fomc
+    title: "FOMC decision (Dec 8-9 meeting, with projections)"
+    time_et: "14:00"
+    verified: true
+    source: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+    note: "Also on https://www.federalreserve.gov/newsevents/2026-december.htm (seen in search results; pages not opened)."
+
+  - date: 2026-12-09
+    name: AVGO-earnings
+    type: earnings
+    ticker: AVGO
+    title: "Broadcom Q4 FY2026 earnings"
+    time_et: "after close; call 17:00"
+    verified: false
+    source: https://investors.broadcom.com/financial-information/financial-news-releases
+    note: "Estimate: not announced yet (expected early November). FY2026 reports were all on Wednesdays; some calendars say Thu Dec 10."
+
+  - date: 2026-12-10
+    name: CPI
+    type: cpi
+    title: "CPI for November 2026"
+    time_et: "08:30"
+    verified: true
+    source: https://www.bls.gov/schedule/news_release/cpi.htm
+    note: "Also on the BLS 2026 release calendar https://www.bls.gov/schedule/2026/home.htm (seen in search results; pages not opened)."
+
+  - date: 2026-12-10
+    name: ORCL-earnings
+    type: earnings
+    ticker: ORCL
+    title: "Oracle FY27 Q2 earnings (quarter ending Nov 30, 2026)"
+    time_et: "after close"
+    verified: false
+    source: https://investor.oracle.com/
+    note: "Estimate: Oracle announces about a week ahead. Some calendars list Dec 10, others Dec 14."

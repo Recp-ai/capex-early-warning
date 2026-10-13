@@ -20,13 +20,29 @@ def build_email(report: dict, dashboard_url: str | None) -> tuple[str, str, str]
     a = (report.get("claude") or {}).get("assessment") or {}
     headline = a.get("headline") or "Weekly capex early-warning update"
     prefix = "ALERT " if comp["alert"] else ""
-    subject = f"[Capex EW] {prefix}{level} {comp['total']:g}/{comp['max']:g} — {headline}"
+    trigger = report.get("trigger") or ""
+    if trigger.startswith("event:"):
+        prefix = f"Event {trigger[6:].replace('+', ', ')} · " + prefix
+    shown = level
+    if level == "RED":
+        shown = "RED (confirmed)" if comp.get("red_confirmed") else "RED (unconfirmed)"
+    subject = f"[Capex EW] {prefix}{shown} {comp['total']:g}/{comp['max']:g} — {headline}"
 
+    jumps = comp.get("jumps") or {}
     rows = []
     for key, label in report["categories"]:
         s = report["scores"][key]
+        ev = s.get("evidence") or []
+        checked = [e for e in ev if e.get("status")]
+        src = ""
+        if checked:
+            v = sum(1 for e in checked if e["status"] == "verified")
+            src = f"{v}/{len(checked)} sources verified"
+        flag = f"rose {jumps[key]:+d} since last run, check it" if key in jumps else ""
+        note = " · ".join(x for x in (src, flag) if x)
         rows.append(f"<tr><td style='padding:4px 12px 4px 0'>{html.escape(label)}</td>"
-                    f"<td style='padding:4px 0;font-weight:600'>{s['score']}/3</td></tr>")
+                    f"<td style='padding:4px 12px 4px 0;font-weight:600'>{s['score']}/3</td>"
+                    f"<td style='padding:4px 0;color:#777;font-size:12px'>{html.escape(note)}</td></tr>")
     digest_html = md.markdown(a.get("digest_markdown") or "_Claude digest unavailable this week; scores below are rule-based only._")
     watch = "".join(f"<li>{html.escape(w)}</li>" for w in a.get("watch_next", []))
     link = f"<p><a href='{html.escape(dashboard_url)}'>Open the dashboard</a></p>" if dashboard_url else ""
@@ -36,16 +52,31 @@ def build_email(report: dict, dashboard_url: str | None) -> tuple[str, str, str]
         err_html = "<p style='color:#777;font-size:12px'>Data issues this run: " + html.escape(
             "; ".join(f"{k}: {v}" for k, v in errors.items())[:800]) + "</p>"
 
+    conf = comp.get("confirmation") or {}
+    conf_html = ""
+    if level == "RED" or conf.get("categories"):
+        cats = ", ".join(conf.get("categories") or []) or "none yet"
+        conf_html = (f"<p style='font-size:13px;color:#555'>Confirmation: categories at "
+                     f"{conf.get('min_score', 2)}+ in each of the last {conf.get('runs', 2)} runs: "
+                     f"{html.escape(cats)} (RED counts as confirmed with {conf.get('min_categories', 2)}+).</p>")
+    when = f"Run {report.get('run_id') or report['date']}"
+    if trigger:
+        when += f" · {html.escape(trigger)}"
+    events_html = ""
+    if report.get("events"):
+        events_html = "<p style='font-size:13px;color:#555'>Event: " + html.escape(
+            "; ".join(f"{e.get('title') or e['name']} ({e['date']})" for e in report["events"])) + "</p>"
+
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
-<p style="font-size:13px;color:#555">Week of {report['date']}</p>
-<h2 style="margin:0 0 4px;color:{LEVEL_COLOR.get(level, '#333')}">{level} — {comp['total']:g} / {comp['max']:g}</h2>
-<p style="margin-top:0">{html.escape(headline)}</p>
+<p style="font-size:13px;color:#555">{when}</p>{events_html}
+<h2 style="margin:0 0 4px;color:{LEVEL_COLOR.get(level, '#333')}">{shown} — {comp['total']:g} / {comp['max']:g}</h2>
+<p style="margin-top:0">{html.escape(headline)}</p>{conf_html}
 {digest_html}
 <h3>Category scores</h3><table>{''.join(rows)}</table>
 {'<h3>Watch next</h3><ul>' + watch + '</ul>' if watch else ''}
 {link}{err_html}
 <p style="color:#777;font-size:12px">Automated research summary, not investment advice.</p></div>"""
-    body_text = f"{level} {comp['total']:g}/{comp['max']:g}\n{headline}\n\n{a.get('digest_markdown', '')}"
+    body_text = f"{shown} {comp['total']:g}/{comp['max']:g}\n{headline}\n\n{a.get('digest_markdown', '')}"
     return subject, body_html, body_text
 
 

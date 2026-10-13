@@ -69,6 +69,8 @@ hyperscaler_filings:
   agg_capex_qoq: [0.0, -5.0, -15.0]     # below each value adds a point
   single_capex_cut_pct: -10.0           # any one company cutting this much QoQ adds +1
   new_lease_assets_qoq: -25.0           # aggregate new right-of-use lease assets falling this much adds +1
+  # Leases signed but not yet commenced (10-Q/10-K footnote text), aggregate quarter over quarter (%)
+  leases_not_commenced_qoq: -25.0       # falling this much or more adds +1
 
 # Claude-scored (news) categories: ai_lab_financing, supplier_signals, physical_buildout,
 # plus a news adjustment to credit. Claude returns 0-3 with cited evidence.
@@ -86,5 +88,34 @@ composite:
   red_at: 9          # composite >= red_at    -> RED
   single_category_alert: 3   # any one category at this score triggers an alert
 
+# Two-run confirmation and jump flags (compared with the previous run in data/runs.csv)
+confirmation:
+  min_categories: 2          # RED shows as "confirmed" once this many categories...
+  min_score: 2               # ...scored at least this...
+  consecutive_runs: 2        # ...in this many consecutive runs (the same categories each time)
+  jump_points: 2             # flag a category that rose this many points since the last run
+
+# Evidence URL checks after the assessment (news categories)
+source_check:
+  timeout_seconds: 10
+  cap_from: 2                # a news category scoring this or more...
+  min_sources: 2             # ...needs this many verified-or-unreachable sources...
+  cap_to: 1                  # ...or it is capped at this score
+
+# Filing text read from EDGAR (leases not yet commenced; earnings press releases)
+filing_text:
+  lease_phrase: "not yet commenced"
+  # Phrases counted (case-insensitive regex) in hyperscaler earnings press releases
+  call_phrases:
+    pacing: '\bpacing\b'
+    digestion: '\bdigest(ion|ing)\b'
+    discipline: '\bdisciplin(e|ed)\b'
+    optimize: '\boptimi[sz](e|es|ed|ing|ation)\b'
+    capacity constrained: '\bcapacity[\s-]+constrain(ed|ts?)\b'
+    fungible: '\bfungib(le|ility)\b'
+
 email:
   send_every_week: true      # weekly digest even when calm; alerts are flagged in the subject
+  # Event-day runs email only when the composite level changes or a category moves this many
+  # points (up or down) versus the previous run.
+  event_category_move: 2

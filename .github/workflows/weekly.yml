@@ -4,8 +4,16 @@ on:
   schedule:
     # Saturdays 01:17 UTC = 09:17 Shanghai / Singapore time
     - cron: "17 1 * * 6"
+    # Daily 23:30 UTC = 07:30 UTC+8: runs only if a config/events.yaml event fell on the US day just
+    # ending and no run happened that day (cew/events.py; keep EVENT_CHECK_CRON in sync)
+    - cron: "30 23 * * *"
   workflow_dispatch:
     inputs:
+      event:
+        description: "Tag as an event run, e.g. MSFT-earnings (names from config/events.yaml; blank = normal manual run)"
+        type: string
+        required: false
+        default: ""
       research_model:
         description: "Research model (blank = RESEARCH_MODEL variable, then config)"
         type: string
@@ -31,7 +39,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40   # the first v2 run also reads two lease footnotes per company
     steps:
       - uses: actions/checkout@v4
 
@@ -43,10 +51,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt pytest
 
+      - name: Decide whether to run
+        id: plan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_EVENT: ${{ inputs.event }}
+        run: python -m cew.events plan
+
       - name: Unit tests
+        if: steps.plan.outputs.run == 'true'
         run: python -m pytest -q
 
-      - name: Run weekly pipeline
+      - name: Run pipeline
+        if: steps.plan.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
@@ -59,6 +77,7 @@ jobs:
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
           # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
           EVENT_NAME: ${{ github.event_name }}
+          RUN_TRIGGER: ${{ steps.plan.outputs.trigger }}
           INPUT_SEND_EMAIL: ${{ inputs.send_email }}
           INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
           INPUT_ASSESSMENT_MODEL: ${{ inputs.assessment_model }}
@@ -72,7 +91,9 @@ jobs:
           fi
 
       - name: Save data and dashboard files
-        if: always()
+        if: always() && steps.plan.outputs.run == 'true'
+        env:
+          RUN_TRIGGER: ${{ steps.plan.outputs.trigger }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -81,6 +102,6 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Weekly update $(date -u +%Y-%m-%d)"
+          git commit -m "Data update $(date -u +%Y-%m-%d) (${RUN_TRIGGER:-manual})"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
