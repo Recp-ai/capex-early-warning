@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import re
 import smtplib
 import ssl
 from email.mime.multipart import MIMEMultipart
@@ -12,6 +13,27 @@ import markdown as md
 from . import util
 
 LEVEL_COLOR = {"GREEN": "#1a7f37", "AMBER": "#b26b00", "RED": "#c62828"}
+FOLLOW_UP_LABEL = {"resolved": "Resolved", "improved": "Improved", "worsened": "Worsened",
+                   "still_open": "Still open", "no_news": "No news"}
+
+
+def _host(url: str) -> str:
+    m = re.match(r"https?://(?:www\.)?([^/]+)", url or "")
+    return m.group(1) if m else "link"
+
+
+def follow_ups_html(items: list[dict]) -> str:
+    rows = []
+    for f in items:
+        link, src = "", f.get("source") or {}
+        if src.get("url"):
+            meta = ", ".join(x for x in (src.get("status"), src.get("tier")) if x)
+            link = (f" <a href='{html.escape(src['url'])}'>{html.escape(_host(src['url']))}</a>"
+                    + (f" <span style='color:#777;font-size:12px'>({html.escape(meta)})</span>" if meta else ""))
+        note = f": {html.escape(f['note'])}" if f.get("note") else ""
+        rows.append(f"<li><b>{html.escape(FOLLOW_UP_LABEL.get(f.get('status'), f.get('status') or ''))}</b> · "
+                    f"{html.escape(f['item'])}{note}{link}</li>")
+    return "<h3>Follow-ups from last run</h3><ul>" + "".join(rows) + "</ul>" if rows else ""
 
 
 def build_email(report: dict, dashboard_url: str | None) -> tuple[str, str, str]:
@@ -38,13 +60,22 @@ def build_email(report: dict, dashboard_url: str | None) -> tuple[str, str, str]
         if checked:
             v = sum(1 for e in checked if e["status"] == "verified")
             src = f"{v}/{len(checked)} sources verified"
+        tiers = ", ".join(f"{n} {t}" for t in ("primary", "major", "other")
+                          if (n := sum(1 for e in ev if e.get("tier") == t)))
         flag = f"rose {jumps[key]:+d} since last run, check it" if key in jumps else ""
-        note = " · ".join(x for x in (src, flag) if x)
+        unstable = (f"unstable: scoring samples {', '.join(map(str, s['samples']))}" if s.get("unstable") else "")
+        note = " · ".join(x for x in (src, tiers, flag, unstable) if x)
         rows.append(f"<tr><td style='padding:4px 12px 4px 0'>{html.escape(label)}</td>"
                     f"<td style='padding:4px 12px 4px 0;font-weight:600'>{s['score']}/3</td>"
                     f"<td style='padding:4px 0;color:#777;font-size:12px'>{html.escape(note)}</td></tr>")
     digest_html = md.markdown(a.get("digest_markdown") or "_Claude digest unavailable this week; scores below are rule-based only._")
     watch = "".join(f"<li>{html.escape(w)}</li>" for w in a.get("watch_next", []))
+    follow = follow_ups_html(report.get("follow_ups") or [])
+    stage = (report.get("credit_stage") or {}).get("line")
+    stage_html = (f"<p style='font-size:13px;color:#555'>Credit contagion stage (context, not scored): "
+                  f"{html.escape(stage)}</p>") if stage else ""
+    held = comp.get("held")
+    held_html = f"<p style='font-size:13px;color:#555'>{html.escape(held['note'])}</p>" if held else ""
     link = f"<p><a href='{html.escape(dashboard_url)}'>Open the dashboard</a></p>" if dashboard_url else ""
     errors = report.get("errors") or {}
     err_html = ""
@@ -70,13 +101,20 @@ def build_email(report: dict, dashboard_url: str | None) -> tuple[str, str, str]
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">{when}</p>{events_html}
 <h2 style="margin:0 0 4px;color:{LEVEL_COLOR.get(level, '#333')}">{shown} — {comp['total']:g} / {comp['max']:g}</h2>
-<p style="margin-top:0">{html.escape(headline)}</p>{conf_html}
+<p style="margin-top:0">{html.escape(headline)}</p>{held_html}{conf_html}
 {digest_html}
-<h3>Category scores</h3><table>{''.join(rows)}</table>
+<h3>Category scores</h3><table>{''.join(rows)}</table>{stage_html}
+{follow}
 {'<h3>Watch next</h3><ul>' + watch + '</ul>' if watch else ''}
 {link}{err_html}
 <p style="color:#777;font-size:12px">Automated research summary, not investment advice.</p></div>"""
     body_text = f"{shown} {comp['total']:g}/{comp['max']:g}\n{headline}\n\n{a.get('digest_markdown', '')}"
+    if stage:
+        body_text += f"\n\nCredit contagion stage: {stage}"
+    if report.get("follow_ups"):
+        body_text += "\n\nFollow-ups from last run:\n" + "\n".join(
+            f"- {FOLLOW_UP_LABEL.get(f.get('status'), f.get('status'))}: {f['item']}"
+            + (f" ({f['note']})" if f.get("note") else "") for f in report["follow_ups"])
     return subject, body_html, body_text
 
 

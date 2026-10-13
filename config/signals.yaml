@@ -8,7 +8,15 @@ models:
 # A run's models come from (first valid wins): the workflow_dispatch inputs, then the repo
 # Actions variables RESEARCH_MODEL / ASSESSMENT_MODEL, then the values above.
 # Prices for the cost estimate live in config/models.yaml.
-max_web_searches: 12            # cap on Claude web searches per weekly run
+max_web_searches: 16            # cap on Claude web searches per run (the four topics plus follow-ups)
+assessment_samples: 2           # scoring passes over the same research notes; news scores are averaged
+                                # (rounded half down) and the spread between passes is recorded
+assessment_unstable_spread: 2   # passes this many points apart on a news category flag it "unstable"
+
+# Follow-ups: the previous run's "watch next" items are searched for and given a status in this run.
+follow_ups:
+  max_runs: 3                   # an unresolved item is followed up in at most this many runs, then drops off
+  max_items: 12                 # most follow-ups passed to one run (the newest are kept)
 
 # ---------------------------------------------------------------------------
 # Data sources
@@ -27,6 +35,7 @@ fred_series:
   # Credit (a domino category)
   BAMLH0A0HYM2: {label: "High-yield credit spread (%)", freq: daily}
   BAMLC0A0CM: {label: "Investment-grade credit spread (%)", freq: daily}
+  BAA10Y: {label: "Baa corporate minus 10-yr Treasury spread (%)", freq: daily}
   # Prices for the running log (SPY / QQQ proxies)
   SP500: {label: "S&P 500 index", freq: daily}
   NASDAQ100: {label: "Nasdaq-100 index", freq: daily}
@@ -58,6 +67,22 @@ credit:
   hy_level_stress: 5.0
   ig_change_4w_bonus: 0.20              # IG spread widening this much adds +1 (capped at 3)
 
+# Credit contagion stage: context only, it never changes the credit score. Classified each run from
+# 4-week spread changes in percentage points (HY = BAMLH0A0HYM2, IG = BAMLC0A0CM, BAA = BAA10Y):
+#   Calm: none widening · Junk only (contained): HY widening, IG and BAA not · Spreading: HY and IG or
+#   BAA widening · IG only (financing pressure, possibly bond supply): IG or BAA widening, HY not ·
+#   Easing: HY and IG both narrowing.
+credit_stage:
+  hy_widen: 0.40                        # 4-week change at or above this counts as widening
+  ig_widen: 0.10
+  baa_widen: 0.15
+  hy_narrow: -0.40                      # 4-week change at or below this counts as narrowing
+  ig_narrow: -0.10
+  baa_narrow: -0.15
+  # 10-year Treasury (DGS10) 4-week change: at or above +this is "rising" (rate/inflation pressure),
+  # at or below -this is "falling" ("growth scare" when spreads are widening), otherwise "flat"
+  ust10y_move: 0.10
+
 taiwan:
   # Median year-over-year revenue growth of the AI-server group (%)
   median_yoy: [10.0, 0.0, -10.0]        # below each value adds a point
@@ -86,6 +111,10 @@ composite:
     physical_buildout: 1.0
   amber_at: 5        # composite >= amber_at  -> AMBER
   red_at: 9          # composite >= red_at    -> RED
+  # Once a run is AMBER, the next run stays AMBER until the composite falls below amber_at minus this
+  # (with whole-point scores: 4 holds AMBER, 3 drops to GREEN). Same at the RED boundary (8 holds RED).
+  # Rises are never delayed. Event-run emails compare this held level with the previous run's.
+  level_hysteresis: 1
   single_category_alert: 3   # any one category at this score triggers an alert
 
 # Two-run confirmation and jump flags (compared with the previous run in data/runs.csv)
@@ -101,6 +130,19 @@ source_check:
   cap_from: 2                # a news category scoring this or more...
   min_sources: 2             # ...needs this many verified-or-unreachable sources...
   cap_to: 1                  # ...or it is capped at this score
+
+# Source tier of each evidence URL, by host (a listed domain also matches its subdomains; "gov" matches
+# every .gov site). Anything not listed is "other". A label only: tiers don't change scores or caps.
+source_tiers:
+  primary:   # filings, regulators, grid operators, company IR pages, newsrooms and press-release wires
+    [gov, gov.tw, europa.eu, twse.com.tw, pjm.com, ercot.com,
+     microsoft.com, abc.xyz, blog.google, aboutamazon.com, atmeta.com, about.fb.com, oracle.com,
+     nvidia.com, amd.com, broadcom.com, tsmc.com, micron.com, skhynix.com, vertiv.com, arista.com,
+     credosemi.com, asteralabs.com, celestica.com, coreweave.com, nebius.com, openai.com, anthropic.com,
+     x.ai, mistral.ai, businesswire.com, prnewswire.com, globenewswire.com]
+  major:
+    [reuters.com, bloomberg.com, cnbc.com, ft.com, wsj.com, apnews.com, nytimes.com, barrons.com,
+     theinformation.com, nikkei.com, economist.com]
 
 # Filing text read from EDGAR (leases not yet commenced; earnings press releases)
 filing_text:

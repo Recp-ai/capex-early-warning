@@ -1,5 +1,7 @@
 """One pipeline run: fetch -> filing text -> score -> Claude -> source checks -> publish -> email.
 
+The previous assessed run's watch-next items become this run's follow-ups (cew.followups).
+
 Usage:
   python -m cew.run                 # full run (needs secrets in the environment)
   python -m cew.run --no-email      # everything except sending the email
@@ -16,12 +18,12 @@ import json
 import sys
 from datetime import date
 
-from . import (analyst, calls, events, fetch_edgar, fetch_fred, fetch_taiwan, leases, models, notify, publish,
-               scoring, sources, util)
+from . import (analyst, calls, events, fetch_edgar, fetch_fred, fetch_taiwan, followups, leases, models, notify,
+               publish, scoring, sources, util)
 
 
 def data_brief(fred: dict, edgar: dict, tw: dict, rule_scores: dict, filing_text: dict | None = None,
-               run_events: list[dict] | None = None) -> dict:
+               run_events: list[dict] | None = None, credit_stage: dict | None = None) -> dict:
     """Compact, history-free summary of the official data for Claude."""
     companies = {}
     for t, c in edgar["companies"].items():
@@ -46,6 +48,8 @@ def data_brief(fred: dict, edgar: dict, tw: dict, rule_scores: dict, filing_text
         brief["earnings_press_releases"] = ft["earnings"]["companies"]
     if run_events:
         brief["events_this_run"] = [{k: e.get(k) for k in ("date", "name", "title")} for e in run_events]
+    if credit_stage:  # context only; the credit score is the rule-based one above
+        brief["credit_contagion_stage"] = {k: credit_stage.get(k) for k in ("line", "changes_4w")}
     return brief
 
 
@@ -115,6 +119,7 @@ def main(argv: list[str] | None = None) -> int:
                              subs_cache, since)
     filing_text = {"leases": lease_data, "earnings": earnings}
 
+    stage = scoring.credit_stage(fred, cfg)
     rule = {
         "credit": scoring.score_credit(fred, cfg),
         "taiwan_supply_chain": scoring.score_taiwan(tw, cfg),
@@ -130,12 +135,13 @@ def main(argv: list[str] | None = None) -> int:
     prev_runs = publish.previous_runs()
     prev_scores = [scoring.run_scores(r) for r in prev_runs]
     last_run = prev_runs[-1] if prev_runs else None
+    pending = followups.pending(publish.last_assessed_run(), cfg)
 
     print(f"Claude step: {'on' if llm_on else 'off'} ...", flush=True)
     recent = [e for e in run_events if 0 <= (us_day - date.fromisoformat(e["date"])).days <= 3]  # not future dates
     focus = "; ".join(f"{e.get('title') or e['name']} ({e['date']})" for e in recent) or None
-    claude = analyst.run(cfg, data_brief(fred, edgar, tw, rule, filing_text, run_events), prev_summary, llm_on,
-                         selection, focus)
+    claude = analyst.run(cfg, data_brief(fred, edgar, tw, rule, filing_text, run_events, stage), prev_summary,
+                         llm_on, selection, focus, [f["item"] for f in pending])
     usage = claude.pop("usage", None) or {}
     usage.update({k: u for k, u in extra_usage.items() if u["requests"]})
     prices = models.load_prices()
@@ -144,11 +150,12 @@ def main(argv: list[str] | None = None) -> int:
 
     scores = dict(rule)
     a = claude.get("assessment") or {}
+    follow_ups = followups.merge(pending, a.get("follow_ups")) if a else []
     for k in scoring.NEWS_CATEGORIES:
         n = (a.get("news_scores") or {}).get(k)
         if n:
             scores[k] = {"score": int(n["score"]), "reasons": [n["summary"]], "evidence": n.get("evidence", []),
-                         "data_ok": True}
+                         "data_ok": True, **{x: n[x] for x in ("samples", "spread", "unstable") if x in n}}
         else:
             scores[k] = {"score": 0, "reasons": ["Not scored this run (Claude step unavailable)"],
                          "evidence": [], "data_ok": False}
@@ -156,11 +163,13 @@ def main(argv: list[str] | None = None) -> int:
         for k in ("hyperscaler_filings", "supplier_signals"):
             scores[k].setdefault("evidence", []).extend(copy.deepcopy(earnings["evidence"]))
 
+    fu_sources = [f["source"] for f in follow_ups if f.get("source")]
+    sources.tag_tiers([e for s in scores.values() for e in s.get("evidence") or []] + fu_sources, cfg)
     if args.offline:
         source_check = {"skipped": "offline run"}
     else:
         print("Checking evidence URLs ...", flush=True)
-        source_check = {"counts": sources.check_evidence(scores, cfg)}
+        source_check = {"counts": sources.check_evidence(scores, cfg, extra=fu_sources)}
         source_check["capped"] = sources.apply_caps(scores, cfg)
 
     adj = a.get("credit_news_adjustment") or {}
@@ -169,6 +178,7 @@ def main(argv: list[str] | None = None) -> int:
         scores["credit"]["reasons"].append(f"News adjustment {int(adj['delta']):+d}: {adj.get('reason', '')}")
 
     comp = scoring.composite(scores, cfg)
+    scoring.hysteresis(comp, (last_run or {}).get("level"), cfg)
     comp["confirmation"] = scoring.confirmation(scores, prev_scores, cfg)
     comp["red_confirmed"] = comp["level"] == "RED" and comp["confirmation"]["met"]
     comp["jumps"] = scoring.jumps(scores, prev_scores[-1] if prev_scores else None, cfg)
@@ -183,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
         errors["claude"] = claude["error"]
     if (claude.get("research") or {}).get("error"):
         errors["claude:research"] = claude["research"]["error"]
+    if claude.get("sample_errors"):
+        errors["claude:samples"] = "; ".join(claude["sample_errors"])
     note = events.horizon_warning(all_events, us_day)
     if note:
         errors["events"] = note
@@ -196,6 +208,8 @@ def main(argv: list[str] | None = None) -> int:
         "categories": scoring.CATEGORIES,
         "scores": scores,
         "composite": comp,
+        "credit_stage": stage,
+        "follow_ups": follow_ups,
         "claude": claude,
         "cost": cost,
         "source_check": source_check,
@@ -219,7 +233,8 @@ def main(argv: list[str] | None = None) -> int:
     archived = publish.finish_run(report, all_events)
 
     print(json.dumps({"run_id": run_id, "trigger": trigger, "archived": f"data/runs/{archived}",
-                      "composite": comp, "scores": {k: v["score"] for k, v in scores.items()},
+                      "composite": comp, "credit_stage": stage["line"],
+                      "scores": {k: v["score"] for k, v in scores.items()},
                       "cost_usd": (cost or {}).get("total_usd"), "source_check": source_check,
                       "email": report["email"], "errors": errors}, indent=1, default=str))
     # Fail the workflow only if nothing at all could be fetched.

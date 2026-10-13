@@ -1,12 +1,16 @@
 """Persist the report, the daily log, every run's archive copy, and the dashboard's data files.
 
 data/reports/<date>.json and data/log.csv keep one entry per day (the dashboard's running log).
-data/runs/<UTC timestamp>.json and data/runs.csv keep every run; both are append-only.
+data/runs/<UTC timestamp>.json and data/runs.csv keep every run; both are append-only. A column added
+to RUN_FIELDS is appended to the end of runs.csv's header line; earlier rows stay as written.
 """
 from __future__ import annotations
 
 import csv
+import io
 import json
+import os
+import re
 from datetime import date, timedelta
 
 from . import events, scoring, util
@@ -15,11 +19,11 @@ REPORTS = util.DATA / "reports"
 LOG_PATH = util.DATA / "log.csv"
 LOG_FIELDS = ["date", "level", "composite", "credit", "ai_lab_financing", "taiwan_supply_chain",
               "hyperscaler_filings", "supplier_signals", "physical_buildout",
-              "sp500", "nasdaq100", "vix", "ust10y", "brent", "hy_spread",
+              "sp500", "nasdaq100", "vix", "ust10y", "brent", "hy_spread", "credit_stage",
               "research_model", "assessment_model", "cost_usd"]
-CHART_SERIES = ["BAMLH0A0HYM2", "BAMLC0A0CM", "DGS10", "DCOILBRENTEU", "VIXCLS", "SP500", "NASDAQ100"]
+CHART_SERIES = ["BAMLH0A0HYM2", "BAMLC0A0CM", "BAA10Y", "DGS10", "DCOILBRENTEU", "VIXCLS", "SP500", "NASDAQ100"]
 RUN_FIELDS = ["timestamp", "trigger", "research_model", "assessment_model", "tokens", "searches", "cost_usd",
-              "composite", "level", *[k for k, _ in scoring.CATEGORIES]]
+              "composite", "level", *[k for k, _ in scoring.CATEGORIES], "credit_stage"]
 RUNS_SHOWN = 20
 
 
@@ -73,6 +77,7 @@ def run_row(report: dict) -> dict:
         "cost_usd": "" if cost.get("total_usd") is None else cost["total_usd"],
         "composite": report["composite"]["total"], "level": report["composite"]["level"],
         **{k: report["scores"][k]["score"] for k, _ in scoring.CATEGORIES},
+        "credit_stage": (report.get("credit_stage") or {}).get("stage", ""),
     }
 
 
@@ -93,6 +98,18 @@ def archive_run(report: dict) -> str:
     return path.name
 
 
+def _extend_header(path, fields: list[str]) -> None:
+    """Rewrite only the header line of a CSV with `fields`; every row after it stays byte for byte."""
+    data = path.read_bytes()
+    end = data.find(b"\n") + 1 or len(data)
+    eol = "\r\n" if data[:end].endswith(b"\r\n") else "\n"
+    buf = io.StringIO()
+    csv.writer(buf, lineterminator=eol).writerow(fields)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_bytes(buf.getvalue().encode("utf-8") + data[end:])
+    os.replace(tmp, path)
+
+
 def append_run_row(row: dict) -> None:
     path = runs_csv()
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -101,6 +118,10 @@ def append_run_row(row: dict) -> None:
     if not new_file:
         with open(path, newline="", encoding="utf-8") as f:
             fields = next(csv.reader(f), None) or RUN_FIELDS  # keep the existing column order
+        missing = [k for k in RUN_FIELDS if k not in fields]
+        if missing:  # a new column goes on the end of the header; earlier rows read it as blank
+            fields = fields + missing
+            _extend_header(path, fields)
         with open(path, "rb") as f:
             f.seek(-1, 2)
             prefix = "" if f.read(1) == b"\n" else "\n"
@@ -110,6 +131,24 @@ def append_run_row(row: dict) -> None:
         if new_file:
             w.writeheader()
         w.writerow(row)
+
+
+def run_files() -> list:
+    """data/runs/*.json, oldest first ("<stamp>-2.json" sorts after "<stamp>.json")."""
+    def key(p):
+        m = re.fullmatch(r"(.+?)(?:-(\d+))?", p.stem)
+        return m.group(1), int(m.group(2) or 1)
+    d = runs_dir()
+    return sorted(d.glob("*.json"), key=key) if d.exists() else []
+
+
+def last_assessed_run(limit: int = 10) -> dict | None:
+    """The latest archived run (of the last `limit`) whose Claude assessment succeeded."""
+    for p in reversed(run_files()[-limit:]):
+        r = util.read_json(p) or {}
+        if (r.get("claude") or {}).get("assessment"):
+            return r
+    return None
 
 
 def previous_runs(n: int = 5) -> list[dict]:
@@ -156,6 +195,7 @@ def update_log(report: dict) -> list[dict]:
         **{k: report["scores"][k]["score"] for k, _ in scoring.CATEGORIES},
         "sp500": latest("SP500"), "nasdaq100": latest("NASDAQ100"), "vix": latest("VIXCLS"),
         "ust10y": latest("DGS10"), "brent": latest("DCOILBRENTEU"), "hy_spread": latest("BAMLH0A0HYM2"),
+        "credit_stage": (report.get("credit_stage") or {}).get("stage", ""),
         "research_model": used.get("research", ""), "assessment_model": used.get("assessment", ""),
         "cost_usd": "" if cost is None else cost,
     }

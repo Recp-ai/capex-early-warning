@@ -45,6 +45,53 @@ def score_credit(fred: dict, cfg: dict) -> dict:
     return {"score": min(score, 3), "reasons": reasons, "data_ok": bool(hy)}
 
 
+STAGE_SERIES = {"hy": "BAMLH0A0HYM2", "ig": "BAMLC0A0CM", "baa": "BAA10Y"}
+STAGE_LABELS = {
+    "calm": "Calm",
+    "junk_only": "Junk only: contained",
+    "spreading": "Spreading: junk and investment grade",
+    "ig_only": "IG only: financing pressure (possibly bond supply)",
+    "easing": "Easing",
+}
+
+
+def credit_stage(fred: dict, cfg: dict) -> dict:
+    """Credit contagion stage from the 4-week spread changes, plus the 10-year yield's direction.
+    Context only: it never changes the credit score."""
+    c = cfg.get("credit_stage") or {}
+    series = fred.get("series") or {}
+    chg = {k: (series.get(sid) or {}).get("chg_4w") for k, sid in STAGE_SERIES.items()}
+    widening = [k for k, v in chg.items() if v is not None and c.get(f"{k}_widen") is not None and v >= c[f"{k}_widen"]]
+    narrowing = [k for k, v in chg.items() if v is not None and c.get(f"{k}_narrow") is not None and v <= c[f"{k}_narrow"]]
+    out = {"changes_4w": chg, "widening": widening, "narrowing": narrowing,
+           "missing": [STAGE_SERIES[k] for k, v in chg.items() if v is None]}
+    if chg["hy"] is None:
+        return {**out, "stage": "", "label": "Unknown (no high-yield spread data)", "ten_year": {},
+                "line": "Unknown (no high-yield spread data)"}
+    if "hy" in widening:
+        stage = "spreading" if {"ig", "baa"} & set(widening) else "junk_only"
+    elif {"ig", "baa"} & set(widening):
+        stage = "ig_only"
+    elif {"hy", "ig"} <= set(narrowing):
+        stage = "easing"
+    else:
+        stage = "calm"
+    t = (series.get("DGS10") or {}).get("chg_4w")
+    move = c.get("ust10y_move", 0.10)
+    if t is None:
+        ten = {"direction": "", "chg_4w": None, "label": ""}
+    elif t >= move:
+        ten = {"direction": "rising", "chg_4w": t, "label": "10y rising (rate pressure)"}
+    elif t <= -move:
+        ten = {"direction": "falling", "chg_4w": t,
+               "label": "10y falling (growth scare)" if widening else "10y falling"}
+    else:
+        ten = {"direction": "flat", "chg_4w": t, "label": "10y flat"}
+    label = STAGE_LABELS[stage]
+    return {**out, "stage": stage, "label": label, "ten_year": ten,
+            "line": " · ".join(x for x in (label, ten["label"]) if x)}
+
+
 def score_taiwan(tw: dict, cfg: dict) -> dict:
     t = cfg["taiwan"]
     med = tw.get("median_yoy_by_period", {})
@@ -168,6 +215,31 @@ def composite(scores: dict[str, dict], cfg: dict) -> dict:
     if hot and level == "GREEN":
         level = "AMBER"
     return {"total": round(total, 2), "max": max_total, "level": level, "alert": alert, "hot_categories": hot}
+
+
+LEVELS = ["GREEN", "AMBER", "RED"]
+
+
+def hysteresis(comp: dict, previous_level: str | None, cfg: dict) -> dict:
+    """Hold the previous run's level near a boundary. Once AMBER (or RED), the composite has to fall
+    below amber_at (red_at) minus composite.level_hysteresis to drop a level; rises are immediate.
+    Sets comp["raw_level"] (before hysteresis) and, when the level was held, comp["held"]. In place."""
+    c = cfg["composite"]
+    margin = float(c.get("level_hysteresis") or 0)
+    comp["raw_level"] = comp["level"]
+    if margin <= 0 or previous_level not in LEVELS:
+        return comp
+    total = comp["total"]
+    sticky = "RED" if total >= c["red_at"] - margin else "AMBER" if total >= c["amber_at"] - margin else "GREEN"
+    held = min(LEVELS.index(previous_level), LEVELS.index(sticky))
+    if held > LEVELS.index(comp["level"]):
+        level = LEVELS[held]
+        line = c["red_at"] if level == "RED" else c["amber_at"]
+        comp.update(level=level, alert=True, held={
+            "previous_level": previous_level, "raw_level": comp["raw_level"], "margin": margin,
+            "note": f"Held at {level}: composite {total:g} is under the {level.title()} line ({line:g}) but not "
+                    f"below {line - margin:g}, so the level stays until it falls further."})
+    return comp
 
 
 # ---------------------------------------------------------------- run-to-run checks

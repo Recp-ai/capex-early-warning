@@ -7,6 +7,9 @@ and names. Each evidence item gets status verified / unverified / unreachable.
 
 A news category scoring source_check.cap_from or more with fewer than source_check.min_sources
 verified-or-unreachable sources is capped at source_check.cap_to (see apply_caps).
+
+Every evidence URL also gets a source tier (primary / major / other) from its host and the domain
+lists in source_tiers (see tier). Tiers are labels only.
 """
 from __future__ import annotations
 
@@ -128,12 +131,33 @@ def make_fetcher(timeout: float = 10, session=None, resolver: Callable = socket.
     return fetch
 
 
-def check_evidence(scores: dict, cfg: dict, fetch: Callable | None = None, workers: int = 4) -> dict:
-    """Annotate every not-yet-checked evidence item in place; returns counts per category."""
+def tier(url: str, cfg: dict) -> str:
+    """'primary', 'major' or 'other' for a URL, from its host and the source_tiers domain lists."""
+    host = (urlsplit(url or "").hostname or "").lower().rstrip(".")
+    tiers = cfg.get("source_tiers") or {}
+    for name in ("primary", "major"):
+        for d in tiers.get(name) or []:
+            d = str(d).lower().strip(".")
+            if d and (host == d or host.endswith("." + d)):
+                return name
+    return "other"
+
+
+def tag_tiers(items: list[dict], cfg: dict) -> None:
+    """Set "tier" on every item that has a URL (evidence items, follow-ups). In place."""
+    for e in items:
+        if e.get("url"):
+            e["tier"] = tier(e["url"], cfg)
+
+
+def check_evidence(scores: dict, cfg: dict, fetch: Callable | None = None, workers: int = 4,
+                   extra: list[dict] | None = None) -> dict:
+    """Annotate every not-yet-checked evidence item in place; returns counts per category.
+    `extra` evidence-shaped items ({"url", "claim"}, e.g. follow-up sources) are checked in the same pass."""
     sc = cfg.get("source_check") or {}
     fetch = fetch or make_fetcher(sc.get("timeout_seconds", 10))
-    items = [e for k, s in scores.items() for e in (s.get("evidence") or [])
-             if e.get("url") and e.get("status") not in ("verified", "unverified", "unreachable")]
+    items = [e for k, s in scores.items() for e in (s.get("evidence") or [])] + list(extra or [])
+    items = [e for e in items if e.get("url") and e.get("status") not in ("verified", "unverified", "unreachable")]
     urls = list(dict.fromkeys(e["url"] for e in items))
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         pages = dict(zip(urls, pool.map(fetch, urls)))

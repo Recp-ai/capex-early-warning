@@ -119,13 +119,15 @@ def test_run_uses_each_steps_model_and_records_usage(monkeypatch):
     fake = FakeMessages([
         NS(stop_reason="end_turn", usage=_usage(20_000, 1_000, 5), content=[_text("notes")]),
         NS(stop_reason="end_turn", usage=_usage(8_000, 2_000), content=[_text(json.dumps(assessment))]),
+        NS(stop_reason="end_turn", usage=_usage(8_000, 2_000), content=[_text(json.dumps(assessment))]),
     ])
     monkeypatch.setattr(analyst, "_client", lambda: NS(messages=fake))
     sel = models.resolve(CFG, {"INPUT_RESEARCH_MODEL": "claude-haiku-5-5"})
-    out = analyst.run({**CFG, "max_web_searches": 5}, {}, None, True, sel)
-    assert [c["model"] for c in fake.calls] == ["claude-haiku-5-5", "claude-opus-5-5"]
+    out = analyst.run({**CFG, "max_web_searches": 5}, {}, None, True, sel)  # assessment_samples defaults to 2
+    assert [c["model"] for c in fake.calls] == ["claude-haiku-5-5", "claude-opus-5-5", "claude-opus-5-5"]
     assert out["models"] == {"research": "claude-haiku-5-5", "assessment": "claude-opus-5-5"}
-    assert out["usage"]["research"]["web_searches"] == 5 and out["usage"]["assessment"]["output_tokens"] == 2_000
+    assert out["usage"]["research"]["web_searches"] == 5 and out["usage"]["assessment"]["output_tokens"] == 4_000
+    assert out["usage"]["assessment"]["requests"] == 2  # both samples are billed
     assert out["assessment"]["headline"] == "h"
 
 

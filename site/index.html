@@ -114,6 +114,14 @@ th.left, td.left { text-align: left; }
 .mtd { font-size: 13px; color: var(--ink-2); }
 .mtd b { color: var(--ink); font-size: 15px; }
 .events-next { margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
+.tier { font-size: 11px; font-weight: 600; letter-spacing: .02em; color: var(--muted); margin-left: 4px; white-space: nowrap; }
+.tier.primary, .tier.major { color: var(--ink-2); }
+.stage { margin-top: 8px; font-size: 13px; color: var(--ink-2); }
+.stage b { color: var(--ink); font-weight: 600; }
+.fu { margin: 8px 0 12px; padding-left: 0; list-style: none; font-size: 13.5px; }
+.fu li { margin-bottom: 6px; }
+.fu .note { color: var(--ink-2); }
+.held { margin-top: 6px; font-size: 12.5px; color: var(--ink-2); }
 </style>
 </head>
 <body>
@@ -160,6 +168,15 @@ th.left, td.left { text-align: left; }
     unverified: ["--warning", "unverified", "The page loaded but the claim's numbers or names were not found"],
     unreachable: ["--muted", "unreachable", "The page could not be fetched (paywall, block, timeout or not a web page)"],
   };
+  const TIER_TITLE = {
+    primary: "Primary source: filing, regulator, grid operator or company IR / press release",
+    major: "Major outlet (Reuters, Bloomberg, CNBC, FT, WSJ and similar)",
+    other: "Other source (aggregator, trade site, blog or forum)",
+  };
+  const FOLLOW = {
+    resolved: ["--s1", "resolved"], improved: ["--good", "improved"], worsened: ["--critical", "worsened"],
+    still_open: ["--warning", "still open"], no_news: ["--muted", "no news"],
+  };
   const SCORE_COLOR = ["--good", "--warning", "--serious", "--critical"];
   const SCORE_LABEL = ["Calm", "Weak signal", "Several signals", "Strong warning"];
 
@@ -196,6 +213,8 @@ th.left, td.left { text-align: left; }
   const triggerLabel = t => !t || t === "schedule" ? "weekly run" : t === "manual" ? "manual run"
     : t.startsWith("event:") ? "event: " + t.slice(6).split("+").join(", ") : t;
   const badge = (st, title) => BADGE[st] ? `<span class="badge" title="${esc(title || BADGE[st][2])}"><i class="dot" style="background:var(${BADGE[st][0]})"></i>${BADGE[st][1]}</span>` : "";
+  const tierTag = t => TIER_TITLE[t] ? `<span class="tier ${t}" title="${esc(TIER_TITLE[t])}">${t}</span>` : "";
+  const hostOf = u => (String(u || "").match(/^https?:\/\/(?:www\.)?([^/]+)/) || [])[1] || "link";
   const lvlDot = l => `<span class="lvl"><span class="dot" style="background:var(${LEVEL_DOT[l] || "--muted"})"></span>${esc(l || "—")}</span>`;
   const upcoming = () => {
     const today = new Date().toISOString().slice(0, 10);
@@ -392,18 +411,25 @@ th.left, td.left { text-align: left; }
       const count = st => evs.filter(e => e.status === st).length;
       const tally = ["verified", "unreachable", "unverified"].filter(count).map(st => `${count(st)} ${st}`).join(" · ");
       const ev = evs.length ? `<details class="evidence"><summary>${evs.length} source${evs.length > 1 ? "s" : ""}${tally ? ` <span class="ev-sum">· ${tally}</span>` : ""}</summary><ul class="reasons">` +
-        evs.map(e => `<li>${badge(e.status, e.check)} ${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source === "edgar" ? "SEC filing" : (String(e.url).match(/^https?:\/\/([^/]+)/) || [])[1] || "link")}</a></li>`).join("") + "</ul></details>" : "";
+        evs.map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)} ${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source === "edgar" ? "SEC filing" : hostOf(e.url))}</a></li>`).join("") + "</ul></details>" : "";
       const jump = jumps[key] ? `<div class="flag">▲ ${signed(jumps[key], 0)} since the last run · worth a check</div>` : "";
+      const unstable = s.unstable ? `<div class="flag" title="The scoring step ran ${s.samples.length} times on the same research notes; the score shown is their average, rounded down at .5">Unstable: scoring samples gave ${esc(s.samples.join(", "))}</div>` : "";
+      const st = key === "credit" ? L.credit_stage : null;
+      const stCh = st && st.changes_4w ? Object.entries({ HY: st.changes_4w.hy, IG: st.changes_4w.ig, BAA: st.changes_4w.baa, "10y": (st.ten_year || {}).chg_4w })
+        .map(([k, v]) => `${k} ${v == null ? "n/a" : signed(v, 2)}`).join(" · ") : "";
+      const stage = st && st.line ? `<div class="stage" title="${esc("Context only, not scored. 4-week change (pts): " + stCh)}">Contagion stage: <b>${esc(st.line)}</b></div>` : "";
+      const sampled = s.samples && s.samples.length > 1 ? ` title="Scoring samples: ${esc(s.samples.join(", "))}"` : "";
       return `<div class="card"><div class="cat-head"><h2 style="margin:0">${esc(label)}</h2>
-        <span class="level" style="font-size:13px;font-weight:600"><span class="dot" style="background:var(${SCORE_COLOR[s.score]})"></span>${s.score}/3 · ${SCORE_LABEL[s.score]}</span></div>
+        <span class="level" style="font-size:13px;font-weight:600"${sampled}><span class="dot" style="background:var(${SCORE_COLOR[s.score]})"></span>${s.score}/3 · ${SCORE_LABEL[s.score]}</span></div>
         <div class="meter" aria-hidden="true">${meter}</div>
-        <ul class="reasons">${(s.reasons || []).map(r => `<li>${esc(r)}</li>`).join("")}</ul>${jump}${ev}</div>`;
+        <ul class="reasons">${(s.reasons || []).map(r => `<li>${esc(r)}</li>`).join("")}</ul>${stage}${jump}${unstable}${ev}</div>`;
     }).join("");
 
     const F = (L.data.fred || {});
     const series = [
       ["BAMLH0A0HYM2", "High-yield credit spread", "%"],
       ["BAMLC0A0CM", "Investment-grade credit spread", "%"],
+      ["BAA10Y", "Baa corporate spread over 10-year", "%"],
       ["DGS10", "10-year Treasury yield", "%"],
       ["DCOILBRENTEU", "Brent crude", ""],
       ["VIXCLS", "VIX", ""],
@@ -441,6 +467,12 @@ th.left, td.left { text-align: left; }
       `<td>${r.cost_usd ? usd(+r.cost_usd) : "—"}</td></tr>`).join("");
     const nextEvents = upcoming().slice(0, 6).map(e => `${shortDate(e.date)} ${esc(e.name)}${e.verified ? "" : "*"}`).join(" · ");
 
+    const fuItems = (L.follow_ups || []).map(f => {
+      const [color, label] = FOLLOW[f.status] || ["--muted", f.status || ""], src = f.source || {};
+      const link = src.url ? ` ${badge(src.status, src.check)}${tierTag(src.tier)} <a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(hostOf(src.url))}</a>` : "";
+      return `<li><span class="badge" title="${esc(`Followed up in ${f.runs || 1} run${f.runs > 1 ? "s" : ""} so far`)}"><i class="dot" style="background:var(${color})"></i>${esc(label)}</span> ` +
+        `${esc(f.item)}${f.note ? ` <span class="note">— ${esc(f.note)}</span>` : ""}${link}</li>`;
+    }).join("");
     const errs = Object.entries(L.errors || {});
     app.innerHTML = `
       <section class="hero">
@@ -449,10 +481,12 @@ th.left, td.left { text-align: left; }
           <div class="big">${comp.total}<small> / ${comp.max}</small></div>
           <div class="sub">${esc(levelSub)}${comp.hot_categories && comp.hot_categories.length ? " · hot: " + comp.hot_categories.map(k => catName[k] || k).join(", ") : ""}</div>
           ${conf && conf.categories.length ? `<div class="conf">At ${conf.min_score}+ for ${conf.runs} runs in a row: ${esc(conf.categories.map(k => catName[k] || k).join(", "))}</div>` : ""}
+          ${comp.held ? `<div class="held">${esc(comp.held.note)}</div>` : ""}
           ${Object.keys(jumps).length ? `<div class="flag">▲ Check: ${esc(Object.entries(jumps).map(([k, d]) => `${catName[k] || k} ${signed(d, 0)}`).join(", "))} since the last run</div>` : ""}
         </div>
         <div class="card"><h2>${esc(a.headline || "This week")}</h2>
           <div class="digest">${md(a.digest_markdown || "_Claude digest unavailable this week. Scores shown are the rule-based ones._")}</div>
+          ${fuItems ? `<b style="font-size:13px">Follow-ups from last run</b><ul class="fu">${fuItems}</ul>` : ""}
           ${(a.watch_next || []).length ? `<b style="font-size:13px">Watch next</b><ul class="watch">${a.watch_next.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
         </div>
       </section>
