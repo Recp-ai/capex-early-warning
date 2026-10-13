@@ -45,50 +45,25 @@ Rules:
 - Write the digest in plain English for a smart non-professional: what changed this week, why it
   matters, what to watch next. 150-300 words, Markdown, no tables. Not investment advice."""
 
-ASSESS_TOOL = {
-    "name": "submit_assessment",
-    "description": "Submit the weekly structured assessment.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "news_scores": {
-                "type": "object",
-                "properties": {
-                    k: {
-                        "type": "object",
-                        "properties": {
-                            "score": {"type": "integer", "minimum": 0, "maximum": 3},
-                            "summary": {"type": "string"},
-                            "evidence": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {"claim": {"type": "string"}, "url": {"type": "string"}},
-                                    "required": ["claim", "url"],
-                                },
-                            },
-                        },
-                        "required": ["score", "summary", "evidence"],
-                    }
-                    for k in ("ai_lab_financing", "supplier_signals", "physical_buildout")
-                },
-                "required": ["ai_lab_financing", "supplier_signals", "physical_buildout"],
-            },
-            "credit_news_adjustment": {
-                "type": "object",
-                "properties": {
-                    "delta": {"type": "integer", "minimum": -1, "maximum": 1},
-                    "reason": {"type": "string"},
-                },
-                "required": ["delta", "reason"],
-            },
-            "headline": {"type": "string", "description": "One sentence, under 20 words."},
-            "digest_markdown": {"type": "string"},
-            "watch_next": {"type": "array", "items": {"type": "string"}},
-        },
-        "required": ["news_scores", "credit_news_adjustment", "headline", "digest_markdown", "watch_next"],
-    },
-}
+def _obj(props: dict, required: list[str] | None = None) -> dict:
+    return {"type": "object", "properties": props, "required": required or list(props),
+            "additionalProperties": False}
+
+
+_NEWS = _obj({
+    "score": {"type": "integer", "enum": [0, 1, 2, 3]},
+    "summary": {"type": "string"},
+    "evidence": {"type": "array", "items": _obj({"claim": {"type": "string"}, "url": {"type": "string"}})},
+})
+
+ASSESS_SCHEMA = _obj({
+    "news_scores": _obj({k: _NEWS for k in ("ai_lab_financing", "supplier_signals", "physical_buildout")}),
+    "credit_news_adjustment": _obj({"delta": {"type": "integer", "enum": [-1, 0, 1]},
+                                    "reason": {"type": "string"}}),
+    "headline": {"type": "string"},
+    "digest_markdown": {"type": "string"},
+    "watch_next": {"type": "array", "items": {"type": "string"}},
+})
 
 
 def _client():
@@ -132,16 +107,20 @@ def assess(model: str, today: str, data_brief: dict, research_notes: str, previo
         f"## Official data and rule-based scores (JSON)\n```json\n{json.dumps(data_brief, indent=1, default=str)}\n```\n\n"
         f"## Last week's assessment (for 'what changed')\n```json\n{json.dumps(previous or {}, default=str)[:6000]}\n```\n\n"
         f"## This week's news research notes\n{research_notes or '(no research notes available)'}\n\n"
-        "Submit the assessment with the submit_assessment tool."
+        "Return the assessment as JSON matching the schema. The headline is one sentence under 20 words."
     )
     resp = client.messages.create(
-        model=model, max_tokens=4096, system=ASSESS_SYSTEM,
+        model=model, max_tokens=8000, system=ASSESS_SYSTEM,
         messages=[{"role": "user", "content": prompt}],
-        tools=[ASSESS_TOOL], tool_choice={"type": "tool", "name": "submit_assessment"},
+        output_config={"format": {"type": "json_schema", "schema": ASSESS_SCHEMA}},
     )
-    for block in resp.content:
-        if block.type == "tool_use" and block.name == "submit_assessment":
-            return block.input
+    if resp.stop_reason in ("refusal", "max_tokens"):
+        raise RuntimeError(f"assessment stopped early ({resp.stop_reason})")
+    text = "".join(b.text for b in resp.content if b.type == "text")
+    data = json.loads(text)
+    for v in data["news_scores"].values():  # belt and braces
+        v["score"] = max(0, min(3, int(v["score"])))
+    return data
     raise RuntimeError("Claude did not return an assessment")
 
 

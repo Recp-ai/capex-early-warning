@@ -47,7 +47,8 @@ def summarize(rows: list[dict], freq: str) -> dict:
         out[f"prev_{k}"] = None if prev is None else prev["value"]
     if freq == "monthly":
         prev12 = value_on_or_before(rows, d - timedelta(days=360))
-        out["yoy_pct"] = None if prev12 is None else round(util.pct_change(last["value"], prev12["value"]), 2)
+        pc = None if prev12 is None else util.pct_change(last["value"], prev12["value"])
+        out["yoy_pct"] = None if pc is None else round(pc, 2)
     return out
 
 

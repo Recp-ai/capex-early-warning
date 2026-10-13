@@ -94,6 +94,10 @@ def last_n(q: dict[str, float], n: int) -> list[tuple[str, float]]:
     return list(q.items())[-n:]
 
 
+def _r(v: float | None, n: int = 2) -> float | None:
+    return None if v is None else round(v, n)
+
+
 def summarize_company(m: dict) -> dict:
     """Latest quarter, QoQ and YoY for each metric, plus free cash flow."""
     s: dict = {}
@@ -111,8 +115,8 @@ def summarize_company(m: dict) -> dict:
         s[metric] = {
             "quarter_end": end,
             "value": val,
-            "qoq_pct": None if prev is None else round(util.pct_change(val, prev), 2),
-            "yoy_pct": None if yoy is None else round(util.pct_change(val, yoy), 2),
+            "qoq_pct": _r(util.pct_change(val, prev)),
+            "yoy_pct": _r(util.pct_change(val, yoy)),
             "history": last_n(q, 12),
         }
     cap, ocf = s.get("capex"), s.get("operating_cash_flow")

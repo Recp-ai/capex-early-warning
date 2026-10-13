@@ -108,7 +108,8 @@ def agg_qoq(buckets: dict[str, dict[str, float]]) -> tuple[str | None, float | N
         return cur, None, 0
     a = sum(buckets[cur][t] for t in common)
     b = sum(buckets[prev][t] for t in common)
-    return cur, round(util.pct_change(a, b), 2), len(common)
+    pc = util.pct_change(a, b)
+    return cur, (None if pc is None else round(pc, 2)), len(common)
 
 
 def score_filings(edgar: dict, cfg: dict) -> dict:

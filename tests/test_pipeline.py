@@ -139,3 +139,10 @@ def test_offline_run_writes_outputs(sandbox):
     # a second run on the same day replaces, not duplicates, the log row
     assert run.main(["--offline", "--no-llm", "--no-email"]) == 0
     assert len(json.loads((sandbox / "site" / "data" / "log.json").read_text())) == 1
+
+
+def test_summarize_handles_zero_previous_quarter():
+    m = {"metrics": {"capex": {"2026-03-31": 0.0, "2026-06-30": 5.0}, "operating_cash_flow": {},
+                     "new_operating_lease_assets": {}, "new_finance_lease_assets": {}, "debt_issued": {}}}
+    s = fetch_edgar.summarize_company(m)
+    assert s["capex"]["qoq_pct"] is None and s["capex"]["value"] == 5.0
