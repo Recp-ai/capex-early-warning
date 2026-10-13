@@ -44,7 +44,8 @@ cew/events.py       config/events.yaml, run triggers, `python -m cew.events plan
 cew/fetch_fred.py   FRED series -> data/fred/*.csv + summaries (latest, 4w/52w changes)
 cew/fetch_edgar.py  SEC XBRL capex, cash flow, lease assets -> data/edgar/*.json
 cew/edgar_text.py   EDGAR submissions index, filing documents, Exhibit 99.1 lookup, verbatim/amount checks
-cew/leases.py       10-Q/10-K "not yet commenced" paragraphs -> Claude -> data/edgar/<TICKER>_leases.json
+cew/leases.py       10-Q/10-K lease-commitment paragraphs (filing_text.lease_phrases) -> Claude ->
+                    data/edgar/<TICKER>_leases.json; bump leases.VERSION to re-read filings that gave no total
 cew/calls.py        earnings 8-K Exhibit 99.1 -> capex guidance + phrase counts -> data/calls/<TICKER>/<quarter>.json
 cew/fetch_taiwan.py TWSE monthly revenue -> data/taiwan/monthly_revenue.csv
 cew/scoring.py      rule-based scores (credit, Taiwan, filings incl. leases), composite, confirmation,

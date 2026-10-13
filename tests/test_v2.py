@@ -471,7 +471,7 @@ def test_verify_amounts_rejects_unquoted_numbers():
            {"amount_text": "$5.0 billion", "kind": "other", "sentence": src},           # duplicate
            {"amount_text": "$9.9 billion", "kind": "operating", "sentence": src},        # not in the sentence
            {"amount_text": "$3.0 billion", "kind": "total", "sentence": "Invented sentence with $3.0 billion."}]
-    got = leases.verify_amounts(raw, src)
+    got = leases.verify_amounts(raw, [src])
     assert [a["verified"] for a in got] == [True, True, False, False]
     assert [a["problem"] for a in got][2:] == ["amount not found in its sentence", "sentence not found in the filing"]
     assert leases.total(got) == 6.0e9
@@ -731,3 +731,57 @@ def test_fiscal_period_fallback_for_offset_quarters():
     assert edgar_text.period_before(date(2027, 2, 4), {3, 6, 9, 12}) == date(2026, 12, 31)
     assert edgar_text.period_before(date(2026, 10, 28), set()) == date(2026, 9, 30)
     assert edgar_text.period_end("for its second quarter ending November 30, 2026") == date(2026, 11, 30)
+
+
+
+def test_amazon_style_table_row_and_oracle_wording():
+    text = util.html_to_text("""<p>The following summarizes our principal contractual commitments as of June 30, 2026
+    (in millions):</p><table><tr><td></td><td>2026</td><td>Thereafter</td><td>Total</td></tr>
+    <tr><td>Debt principal</td><td>1,000</td><td>50,000</td><td>51,000</td></tr>
+    <tr><td>Leases not yet commenced</td><td>4,018</td><td>133,196</td><td>137,214</td></tr></table>
+    <p>As of August 31, 2026, we had $288 billion of additional lease commitments, substantially all related to
+    data center arrangements, that are expected to commence between fiscal 2027 and fiscal 2029.</p>
+    <p>In July 2026, we entered into additional lease commitments of approximately $12 billion.</p>""")
+    paras = edgar_text.snippets(text, CFG["filing_text"]["lease_phrases"])
+    assert paras[0] == "Leases not yet commenced 4,018 133,196 137,214 [table amounts in millions]"
+    assert paras[1].startswith("As of August 31, 2026, we had $288 billion") and not paras[1].endswith("]")
+    row = "Leases not yet commenced 4,018 133,196 137,214"
+    oracle = "As of August 31, 2026, we had $288 billion of additional lease commitments, substantially all related to data center arrangements, that are expected to commence between fiscal 2027 and fiscal 2029."
+    got = leases.verify_amounts([
+        {"amount_text": "137,214", "kind": "total", "sentence": row},
+        {"amount_text": "37,214", "kind": "other", "sentence": row},          # not a whole figure in the row
+        {"amount_text": "$288 billion", "kind": "total", "sentence": oracle},
+        {"amount_text": "$12 billion", "kind": "after_period_end",
+         "sentence": "In July 2026, we entered into additional lease commitments of approximately $12 billion."},
+    ], paras)
+    assert [(a["amount_usd"], a["verified"]) for a in got] == [(137_214e6, True), (None, False), (288e9, True), (12e9, True)]
+    assert leases.total(got) == 137_214e6 + 288e9  # the after-period commitment stays out
+    assert leases.total(got[3:]) is None
+
+
+def test_leases_retry_empty_reads_from_an_older_extractor(sandbox, monkeypatch):
+    one = dict(TWO, hyperscalers={"MSFT": TWO["hyperscalers"]["MSFT"]})
+    old = {"ticker": "MSFT", "name": "Microsoft", "filings": [
+        {"accession": "0000950170-26-000100", "form": "10-Q", "filing_date": "2026-10-29", "period_end": "2026-09-30",
+         "quarter": "2026Q3", "amounts": [], "total_usd": None, "note": "no paragraph"},
+        {"accession": "0000950170-26-000050", "form": "10-K", "filing_date": "2026-07-30", "period_end": "2026-06-30",
+         "quarter": "2026Q2", "amounts": [], "total_usd": None, "version": leases.VERSION}]}
+    util.write_json(leases.path_for("MSFT"), old)
+    fake = fake_claude(monkeypatch, [lease_reply("September 30, 2026", "$100.0 billion", "$10.0 billion")])
+    out = leases.run(one, FakeSession(lease_routes()), "claude-opus-5-5", True, False, {}, {})
+    assert len(fake.calls) == 1 and out["companies"]["MSFT"]["total_usd"] == 110e9  # only the old empty read redone
+    assert not fake.responses
+
+
+def test_calendar_year_guidance_labels_compare():
+    q1 = {"quarter": "2026Q1", "capex_guidance": [{"period": "CY2026", "amount_text": "$125-145 billion", "low_usd": 125e9,
+                                                   "high_usd": 145e9, "verified": True}], "phrases": {}}
+    q2 = {"quarter": "2026Q2", "name": "Meta", "url": "u", "phrases": {},
+          "capex_guidance": [{"period": "FY2026", "amount_text": "$130-145 billion", "low_usd": 130e9, "high_usd": 145e9,
+                              "stated_change": "not stated", "sentence": "s", "verified": True}]}
+    comp = calls.compare(q2, q1, 12)
+    assert comp["guidance"][0]["before"] == "$125-145 billion" and comp["guidance"][0]["midpoint_change_usd"] == 2.5e9
+    assert comp["dropped_guidance_periods"] == []
+    assert "midpoint +2.5B" in calls.evidence(q2, comp, 12)[0]["claim"]
+    assert calls.compare(q2, q1, 6)["guidance"][0]["before"] is None  # June fiscal year: CY2026 is not FY2026
+    assert calls._period_key("fy 26") == "FY2026" and calls._period_key("next quarter") == "NEXTQUARTER"

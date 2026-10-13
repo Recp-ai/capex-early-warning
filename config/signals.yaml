@@ -104,7 +104,8 @@ source_check:
 
 # Filing text read from EDGAR (leases not yet commenced; earnings press releases)
 filing_text:
-  lease_phrase: "not yet commenced"
+  # Paragraphs about leases signed but not yet started (Oracle words it "additional lease commitments")
+  lease_phrases: ["not yet commenced", "additional lease commitments"]
   # Phrases counted (case-insensitive regex) in hyperscaler earnings press releases
   call_phrases:
     pacing: '\bpacing\b'

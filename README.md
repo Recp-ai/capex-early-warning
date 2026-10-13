@@ -62,10 +62,12 @@ quarter's release, and added as evidence to the hyperscaler filings and supplier
 The first time, the previous quarter's release is read too, so there is a comparison straight away.
 
 **Leases signed but not yet started.** Each run checks EDGAR for a new 10-Q/10-K, finds the paragraphs
-containing "not yet commenced", and has Claude extract the dollar amounts into
-`data/edgar/<TICKER>_leases.json` with the source sentence for each (once per filing). If the aggregate
-falls 25% or more quarter over quarter, the filings score gets +1
-(`hyperscaler_filings.leases_not_commenced_qoq`).
+containing "not yet commenced" (and Oracle's wording, "additional lease commitments"; the list is
+`filing_text.lease_phrases`), and has Claude extract the dollar amounts into
+`data/edgar/<TICKER>_leases.json` with the source sentence for each (once per filing). Table rows such
+as Amazon's are scaled by the table's "(in millions)" heading, found by code. Leases signed after the
+quarter end are recorded but left out of the total. If the aggregate falls 25% or more quarter over
+quarter, the filings score gets +1 (`hyperscaler_filings.leases_not_commenced_qoq`).
 
 **Source checking.** After the assessment every evidence URL is fetched once (10-second timeout, an
 honest bot user agent, public addresses only) and checked for the claim's key numbers and names. Each

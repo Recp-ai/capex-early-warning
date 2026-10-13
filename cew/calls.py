@@ -83,8 +83,20 @@ def excerpt(text: str, phrases: dict[str, str], limit: int = 40000) -> str:
     return "\n".join(out)
 
 
-def _period_key(p: str) -> str:
-    return re.sub(r"\s+", "", (p or "").upper())
+def _period_key(p: str, fy_end_month: int | None = None) -> str:
+    """'FY 2026' -> 'FY2026'; 'CY2026' -> 'FY2026' when the fiscal year is the calendar year."""
+    k = re.sub(r"\s+", "", (p or "").upper())
+    m = re.fullmatch(r"(FY|CY)?(\d{4}|\d{2})", k)
+    if not m:
+        return k
+    kind, year = m.group(1) or "FY", m.group(2) if len(m.group(2)) == 4 else "20" + m.group(2)
+    return f"{'FY' if kind == 'CY' and fy_end_month == 12 else kind}{year}"
+
+
+def _guidance(rec: dict, fy_end_month: int | None) -> list[dict]:
+    """Verified guidance items with comparable period keys."""
+    fy = rec.get("fy_end_month") or fy_end_month
+    return [{**g, "period": _period_key(g["period"], fy)} for g in rec.get("capex_guidance", []) if g["verified"]]
 
 
 def verify_guidance(raw: list[dict], source: str) -> list[dict]:
@@ -107,7 +119,7 @@ def verify_guidance(raw: list[dict], source: str) -> list[dict]:
 
 
 def process(ticker: str, meta: dict, filing: dict, sess, model: str, usage: dict, cfg: dict,
-            quarter_months: set[int] | None = None) -> dict:
+            quarter_months: set[int] | None = None, fy_end_month: int | None = None) -> dict:
     phrases = (cfg.get("filing_text") or {}).get("call_phrases") or {}
     url = edgar_text.exhibit_99_1(sess, meta["cik"], filing["accessionNumber"])
     if not url:
@@ -121,7 +133,7 @@ def process(ticker: str, meta: dict, filing: dict, sess, model: str, usage: dict
     return {"ticker": ticker, "name": meta["name"], "accession": filing["accessionNumber"],
             "filing_date": filing["filingDate"], "period_end": pe.isoformat(),
             "quarter": scoring._cal_quarter(pe.isoformat()), "url": url,
-            "capex_guidance": verify_guidance(raw.get("capex_guidance") or [], ex),
+            "capex_guidance": verify_guidance(raw.get("capex_guidance") or [], ex), "fy_end_month": fy_end_month,
             "phrases": count_phrases(text, phrases), "summary": raw.get("summary", ""),
             "model": model, "extracted_at": util.now_iso()}
 
@@ -132,13 +144,13 @@ def stored(ticker: str) -> list[dict]:
     return sorted((r for r in recs if r), key=lambda r: r["quarter"])
 
 
-def compare(cur: dict, prev: dict | None) -> dict:
+def compare(cur: dict, prev: dict | None, fy_end_month: int | None = None) -> dict:
     """Guidance by period and phrase counts versus the previous quarter's release."""
     if not prev:
         return {"previous_quarter": None, "guidance": [], "phrases": {}, "dropped_guidance_periods": []}
-    before = {g["period"]: g for g in prev.get("capex_guidance", []) if g["verified"]}
+    before = {g["period"]: g for g in _guidance(prev, fy_end_month)}
     guidance = []
-    for g in (g for g in cur.get("capex_guidance", []) if g["verified"]):
+    for g in _guidance(cur, fy_end_month):
         p = before.get(g["period"])
         item = {"period": g["period"], "now": g["amount_text"], "before": p and p["amount_text"],
                 "midpoint_change_usd": None, "midpoint_change_pct": None}
@@ -148,21 +160,21 @@ def compare(cur: dict, prev: dict | None) -> dict:
             pc = util.pct_change(mid, pmid)
             item["midpoint_change_pct"] = None if pc is None else round(pc, 1)
         guidance.append(item)
-    now_periods = {g["period"] for g in cur.get("capex_guidance", []) if g["verified"]}
+    now_periods = {g["period"] for g in _guidance(cur, fy_end_month)}
     phrases = {k: {"now": v["count"], "before": (prev.get("phrases", {}).get(k) or {}).get("count", 0)}
                for k, v in cur.get("phrases", {}).items()}
     return {"previous_quarter": prev["quarter"], "guidance": guidance, "phrases": phrases,
             "dropped_guidance_periods": sorted(set(before) - now_periods)}
 
 
-def evidence(cur: dict, comp: dict) -> list[dict]:
+def evidence(cur: dict, comp: dict, fy_end_month: int | None = None) -> list[dict]:
     """Evidence items built by code from the verified release text (status set here, not re-fetched)."""
     name, q = cur["name"], cur["quarter"]
     base = {"url": cur["url"], "status": "verified", "source": "edgar",
             "check": "Read from the SEC filing; quoted sentences matched verbatim"}
     out = []
     by_period = {g["period"]: g for g in comp.get("guidance", [])}
-    for g in (g for g in cur.get("capex_guidance", []) if g["verified"]):
+    for g in _guidance(cur, fy_end_month):
         c = by_period.get(g["period"]) or {}
         claim = f"{name} capex guidance for {g['period']}: {g['amount_text']}"
         if c.get("before"):
@@ -195,10 +207,11 @@ def run(cfg: dict, sess, tickers: list[str], model: str, llm_on: bool, offline: 
         if not meta:
             continue
         try:
-            cur = None
+            cur, fy_end = None, None
             if not offline:
                 filings = edgar_text.recent_filings(edgar_text.submissions(sess, meta["cik"], subs_cache))
                 eightks, months = edgar_text.earnings_8ks(filings, 2), edgar_text.quarter_end_months(filings)
+                fy_end = edgar_text.fiscal_year_end_month(filings)
                 if not eightks:
                     raise RuntimeError("no 8-K with Item 2.02 in the submissions index")
                 if since and eightks[0]["filingDate"] < (since - timedelta(days=3)).isoformat():
@@ -210,10 +223,10 @@ def run(cfg: dict, sess, tickers: list[str], model: str, llm_on: bool, offline: 
                 usage = usage_by_step.setdefault("earnings", models.new_usage(model))
                 cur = have.get(eightks[0]["accessionNumber"])
                 if cur is None:
-                    cur = process(t, meta, eightks[0], sess, model, usage, cfg, months)
+                    cur = process(t, meta, eightks[0], sess, model, usage, cfg, months, fy_end)
                     util.write_json(calls_dir(t) / f"{cur['quarter']}.json", cur)
                 if len(eightks) > 1 and not any(r["quarter"] < cur["quarter"] for r in have.values()):
-                    prev = process(t, meta, eightks[1], sess, model, usage, cfg, months)  # baseline to compare with
+                    prev = process(t, meta, eightks[1], sess, model, usage, cfg, months, fy_end)  # baseline
                     if prev["quarter"] < cur["quarter"]:
                         util.write_json(calls_dir(t) / f"{prev['quarter']}.json", prev)
             recs = stored(t)
@@ -221,12 +234,12 @@ def run(cfg: dict, sess, tickers: list[str], model: str, llm_on: bool, offline: 
                 continue
             cur = cur or recs[-1]
             prev = next((r for r in reversed(recs) if r["quarter"] < cur["quarter"]), None)
-            comp = compare(cur, prev)
+            comp = compare(cur, prev, fy_end)
             companies[t] = {"name": meta["name"], "quarter": cur["quarter"], "filing_date": cur["filing_date"],
                             "url": cur["url"], "summary": cur.get("summary", ""),
-                            "guidance": [g for g in cur["capex_guidance"] if g["verified"]],
+                            "guidance": _guidance(cur, fy_end),
                             "phrases": {k: v["count"] for k, v in cur["phrases"].items()}, "comparison": comp}
-            ev += evidence(cur, comp)
+            ev += evidence(cur, comp, fy_end)
         except Exception as e:
             errors[t] = str(e)[:300]
     return {"companies": companies, "evidence": ev, "errors": errors}

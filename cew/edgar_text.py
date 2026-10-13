@@ -68,18 +68,42 @@ def exhibit_99_1(sess, cik: str, accession: str) -> str | None:
     return None
 
 
-def snippets(text: str, phrase: str, window: int = 1500) -> list[str]:
-    """Lines containing the phrase (case-insensitive); very long lines cut to a window around it."""
-    out, low = [], phrase.lower()
-    for line in text.split("\n"):
-        i = line.lower().find(low)
-        if i < 0:
+_UNITS = re.compile(r"(?i)\bin (millions|billions|thousands)\b")
+UNIT_HINT = re.compile(r" \[table amounts in (millions|billions|thousands)\]$")
+UNIT_SCALE = {"thousands": 1e3, "millions": 1e6, "billions": 1e9}
+
+
+def snippets(text: str, phrases: list[str] | str, window: int = 1500, lookback: int = 60) -> list[str]:
+    """Lines containing any phrase (case-insensitive); very long lines cut to a window around it.
+    A line without a "$" (a table row) gets " [table amounts in millions]" appended when the nearest
+    "in millions/billions/thousands" within `lookback` lines above says so."""
+    phrases = [phrases] if isinstance(phrases, str) else phrases
+    lines, out = text.split("\n"), []
+    for n, line in enumerate(lines):
+        low = line.lower()
+        hits = [low.find(p.lower()) for p in phrases if p.lower() in low]
+        if not hits:
             continue
+        i = min(hits)
         if len(line) > 2 * window:
-            line = line[max(0, i - window): i + len(phrase) + window]
+            line = line[max(0, i - window): i + window]
+        if "$" not in line:
+            for back in range(n - 1, max(-1, n - lookback), -1):
+                m = _UNITS.search(lines[back])
+                if m:
+                    line += f" [table amounts in {m.group(1).lower()}]"
+                    break
         if line not in out:
             out.append(line)
     return out
+
+
+def table_amount(amount_text: str, paragraph: str) -> float | None:
+    """A bare table figure ("137,214") scaled by the paragraph's code-added units hint."""
+    m = UNIT_HINT.search(paragraph or "")
+    if not m or not re.fullmatch(r"\d[\d,]*(?:\.\d+)?", (amount_text or "").strip()):
+        return None
+    return float(amount_text.strip().replace(",", "")) * UNIT_SCALE[m.group(1)]
 
 
 def _norm(s: str) -> str:
@@ -133,6 +157,14 @@ def period_end(text: str) -> date | None:
                 return datetime.strptime(raw, fmt).date()
             except ValueError:
                 continue
+    return None
+
+
+def fiscal_year_end_month(filings: list[dict]) -> int | None:
+    """Month of the latest 10-K's period end (12 for calendar-year companies)."""
+    for f in filings:
+        if f.get("form") == "10-K" and re.fullmatch(r"\d{4}-\d{2}-\d{2}", f.get("reportDate") or ""):
+            return int(f["reportDate"][5:7])
     return None
 
 
