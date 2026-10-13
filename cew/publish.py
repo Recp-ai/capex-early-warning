@@ -9,7 +9,8 @@ REPORTS = util.DATA / "reports"
 LOG_PATH = util.DATA / "log.csv"
 LOG_FIELDS = ["date", "level", "composite", "credit", "ai_lab_financing", "taiwan_supply_chain",
               "hyperscaler_filings", "supplier_signals", "physical_buildout",
-              "sp500", "nasdaq100", "vix", "ust10y", "brent", "hy_spread"]
+              "sp500", "nasdaq100", "vix", "ust10y", "brent", "hy_spread",
+              "research_model", "assessment_model", "cost_usd"]
 CHART_SERIES = ["BAMLH0A0HYM2", "BAMLC0A0CM", "DGS10", "DCOILBRENTEU", "VIXCLS", "SP500", "NASDAQ100"]
 
 
@@ -41,12 +42,18 @@ def update_log(report: dict) -> list[dict]:
     def latest(sid):
         return (fred.get(sid) or {}).get("latest")
 
+    claude = report.get("claude") or {}
+    used = (claude.get("models") or {}) if claude.get("enabled") else {}
+    cost = (report.get("cost") or {}).get("total_usd")
+
     row = {
         "date": report["date"], "level": report["composite"]["level"],
         "composite": report["composite"]["total"],
         **{k: report["scores"][k]["score"] for k, _ in scoring.CATEGORIES},
         "sp500": latest("SP500"), "nasdaq100": latest("NASDAQ100"), "vix": latest("VIXCLS"),
         "ust10y": latest("DGS10"), "brent": latest("DCOILBRENTEU"), "hy_spread": latest("BAMLH0A0HYM2"),
+        "research_model": used.get("research", ""), "assessment_model": used.get("assessment", ""),
+        "cost_usd": "" if cost is None else cost,
     }
     rows = [r for r in util.read_csv(LOG_PATH) if r["date"] != report["date"]]
     rows.append(row)

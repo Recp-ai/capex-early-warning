@@ -106,7 +106,8 @@ def sandbox(tmp_path, monkeypatch):
     monkeypatch.setattr(util, "SITE_DATA", site)
     monkeypatch.setattr(publish, "REPORTS", data / "reports")
     monkeypatch.setattr(publish, "LOG_PATH", data / "log.csv")
-    for k in ("ANTHROPIC_API_KEY", "FRED_API_KEY", "SMTP_PASSWORD"):
+    for k in ("ANTHROPIC_API_KEY", "FRED_API_KEY", "SMTP_PASSWORD", "INPUT_RESEARCH_MODEL",
+              "INPUT_ASSESSMENT_MODEL", "VAR_RESEARCH_MODEL", "VAR_ASSESSMENT_MODEL"):
         monkeypatch.delenv(k, raising=False)
     # cached FRED data
     end = util.today()
@@ -136,6 +137,12 @@ def test_offline_run_writes_outputs(sandbox):
     assert len(log) == 1 and log[0]["sp500"]
     charts = json.loads((sandbox / "site" / "data" / "charts.json").read_text())
     assert "SP500" in charts["fred"] and charts["capex_by_quarter"]
+    # Claude off: no cost, blank model/cost log columns; model list falls back to config/models.yaml
+    assert latest["cost"] is None and latest["generated_at"]
+    assert log[0]["research_model"] == "" and log[0]["cost_usd"] == ""
+    assert "cost_usd" in (sandbox / "data" / "log.csv").read_text().splitlines()[0]
+    catalog = json.loads((sandbox / "site" / "data" / "models.json").read_text())
+    assert catalog["source"] == "config" and catalog["defaults"]["research"].startswith("claude-")
     # a second run on the same day replaces, not duplicates, the log row
     assert run.main(["--offline", "--no-llm", "--no-email"]) == 0
     assert len(json.loads((sandbox / "site" / "data" / "log.json").read_text())) == 1

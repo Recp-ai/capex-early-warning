@@ -27,6 +27,10 @@ def today() -> date:
     return datetime.now(timezone.utc).date()
 
 
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
 def session(user_agent: str | None = None) -> requests.Session:
     s = requests.Session()
     s.headers["User-Agent"] = user_agent or "capex-early-warning/1.0"

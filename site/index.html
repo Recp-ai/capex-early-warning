@@ -80,6 +80,25 @@ th { color: var(--ink-2); font-weight: 600; }
 .toggle { background: none; border: 1px solid var(--ring); color: var(--ink-2); border-radius: 8px;
   padding: 4px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
 .watch { margin: 8px 0 0; padding-left: 18px; font-size: 13.5px; }
+.run { margin-top: 16px; }
+.run-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+.run-steps { font-size: 12.5px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.run-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 14px 0 10px; }
+.field { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--ink-2); min-width: 0; }
+.field small { font-weight: 400; color: var(--muted); }
+.run select, .run-go input { font: inherit; font-size: 14px; color: var(--ink); background: var(--page);
+  border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; width: 100%; min-width: 0; }
+.run select:focus-visible, .run input:focus-visible, .btn:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
+.run-est { font-size: 13.5px; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+.run-checks { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13.5px; margin-bottom: 12px; }
+.run-checks label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.run-checks input { accent-color: var(--s1); width: 16px; height: 16px; margin: 0; }
+.run-go { display: flex; gap: 8px; max-width: 420px; }
+.btn { font: inherit; font-size: 14px; font-weight: 600; border: 0; border-radius: 8px; padding: 8px 20px;
+  background: var(--ink); color: var(--page); cursor: pointer; flex: none; }
+.btn:disabled { opacity: .5; cursor: default; }
+.run-msg { margin-top: 10px; min-height: 1.5em; }
+@media (max-width: 760px) { .run select, .run-go input { font-size: 16px; } } /* no zoom-on-focus on iOS */
 </style>
 </head>
 <body>
@@ -92,6 +111,7 @@ th { color: var(--ink-2); font-weight: 600; }
     <button class="toggle" id="theme" type="button">Theme</button>
   </header>
   <div id="app"></div>
+  <section class="card run" id="run" hidden></section>
   <p class="sub" style="margin-top:28px">Automated weekly research summary from public data (FRED, SEC EDGAR, TWSE) and Claude news research. Not investment advice.</p>
 </main>
 
@@ -146,6 +166,9 @@ th { color: var(--ink-2); font-weight: 600; }
   const fmt = (v, d = 2) => v == null || isNaN(v) ? "—" : Number(v).toLocaleString(undefined, { maximumFractionDigits: d, minimumFractionDigits: d });
   const fmtB = v => v == null ? "—" : "$" + (v / 1e9).toFixed(1) + "B";
   const signed = (v, d = 1) => v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d);
+  const usd = v => v == null || isNaN(v) ? "—" : "$" + (v > 0 && v < 0.01 ? Number(v).toFixed(4) : Number(v).toFixed(2));
+  const perM = v => "$" + (v < 1 ? Number(v).toFixed(2) : String(+Number(v).toFixed(2)));
+  const short = id => String(id || "").replace(/^claude-/, "");
 
   // ---------------------------------------------------------------- charts
   function niceTicks(lo, hi, n = 4) {
@@ -358,7 +381,8 @@ th { color: var(--ink-2); font-weight: 600; }
 
     const logRows = (log || []).slice().reverse().slice(0, 26).map(r => `<tr><td>${esc(r.date)}</td><td>${esc(r.level)}</td><td>${esc(r.composite)}</td>` +
       ["credit", "ai_lab_financing", "taiwan_supply_chain", "hyperscaler_filings", "supplier_signals", "physical_buildout"].map(k => `<td>${esc(r[k])}</td>`).join("") +
-      `<td>${fmt(+r.sp500, 0)}</td><td>${fmt(+r.nasdaq100, 0)}</td><td>${fmt(+r.ust10y, 2)}</td><td>${fmt(+r.brent, 1)}</td></tr>`).join("");
+      `<td>${fmt(+r.sp500, 0)}</td><td>${fmt(+r.nasdaq100, 0)}</td><td>${fmt(+r.ust10y, 2)}</td><td>${fmt(+r.brent, 1)}</td>` +
+      `<td>${r.research_model ? esc(short(r.research_model) + " / " + short(r.assessment_model)) : "—"}</td><td>${r.cost_usd ? usd(+r.cost_usd) : "—"}</td></tr>`).join("");
 
     const errs = Object.entries(L.errors || {});
     app.innerHTML = `
@@ -386,7 +410,7 @@ th { color: var(--ink-2); font-weight: 600; }
         <div class="scroll"><table class="tw"><thead><tr><th>Code</th><th>Company</th><th>Revenue (NT$B)</th><th>MoM</th><th>YoY</th><th>YTD YoY</th></tr></thead><tbody>${twRows || '<tr><td colspan="6">No data yet</td></tr>'}</tbody></table></div>
       </section>
       <section class="card"><h2>Running log</h2>
-        <div class="scroll"><table><thead><tr><th>Week</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th></tr></thead><tbody>${logRows}</tbody></table></div>
+        <div class="scroll"><table><thead><tr><th>Week</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th><th>Models</th><th>Cost</th></tr></thead><tbody>${logRows}</tbody></table></div>
       </section>
       ${errs.length ? `<p class="errors">Data issues this run: ${errs.map(([k, v]) => esc(k + ": " + String(v).slice(0, 160))).join(" · ")}</p>` : ""}`;
 
@@ -395,11 +419,169 @@ th { color: var(--ink-2); font-weight: 600; }
     stackedBars($("#c-capex"), C.capex_by_quarter || {}, C.tickers || [], names);
   }
 
+  // ---------------------------------------------------------------- run now panel
+  // Lives outside #app so re-renders (theme, resize) keep the selections and the passcode field.
+  const CACHE_W = 1.25, CACHE_R = 0.1; // prompt-cache multipliers, as in cew/models.py
+  const STEP_LABEL = { research: "Research", assessment: "Scoring & digest" };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  let polling = false;
+
+  const catalog = () => (state && state.models && state.models.models) || [];
+  const findModel = id => catalog().find(m => m.id === id);
+  const modelName = id => (findModel(id) || {}).display_name || id;
+
+  function stepCost(u, price, wsPer1k) {
+    if (!u || !price) return null;
+    const input = (u.input_tokens || 0) + (u.cache_write_tokens || 0) * CACHE_W + (u.cache_read_tokens || 0) * CACHE_R;
+    return (input * price.input + (u.output_tokens || 0) * price.output) / 1e6 + (u.web_searches || 0) * wsPer1k / 1000;
+  }
+
+  function optionLabel(m, isDefault, research) {
+    const bits = [m.display_name || m.id, m.price ? `${perM(m.price.input)} / ${perM(m.price.output)}` : "no price"];
+    if (m.price && m.price.verify) bits.push("verify price");
+    if (research && m.supports_web_search == null) bits.push("web search support unknown");
+    if (isDefault) bits.push("weekly default");
+    return bits.join(" · ");
+  }
+
+  function fillSelect(sel, list, research, preferred) {
+    const keep = sel.value || preferred;
+    sel.innerHTML = list.length
+      ? list.map(m => `<option value="${esc(m.id)}">${esc(optionLabel(m, m.id === preferred, research))}</option>`).join("")
+      : '<option value="">Configured default</option>';
+    const has = id => list.some(m => m.id === id);
+    sel.value = has(keep) ? keep : has(preferred) ? preferred : (list[0] ? list[0].id : "");
+  }
+
+  function buildRunPanel() {
+    const el = $("#run");
+    el.innerHTML = `
+      <div class="run-head"><h2 style="margin:0">Run now</h2><span class="sub" id="run-last"></span></div>
+      <div class="sub run-steps" id="run-steps"></div>
+      <div class="run-grid">
+        <label class="field"><span>Research <small>· web search</small></span><select id="run-research"></select></label>
+        <label class="field"><span>Scoring &amp; digest</span><select id="run-assessment"></select></label>
+      </div>
+      <div class="run-est" id="run-est"></div>
+      <div class="run-checks">
+        <label><input type="checkbox" id="run-email" checked> Send email</label>
+        <label><input type="checkbox" id="run-default"> Save as default for weekly runs</label>
+      </div>
+      <div class="run-go">
+        <input type="password" id="run-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode">
+        <button type="button" class="btn" id="run-btn">Run</button>
+      </div>
+      <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>`;
+    $("#run-research").onchange = $("#run-assessment").onchange = updateEstimate;
+    $("#run-btn").onclick = startRun;
+    $("#run-pass").onkeydown = e => { if (e.key === "Enter") startRun(); };
+    el.hidden = false;
+  }
+
+  function updateRunPanel() {
+    if (!$("#run-btn")) buildRunPanel();
+    const cat = state.models || {}, list = catalog(), defs = cat.defaults || {};
+    fillSelect($("#run-research"), list.filter(m => m.supports_web_search !== false), true, defs.research);
+    fillSelect($("#run-assessment"), list, false, defs.assessment);
+
+    const L = state.latest || {}, claude = L.claude || {}, cost = L.cost;
+    const used = claude.models || (claude.model ? { research: claude.model, assessment: claude.model } : null);
+    let last = "No run yet";
+    if (L.date && (!claude.enabled || !used)) last = `Last run (${esc(L.date)}): Claude step skipped`;
+    else if (used) {
+      const unpriced = cost && (cost.unpriced_steps || []).length ? " (a model had no price)" : "";
+      last = `Last run used: ${esc(modelName(used.research))} / ${esc(modelName(used.assessment))}, ` +
+        `cost ${cost ? `<b>${usd(cost.total_usd)}</b>${unpriced}` : "not recorded"}`;
+    }
+    $("#run-last").innerHTML = last;
+    $("#run-steps").innerHTML = cost && cost.steps ? Object.entries(cost.steps).map(([k, u]) =>
+      `${esc(STEP_LABEL[k] || k)}: ${fmt(u.input_tokens, 0)} in / ${fmt(u.output_tokens, 0)} out tokens` +
+      `${u.web_searches ? ` · ${u.web_searches} searches` : ""} · ${usd(u.cost_usd)}`).join("<br>") : "";
+    if (!list.length && !polling) $("#run-msg").textContent = "The model list appears after the next run; until then a run uses the configured defaults.";
+    updateEstimate();
+  }
+
+  function updateEstimate() {
+    const el = $("#run-est"), cost = (state.latest || {}).cost;
+    if (!catalog().length) { el.textContent = ""; return; }
+    const ws = state.models.web_search_per_1k ?? 10, price = id => (findModel(id) || {}).price;
+    const units = `<div class="sub">Prices are $ per million input / output tokens, plus ${perM(ws)} per 1,000 web searches.</div>`;
+    if (!cost || !cost.steps) { el.innerHTML = '<span class="sub">A cost estimate appears after the first run that records token usage.</span>' + units; return; }
+    const r = stepCost(cost.steps.research, price($("#run-research").value), ws);
+    const a = stepCost(cost.steps.assessment, price($("#run-assessment").value), ws);
+    el.innerHTML = (r == null || a == null
+      ? 'Estimated cost per run: <span class="sub">unknown (a selected model has no price in config/models.yaml)</span>'
+      : `Estimated cost per run: <b>~${usd(r + a)}</b> <span class="sub">· last run's token counts × selected prices</span>`) + units;
+  }
+
+  async function startRun() {
+    if (polling) return;
+    const pass = $("#run-pass"), btn = $("#run-btn"), msg = $("#run-msg");
+    if (!pass.value) { msg.textContent = "Enter the passcode."; pass.focus(); return; }
+    btn.disabled = true;
+    msg.textContent = "Starting…";
+    let res = null, data = {};
+    try {
+      res = await fetch("api/run", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          passcode: pass.value, research_model: $("#run-research").value, assessment_model: $("#run-assessment").value,
+          send_email: $("#run-email").checked, save_as_default: $("#run-default").checked,
+        }),
+      });
+      data = await res.json().catch(() => ({}));
+    } catch (e) { /* network error */ }
+    if (!res || !res.ok) {
+      msg.textContent = data.error || (res ? `Request failed (HTTP ${res.status})` : "Network error");
+      btn.disabled = false;
+      return;
+    }
+    pass.value = "";
+    msg.innerHTML = `Run started · <a href="${esc(data.run_url)}" target="_blank" rel="noopener">view on GitHub</a> · <span id="run-live">queued</span>`;
+    pollRun();
+  }
+
+  async function pollRun() {
+    polling = true;
+    const live = t => { const el = $("#run-live"); if (el) el.textContent = t; };
+    const before = state.latest ? state.latest.generated_at || state.latest.date : null;
+    const t0 = Date.now();
+    let sawActive = false, finished = null;
+    // GET /api/run reports the latest run; until ours is listed that may be the previous, finished one.
+    while (Date.now() - t0 < 45 * 60e3) {
+      await wait(10000);
+      const s = await fetch("api/run", { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (!s || !s.status) continue;
+      if (s.status !== "completed") { sawActive = true; live(s.status.replace(/_/g, " ")); continue; }
+      if (sawActive || Date.now() - t0 > 3 * 60e3) { finished = s.conclusion || "done"; break; }
+    }
+    live(finished ? `finished: ${finished} · waiting for the dashboard to redeploy…` : "still not finished; check GitHub");
+    if (finished) {
+      for (let i = 0; i < 36; i++) { // the workflow commits the data, then Vercel redeploys (~1-3 min)
+        await wait(10000);
+        const L = await get("data/latest.json");
+        if (L && (L.generated_at || L.date) !== before) {
+          await loadAll();
+          live(`finished: ${finished} · dashboard updated`);
+          break;
+        }
+        if (i === 35) live(`finished: ${finished} · no new data yet; refresh in a few minutes`);
+      }
+    }
+    polling = false;
+    $("#run-btn").disabled = false;
+  }
+
   const get = u => fetch(u + "?v=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
-  Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json")]).then(([latest, charts, log]) => {
-    state = { latest, charts: charts || {}, log: log || [] };
-    render();
-  });
+  function loadAll() {
+    return Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json"), get("data/models.json")])
+      .then(([latest, charts, log, models]) => {
+        state = { latest, charts: charts || {}, log: log || [], models };
+        render();
+        updateRunPanel();
+      });
+  }
+  loadAll();
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
   let rt; let lastW = innerWidth;
   addEventListener("resize", () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(render, 150); });

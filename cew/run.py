@@ -12,7 +12,7 @@ import argparse
 import json
 import sys
 
-from . import analyst, fetch_edgar, fetch_fred, fetch_taiwan, notify, publish, scoring, util
+from . import analyst, fetch_edgar, fetch_fred, fetch_taiwan, models, notify, publish, scoring, util
 
 
 def data_brief(fred: dict, edgar: dict, tw: dict, rule_scores: dict) -> dict:
@@ -42,6 +42,9 @@ def main(argv: list[str] | None = None) -> int:
 
     cfg = util.load_config()
     today = util.today().isoformat()
+    selection = models.resolve(cfg)
+    print(f"Models: research={selection['research']} ({selection['sources']['research']}), "
+          f"assessment={selection['assessment']} ({selection['sources']['assessment']})", flush=True)
     sec_ua = util.env("SEC_USER_AGENT") or f"CapexEarlyWarning {util.env('SMTP_USERNAME', 'research@example.com')}"
 
     print("Fetching FRED ...", flush=True)
@@ -66,7 +69,10 @@ def main(argv: list[str] | None = None) -> int:
 
     llm_on = bool(util.env("ANTHROPIC_API_KEY")) and not args.no_llm
     print(f"Claude step: {'on' if llm_on else 'off'} ...", flush=True)
-    claude = analyst.run(cfg, data_brief(fred, edgar, tw, rule), prev_summary, llm_on)
+    claude = analyst.run(cfg, data_brief(fred, edgar, tw, rule), prev_summary, llm_on, selection)
+    prices = models.load_prices()
+    cost = models.cost_summary(claude.pop("usage"), prices) if claude.get("usage") else None
+    models.write_catalog(prices, models.resolve(cfg, use_inputs=False), use_api=llm_on and not args.offline)
 
     scores = dict(rule)
     a = claude.get("assessment") or {}
@@ -95,10 +101,12 @@ def main(argv: list[str] | None = None) -> int:
 
     report = {
         "date": today,
+        "generated_at": util.now_iso(),
         "categories": scoring.CATEGORIES,
         "scores": scores,
         "composite": comp,
         "claude": claude,
+        "cost": cost,
         "data": {"fred": fred["series"], "edgar": edgar["companies"], "taiwan": tw},
         "errors": errors,
     }
@@ -118,6 +126,7 @@ def main(argv: list[str] | None = None) -> int:
 
     print(json.dumps({"date": today, "composite": comp,
                       "scores": {k: v["score"] for k, v in scores.items()},
+                      "cost_usd": (cost or {}).get("total_usd"),
                       "email": report["email"], "errors": errors}, indent=1))
     # Fail the workflow only if nothing at all could be fetched.
     if not fred["series"] and not edgar["companies"] and not tw.get("latest"):

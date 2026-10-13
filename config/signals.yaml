@@ -2,7 +2,12 @@
 # Edit thresholds here; no code changes needed.
 # Every category is scored 0 (calm) to 3 (strong warning).
 
-model: claude-opus-5-5          # Claude model used for news research and the digest
+models:
+  research: claude-sonnet-5-5   # web-search news research
+  assessment: claude-opus-5-5   # news scoring and the digest
+# A run's models come from (first valid wins): the workflow_dispatch inputs, then the repo
+# Actions variables RESEARCH_MODEL / ASSESSMENT_MODEL, then the values above.
+# Prices for the cost estimate live in config/models.yaml.
 max_web_searches: 12            # cap on Claude web searches per weekly run
 
 # ---------------------------------------------------------------------------

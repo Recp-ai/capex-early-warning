@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 
-from . import util
+from . import models, util
 
 RESEARCH_SYSTEM = """You are a research analyst monitoring early-warning signs that AI data-center
 capital spending (capex) could slow. You search the web for the past 7-10 days of news and report
@@ -71,20 +71,26 @@ def _client():
     return anthropic.Anthropic()
 
 
-def research(model: str, max_searches: int, today: str) -> dict:
-    """Run the web-search research call; returns notes text and the cited URLs."""
+def research(model: str, max_searches: int, today: str, usage: dict | None = None) -> dict:
+    """Run the web-search research call; returns notes text and the cited URLs.
+
+    Token usage of every response (pause_turn continuations included) is added to `usage`.
+    """
     client = _client()
+    usage = models.new_usage(model) if usage is None else usage
     messages = [{"role": "user", "content": RESEARCH_PROMPT.format(today=today)}]
     tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max_searches}]
-    resp = None
+    responses = []
     for _ in range(6):  # continue through pause_turn for long server-side searches
         resp = client.messages.create(model=model, max_tokens=4096, system=RESEARCH_SYSTEM,
                                       messages=messages, tools=tools)
+        models.add_usage(usage, resp)
+        responses.append(resp)
         if resp.stop_reason != "pause_turn":
             break
         messages = messages + [{"role": "assistant", "content": resp.content}]
     texts, urls = [], []
-    for block in resp.content:
+    for block in (b for r in responses for b in r.content):  # a continuation holds only new blocks
         if block.type == "text":
             texts.append(block.text)
             for c in getattr(block, "citations", None) or []:
@@ -96,11 +102,11 @@ def research(model: str, max_searches: int, today: str) -> dict:
                 u = getattr(r, "url", None)
                 if u and u not in urls:
                     urls.append(u)
-    searches = getattr(getattr(resp.usage, "server_tool_use", None), "web_search_requests", None)
-    return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": searches}
+    return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
 
 
-def assess(model: str, today: str, data_brief: dict, research_notes: str, previous: dict | None) -> dict:
+def assess(model: str, today: str, data_brief: dict, research_notes: str, previous: dict | None,
+           usage: dict | None = None) -> dict:
     client = _client()
     prompt = (
         f"Today is {today}.\n\n"
@@ -114,6 +120,8 @@ def assess(model: str, today: str, data_brief: dict, research_notes: str, previo
         messages=[{"role": "user", "content": prompt}],
         output_config={"format": {"type": "json_schema", "schema": ASSESS_SCHEMA}},
     )
+    if usage is not None:
+        models.add_usage(usage, resp)
     if resp.stop_reason in ("refusal", "max_tokens"):
         raise RuntimeError(f"assessment stopped early ({resp.stop_reason})")
     text = "".join(b.text for b in resp.content if b.type == "text")
@@ -124,18 +132,23 @@ def assess(model: str, today: str, data_brief: dict, research_notes: str, previo
     raise RuntimeError("Claude did not return an assessment")
 
 
-def run(cfg: dict, data_brief: dict, previous: dict | None, enabled: bool) -> dict:
+def run(cfg: dict, data_brief: dict, previous: dict | None, enabled: bool,
+        selection: dict | None = None) -> dict:
     today = util.today().isoformat()
     if not enabled:
         return {"enabled": False, "error": "Claude step skipped (no ANTHROPIC_API_KEY or --no-llm)"}
-    out: dict = {"enabled": True, "model": cfg["model"]}
+    selection = selection or models.resolve(cfg)
+    research_model, assessment_model = selection["research"], selection["assessment"]
+    usage = {"research": models.new_usage(research_model), "assessment": models.new_usage(assessment_model)}
+    out: dict = {"enabled": True, "models": {"research": research_model, "assessment": assessment_model},
+                 "model_sources": selection.get("sources", {}), "usage": usage}
     try:
-        r = research(cfg["model"], cfg.get("max_web_searches", 12), today)
-        out["research"] = r
+        out["research"] = research(research_model, cfg.get("max_web_searches", 12), today, usage["research"])
     except Exception as e:
         out["research"] = {"notes": "", "urls": [], "error": str(e)}
     try:
-        out["assessment"] = assess(cfg["model"], today, data_brief, out["research"].get("notes", ""), previous)
+        out["assessment"] = assess(assessment_model, today, data_brief, out["research"].get("notes", ""),
+                                   previous, usage["assessment"])
     except Exception as e:
         out["error"] = f"assessment failed: {e}"
     return out

@@ -6,6 +6,16 @@ on:
     - cron: "17 1 * * 6"
   workflow_dispatch:
     inputs:
+      research_model:
+        description: "Research model (blank = RESEARCH_MODEL variable, then config)"
+        type: string
+        required: false
+        default: ""
+      assessment_model:
+        description: "Scoring & digest model (blank = ASSESSMENT_MODEL variable, then config)"
+        type: string
+        required: false
+        default: ""
       send_email:
         description: "Send the digest email"
         type: boolean
@@ -47,8 +57,15 @@ jobs:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+          # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_SEND_EMAIL: ${{ inputs.send_email }}
+          INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
+          INPUT_ASSESSMENT_MODEL: ${{ inputs.assessment_model }}
+          VAR_RESEARCH_MODEL: ${{ vars.RESEARCH_MODEL }}
+          VAR_ASSESSMENT_MODEL: ${{ vars.ASSESSMENT_MODEL }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.send_email }}" = "false" ]; then
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$INPUT_SEND_EMAIL" = "false" ]; then
             python -m cew.run --no-email
           else
             python -m cew.run
