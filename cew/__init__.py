@@ -1,0 +1,1 @@
+"""Capex early-warning pipeline."""

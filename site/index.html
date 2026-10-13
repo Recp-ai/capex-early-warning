@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capex Early Warning</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+  --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --link: #1c5cab;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+    --link: #86b6ef;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  --link: #86b6ef;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--link); }
+main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 64px; }
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 15px; margin: 0 0 12px; }
+.sub { color: var(--ink-2); font-size: 13px; }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px; }
+.grid { display: grid; gap: 16px; }
+.hero { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 16px; margin: 20px 0 16px; }
+@media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+.level { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: 15px; }
+.big { font-size: 44px; font-weight: 650; line-height: 1.1; margin: 8px 0 4px; }
+.big small { font-size: 18px; color: var(--muted); font-weight: 500; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
+.digest p { margin: 0 0 10px; } .digest ul { margin: 0 0 10px; padding-left: 20px; }
+.cats { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); margin-bottom: 16px; }
+.cat-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.meter { display: flex; gap: 3px; margin: 10px 0; }
+.meter span { flex: 1; height: 6px; border-radius: 3px; background: var(--grid); }
+.reasons { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; }
+.reasons li { margin-bottom: 4px; }
+.evidence { font-size: 13px; margin-top: 8px; }
+.evidence summary { cursor: pointer; color: var(--ink-2); }
+.charts { grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); margin-bottom: 16px; }
+.chart-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.chart-title b { font-size: 14px; font-weight: 600; }
+.chart-title span { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chart-title { flex-wrap: wrap; margin-bottom: 6px; }
+.chart { position: relative; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--ring); border-radius: 8px; padding: 6px 9px; font-size: 12.5px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12); white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 2; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--ink-2); margin-top: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-2); font-weight: 600; }
+.scroll { overflow-x: auto; }
+.tw td:nth-child(2) { text-align: left; }
+.empty { color: var(--ink-2); padding: 40px 0; text-align: center; }
+.errors { color: var(--muted); font-size: 12.5px; margin-top: 16px; }
+.toggle { background: none; border: 1px solid var(--ring); color: var(--ink-2); border-radius: 8px;
+  padding: 4px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
+.watch { margin: 8px 0 0; padding-left: 18px; font-size: 13.5px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Capex Early Warning</h1>
+      <div class="sub" id="asof">Loading…</div>
+    </div>
+    <button class="toggle" id="theme" type="button">Theme</button>
+  </header>
+  <div id="app"></div>
+  <p class="sub" style="margin-top:28px">Automated weekly research summary from public data (FRED, SEC EDGAR, TWSE) and Claude news research. Not investment advice.</p>
+</main>
+
+<script>
+(function () {
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // theme toggle (persisted per viewer, optional)
+  const themeBtn = $("#theme");
+  try { const t = localStorage.getItem("cew-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  themeBtn.onclick = () => {
+    const cur = document.documentElement.dataset.theme ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("cew-theme", next); } catch (e) {}
+    render();
+  };
+
+  const LEVEL = {
+    GREEN: { color: "--good", icon: "●", label: "Green — no material warning" },
+    AMBER: { color: "--warning", icon: "▲", label: "Amber — warning signs building" },
+    RED: { color: "--critical", icon: "■", label: "Red — multiple confirmed warnings" },
+  };
+  const SCORE_COLOR = ["--good", "--warning", "--serious", "--critical"];
+  const SCORE_LABEL = ["Calm", "Weak signal", "Several signals", "Strong warning"];
+
+  // Minimal, safe Markdown: escape first, then bold/italic/links/lists/paragraphs.
+  function md(src) {
+    const lines = esc(src || "").split(/\n/);
+    let out = "", inList = false, para = [];
+    const inline = s => s
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g, "$1<em>$2</em>")
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    const flush = () => { if (para.length) { out += "<p>" + inline(para.join(" ")) + "</p>"; para = []; } };
+    for (const raw of lines) {
+      const l = raw.trim();
+      const m = l.match(/^[-*]\s+(.*)/);
+      if (m) { flush(); if (!inList) { out += "<ul>"; inList = true; } out += "<li>" + inline(m[1]) + "</li>"; continue; }
+      if (inList) { out += "</ul>"; inList = false; }
+      if (!l) { flush(); continue; }
+      para.push(l.replace(/^#+\s*/, ""));
+    }
+    flush(); if (inList) out += "</ul>";
+    return out;
+  }
+
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const fmt = (v, d = 2) => v == null || isNaN(v) ? "—" : Number(v).toLocaleString(undefined, { maximumFractionDigits: d, minimumFractionDigits: d });
+  const fmtB = v => v == null ? "—" : "$" + (v / 1e9).toFixed(1) + "B";
+  const signed = (v, d = 1) => v == null ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d);
+
+  // ---------------------------------------------------------------- charts
+  function niceTicks(lo, hi, n = 4) {
+    if (lo === hi) { lo -= 1; hi += 1; }
+    const span = hi - lo, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+    const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= step0);
+    const start = Math.floor(lo / step) * step, ticks = [];
+    for (let v = start; v <= hi + step * 0.5; v += step) ticks.push(+v.toFixed(10));
+    ticks.dec = step >= 1 ? 0 : Math.min(3, Math.ceil(-Math.log10(step) - 1e-9));
+    return ticks;
+  }
+
+  function attachTip(wrap) {
+    const tip = document.createElement("div"); tip.className = "tip"; wrap.appendChild(tip); return tip;
+  }
+  function placeTip(tip, wrap, x, y, html) {
+    tip.innerHTML = html; tip.style.opacity = 1;
+    const w = tip.offsetWidth, W = wrap.clientWidth;
+    tip.style.left = Math.min(Math.max(0, x - w / 2), W - w) + "px";
+    tip.style.top = Math.max(0, y - tip.offsetHeight - 12) + "px";
+  }
+
+  // Single-series line with crosshair + tooltip. pts: [[dateStr, value], ...]
+  function lineChart(el, pts, unit) {
+    el.innerHTML = "";
+    if (!pts || pts.length < 2) { el.innerHTML = '<div class="sub">Not enough data yet.</div>'; return; }
+    const W = Math.max(260, el.clientWidth || 340), H = 150, m = { l: 44, r: 8, t: 8, b: 22 };
+    const xs = pts.map(p => new Date(p[0]).getTime()), ys = pts.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs);
+    const ticks = niceTicks(Math.min(...ys), Math.max(...ys));
+    const y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    const X = t => m.l + (t - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
+    let g = "";
+    for (const t of ticks) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="${css("--grid")}" stroke-width="1"/>` +
+      `<text class="tick" x="${m.l - 6}" y="${Y(t) + 3.5}" text-anchor="end">${fmt(t, ticks.dec)}</text>`;
+    const years = [...new Set(pts.map(p => p[0].slice(0, 4)))];
+    for (const yr of years) {
+      const t = new Date(yr + "-01-01").getTime();
+      if (t > x0 && t < x1) g += `<text class="tick" x="${X(t)}" y="${H - 6}" text-anchor="middle">${yr}</text>`;
+    }
+    const d = pts.map((p, i) => (i ? "L" : "M") + X(xs[i]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+    const last = pts[pts.length - 1];
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="line chart">${g}
+      <line x1="${m.l}" x2="${W - m.r}" y1="${H - m.b}" y2="${H - m.b}" stroke="${css("--axis")}"/>
+      <path d="${d}" fill="none" stroke="${css("--s1")}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${X(xs[xs.length - 1])}" cy="${Y(last[1])}" r="4" fill="${css("--s1")}" stroke="${css("--surface")}" stroke-width="2"/>
+      <line class="xh" y1="${m.t}" y2="${H - m.b}" stroke="${css("--muted")}" stroke-width="1" opacity="0"/>
+      <circle class="hp" r="4" fill="${css("--s1")}" stroke="${css("--surface")}" stroke-width="2" opacity="0"/>
+      <rect x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent" class="hit"/></svg>`;
+    const svg = $("svg", el), tip = attachTip(el), xh = $(".xh", el), hp = $(".hp", el);
+    const move = ev => {
+      const r = svg.getBoundingClientRect(), sx = (ev.clientX - r.left) / r.width * W;
+      const t = x0 + (sx - m.l) / (W - m.l - m.r) * (x1 - x0);
+      let i = 0, best = Infinity; xs.forEach((v, j) => { const dd = Math.abs(v - t); if (dd < best) { best = dd; i = j; } });
+      const cx = X(xs[i]), cy = Y(ys[i]);
+      xh.setAttribute("x1", cx); xh.setAttribute("x2", cx); xh.setAttribute("opacity", 1);
+      hp.setAttribute("cx", cx); hp.setAttribute("cy", cy); hp.setAttribute("opacity", 1);
+      placeTip(tip, el, cx / W * r.width, cy / H * r.height, `<b>${fmt(ys[i], 2)}${unit || ""}</b><br><span class="sub">${pts[i][0]}</span>`);
+    };
+    const leave = () => { tip.style.opacity = 0; xh.setAttribute("opacity", 0); hp.setAttribute("opacity", 0); };
+    $(".hit", el).addEventListener("pointermove", move);
+    $(".hit", el).addEventListener("pointerleave", leave);
+  }
+
+  // Bars around a zero baseline (single series). data: [[label, value], ...]
+  function barChart(el, data, unit) {
+    el.innerHTML = "";
+    if (!data.length) { el.innerHTML = '<div class="sub">Builds up month by month as Taiwan revenue is published.</div>'; return; }
+    const W = Math.max(260, el.clientWidth || 340), H = 150, m = { l: 44, r: 8, t: 8, b: 22 };
+    const vals = data.map(d => d[1]);
+    const ticks = niceTicks(Math.min(0, ...vals), Math.max(0, ...vals));
+    const y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    const Y = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
+    const bw = (W - m.l - m.r) / data.length, gap = Math.min(6, bw * 0.3);
+    let g = "";
+    for (const t of ticks) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="${css("--grid")}"/>` +
+      `<text class="tick" x="${m.l - 6}" y="${Y(t) + 3.5}" text-anchor="end">${fmt(t, 0)}${unit}</text>`;
+    data.forEach((d, i) => {
+      const x = m.l + i * bw + gap / 2, w = bw - gap, top = Y(Math.max(0, d[1])), bot = Y(Math.min(0, d[1]));
+      const r = Math.min(4, w / 2, (bot - top) / 2);
+      // rounded at the data end only
+      const path = d[1] >= 0
+        ? `M${x} ${bot}V${top + r}Q${x} ${top} ${x + r} ${top}H${x + w - r}Q${x + w} ${top} ${x + w} ${top + r}V${bot}Z`
+        : `M${x} ${top}V${bot - r}Q${x} ${bot} ${x + r} ${bot}H${x + w - r}Q${x + w} ${bot} ${x + w} ${bot - r}V${top}Z`;
+      g += `<path d="${path}" fill="${css("--s1")}" data-i="${i}" class="bar"/>`;
+      const every = Math.max(1, Math.ceil(data.length / Math.floor((W - m.l - m.r) / 44)));
+      if ((data.length - 1 - i) % every === 0)
+        g += `<text class="tick" x="${x + w / 2}" y="${H - 6}" text-anchor="middle">${MONTHS[+d[0].slice(5, 7) - 1]} ${d[0].slice(2, 4)}</text>`;
+    });
+    g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="${css("--axis")}"/>`;
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="bar chart">${g}</svg>`;
+    const svg = $("svg", el), tip = attachTip(el);
+    el.querySelectorAll(".bar").forEach(b => {
+      b.addEventListener("pointerenter", () => {
+        const i = +b.dataset.i, bb = b.getBBox(), r = svg.getBoundingClientRect();
+        b.setAttribute("opacity", 0.8);
+        placeTip(tip, el, (bb.x + bb.width / 2) / W * r.width, bb.y / H * r.height,
+          `<b>${signed(data[i][1])}${unit}</b><br><span class="sub">${data[i][0]}</span>`);
+      });
+      b.addEventListener("pointerleave", () => { b.removeAttribute("opacity"); tip.style.opacity = 0; });
+    });
+  }
+
+  // Stacked bars: capex by calendar quarter, one segment per company, fixed slot order.
+  function stackedBars(el, buckets, tickers, names) {
+    el.innerHTML = "";
+    const qs = Object.keys(buckets).slice(-10);
+    if (!qs.length) { el.innerHTML = '<div class="sub">No filings data yet.</div>'; return; }
+    const slots = ["--s1", "--s2", "--s3", "--s4", "--s5"];
+    const W = Math.max(300, el.clientWidth || 680), H = 220, m = { l: 52, r: 8, t: 8, b: 22 };
+    const totals = qs.map(q => tickers.reduce((s, t) => s + (buckets[q][t] || 0), 0) / 1e9);
+    const ticks = niceTicks(0, Math.max(...totals));
+    const y1 = ticks[ticks.length - 1];
+    const Y = v => H - m.b - v / y1 * (H - m.t - m.b);
+    const bw = (W - m.l - m.r) / qs.length, gap = Math.min(14, bw * 0.35);
+    let g = "";
+    for (const t of ticks) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="${css("--grid")}"/>` +
+      `<text class="tick" x="${m.l - 6}" y="${Y(t) + 3.5}" text-anchor="end">$${fmt(t, 0)}B</text>`;
+    qs.forEach((q, i) => {
+      const x = m.l + i * bw + gap / 2, w = bw - gap;
+      let acc = 0;
+      const present = tickers.filter(t => buckets[q][t]);
+      present.forEach((t, k) => {
+        const v = buckets[q][t] / 1e9, top = Y(acc + v), bot = Y(acc);
+        const isTop = k === present.length - 1, r = isTop ? Math.min(4, w / 2) : 0;
+        const h = Math.max(0, bot - top - (k ? 2 : 0)); // 2px surface gap between segments
+        const yTop = bot - (k ? 2 : 0) - h;
+        const path = r ? `M${x} ${yTop + h}V${yTop + r}Q${x} ${yTop} ${x + r} ${yTop}H${x + w - r}Q${x + w} ${yTop} ${x + w} ${yTop + r}V${yTop + h}Z`
+          : `M${x} ${yTop + h}V${yTop}H${x + w}V${yTop + h}Z`;
+        g += `<path d="${path}" fill="${css(slots[tickers.indexOf(t) % slots.length])}" class="seg" data-q="${q}"/>`;
+        acc += v;
+      });
+      const every = Math.max(1, Math.ceil(qs.length / Math.floor((W - m.l - m.r) / 58)));
+      if ((qs.length - 1 - i) % every === 0)
+        g += `<text class="tick" x="${x + w / 2}" y="${H - 6}" text-anchor="middle">${q.replace("Q", " Q")}</text>`;
+      g += `<rect x="${m.l + i * bw}" y="${m.t}" width="${bw}" height="${H - m.t - m.b}" fill="transparent" class="col" data-i="${i}"/>`;
+    });
+    g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="${css("--axis")}"/>`;
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="stacked bar chart">${g}</svg>`;
+    const svg = $("svg", el), tip = attachTip(el);
+    el.querySelectorAll(".col").forEach(c => {
+      c.addEventListener("pointerenter", () => {
+        const i = +c.dataset.i, q = qs[i], r = svg.getBoundingClientRect();
+        el.querySelectorAll(".seg").forEach(s => s.setAttribute("opacity", s.dataset.q === q ? 1 : 0.45));
+        const rows = tickers.filter(t => buckets[q][t]).map(t =>
+          `<i class="dot" style="background:var(${slots[tickers.indexOf(t)]});width:8px;height:8px"></i> ${esc(names[t] || t)}: ${fmtB(buckets[q][t])}`).join("<br>");
+        placeTip(tip, el, (m.l + (i + 0.5) * bw) / W * r.width, Y(totals[i]) / H * r.height,
+          `<b>${q} · ${fmtB(totals[i] * 1e9)}</b><br>${rows}`);
+      });
+      c.addEventListener("pointerleave", () => { tip.style.opacity = 0; el.querySelectorAll(".seg").forEach(s => s.removeAttribute("opacity")); });
+    });
+    const legend = document.createElement("div"); legend.className = "legend";
+    legend.innerHTML = tickers.map(t => `<span><i style="background:var(${slots[tickers.indexOf(t)]})"></i>${esc(names[t] || t)}</span>`).join("");
+    el.appendChild(legend);
+  }
+
+  // ---------------------------------------------------------------- page
+  let state = null;
+
+  function render() {
+    if (!state) return;
+    const { latest: L, charts: C, log } = state;
+    const app = $("#app");
+    if (!L) {
+      $("#asof").textContent = "No data yet";
+      app.innerHTML = '<div class="card empty">No weekly run has completed yet. Run the “Weekly capex early-warning” workflow in GitHub Actions, then refresh.</div>';
+      return;
+    }
+    const comp = L.composite, lv = LEVEL[comp.level] || LEVEL.GREEN;
+    const a = (L.claude || {}).assessment || {};
+    $("#asof").textContent = `Week of ${L.date} · next update Saturday`;
+    const names = Object.fromEntries(Object.entries(L.data.edgar || {}).map(([t, c]) => [t, c.name]));
+
+    const catCards = L.categories.map(([key, label]) => {
+      const s = L.scores[key] || { score: 0, reasons: [] };
+      const meter = [1, 2, 3].map(i => `<span style="${i <= s.score ? `background:var(${SCORE_COLOR[s.score]})` : ""}"></span>`).join("");
+      const ev = (s.evidence || []).length ? `<details class="evidence"><summary>${s.evidence.length} source${s.evidence.length > 1 ? "s" : ""}</summary><ul class="reasons">` +
+        s.evidence.map(e => `<li>${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc((e.url.match(/^https?:\/\/([^/]+)/) || [])[1] || "link")}</a></li>`).join("") + "</ul></details>" : "";
+      return `<div class="card"><div class="cat-head"><h2 style="margin:0">${esc(label)}</h2>
+        <span class="level" style="font-size:13px;font-weight:600"><span class="dot" style="background:var(${SCORE_COLOR[s.score]})"></span>${s.score}/3 · ${SCORE_LABEL[s.score]}</span></div>
+        <div class="meter" aria-hidden="true">${meter}</div>
+        <ul class="reasons">${(s.reasons || []).map(r => `<li>${esc(r)}</li>`).join("")}</ul>${ev}</div>`;
+    }).join("");
+
+    const F = (L.data.fred || {});
+    const series = [
+      ["BAMLH0A0HYM2", "High-yield credit spread", "%"],
+      ["BAMLC0A0CM", "Investment-grade credit spread", "%"],
+      ["DGS10", "10-year Treasury yield", "%"],
+      ["DCOILBRENTEU", "Brent crude", ""],
+      ["VIXCLS", "VIX", ""],
+      ["SP500", "S&P 500 (SPY proxy)", ""],
+      ["NASDAQ100", "Nasdaq-100 (QQQ proxy)", ""],
+    ];
+    const chartCards = series.map(([id, label]) => {
+      const f = F[id] || {};
+      const chg = f.chg_4w == null ? "" : ` · 4w ${signed(f.chg_4w, 2)}`;
+      return `<div class="card"><div class="chart-title"><b>${label}</b><span>${fmt(f.latest, 2)}${chg}</span></div><div class="chart" id="c-${id}"></div></div>`;
+    }).join("");
+
+    const tw = L.data.taiwan || {};
+    const twRows = (tw.latest || []).map(r => `<tr><td>${esc(r.code)}</td><td>${esc(r.name)}</td><td>${fmt(+r.revenue / 1e6, 0)}</td><td>${signed(+r.mom_pct)}%</td><td>${signed(+r.yoy_pct)}%</td><td>${signed(+r.ytd_yoy_pct)}%</td></tr>`).join("");
+
+    const capRows = Object.entries(L.data.edgar || {}).map(([t, c]) => {
+      const cap = c.capex || {}, fcf = c.free_cash_flow || {};
+      return `<tr><td>${esc(c.name)}</td><td>${esc(cap.quarter_end || "—")}</td><td>${fmtB(cap.value)}</td><td>${signed(cap.qoq_pct)}%</td><td>${signed(cap.yoy_pct)}%</td><td>${fmtB(fcf.value)}</td></tr>`;
+    }).join("");
+
+    const logRows = (log || []).slice().reverse().slice(0, 26).map(r => `<tr><td>${esc(r.date)}</td><td>${esc(r.level)}</td><td>${esc(r.composite)}</td>` +
+      ["credit", "ai_lab_financing", "taiwan_supply_chain", "hyperscaler_filings", "supplier_signals", "physical_buildout"].map(k => `<td>${esc(r[k])}</td>`).join("") +
+      `<td>${fmt(+r.sp500, 0)}</td><td>${fmt(+r.nasdaq100, 0)}</td><td>${fmt(+r.ust10y, 2)}</td><td>${fmt(+r.brent, 1)}</td></tr>`).join("");
+
+    const errs = Object.entries(L.errors || {});
+    app.innerHTML = `
+      <section class="hero">
+        <div class="card">
+          <div class="level"><span class="dot" style="background:var(${lv.color})"></span>${esc(comp.level)}</div>
+          <div class="big">${comp.total}<small> / ${comp.max}</small></div>
+          <div class="sub">${esc(lv.label)}${comp.hot_categories && comp.hot_categories.length ? " · hot: " + comp.hot_categories.join(", ") : ""}</div>
+        </div>
+        <div class="card"><h2>${esc(a.headline || "This week")}</h2>
+          <div class="digest">${md(a.digest_markdown || "_Claude digest unavailable this week. Scores shown are the rule-based ones._")}</div>
+          ${(a.watch_next || []).length ? `<b style="font-size:13px">Watch next</b><ul class="watch">${a.watch_next.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
+        </div>
+      </section>
+      <section class="grid cats">${catCards}</section>
+      <section class="card" style="margin-bottom:16px">
+        <div class="chart-title"><b>Hyperscaler capex by calendar quarter</b><span>from SEC filings</span></div>
+        <div class="chart" id="c-capex"></div>
+        <div class="scroll" style="margin-top:12px"><table><thead><tr><th>Company</th><th>Quarter end</th><th>Capex</th><th>QoQ</th><th>YoY</th><th>Free cash flow</th></tr></thead><tbody>${capRows}</tbody></table></div>
+      </section>
+      <section class="grid charts">${chartCards}
+        <div class="card"><div class="chart-title"><b>Taiwan AI-server group: median YoY revenue</b><span>${esc(tw.latest_period || "")}</span></div><div class="chart" id="c-tw"></div></div>
+      </section>
+      <section class="card" style="margin-bottom:16px"><h2>Taiwan monthly revenue · ${esc(tw.latest_period || "")}</h2>
+        <div class="scroll"><table class="tw"><thead><tr><th>Code</th><th>Company</th><th>Revenue (NT$M)</th><th>MoM</th><th>YoY</th><th>YTD YoY</th></tr></thead><tbody>${twRows || '<tr><td colspan="6">No data yet</td></tr>'}</tbody></table></div>
+      </section>
+      <section class="card"><h2>Running log</h2>
+        <div class="scroll"><table><thead><tr><th>Week</th><th>Level</th><th>Total</th><th>Credit</th><th>AI labs</th><th>Taiwan</th><th>Filings</th><th>Suppliers</th><th>Build-out</th><th>S&amp;P 500</th><th>NDX</th><th>10y</th><th>Brent</th></tr></thead><tbody>${logRows}</tbody></table></div>
+      </section>
+      ${errs.length ? `<p class="errors">Data issues this run: ${errs.map(([k, v]) => esc(k + ": " + String(v).slice(0, 160))).join(" · ")}</p>` : ""}`;
+
+    for (const [id, , unit] of series) lineChart($("#c-" + id), (C.fred || {})[id], unit);
+    barChart($("#c-tw"), Object.entries(C.taiwan_median_yoy || {}).slice(-24), "%");
+    stackedBars($("#c-capex"), C.capex_by_quarter || {}, C.tickers || [], names);
+  }
+
+  const get = u => fetch(u + "?v=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json")]).then(([latest, charts, log]) => {
+    state = { latest, charts: charts || {}, log: log || [] };
+    render();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+  let rt; let lastW = innerWidth;
+  addEventListener("resize", () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(render, 150); });
+})();
+</script>
+</body>
+</html>

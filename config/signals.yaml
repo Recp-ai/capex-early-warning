@@ -1,0 +1,85 @@
+# Capex Early-Warning configuration
+# Edit thresholds here; no code changes needed.
+# Every category is scored 0 (calm) to 3 (strong warning).
+
+model: claude-opus-5-5          # Claude model used for news research and the digest
+max_web_searches: 12            # cap on Claude web searches per weekly run
+
+# ---------------------------------------------------------------------------
+# Data sources
+# ---------------------------------------------------------------------------
+fred_series:
+  # Context / pressure gauges
+  CPIAUCSL: {label: "CPI (headline index)", freq: monthly}
+  CPILFESL: {label: "Core CPI index", freq: monthly}
+  PCEPILFE: {label: "Core PCE index", freq: monthly}
+  DFF: {label: "Fed funds effective rate (%)", freq: daily}
+  DGS2: {label: "2-yr Treasury yield (%)", freq: daily}
+  DGS10: {label: "10-yr Treasury yield (%)", freq: daily}
+  T10Y2Y: {label: "10y minus 2y spread (%)", freq: daily}
+  DCOILBRENTEU: {label: "Brent crude ($/bbl)", freq: daily}
+  VIXCLS: {label: "VIX", freq: daily}
+  # Credit (a domino category)
+  BAMLH0A0HYM2: {label: "High-yield credit spread (%)", freq: daily}
+  BAMLC0A0CM: {label: "Investment-grade credit spread (%)", freq: daily}
+  # Prices for the running log (SPY / QQQ proxies)
+  SP500: {label: "S&P 500 index", freq: daily}
+  NASDAQ100: {label: "Nasdaq-100 index", freq: daily}
+
+hyperscalers:
+  MSFT: {cik: "0000789019", name: "Microsoft"}
+  GOOGL: {cik: "0001652044", name: "Alphabet"}
+  AMZN: {cik: "0001018724", name: "Amazon"}
+  META: {cik: "0001326801", name: "Meta"}
+  ORCL: {cik: "0001341439", name: "Oracle"}
+
+# Taiwan AI-server supply chain (TWSE listed; monthly revenue due by the 10th)
+taiwan_companies:
+  "2330": "TSMC"
+  "2317": "Hon Hai (Foxconn)"
+  "2382": "Quanta"
+  "3231": "Wistron"
+  "6669": "Wiwynn"
+  "2345": "Accton"
+  "2376": "Gigabyte"
+
+# ---------------------------------------------------------------------------
+# Scoring thresholds (rule-based categories)
+# ---------------------------------------------------------------------------
+credit:
+  # Change in high-yield spread over the last ~4 weeks, in percentage points
+  hy_change_4w: [0.25, 0.50, 0.75]      # >= each value adds a point (1, 2, 3)
+  # Absolute high-yield spread level that alone signals stress (%)
+  hy_level_stress: 5.0
+  ig_change_4w_bonus: 0.20              # IG spread widening this much adds +1 (capped at 3)
+
+taiwan:
+  # Median year-over-year revenue growth of the AI-server group (%)
+  median_yoy: [10.0, 0.0, -10.0]        # below each value adds a point
+  # Drop in median YoY versus 3 months earlier (percentage points) adds +1
+  decel_3m_pts: 20.0
+
+hyperscaler_filings:
+  # Aggregate quarterly capex of the five hyperscalers, quarter over quarter (%)
+  agg_capex_qoq: [0.0, -5.0, -15.0]     # below each value adds a point
+  single_capex_cut_pct: -10.0           # any one company cutting this much QoQ adds +1
+  new_lease_assets_qoq: -25.0           # aggregate new right-of-use lease assets falling this much adds +1
+
+# Claude-scored (news) categories: ai_lab_financing, supplier_signals, physical_buildout,
+# plus a news adjustment to credit. Claude returns 0-3 with cited evidence.
+
+composite:
+  # Weights for the six categories in the composite score (max = 3 * sum of weights)
+  weights:
+    credit: 1.0
+    ai_lab_financing: 1.0
+    taiwan_supply_chain: 1.0
+    hyperscaler_filings: 1.0
+    supplier_signals: 1.0
+    physical_buildout: 1.0
+  amber_at: 5        # composite >= amber_at  -> AMBER
+  red_at: 9          # composite >= red_at    -> RED
+  single_category_alert: 3   # any one category at this score triggers an alert
+
+email:
+  send_every_week: true      # weekly digest even when calm; alerts are flagged in the subject
