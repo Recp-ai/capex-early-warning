@@ -14,6 +14,7 @@ import argparse
 import copy
 import json
 import sys
+from datetime import date
 
 from . import (analyst, calls, events, fetch_edgar, fetch_fred, fetch_taiwan, leases, models, notify, publish,
                scoring, sources, util)
@@ -131,7 +132,8 @@ def main(argv: list[str] | None = None) -> int:
     last_run = prev_runs[-1] if prev_runs else None
 
     print(f"Claude step: {'on' if llm_on else 'off'} ...", flush=True)
-    focus = "; ".join(f"{e.get('title') or e['name']} ({e['date']})" for e in run_events) or None
+    recent = [e for e in run_events if 0 <= (us_day - date.fromisoformat(e["date"])).days <= 3]  # not future dates
+    focus = "; ".join(f"{e.get('title') or e['name']} ({e['date']})" for e in recent) or None
     claude = analyst.run(cfg, data_brief(fred, edgar, tw, rule, filing_text, run_events), prev_summary, llm_on,
                          selection, focus)
     usage = claude.pop("usage", None) or {}

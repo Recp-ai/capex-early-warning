@@ -642,6 +642,7 @@ def test_three_runs_end_to_end(sandbox, monkeypatch):
     sent = []
     monkeypatch.setattr(notify, "send", lambda report: sent.append(report["trigger"]) or "sent to 1 recipient(s)")
     monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+    monkeypatch.setattr(util, "now_utc", lambda: datetime(2026, 10, 22, 23, 30, tzinfo=timezone.utc))
     fake = fake_claude(monkeypatch, [
         research_reply(), reply(assessment()),                                            # run 1
         guidance_reply("$70-72 billion"), guidance_reply("$66-72 billion"),               # run 2: press releases
@@ -684,7 +685,8 @@ def test_three_runs_end_to_end(sandbox, monkeypatch):
     assert "Blackwell" not in json.dumps(s["hyperscaler_filings"])
     site_runs = json.loads((sandbox / "site" / "data" / "runs.json").read_text())
     assert site_runs["runs"][0]["level"] == "AMBER" and site_runs["total_runs"] == 3
-    assert "event-day run" in fake.calls[-2]["messages"][0]["content"]  # research focused on the event
+    assert "event-day run" in fake.calls[-2]["messages"][0]["content"]  # Oct 21 event, run on Oct 22
+    assert "event-day run" not in fake.calls[0]["messages"][0]["content"]  # the weekly run has no focus
     assert "earnings_press_releases" in fake.calls[-1]["messages"][0]["content"]
 
 
