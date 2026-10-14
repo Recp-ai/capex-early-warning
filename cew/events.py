@@ -4,6 +4,9 @@ The workflow's daily cron (EVENT_CHECK_CRON, 23:30 UTC = 07:30 UTC+8) runs `pyth
 It starts the full pipeline only if a listed event fell on the US Eastern calendar day that is just
 ending (after the US close, so after-hours earnings are out) and no run has happened on that day yet.
 
+The repo Actions variable AUTO_RUNS (all | weekly | events | off, set from the dashboard) can switch the
+Saturday run and/or the event-day check off; manual runs are never affected.
+
 Run triggers, as recorded in data/runs.csv: "schedule" (weekly cron), "manual" (workflow_dispatch or
 local), "event:<name>+<name>" (event-day run, or a manual run with the `event` input).
 """
@@ -23,6 +26,16 @@ EVENTS_PATH = util.ROOT / "config" / "events.yaml"
 EVENT_CHECK_CRON = "30 23 * * *"  # must match the second schedule in .github/workflows/weekly.yml
 NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9.-]{0,40}$")
 TYPES = ("fomc", "cpi", "earnings")
+# Repo Actions variable AUTO_RUNS (set from the dashboard) controls the two scheduled runs; manual runs
+# always go ahead. Unset or unknown means "all".
+AUTO_MODES = ("all", "weekly", "events", "off")
+AUTO_LABEL = {"all": "Saturdays and event days", "weekly": "Saturdays only",
+              "events": "event days only", "off": "paused"}
+
+
+def auto_mode(value: str | None) -> str:
+    v = (value or "").strip().lower()
+    return v if v in AUTO_MODES else "all"
 
 try:
     from zoneinfo import ZoneInfo
@@ -96,7 +109,11 @@ def requested(value: str | None, events: list[dict]) -> list[str]:
 def plan(environ: Mapping[str, str], now: datetime, events: list[dict], runs: list[dict]) -> dict:
     """Decide whether this workflow run should run the pipeline, and with which trigger tag."""
     kind = environ.get("EVENT_NAME", "")
+    mode = auto_mode(environ.get("AUTO_RUNS"))
     if kind == "schedule" and (environ.get("SCHEDULE") or "").strip() == EVENT_CHECK_CRON:
+        if mode in ("weekly", "off"):
+            return {"run": False, "trigger": "",
+                    "reason": f"Event-day runs are switched off (automatic runs: {AUTO_LABEL[mode]})"}
         day = us_date(now)
         todays = on(events, day)
         if not todays:
@@ -107,6 +124,9 @@ def plan(environ: Mapping[str, str], now: datetime, events: list[dict], runs: li
                     "reason": f"{', '.join(names)} on {day}, but a run already happened that day"}
         return {"run": True, "trigger": trigger_for(names), "reason": f"Event day {day}: {', '.join(names)}"}
     if kind == "schedule":
+        if mode in ("events", "off"):
+            return {"run": False, "trigger": "",
+                    "reason": f"Saturday runs are switched off (automatic runs: {AUTO_LABEL[mode]})"}
         return {"run": True, "trigger": "schedule", "reason": "Weekly schedule"}
     names = requested(environ.get("INPUT_EVENT"), events)
     if names:

@@ -2,6 +2,9 @@
 //   POST /api/run  {passcode, research_model, assessment_model, send_email, save_as_default}
 //                  -> dispatches .github/workflows/weekly.yml on main and returns the run URL
 //   GET  /api/run  -> {status, conclusion} of the latest manual (workflow_dispatch) run
+//   GET  /api/run?auto -> {auto_runs} (all | weekly | events | off), read from the AUTO_RUNS repo variable
+//   POST /api/run  {passcode, action: "set_auto", auto_runs} -> saves AUTO_RUNS (switches the Saturday
+//                  and/or event-day runs off or on; manual runs are never affected; starts no run)
 // Vercel environment variables: RUN_PASSCODE, GITHUB_TOKEN (fine-grained, this repo only),
 // optional GITHUB_REPO ("owner/name"; defaults to the repo Vercel deploys from).
 // Never put either secret in a response, an error, or a log line.
@@ -20,6 +23,8 @@ const REF = "main";
 const MAX_DISPATCHES_PER_DAY = 5;
 const MODEL_RE = /^claude-[a-z0-9.-]+$/;
 const STEPS = [["research_model", "RESEARCH_MODEL"], ["assessment_model", "ASSESSMENT_MODEL"]];
+const AUTO_VAR = "AUTO_RUNS";
+const AUTO_MODES = ["all", "weekly", "events", "off"]; // same list as cew/events.py AUTO_MODES
 
 class Fail extends Error {
   constructor(status, message) { super(message); this.status = status; }
@@ -144,7 +149,25 @@ function configured() {
   }
 }
 
-async function handleStatus(res) {
+const autoMode = v => (AUTO_MODES.includes(String(v || "").trim().toLowerCase()) ? String(v).trim().toLowerCase() : "all");
+
+async function handleAutoStatus(res) {
+  configured();
+  const r = await gh("GET", `/repos/${REPO}/actions/variables/${AUTO_VAR}`);
+  if (r.status === 404) return send(res, 200, { auto_runs: "all" });
+  if (!r.ok) throw ghFail(`reading the ${AUTO_VAR} variable`, r);
+  return send(res, 200, { auto_runs: autoMode(r.data && r.data.value) });
+}
+
+async function handleSetAuto(body, res) {
+  const value = typeof body.auto_runs === "string" ? body.auto_runs.trim().toLowerCase() : "";
+  if (!AUTO_MODES.includes(value)) throw new Fail(400, `auto_runs must be one of: ${AUTO_MODES.join(", ")}`);
+  await saveVariable(AUTO_VAR, value);
+  return send(res, 200, { ok: true, auto_runs: value });
+}
+
+async function handleStatus(req, res) {
+  if (/[?&]auto(=|&|$)/.test(String(req.url || ""))) return handleAutoStatus(res);
   configured();
   // Manual runs only: the daily event-day check (a scheduled run) must not look like the run just started.
   const r = await gh("GET", runsPath({ event: "workflow_dispatch", per_page: "1" }));
@@ -162,6 +185,7 @@ async function handleRun(req, res) {
     await sleep(1000); // slow down guessing
     throw new Fail(401, "Wrong passcode");
   }
+  if (body.action === "set_auto") return handleSetAuto(body, res);
 
   const chosen = {};
   for (const [field] of STEPS) {
@@ -205,7 +229,7 @@ async function handleRun(req, res) {
 
 module.exports = async function handler(req, res) {
   try {
-    if (req.method === "GET") return await handleStatus(res);
+    if (req.method === "GET") return await handleStatus(req, res);
     if (req.method === "POST") return await handleRun(req, res);
     res.setHeader("Allow", "GET, POST");
     return send(res, 405, { error: "Method not allowed" });

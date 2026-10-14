@@ -785,3 +785,26 @@ def test_calendar_year_guidance_labels_compare():
     assert "midpoint +2.5B" in calls.evidence(q2, comp, 12)[0]["claim"]
     assert calls.compare(q2, q1, 6)["guidance"][0]["before"] is None  # June fiscal year: CY2026 is not FY2026
     assert calls._period_key("fy 26") == "FY2026" and calls._period_key("next quarter") == "NEXTQUARTER"
+
+
+def test_auto_runs_switches_scheduled_runs_only():
+    weekly = {"EVENT_NAME": "schedule", "SCHEDULE": "17 1 * * 6"}
+    manual = {"EVENT_NAME": "workflow_dispatch"}
+    for mode, event_runs, saturday_runs in (("all", True, True), ("weekly", False, True),
+                                             ("events", True, False), ("off", False, False)):
+        env = {"AUTO_RUNS": mode}
+        assert events.plan({**CHECK, **env}, AT_0730_UTC8, EVTS, [])["run"] is event_runs, mode
+        assert events.plan({**weekly, **env}, AT_0730_UTC8, EVTS, [])["run"] is saturday_runs, mode
+        assert events.plan({**manual, **env}, AT_0730_UTC8, EVTS, [])["trigger"] == "manual", mode
+    off = events.plan({**CHECK, "AUTO_RUNS": "off"}, AT_0730_UTC8, EVTS, [])
+    assert "switched off" in off["reason"] and off["trigger"] == ""
+    # unset, blank or unknown values keep everything on
+    for v in (None, "", "OFF ", "nonsense"):
+        assert events.auto_mode(v) == ("off" if v == "OFF " else "all")
+    assert events.plan({**CHECK, "AUTO_RUNS": "nonsense"}, AT_0730_UTC8, EVTS, [])["run"]
+
+
+def test_workflow_passes_auto_runs_to_the_plan_step():
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "weekly.yml").read_text())
+    plan = next(s for s in wf["jobs"]["run"]["steps"] if s.get("id") == "plan")
+    assert plan["env"]["AUTO_RUNS"] == "${{ vars.AUTO_RUNS }}"

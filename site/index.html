@@ -86,7 +86,7 @@ th { color: var(--ink-2); font-weight: 600; }
 .run-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 14px 0 10px; }
 .field { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--ink-2); min-width: 0; }
 .field small { font-weight: 400; color: var(--muted); }
-.run select, .run-go input { font: inherit; font-size: 14px; color: var(--ink); background: var(--page);
+.run select, .run-go input, .auto-row input { font: inherit; font-size: 14px; color: var(--ink); background: var(--page);
   border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; width: 100%; min-width: 0; }
 .run select:focus-visible, .run input:focus-visible, .btn:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
 .run-est { font-size: 13.5px; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
@@ -98,7 +98,14 @@ th { color: var(--ink-2); font-weight: 600; }
   background: var(--ink); color: var(--page); cursor: pointer; flex: none; }
 .btn:disabled { opacity: .5; cursor: default; }
 .run-msg { margin-top: 10px; min-height: 1.5em; }
-@media (max-width: 760px) { .run select, .run-go input { font-size: 16px; } } /* no zoom-on-focus on iOS */
+.auto { border-top: 1px solid var(--grid); margin-top: 16px; padding-top: 14px; }
+.auto h3 { font-size: 14px; margin: 0; }
+.auto-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.auto-row select { flex: 1 1 240px; width: auto; }
+.auto-row input { flex: 1 1 140px; }
+.auto-state { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+.auto-state .dot { width: 8px; height: 8px; }
+@media (max-width: 760px) { .run select, .run-go input, .auto-row input { font-size: 16px; } } /* no zoom-on-focus on iOS */
 .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: var(--ink-2);
   border: 1px solid var(--ring); border-radius: 999px; padding: 0 7px; line-height: 18px; white-space: nowrap; vertical-align: 1px; }
 .badge .dot { width: 7px; height: 7px; }
@@ -392,9 +399,13 @@ th.left, td.left { text-align: left; }
     }
     const comp = L.composite, lv = LEVEL[comp.level] || LEVEL.GREEN;
     const a = (L.claude || {}).assessment || {};
-    const next = upcoming()[0];
-    $("#asof").textContent = `${L.run_id ? "Run " + runTime(L.run_id) : "Week of " + L.date} · ${triggerLabel(L.trigger)} · ` +
-      `next: Saturday${next ? ` or after ${next.name} (${shortDate(next.date)})` : ""}`;
+    const next = upcoming()[0], mode = state.auto || "all";
+    const nextEvent = next ? `after ${next.name} (${shortDate(next.date)})` : "";
+    const nextText = mode === "off" ? "automatic runs paused"
+      : mode === "weekly" ? "next: Saturday"
+      : mode === "events" ? (nextEvent ? `next: ${nextEvent}` : "no event runs scheduled")
+      : `next: Saturday${nextEvent ? ` or ${nextEvent}` : ""}`;
+    $("#asof").textContent = `${L.run_id ? "Run " + runTime(L.run_id) : "Week of " + L.date} · ${triggerLabel(L.trigger)} · ${nextText}`;
     const names = Object.fromEntries(Object.entries(L.data.edgar || {}).map(([t, c]) => [t, c.name]));
     const catName = Object.fromEntries(L.categories);
     const jumps = comp.jumps || {}, conf = comp.confirmation || null;
@@ -570,7 +581,24 @@ th.left, td.left { text-align: left; }
         <input type="password" id="run-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode">
         <button type="button" class="btn" id="run-btn">Run</button>
       </div>
-      <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>`;
+      <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>
+      <div class="auto" id="auto" hidden>
+        <div class="run-head"><h3>Automatic runs</h3><span class="auto-state" id="auto-state"></span></div>
+        <div class="sub" style="margin-top:4px">Saturday runs and the morning-after-event runs each cost about the "Last run" amount above. Manual runs from this panel always work.</div>
+        <div class="auto-row">
+          <select id="auto-mode" aria-label="Automatic runs">
+            <option value="all">On: Saturdays and event days</option>
+            <option value="weekly">Saturdays only</option>
+            <option value="events">Event days only</option>
+            <option value="off">Paused: manual runs only</option>
+          </select>
+          <input type="password" id="auto-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode for automatic runs">
+          <button type="button" class="btn" id="auto-btn">Save</button>
+        </div>
+        <div class="sub run-msg" id="auto-msg" role="status" aria-live="polite"></div>
+      </div>`;
+    $("#auto-btn").onclick = saveAuto;
+    $("#auto-pass").onkeydown = e => { if (e.key === "Enter") saveAuto(); };
     $("#run-research").onchange = $("#run-assessment").onchange = updateEstimate;
     $("#run-btn").onclick = startRun;
     $("#run-pass").onkeydown = e => { if (e.key === "Enter") startRun(); };
@@ -611,6 +639,50 @@ th.left, td.left { text-align: left; }
     el.innerHTML = (r == null || a == null
       ? 'Estimated cost per run: <span class="sub">unknown (a selected model has no price in config/models.yaml)</span>'
       : `Estimated cost per run: <b>~${usd(r + a)}</b> <span class="sub">· last run's token counts × selected prices</span>`) + units;
+  }
+
+  const AUTO_TEXT = { all: ["On", "--good"], weekly: ["Saturdays only", "--warning"],
+    events: ["Event days only", "--warning"], off: ["Paused", "--muted"] };
+
+  function showAuto() {
+    const box = $("#auto");
+    if (!box) return;
+    if (!state.auto) { box.hidden = true; return; }
+    const [txt, col] = AUTO_TEXT[state.auto] || AUTO_TEXT.all;
+    $("#auto-state").innerHTML = `<span class="dot" style="background:var(${col})"></span>${txt}`;
+    if (document.activeElement !== $("#auto-mode")) $("#auto-mode").value = state.auto;
+    box.hidden = false;
+  }
+
+  async function loadAuto() {
+    const r = await fetch("api/run?auto", { cache: "no-store" }).then(x => x.ok ? x.json() : null).catch(() => null);
+    state.auto = r && r.auto_runs ? r.auto_runs : null;
+    showAuto();
+    render();
+  }
+
+  async function saveAuto() {
+    const pass = $("#auto-pass"), btn = $("#auto-btn"), msg = $("#auto-msg"), value = $("#auto-mode").value;
+    if (!pass.value) { msg.textContent = "Enter the passcode."; pass.focus(); return; }
+    btn.disabled = true;
+    msg.textContent = "Saving…";
+    let res = null, data = {};
+    try {
+      res = await fetch("api/run", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode: pass.value, action: "set_auto", auto_runs: value }),
+      });
+      data = await res.json().catch(() => ({}));
+    } catch (e) { /* network error */ }
+    btn.disabled = false;
+    if (!res || !res.ok) { msg.textContent = data.error || (res ? `Request failed (HTTP ${res.status})` : "Network error"); return; }
+    pass.value = "";
+    state.auto = data.auto_runs;
+    msg.textContent = data.auto_runs === "off"
+      ? "Saved. No automatic runs until you switch them back on."
+      : "Saved. Takes effect from the next scheduled check.";
+    showAuto();
+    render();
   }
 
   async function startRun() {
@@ -675,12 +747,13 @@ th.left, td.left { text-align: left; }
   function loadAll() {
     return Promise.all([get("data/latest.json"), get("data/charts.json"), get("data/log.json"), get("data/models.json"), get("data/runs.json")])
       .then(([latest, charts, log, models, runs]) => {
-        state = { latest, charts: charts || {}, log: log || [], models, runs: runs || {} };
+        state = { latest, charts: charts || {}, log: log || [], models, runs: runs || {}, auto: state ? state.auto : null };
         render();
         updateRunPanel();
+        showAuto();
       });
   }
-  loadAll();
+  loadAll().then(loadAuto);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
   let rt; let lastW = innerWidth;
   addEventListener("resize", () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(render, 150); });

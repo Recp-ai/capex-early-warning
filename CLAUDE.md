@@ -98,6 +98,9 @@ run and sets `RUN_TRIGGER`: `schedule` (Saturday cron), `manual` (workflow_dispa
 and `data/runs.csv` has no run that day; or a manual run with the `event` input). Event runs focus the
 research on the event, read hyperscaler press releases (`calls.py`, only for tickers in `hyperscalers`),
 and email only on a level change or a category move of `email.event_category_move`.
+The repo Actions variable `AUTO_RUNS` (`all` | `weekly` | `events` | `off`, passed to the plan step as
+env `AUTO_RUNS`; unset/unknown = `all`) switches the Saturday run and/or the daily event check off;
+`events.plan` applies it to scheduled runs only, never to manual runs. The dashboard sets it.
 
 **Follow-ups.** `followups.pending` takes the latest `data/runs/*.json` with a Claude assessment: its
 `watch_next` items (run 1) plus its unresolved `follow_ups` (run count + 1, dropped past
@@ -122,7 +125,10 @@ daily report before the first v2 run).
 **Run now.** The dashboard POSTs to `/api/run`, which checks `RUN_PASSCODE` (timingSafeEqual),
 allows at most 5 workflow_dispatch runs per 24 h, validates models against `models.json`, optionally
 saves them as the `RESEARCH_MODEL` / `ASSESSMENT_MODEL` repo variables, and dispatches `weekly.yml`
-on `main` with the Vercel env var `GITHUB_TOKEN` (fine-grained, this repo only).
+on `main` with the Vercel env var `GITHUB_TOKEN` (fine-grained, this repo only). The same endpoint
+handles the Automatic runs switch: `POST {passcode, action: "set_auto", auto_runs}` saves `AUTO_RUNS`
+(no dispatch, not counted in the 5/24 h cap) and `GET /api/run?auto` reads it. Keep `AUTO_MODES` in
+`run.js` and `cew/events.py` the same.
 
 ## Commands
 

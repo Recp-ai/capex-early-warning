@@ -183,7 +183,8 @@ Personal access tokens → **Fine-grained tokens** → Generate new token):
 3. Repository access: **Only select repositories** → this repository only.
 4. Repository permissions:
    - **Actions**: Read and write (start the workflow, read run status, count recent runs)
-   - **Variables**: Read and write (the "Save as default for weekly runs" checkbox)
+   - **Variables**: Read and write (the "Save as default for weekly runs" checkbox and the
+     Automatic runs switch)
    - **Metadata**: Read-only (added automatically)
 5. Generate, and copy the token (it starts with `github_pat_`).
 
@@ -204,6 +205,14 @@ the run and reloads the data when the new commit has deployed (usually a few min
 finishes). Manual runs are capped at 5 per 24 hours (this counts every workflow_dispatch run,
 including ones started from GitHub). The model dropdowns fill in after the first run with this
 version; until then a Run uses the configured defaults.
+
+**Automatic runs switch.** Below Run now, "Automatic runs" turns the scheduled runs on or off without
+touching the code: **On** (Saturdays and event days, the default), **Saturdays only**, **Event days
+only**, or **Paused** (manual runs only). It needs the passcode and saves the repo Actions variable
+`AUTO_RUNS` (`all` / `weekly` / `events` / `off`); the workflow's "Decide whether to run" step reads it,
+so a switched-off run stops there in about a minute and makes no Claude API calls. Manual runs always
+work. You can also set `AUTO_RUNS` directly under repo Settings → Secrets and variables → Actions →
+Variables; unset or unknown values mean `all`.
 
 ## Running locally
 

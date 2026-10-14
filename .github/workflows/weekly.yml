@@ -57,6 +57,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           SCHEDULE: ${{ github.event.schedule }}
           INPUT_EVENT: ${{ inputs.event }}
+          AUTO_RUNS: ${{ vars.AUTO_RUNS }}   # set from the dashboard: all | weekly | events | off
         run: python -m cew.events plan
 
       - name: Unit tests
