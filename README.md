@@ -173,8 +173,8 @@ whenever it applies. Everything is in [`config/stocks.yaml`](config/stocks.yaml)
 
 **Also on the page:** the latest earnings release (8-K Item 2.02, Exhibit 99.1). Guidance sentences
 count only if found word for word in the release, as with the capex press releases. The page also
-shows cautious-phrase counts versus the previous release (regex counts, safe-harbor boilerplate left
-out). Claude writes a short thesis, the key risks and "what would change this rating" only after code
+shows cautious-phrase counts versus the previous release (regex counts, with the forward-looking-statements
+section left out). Claude writes a short thesis, the key risks and "what would change this rating" only after code
 has set the rating, and is told the points to the next band.
 
 **Output.** Every run is kept: `data/stocks/runs/<TICKER>/<UTC timestamp>.json` (never overwritten) and
@@ -186,8 +186,9 @@ and uses the same SMTP secrets. `python scripts/evaluate_stocks.py [--refresh]` 
 returns by rating band, and versus SPY, from `ratings.csv`.
 
 **Cost.** A run makes four Claude calls: research (Sonnet, up to 8 searches), topic ratings, the
-write-up, and guidance extraction (Opus; once per earnings release, then cached). Expect roughly
-$0.30–0.60 per run at list prices. The page estimates each run from the last run's tokens.
+write-up, and guidance extraction (Opus; once per earnings release, then cached). The first live run
+(MSFT) cost $0.45 at list prices, $0.36 of it research: 8 searches and the ~118K tokens of search results
+they pulled in. The page estimates each run from the last run's tokens.
 
 ### Price data: Tiingo
 

@@ -265,13 +265,36 @@ def test_latest_release_read_once_and_compared_with_the_previous(sandbox, monkey
     assert [x["sentence"] for x in g["guidance"]] == [F.GUIDE_SENTENCE] and g["dropped"] == 0
     assert g["phrases"]["headwind"] == {"count": 1, "previous": 1, "sentences": [g["phrases"]["headwind"]["sentences"][0]]}
     assert g["phrases"]["pacing"]["count"] == 1 and g["phrases"]["pacing"]["previous"] == 0
-    assert g["phrases"]["uncertain"]["count"] == 1  # the forward-looking-statements line isn't counted
+    assert g["phrases"]["uncertain"]["count"] == 1  # the forward-looking-statements section isn't counted
+    assert g["phrases"]["softness"]["count"] == 1   # text after the next heading is
     prompt = fake.calls[0]["messages"][0]["content"]
     assert F.GUIDE_SENTENCE in prompt and "forward-looking statements that" not in prompt
     assert {p.name for p in guidance.calls_dir("MSFT").glob("*.json")} == {"0000950170-26-000101.json", "0000950170-26-000050.json"}
     n = len(sess.calls)
     again = guidance.run(sess, F.CIK, "MSFT", "Microsoft", F.submissions(), "claude-opus-5-5", True, False, {}, CFG)
     assert again["guidance"] == g["guidance"] and len(sess.calls) == n  # cached: no fetch, no Claude call
+
+
+def test_safe_harbor_section_is_left_out_of_phrase_counts():
+    text = ("Outlook\nWe see macro headwinds.\nFORWARD-LOOKING STATEMENTS:\nStatements here are uncertain.\n"
+            "• uncertainties relating to government customers;\n• economic uncertainties; and\nchanges in tax law\n"
+            "About Microsoft\nMicrosoft builds software.\nFor more information, contact us.")
+    assert guidance.without_boilerplate(text) == ("Outlook\nWe see macro headwinds.\nAbout Microsoft\n"
+                                                  "Microsoft builds software.\nFor more information, contact us.")
+    assert guidance.without_boilerplate("Cautionary Note Regarding Forward-Looking Statements\nRisky; uncertain.") == ""
+    assert guidance.without_boilerplate("Safe Harbor Statement\n• headwinds;\nConsolidated Statements\nok") == "Consolidated Statements\nok"
+
+
+def test_cached_release_from_an_older_counter_is_recounted_without_claude(sandbox, monkeypatch):
+    acc = "0000950170-26-000101"
+    url = "https://www.sec.gov/Archives/edgar/data/789019/000095017026000101/ex991.htm"
+    old = {"ticker": "MSFT", "accession": acc, "filing_date": "2026-07-29", "period_end": "2026-06-30", "url": url,
+           "phrases": {"uncertain": {"count": 9, "sentences": []}}, "guidance": [], "summary": "None given.", "model": "m"}
+    util.write_json(guidance.calls_dir("MSFT") / f"{acc}.json", old)
+    fake = F.fake_claude(monkeypatch, [])
+    g = guidance.run(F.FakeSession(F.sec_routes()), F.CIK, "MSFT", "Microsoft", F.submissions(), "m", True, False, {}, CFG)
+    assert not fake.calls and g["phrases"]["uncertain"]["count"] == 1 and g["summary"] == "None given."
+    assert util.read_json(guidance.calls_dir("MSFT") / f"{acc}.json")["version"] == guidance.VERSION
 
 
 def test_misquoted_guidance_dropped_and_claude_off_counts_phrases_only(sandbox, monkeypatch):

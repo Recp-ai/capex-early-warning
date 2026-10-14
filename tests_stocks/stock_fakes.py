@@ -257,6 +257,11 @@ RELEASE = """<html><body><p>Microsoft Cloud Strength Fuels Fourth Quarter Result
 <p>We expect revenue for the first quarter of fiscal year 2027 to be between $122 billion and $124 billion.</p>
 <p>Some customers are pacing deployments amid macroeconomic uncertainty, and we see near-term headwinds in devices.</p>
 <p>This release contains forward-looking statements that we expect to be uncertain.</p>
+<p>Forward-Looking Statements</p>
+<p>Statements in this release are based on current expectations and assumptions.</p>
+<ul><li>• macroeconomic uncertainties and headwinds;</li><li>• competition.</li></ul>
+<p>About Microsoft</p>
+<p>Microsoft creates platforms and tools; demand softness was not mentioned.</p>
 </body></html>"""
 PREV_RELEASE = """<html><body><p>Results for the quarter ended March 31, 2026.</p>
 <p>We remain capacity constrained. No headwinds noted.</p></body></html>"""

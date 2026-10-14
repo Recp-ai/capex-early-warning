@@ -53,6 +53,9 @@ Excerpts:
 KEYWORDS = re.compile(r"(?i)outlook|guidance|expect|anticipate|forecast|project|range of|between|target"
                       r"|full[- ]year|next quarter|fiscal (?:year )?20\d\d")
 BOILERPLATE = re.compile(r"(?i)forward-looking statements?|private securities litigation reform act")
+SAFE_HARBOR = re.compile(r"(?i)^\W*(?:cautionary (?:note|statements?) (?:regarding|about|concerning) )?"
+                         r"(?:safe harbor(?: statement)?|forward[- ]looking (?:statements?|information))\W*$")
+VERSION = 2  # of the phrase counting; cached releases from an older version are recounted (guidance kept)
 
 
 def excerpt(text: str, phrases: dict[str, str], limit: int = 40000) -> str:
@@ -71,10 +74,26 @@ def excerpt(text: str, phrases: dict[str, str], limit: int = 40000) -> str:
     return "\n".join(out)
 
 
+def _heading(s: str) -> bool:
+    """A short title line ("About Microsoft"), not a sentence, list item or the disclaimer itself."""
+    return 0 < len(s) <= 60 and s[0].isupper() and not s.endswith((".", ";", ",", ":")) and "forward-looking" not in s.lower()
+
+
 def without_boilerplate(text: str) -> str:
-    """The release without its forward-looking-statements disclaimer lines, whose "uncertainties" and
-    "macroeconomic" would otherwise inflate every phrase count."""
-    return "\n".join(line for line in text.split("\n") if not BOILERPLATE.search(line))
+    """The release without its forward-looking-statements disclaimer: lines naming it, and the whole section
+    under a "Forward-Looking Statements" / "Safe Harbor" heading up to the next heading. Its list of risks
+    ("uncertainties", "macroeconomic") would otherwise inflate every phrase count."""
+    out, skip = [], False
+    for line in text.split("\n"):
+        s = line.strip()
+        if SAFE_HARBOR.match(s):
+            skip = True
+            continue
+        if skip and _heading(s):
+            skip = False
+        if not skip and not BOILERPLATE.search(line):
+            out.append(line)
+    return "\n".join(out)
 
 
 def verify(raw: list[dict], source: str) -> list[dict]:
@@ -112,17 +131,28 @@ def process(sess, cik: str, ticker: str, name: str, filing: dict, model: str | N
     pe = edgar_text.period_end(text) or edgar_text.period_before(date.fromisoformat(filing["filingDate"]), months or set())
     rec = {"ticker": ticker, "accession": filing["accessionNumber"], "filing_date": filing["filingDate"],
            "period_end": pe.isoformat(), "url": url, "phrases": calls.count_phrases(without_boilerplate(text), phrases),
-           "guidance": None, "summary": "", "model": None, "extracted_at": util.now_iso()}
+           "guidance": None, "summary": "", "model": None, "extracted_at": util.now_iso(), "version": VERSION}
     if model:
-        ex = excerpt(text, phrases)
+        ex = excerpt(without_boilerplate(text), phrases)
         raw = analyst.extract(model, PROMPT.format(name=name, ticker=ticker, filed=filing["filingDate"],
                                                    period=pe.isoformat(), text=ex), SCHEMA, usage)
         rec.update(guidance=verify(raw.get("guidance") or [], ex), summary=raw.get("summary", ""), model=model)
     return rec
 
 
-def _cached(ticker: str, accession: str) -> dict | None:
-    return util.read_json(calls_dir(ticker) / f"{accession}.json")
+def _cached(ticker: str, accession: str, sess=None, cfg: dict | None = None) -> dict | None:
+    """A cached release; one from an older phrase counter is recounted from the release text (no Claude call)."""
+    rec = util.read_json(calls_dir(ticker) / f"{accession}.json")
+    if rec is None or rec.get("version") == VERSION or sess is None:
+        return rec
+    try:
+        text = util.html_to_text(util.get_text(sess, rec["url"]))
+    except Exception:
+        return rec  # keep the old counts rather than none
+    rec.update(phrases=calls.count_phrases(without_boilerplate(text), (cfg.get("guidance") or {}).get("cautious_phrases") or {}),
+               version=VERSION)
+    _save(rec)
+    return rec
 
 
 def _save(rec: dict) -> None:
@@ -158,7 +188,7 @@ def run(sess, cik: str, ticker: str, name: str, subs: dict | None, model: str, l
         if not eightks:
             return {"error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"}
         months = edgar_text.quarter_end_months(filings)
-        cur = _cached(ticker, eightks[0]["accessionNumber"])
+        cur = _cached(ticker, eightks[0]["accessionNumber"], sess, cfg)
         note = None
         if cur is None or (cur.get("guidance") is None and llm_on):
             usage = usage_by_step.setdefault("guidance", models.new_usage(model)) if llm_on else None
@@ -168,7 +198,7 @@ def run(sess, cik: str, ticker: str, name: str, subs: dict | None, model: str, l
             note = "guidance not read (Claude step off); phrase counts only"
         prev = None
         if len(eightks) > 1:
-            prev = _cached(ticker, eightks[1]["accessionNumber"])
+            prev = _cached(ticker, eightks[1]["accessionNumber"], sess, cfg)
             if prev is None:
                 try:  # comparison only; the latest release stands without it
                     prev = process(sess, cik, ticker, name, eightks[1], None, None, cfg, months)
