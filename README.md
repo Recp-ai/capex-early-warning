@@ -132,6 +132,109 @@ primary- or major-tier figure. The assessment prompt lists the tier of every sit
 from `source_tiers`), and a follow-up's status may not rest on an "other"-tier number alone (it stays
 *still open*, with the figure called unconfirmed). This is an instruction to the model, not a code check.
 
+## Stock research (on demand)
+
+A separate module rates one stock at a time: open **Stock research →** on the dashboard
+(`stocks.html`), enter a ticker, pick the models and press **Run**. It runs its own workflow
+(`.github/workflows/stocks.yml`, manual only, never scheduled), writes its own files, and never changes
+how the capex pipeline runs; it only reads the capex dashboard's latest level for the overlay below.
+
+**Six factors, each 0–100.** Five are computed by code; Claude never sets a number or the rating.
+
+| Factor | Default weight | From |
+|---|---|---|
+| Growth | 20% | Revenue YoY for the latest quarter and the trailing twelve months (TTM), and acceleration (latest quarter's YoY minus the previous quarter's) |
+| Quality | 20% | TTM gross, operating and free-cash-flow margins, stock-based comp as % of revenue, diluted share count YoY |
+| Balance sheet | 10% | Net debt / TTM FCF (net cash scores 100; cash runway if FCF is negative), cash + short-term investments / debt |
+| Valuation | 20% | P/S, P/FCF, EV/EBIT, FCF yield minus the 10-year Treasury (FRED `DGS10`), and each multiple's percentile versus the company's own month-end history over 5 years |
+| Trend | 15% | Price vs 50/200-day averages, 12-1 month momentum, 6-month relative strength vs SPY and QQQ, distance from the 52-week high |
+| News & risk | 15% | Claude's research of the last 30 days (max 8 web searches): guidance changes, analyst actions, litigation/regulation, customer concentration, insider activity, product/competitive news |
+
+Fundamentals come from SEC XBRL companyfacts. 10-Q cash-flow figures are year-to-date, so quarters are
+derived by differencing as the capex pipeline does, and Q4 is the 10-K year minus nine months. Each
+figure keeps the date it was first filed, so the valuation history only uses what was public at each
+month end. Historical share counts are put in today's units using the split factors in the price data.
+Foreign filers (20-F / 40-F, IFRS) report annually: growth, quality and balance sheet use the annual
+figures, and valuation is marked missing (reporting currency and ADR ratios aren't reconciled).
+
+News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
+two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
+tiered (primary / major / other) and fetched as in the capex pipeline. A topic's rating can't exceed, in
+size, the number of its sources that were verified or unreachable. Code turns the ratings into
+50 + Σ weight × rating × 25.
+
+The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
+missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** is High with all 6 factors,
+Medium with 4–5, Low with fewer. **Rating:** ≥80 Strong Buy, 65–79 Buy, 45–64 Hold, 30–44 Sell, <30 Strong Sell.
+**Capex overlay:** tickers in `overlay.ai_exposed` (NVDA, AMD, AVGO, MRVL, MU, TSM, MSFT, GOOGL, AMZN, META,
+ORCL, CRDO, ALAB, ANET, VRT, SMCI, DELL, CRWV) are capped at Hold while the capex dashboard is RED
+(confirmed). AMBER, or an unconfirmed RED, only adds a note. The page and email show the overlay
+whenever it applies. Everything is in [`config/stocks.yaml`](config/stocks.yaml).
+
+**Also on the page:** the latest earnings release (8-K Item 2.02, Exhibit 99.1). Guidance sentences
+count only if found word for word in the release, as with the capex press releases. The page also
+shows cautious-phrase counts versus the previous release (regex counts, safe-harbor boilerplate left
+out). Claude writes a short thesis, the key risks and "what would change this rating" only after code
+has set the rating, and is told the points to the next band.
+
+**Output.** Every run is kept: `data/stocks/runs/<TICKER>/<UTC timestamp>.json` (never overwritten) and
+a row in `data/stocks/ratings.csv` (timestamp, ticker, rating, score, confidence, each factor, price at
+rating time, models, cost; append-only). `site/data/stocks/index.json` lists the latest rating per ticker
+and `site/data/stocks/<TICKER>.json` the latest detail. The "now" price in the table is the latest close
+any stock run fetched: each run refreshes up to 10 other rated tickers. The email is optional per run
+and uses the same SMTP secrets. `python scripts/evaluate_stocks.py [--refresh]` prints forward 1/3/6-month
+returns by rating band, and versus SPY, from `ratings.csv`.
+
+**Cost.** A run makes four Claude calls: research (Sonnet, up to 8 searches), topic ratings, the
+write-up, and guidance extraction (Opus; once per earnings release, then cached). Expect roughly
+$0.30–0.60 per run at list prices. The page estimates each run from the last run's tokens.
+
+### Price data: Tiingo
+
+Prices come from [Tiingo](https://www.tiingo.com)'s end-of-day API. Why Tiingo:
+- a free key gives full daily history with split- and dividend-adjusted closes;
+- it reports split factors, which the valuation history needs;
+- it is plain JSON over HTTPS with the key in a header, so it works from GitHub Actions runners.
+
+Alternatives looked at: Alpha Vantage's free key allows 25 requests a day and keeps adjusted daily
+series on paid plans. Yahoo Finance has no official API and often blocks cloud IPs.
+
+**Free-tier limits** (Tiingo's "Starter" plan, for personal use; check
+[tiingo.com/about/pricing](https://www.tiingo.com/about/pricing) for the current numbers): about 50
+requests an hour, 1,000 a day and 500 unique symbols a month. A run uses 3 requests (the ticker, SPY
+and QQQ) plus up to 10 for the "now" prices. With the 10-runs-a-day cap that stays well inside the
+daily limit. If a key is missing, rejected or rate-limited, valuation and trend are marked missing,
+confidence drops, and the run still completes.
+
+**Setup.**
+1. Sign up at tiingo.com (free), then copy your API token from Account → API → Token.
+2. Add it as a repository secret: Settings → Secrets and variables → Actions → New repository secret,
+   name `STOCK_PRICE_API_KEY`.
+3. The stocks page's Run button uses the same Vercel variables as Run now (`GITHUB_TOKEN`,
+   `RUN_PASSCODE`) through its own function, [`site/api/stock.js`](site/api/stock.js). The token's
+   **Actions: Read and write** permission already covers `stocks.yml`. Runs are capped at 10 per 24
+   hours, counted on `stocks.yml` only.
+
+**Use it** from the page, or Actions → **Stock research** → Run workflow (ticker, models, email), or locally:
+
+```bash
+python -m pytest -q tests_stocks
+export ANTHROPIC_API_KEY=... STOCK_PRICE_API_KEY=...
+python -m stocks.run MSFT              # full run, no email
+python -m stocks.run MSFT --email      # and email it
+python -m stocks.run MSFT --no-llm     # code factors only
+python -m stocks.run MSFT --offline --no-llm   # re-score cached data
+python scripts/evaluate_stocks.py --refresh    # forward returns by rating band
+```
+
+Tickers must be SEC-registered (resolved through SEC's `company_tickers.json`; `BRK.B` and `BRK-B`
+both work). An unknown ticker stops the run with a clear message and writes nothing.
+
+**Limits.** Ratings are a screen, not advice: thresholds are starting points (see `scripts/evaluate_stocks.py`
+once there is history). XBRL tags vary by company: missing tags drop out, and debt that isn't tagged with the
+usual debt elements counts as zero (the page says so). Leases are excluded from debt. Banks and insurers
+fit the factors poorly. Guidance in press releases is rare (most companies give it on the call).
+
 ## Models and cost
 
 The Claude work is two steps, each with its own model:
@@ -167,6 +270,7 @@ Settings → Secrets and variables → Actions → **New repository secret**:
 | `SMTP_PASSWORD` | yes | That account's app password (Gmail: myaccount.google.com/apppasswords) |
 | `SEC_USER_AGENT` | recommended | SEC asks for a contact, e.g. `CapexEarlyWarning you@example.com`. Falls back to `SMTP_USERNAME`. |
 | `SMTP_HOST` / `SMTP_PORT` | only if not Gmail | Defaults: `smtp.gmail.com` / `465` |
+| `STOCK_PRICE_API_KEY` | for stock research | Free Tiingo API token (see [Stock research](#stock-research-on-demand)); without it valuation and trend are left out |
 
 Optional repository **variables** (Variables tab):
 
@@ -244,6 +348,7 @@ INPUT_RESEARCH_MODEL=claude-haiku-5-5 python -m cew.run --no-email   # one-off m
 RUN_TRIGGER=event:MSFT-earnings python -m cew.run --no-email   # event run (reads MSFT's latest press release)
 EVENT_NAME=schedule SCHEDULE="30 23 * * *" python -m cew.events plan   # would today's event check run?
 python scripts/evaluate.py          # forward S&P / Nasdaq returns by alert level
+python -m pytest -q tests_stocks && python -m stocks.run MSFT   # stock research (see above)
 ```
 
 ## Layout
@@ -251,12 +356,17 @@ python scripts/evaluate.py          # forward S&P / Nasdaq returns by alert leve
 ```
 cew/            pipeline (fetch_fred, fetch_edgar, fetch_taiwan, edgar_text, leases, calls, scoring, analyst,
                 sources, events, models, notify, publish, run)
-config/         signals.yaml — thresholds, series, companies, models; models.yaml — prices; events.yaml — event days
+stocks/         stock research (resolve, fundamentals, prices, guidance, metrics, scoring, research, publish,
+                notify, run)
+config/         signals.yaml — thresholds, series, companies, models; models.yaml — prices; events.yaml — event days;
+                stocks.yaml — stock factors, weights, bands, overlay
 data/           history (FRED CSVs, EDGAR metrics and lease footnotes, earnings releases in calls/, Taiwan
-                revenue, daily reports, log.csv, every run in runs/ and runs.csv)
-site/           dashboard (index.html + data/*.json written by the pipeline; api/run.js Vercel function)
-scripts/        evaluate.py — did warnings lead price moves?
-.github/        weekly workflow
+                revenue, daily reports, log.csv, every run in runs/ and runs.csv); data/stocks/ for stock runs
+site/           dashboard (index.html, stocks.html + data/*.json written by the pipelines; api/run.js and
+                api/stock.js Vercel functions)
+scripts/        evaluate.py — did warnings lead price moves? evaluate_stocks.py — did ratings?
+tests/, tests_stocks/   capex tests (run by the weekly workflow) and stock tests (run by stocks.yml)
+.github/        weekly workflow, stock research workflow
 ```
 
 ## Known limits

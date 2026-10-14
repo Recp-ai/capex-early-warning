@@ -62,7 +62,7 @@ jobs:
 
       - name: Unit tests
         if: steps.plan.outputs.run == 'true'
-        run: python -m pytest -q
+        run: python -m pytest -q tests   # capex tests only: stock-module tests (tests_stocks) never block this run
 
       - name: Run pipeline
         if: steps.plan.outputs.run == 'true'

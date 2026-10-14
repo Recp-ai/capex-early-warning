@@ -1,0 +1,192 @@
+# Stock research configuration (the on-demand module in stocks/; separate from the capex pipeline).
+# Every threshold and weight lives here; no code changes needed to retune.
+#
+# Six factors are scored 0-100. Five are computed by code from SEC filings, prices and the 10-year
+# Treasury yield; "news_risk" comes from Claude's reading of the last 30 days of news, rated per topic
+# against the fixed rubric below and turned into 0-100 by code. The composite is the weighted average of
+# the factors that had data (weights re-normalised when one is missing).
+#
+# Sub-metric scores use "points": [[x, score], ...] sorted by x. A value between two points is
+# interpolated linearly; below the first or above the last it takes that end's score.
+
+models:
+  research: claude-sonnet-5-5   # web-search news research
+  scoring: claude-opus-5-5      # news topic ratings, the write-up, and guidance extraction from the 8-K
+# A run's models come from the workflow_dispatch inputs (the stocks page's dropdowns), else the values
+# above. Prices for the cost estimate are in config/models.yaml (shared with the capex pipeline).
+max_web_searches: 8
+news_window_days: 30
+
+prices:
+  provider: tiingo              # end-of-day prices; key in the STOCK_PRICE_API_KEY secret
+  years: 5
+  benchmarks: [SPY, QQQ]
+  refresh_now_max: 10           # other rated tickers whose "now" price is refreshed each run (1 request each)
+
+factors:
+  weights:
+    growth: 0.20
+    quality: 0.20
+    balance_sheet: 0.10
+    valuation: 0.20
+    trend: 0.15
+    news_risk: 0.15
+  # A factor counts as "had data" when sub-metrics carrying at least this share of its sub-weights had
+  # values; otherwise it is marked missing and drops out of the composite.
+  min_coverage: 0.5
+
+growth:
+  revenue_yoy_q:                # latest quarter's revenue vs the same quarter a year earlier (%)
+    weight: 0.45
+    points: [[-10, 0], [0, 25], [10, 55], [20, 75], [35, 95], [50, 100]]
+  revenue_yoy_ttm:              # trailing-twelve-month revenue vs the TTM a year earlier (%)
+    weight: 0.30
+    points: [[-10, 0], [0, 25], [10, 55], [20, 75], [35, 95], [50, 100]]
+  acceleration_pp:              # latest quarter's YoY growth minus the previous quarter's (pct points)
+    weight: 0.25
+    points: [[-10, 0], [-5, 25], [0, 50], [5, 75], [10, 100]]
+
+quality:
+  gross_margin_pct:             # TTM
+    weight: 0.20
+    points: [[10, 0], [25, 25], [40, 50], [60, 75], [75, 100]]
+  operating_margin_pct:         # TTM
+    weight: 0.25
+    points: [[-10, 0], [0, 20], [15, 55], [30, 85], [45, 100]]
+  fcf_margin_pct:               # TTM free cash flow (operating cash flow minus capex) / revenue
+    weight: 0.25
+    points: [[-10, 0], [0, 20], [10, 50], [25, 85], [40, 100]]
+  sbc_pct_revenue:              # TTM stock-based compensation / revenue; lower is better
+    weight: 0.15
+    points: [[2, 100], [5, 80], [10, 50], [20, 15], [30, 0]]
+  dilution_yoy_pct:             # diluted share count vs a year earlier (%); buybacks are negative
+    weight: 0.15
+    points: [[-3, 100], [0, 75], [2, 50], [5, 20], [10, 0]]
+
+balance_sheet:
+  # Net debt / TTM FCF in years. Net cash (net debt <= 0) with positive FCF scores 100; positive net debt
+  # with FCF <= 0 scores 0; net cash with negative FCF is scored on runway (cash / annual burn, below).
+  net_debt_to_fcf:
+    weight: 0.6
+    points: [[0, 100], [1, 85], [2, 70], [4, 40], [6, 15], [8, 0]]
+  runway_years:                 # used instead of net_debt_to_fcf when FCF is negative and there is net cash
+    points: [[0.5, 0], [1, 20], [2, 50], [4, 80], [6, 100]]
+  cash_to_debt:                 # cash + short-term investments / total debt (no debt scores 100)
+    weight: 0.4
+    points: [[0, 0], [0.25, 30], [0.5, 50], [1, 80], [2, 100]]
+
+valuation:
+  # Market cap = latest close x shares; EV = market cap + debt - cash and short-term investments (leases
+  # excluded). Multiples use TTM figures. A negative FCF or EBIT scores 0 on that multiple.
+  price_to_sales:
+    weight: 0.10
+    points: [[1, 100], [3, 75], [6, 50], [12, 25], [25, 0]]
+  price_to_fcf:
+    weight: 0.15
+    points: [[10, 100], [20, 70], [35, 40], [60, 10], [80, 0]]
+  ev_to_ebit:
+    weight: 0.15
+    points: [[8, 100], [15, 70], [25, 45], [40, 15], [60, 0]]
+  fcf_yield_vs_10y_pp:          # FCF yield minus the 10-year Treasury yield (data/fred/DGS10.csv), pct points
+    weight: 0.20
+    points: [[-4, 0], [-2, 25], [0, 50], [2, 75], [4, 100]]
+  # Each multiple's percentile versus the company's own month-end history (score = 100 - percentile, so
+  # cheaper than usual scores higher). History uses only the filings known on each date.
+  price_to_sales_percentile: {weight: 0.10}
+  price_to_fcf_percentile: {weight: 0.15}
+  ev_to_ebit_percentile: {weight: 0.15}
+  history_years: 5
+  min_history_points: 24        # fewer month-end points than this: percentile left out
+
+trend:
+  # From split- and dividend-adjusted daily closes.
+  vs_ma50_pct:
+    weight: 0.15
+    points: [[-10, 0], [-5, 25], [0, 50], [5, 75], [10, 100]]
+  vs_ma200_pct:
+    weight: 0.20
+    points: [[-20, 0], [-10, 25], [0, 50], [10, 75], [20, 100]]
+  momentum_12_1_pct:            # return from 12 months ago to 1 month ago
+    weight: 0.25
+    points: [[-30, 0], [-10, 25], [0, 45], [15, 70], [40, 100]]
+  rs_spy_pp:                    # return over rs_days minus SPY's (pct points)
+    weight: 0.125
+    points: [[-30, 0], [-10, 30], [0, 50], [10, 70], [30, 100]]
+  rs_qqq_pp:
+    weight: 0.125
+    points: [[-30, 0], [-10, 30], [0, 50], [10, 70], [30, 100]]
+  drawdown_52w_pct:             # close vs the 52-week high
+    weight: 0.15
+    points: [[-40, 0], [-25, 25], [-10, 60], [-3, 90], [0, 100]]
+  rs_days: 126                  # about 6 months of trading days
+
+# News & risk: Claude rates each topic -2..+2 on this rubric (the prompt quotes it); code turns the
+# ratings into 0-100: 50 + sum(weight x rating x points_per_step). All zero = 50.
+#   +2  clear, material positive news from at least two credible sources
+#   +1  modest or single-source positive news
+#    0  nothing material, or mixed
+#   -1  modest or single-source negative news
+#   -2  clear, material negative news from at least two credible sources
+# After the source check a topic's rating can't exceed (in size) the number of its sources that were
+# verified or unreachable: no checkable source -> 0, one -> at most +-1.
+news_risk:
+  points_per_step: 25
+  topics:
+    guidance: {weight: 0.25, label: "Guidance changes"}
+    analyst_actions: {weight: 0.15, label: "Analyst actions"}
+    litigation_regulation: {weight: 0.20, label: "Litigation and regulation"}
+    customer_concentration: {weight: 0.10, label: "Customer concentration"}
+    insider_activity: {weight: 0.10, label: "Insider activity"}
+    product_competitive: {weight: 0.20, label: "Product and competitive news"}
+
+# Composite score bands (the composite is rounded to a whole number first)
+ratings:
+  - {min: 80, label: "Strong Buy"}
+  - {min: 65, label: "Buy"}
+  - {min: 45, label: "Hold"}
+  - {min: 30, label: "Sell"}
+  - {min: 0, label: "Strong Sell"}
+
+confidence:                     # by how many of the six factors had data
+  high_at: 6
+  medium_at: 4                  # fewer -> Low
+
+# Capex dashboard overlay (site/data/latest.json). Tickers below are capped at "Hold" when the capex
+# level is RED and confirmed; AMBER (or unconfirmed RED) only adds a note.
+overlay:
+  cap_at: Hold
+  stale_after_days: 14          # the note says so when the capex data is older than this
+  ai_exposed: [NVDA, AMD, AVGO, MRVL, MU, TSM, MSFT, GOOGL, AMZN, META, ORCL, CRDO, ALAB, ANET, VRT, SMCI,
+               DELL, CRWV]
+
+# Latest earnings 8-K (Item 2.02) Exhibit 99.1: guidance sentences (verbatim-checked) and phrase counts
+guidance:
+  cautious_phrases:             # case-insensitive regex counts, also counted in the previous release
+    headwind: '\bheadwinds?\b'
+    uncertain: '\buncertain(ty|ties)?\b'
+    softness: '\bsoft(ness|er|ening)?\b'
+    challenging: '\bchalleng(ing|es)\b'
+    macro: '\bmacro(economic)?\b'
+    cautious: '\bcautio(us|n)\b'
+    pacing: '\bpacing\b'
+    digestion: '\bdigest(ion|ing)\b'
+    delay: '\bdelay(s|ed)?\b'
+
+# Evidence checks, as in the capex pipeline (cew/sources.py)
+source_check:
+  timeout_seconds: 10
+evidence_dates:
+  background_after_days: 30     # older than the news window: labelled background
+source_tiers:
+  # the company's own website (from its SEC submissions record) is added to primary on each run
+  primary:
+    [gov, europa.eu, businesswire.com, prnewswire.com, globenewswire.com, accessnewswire.com,
+     microsoft.com, abc.xyz, blog.google, aboutamazon.com, atmeta.com, about.fb.com,
+     oracle.com, nvidia.com, amd.com, broadcom.com, tsmc.com, micron.com, marvell.com, arista.com,
+     vertiv.com, credosemi.com, asteralabs.com, dell.com, supermicro.com, coreweave.com, apple.com, tesla.com]
+  major:
+    [reuters.com, bloomberg.com, cnbc.com, ft.com, wsj.com, apnews.com, nytimes.com, barrons.com,
+     theinformation.com, nikkei.com, economist.com, marketwatch.com, investors.com]
+
+email:
+  subject_prefix: "[Stock]"

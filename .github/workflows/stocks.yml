@@ -1,0 +1,92 @@
+name: Stock research
+run-name: Stock research ${{ inputs.ticker }}
+
+# On demand only (the stocks page's Run button, or Run workflow here). No schedule.
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Ticker, e.g. MSFT (SEC-registered companies only)"
+        type: string
+        required: true
+      research_model:
+        description: "Research model (blank = config/stocks.yaml)"
+        type: string
+        required: false
+        default: ""
+      scoring_model:
+        description: "Scoring & write-up model (blank = config/stocks.yaml)"
+        type: string
+        required: false
+        default: ""
+      send_email:
+        description: "Email the result"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stock-research
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pytest
+
+      - name: Unit tests (stock module)
+        run: python -m pytest -q tests_stocks
+
+      - name: Research the stock
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          ALERT_EMAIL_TO: ${{ secrets.ALERT_EMAIL_TO }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+          # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
+          INPUT_TICKER: ${{ inputs.ticker }}
+          INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
+          INPUT_SCORING_MODEL: ${{ inputs.scoring_model }}
+          INPUT_SEND_EMAIL: ${{ inputs.send_email }}
+        run: |
+          if [ "$INPUT_SEND_EMAIL" = "true" ]; then
+            python -m stocks.run --email
+          else
+            python -m stocks.run
+          fi
+
+      - name: Save results
+        if: always()
+        env:
+          INPUT_TICKER: ${{ inputs.ticker }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for p in data/stocks site/data/stocks; do
+            if [ -e "$p" ]; then git add "$p"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          SAFE_TICKER=$(printf '%s' "$INPUT_TICKER" | tr -cd 'A-Za-z0-9.-' | cut -c1-10)
+          git commit -m "Stock research ${SAFE_TICKER} $(date -u +%Y-%m-%d)"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
