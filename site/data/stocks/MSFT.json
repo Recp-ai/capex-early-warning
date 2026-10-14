@@ -1,0 +1,862 @@
+{
+  "run_id": "2026-10-14T19:07:21Z",
+  "generated_at": "2026-10-14T19:08:20+00:00",
+  "ticker": "MSFT",
+  "sec_ticker": "MSFT",
+  "cik": "0000789019",
+  "name": "MICROSOFT CORP",
+  "sector": "Services-Prepackaged Software",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "config",
+      "scoring": "config"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 75,
+  "confidence": "Medium",
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 5
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 11
+    }
+  },
+  "composite": {
+    "score": 75,
+    "raw": 75.31,
+    "weights_used": {
+      "growth": 0.3077,
+      "quality": 0.3077,
+      "balance_sheet": 0.1538,
+      "news_risk": 0.2308
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation",
+      "trend"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 17.75,
+          "score": 70.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 17.79,
+          "score": 70.6,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -0.55,
+          "score": 47.2,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 65,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 67.94,
+          "score": 88.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 46.78,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 20.19,
+          "score": 73.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 3.74,
+          "score": 88.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -0.16,
+          "score": 76.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 86,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -0.55,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": 1.91,
+          "score": 98.1,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 99,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no price data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no price data"
+    },
+    "news_risk": {
+      "score": 59,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": true,
+    "applies": true,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": "AI-exposed; capex early warning AMBER 5/18: warning signs for AI capex, rating not capped",
+    "capex": {
+      "level": "AMBER",
+      "total": 5.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-13T20:12:21Z",
+      "age_days": 1
+    }
+  },
+  "capex_context": {
+    "level": "AMBER",
+    "total": 5.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-13T20:12:21Z",
+    "age_days": 1
+  },
+  "price": {},
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 90007000000.0,
+    "revenue_yoy_q": 17.75,
+    "revenue_yoy_q_prev": 18.3,
+    "acceleration_pp": -0.55,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 331839000000.0,
+    "revenue_yoy_ttm": 17.79,
+    "gross_profit_ttm": 225465000000.0,
+    "operating_income_ttm": 155237000000.0,
+    "operating_cash_flow_ttm": 182935000000.0,
+    "capex_ttm": 115948000000.0,
+    "sbc_ttm": 12405000000.0,
+    "fcf_ttm": 66987000000.0,
+    "gross_margin_pct": 67.94,
+    "operating_margin_pct": 46.78,
+    "fcf_margin_pct": 20.19,
+    "capex_intensity_pct": 34.94,
+    "sbc_pct_revenue": 3.74,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 20935000000.0,
+      "short_term_investments": 55908000000.0,
+      "cash_and_investments": 76843000000.0,
+      "debt": 40294000000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_note": null,
+      "net_debt": -36549000000.0
+    },
+    "diluted_shares": 7453000000.0,
+    "diluted_shares_end": "2026-06-30",
+    "dilution_yoy_pct": -0.16,
+    "shares_outstanding": {
+      "val": 7425545491.0,
+      "end": "2026-07-23",
+      "filed": "2026-07-29",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 56517000000.0,
+        "revenue_yoy_pct": 12.76,
+        "operating_margin_pct": 47.59,
+        "fcf": 20666000000.0,
+        "diluted_shares": 7462000000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 62020000000.0,
+        "revenue_yoy_pct": 17.58,
+        "operating_margin_pct": 43.59,
+        "fcf": 9118000000.0,
+        "diluted_shares": 7468000000.0
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 61858000000.0,
+        "revenue_yoy_pct": 17.03,
+        "operating_margin_pct": 44.59,
+        "fcf": 20965000000.0,
+        "diluted_shares": 7472000000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 64727000000.0,
+        "revenue_yoy_pct": 15.2,
+        "operating_margin_pct": 43.14,
+        "fcf": 23322000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 65585000000.0,
+        "revenue_yoy_pct": 16.04,
+        "operating_margin_pct": 46.58,
+        "fcf": 19257000000.0,
+        "diluted_shares": 7470000000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 69632000000.0,
+        "revenue_yoy_pct": 12.27,
+        "operating_margin_pct": 45.46,
+        "fcf": 6487000000.0,
+        "diluted_shares": 7468000000.0
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 70066000000.0,
+        "revenue_yoy_pct": 13.27,
+        "operating_margin_pct": 45.67,
+        "fcf": 20299000000.0,
+        "diluted_shares": 7461000000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 76441000000.0,
+        "revenue_yoy_pct": 18.1,
+        "operating_margin_pct": 44.9,
+        "fcf": 25568000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 77673000000.0,
+        "revenue_yoy_pct": 18.43,
+        "operating_margin_pct": 48.87,
+        "fcf": 25663000000.0,
+        "diluted_shares": 7466000000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 81273000000.0,
+        "revenue_yoy_pct": 16.72,
+        "operating_margin_pct": 47.09,
+        "fcf": 5882000000.0,
+        "diluted_shares": 7460000000.0
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 82886000000.0,
+        "revenue_yoy_pct": 18.3,
+        "operating_margin_pct": 46.33,
+        "fcf": 15803000000.0,
+        "diluted_shares": 7445000000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 90007000000.0,
+        "revenue_yoy_pct": 17.75,
+        "operating_margin_pct": 45.11,
+        "fcf": 19639000000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "missing": "no price data"
+  },
+  "trend": {
+    "missing": "no price data"
+  },
+  "ust10y": {
+    "value": 5.22,
+    "date": "2026-10-08"
+  },
+  "guidance": {
+    "accession": "0001193125-26-323632",
+    "filing_date": "2026-07-29",
+    "period_end": "2026-06-30",
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-ex99_1.htm",
+    "summary": "The release gives no numeric outlook; Microsoft says it will provide forward-looking guidance on its earnings conference call and webcast.",
+    "read": true,
+    "guidance": [],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 3,
+        "previous": 3,
+        "sentences": [
+          "• uncertainties relating to our business with government customers;",
+          "• exposure to increased economic and operational uncertainties from operating a global business, including the effects of foreign currency exchange; and",
+          "For more information about risks and uncertainties associated with Microsoft’s business, please refer to the “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and “Risk Factors” sections of Microsoft’s SEC filings, including, but not limited to, its annual report on Form 10-K and quarterly reports on Form 10-Q, copies of which may be obtained by contacting Mic"
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-191457",
+      "filing_date": "2026-04-29",
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/msft-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change, pre-announcement or withdrawal appeared in the past month. The last outlook came with results on 2026-07-29, and the next report is due 2026-10-28.",
+        "evidence": [
+          {
+            "claim": "Microsoft reports fiscal first-quarter results on Oct 28, 2026, after market close ET",
+            "url": "https://www.investing.com/news/stock-market-news/microsoft-stock-outlook-azure-growth-and-earnings-set-to-drive-next-move-93CH-4945006",
+            "event_date": null,
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Several brokers raised price targets this month, including Wells Fargo, Scotiabank, Evercore ISI and Barclays, and Melius upgraded to Buy. Phillip Securities downgraded to Hold, and all of this comes from aggregator tables rather than primary notes.",
+        "evidence": [
+          {
+            "claim": "Wells Fargo (Overweight) raised its price target on MSFT from $700 to $725",
+            "url": "https://www.benzinga.com/quote/msft/price-targets",
+            "event_date": "2026-10-01",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Evercore ISI (Outperform) raised its price target from $528 to $635",
+            "url": "https://www.benzinga.com/quote/msft/price-targets",
+            "event_date": "2026-10-07",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Melius Research upgraded Microsoft to Buy, target $665",
+            "url": "https://price-target.com/ai/microsoft/",
+            "event_date": "2026-10-05",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          },
+          {
+            "claim": "Barclays (Overweight) raised its price target from $512 to $600",
+            "url": "https://stockanalysis.com/stocks/msft/",
+            "event_date": "2026-10-12",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/2, names 1/2 · missing: 512, 600, Overweight"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new legal or regulatory developments surfaced this month. The UK CMA and FTC probes, both opened earlier, are still ongoing.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new customer win, loss or contract change was found this month. The OpenAI exposure is unchanged from earlier amendments.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "CFO Amy Hood made a routine sale under a pre-arranged Rule 10b5-1 trading plan, and no insider purchases were found. A planned sale like this carries little signal.",
+        "evidence": [
+          {
+            "claim": "CFO Amy Hood sold 41,674 shares under a Rule 10b5-1 plan",
+            "url": "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-f1e02c570c63.html",
+            "event_date": "2026-09-14",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Microsoft launched an all-in-one \"new Copilot\" app with Home, Code and Autopilot, positioned against OpenAI and Anthropic. Copilot's paid adoption across Microsoft 365 seats is still low.",
+        "evidence": [
+          {
+            "claim": "Microsoft introduced the new Copilot with Home, Code and Autopilot",
+            "url": "https://blogs.microsoft.com/blog/2026/09/25/introducing-the-new-copilot-with-home-code-and-autopilot/",
+            "event_date": "2026-09-25",
+            "tier": "primary",
+            "age_days": 19,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Microsoft unveils all-in-one Copilot app taking on Anthropic and OpenAI in new push to boost adoption",
+            "url": "https://www.geekwire.com/2026/microsoft-unveils-all-in-one-copilot-app-taking-on-anthropic-and-openai-in-new-push-to-boost-adoption/",
+            "event_date": "2026-09-25",
+            "tier": "other",
+            "age_days": 19,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    }
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://us.plus500.com/en/forecasts/microsoft-earnings-expectations",
+        "https://www.sec.gov/Archives/edgar/data/0000789019/000119312507013039/dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000789019/000119312506215924/dex991.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-earnings-expected-grow-140029060.html",
+        "https://www.marketbeat.com/stocks/NASDAQ/MSFT/earnings/",
+        "https://www.investing.com/news/stock-market-news/microsoft-stock-outlook-azure-growth-and-earnings-set-to-drive-next-move-93CH-4945006",
+        "https://www.morningstar.com/stocks/microsoft-earnings-azure-accelerates-while-capital-expenditure-guidance-is-steady",
+        "https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html",
+        "https://simplywall.st/stocks/us/software/nasdaq-msft/microsoft/future",
+        "https://www.cnbc.com/2026/07/30/analysts-react-to-microsofts-earnings-results-.html",
+        "https://www.benzinga.com/quote/msft/price-targets",
+        "https://stockanalysis.com/stocks/msft/forecast/",
+        "https://stockanalysis.com/stocks/msft/",
+        "https://www.investing.com/equities/microsoft-corp-consensus-estimates",
+        "https://finance.yahoo.com/quote/MSFT/analyst-insights/",
+        "https://tickernerd.com/stock/msft-forecast/",
+        "https://www.techi.com/quote/MSFT/forecast/",
+        "https://price-target.com/ai/microsoft/",
+        "https://www.forbes.com/sites/investor-hub/article/microsoft-msft-stock-outlook-2026/",
+        "https://www.blbglaw.com/cases-investigations/microsoft-corporation",
+        "https://samexpert.com/microsoft-regulatory-roundup-2025/",
+        "https://www.sec.gov/Archives/edgar/data/0000789019/000103221002001614/d10q.htm",
+        "https://samexpert.com/ftc-microsoft-investigation-2025/",
+        "https://corporatefinanceinstitute.com/resources/management/microsoft-antitrust-case",
+        "https://www.nbcnews.com/id/wbna12035351",
+        "https://jenkins-release.watsonmedia.ibm.com/microsoft-antitrust-case",
+        "https://gulfnews.com/technology/companies/antitrust-probe-vs-microsoft-openai-and-nvidia-what-you-need-to-know-1.1717651249575",
+        "https://amp.cbc.ca/news/business/microsoft-loses-antitrust-appeal-1.1145142",
+        "https://venturebeat.com/technology/microsoft-and-openai-gut-their-exclusive-deal-freeing-openai-to-sell-on-aws-and-google-cloud",
+        "https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/",
+        "https://www.eweek.com/news/microsoft-openai-deal-multi-cloud-ai-infrastructure/",
+        "https://blogs.microsoft.com/blog/2025/10/28/the-next-chapter-of-the-microsoft-openai-partnership/",
+        "https://finance.yahoo.com/sectors/technology/articles/microsoft-end-exclusive-license-openais-131046378.html",
+        "https://www.searchenginejournal.com/microsoft-locks-in-openai-partnership-through-2032/559492/",
+        "https://windowsforum.com/threads/microsoft-and-openai-amend-deal-azure-first-non-exclusive-until-2032.417315/",
+        "https://gulfnews.com/technology/companies/microsoft-holds-27-of-openai-in-revamped-partnership-2-1.500324696",
+        "https://www.marketscreener.com/news/ubs-remains-bullish-on-microsoft-welcoming-deal-with-openai-ce7d5dd2dd8af72c",
+        "https://www.marketscreener.com/news/microsoft-insider-sold-shares-worth-20-764-845-according-to-a-recent-sec-filing-ce785bd2da89f421",
+        "https://www.secform4.com/insider-trading/789019.htm",
+        "https://www.investing.com/news/insider-trading-news/nadella-satya-sells-microsoft-msft-stock-worth-753-million-93CH-4225765",
+        "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-f722dac337e7.html",
+        "https://www.quiverquant.com/insiders/1513142/Satya-Nadella",
+        "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-8c7b9ded6491.html",
+        "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-1715aeb381eb.html",
+        "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-186dc44c42c7.html",
+        "https://www.stocktitan.net/sec-filings/MSFT/form-4-microsoft-corp-insider-trading-activity-f1e02c570c63.html",
+        "https://benzinga.com/news/21/11/23858331/microsoft-insider-trades-18m-in-company-stock",
+        "https://gizmodo.com/microsoft-thinks-its-finally-figured-out-copilot-this-time-2000817460",
+        "https://www.geekwire.com/2026/microsoft-unveils-all-in-one-copilot-app-taking-on-anthropic-and-openai-in-new-push-to-boost-adoption/",
+        "https://learn.microsoft.com/en-us/partner-center/announcements/2026-september",
+        "https://techcommunity.microsoft.com/blog/healthcareandlifesciencesblog/the-new-microsoft-copilot/4563898",
+        "https://sherweb.com/blog/microsoft-ecosystem/microsoft-updates-msps-october-2026",
+        "https://blogs.microsoft.com/blog/2026/09/25/introducing-the-new-copilot-with-home-code-and-autopilot/",
+        "https://fortune.com/2026/09/25/microsoft-unveils-copilot-super-app-targeting-business-users-with-ai-agents/",
+        "https://finance.yahoo.com/technology/ai/articles/microsoft-relaunches-copilot-app-coding-125333413.html",
+        "https://www.it.psu.edu/?p=239607",
+        "https://www.theregister.com/off-prem/2026/03/31/microsoft-to-face-cma-scrutiny-over-cloud-software-licensing/5219796",
+        "https://www.cnbc.com/2026/03/31/microsoft-cma-investigation-uk-software-business.html",
+        "https://thenextweb.com/news/cma-microsoft-sms-investigation-business-software",
+        "https://tech-insider.org/microsoft-antitrust-probe-cloud-ai-2026/",
+        "https://stocktwits.com/news-articles/markets/equity/microsoft-under-scrutiny-ftc-reportedly-intensifies-probe-into-tech-giant-s-cloud-and-ai-practices/cZR5zweR4t9",
+        "https://themeridiem.com/policy/2026/3/31/microsoft-faces-uk-cloud-licensing-probe-as-regulators-shift-focus",
+        "https://windowsforum.com/news/uk-cma-sms-probe-targets-microsoft-software-licensing-lock-in-to-azure.408908/",
+        "https://www.euronews.com/next/2022/11/09/eu-microsoft-antitrust",
+        "https://siliconangle.com/2026/07/21/mistral-ai-strikes-multibillion-dollar-deal-microsoft-build-azure-infrastructure-europe/",
+        "https://www.datacenterdynamics.com/en/news/microsoft-signs-97bn-cloud-capacity-deal-with-iren/",
+        "https://baxtel.com/news/data-centers/microsoft-azure",
+        "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-reportedly-plans-vast-001144437.html",
+        "https://tech-insider.org/au/macquarie-microsoft-azure-278-million-deal-2026/",
+        "https://mlq.ai/news/microsoft-signs-multi-billion-dollar-deal-to-rent-mistrals-european-ai-data-centers/",
+        "https://grafa.com/en/news/united-states/microsoft-mistral-europe-ai-infrastructure-deal",
+        "https://finance.yahoo.com/news/microsoft-signs-9-7-billion-110844856.html",
+        "https://www.techcrunch.com/2025/11/03/lambda-inks-multi-billion-dollar-ai-infrastructure-deal-with-microsoft"
+      ],
+      "searches": 8
+    }
+  },
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "prices:MSFT": "STOCK_PRICE_API_KEY not set",
+    "prices:SPY": "STOCK_PRICE_API_KEY not set",
+    "prices:QQQ": "STOCK_PRICE_API_KEY not set"
+  },
+  "writeup": {
+    "headline": "Microsoft rates Buy on strong quality and balance sheet, though valuation and trend could not be scored.",
+    "thesis": "Microsoft scores 75, a Buy with Medium confidence, driven mainly by a balance sheet score of 99 and a quality score of 86. Operating margin is 46.78% and gross margin 67.94%, net debt to FCF is -0.55 and cash covers debt 1.91 times. Growth scores 65: revenue is up 17.75% year on year for the quarter, but that is 0.55 points slower than before. News risk scores 59, helped by broker price-target raises and the new Copilot app launch, although paid Copilot adoption is still low. Valuation and trend were not scored because no price data was available, so the rating rests only on fundamentals and news.",
+    "key_risks": [
+      "Valuation and trend are unscored for lack of price data, so the rating ignores what the stock costs and how it is trading.",
+      "The AI capex early warning is AMBER at 5/18, and spending could outrun returns.",
+      "Growth is slowing slightly, with acceleration at -0.55 points.",
+      "UK CMA and FTC probes are still open, and the OpenAI exposure remains.",
+      "Paid Copilot adoption across Microsoft 365 seats is still low."
+    ],
+    "what_would_change": [
+      "A gain of 5 points would reach Strong Buy at 80, for example from re-accelerating revenue growth that lifts the growth score.",
+      "A drop of 11 points, to below 65, would cut the rating to Hold. That could come from weaker growth or guidance at the 2026-10-28 report.",
+      "Once price data is available, the valuation and trend scores will enter the composite and could move it either way.",
+      "If the capex warning rises from AMBER, the rating could be capped."
+    ]
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1831,
+        "output_tokens": 59,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0085
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 118128,
+        "output_tokens": 4679,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.363
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6449,
+        "output_tokens": 1747,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0607
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2235,
+        "output_tokens": 578,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0205
+      }
+    },
+    "total_usd": 0.4527,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "email": "skipped (email off)",
+  "chart": [],
+  "history": [
+    {
+      "timestamp": "2026-10-14T19:07:21Z",
+      "ticker": "MSFT",
+      "rating": "Buy",
+      "score": "75",
+      "confidence": "Medium",
+      "growth": "65",
+      "quality": "86",
+      "balance_sheet": "99",
+      "valuation": "",
+      "trend": "",
+      "news_risk": "59",
+      "price": "",
+      "price_date": "",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4527",
+      "overlay": "note"
+    }
+  ]
+}
