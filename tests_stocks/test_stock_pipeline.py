@@ -11,7 +11,7 @@ import pytest
 
 import stock_fakes as F
 from cew import sources, util
-from stocks import config, notify, publish, research, run
+from stocks import config, notify, publish, research, run, scoring
 
 CFG = config.load()
 ROOT = util.ROOT
@@ -107,6 +107,40 @@ def test_full_run(sandbox, monkeypatch, capsys):
     printed = capsys.readouterr().out
     summary = json.loads(printed[printed.index("{\n"):])
     assert summary["rating"] == r["rating"] and summary["factors"] == {k: v["score"] for k, v in r["factors"].items()}
+
+
+def test_weak_sources_cap_topics_and_show_on_page_data_and_email(sandbox, monkeypatch):
+    ev = {"product_competitive": [{"claim": "Microsoft launched Copilot Max at $99", "url": "https://blog.example/p", "event_date": None},
+                                  {"claim": "Microsoft launched Copilot Max at $99", "url": "https://forum.example/q", "event_date": None}],
+          "insider_activity": [{"claim": "Satya Nadella sold 10,000 shares", "url": "https://gone.example/x", "event_date": None}],
+          "guidance": EVIDENCE["guidance"][:1]}
+    pages = {**PAGES, "https://blog.example/p": "Microsoft launched Copilot Max at $99 a month.",
+             "https://forum.example/q": "Microsoft launched Copilot Max at $99."}
+    _, fake = setup(monkeypatch, sandbox, claude=[
+        F.guidance_reply(), F.research_reply("n"),
+        F.topics_reply({"product_competitive": 2, "insider_activity": -1, "guidance": 1}, ev), F.writeup_reply()])
+    monkeypatch.setattr(sources, "make_fetcher", lambda *a, **k: lambda u: (pages[u], None) if u in pages else (None, "HTTP 404"))
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    t = r["news"]["topics"]
+    pc, ia, g = t["product_competitive"], t["insider_activity"], t["guidance"]
+    assert [e["status"] for e in pc["evidence"]] == ["verified", "verified"] and {e["tier"] for e in pc["evidence"]} == {"other"}
+    assert pc["rating"] == 1 and pc["rating_before_cap"] == 2 and "cap_note" not in pc
+    assert pc["weak_sources_note"].startswith("Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or major-tier")
+    assert ia["evidence"][0]["status"] == "unreachable" and ia["rating"] == 0 and "cap_note" not in ia
+    assert ia["weak_sources_note"] == "Capped at 0 (was -1): only other-tier sources, none verified"
+    assert g["rating"] == 1 and "weak_sources_note" not in g
+    assert r["factors"]["news_risk"]["score"] == round(50 + 0.20 * 25 + 0.25 * 25)
+    # Claude is told the rule (from the config); the write-up sees the cap
+    assert scoring.source_quality_rule(CFG) in fake.calls[2]["system"] and "{quality_rule}" not in fake.calls[2]["system"]
+    assert "only other-tier sources, none verified" in fake.calls[3]["messages"][0]["content"]
+    # the stocks page reads it from the site JSON; the email shows it
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["news"]["topics"]["insider_activity"]["weak_sources_note"] == ia["weak_sources_note"]
+    _, body_html, text = notify.build_email(r, None)
+    assert body_html.count(scoring.WEAK_SOURCES) == 2 and "only other-tier sources, none verified" in body_html
+    assert "Product and competitive news: +1, capped: weak sources (Capped at +1 (was +2)" in text
+    assert "Insider activity: +0, capped: weak sources" in text and "Guidance changes: +1, capped" not in text
 
 
 def test_overlay_caps_ai_exposed_ticker_when_capex_is_red_confirmed(sandbox, monkeypatch):

@@ -128,9 +128,17 @@ trend:
 #   -1  modest or single-source negative news
 #   -2  clear, material negative news from at least two credible sources
 # After the source check a topic's rating can't exceed (in size) the number of its sources that were
-# verified or unreachable: no checkable source -> 0, one -> at most +-1.
+# verified or unreachable: no checkable source -> 0, one -> at most +-1. Then source quality (below; tiers
+# from source_tiers): the topic keeps the lower of the two caps, and the stocks page and email show
+# "capped: weak sources" when the quality rule lowered it.
 news_risk:
   points_per_step: 25
+  source_quality:
+    strong_tiers: [primary, major]
+    strong_min_verified: 1        # verified sources from strong_tiers a rating above cap_without_strong needs;
+    cap_without_strong: 1         # with fewer, capped at +-1 (so +-2 needs a verified primary or major source)
+    cap_other_only: 1             # no source from strong_tiers (only other-tier): capped at +-1,
+    cap_other_only_unverified: 0  # and at 0 when none of its sources verified
   topics:
     guidance: {weight: 0.25, label: "Guidance changes"}
     analyst_actions: {weight: 0.15, label: "Analyst actions"}

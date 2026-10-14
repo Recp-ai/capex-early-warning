@@ -1,7 +1,8 @@
 """Rule-based factor scores (0-100), the composite, confidence, rating band and the capex overlay.
 
 Every threshold and weight comes from config/stocks.yaml. Claude never sets a score: the news & risk
-factor is computed here from the per-topic ratings (-2..+2) after the source check has capped them.
+factor is computed here from the per-topic ratings (-2..+2) after the source check has capped them (by the
+number of checkable sources, then by their tier).
 """
 from __future__ import annotations
 
@@ -124,6 +125,67 @@ def cap_topic(topic: dict) -> None:
         topic["rating"] = (1 if r > 0 else -1) * min(abs(r), ok)
         topic["cap_note"] = (f"Capped at {topic['rating']:+d} (was {r:+d}): {ok} of {len(topic.get('evidence') or [])} "
                              "sources verified or unreachable")
+
+
+WEAK_SOURCES = "capped: weak sources"
+
+
+def source_quality(cfg: dict) -> dict:
+    """news_risk.source_quality with its defaults."""
+    q = (cfg.get("news_risk") or {}).get("source_quality") or {}
+    return {"strong_tiers": list(q.get("strong_tiers") or ["primary", "major"]),
+            "strong_min_verified": int(q.get("strong_min_verified", 1)),
+            "cap_without_strong": int(q.get("cap_without_strong", 1)),
+            "cap_other_only": int(q.get("cap_other_only", 1)),
+            "cap_other_only_unverified": int(q.get("cap_other_only_unverified", 0))}
+
+
+def _pm(n: int) -> str:
+    return f"±{n}" if n else "0"
+
+
+def _tiers(tiers: list) -> str:
+    return "- or ".join(tiers) + "-tier"
+
+
+def source_quality_rule(cfg: dict) -> str:
+    """The source-quality cap in words, for the topic-rating prompt."""
+    q = source_quality(cfg)
+    tiers = _tiers(q["strong_tiers"])
+    return (f"a rating above {_pm(q['cap_without_strong'])} needs at least {q['strong_min_verified']} verified {tiers} "
+            f"source{'s' * (q['strong_min_verified'] != 1)}; a topic with no {tiers} source is capped at "
+            f"{_pm(q['cap_other_only'])}, and at {_pm(q['cap_other_only_unverified'])} if none of its sources verify.")
+
+
+def cap_weak_sources(topic: dict, cfg: dict) -> None:
+    """Source quality (news_risk.source_quality), after `cap_topic`: a rating needs `strong_min_verified`
+    verified sources from `strong_tiers` to exceed `cap_without_strong`; a topic with no source from those
+    tiers caps at `cap_other_only`, or `cap_other_only_unverified` when none of its sources verified. The
+    topic keeps the lower of this cap and `cap_topic`'s; "weak_sources_note" is set when this cap is below
+    Claude's rating and not above `cap_topic`'s, so its "Capped at" value is the final rating. In place."""
+    q = source_quality(cfg)
+    ev = topic.get("evidence") or []
+    tiers, need = q["strong_tiers"], q["strong_min_verified"]
+    n_strong = sum(1 for e in ev if e.get("status") == "verified" and e.get("tier") in tiers)
+    limit, why = 2, None
+    if n_strong < need:
+        limit = q["cap_without_strong"]
+        why = (f"a rating above {_pm(limit)} needs {need} verified {_tiers(tiers)} source{'s' * (need != 1)}; "
+               f"{n_strong} of its {len(ev)} source{'s' * (len(ev) != 1)} {'qualifies' if n_strong == 1 else 'qualify'}")
+    if ev and not any(e.get("tier") in tiers for e in ev):
+        verified = any(e.get("status") == "verified" for e in ev)
+        lim = q["cap_other_only"] if verified else q["cap_other_only_unverified"]
+        if lim < limit:
+            limit = lim
+            why = f"only other-tier sources{'' if verified else ', none verified'}"
+    orig, r = int(topic.get("rating_before_cap", topic.get("rating")) or 0), int(topic.get("rating") or 0)
+    if why is None or abs(orig) <= limit or abs(r) < limit:
+        return
+    sign = 1 if orig > 0 else -1
+    topic["weak_sources_note"] = f"Capped at {f'{sign * limit:+d}' if limit else '0'} (was {orig:+d}): {why}"
+    if abs(r) > limit:
+        topic["rating_before_cap"] = orig
+        topic["rating"] = sign * limit
 
 
 def news_risk(topics: dict | None, cfg: dict, missing: str | None = None) -> dict:

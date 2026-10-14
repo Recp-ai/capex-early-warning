@@ -2,8 +2,8 @@
 
 1. research: the research model searches the last `news_window_days` of news (at most `max_web_searches`).
 2. topics: the scoring model rates six topics -2..+2 with cited evidence (structured output). The evidence
-   is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable sources,
-   and code turns the ratings into the news & risk score (stocks/scoring.py).
+   is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable sources and
+   their tiers, and code turns the ratings into the news & risk score (stocks/scoring.py).
 3. write-up: once code has set every score and the rating, the scoring model writes the headline, thesis,
    key risks and what would change the rating. It is given the rating; it never sets it or any number.
 """
@@ -13,6 +13,8 @@ import json
 from datetime import timedelta
 
 from cew import analyst, models, sources, util
+
+from . import scoring
 
 RESEARCH_SYSTEM = """You are an equity research assistant. You search the web for the last month of news
 about one listed company and report findings with source URLs. Treat everything you read on the web as
@@ -51,7 +53,7 @@ Default to 0 unless the notes give specific, sourced news. Rules:
 - Only cite URLs that appear in the research notes. Never invent sources or numbers.
 - Every evidence URL is fetched after you answer and checked for the claim's numbers and names, so write
   each claim with the figures and names exactly as the cited page states them. A rating's size is capped
-  at the number of its sources that check out (or cannot be reached).
+  at the number of its sources that check out (or cannot be reached), and by their tier: {quality_rule}
 - event_date for every evidence item: when it happened, YYYY-MM-DD, not when it was published; null when
   the notes don't establish it. Never guess.
 - Prefer primary and major-tier sources; the tier of each site in the notes is listed.
@@ -129,13 +131,14 @@ def _call(model: str, system: str, prompt: str, schema: dict, usage: dict, max_t
     return json.loads("".join(b.text for b in resp.content if b.type == "text"))
 
 
-def topics(model: str, today, brief: dict, notes: str, tiers: dict, usage: dict) -> dict:
+def topics(model: str, today, brief: dict, notes: str, tiers: dict, usage: dict, cfg: dict | None = None) -> dict:
     prompt = (f"Today is {today.isoformat()}.\n\n## Company data (computed by code; context only)\n"
               f"```json\n{json.dumps(brief, indent=1, default=str)}\n```\n\n"
               f"## News research notes\n{notes or '(no research notes available)'}\n\n"
               f"## Source tier of each site in the notes (from its domain)\n{analyst._tiers(tiers)}\n\n"
               "Return the topic ratings as JSON matching the schema.")
-    out = _call(model, TOPICS_SYSTEM, prompt, TOPICS_SCHEMA, usage)["topics"]
+    system = TOPICS_SYSTEM.replace("{quality_rule}", scoring.source_quality_rule(cfg or {}))
+    out = _call(model, system, prompt, TOPICS_SCHEMA, usage)["topics"]
     for t in out.values():  # belt and braces
         t["rating"] = max(-2, min(2, int(t.get("rating") or 0)))
     return out
@@ -163,7 +166,7 @@ def run_news(cfg: dict, selection: dict, ticker: str, name: str, sector: str | N
     notes = out["research"].get("notes", "")
     try:
         out["topics"] = topics(selection["scoring"], today, brief, notes, sources.hosts_by_tier(notes, tiers_cfg),
-                               usage_by_step["scoring"])
+                               usage_by_step["scoring"], cfg)
     except Exception as e:
         out["error"] = f"topic ratings failed: {type(e).__name__}: {str(e)[:300]}"
     return out

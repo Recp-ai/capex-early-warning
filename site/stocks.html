@@ -112,6 +112,9 @@ svg { display: block; width: 100%; height: auto; overflow: visible; }
 .topic-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .topic-head b { font-size: 13.5px; }
 .score-chip { font-size: 12.5px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.topic-right { display: inline-flex; align-items: baseline; gap: 8px; }
+.weakcap { font-size: 11.5px; font-weight: 600; color: var(--ink); border-radius: 6px; padding: 1px 6px; white-space: nowrap;
+  background: color-mix(in srgb, var(--warning) 22%, transparent); }
 .topic p { margin: 4px 0; font-size: 13.5px; color: var(--ink-2); }
 .capnote { font-size: 12px; color: var(--ink-2); }
 .tier { font-size: 11px; font-weight: 600; letter-spacing: .02em; color: var(--muted); margin-left: 4px; white-space: nowrap; }
@@ -389,8 +392,10 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     const topics = (D.news || {}).topics || {};
     const topicHtml = Object.entries(topics).map(([k, t]) => {
       const ev = (t.evidence || []).map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)}${when(e)} ${esc(e.claim)} — ${link(e.url, hostOf(e.url))}</li>`).join("");
-      return `<div class="topic"><div class="topic-head"><b>${esc(t.label || (METRIC[k] || [k])[0])}</b><span class="score-chip">${signed(t.rating, 0)}</span></div>
-        <p>${esc(t.summary || "")}</p>${t.cap_note ? `<div class="capnote">${esc(t.cap_note)}</div>` : ""}${ev ? `<ul class="ev">${ev}</ul>` : ""}</div>`;
+      const weak = t.weak_sources_note ? `<span class="weakcap" title="${esc(t.weak_sources_note)}">capped: weak sources</span>` : "";
+      const notes = [t.cap_note, t.weak_sources_note].filter(Boolean).map(n => `<div class="capnote">${esc(n)}</div>`).join("");
+      return `<div class="topic"><div class="topic-head"><b>${esc(t.label || (METRIC[k] || [k])[0])}</b><span class="topic-right">${weak}<span class="score-chip">${signed(t.rating, 0)}</span></span></div>
+        <p>${esc(t.summary || "")}</p>${notes}${ev ? `<ul class="ev">${ev}</ul>` : ""}</div>`;
     }).join("");
     const cost = D.cost || {}, models = D.models || {};
     const steps = Object.entries(cost.steps || {}).map(([k, u]) => `${esc(k)}: ${esc(short(u.model))}, ${num(u.input_tokens, 0)} in / ${num(u.output_tokens, 0)} out${u.web_searches ? `, ${u.web_searches} searches` : ""} · ${usd(u.cost_usd)}`).join("<br>");
@@ -440,7 +445,7 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
           <h3>Cautious phrases <span class="sub">· regex counts${G.previous ? ", vs the previous release" : ""}</span></h3>
           ${phrases.length ? `<table><thead><tr><th>Phrase</th><th>Now</th>${G.previous ? "<th>Previous</th>" : ""}</tr></thead><tbody>${phrases.map(([k, v]) => `<tr><td title="${esc((v.sentences || []).join("\n\n"))}">${esc(k)}</td><td>${v.count}</td>${G.previous ? `<td>${v.previous ?? "—"}</td>` : ""}</tr>`).join("")}</tbody></table>` : '<p class="sub">None of the tracked phrases appear.</p>'}`}
         </div>
-        <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources</span></h2>
+        <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources and their tier</span></h2>
           ${topicHtml || `<p class="sub">${esc(((D.factors || {}).news_risk || {}).missing || "No news step this run.")}</p>`}</div>
       </section>
       <section class="card" style="margin-bottom:16px"><h2>Run details</h2>

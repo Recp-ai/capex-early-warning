@@ -1,5 +1,7 @@
 """Rule-based stock scores: sub-metric mapping, factor coverage, news & risk, composite, confidence, bands,
 and the capex overlay. Pure functions; no HTTP."""
+import copy
+
 import pytest
 
 from stocks import config, scoring
@@ -117,6 +119,76 @@ def test_topic_rating_capped_by_checkable_sources():
     t = {"rating": 0, "evidence": []}
     scoring.cap_topic(t)
     assert t == {"rating": 0, "evidence": []}
+
+
+def capped(rating, sources, cfg=CFG):
+    """`sources`: (tier, status) pairs. Both caps, in the run's order."""
+    t = {"rating": rating, "evidence": [{"tier": a, "status": b} for a, b in sources]}
+    scoring.cap_topic(t)
+    scoring.cap_weak_sources(t, cfg)
+    return t
+
+
+def test_source_quality_thresholds_in_config():
+    q = CFG["news_risk"]["source_quality"]
+    assert q == {"strong_tiers": ["primary", "major"], "strong_min_verified": 1, "cap_without_strong": 1,
+                 "cap_other_only": 1, "cap_other_only_unverified": 0}
+    assert scoring.source_quality(CFG) == q and scoring.source_quality({}) == q
+
+
+@pytest.mark.parametrize("rating, sources, out", [
+    (2, [("major", "verified")] * 2, 2),
+    (-2, [("primary", "verified"), ("other", "unreachable")], -2),
+    (2, [("primary", "unreachable"), ("other", "verified")], 1),     # +-2 needs a *verified* primary/major source
+    (-2, [("major", "unverified"), ("other", "verified"), ("other", "verified")], -1),
+    (-2, [("other", "verified")] * 2, -1),                            # only other-tier: +-1
+    (1, [("other", "verified")], 1),
+    (-1, [("other", "unreachable")], 0),                              # only other-tier, none verified: 0
+    (2, [("other", "unreachable")] * 2, 0),
+    (1, [("major", "unreachable")], 1),                               # a primary/major source, even unverified, isn't "only other"
+    (0, [("other", "unverified")], 0),
+])
+def test_weak_sources_cap(rating, sources, out):
+    assert capped(rating, sources)["rating"] == out
+
+
+def test_weak_sources_note_only_when_the_quality_rule_caps():
+    t = capped(2, [("primary", "unreachable"), ("other", "verified")])
+    assert t["rating_before_cap"] == 2 and "cap_note" not in t
+    assert t["weak_sources_note"] == ("Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or "
+                                      "major-tier source; 0 of its 2 sources qualify")
+    t = capped(-1, [("other", "unreachable")])
+    assert t["weak_sources_note"] == "Capped at 0 (was -1): only other-tier sources, none verified"
+    # both rules cap: each says so, the lower cap wins, rating_before_cap stays Claude's rating
+    t = capped(2, [("other", "verified"), ("other", "unverified")])
+    assert t["rating"] == 1 and t["rating_before_cap"] == 2 and "1 of 2 sources" in t["cap_note"]
+    assert t["weak_sources_note"].startswith("Capped at +1 (was +2)")
+    t = capped(2, [("other", "unreachable"), ("other", "unverified")])
+    assert t["rating"] == 0 and t["rating_before_cap"] == 2 and t["cap_note"].startswith("Capped at +1")
+    assert t["weak_sources_note"].startswith("Capped at 0 (was +2)")
+    t = capped(-2, [("other", "unverified")])   # both cap at 0
+    assert t["rating"] == 0 and t["weak_sources_note"] == "Capped at 0 (was -2): only other-tier sources, none verified"
+    # the count rule alone, or the count rule lower: no weak-sources flag
+    for t in (capped(2, [("major", "verified"), ("other", "unverified")]), capped(1, []), capped(2, []),
+              capped(2, [("major", "verified")]), capped(-2, [("major", "unverified")])):
+        assert "weak_sources_note" not in t and abs(t["rating"]) < 2
+    t = {"rating": 0, "evidence": []}
+    scoring.cap_weak_sources(t, CFG)
+    assert t == {"rating": 0, "evidence": []}
+
+
+def test_weak_sources_thresholds_come_from_config():
+    cfg = copy.deepcopy(CFG)
+    cfg["news_risk"]["source_quality"].update(strong_tiers=["primary"], strong_min_verified=2, cap_other_only_unverified=1)
+    assert capped(2, [("primary", "verified"), ("major", "verified")], cfg)["rating"] == 1
+    assert capped(2, [("primary", "verified")] * 2, cfg)["rating"] == 2
+    assert capped(-1, [("other", "unreachable")], cfg)["rating"] == -1
+    t = capped(2, [("major", "verified")] * 2, cfg)   # major isn't a strong tier here
+    assert t["rating"] == 1 and "needs 2 verified primary-tier sources; 0 of its 2 sources qualify" in t["weak_sources_note"]
+    assert scoring.source_quality_rule(cfg) == ("a rating above ±1 needs at least 2 verified primary-tier sources; a topic "
+                                                "with no primary-tier source is capped at ±1, and at ±1 if none of its "
+                                                "sources verify.")
+    assert scoring.source_quality_rule(CFG).endswith("is capped at ±1, and at 0 if none of its sources verify.")
 
 
 def test_composite_renormalises_weights_and_sets_confidence():

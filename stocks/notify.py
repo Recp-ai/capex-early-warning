@@ -37,8 +37,11 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     for k, t in ((r.get("news") or {}).get("topics") or {}).items():
         items = "".join(f"<li>{cew_notify.when_html(e, year)} {html.escape(e.get('claim') or '')}{cew_notify._link(e)}</li>"
                         for e in t.get("evidence") or [])
-        ev.append(f"<p style='margin:10px 0 0;font-weight:600'>{html.escape(t.get('label') or k)}: {t.get('rating', 0):+d}"
-                  f"{' (' + html.escape(t['cap_note']) + ')' if t.get('cap_note') else ''}</p>"
+        weak = (f" <span style='background:#fdecc8;border-radius:4px;padding:0 5px;font-size:12px'>{scoring.WEAK_SOURCES}</span>"
+                if t.get("weak_sources_note") else "")
+        notes = "; ".join(html.escape(t[n]) for n in ("cap_note", "weak_sources_note") if t.get(n))
+        ev.append(f"<p style='margin:10px 0 0;font-weight:600'>{html.escape(t.get('label') or k)}: {t.get('rating', 0):+d}{weak}"
+                  f"{' (' + notes + ')' if notes else ''}</p>"
                   f"<p style='margin:2px 0'>{html.escape(t.get('summary') or '')}</p>" + (f"<ul>{items}</ul>" if items else ""))
     g = r.get("guidance") or {}
     quotes = "".join(f"<li>{html.escape(x['metric'])} · {html.escape(x['period'])}: “{html.escape(x['sentence'][:400])}”</li>"
@@ -66,6 +69,8 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                  f"{w.get('thesis') or ''}\n\n" + "\n".join(
                      f"{scoring.LABELS[k]}: {((r.get('factors') or {}).get(k) or {}).get('score', 'no data')}" for k in scoring.FACTORS)
                  + (f"\n\nCapex overlay: {ov['note']}" if ov.get("note") and ov.get("ai_exposed") else "")
+                 + "".join(f"\n{t.get('label') or k}: {t.get('rating', 0):+d}, {scoring.WEAK_SOURCES} ({t['weak_sources_note']})"
+                           for k, t in ((r.get("news") or {}).get("topics") or {}).items() if t.get("weak_sources_note"))
                  + f"\n\n{publish.DISCLAIMER}")
     return subject, body_html, body_text
 

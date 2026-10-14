@@ -158,9 +158,12 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
 - **Numbers only from code.** Growth, quality, balance sheet, valuation and trend (0-100 each) are
   computed from SEC companyfacts, Tiingo prices and `data/fred/DGS10.csv` by `stocks/scoring.py` with
   `config/stocks.yaml`. Claude rates six news topics -2..+2 (the rubric in the config and prompt); the
-  source check caps each rating at its number of verified-or-unreachable sources; code turns the ratings
-  into the news & risk score. Claude then writes the thesis, risks and "what would change" after the
-  rating is set, and never sets a rating, score or number. Guidance sentences from the 8-K count only
+  source check caps each rating at its number of verified-or-unreachable sources, then by source quality
+  (`news_risk.source_quality`: ±2 needs a verified primary- or major-tier source, else ±1; only other-tier
+  sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources` sets `weak_sources_note`, shown as
+  "capped: weak sources" on the page and in the email); code turns the ratings into the news & risk score.
+  Claude then writes the thesis, risks and "what would change" after the rating is set, and never sets a
+  rating, score or number. Guidance sentences from the 8-K count only
   when `edgar_text.found_in` finds them verbatim (as in `cew/calls.py`); they are display and context,
   not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.

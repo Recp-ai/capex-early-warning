@@ -69,7 +69,8 @@ def writeup_brief(r: dict) -> dict:
                         "inputs": {m: v.get("value") for m, v in (fs[k].get("metrics") or {}).items()}}
                     for k in scoring.FACTORS},
         "factor_weights_used": r["composite"].get("weights_used"),
-        "news_topics": {k: {"rating": t.get("rating"), "summary": t.get("summary")}
+        "news_topics": {k: {"rating": t.get("rating"), "summary": t.get("summary"),
+                            "capped": "; ".join(t[n] for n in ("cap_note", "weak_sources_note") if t.get(n)) or None}
                         for k, t in ((r.get("news") or {}).get("topics") or {}).items()},
         "earnings_release": {k: (r.get("guidance") or {}).get(k) for k in ("filing_date", "summary")},
         "price": r.get("price"),
@@ -197,6 +198,7 @@ def main(argv: list[str] | None = None) -> int:
             source_check = {"counts": sources.check_evidence(topics, cfg)}
         for t in topics.values():
             scoring.cap_topic(t)
+            scoring.cap_weak_sources(t, cfg)
     fs["news_risk"] = scoring.news_risk(topics, cfg, None if llm_on else "Claude step off (no ANTHROPIC_API_KEY or --no-llm)")
 
     # 4. composite, rating, overlay
