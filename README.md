@@ -114,6 +114,24 @@ $0.90–1.05: up to 4 more searches and the search results they pull in (+$0.15�
 second scoring sample (+~$0.10, the shared prompt read from cache). Event runs that read filings add
 the same lease and press-release costs as before.
 
+## Version 4: dated evidence
+
+**Event dates.** The research step writes each finding as "claim — event date — URL", and the assessment
+gives every evidence item and follow-up an `event_date`: when it happened (deal priced, guidance given,
+project cancelled), not when it was reported, as YYYY-MM-DD, or null when the source doesn't say. Code
+keeps only real dates no later than tomorrow; press-release evidence from EDGAR uses the 8-K filing date.
+The dashboard and the email show the date next to each evidence item and follow-up ("undated" when
+unknown), and label items that happened more than 10 days before the run **background**
+(`evidence_dates.background_after_days`). The email now lists every category's evidence at the end.
+Dates are labels only; they don't change scores or caps.
+
+**Conflicting figures.** When the same metric (a CDS level, a deal size) shows different values in
+different sources, the research notes list each figure with its URL, and the assessment gives each as its
+own evidence item, reports the range in the summary, digest and follow-up notes, and prefers the
+primary- or major-tier figure. The assessment prompt lists the tier of every site in the notes (set by code
+from `source_tiers`), and a follow-up's status may not rest on an "other"-tier number alone (it stays
+*still open*, with the figure called unconfirmed). This is an instruction to the model, not a code check.
+
 ## Models and cost
 
 The Claude work is two steps, each with its own model:
@@ -256,6 +274,9 @@ scripts/        evaluate.py — did warnings lead price moves?
 - Source tiers come from a domain list, so a major outlet's syndicated copy on an aggregator counts as
   "other", and a new company newsroom is "other" until its domain is added to `source_tiers`.
 - Follow-up items are matched to Claude's answers by their text; an item Claude skips shows "no news".
+- Event dates come from Claude's reading of the sources; code checks only that each is a real date and not
+  in the future. A range in a follow-up note (e.g. "145-160 bp") usually shows "unverified", since the
+  cited page has only one of the two figures.
 - Costs are estimates at list prices from `config/models.yaml`; check the Claude Console for actual billing.
 - Give the log a few quarters before trusting any threshold. `scripts/evaluate.py` shows whether
   Amber/Red weeks actually preceded weaker returns.

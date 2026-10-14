@@ -2,8 +2,9 @@
 
 The list and its run counts are kept by code. An item is followed up in the run after it was listed
 and, while unresolved, in the runs after that, up to follow_ups.max_runs runs in all; then it drops off.
-Claude only gives each item a status, a one-sentence note and a URL from its own research. The URL is
-checked like evidence: item["source"] = {"url", "claim": note} gets the tier and verification status.
+Claude only gives each item a status, a one-sentence note, a URL from its own research and the date the
+news happened (event_date, checked by sources.tag_dates). The URL is checked like evidence:
+item["source"] = {"url", "claim": note} gets the tier and verification status.
 """
 from __future__ import annotations
 
@@ -54,8 +55,8 @@ def _match(item: str, candidates: list[dict]) -> int | None:
 
 
 def merge(items: list[dict], returned: list[dict] | None) -> list[dict]:
-    """Attach Claude's status, note and URL to each pending item. Items it skipped are no_news; entries
-    that match no pending item are ignored."""
+    """Attach Claude's status, note, URL and event date to each pending item. Items it skipped are
+    no_news; entries that match no pending item are ignored."""
     left = [r for r in (returned or []) if isinstance(r, dict)]
     out = []
     for p in items:
@@ -66,5 +67,6 @@ def merge(items: list[dict], returned: list[dict] | None) -> list[dict]:
         note = str(r.get("note") or "").strip() or ("" if r else "Not covered in this run's assessment.")
         out.append({**p,
                     "status": r.get("status") if r.get("status") in STATUSES else ("still_open" if r else "no_news"),
-                    "note": note, "url": url, "source": {"url": url, "claim": note} if url else None})
+                    "note": note, "url": url, "event_date": r.get("event_date"),
+                    "source": {"url": url, "claim": note} if url else None})
     return out

@@ -129,6 +129,10 @@ th.left, td.left { text-align: left; }
 .fu li { margin-bottom: 6px; }
 .fu .note { color: var(--ink-2); }
 .held { margin-top: 6px; font-size: 12.5px; color: var(--ink-2); }
+.when { font-size: 12px; font-weight: 600; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; margin-left: 4px; }
+.when.undated { font-weight: 400; color: var(--muted); }
+.bg { font-size: 11px; font-weight: 600; color: var(--muted); border: 1px dashed var(--axis); border-radius: 4px;
+  padding: 0 5px; margin-left: 4px; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -222,6 +226,12 @@ th.left, td.left { text-align: left; }
   const badge = (st, title) => BADGE[st] ? `<span class="badge" title="${esc(title || BADGE[st][2])}"><i class="dot" style="background:var(${BADGE[st][0]})"></i>${BADGE[st][1]}</span>` : "";
   const tierTag = t => TIER_TITLE[t] ? `<span class="tier ${t}" title="${esc(TIER_TITLE[t])}">${t}</span>` : "";
   const hostOf = u => (String(u || "").match(/^https?:\/\/(?:www\.)?([^/]+)/) || [])[1] || "link";
+  // Event date (when it happened, not when it was reported); "background" when well before the run.
+  // Runs from before event dates have no event_date key and show nothing.
+  const when = (e, year) => !("event_date" in e) ? ""
+    : !e.event_date ? '<span class="when undated" title="The source does not say when it happened">undated</span>'
+    : `<time class="when" datetime="${esc(e.event_date)}" title="When it happened (event date)">${esc(shortDate(e.event_date) + (e.event_date.slice(0, 4) === year ? "" : ", " + e.event_date.slice(0, 4)))}</time>` +
+      (e.background ? `<span class="bg" title="${esc(`Happened ${e.age_days} days before this run: context, not this week's news`)}">background</span>` : "");
   const lvlDot = l => `<span class="lvl"><span class="dot" style="background:var(${LEVEL_DOT[l] || "--muted"})"></span>${esc(l || "—")}</span>`;
   const upcoming = () => {
     const today = new Date().toISOString().slice(0, 10);
@@ -408,6 +418,7 @@ th.left, td.left { text-align: left; }
     $("#asof").textContent = `${L.run_id ? "Run " + runTime(L.run_id) : "Week of " + L.date} · ${triggerLabel(L.trigger)} · ${nextText}`;
     const names = Object.fromEntries(Object.entries(L.data.edgar || {}).map(([t, c]) => [t, c.name]));
     const catName = Object.fromEntries(L.categories);
+    const year = String(L.date || "").slice(0, 4);
     const jumps = comp.jumps || {}, conf = comp.confirmation || null;
     const levelText = comp.level === "RED" && conf ? (comp.red_confirmed ? "RED · confirmed" : "RED · unconfirmed") : comp.level;
     let levelSub = lv.label;
@@ -420,9 +431,10 @@ th.left, td.left { text-align: left; }
       const meter = [1, 2, 3].map(i => `<span style="${i <= s.score ? `background:var(${SCORE_COLOR[s.score]})` : ""}"></span>`).join("");
       const evs = s.evidence || [];
       const count = st => evs.filter(e => e.status === st).length;
-      const tally = ["verified", "unreachable", "unverified"].filter(count).map(st => `${count(st)} ${st}`).join(" · ");
+      const old = evs.filter(e => e.background).length;
+      const tally = ["verified", "unreachable", "unverified"].filter(count).map(st => `${count(st)} ${st}`).concat(old ? [`${old} background`] : []).join(" · ");
       const ev = evs.length ? `<details class="evidence"><summary>${evs.length} source${evs.length > 1 ? "s" : ""}${tally ? ` <span class="ev-sum">· ${tally}</span>` : ""}</summary><ul class="reasons">` +
-        evs.map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)} ${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source === "edgar" ? "SEC filing" : hostOf(e.url))}</a></li>`).join("") + "</ul></details>" : "";
+        evs.map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)}${when(e, year)} ${esc(e.claim)} — <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source === "edgar" ? "SEC filing" : hostOf(e.url))}</a></li>`).join("") + "</ul></details>" : "";
       const jump = jumps[key] ? `<div class="flag">▲ ${signed(jumps[key], 0)} since the last run · worth a check</div>` : "";
       const unstable = s.unstable ? `<div class="flag" title="The scoring step ran ${s.samples.length} times on the same research notes; the score shown is their average, rounded down at .5">Unstable: scoring samples gave ${esc(s.samples.join(", "))}</div>` : "";
       const st = key === "credit" ? L.credit_stage : null;
@@ -481,8 +493,9 @@ th.left, td.left { text-align: left; }
     const fuItems = (L.follow_ups || []).map(f => {
       const [color, label] = FOLLOW[f.status] || ["--muted", f.status || ""], src = f.source || {};
       const link = src.url ? ` ${badge(src.status, src.check)}${tierTag(src.tier)} <a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(hostOf(src.url))}</a>` : "";
+      const date = src.url || f.event_date ? when(f, year) : "";
       return `<li><span class="badge" title="${esc(`Followed up in ${f.runs || 1} run${f.runs > 1 ? "s" : ""} so far`)}"><i class="dot" style="background:var(${color})"></i>${esc(label)}</span> ` +
-        `${esc(f.item)}${f.note ? ` <span class="note">— ${esc(f.note)}</span>` : ""}${link}</li>`;
+        `${esc(f.item)}${f.note ? ` <span class="note">— ${esc(f.note)}</span>` : ""}${date}${link}</li>`;
     }).join("");
     const errs = Object.entries(L.errors || {});
     app.innerHTML = `

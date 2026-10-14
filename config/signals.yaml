@@ -144,6 +144,13 @@ source_tiers:
     [reuters.com, bloomberg.com, cnbc.com, ft.com, wsj.com, apnews.com, nytimes.com, barrons.com,
      theinformation.com, nikkei.com, economist.com]
 
+# Event dates: Claude gives every evidence item and follow-up the date it happened (not when it was
+# reported), YYYY-MM-DD or null. Code drops malformed dates and dates after tomorrow; press-release evidence
+# uses the 8-K filing date. Shown next to each item on the dashboard and in the email. A label only: dates
+# don't change scores or caps.
+evidence_dates:
+  background_after_days: 10  # items that happened more than this many days before the run show "background"
+
 # Filing text read from EDGAR (leases not yet commenced; earnings press releases)
 filing_text:
   # Paragraphs about leases signed but not yet started (Oracle words it "additional lease commitments")

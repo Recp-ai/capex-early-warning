@@ -114,7 +114,7 @@ def test_run_samples_follow_ups_and_prompt_caching(monkeypatch):
         assert "## Follow-ups from the last run\n1. Oracle CDS\n2. OpenAI round" in call["messages"][0]["content"]
     assert a1["messages"] == a2["messages"]  # same prompt both times, so the second reads the cache
     fu = a1["output_config"]["format"]["schema"]["properties"]["follow_ups"]["items"]
-    assert fu["required"] == ["item", "status", "note", "url"]
+    assert fu["required"] == ["item", "status", "note", "url", "event_date"]
     assert fu["properties"]["status"]["enum"] == ["resolved", "improved", "worsened", "still_open", "no_news"]
     assert out["usage"]["assessment"]["requests"] == 2 and out["usage"]["assessment"]["input_tokens"] == 2_000
     ns = out["assessment"]["news_scores"]

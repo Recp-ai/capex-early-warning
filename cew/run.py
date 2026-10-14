@@ -164,7 +164,9 @@ def main(argv: list[str] | None = None) -> int:
             scores[k].setdefault("evidence", []).extend(copy.deepcopy(earnings["evidence"]))
 
     fu_sources = [f["source"] for f in follow_ups if f.get("source")]
-    sources.tag_tiers([e for s in scores.values() for e in s.get("evidence") or []] + fu_sources, cfg)
+    all_evidence = [e for s in scores.values() for e in s.get("evidence") or []]
+    sources.tag_tiers(all_evidence + fu_sources, cfg)
+    sources.tag_dates(all_evidence + follow_ups, started.date(), cfg)
     if args.offline:
         source_check = {"skipped": "offline run"}
     else:

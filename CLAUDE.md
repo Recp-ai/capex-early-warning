@@ -16,7 +16,9 @@ the news and write a digest, checks the cited sources, emails it, and commits th
   sentence; the value is then parsed by `edgar_text.parse_usd*`, never taken from Claude. Keep it that way.
   Phrase counts in press releases are regex counts, not model output. Source tiers come from the
   `source_tiers` domain lists, and the follow-up list and its run counts from `followups.py`; Claude only
-  gives each follow-up a status, note and URL. The credit contagion stage is context, never a score input.
+  gives each follow-up a status, note, URL and event date. Event dates (`event_date` on evidence and
+  follow-ups) are labels, checked by `sources.tag_dates`, never score inputs. The credit contagion stage is
+  context, never a score input.
 - **Never put secrets in `site/`.** Everything under `site/` is public (static files and the
   `site/api/run.js` source). Secrets live in GitHub Actions secrets or Vercel environment variables
   and are read at runtime; responses, errors and logs must never echo them.
@@ -58,14 +60,14 @@ cew/analyst.py      Claude step 1 "research" (web search, loops through pause_tu
                     "assessment" (structured-output JSON: news scores, digest, follow-up statuses), run
                     `assessment_samples` times and merged by `combine`; and `extract` for filing text
 cew/followups.py    previous run's watch_next -> this run's follow-ups (carried up to follow_ups.max_runs)
-cew/sources.py      source tier per URL, fetch evidence and follow-up URLs, mark verified/unverified/
-                    unreachable, cap thin news scores
+cew/sources.py      source tier per URL, event dates (background when old), fetch evidence and follow-up
+                    URLs, mark verified/unverified/unreachable, cap thin news scores
 cew/models.py       per-step model choice, prices, token/cost accounting, site/data/models.json
 cew/publish.py      data/reports/<date>.json, data/log.csv (one row per day), data/runs/<ts>.json +
                     data/runs.csv (every run), site/data/*.json
 cew/notify.py       SMTP digest email
 config/signals.yaml thresholds, series, companies, models, samples, follow_ups, credit_stage, confirmation,
-                    source_check, source_tiers, filing_text, email
+                    source_check, source_tiers, evidence_dates, filing_text, email
 config/events.yaml  dated events (FOMC, CPI, earnings) with verified flags and sources
 config/models.yaml  $ per MTok (input/output) per model, web search $ per 1,000; fallback model list
 site/index.html     the dashboard (vanilla JS, no build step) incl. the "Run now" panel
@@ -112,9 +114,18 @@ source check never overwrites the follow-up's own `status`.
 `samples`/`spread`/`unstable` per category (`assessment_unstable_spread`), takes text from the sample
 closest to the result, and rounds the credit adjustment half toward zero.
 
+**Dates and conflicting figures.** Both Claude steps must give an event date (when it happened, not when
+it was reported) for every evidence item and follow-up; the schema's `event_date` is a date or null. The
+assessment prompt lists each site in the research notes by tier (`sources.hosts_by_tier`) and tells the
+model to report the range when sources disagree on a metric, prefer the primary/major figure, and never
+base a follow-up status on an "other"-tier number alone (a prompt rule, not a code check).
+
 **Checks after the assessment.** EDGAR evidence (press-release comparison) is added to hyperscaler
-filings and supplier signals with status `verified`; `sources.tag_tiers` labels every evidence and
-follow-up URL primary/major/other; `sources.check_evidence` fetches every other evidence URL and the
+filings and supplier signals with status `verified` (its `event_date` is the 8-K filing date);
+`sources.tag_tiers` labels every evidence and follow-up URL primary/major/other; `sources.tag_dates` keeps
+each `event_date` only if it is a real YYYY-MM-DD no later than tomorrow and sets `age_days` and
+`background` (more than `evidence_dates.background_after_days` before the run), shown next to each item on
+the dashboard and in the email; `sources.check_evidence` fetches every other evidence URL and the
 follow-up URLs; `sources.apply_caps` caps news categories at `source_check.cap_to`. Then
 `scoring.hysteresis` holds the previous run's level until the composite falls below the line minus
 `composite.level_hysteresis` (`comp["level"]` is the held level everywhere, `comp["raw_level"]` the

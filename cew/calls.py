@@ -170,7 +170,7 @@ def compare(cur: dict, prev: dict | None, fy_end_month: int | None = None) -> di
 def evidence(cur: dict, comp: dict, fy_end_month: int | None = None) -> list[dict]:
     """Evidence items built by code from the verified release text (status set here, not re-fetched)."""
     name, q = cur["name"], cur["quarter"]
-    base = {"url": cur["url"], "status": "verified", "source": "edgar",
+    base = {"url": cur["url"], "status": "verified", "source": "edgar", "event_date": cur.get("filing_date"),
             "check": "Read from the SEC filing; quoted sentences matched verbatim"}
     out = []
     by_period = {g["period"]: g for g in comp.get("guidance", [])}

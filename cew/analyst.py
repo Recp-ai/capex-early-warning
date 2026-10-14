@@ -13,7 +13,7 @@ import json
 import math
 from fractions import Fraction
 
-from . import models, util
+from . import models, sources, util
 
 RESEARCH_SYSTEM = """You are a research analyst monitoring early-warning signs that AI data-center
 capital spending (capex) could slow. You search the web for the past 7-10 days of news and report
@@ -40,14 +40,18 @@ below and report what you find, with the URL for every claim.
 Also note anything strongly positive (new multi-gigawatt commitments, raised capex guidance), so the
 picture is balanced.
 
-Format: a section per topic with bullet points "claim — URL", citing the primary or major source where
-there is one. Keep it under 600 words."""
+Format: a section per topic with bullet points "claim — event date — URL", citing the primary or major
+source where there is one. The event date is when it happened (deal priced, round closed, guidance given,
+project cancelled, spread at that level), as YYYY-MM-DD, not when the article was published or updated;
+write "date unknown" if the source doesn't say. If sources give different figures for the same metric
+(e.g. a CDS level), list each figure with its own URL. Keep it under 600 words."""
 
 FOLLOW_UP_PROMPT = """
 
 Follow-ups from the last run. Check each for news since then; many overlap the topics above, so cover
 them in the same searches where you can, and don't let them crowd out the four topics. Add a final
-"Follow-ups" section with one bullet per item: the item, what changed (or "no news found"), and the URL.
+"Follow-ups" section with one bullet per item: the item, what changed (or "no news found"), the event date
+(YYYY-MM-DD, as above) and the URL.
 Up to 200 more words for this section.
 {items}"""
 
@@ -74,7 +78,16 @@ Rules:
   and checked verbatim; use it as official data.
 - When the notes give several sources for a claim, cite the primary one (filing, IR page, regulator) or a
   major outlet (Reuters, Bloomberg, CNBC, FT, WSJ) rather than an aggregator. Each source is tagged
-  primary, major or other after you answer.
+  primary, major or other after you answer; the tier of each site in the notes is listed with them.
+- event_date, for every evidence item and every follow-up: when the event happened (deal priced, round
+  closed, guidance given, project cancelled, spread at that level), YYYY-MM-DD, not when the article was
+  published or updated. null when the notes don't establish it (and for a follow-up with no news); never
+  guess. It is shown next to the item, and items from well before this week are labelled background.
+- When the same metric (e.g. a CDS level, a deal size) appears with different values in two or more
+  sources: give each figure as its own evidence item, as its page states it; in the summary, the digest and
+  any follow-up note that relies on it, report the range (e.g. "145-160 bp") and prefer the primary- or
+  major-tier figure. Never base a follow-up status on a number from "other"-tier sources alone: without a
+  primary or major source for it, the status is still_open, and the note says the figure is unconfirmed.
 - follow_ups: one entry per item listed under "Follow-ups from the last run" (an empty list if there are
   none), with the item text copied exactly. status: resolved (answered or no longer relevant), improved
   or worsened (news moved it toward less or more AI-capex risk, still open), still_open (news, no clear
@@ -89,10 +102,13 @@ def _obj(props: dict, required: list[str] | None = None) -> dict:
             "additionalProperties": False}
 
 
+_DATE = {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]}  # event date, or null if unknown
+
 _NEWS = _obj({
     "score": {"type": "integer", "enum": [0, 1, 2, 3]},
     "summary": {"type": "string"},
-    "evidence": {"type": "array", "items": _obj({"claim": {"type": "string"}, "url": {"type": "string"}})},
+    "evidence": {"type": "array", "items": _obj({"claim": {"type": "string"}, "url": {"type": "string"},
+                                                 "event_date": _DATE})},
 })
 
 ASSESS_SCHEMA = _obj({
@@ -106,6 +122,7 @@ ASSESS_SCHEMA = _obj({
         "status": {"type": "string", "enum": ["resolved", "improved", "worsened", "still_open", "no_news"]},
         "note": {"type": "string"},
         "url": {"type": "string"},
+        "event_date": _DATE,
     })},
     "watch_next": {"type": "array", "items": {"type": "string"}},
 })
@@ -179,16 +196,22 @@ def research(model: str, max_searches: int, today: str, usage: dict | None = Non
     return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
 
 
+def _tiers(hosts: dict[str, list[str]] | None) -> str:
+    return "\n".join(f"{t}: {', '.join(h)}" for t, h in (hosts or {}).items()) or "(no URLs in the notes)"
+
+
 def assess(model: str, today: str, data_brief: dict, research_notes: str, previous: dict | None,
-           usage: dict | None = None, follow_ups: list[str] | None = None, cache: bool = False) -> dict:
+           usage: dict | None = None, follow_ups: list[str] | None = None, cache: bool = False,
+           tiers: dict[str, list[str]] | None = None) -> dict:
     """One assessment sample. cache=True marks the prompt for prompt caching, so repeated samples on
-    the same notes read it from the cache."""
+    the same notes read it from the cache. `tiers` lists the sites in the notes by source tier."""
     client = _client()
     prompt = (
         f"Today is {today}.\n\n"
         f"## Official data and rule-based scores (JSON)\n```json\n{json.dumps(data_brief, indent=1, default=str)}\n```\n\n"
         f"## Last week's assessment (for 'what changed')\n```json\n{json.dumps(previous or {}, default=str)[:6000]}\n```\n\n"
         f"## This week's news research notes\n{research_notes or '(no research notes available)'}\n\n"
+        f"## Source tier of each site in the notes (from its domain)\n{_tiers(tiers)}\n\n"
         f"## Follow-ups from the last run\n{_numbered(follow_ups) if follow_ups else '(none)'}\n\n"
         "Return the assessment as JSON matching the schema. The headline is one sentence under 20 words."
     )
@@ -261,11 +284,13 @@ def run(cfg: dict, data_brief: dict, previous: dict | None, enabled: bool,
     except Exception as e:
         out["research"] = {"notes": "", "urls": [], "error": str(e)}
     n = max(1, int(cfg.get("assessment_samples", 2)))
+    notes = out["research"].get("notes", "")
+    tiers = sources.hosts_by_tier(notes, cfg)
     samples, errors = [], []
     for i in range(n):  # one after another, so samples after the first read the cached prompt
         try:
-            samples.append(assess(assessment_model, today, data_brief, out["research"].get("notes", ""),
-                                  previous, usage["assessment"], follow_ups, cache=n > 1))
+            samples.append(assess(assessment_model, today, data_brief, notes, previous, usage["assessment"],
+                                  follow_ups, cache=n > 1, tiers=tiers))
         except Exception as e:
             errors.append(f"sample {i + 1}: {e}" if n > 1 else str(e))
     if samples:

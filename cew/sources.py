@@ -10,6 +10,11 @@ verified-or-unreachable sources is capped at source_check.cap_to (see apply_caps
 
 Every evidence URL also gets a source tier (primary / major / other) from its host and the domain
 lists in source_tiers (see tier). Tiers are labels only.
+
+Every evidence item and follow-up keeps the event date Claude gives it (when it happened, not when it was
+reported) if it is a real YYYY-MM-DD date no later than tomorrow; items more than
+evidence_dates.background_after_days days before the run are labelled background (see tag_dates).
+Dates are labels only.
 """
 from __future__ import annotations
 
@@ -19,6 +24,7 @@ import re
 import socket
 import time
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date, timedelta
 from typing import Callable
 from urllib.parse import urljoin, urlsplit
 
@@ -28,6 +34,8 @@ USER_AGENT = "capex-early-warning-source-check/2.0 (research bot; fetches each c
 MAX_BYTES = 3_000_000
 OK_STATUSES = ("verified", "unreachable")
 NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
+URL = re.compile(r"https?://[^\s<>\"'()\[\]]+")
+ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 NAME = re.compile(r"\b[A-Z][A-Za-z0-9&'.-]*[A-Za-z0-9]|\b[A-Z]{2,}\b")
 NOT_NAMES = {
     "a", "an", "the", "and", "or", "but", "of", "in", "on", "at", "to", "for", "by", "from", "with", "as",
@@ -148,6 +156,40 @@ def tag_tiers(items: list[dict], cfg: dict) -> None:
     for e in items:
         if e.get("url"):
             e["tier"] = tier(e["url"], cfg)
+
+
+def hosts_by_tier(text: str, cfg: dict) -> dict[str, list[str]]:
+    """The sites of the URLs in `text` ("www." dropped) grouped by tier, primary first."""
+    found: dict[str, list[str]] = {}
+    for u in URL.findall(text or ""):
+        host = (urlsplit(u).hostname or "").removeprefix("www.")
+        hosts = found.setdefault(tier(u, cfg), [])
+        if host and host not in hosts:
+            hosts.append(host)
+    return {t: found[t] for t in ("primary", "major", "other") if found.get(t)}
+
+
+def event_date(value, today: date) -> str | None:
+    """`value` if it is a YYYY-MM-DD date no later than tomorrow (news from Asia can be dated a day
+    ahead of the run's UTC date), else None."""
+    v = str(value or "").strip()
+    if not ISO_DATE.fullmatch(v):
+        return None
+    try:
+        d = date.fromisoformat(v)
+    except ValueError:
+        return None
+    return v if d <= today + timedelta(days=1) else None
+
+
+def tag_dates(items: list[dict], today: date, cfg: dict) -> None:
+    """Check "event_date" on every item (evidence items, follow-ups) and set "age_days" (days before the
+    run) and "background" (more than evidence_dates.background_after_days). In place."""
+    after = int((cfg.get("evidence_dates") or {}).get("background_after_days", 10))
+    for e in items:
+        d = event_date(e.get("event_date"), today)
+        age = (today - date.fromisoformat(d)).days if d else None
+        e.update(event_date=d, age_days=age, background=age is not None and age > after)
 
 
 def check_evidence(scores: dict, cfg: dict, fetch: Callable | None = None, workers: int = 4,
