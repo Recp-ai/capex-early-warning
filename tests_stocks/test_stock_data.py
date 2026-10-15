@@ -2,7 +2,7 @@
 All HTTP and Claude calls are mocked."""
 import copy
 import json
-from datetime import date
+from datetime import date, timedelta
 
 import pytest
 
@@ -652,6 +652,69 @@ def test_share_counts_off_by_more_than_10x_are_dropped_but_splits_are_kept():
     assert [x["end"] for x in s["share_outliers"]] == ["2023-03-31", "2023-09-30"]
     v = metrics.valuation(s, rec, rows_of(F.tiingo_rows(300, 0.0004)), None, CFG)
     assert v["vs_history"]["price_to_sales"]["low"] > 1 and v["share_outliers"] == s["share_outliers"]
+
+
+
+def googl_like(diluted_from="2024-06-30", eps_fn=None):
+    """Diluted share counts only from `diluted_from` (Alphabet tags them from 2023-06-30, first filed in July
+    2024); net income and diluted EPS for every period, filed together in each 10-Q / 10-K."""
+    ni = lambda e: round(F.revenue(e) * 0.36, -6)  # noqa: E731
+    eps_fn = eps_fn or (lambda e: round(ni(e) / F.shares(e), 2))
+    facts = F.companyfacts(NetIncomeLoss=F.flow(ni))
+    gaap = facts["facts"]["us-gaap"]
+    gaap["EarningsPerShareDiluted"] = {"units": {"USD/shares": F.flow(eps_fn)}}
+    rows = gaap["WeightedAverageNumberOfDilutedSharesOutstanding"]["units"]["shares"]
+    gaap["WeightedAverageNumberOfDilutedSharesOutstanding"]["units"]["shares"] = [r for r in rows if r["end"] >= diluted_from]
+    return facts
+
+
+def test_share_counts_fall_back_to_net_income_over_diluted_eps_where_none_is_tagged():
+    rec = fund.extract(googl_like(), F.CIK)
+    q = rec["shares"]["diluted_q"]
+    reported = {e: p for e, p in q.items() if not p.get("derived")}
+    derived = {e: p for e, p in q.items() if p.get("derived")}
+    assert min(reported) == "2024-09-30" and min(derived) < "2021-10-01" and max(derived) < "2024-06-30"
+    assert all(p["derived"] == "net income / diluted EPS" for p in derived.values())
+    for e, p in derived.items():  # within cent rounding of the true count, filed with the 10-Q
+        assert p["val"] == pytest.approx(F.shares(date.fromisoformat(e)), rel=0.005)
+        assert p["filed"] == (date.fromisoformat(e) + timedelta(days=35)).isoformat()
+    full = fund.extract(F.companyfacts(NetIncomeLoss=googl_like()["facts"]["us-gaap"]["NetIncomeLoss"]["units"]["USD"]), F.CIK)
+    assert all(full["shares"]["diluted_q"][e] == p for e, p in reported.items())  # a tagged count always wins
+    assert not any(p.get("derived") for p in full["shares"]["diluted_q"].values())  # nothing derived when all are tagged
+    # the valuation history goes back five years again instead of starting when the tags do
+    raw = rows_of(F.tiingo_rows(300, 0.0004))
+    lengths = {}
+    for name, facts in (("tagged only", googl_like(eps_fn=lambda e: 0.0)), ("with fallback", googl_like())):
+        r = fund.extract(facts, F.CIK)
+        lengths[name] = metrics.valuation(fund.summarize(r, CFG), r, raw, None, CFG)["vs_history"]["price_to_sales"]["points"]
+    assert lengths["tagged only"] <= 28 and lengths["with fallback"] >= 59
+    # dilution compares reported counts only; the quarterly table marks a derived count
+    s = fund.summarize(rec, CFG)
+    assert s["dilution_yoy_pct"] == fund.summarize(fund.extract(googl_like(eps_fn=lambda e: 0.0), F.CIK), CFG)["dilution_yoy_pct"]
+    old = {x["end"]: x for x in fund.quarterly_table(rec, 40, q)}
+    assert old["2023-09-30"]["diluted_shares_derived"] == "net income / diluted EPS"
+    assert "diluted_shares_derived" not in old["2025-09-30"]
+
+
+def test_derived_share_counts_skip_small_eps_and_keep_the_outlier_filter():
+    # EPS under $0.10 (rounding alone over 5%): nothing derived
+    rec = fund.extract(googl_like(eps_fn=lambda e: 0.05), F.CIK)
+    assert not any(p.get("derived") for p in rec["shares"]["diluted_q"].values())
+    # a derived count 1000x off (a filing that gave EPS in thousandths) is dropped like any other outlier
+    facts = googl_like()
+    for e in facts["facts"]["us-gaap"]["EarningsPerShareDiluted"]["units"]["USD/shares"]:
+        if e["end"] == "2022-09-30":
+            e["val"] = e["val"] * 1000
+    rec = fund.extract(facts, F.CIK)
+    assert rec["shares"]["diluted_q"]["2022-09-30"]["derived"]
+    s = fund.summarize(rec, CFG)
+    assert [x["end"] for x in s["share_outliers"]] == ["2022-09-30"]
+    # EPS reported only in a later filing than net income: no common filing, nothing derived for that period
+    facts = googl_like()
+    for e in facts["facts"]["us-gaap"]["EarningsPerShareDiluted"]["units"]["USD/shares"]:
+        if e["end"] == "2022-12-31":
+            e["accn"] += "-later"
+    assert "2022-12-31" not in fund.extract(facts, F.CIK)["shares"]["diluted_q"]
 
 
 def test_history_percentiles_rank_yields_so_negative_periods_count_as_expensive():

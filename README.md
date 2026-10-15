@@ -183,7 +183,9 @@ run): a cap added since, like the date rule below, lowers a reused rating, and t
 which ones changed. Runs from before the direction labels (below) have none: their evidence counts as
 pointing the rating's way, so nothing changes, and every non-zero topic resting on unlabelled evidence is
 listed as **direction not checked** (`news.direction_unchecked`; page, email, batch email) until a fresh
-run labels it. The row is
+run labels it. The one check a re-score runs again: archived Form 4 XML items left unverified are re-read
+on the normalised text (below; `news.rechecked`), so a rating capped only because they failed gets its
+caps re-applied on the new result. The row is
 appended as usual with `news_from` set to the run whose news was used (blank for a run's own news). A
 re-score costs about $0.03 a ticker (the write-up), so it is titled "Stock research (rescore) <tickers>"
 and counted against its own cap of 30 tickers a day (`batch.max_rescore_tickers_per_day`), not the full
@@ -203,9 +205,14 @@ runs' 30; the page estimates it from recent re-scores and leaves it out of the f
 Fundamentals come from SEC XBRL companyfacts. 10-Q cash-flow figures are year-to-date, so quarters are
 derived by differencing as the capex pipeline does, and Q4 is the 10-K year minus nine months. Each
 figure keeps the date it was first filed, so the valuation history only uses what was public at each
-month end. Historical share counts are put in today's units using the split factors in the price data;
-a count more than 10x off the median of its neighbours on both sides (a filing that gave 29,452 for
-29.5 million) is dropped, with a note (`valuation.share_outlier_x`). Foreign filers (20-F / 40-F, IFRS)
+month end. A quarter (or year) with no diluted share count tagged gets one derived as net income /
+diluted EPS (`NetIncomeLoss` / `EarningsPerShareDiluted`, both undimensioned, same period, from the first
+filing that gave both; skipped when |EPS| is under $0.10, where cent rounding alone is over 5%), marked
+"net income / diluted EPS" (an asterisk in the quarterly table). Alphabet tags its diluted count only from
+2023-06-30, first filed in July 2024, so without it its history started in mid-2024. Dilution year on year
+still compares reported counts only. Historical share counts are put in today's units using the split
+factors in the price data; a count more than 10x off the median of its neighbours on both sides (a filing
+that gave 29,452 for 29.5 million) is dropped, with a note (`valuation.share_outlier_x`), derived ones too. Foreign filers (20-F / 40-F, IFRS)
 report annually: growth, quality and balance sheet use the annual figures, and valuation is marked
 missing (reporting currency and ADR ratios aren't reconciled).
 
@@ -280,11 +287,16 @@ acceleration, dilution, FCF yield vs the 10-year, the trend inputs) go as a dire
 never a signed number: "growth slowed by 1.1 pp from the previous quarter", "FCF yield 3.9 pp below the
 10-year Treasury yield", "58.3% below its 52-week high" (`run.SIGNED`), so the note can't say "slowed by
 −1.1 pp". Levels such as margins stay numbers. The prompt tells Claude to keep that precision and that
-form.
+form, and that the key risks and "what would change" are about the company and its stock: caveats about
+the screen's own data (reused news, unchecked directions, a short history) are shown elsewhere and stay out.
 
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
-tiered (primary / major / other) and fetched as in the capex pipeline. Only in-window evidence counts toward
+tiered (primary / major / other) and fetched as in the capex pipeline, except a raw SEC Form 4 XML file
+(sec.gov `.../ownership.xml`, `wk-form4_*.xml`): read as plain text its prices are "219.7200" and its roles a
+bare "1", so `stocks/form4.py` reads it raw and checks the claim on a normalised text (trailing decimal
+zeros trimmed, in the claim too; Director / Officer + title / 10% owner from the role flags; sale /
+purchase / exercise / tax withholding for codes S / P / M / F; written dates also as YYYY-MM-DD). Only in-window evidence counts toward
 the caps: a source that was verified or unreachable and whose event date is no more than
 `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
 insider sales of Sep 4 and 14, Oracle's Sep 10 results, Palantir's Aug 3 guidance, in an Oct 15 run)

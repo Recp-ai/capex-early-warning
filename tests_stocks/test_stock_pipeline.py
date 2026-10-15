@@ -576,6 +576,22 @@ def test_insider_items_are_dated_by_their_form_4_transaction_date(sandbox, monke
     assert "For a Form 4 or other insider item it is the transaction date" in topics_system and "not the filing date" in topics_system
 
 
+def test_write_up_risks_are_about_the_company_not_the_screens_data():
+    for words in ("key_risks and what_would_change are about the company and its stock",
+                  "Leave out caveats about this screen's own data", "news ratings reused from an earlier run",
+                  "directions not checked", "a short valuation history"):
+        assert words in research.WRITEUP_SYSTEM.replace("\n  ", " "), words
+
+
+def test_email_quotes_guidance_without_doubled_quote_marks():
+    r = {"run_id": "2026-10-15T13:48:51Z", "ticker": "INOD", "name": "INNODATA", "rating": "Hold", "score": 62,
+         "confidence": "Medium", "guidance": {"guidance": [{"metric": "revenue", "period": "FY2026",
+                                                             "sentence": "\u201cWe are reiterating our full-year 2026 revenue growth guidance."}]}}
+    _, body_html, _ = notify.build_email(r, None)
+    assert "\u201cWe are reiterating" in body_html and "\u201c\u201c" not in body_html
+    assert notify.unquote('"Quoted," he said.') == 'Quoted," he said.' and notify.unquote(None) == ""
+
+
 def test_claude_output_schemas_hold_no_rating_or_score():
     topics = research.TOPICS_SCHEMA["properties"]["topics"]["properties"]
     assert list(topics) == research.TOPIC_KEYS

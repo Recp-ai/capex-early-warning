@@ -93,6 +93,10 @@ the data, exactly as given, and never give a price target. Plain English, no hyp
 - key_risks: 3-5 short items.
 - what_would_change: 2-4 short items naming what would move the rating up or down (e.g. which factor would
   have to change, using the band distances given).
+- key_risks and what_would_change are about the company and its stock: its business, results, balance sheet,
+  valuation, share price, news and the factor scores. Leave out caveats about this screen's own data
+  (news ratings reused from an earlier run, directions not checked, a short valuation history, missing
+  inputs, the confidence level): the page shows those separately.
 - Valuation comes in two separate parts. factors.valuation.inputs are absolute levels today (P/S, P/FCF,
   EV/EBIT, FCF yield minus the 10-year Treasury yield): call them high or low only in absolute terms, and
   say so. factors.valuation.vs_own_history compares the multiples with the company's own month-end history:

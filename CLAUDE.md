@@ -173,10 +173,15 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   evidence"), then by direction (`scoring.cap_direction`: in-window sources but none pointing the rating's
   way, 0 and `direction_note`, shown as "capped: no recent evidence in this direction");
   `scoring.cap_all` runs the four in that order (`scoring.CAP_TAGS` holds the tags; the page's `CAP_TAGS`
-  must match, a test checks). Code turns the ratings into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
+  must match, a test checks). Source checks go through `form4.check_evidence`: sec.gov XML is fetched raw
+  with the run's SEC session (redirects only within sec.gov) and an ownership document is checked on
+  `form4.ownership_text` (values kept, trailing decimal zeros trimmed in page and claim, role flags and
+  transaction codes S/P/M/F as words, written dates also ISO); everything else goes to
+  `cew.sources.check_evidence` unchanged. Code turns the ratings into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
   is set, and never sets a rating, score or number. Its input (`run.writeup_brief`) rounds multiples and
   percentages / percentage points to 1 decimal (`run.ONE_DECIMAL`; dollar amounts and balance-sheet ratios
-  as stored, the stored data never rounded) and gives signed changes and gaps as a direction word plus the
+  as stored, the stored data never rounded; key risks and "what would change" are about the company and
+  its stock, never the screen's data caveats) and gives signed changes and gaps as a direction word plus the
   size ("growth slowed by 1.1 pp", "FCF yield 3.9 pp below the 10-year Treasury yield"; `run.SIGNED`, never
   a signed number); the prompt says to keep that precision and that form. Valuation versus own history reaches the write-up only
   as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
@@ -215,8 +220,11 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   "ex-prepayments" (FCF minus the excess prepayments, i.e. the increase beyond balance a year earlier x
   revenue growth, when that excess exceeds `prepayments.max_share_of_ocf` of operating cash flow); or
   "normalised" (the `fcf_spike` guard: a quarter's FCF above its revenue, or a TTM margin jump; median
-  quarterly margin x TTM revenue); the lower when both apply. Share counts off by more than
-  `valuation.share_outlier_x` from both neighbours are dropped. History percentiles rank yields
+  quarterly margin x TTM revenue); the lower when both apply. A period with no diluted share count gets one
+  derived as NetIncomeLoss / EarningsPerShareDiluted (`fundamentals.eps_shares`: undimensioned, same
+  period, first filing with both, |EPS| >= `MIN_EPS`; marked `derived`), only where none is tagged
+  (`fill_shares`); `dilution_yoy_pct` compares reported counts only. Share counts off by more than
+  `valuation.share_outlier_x` from both neighbours are dropped (derived ones too). History percentiles rank yields
   (`metrics.cheaper_share`), not multiples. Confidence is `scoring.confidence_detail` (points per issue,
   thresholds in `confidence`), with its reasons shown.
 - **Re-score (`--reuse-news`, stocks.yml input `reuse_news`).** Fetches SEC data and prices, re-scores the
@@ -226,7 +234,8 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   (`scoring.uncap`), re-dates the evidence as of the news run's date and runs `scoring.cap_all` again
   (`news.caps_reapplied` lists the ratings that changed). Archived evidence without direction labels counts
   as matching (no change); `news.direction_unchecked` (`run.direction_unchecked`) lists the non-zero topics
-  resting on it, which only a fresh run can check (page, email, batch email). `ratings.csv` gets `news_from` (last column; blank = the run's own news);
+  resting on it, which only a fresh run can check (page, email, batch email). The one source check a
+  re-score repeats: archived sec.gov Form 4 XML items left unverified (`form4.recheck`, `news.rechecked`). `ratings.csv` gets `news_from` (last column; blank = the run's own news);
   `publish.recent_cost` averages full runs and re-scores apart. A re-score run is titled
   "Stock research (rescore) <tickers>" and `api/stock.js` counts it against `batch.max_rescore_tickers_per_day`,
   never the full-run cap (and full runs never against the re-score cap).
@@ -274,6 +283,7 @@ stocks/scoring.py      sub-metric points, factors, news & risk (caps: sources, q
 stocks/wording.py      valuation vs own history in words (phrases, cheap/middle/expensive label) and the
                        write-up post-check (conflicts, one rewrite, sentences dropped)
 stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up (and its one rewrite)
+stocks/form4.py        source check of raw SEC Form 4 XML (normalised text), and its re-check on re-scores
 stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json (full history) and index.json
 stocks/batch.py        batch plan (validate, benchmarks once) and collect (quotes, publish, one email, batch.json)
 stocks/notify.py       optional email (same SMTP secrets); one summary email per batch

@@ -14,8 +14,10 @@ The ticker may also come from INPUT_TICKER, and --reuse-news from INPUT_REUSE_NE
 run's news topic ratings (Claude's) and source checks as they were (no research, no topic rating, no source
 check, no guidance extraction; labelled "news from <time>"). The code caps are applied to those ratings again
 (as of the news run's date); evidence archived before the direction labels counts as pointing the rating's
-way, and the topics resting on it are listed as needing a fresh run ("direction_unchecked"). The only Claude
-call is the write-up (twice if the post-check finds a conflict).
+way, and the topics resting on it are listed as needing a fresh run ("direction_unchecked"). The one source
+check that runs again: archived sec.gov Form 4 XML items left unverified are re-read on their normalised
+text (stocks/form4.py; "rechecked"). The only Claude call is the write-up (twice if the post-check finds a
+conflict).
 
 A batch's ticker job (--batch-out) rates the ticker with the benchmark prices the plan job fetched once
 (--shared), then writes its result and cache files under the --batch-out folder and nothing else: no quote,
@@ -33,7 +35,7 @@ from urllib.parse import urlsplit
 
 from cew import edgar_text, models, sources, util
 
-from . import batch, config, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring, wording
+from . import batch, config, form4, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring, wording
 
 BRIEF_SUMMARY_KEYS = ["latest_quarter_end", "ttm_end", "currency", "foreign", "revenue_ttm", "revenue_yoy_q",
                       "revenue_yoy_ttm", "acceleration_pp", "gross_margin_pct", "operating_margin_pct", "fcf_ttm",
@@ -305,11 +307,16 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
             source_check = {"skipped": "offline run"}
         else:
             print("Checking evidence URLs ...", flush=True)
-            source_check = {"counts": sources.check_evidence(topics, cfg)}
+            source_check = {"counts": form4.check_evidence(topics, cfg, sec)}
         for t in topics.values():
             scoring.cap_all(t, cfg)
-    news_recap, unchecked = None, None
+    news_recap, unchecked, rechecked = None, None, None
     if topics and reuse_news:  # the ratings stay Claude's (as archived); the caps are code, so they run again
+        rechecked = [] if offline else form4.recheck(topics, cfg, sec)
+        if rechecked:
+            source_check = {**(source_check or {}), "counts": sources.summary(topics), "form4_rechecked": len(rechecked)}
+            print("Form 4 items checked again: " + "; ".join(f"{c['topic']} {c['was']} -> {c['now']}" for c in rechecked),
+                  flush=True)
         news_recap = recap(topics, news_from, today, cfg)
         if news_recap:
             print("Caps re-applied to the reused news: " + "; ".join(f"{c['topic']} {c['was']:+d} -> {c['now']:+d}"
@@ -337,7 +344,8 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         "price": {"close": rows[-1]["close"], "date": rows[-1]["date"]} if rows else {},
         "fundamentals": s, "valuation": val, "trend": tr, "ust10y": dgs10, "guidance": g,
         "news": {"topics": topics or {}, "source_check": source_check, "reused_from": news_from,
-                 **({"caps_reapplied": news_recap, "direction_unchecked": unchecked} if reuse_news and topics else {})},
+                 **({"caps_reapplied": news_recap, "direction_unchecked": unchecked, "rechecked": rechecked}
+                    if reuse_news and topics else {})},
         "claude": claude,
         "news_from": news_from, "news_models": news_models,
         "subject_prefix": (cfg.get("email") or {}).get("subject_prefix", "[Stock]"),
@@ -374,6 +382,7 @@ def summary(report: dict, archived: str | None = None) -> dict:
             "source_check": (report.get("news") or {}).get("source_check"),
             "caps_reapplied": (report.get("news") or {}).get("caps_reapplied"),
             "direction_unchecked": (report.get("news") or {}).get("direction_unchecked"),
+            "rechecked": (report.get("news") or {}).get("rechecked"),
             "writeup_check": (report.get("writeup_check") or {}).get("note"), "email": report.get("email"),
             "errors": report.get("errors")}
 

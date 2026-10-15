@@ -84,7 +84,8 @@ def share_count(s: dict, rows: list[dict]) -> dict | None:
         cover = current_units(out_sh["val"], out_sh["end"], rows, dil_now)
         if dil_now is None or SHARE_BAND[0] <= cover / dil_now <= SHARE_BAND[1]:
             return {"shares": cover, "source": "cover page shares outstanding", "date": out_sh["end"]}
-    return {"shares": dil_now, "source": "diluted weighted-average shares", "date": dil_end}
+    return {"shares": dil_now, "source": f"diluted shares ({s['diluted_shares_derived']})" if s.get("diluted_shares_derived")
+            else "diluted weighted-average shares", "date": dil_end}
 
 
 MULTIPLES = {"price_to_sales": "sales_yield_pct", "price_to_fcf": "fcf_yield_pct", "ev_to_ebit": "ebit_yield_pct"}

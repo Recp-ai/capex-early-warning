@@ -244,6 +244,26 @@ def test_page_close_note_follows_the_same_rule_as_the_run():
     assert stale[orcl] is False  # ORCL's pre-market run: no "today's close not yet published"
 
 
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_money_uses_k_below_a_million_and_quotes_are_not_doubled():
+    page = (ROOT / "site" / "stocks.html").read_text()
+    money = re.search(r"\n  const money = v => \{.*?\n  \};\n", page, re.S).group(0)
+    cases = [298000, -298000, 1234, 999, 999.4, 999500, 5.4e6, 427.26e6, 999.4e6, 999.6e6, 1.234e9, 17.43e9, 2.5e12, 0, None]
+    script = (money + page_const("unquote") + f"console.log(JSON.stringify([{json.dumps(cases)}.map(money), "
+              + json.dumps(["\u201cWe are reiterating our guidance.", "\"Quoted.\"", "\u2018Single\u2019 ", "Plain."])
+              + ".map(unquote)]));")
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    fmt, quotes = json.loads(p.stdout)
+    assert fmt == ["$298K", "\u2212$298K", "$1K", "$999", "$999", "$1M", "$5M", "$427M", "$999M", "$1.0B", "$1.2B", "$17.4B",
+                   "$2.50T", "$0", "\u2014"]
+    assert quotes == ["We are reiterating our guidance.", "Quoted.", "Single", "Plain."]
+    # every money table and figure goes through the formatter: no hand-built "$" + number
+    assert "unquote(x.sentence)" in page and "money(r.fcf)" in page and "money(r.revenue)" in page
+    assert not re.search(r"\$\$\{\(?[a-z]", page.replace("${s}$${", "")), "a dollar figure built outside money()"
+
+
 HARNESS = r"""
 const world = JSON.parse(process.argv[3]);
 process.env.GITHUB_TOKEN = "ghp_TOKEN_SECRET"; process.env.RUN_PASSCODE = "pass-SECRET"; process.env.GITHUB_REPO = "o/r";

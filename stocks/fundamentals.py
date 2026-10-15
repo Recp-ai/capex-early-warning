@@ -136,6 +136,12 @@ PREPAYMENT_FAMILIES = {  # "deferred" only counts when "contract" isn't tagged (
 }
 DILUTED_TAGS = {"us-gaap": ["WeightedAverageNumberOfDilutedSharesOutstanding"],
                 "ifrs-full": ["AdjustedWeightedAverageShares", "WeightedAverageShares"]}
+# Share-count fallback for a period with no diluted count (Alphabet tags one only from 2023-06-30, first filed
+# in July 2024): net income / diluted EPS, both undimensioned, same period, from the first filing that gave
+# both. Skipped when |EPS| is under MIN_EPS (rounding to the cent alone is then over 5% off).
+EPS_SHARE_TAGS = {"us-gaap": ("NetIncomeLoss", "EarningsPerShareDiluted"), "ifrs-full": None}
+DERIVED_SHARES = "net income / diluted EPS"
+MIN_EPS = 0.10
 INSTANT_TAGS = {tax: sorted({t for group in (CASH_TAGS, INVESTMENT_TAGS, CASH_AND_INVESTMENT_TAGS, DEBT_TAGS) for t in group[tax]}
                             | {t for fam in PREPAYMENT_FAMILIES[tax].values() for ts in fam.values() for t in ts})
                 for tax in ("us-gaap", "ifrs-full")}
@@ -220,6 +226,52 @@ def share_points(entries: list[dict]) -> tuple[dict, dict]:
         elif 350 <= d <= 380:
             a[end] = {"val": f["val"], "filed": f["filed"]}
     return dict(sorted(q.items())), dict(sorted(a.items()))
+
+
+def _first_filings(entries: list[dict]) -> dict:
+    """(start, end) -> {accn: (filed, val)} for periodic duration facts: each filing's own value."""
+    out: dict = {}
+    for e in entries:
+        if _periodic(e) and "start" in e and e.get("accn"):
+            out.setdefault((e["start"], e["end"]), {}).setdefault(e["accn"], (e.get("filed", ""), float(e["val"])))
+    return out
+
+
+def eps_shares(facts: dict, tax: str, currency: str) -> tuple[dict, dict]:
+    """(quarters, annual): end -> {"val", "filed", "derived"}, diluted share counts derived as net income /
+    diluted EPS (EPS_SHARE_TAGS) for each 80-100 / 350-380 day period that has both, from the first filing
+    that reported both (as first filed, so a count before a split is in that day's units, like the price).
+    A ratio that isn't positive, or |EPS| under MIN_EPS, gives nothing."""
+    tags = EPS_SHARE_TAGS.get(tax)
+    if not tags:
+        return {}, {}
+    ni = _first_filings(_units(facts, tax, tags[0]).get(currency, []))
+    eps = _first_filings(_units(facts, tax, tags[1]).get(f"{currency}/shares", []))
+    q, a = {}, {}
+    for key in ni.keys() & eps.keys():
+        both = ni[key].keys() & eps[key].keys()
+        if not both:
+            continue
+        accn = min(both, key=lambda x: (ni[key][x][0], x))
+        (filed, n), e = ni[key][accn], eps[key][accn][1]
+        if abs(e) < MIN_EPS or n / e <= 0:
+            continue
+        d = _days(*key)
+        point = {"val": float(round(n / e)), "filed": filed, "derived": DERIVED_SHARES}
+        if 80 <= d <= 100:
+            q[key[1]] = point
+        elif 350 <= d <= 380:
+            a[key[1]] = point
+    return dict(sorted(q.items())), dict(sorted(a.items()))
+
+
+def fill_shares(shares: dict, derived_q: dict, derived_a: dict) -> dict:
+    """The diluted counts with the derived ones (eps_shares) added only where a period has no diluted count.
+    In place; returns `shares`."""
+    for kind, pts in (("diluted_q", derived_q), ("diluted_a", derived_a)):
+        have = shares.get(kind) or {}
+        shares[kind] = dict(sorted({**pts, **have}.items()))
+    return shares
 
 
 def _tax(facts: dict, name: str) -> dict:
@@ -317,6 +369,9 @@ def extract(facts: dict, cik: str) -> dict:
         if q or a:
             out["shares"] = {"tag": tag, "diluted_q": _keep(q, cutoff), "diluted_a": _keep(a, cutoff)}
             break
+    dq, da = eps_shares(facts, tax, currency)
+    if dq or da:
+        fill_shares(out["shares"], _keep(dq, cutoff), _keep(da, cutoff))
     out["shares"]["outstanding"] = cover_shares(facts)
     out["scan"] = tag_scan(facts, tax, currency, latest)
     return out
@@ -935,11 +990,18 @@ def summarize(f: dict, cfg: dict | None = None) -> dict:
     clean = shares_cleaned(f, float((cfg.get("valuation") or {}).get("share_outlier_x", SHARE_OUTLIER_X)))
     dq, da = clean["diluted_q"], clean["diluted_a"]
     s["share_outliers"] = clean["dropped"]
-    if dq or da:  # the newest count, quarterly or (10-K, 20-F) annual, compared with the same kind
+    if dq or da:  # the newest count, quarterly or (10-K, 20-F) annual
         e0 = max([*dq, *da])
         pts = dq if e0 in dq else da
         s["diluted_shares"], s["diluted_shares_end"] = pts[e0]["val"], e0
-        s["dilution_yoy_pct"] = _pct(pts[e0]["val"], (year_before(pts, e0) or {}).get("val"))
+        s["diluted_shares_derived"] = pts[e0].get("derived")
+    # dilution compares reported counts only (restated for splits; a derived count is as first filed),
+    # the newest with the same kind a year earlier
+    rq, ra = ({k: v for k, v in x.items() if not v.get("derived")} for x in (dq, da))
+    if rq or ra:
+        e1 = max([*rq, *ra])
+        pts = rq if e1 in rq else ra
+        s["dilution_yoy_pct"] = _pct(pts[e1]["val"], (year_before(pts, e1) or {}).get("val"))
     s["shares_outstanding"] = sh.get("outstanding")
     s["quarterly"] = quarterly_table(f, shares=dq)
     return s
@@ -958,10 +1020,10 @@ def quarterly_table(f: dict, n: int = 12, shares: dict | None = None) -> list[di
             return None if p is None else p["val"]
         r = rq[end]["val"]
         ocf, capex, opi = q("operating_cash_flow"), q("capex"), (oq.get(end) or {}).get("val")
-        sh = (shares.get(end) or {}).get("val")
+        sh = shares.get(end) or {}
         out.append({"end": end, "revenue": r, "revenue_yoy_pct": _pct(r, (year_before(rq, end) or {}).get("val")),
                     "operating_margin_pct": _ratio(opi, r), "fcf": None if ocf is None or capex is None else ocf - capex,
-                    "diluted_shares": sh})
+                    "diluted_shares": sh.get("val"), **({"diluted_shares_derived": sh["derived"]} if sh.get("derived") else {})})
     return out
 
 

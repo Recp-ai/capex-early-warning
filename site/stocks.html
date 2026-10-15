@@ -271,11 +271,16 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
 
   const num = (v, d = 1) => v == null || isNaN(v) ? "—" : Number(v).toLocaleString(undefined, { maximumFractionDigits: d, minimumFractionDigits: d });
   const signed = (v, d = 1, u = "") => v == null || isNaN(v) ? "—" : (v > 0 ? "+" : "") + Number(v).toFixed(d) + u;
+  // $K below $1M, $M below $1B, $B (1 decimal) below $1T; a figure that would round to 1,000 of a unit
+  // ("$1000K") moves up to the next one ("$1M")
   const money = v => {
     if (v == null || isNaN(v)) return "—";
     const a = Math.abs(v), s = v < 0 ? "−" : "";
-    return a >= 1e12 ? `${s}$${(a / 1e12).toFixed(2)}T` : a >= 1e9 ? `${s}$${(a / 1e9).toFixed(1)}B` : a >= 1e6 ? `${s}$${(a / 1e6).toFixed(0)}M` : `${s}$${a.toFixed(0)}`;
+    return a < 999.5 ? `${s}$${a.toFixed(0)}` : a < 999.5e3 ? `${s}$${(a / 1e3).toFixed(0)}K`
+      : a < 999.5e6 ? `${s}$${(a / 1e6).toFixed(0)}M` : a < 999.95e9 ? `${s}$${(a / 1e9).toFixed(1)}B` : `${s}$${(a / 1e12).toFixed(2)}T`;
   };
+  // A quoted sentence without its own outer quote marks (the page adds “ ”): INOD's release opens one it never closes
+  const unquote = t => String(t ?? "").replace(/^[\s"'“”‘’„«»]+|[\s"'“”‘’„«»]+$/g, "");
   const shares = v => v == null ? "—" : (v / 1e9 >= 1 ? (v / 1e9).toFixed(3) + "B" : (v / 1e6).toFixed(1) + "M");
   const usd = v => v == null || isNaN(v) ? "—" : "$" + (v > 0 && v < 0.01 ? Number(v).toFixed(4) : Number(v).toFixed(2));
   const perM = v => "$" + (v < 1 ? Number(v).toFixed(2) : String(+Number(v).toFixed(2)));
@@ -778,7 +783,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       kv("Cash + short-term inv." + cur, invUnknown ? "unknown" : money(bs.cash_and_investments), cashTitle, invUnknown ? "unk" : ""),
       kv("Debt" + cur, debtUnknown ? "unknown" : money(bs.debt), debtTitle, debtUnknown ? "unk" : ""),
       kv("Net debt" + cur, unk ? "unknown" : money(bs.net_debt), unk || "Debt minus cash and short-term investments (leases excluded)", unk ? "unk" : ""),
-      kv("Diluted shares", shares(S.diluted_shares), S.diluted_shares_end ? `Weighted average, period ended ${S.diluted_shares_end}` : ""),
+      kv("Diluted shares", shares(S.diluted_shares), S.diluted_shares_end ? `${S.diluted_shares_derived ? "Derived: " + S.diluted_shares_derived : "Weighted average"}, period ended ${S.diluted_shares_end}` : ""),
       kv("Diluted shares YoY", signed(S.dilution_yoy_pct, 1, "%")),
       kv("Market cap", money(V.market_cap), V.shares ? `${shares(V.shares.shares)} shares (${V.shares.source}, ${V.shares.date})` : ""),
       kv("Enterprise value", V.ev_note && V.enterprise_value == null ? "unknown" : money(V.enterprise_value), V.ev_note || "Market cap + debt − cash and short-term investments", V.ev_note && V.enterprise_value == null ? "unk" : ""),
@@ -803,8 +808,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     }).join("");
     const histFrom = (VH.price_to_sales || {}).from, maxNeg = (VH.price_to_fcf || {}).max_negative_share;
     const q = (S.quarterly || []).slice().reverse();
-    const qRows = q.map(r => `<tr><td>${esc(r.end)}</td><td>${money(r.revenue)}</td><td>${signed(r.revenue_yoy_pct, 1, "%")}</td><td>${r.operating_margin_pct == null ? "—" : num(r.operating_margin_pct) + "%"}</td><td>${money(r.fcf)}</td><td>${shares(r.diluted_shares)}</td></tr>`).join("");
-    const quotes = (G.guidance || []).map(x => `<blockquote><span class="meta">${esc(x.metric.replace(/_/g, " "))} · ${esc(x.period || "")}${x.stated_change && x.stated_change !== "not stated" ? " · " + esc(x.stated_change) : ""}</span>“${esc(x.sentence)}”</blockquote>`).join("");
+    const qRows = q.map(r => `<tr><td>${esc(r.end)}</td><td>${money(r.revenue)}</td><td>${signed(r.revenue_yoy_pct, 1, "%")}</td><td>${r.operating_margin_pct == null ? "—" : num(r.operating_margin_pct) + "%"}</td><td>${money(r.fcf)}</td><td${r.diluted_shares_derived ? ` title="${esc("Derived: " + r.diluted_shares_derived + " (no diluted share count tagged for the quarter)")}"` : ""}>${shares(r.diluted_shares)}${r.diluted_shares_derived ? "*" : ""}</td></tr>`).join("");
+    const quotes = (G.guidance || []).map(x => `<blockquote><span class="meta">${esc(x.metric.replace(/_/g, " "))} · ${esc(x.period || "")}${x.stated_change && x.stated_change !== "not stated" ? " · " + esc(x.stated_change) : ""}</span>“${esc(unquote(x.sentence))}”</blockquote>`).join("");
     const phrases = Object.entries(G.phrases || {}).filter(([, v]) => v.count || v.previous);
     const topics = (D.news || {}).topics || {};
     const topicHtml = Object.entries(topics).map(([k, t]) => {
@@ -820,6 +825,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const errs = Object.entries(D.errors || {});
     const recap = (((D.news || {}).caps_reapplied) || []).map(c => `${c.label}: ${signed(c.was, 0)} → ${signed(c.now, 0)}`).join("; ");
     const unchecked = (((D.news || {}).direction_unchecked) || []).map(c => `${c.label} ${signed(c.rating, 0)}`).join(", ");
+    const rechecked = ((D.news || {}).rechecked) || [];
     const wcheck = (D.writeup_check || {}).note;
     const T2 = (k, label, u) => kv(label, T[k] == null ? "—" : signed(T[k], 1, u));
 
@@ -873,7 +879,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           ${phrases.length ? `<table><thead><tr><th>Phrase</th><th>Now</th>${G.previous ? "<th>Previous</th>" : ""}</tr></thead><tbody>${phrases.map(([k, v]) => `<tr><td title="${esc((v.sentences || []).join("\n\n"))}">${esc(k)}</td><td>${v.count}</td>${G.previous ? `<td>${v.previous ?? "—"}</td>` : ""}</tr>`).join("")}</tbody></table>` : '<p class="sub">None of the tracked phrases appear.</p>'}`}
         </div>
         <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources, their tier, date and direction</span></h2>
-          ${D.news_from ? `<div class="flag quiet" style="margin:0 0 10px">News from ${esc(localTime(D.news_from))} (${esc(age(D.news_from))}): reused, not refreshed this run; the 30 days and source checks are as of then${Array.isArray((D.news || {}).caps_reapplied) ? `, and the code caps were applied again${recap ? ` (${esc(recap)})` : ""}` : ""}.${unchecked ? ` Direction not checked for ${esc(unchecked)}: the reused news has no direction labels; a fresh run checks it.` : ""}</div>` : ""}
+          ${D.news_from ? `<div class="flag quiet" style="margin:0 0 10px">News from ${esc(localTime(D.news_from))} (${esc(age(D.news_from))}): reused, not refreshed this run; the 30 days and source checks are as of then${Array.isArray((D.news || {}).caps_reapplied) ? `, and the code caps were applied again${recap ? ` (${esc(recap)})` : ""}` : ""}.${unchecked ? ` Direction not checked for ${esc(unchecked)}: the reused news has no direction labels; a fresh run checks it.` : ""}${rechecked.length ? ` Form 4 filings checked again on their XML: ${rechecked.filter(c => c.now === "verified").length} of ${rechecked.length} now verified.` : ""}</div>` : ""}
           ${topicHtml || `<p class="sub">${esc(((D.factors || {}).news_risk || {}).missing || "No news step this run.")}</p>`}</div>
       </section>
       ${hist ? `<section class="card" style="margin-bottom:16px"><h2>History <span class="sub">· every rating of ${esc(D.ticker)}, newest first; factor scores 0–100; times in your timezone (UTC on hover)</span></h2>

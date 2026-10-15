@@ -50,6 +50,14 @@ def close_lines(r: dict) -> list[str]:
     return out
 
 
+QUOTE_MARKS = " \t\n\"'“”‘’„«»"
+
+
+def unquote(sentence: str | None) -> str:
+    """A quoted sentence without its own outer quote marks (the email adds “ ”); the stored one stays verbatim."""
+    return (sentence or "").strip(QUOTE_MARKS)
+
+
 def direction_html(e: dict) -> str:
     """" · negative" after an evidence item's date (its direction label), or nothing when unlabelled."""
     return f" <span style='{MUTED}'>· {html.escape(e['direction'])}</span>" if scoring.labelled(e) else ""
@@ -86,7 +94,7 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                   f"{' (' + notes + ')' if notes else ''}</p>"
                   f"<p style='margin:2px 0'>{html.escape(t.get('summary') or '')}</p>" + (f"<ul>{items}</ul>" if items else ""))
     g = r.get("guidance") or {}
-    quotes = "".join(f"<li>{html.escape(x['metric'])} · {html.escape(x['period'])}: “{html.escape(x['sentence'][:400])}”</li>"
+    quotes = "".join(f"<li>{html.escape(x['metric'])} · {html.escape(x['period'])}: “{html.escape(unquote(x['sentence'])[:400])}”</li>"
                      for x in g.get("guidance") or [])
     li = lambda xs: "".join(f"<li>{html.escape(x)}</li>" for x in xs or [])  # noqa: E731
     cost = (r.get("cost") or {}).get("total_usd")
@@ -105,6 +113,10 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     unchecked = unchecked_text(r)
     if unchecked:
         news_from += f"<p style='font-size:13px;color:#555'>{html.escape(unchecked)}.</p>"
+    rechecked = (r.get("news") or {}).get("rechecked") or []
+    if rechecked:
+        news_from += ("<p style='font-size:13px;color:#555'>Form 4 filings checked again on their XML: "
+                      + html.escape("; ".join(f"{c['label']}: {c['was']} → {c['now']}" for c in rechecked)) + ".</p>")
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">Stock research · {html.escape(r['run_id'])} · {html.escape(r['name'])} ({html.escape(r['ticker'])})</p>
 <h2 style="margin:0 0 4px;color:{RATING_COLOR.get(r['rating'], '#333')}">{html.escape(r['rating'])} — {r['score']} / 100</h2>
