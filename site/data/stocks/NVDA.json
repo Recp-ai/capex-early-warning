@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T14:09:10Z",
-  "generated_at": "2026-10-15T14:09:12+00:00",
+  "run_id": "2026-10-15T14:12:16Z",
+  "generated_at": "2026-10-15T14:12:17+00:00",
   "ticker": "NVDA",
   "sec_ticker": "NVDA",
   "cik": "0001045810",
@@ -40,7 +40,7 @@
   },
   "composite": {
     "score": 77,
-    "raw": 77.05,
+    "raw": 76.6,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -234,7 +234,7 @@
       "missing": null
     },
     "news_risk": {
-      "score": 54,
+      "score": 51,
       "metrics": {
         "guidance": {
           "value": 0,
@@ -261,8 +261,8 @@
           "note": null
         },
         "insider_activity": {
-          "value": 0,
-          "score": 50.0,
+          "value": -1,
+          "score": 25.0,
           "weight": 0.1,
           "note": null
         },
@@ -1341,7 +1341,7 @@
         "label": "Customer concentration"
       },
       "insider_activity": {
-        "rating": 0,
+        "rating": -1,
         "summary": "Insiders sold in the window and none bought. The largest sale was director Mark Stevens selling about 1.37 million shares from a trust; other sales were under pre-set 10b5-1 trading plans.",
         "evidence": [
           {
@@ -1351,8 +1351,9 @@
             "tier": "primary",
             "age_days": 27,
             "background": false,
-            "status": "unverified",
-            "check": "numbers 2/4, names 3/3 · missing: 219.72, 220.42 · Form 4 XML normalised"
+            "status": "verified",
+            "check": "numbers 4/4, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
           },
           {
             "claim": "Timothy Teter reported sales under a 10b5-1 plan adopted 2026-05-22.",
@@ -1365,9 +1366,7 @@
             "check": "numbers 6/6, names 2/2 · Form 4 XML normalised"
           }
         ],
-        "label": "Insider activity",
-        "rating_before_cap": -1,
-        "old_evidence_note": "Capped at 0 (was -1): no source that checked out is dated within the last 30 days; of the 1 that did, 1 undated"
+        "label": "Insider activity"
       },
       "product_competitive": {
         "rating": 0,
@@ -1400,8 +1399,8 @@
           "unreachable": 2
         },
         "insider_activity": {
-          "verified": 1,
-          "unverified": 1,
+          "verified": 2,
+          "unverified": 0,
           "unreachable": 0
         },
         "product_competitive": {
@@ -1413,19 +1412,31 @@
       "form4_rechecked": 1
     },
     "reused_from": "2026-10-15T06:32:01Z",
-    "caps_reapplied": [],
+    "caps_reapplied": [
+      {
+        "topic": "insider_activity",
+        "label": "Insider activity",
+        "was": 0,
+        "now": -1
+      }
+    ],
     "direction_unchecked": [
       {
         "topic": "analyst_actions",
         "label": "Analyst actions",
         "rating": 1
+      },
+      {
+        "topic": "insider_activity",
+        "label": "Insider activity",
+        "rating": -1
       }
     ],
     "rechecked": [
       {
         "topic": "insider_activity",
         "label": "Insider activity",
-        "claim": "Timothy Teter reported sales under a 10b5-1 plan adopted 2026-05-22.",
+        "claim": "Director Mark Stevens sold 1,356,000 shares at $219.72 and 10,000 shares at $220.42, held by a trust.",
         "was": "unverified",
         "now": "verified"
       }
@@ -1435,7 +1446,7 @@
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T06:32:01Z",
-      "archived": "data/stocks/runs/NVDA/2026-10-15T134850Z.json",
+      "archived": "data/stocks/runs/NVDA/2026-10-15T140910Z.json",
       "models": {
         "sources": {
           "research": "config",
@@ -1459,20 +1470,20 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "NVIDIA rates Buy on exceptional growth, margins and net cash, held back by middling valuation and trend scores.",
-    "thesis": "NVIDIA scores 77, a Buy, 3 points short of Strong Buy. Growth scores 100, with quarterly revenue up 105.8% year on year and growth sped up by 20.6 pp from the previous quarter, while quality (97) reflects a 74.7% gross margin, 65.2% operating margin and 41.9% FCF margin with diluted shares down 1.0% year on year. The balance sheet scores 98 on a net cash position and cash at 1.7x debt. Valuation scores only 53: in absolute terms the multiples are high (P/S of 17.6x, P/FCF of 42.0x, EV/EBIT of 26.9x, FCF yield 2.8 pp below the 10-year Treasury yield), though the stock is cheap against its own history, with EV/EBIT cheaper than at every one of the last 61 month-ends. Trend (61) and news risk (54) are middling, with the shares 7.5% below their 52-week high and 3.1 pp behind QQQ over the last 126 trading days.",
+    "headline": "NVIDIA rates Buy on surging growth, high margins and net cash, held back by a mid-range valuation score.",
+    "thesis": "NVIDIA scores 77, a Buy, just 3 points short of Strong Buy. Growth scores 100, with quarterly revenue up 105.8% year on year and growth sped up by 20.6 pp from the previous quarter, while quality (97) reflects a 74.7% gross margin, 65.2% operating margin, 41.9% FCF margin and diluted shares down 1.0% year on year. The balance sheet (98) is net cash, with cash at 1.7x debt. Valuation is the main drag at 53: in absolute terms the multiples are high (17.6x sales, 42.0x FCF, 26.9x EV/EBIT, FCF yield 2.8 pp below the 10-year Treasury yield), though the stock is cheap against its own history, with EV/EBIT cheaper than at every one of the last 61 month-ends. Trend (61) and news risk (51) are middling: the shares are 7.5% below their 52-week high and 3.1 pp behind QQQ over the last 126 trading days, and positive analyst actions are offset by insider selling.",
     "key_risks": [
-      "AI capex early warning sits at AMBER 6/18, so a slowdown in hyperscaler spending would hit a business that depends on it.",
-      "Absolute valuation is high, with P/S of 17.6x and an FCF yield 2.8 pp below the 10-year Treasury yield, leaving little room for disappointment.",
-      "Concentration in hyperscale customers remains a background risk.",
-      "Export controls and China antitrust issues persist, and the Q3 guide of $108.0 billion assumes no China Data Center compute revenue.",
-      "Insiders have been selling with no buying, including a sale of about 1.37 million shares by director Mark Stevens."
+      "The AI capex early warning is AMBER (6/18), so a slowdown in hyperscaler spending could hit demand.",
+      "Absolute valuation is high at 42.0x FCF and 17.6x sales, leaving little room for disappointment.",
+      "Revenue depends heavily on a small number of hyperscale customers.",
+      "Export controls and China antitrust issues remain a background regulatory risk, and current guidance assumes no China Data Center compute revenue.",
+      "Insiders have been selling, including a sale of about 1.37 million shares by director Mark Stevens."
     ],
     "what_would_change": [
-      "A gain of 3 points, for example from a firmer price trend or improved valuation or news scores, would lift the rating to Strong Buy.",
-      "A drop of 13 points would cut it to Hold, which would most likely take a growth slowdown plus weaker trend or news scores.",
-      "Results around November 25 meeting or beating the $108.0 billion revenue and 74.0% gross margin guide would support the growth and quality scores; a miss would weigh on them.",
-      "A move of the capex early warning from AMBER to a worse reading could cap the rating."
+      "A 3-point rise in the score, for example from a stronger trend or better news readings, would move the rating to Strong Buy.",
+      "A fall of 13 points would drop the rating to Hold, which would most likely require growth or quality to weaken sharply.",
+      "Results around November 25 that miss the $108.0 billion revenue guide or the 74.0% gross margin guide would pressure the growth and news scores.",
+      "Further deterioration in the AI capex warning signs could lead to the rating being capped."
     ]
   },
   "writeup_check": {
@@ -1487,15 +1498,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3645,
-        "output_tokens": 796,
+        "input_tokens": 3602,
+        "output_tokens": 757,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3645,
-            "output_tokens": 796,
+            "input_tokens": 3602,
+            "output_tokens": 757,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1506,46 +1517,34 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0305,
+        "cost_usd": 0.0295,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0305,
+    "total_usd": 0.0295,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 215.63,
-    "as_of": "2026-10-15T14:09:20Z",
+    "price": 216.19,
+    "as_of": "2026-10-15T14:12:16Z",
     "prev_close": 221.3
   },
   "close_note": {
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "weekday",
-    "run_et": "2026-10-15 10:09",
+    "run_et": "2026-10-15 10:12",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38748587437",
+    "run_id": "38749200900",
     "tickers": [
-      "RBRK",
-      "ORCL",
-      "MSFT",
-      "GOOGL",
-      "META",
-      "MSGS",
-      "NTAP",
-      "SHOP",
-      "TIC",
-      "ZS",
-      "GTLB",
-      "PLTR",
-      "INOD",
-      "NVDA"
+      "NVDA",
+      "ZS"
     ]
   },
   "chart": [
@@ -9123,6 +9122,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T14:12:16Z",
+      "ticker": "NVDA",
+      "rating": "Buy",
+      "score": "77",
+      "confidence": "High",
+      "growth": "100",
+      "quality": "97",
+      "balance_sheet": "98",
+      "valuation": "53",
+      "trend": "61",
+      "news_risk": "51",
+      "price": "221.3",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0295",
+      "overlay": "note",
+      "quote_price": "216.19",
+      "quote_as_of": "2026-10-15T14:12:16Z",
+      "news_from": "2026-10-15T06:32:01Z"
+    },
     {
       "timestamp": "2026-10-15T14:09:10Z",
       "ticker": "NVDA",
