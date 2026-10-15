@@ -13,7 +13,9 @@ The ticker may also come from INPUT_TICKER, and --reuse-news from INPUT_REUSE_NE
 --reuse-news re-fetches SEC data and prices and re-scores every code factor, but keeps the latest archived
 run's news topic ratings (Claude's) and source checks as they were (no research, no topic rating, no source
 check, no guidance extraction; labelled "news from <time>"). The code caps are applied to those ratings again
-(as of the news run's date). The only Claude call is the write-up (twice if the post-check finds a conflict).
+(as of the news run's date); evidence archived before the direction labels counts as pointing the rating's
+way, and the topics resting on it are listed as needing a fresh run ("direction_unchecked"). The only Claude
+call is the write-up (twice if the post-check finds a conflict).
 
 A batch's ticker job (--batch-out) rates the ticker with the benchmark prices the plan job fetched once
 (--shared), then writes its result and cache files under the --batch-out folder and nothing else: no quote,
@@ -71,11 +73,24 @@ def topic_brief(ticker, name, sector, s, val, tr, fs, g, ctx) -> dict:
     }
 
 
+# Write-up input precision (the stored data keeps full precision): multiples (P/S, P/FCF, EV/EBIT) and every
+# percentage or percentage-point input to 1 decimal, as the stocks page shows them. The balance-sheet ratios
+# (stored to 2 decimals), news ratings and dollar amounts go as they are.
+ONE_DECIMAL = {*scoring.SUB["growth"], *scoring.SUB["quality"], *scoring.SUB["trend"],
+               "price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp"}
+
+
+def brief_value(k: str, v):
+    """A factor input as the write-up gets it: rounded to 1 decimal when `k` is in ONE_DECIMAL."""
+    return round(v, 1) if k in ONE_DECIMAL and isinstance(v, (int, float)) and not isinstance(v, bool) else v
+
+
 def _factor_brief(k: str, f: dict) -> dict:
     ms = f.get("metrics") or {}
     if k == "valuation":  # the history comparison goes in words only (vs_own_history), never as a percentile
         ms = {m: v for m, v in ms.items() if not m.endswith("_percentile")}
-    return {"score": f.get("score"), "missing": f.get("missing"), "inputs": {m: v.get("value") for m, v in ms.items()},
+    return {"score": f.get("score"), "missing": f.get("missing"),
+            "inputs": {m: brief_value(m, v.get("value")) for m, v in ms.items()},
             "notes": {m: v["note"] for m, v in ms.items() if v.get("note")}}
 
 
@@ -106,8 +121,9 @@ def writeup_brief(r: dict) -> dict:
 
 def recap(topics: dict, news_from: str | None, today, cfg: dict) -> list[dict]:
     """--reuse-news: Claude's archived ratings with the code caps applied again (current config; event dates
-    re-checked as of the news run's date; source checks and tiers as archived). In place. Returns the topics
-    whose rating changed: [{"topic", "was", "now"}]."""
+    re-checked as of the news run's date; source checks and tiers as archived; evidence without a direction
+    label counts as pointing the rating's way). In place. Returns the topics whose rating changed:
+    [{"topic", "label", "was", "now"}]."""
     try:
         day = date.fromisoformat(str(news_from)[:10])
     except ValueError:
@@ -121,6 +137,13 @@ def recap(topics: dict, news_from: str | None, today, cfg: dict) -> list[dict]:
         if t.get("rating") != was:
             changed.append({"topic": k, "label": t.get("label") or k, "was": was, "now": t.get("rating")})
     return changed
+
+
+def direction_unchecked(topics: dict) -> list[dict]:
+    """--reuse-news: the non-zero topics resting on evidence without direction labels (archived before the
+    labels), whose direction only a fresh run can check: [{"topic", "label", "rating"}]."""
+    return [{"topic": k, "label": t.get("label") or k, "rating": t.get("rating")}
+            for k, t in topics.items() if scoring.direction_unchecked(t)]
 
 
 def checked_writeup(model: str, today, report: dict, usage: dict) -> tuple[dict, dict]:
@@ -254,12 +277,16 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
             source_check = {"counts": sources.check_evidence(topics, cfg)}
         for t in topics.values():
             scoring.cap_all(t, cfg)
-    news_recap = None
+    news_recap, unchecked = None, None
     if topics and reuse_news:  # the ratings stay Claude's (as archived); the caps are code, so they run again
         news_recap = recap(topics, news_from, today, cfg)
         if news_recap:
             print("Caps re-applied to the reused news: " + "; ".join(f"{c['topic']} {c['was']:+d} -> {c['now']:+d}"
                                                                      for c in news_recap), flush=True)
+        unchecked = direction_unchecked(topics)
+        if unchecked:
+            print("Direction not checked (no labels in the reused news; a fresh run checks it): "
+                  + ", ".join(f"{c['topic']} {c['rating']:+d}" for c in unchecked), flush=True)
     fs["news_risk"] = scoring.news_risk(topics, cfg, news_missing or (None if llm_on else "Claude step off (no ANTHROPIC_API_KEY or --no-llm)"))
 
     # 4. composite, rating, overlay
@@ -279,7 +306,8 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         "price": {"close": rows[-1]["close"], "date": rows[-1]["date"]} if rows else {},
         "fundamentals": s, "valuation": val, "trend": tr, "ust10y": dgs10, "guidance": g,
         "news": {"topics": topics or {}, "source_check": source_check, "reused_from": news_from,
-                 **({"caps_reapplied": news_recap} if reuse_news and topics else {})}, "claude": claude,
+                 **({"caps_reapplied": news_recap, "direction_unchecked": unchecked} if reuse_news and topics else {})},
+        "claude": claude,
         "news_from": news_from, "news_models": news_models,
         "subject_prefix": (cfg.get("email") or {}).get("subject_prefix", "[Stock]"),
         "disclaimer": publish.DISCLAIMER, "errors": errors,
@@ -314,6 +342,7 @@ def summary(report: dict, archived: str | None = None) -> dict:
             "close_note": cn.get("note"), "close_window": cn.get("close_window"),
             "source_check": (report.get("news") or {}).get("source_check"),
             "caps_reapplied": (report.get("news") or {}).get("caps_reapplied"),
+            "direction_unchecked": (report.get("news") or {}).get("direction_unchecked"),
             "writeup_check": (report.get("writeup_check") or {}).get("note"), "email": report.get("email"),
             "errors": report.get("errors")}
 

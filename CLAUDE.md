@@ -159,17 +159,24 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   only link to each other.
 - **Numbers only from code.** Growth, quality, balance sheet, valuation and trend (0-100 each) are
   computed from SEC companyfacts, Tiingo prices and `data/fred/DGS10.csv` by `stocks/scoring.py` with
-  `config/stocks.yaml`. Claude rates six news topics -2..+2 (the rubric in the config and prompt). Only
-  in-window evidence counts toward the caps (`scoring.in_window`: verified or unreachable, and an
-  `event_date` that is not `background`; undated or older items support nothing). The source check caps
-  each rating at its number of in-window sources (`scoring.cap_topic`; none checked out at all: 0), then
-  by source quality (`news_risk.source_quality`: ±2 needs a verified in-window primary- or major-tier
-  source, else ±1; only other-tier sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources`
-  sets `weak_sources_note`, shown as "capped: weak sources" on the page and in the email), then by date
+  `config/stocks.yaml`. Claude rates six news topics -2..+2 (the rubric in the config and prompt) and
+  labels each evidence item's `direction` (positive / negative / neutral; a label like `event_date`, never
+  a score). An item supports a rating only when it is in-window (`scoring.in_window`: verified or
+  unreachable, and an `event_date` that is not `background`; undated or older items support nothing) and
+  points the rating's way (`scoring.supports` / `points_with`: positive for +, negative for -, neutral
+  neither; an unlabelled item from an archived run matches). The source check caps each rating at its
+  number of supporting sources (`scoring.cap_topic`; none checked out at all: 0), then by source quality
+  (`news_risk.source_quality`: ±2 needs a verified supporting primary- or major-tier source, else ±1; only
+  other-tier sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources` sets
+  `weak_sources_note`, shown as "capped: weak sources" on the page and in the email), then by date
   (`scoring.cap_old_evidence`: no in-window source, 0 and `old_evidence_note`, shown as "capped: only older
-  evidence"); `scoring.cap_all` runs the three in that order. Code turns the ratings
-  into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
-  is set, and never sets a rating, score or number. Valuation versus own history reaches the write-up only
+  evidence"), then by direction (`scoring.cap_direction`: in-window sources but none pointing the rating's
+  way, 0 and `direction_note`, shown as "capped: no recent evidence in this direction");
+  `scoring.cap_all` runs the four in that order (`scoring.CAP_TAGS` holds the tags; the page's `CAP_TAGS`
+  must match, a test checks). Code turns the ratings into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
+  is set, and never sets a rating, score or number. Its input (`run.writeup_brief`) rounds multiples and
+  percentages / percentage points to 1 decimal (`run.ONE_DECIMAL`; dollar amounts and balance-sheet ratios
+  as stored, the stored data never rounded) and the prompt says to keep that precision. Valuation versus own history reaches the write-up only
   as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
   month-ends"; overall label cheap / middle / expensive, thresholds `valuation.history_label`), never the
   bare percentile; the absolute multiples are labelled absolute. P/FCF and EV/EBIT are compared with their
@@ -184,7 +191,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.
   Quotes (`prices.quotes`, Tiingo IEX `tngoLast`) are display only, never a score input: factors use the
-  latest official daily close, and the page says which close was scored (`prices.close_note`).
+  latest official daily close, and the page says which close was scored (`prices.close_note`). The page
+  labels a quote timestamped outside 9:30 am-4:00 pm ET on a weekday "pre-market" or "after hours"
+  (`quoteSession`, by the quote's own timestamp).
 - **Data quality, not silent zeros.** Balance-sheet tag lists live in `stocks/fundamentals.py` (debt by
   family; leases excluded). A cash / investment / debt figure is unknown (None), never zero, when a tag of
   its group stopped reporting (`balance_sheet.stopped_tag_quarters` / `no_debt_quarters`), only tags we
@@ -204,7 +213,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   passes the original `news_from` on), skips guidance extraction, and calls Claude for the write-up only.
   The ratings stay Claude's but the caps are code: `run.recap` restores each topic's Claude rating
   (`scoring.uncap`), re-dates the evidence as of the news run's date and runs `scoring.cap_all` again
-  (`news.caps_reapplied` lists the ratings that changed). `ratings.csv` gets `news_from` (last column; blank = the run's own news);
+  (`news.caps_reapplied` lists the ratings that changed). Archived evidence without direction labels counts
+  as matching (no change); `news.direction_unchecked` (`run.direction_unchecked`) lists the non-zero topics
+  resting on it, which only a fresh run can check (page, email, batch email). `ratings.csv` gets `news_from` (last column; blank = the run's own news);
   `publish.recent_cost` averages full runs and re-scores apart. A re-score run is titled
   "Stock research (rescore) <tickers>" and `api/stock.js` counts it against `batch.max_rescore_tickers_per_day`,
   never the full-run cap (and full runs never against the re-score cap).
@@ -247,7 +258,7 @@ stocks/prices.py       Tiingo EOD (ticker, SPY, QQQ, 5 years) -> data/stocks/pri
 stocks/guidance.py     latest earnings 8-K Exhibit 99.1: verbatim-checked guidance, phrase counts vs previous release
 stocks/metrics.py      valuation (now and point-in-time month-end history, percentiles on yields), trend, DGS10,
                        capex context, chart
-stocks/scoring.py      sub-metric points, factors, news & risk (caps: sources, quality, dates), composite,
+stocks/scoring.py      sub-metric points, factors, news & risk (caps: sources, quality, dates, direction), composite,
                        confidence, bands, overlay
 stocks/wording.py      valuation vs own history in words (phrases, cheap/middle/expensive label) and the
                        write-up post-check (conflicts, one rewrite, sentences dropped)

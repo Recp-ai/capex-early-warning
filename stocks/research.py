@@ -1,9 +1,11 @@
 """Claude for one stock: news research (web search), topic ratings against a fixed rubric, and the write-up.
 
 1. research: the research model searches the last `news_window_days` of news (at most `max_web_searches`).
-2. topics: the scoring model rates six topics -2..+2 with cited evidence (structured output). The evidence
-   is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable sources,
-   their tiers and their dates, and code turns the ratings into the news & risk score (stocks/scoring.py).
+2. topics: the scoring model rates six topics -2..+2 with cited evidence (structured output), each item
+   labelled with its event date and direction (positive / negative / neutral; labels, never scores). The
+   evidence is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable
+   sources, their tiers, their dates and their direction, and code turns the ratings into the news & risk
+   score (stocks/scoring.py).
 3. write-up: once code has set every score and the rating, the scoring model writes the headline, thesis,
    key risks and what would change the rating. It is given the rating; it never sets it or any number, and
    gets valuation versus the company's own history only as code-built phrases (stocks/wording.py, which
@@ -60,6 +62,13 @@ Default to 0 unless the notes give specific, sourced news. Rules:
   by their tier: {quality_rule}
 - event_date for every evidence item: when it happened, YYYY-MM-DD, not when it was published; null when
   the notes don't establish it. Never guess.
+- direction for every evidence item: which way that item on its own points for the company on this topic:
+  positive, negative or neutral (no change, or neither good nor bad). Label each item by what it says, not
+  by the topic's rating: a downgrade, a cut target or a Sell rating (new or reiterated) is negative; a delay
+  or a lawsuit is negative; guidance reiterated unchanged is neutral. A label, not a score. A non-zero rating
+  counts only on sources pointing its way (positive for +1/+2, negative for -1/-2) that check out and are
+  dated within the last {window} days; with none it is capped at 0, and the size caps above count only
+  those sources.
 - Prefer primary and major-tier sources; the tier of each site in the notes is listed.
 - Guidance quotes from the latest earnings press release were read from the SEC filing and checked
   verbatim; you may use them for the guidance topic, citing the filing URL given with them.
@@ -69,6 +78,9 @@ WRITEUP_SYSTEM = """You write a short note on one stock for a private investor. 
 score, every factor score and the metrics below were computed by code from SEC filings, prices and the
 checked news ratings. You never set or change the rating or any number: use only numbers that appear in
 the data, exactly as given, and never give a price target. Plain English, no hype. Not investment advice.
+- Numbers come rounded to the precision to quote: multiples to one decimal (8.5x), percentages and
+  percentage points to one decimal (12.3%, -4.1 pp), dollar amounts as given. Keep that precision: write
+  them as given, never with more decimals, and don't round them further.
 - headline: one sentence, under 20 words.
 - thesis: 3-5 sentences on why the stock rates where it does, citing the factors that drive it.
 - key_risks: 3-5 short items.
@@ -90,7 +102,8 @@ _TOPIC = analyst._obj({
     "rating": {"type": "integer", "enum": [-2, -1, 0, 1, 2]},
     "summary": {"type": "string"},
     "evidence": {"type": "array", "items": analyst._obj({"claim": {"type": "string"}, "url": {"type": "string"},
-                                                         "event_date": analyst._DATE})},
+                                                         "event_date": analyst._DATE,
+                                                         "direction": {"type": "string", "enum": list(scoring.DIRECTIONS)}})},
 })
 TOPICS_SCHEMA = analyst._obj({"topics": analyst._obj({k: _TOPIC for k in TOPIC_KEYS})})
 WRITEUP_SCHEMA = analyst._obj({

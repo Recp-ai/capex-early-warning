@@ -2,7 +2,8 @@
 
 Every threshold and weight comes from config/stocks.yaml. Claude never sets a score: the news & risk
 factor is computed here from the per-topic ratings (-2..+2) after the source check has capped them (by the
-number of checkable sources dated inside the window, then by their tier, then by their dates).
+number of checkable sources dated inside the window and pointing the rating's way, then by their tier, then
+by their dates, then by their direction).
 """
 from __future__ import annotations
 
@@ -176,28 +177,60 @@ def in_window(e: dict) -> bool:
     return e.get("status") in CHECKED and bool(e.get("event_date")) and not e.get("background")
 
 
+DIRECTIONS = ("positive", "negative", "neutral")
+
+
+def direction_word(rating: int) -> str:
+    """The evidence direction a rating needs: "positive" for +1/+2, "negative" for -1/-2."""
+    return "positive" if rating > 0 else "negative"
+
+
+def labelled(e: dict) -> bool:
+    """The item carries a direction label (runs before the labels have none)."""
+    return e.get("direction") in DIRECTIONS
+
+
+def points_with(e: dict, rating: int) -> bool:
+    """The item points the rating's way: direction positive for a positive rating, negative for a negative one;
+    neutral supports neither. An unlabelled item (an archived run from before the labels) matches: no change."""
+    return not labelled(e) or e["direction"] == direction_word(rating)
+
+
+def supports(e: dict, rating: int) -> bool:
+    """The item counts toward a non-zero rating: in the window (`in_window`) and pointing its way (`points_with`)."""
+    return in_window(e) and points_with(e, rating)
+
+
 def _days(cfg: dict | None) -> int:
     return int(((cfg or {}).get("evidence_dates") or {}).get("background_after_days", 30))
 
 
+def _n(n: int, one: str, many: str) -> str:
+    return f"{n} {one if n == 1 else many}"
+
+
 def cap_topic(topic: dict, cfg: dict | None = None) -> None:
-    """A topic's rating can't exceed, in size, the number of its in-window sources (`in_window`). No source
-    checked out at all: 0. Sources checked out but none in the window: left to `cap_old_evidence` (0, "capped:
-    only older evidence"). In place."""
+    """A topic's rating can't exceed, in size, the number of its sources that support it (`supports`: in the
+    window and pointing its way). No source checked out at all: 0. Sources checked out but none supports it:
+    left to `cap_old_evidence` (none in the window: 0, "capped: only older evidence") and `cap_direction`
+    (none pointing its way: 0, "capped: no recent evidence in this direction"). In place."""
     ev = topic.get("evidence") or []
+    r = int(topic.get("rating") or 0)
     ok = sum(1 for e in ev if e.get("status") in CHECKED)
     win = sum(1 for e in ev if in_window(e))
-    r = int(topic.get("rating") or 0)
-    if ok and not win:
+    same = sum(1 for e in ev if supports(e, r)) if r else win
+    if ok and not same:
         return
-    if abs(r) > win:
+    if abs(r) > same:
         topic["rating_before_cap"] = r
-        topic["rating"] = (1 if r > 0 else -1) * min(abs(r), win)
+        topic["rating"] = (1 if r > 0 else -1) * min(abs(r), same)
+        way = f" and {direction_word(r)}" if any(labelled(e) for e in ev) else ""
+        more = ([f"{ok - win} more checked out but {'is' if ok - win == 1 else 'are'} older or undated"] if ok > win else []) + \
+            ([f"{win - same} more in the window {'is' if win - same == 1 else 'are'} not {direction_word(r)}"] if win > same else [])
         topic["cap_note"] = (f"Capped at 0 (was {r:+d}): {ok} of {len(ev)} sources verified or unreachable" if not ok else
-                             f"Capped at {topic['rating']:+d} (was {r:+d}): {win} of {len(ev)} sources verified or unreachable "
-                             f"and dated within the last {_days(cfg)} days"
-                             + (f" ({ok - win} more checked out but {'is' if ok - win == 1 else 'are'} older or undated)"
-                                if ok > win else ""))
+                             f"Capped at {topic['rating']:+d} (was {r:+d}): {same} of {len(ev)} sources verified or unreachable"
+                             f"{',' if way else ' and'} dated within the last {_days(cfg)} days{way}"
+                             + (f" ({'; '.join(more)})" if more else ""))
 
 
 WEAK_SOURCES = "capped: weak sources"
@@ -238,12 +271,17 @@ def cap_weak_sources(topic: dict, cfg: dict) -> None:
     cap is below Claude's rating and not above `cap_topic`'s. In place."""
     q = source_quality(cfg)
     ev = topic.get("evidence") or []
+    orig, r = int(topic.get("rating_before_cap", topic.get("rating")) or 0), int(topic.get("rating") or 0)
+    if not orig:
+        return
     tiers, need = q["strong_tiers"], q["strong_min_verified"]
-    n_strong = sum(1 for e in ev if e.get("status") == "verified" and e.get("tier") in tiers and in_window(e))
+    # the strong sources counted must support the rating (`supports`: in the window, pointing its way)
+    n_strong = sum(1 for e in ev if e.get("status") == "verified" and e.get("tier") in tiers and supports(e, orig))
+    way = f" {direction_word(orig)}" if any(labelled(e) for e in ev) else ""
     limit, why = 2, None
     if n_strong < need:
         limit = q["cap_without_strong"]
-        why = (f"a rating above {_pm(limit)} needs {need} verified {_tiers(tiers)} source{'s' * (need != 1)} dated "
+        why = (f"a rating above {_pm(limit)} needs {need} verified {_tiers(tiers)}{way} source{'s' * (need != 1)} dated "
                f"within the last {_days(cfg)} days; {n_strong} of its {len(ev)} source{'s' * (len(ev) != 1)} "
                f"{'qualifies' if n_strong == 1 else 'qualify'}")
     if ev and not any(e.get("tier") in tiers for e in ev):
@@ -252,7 +290,6 @@ def cap_weak_sources(topic: dict, cfg: dict) -> None:
         if lim < limit:
             limit = lim
             why = f"only other-tier sources{'' if verified else ', none verified'}"
-    orig, r = int(topic.get("rating_before_cap", topic.get("rating")) or 0), int(topic.get("rating") or 0)
     if why is None or abs(orig) <= limit or abs(r) < limit:
         return
     sign = 1 if orig > 0 else -1
@@ -263,7 +300,10 @@ def cap_weak_sources(topic: dict, cfg: dict) -> None:
 
 
 OLD_EVIDENCE = "capped: only older evidence"
-CAP_NOTES = ("cap_note", "weak_sources_note", "old_evidence_note")
+NO_DIRECTION = "capped: no recent evidence in this direction"
+CAP_NOTES = ("cap_note", "weak_sources_note", "old_evidence_note", "direction_note")
+# the page and email tag for each note that has one
+CAP_TAGS = (("weak_sources_note", WEAK_SOURCES), ("old_evidence_note", OLD_EVIDENCE), ("direction_note", NO_DIRECTION))
 
 
 def cap_old_evidence(topic: dict, cfg: dict) -> None:
@@ -290,11 +330,52 @@ def cap_old_evidence(topic: dict, cfg: dict) -> None:
                                   + (f"; of the {len(ok)} that did, " + " and ".join(parts) if parts else ""))
 
 
+def cap_direction(topic: dict, cfg: dict) -> None:
+    """Evidence direction, after the other three caps: a non-zero rating needs at least one source that supports
+    it (`supports`: checked out, dated inside the window and labelled positive for a positive rating, negative
+    for a negative one; unlabelled items match). When the window holds sources but none points the rating's
+    way, the rating is capped at 0 and "direction_note" set ("capped: no recent evidence in this direction" on
+    the page and in the email). In place."""
+    r = int(topic.get("rating") or 0)
+    if not r:
+        return
+    ev = topic.get("evidence") or []
+    win = [e for e in ev if in_window(e)]
+    if not win or any(points_with(e, r) for e in win):
+        return  # nothing in the window is `cap_old_evidence`'s case
+    want = direction_word(r)
+    if len(win) == 1:
+        seen = f"the 1 in the window is {win[0]['direction']} ({win[0]['event_date']})"
+    else:
+        by: dict = {}
+        for e in win:
+            by.setdefault(e["direction"], []).append(e["event_date"])
+        seen = f"of the {len(win)} in the window, " + " and ".join(f"{len(ds)} {d} ({', '.join(sorted(ds))})"
+                                                                for d, ds in sorted(by.items()))
+    rest = sum(1 for e in ev if points_with(e, r))
+    orig = int(topic.get("rating_before_cap", r) or 0)
+    topic["rating_before_cap"] = orig
+    topic["rating"] = 0
+    topic["direction_note"] = (f"Capped at 0 (was {orig:+d}): no {want} source that checked out is dated within the last "
+                               f"{_days(cfg)} days; {seen}"
+                               + (f"; {_n(rest, want + ' one', want + ' ones')} {'is' if rest == 1 else 'are'} older, "
+                                  "undated or didn't check out" if rest else ""))
+
+
+def direction_unchecked(topic: dict) -> bool:
+    """A non-zero rating resting on sources with no direction label (an archived run from before the labels,
+    reused by --reuse-news): treated as matching, so its direction was never checked; a fresh run checks it."""
+    r = int(topic.get("rating") or 0)
+    return bool(r) and any(supports(e, r) and not labelled(e) for e in topic.get("evidence") or [])
+
+
 def cap_all(topic: dict, cfg: dict) -> None:
-    """The three code caps in order: in-window sources, source quality, evidence dates. In place."""
+    """The four code caps in order: supporting sources (in the window, pointing the rating's way), source
+    quality, evidence dates, evidence direction. In place."""
     cap_topic(topic, cfg)
     cap_weak_sources(topic, cfg)
     cap_old_evidence(topic, cfg)
+    cap_direction(topic, cfg)
 
 
 def uncap(topic: dict) -> None:

@@ -173,6 +173,7 @@ def collect(out: Path, shared: Path | None, tickers: list[str], email: bool, cfg
                      "close_note": cn.get("note"), "close_window": cn.get("close_window"),
                      "cost_usd": (r.get("cost") or {}).get("total_usd"), "run_id": r["run_id"],
                      "news_from": r.get("news_from"),
+                     "direction_unchecked": [c["label"] for c in (r.get("news") or {}).get("direction_unchecked") or []],
                      "errors": sorted((r.get("errors") or {}).keys())})
     costs = [x["cost_usd"] for x in rows if x.get("cost_usd") is not None]
     summary = {"run_id": run_id, "run_url": run_url, "started_at": started, "tickers": rows,

@@ -188,6 +188,58 @@ def test_only_older_evidence_caps_a_topic_at_zero_and_shows_on_page_data_and_ema
     assert "Product and competitive news: +0, capped: only older evidence" in text and "Guidance changes: +1, capped" not in text
 
 
+
+def test_direction_labels_cap_topics_resting_on_evidence_pointing_the_other_way(sandbox, monkeypatch):
+    d40 = (util.today() - timedelta(days=40)).isoformat()
+    ev = {"guidance": [  # ORCL-like: the raise is older; the one recent item is a delay (negative)
+              {"claim": "Microsoft raised revenue guidance to $122 billion", "url": "https://www.reuters.com/g1",
+               "event_date": d40, "direction": "positive"},
+              {"claim": "Microsoft's Fairwater site is at risk of delay", "url": "https://www.reuters.com/g2",
+               "event_date": RECENT, "direction": "negative"}],
+          "analyst_actions": [  # RBRK-like: +1 on a reiterated Sell
+              {"claim": "Weiss Ratings reiterated a Sell (D-) rating on Microsoft", "url": "https://blog.example/w",
+               "event_date": RECENT, "direction": "negative"}],
+          "product_competitive": [{"claim": "Microsoft launched Copilot Max at $99", "url": "https://www.reuters.com/p",
+                                   "event_date": RECENT, "direction": "positive"}]}
+    pages = {"https://www.reuters.com/g1": "Microsoft raised revenue guidance to $122 billion.",
+             "https://www.reuters.com/g2": "Microsoft's Fairwater site is at risk of delay.",
+             "https://blog.example/w": "Weiss Ratings reiterated a Sell (D-) rating on Microsoft.",
+             "https://www.reuters.com/p": "Microsoft launched Copilot Max at $99 a month."}
+    _, fake = setup(monkeypatch, sandbox, claude=[
+        F.guidance_reply(), F.research_reply("n"),
+        F.topics_reply({"guidance": 1, "analyst_actions": 1, "product_competitive": 1}, ev), F.writeup_reply()])
+    monkeypatch.setattr(sources, "make_fetcher", lambda *a, **k: lambda u: (pages[u], None) if u in pages else (None, "HTTP 404"))
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    g, a, pc = (r["news"]["topics"][k] for k in ("guidance", "analyst_actions", "product_competitive"))
+    assert [e["direction"] for e in g["evidence"]] == ["positive", "negative"]  # labels kept, as Claude gave them
+    assert g["rating"] == 0 and g["rating_before_cap"] == 1 and set(g) & set(scoring.CAP_NOTES) == {"direction_note"}
+    assert g["direction_note"] == (f"Capped at 0 (was +1): no positive source that checked out is dated within the last 30 "
+                                   f"days; the 1 in the window is negative ({RECENT}); 1 positive one is older, undated or "
+                                   "didn't check out")
+    assert a["rating"] == 0 and a["direction_note"].startswith("Capped at 0 (was +1): no positive source")
+    assert pc["rating"] == 1 and not set(pc) & set(scoring.CAP_NOTES)
+    assert r["factors"]["news_risk"]["score"] == round(50 + 0.20 * 25)
+    assert "news" not in r or "direction_unchecked" not in r["news"]  # a fresh run checks every direction
+    # Claude is told to label each item and why; the write-up sees the cap
+    system = fake.calls[2]["system"]
+    assert "direction for every evidence item" in system and "a Sell rating (new or reiterated) is negative" in system
+    assert "{window}" not in system and "dated within the last 30 days; with none it is capped at 0" in system
+    assert "no positive source that checked out" in fake.calls[3]["messages"][0]["content"]
+    # the page reads it from the site JSON; the email shows the tag and each item's direction
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["news"]["topics"]["guidance"]["direction_note"] == g["direction_note"]
+    assert detail["news"]["topics"]["guidance"]["evidence"][1]["direction"] == "negative"
+    _, body_html, text = notify.build_email(r, None)
+    assert body_html.count(scoring.NO_DIRECTION) == 2 and "· negative</span>" in body_html and "· positive</span>" in body_html
+    assert "Guidance changes: +0, capped: no recent evidence in this direction (Capped at 0 (was +1)" in text
+    assert "Analyst actions: +0, capped: no recent evidence in this direction" in text
+    assert "Product and competitive news: +1, capped" not in text
+    page = (ROOT / "site" / "stocks.html").read_text()
+    for note, tag in scoring.CAP_TAGS:  # the page's tags are the module's
+        assert f'["{note}", "{tag}"]' in page
+
+
 def cheap_below(monkeypatch, share):
     """config.load() with valuation.history_label.cheap_below = share (the synthetic MSFT sits at ~40%)."""
     cfg = copy.deepcopy(CFG)
@@ -236,6 +288,35 @@ def test_write_up_gets_valuation_history_in_words_and_a_conflict_is_regenerated_
     assert c["note"] == ("Write-up check: 1 sentence of the first draft called valuation expensive against its own history, "
                          "but code labels it cheap; regenerated once and the new draft passed.")
     assert len(r["cost"]["steps"]["writeup"]["per_request"]) == 2  # both drafts are paid for
+
+
+
+def test_write_up_numbers_are_rounded_in_its_input_not_in_the_stored_data(sandbox, monkeypatch):
+    _, fake = setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    brief = brief_of(fake.calls[3])
+    rounded = 0
+    for k, f in brief["factors"].items():
+        for m, v in f["inputs"].items():
+            stored = r["factors"][k]["metrics"][m]["value"]
+            if m in run.ONE_DECIMAL and stored is not None:
+                assert v == round(stored, 1), (k, m)
+                rounded += v != stored
+            else:
+                assert v == stored, (k, m)  # balance-sheet ratios and news ratings as they are
+    assert rounded >= 5  # the synthetic company's percentages and multiples carry more decimals
+    assert set(run.ONE_DECIMAL) >= {"price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp", "revenue_yoy_q",
+                                     "acceleration_pp", "operating_margin_pct", "rs_spy_pp", "drawdown_52w_pct"}
+    assert "net_debt_to_fcf" not in run.ONE_DECIMAL and brief["price"] == r["price"]  # dollar amounts as now
+    stored = [m["value"] for f in r["factors"].values() for m in (f.get("metrics") or {}).values()
+              if isinstance(m.get("value"), float)]
+    assert any(round(v, 1) != v for v in stored)  # the archive keeps full precision
+    assert run.brief_value("price_to_sales", 8.4523) == 8.5 and run.brief_value("revenue_yoy_q", -12.349) == -12.3
+    assert run.brief_value("price_to_fcf", None) is None and run.brief_value("cash_to_debt", 0.34) == 0.34
+    system = fake.calls[3]["system"]
+    assert "multiples to one decimal (8.5x), percentages and\n  percentage points to one decimal" in system
+    assert "Keep that precision" in system
 
 
 def test_a_conflict_left_after_the_rewrite_is_dropped_and_noted_in_run_details(sandbox, monkeypatch):
@@ -446,7 +527,9 @@ def test_claude_output_schemas_hold_no_rating_or_score():
     topics = research.TOPICS_SCHEMA["properties"]["topics"]["properties"]
     assert list(topics) == research.TOPIC_KEYS
     assert topics["guidance"]["properties"]["rating"]["enum"] == [-2, -1, 0, 1, 2]
-    assert topics["guidance"]["properties"]["evidence"]["items"]["required"] == ["claim", "url", "event_date"]
+    item = topics["guidance"]["properties"]["evidence"]["items"]
+    assert item["required"] == ["claim", "url", "event_date", "direction"]
+    assert item["properties"]["direction"] == {"type": "string", "enum": ["positive", "negative", "neutral"]}
     assert list(research.WRITEUP_SCHEMA["properties"]) == ["headline", "thesis", "key_risks", "what_would_change"]
     for word in ("+2", "-2", "two credible sources", "don't re-rate valuation"):
         assert word in research.TOPICS_SYSTEM
@@ -627,6 +710,37 @@ def test_reuse_news_applies_the_code_caps_again_to_claudes_archived_ratings(sand
     assert run.main(["MSFT", "--reuse-news"]) == 0
     again = latest_run()
     assert again["news"]["topics"] == r["news"]["topics"] and again["news"]["caps_reapplied"] == []
+
+
+
+def test_reuse_news_treats_unlabelled_evidence_as_matching_and_lists_what_a_fresh_run_would_check(sandbox, monkeypatch):
+    setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    old = latest_run()  # archived before direction labels: the fakes' evidence has none
+    assert not any("direction" in e for t in old["news"]["topics"].values() for e in t["evidence"])
+    # one topic of the archive does carry labels, pointing against its rating: the direction cap applies on reuse
+    old["news"]["topics"]["product_competitive"] = {"label": "Product and competitive news", "rating": 1, "summary": "Delay.",
+                                                   "evidence": [{"claim": "Copilot Max slipped to 2027", "url": "https://www.reuters.com/d",
+                                                                 "event_date": RECENT, "status": "verified", "tier": "major",
+                                                                 "direction": "negative"}]}
+    publish.archive_run(old)
+    F.fake_claude(monkeypatch, [F.writeup_reply()])
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    r = latest_run()
+    t = r["news"]["topics"]
+    assert t["guidance"] == old["news"]["topics"]["guidance"] and t["analyst_actions"] == old["news"]["topics"]["analyst_actions"]
+    assert t["product_competitive"]["rating"] == 0 and t["product_competitive"]["direction_note"].startswith("Capped at 0 (was +1)")
+    assert r["news"]["caps_reapplied"] == [{"topic": "product_competitive", "label": "Product and competitive news", "was": 1, "now": 0}]
+    assert r["news"]["direction_unchecked"] == [{"topic": "guidance", "label": "Guidance changes", "rating": 1},
+                                                {"topic": "analyst_actions", "label": "Analyst actions", "rating": -1}]
+    assert run.summary(r)["direction_unchecked"] == r["news"]["direction_unchecked"]
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["news"]["direction_unchecked"] == r["news"]["direction_unchecked"]
+    _, body_html, text = notify.build_email(r, None)
+    unchecked = ("Direction not checked for Guidance changes +1, Analyst actions -1: the reused news has no direction labels; "
+                 "a fresh run checks it")
+    assert unchecked in text and unchecked in body_html
+    assert "Product and competitive news: +0, capped: no recent evidence in this direction" in text
 
 
 def test_reuse_news_without_an_earlier_run_rates_without_news(sandbox, monkeypatch):

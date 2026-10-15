@@ -204,8 +204,12 @@ trend:
 # quality (below; tiers from source_tiers; the strong-tier sources it counts must be in-window too): the
 # topic keeps the lower of the two caps, and the stocks page and email show "capped: weak sources" when the
 # quality rule lowered it. Then evidence dates: with no in-window source, the rating is capped at 0, shown
-# as "capped: only older evidence". --reuse-news re-applies all three caps to the archived ratings (as of
-# the news run's date).
+# as "capped: only older evidence". Then direction: Claude labels each item positive / negative / neutral,
+# and an item supports a rating only when it points the rating's way (positive for +, negative for -), so
+# the counts above use only those; in-window sources that all point the other way (or neither way) cap the
+# rating at 0, shown as "capped: no recent evidence in this direction". --reuse-news re-applies all four
+# caps to the archived ratings (as of the news run's date; evidence archived before the direction labels
+# counts as pointing the rating's way and is listed as needing a fresh run).
 news_risk:
   points_per_step: 25
   source_quality:

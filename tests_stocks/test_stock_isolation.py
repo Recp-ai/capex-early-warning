@@ -156,6 +156,69 @@ def test_batch_tags_clear_once_results_are_on_the_page_but_failures_stay_until_d
     assert "Date.now() - B.started < 2 * 3600e3 || batchFailed(B)" in page
 
 
+
+def page_const(name):
+    """One top-level `const name = ...;` line (or statement) of the stocks page's script, as source."""
+    page = (ROOT / "site" / "stocks.html").read_text()
+    return re.search(rf"\n  const {name} = .*?;\n", page, re.S).group(0)
+
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_quotes_outside_the_regular_session_are_labelled_by_their_own_timestamp():
+    cases = {
+        "2026-10-14T13:29:59Z": "pre-market",    # Wed 9:29:59 am EDT
+        "2026-10-14T13:30:00Z": "",              # 9:30 am: the open
+        "2026-10-14T19:59:00.123Z": "",
+        "2026-10-14T20:00:00Z": "",              # 4:00 pm: the close (tngoLast becomes the official close)
+        "2026-10-14T20:00:01Z": "after hours",
+        "2026-10-14T23:12:00Z": "after hours",   # 7:12 pm EDT
+        "2026-10-15T03:30:00Z": "after hours",   # 11:30 pm EDT on Wednesday, still Wednesday in New York
+        "2026-10-15T08:00:00Z": "pre-market",    # 4:00 am EDT Thursday
+        "2026-12-14T14:29:00Z": "pre-market",    # Mon 9:29 am EST (winter time)
+        "2026-12-14T14:30:00Z": "",
+        "2026-12-14T21:00:00Z": "",              # 4:00 pm EST
+        "2026-12-14T21:05:00Z": "after hours",
+        "2026-10-17T15:00:00Z": "after hours",   # Saturday: outside the weekday session
+        "not a time": "",
+    }
+    script = (page_const("ET_FMT") + page_function("etParts") + page_function("quoteSession")
+              + f"console.log(JSON.stringify({json.dumps(list(cases))}.map(quoteSession)));")
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    assert dict(zip(cases, json.loads(p.stdout))) == cases
+    page = (ROOT / "site" / "stocks.html").read_text()
+    # next to the time in the list (wide and narrow screens) and in the detail card's latest line
+    assert "esc(quoteTime(L.as_of)) : \"close \" + esc(shortDay(L.date))}${sess}</span><span class=\"show-sm\">${esc(brief)}${sess}" in page
+    assert "Latest ${num(q.price, 2)} · ${esc(quoteTime(q.as_of))}${sessTag(q.as_of)}" in page
+
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_history_table_has_a_column_per_factor_and_scrolls_on_narrow_screens():
+    rows = [{"timestamp": "2026-10-15T10:32:37Z", "rating": "Sell", "score": "44", "confidence": "Low", "growth": "86",
+             "quality": "48", "balance_sheet": "13", "valuation": "41", "trend": "1", "news_risk": "51", "price": "130.55",
+             "research_model": "claude-sonnet-5-5", "scoring_model": "claude-opus-5-5", "cost_usd": "0.03"},
+            {"timestamp": "2026-10-14T19:07:21Z", "rating": "Buy", "score": "75", "confidence": "Medium", "growth": "65",
+             "quality": "86", "balance_sheet": "99", "valuation": "", "trend": "", "news_risk": "59"}]
+    stubs = ("const esc = s => String(s ?? ''); const localTime = t => t; const runTime = t => t; const ratingBadge = r => r;"
+             "const num = v => String(v); const usd = v => '$' + v; const short = id => id;")
+    script = (stubs + page_const("HIST_FACTORS") + page_function("historyTable")
+              + f"console.log(JSON.stringify([historyTable({json.dumps(rows)}), historyTable([]), historyTable(undefined)]));")
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    table, empty, none = json.loads(p.stdout)
+    assert empty == "" and none == ""
+    heads = re.findall(r"<th[^>]*>([^<]*)</th>", table)
+    assert heads == ["Time", "Rating", "Score", "Growth", "Quality", "Balance sheet", "Valuation", "Trend", "News",
+                     "Confidence", "Price", "Models", "Cost"]
+    body = re.findall(r"<tr>(.*?)</tr>", table)[1:]
+    cells = [re.findall(r"<td[^>]*>(.*?)</td>", r) for r in body]
+    assert [c[3:9] for c in cells] == [["86", "48", "13", "41", "1", "51"], ["65", "86", "99", "—", "—", "59"]]
+    assert table.startswith('<div class="scroll hist">')
+    page = (ROOT / "site" / "stocks.html").read_text()
+    assert ".hist th:first-child, .hist td:first-child { position: sticky; left: 0;" in page  # the time column stays put
+    assert "historyTable(D.history)" in page
+
+
 HARNESS = r"""
 const world = JSON.parse(process.argv[3]);
 process.env.GITHUB_TOKEN = "ghp_TOKEN_SECRET"; process.env.RUN_PASSCODE = "pass-SECRET"; process.env.GITHUB_REPO = "o/r";

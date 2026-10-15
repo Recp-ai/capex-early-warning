@@ -257,6 +257,22 @@ def test_batch_email_lists_each_rating_its_close_and_the_failures():
     assert "BAD: FAILED: BAD is not in SEC" in text and "Run at 5:00 pm ET" in text
 
 
+
+def test_batch_email_lists_reused_topics_whose_direction_is_unchecked():
+    row = {"status": "done", "rating": "Hold", "score": 58, "confidence": "Medium", "price": 110.0, "scored_on": "2026-10-14"}
+    b = {"tickers": [{"ticker": "RBRK", **row, "news_from": "2026-10-15T07:18:35Z",
+                      "direction_unchecked": ["Analyst actions", "Insider activity"]},
+                     {"ticker": "ZS", **row, "news_from": "2026-10-15T07:18:35Z", "direction_unchecked": []},
+                     {"ticker": "ORCL", **row}]}
+    _, body_html, text = notify.build_batch_email(b, None)
+    line = "RBRK (Analyst actions, Insider activity)"
+    assert f"Direction not checked (the reused news has no direction labels; a fresh run checks it): {line}." in body_html
+    assert f"Direction not checked (no labels in the reused news; a fresh run checks it): {line}." in text
+    assert "ZS (" not in text and "ORCL (" not in text
+    b["tickers"] = b["tickers"][1:]
+    assert "Direction not checked" not in "".join(notify.build_batch_email(b, None))
+
+
 # ---------------------------------------------------------------- quotes (Tiingo IEX, one request)
 ROWS = [F.iex_row("TIC", 8.68, 9.12), F.iex_row("BRK-B", 480.1, 479.0, "2026-10-14T19:59:00.123+00:00"),
         F.iex_row("NODATA", None), F.iex_row("AAPL", 230.0)]

@@ -50,6 +50,18 @@ def close_lines(r: dict) -> list[str]:
     return out
 
 
+def direction_html(e: dict) -> str:
+    """" · negative" after an evidence item's date (its direction label), or nothing when unlabelled."""
+    return f" <span style='{MUTED}'>· {html.escape(e['direction'])}</span>" if scoring.labelled(e) else ""
+
+
+def unchecked_text(r: dict) -> str | None:
+    """--reuse-news: the topics whose direction the reused news couldn't check (no labels yet)."""
+    xs = (r.get("news") or {}).get("direction_unchecked") or []
+    return ("Direction not checked for " + ", ".join(f"{c['label']} {c['rating']:+d}" for c in xs)
+            + ": the reused news has no direction labels; a fresh run checks it") if xs else None
+
+
 def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     w = r.get("writeup") or {}
     headline = w.get("headline") or f"{r['name']} rated {r['rating']}"
@@ -65,11 +77,10 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     year = int(r["run_id"][:4])
     ev = []
     for k, t in ((r.get("news") or {}).get("topics") or {}).items():
-        items = "".join(f"<li>{cew_notify.when_html(e, year)} {html.escape(e.get('claim') or '')}{cew_notify._link(e)}</li>"
-                        for e in t.get("evidence") or [])
+        items = "".join(f"<li>{cew_notify.when_html(e, year)}{direction_html(e)} {html.escape(e.get('claim') or '')}"
+                        f"{cew_notify._link(e)}</li>" for e in t.get("evidence") or [])
         weak = "".join(f" <span style='background:#fdecc8;border-radius:4px;padding:0 5px;font-size:12px'>{tag}</span>"
-                       for tag, n in ((scoring.WEAK_SOURCES, "weak_sources_note"), (scoring.OLD_EVIDENCE, "old_evidence_note"))
-                       if t.get(n))
+                       for n, tag in scoring.CAP_TAGS if t.get(n))
         notes = "; ".join(html.escape(t[n]) for n in scoring.CAP_NOTES if t.get(n))
         ev.append(f"<p style='margin:10px 0 0;font-weight:600'>{html.escape(t.get('label') or k)}: {t.get('rating', 0):+d}{weak}"
                   f"{' (' + notes + ')' if notes else ''}</p>"
@@ -91,6 +102,9 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     if recap:
         news_from += ("<p style='font-size:13px;color:#555'>Code caps applied again to the reused ratings: "
                       + html.escape("; ".join(f"{c['label']} {step(c['was'])} → {step(c['now'])}" for c in recap)) + ".</p>")
+    unchecked = unchecked_text(r)
+    if unchecked:
+        news_from += f"<p style='font-size:13px;color:#555'>{html.escape(unchecked)}.</p>"
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">Stock research · {html.escape(r['run_id'])} · {html.escape(r['name'])} ({html.escape(r['ticker'])})</p>
 <h2 style="margin:0 0 4px;color:{RATING_COLOR.get(r['rating'], '#333')}">{html.escape(r['rating'])} — {r['score']} / 100</h2>
@@ -116,10 +130,10 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                  + (f"\n\nCapex overlay: {ov['note']}" if ov.get("note") and ov.get("ai_exposed") else "")
                  + "".join(f"\n{t.get('label') or k}: {t.get('rating', 0):+d}, {tag} ({t[n]})"
                            for k, t in ((r.get("news") or {}).get("topics") or {}).items()
-                           for tag, n in ((scoring.WEAK_SOURCES, "weak_sources_note"), (scoring.OLD_EVIDENCE, "old_evidence_note"))
-                           if t.get(n))
+                           for n, tag in scoring.CAP_TAGS if t.get(n))
                  + "".join(f"\nCode caps applied again to the reused ratings: {c['label']} {step(c['was'])} -> {step(c['now'])}"
                            for c in recap)
+                 + (f"\n{unchecked}" if unchecked else "")
                  + (f"\n\n{check}" if check else "")
                  + f"\n\n{publish.DISCLAIMER}")
     return subject, body_html, body_text
@@ -166,6 +180,10 @@ def build_batch_email(b: dict, dashboard_url: str | None, prefix: str = "[Stock]
     if reused:
         window += (f"<p style='font-size:13px'>Re-scored without new research: news &amp; risk reused from the previous "
                    f"run for {html.escape(', '.join(reused))}.</p>")
+    unchecked = [f"{x['ticker']} ({', '.join(x['direction_unchecked'])})" for x in done if x.get("direction_unchecked")]
+    if unchecked:
+        window += (f"<p style='font-size:13px'>Direction not checked (the reused news has no direction labels; a fresh run "
+                   f"checks it): {html.escape('; '.join(unchecked))}.</p>")
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:760px">
 <p style="font-size:13px;color:#555">Stock research batch · {len(done)} rated, {len(failed)} failed{run_link}</p>
 {table}
@@ -178,6 +196,8 @@ def build_batch_email(b: dict, dashboard_url: str | None, prefix: str = "[Stock]
              + (f"; latest quote {quote_text(x.get('quote'))}" if quote_text(x.get("quote")) else "") for x in done]
     lines += [f"{x['ticker']}: FAILED: {x.get('error') or 'failed'}" for x in failed]
     body_text = ("\n".join(lines) + (f"\n\n{b['close_window']}." if b.get("close_window") else "")
+                 + (f"\n\nDirection not checked (no labels in the reused news; a fresh run checks it): {'; '.join(unchecked)}."
+                    if unchecked else "")
                  + f"\n\nTotal cost: {total_text}\n\n{publish.DISCLAIMER}")
     return subject, body_html, body_text
 

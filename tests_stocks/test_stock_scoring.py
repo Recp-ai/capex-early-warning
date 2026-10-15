@@ -267,6 +267,94 @@ def test_date_cap_comes_after_the_other_caps_and_uncap_restores_claudes_rating()
     assert t == capped_once  # re-applying the caps gives the same result
 
 
+
+def ev(direction, status="verified", tier="other", when=IN):
+    return {"tier": tier, "status": status, "direction": direction, **when}
+
+
+def test_a_rating_needs_recent_evidence_pointing_its_way():
+    assert scoring.NO_DIRECTION == "capped: no recent evidence in this direction"
+    assert ("direction_note", scoring.NO_DIRECTION) in scoring.CAP_TAGS and "direction_note" in scoring.CAP_NOTES
+    # ORCL guidance +1: the Sep 10 guidance (positive, older) and one in-window item, Project Jupiter's delay (negative)
+    sep10 = {"event_date": "2026-09-10", "background": True}
+    t = {"rating": 1, "evidence": [ev("positive", tier="primary", when=sep10), ev("positive", tier="primary", when=sep10),
+                                   ev("positive", "unverified", when=sep10),
+                                   ev("negative", when={"event_date": "2026-10-14", "background": False})]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and t["rating_before_cap"] == 1 and set(t) & set(scoring.CAP_NOTES) == {"direction_note"}
+    assert t["direction_note"] == ("Capped at 0 (was +1): no positive source that checked out is dated within the last 30 "
+                                   "days; the 1 in the window is negative (2026-10-14); 3 positive ones are older, undated "
+                                   "or didn't check out")
+    # RBRK analyst actions +1: two upgrades that didn't verify, and Weiss reiterating a Sell (verified, negative)
+    t = {"rating": 1, "evidence": [ev("positive", "unverified"), ev("positive", "unverified"),
+                                   ev("negative", when={"event_date": "2026-09-21", "background": False})]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and set(t) & set(scoring.CAP_NOTES) == {"direction_note"}
+    assert t["direction_note"].endswith("the 1 in the window is negative (2026-09-21); 2 positive ones are older, "
+                                        "undated or didn't check out")
+    # neutral supports neither sign
+    t = {"rating": -1, "evidence": [ev("neutral", when={"event_date": "2026-10-02", "background": False}), ev("positive")]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and t["direction_note"] == ("Capped at 0 (was -1): no negative source that checked out is dated "
+                                                        "within the last 30 days; of the 2 in the window, 1 neutral "
+                                                        "(2026-10-02) and 1 positive (2026-10-10)")
+    # one in-window item pointing the rating's way is enough, even beside items pointing the other way
+    for rating, items in ((1, [ev("positive"), ev("negative")]), (-1, [ev("negative", "unreachable"), ev("positive", tier="major")])):
+        t = {"rating": rating, "evidence": items}
+        scoring.cap_all(t, CFG)
+        assert t["rating"] == rating and not set(t) & set(scoring.CAP_NOTES)
+    # nothing in the window at all stays the date cap's case
+    t = {"rating": 1, "evidence": [ev("negative", when=OLD)]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and "old_evidence_note" in t and "direction_note" not in t
+    # a recent item pointing the other way that didn't check out: nothing checked in the window, the date cap again
+    t = {"rating": 1, "evidence": [ev("positive", when=OLD), ev("negative", "unverified")]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and "old_evidence_note" in t and "direction_note" not in t
+
+
+def test_the_count_and_quality_caps_count_only_sources_pointing_the_ratings_way():
+    t = {"rating": 2, "evidence": [ev("positive", tier="major"), ev("negative", tier="major"), ev("neutral")]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 1 and t["cap_note"] == ("Capped at +1 (was +2): 1 of 3 sources verified or unreachable, dated "
+                                                  "within the last 30 days and positive (2 more in the window are not positive)")
+    assert "weak_sources_note" not in t  # the positive source is a verified major one
+    # +-2 needs a verified primary / major source pointing its way: a major one pointing the other way doesn't count
+    t = {"rating": -2, "evidence": [ev("positive", tier="major"), ev("negative"), ev("negative")]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == -1 and "cap_note" not in t and t["weak_sources_note"] == (
+        "Capped at -1 (was -2): a rating above ±1 needs 1 verified primary- or major-tier negative source dated within "
+        "the last 30 days; 0 of its 3 sources qualify")
+    t = {"rating": -2, "evidence": [ev("negative", tier="primary"), ev("negative", "unreachable")]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == -2 and not set(t) & set(scoring.CAP_NOTES)
+    # uncap restores Claude's rating; re-applying gives the same result
+    t = {"rating": 1, "evidence": [ev("negative")]}
+    scoring.cap_all(t, CFG)
+    capped_once = copy.deepcopy(t)
+    scoring.uncap(t)
+    assert t == {"rating": 1, "evidence": [ev("negative")]}
+    scoring.cap_all(t, CFG)
+    assert t == capped_once
+
+
+def test_unlabelled_evidence_matches_and_is_listed_as_unchecked():
+    # archived runs have no direction labels: they count as pointing the rating's way, so nothing changes
+    old = {"rating": 1, "evidence": [{"tier": "other", "status": "verified", **IN}]}
+    scoring.cap_all(old, CFG)
+    assert old["rating"] == 1 and not set(old) & set(scoring.CAP_NOTES) and scoring.direction_unchecked(old)
+    assert scoring.points_with({}, 1) and scoring.points_with({"direction": None}, -1) and not scoring.labelled({})
+    assert not scoring.points_with({"direction": "neutral"}, 1) and not scoring.points_with({"direction": "negative"}, 2)
+    # labelled, zero, or resting only on older unlabelled items (already capped at 0): nothing to check
+    lab = {"rating": 1, "evidence": [ev("positive")]}
+    scoring.cap_all(lab, CFG)
+    assert lab["rating"] == 1 and not scoring.direction_unchecked(lab)
+    assert not scoring.direction_unchecked({"rating": 0, "evidence": [{"status": "verified", **IN}]})
+    assert not scoring.direction_unchecked({"rating": 1, "evidence": [{"status": "verified", **OLD}]})
+    # a mix: one labelled supporting item plus an unlabelled one: still unchecked (the unlabelled one counts)
+    assert scoring.direction_unchecked({"rating": -1, "evidence": [ev("negative"), {"status": "verified", **IN}]})
+
+
 def test_composite_renormalises_weights_and_sets_confidence():
     fs = {k: {"score": 80} for k in scoring.FACTORS}
     fs["valuation"] = {"score": 20}

@@ -150,10 +150,13 @@ every ticker ever run. Nothing is seeded.
 
 **List view.** Each row shows the rating, score and confidence, the last run in your timezone (UTC on
 hover) and its age, a **stale** tag past `page.stale_after_days` (14), the close the rating was scored
-on, the latest price with its time (e.g. `8.68 · 4:00 pm ET`), the change since the rating, and the
-number of runs (or "not run yet"). Sort by list order, rating, score, last run or change; click a row
-for the detail, which ends with a **History** table of every past rating (time, rating, score,
-confidence, price, models, cost).
+on, the latest price with its time (e.g. `8.68 · 4:00 pm ET`; a quote timestamped outside the regular
+session, 9:30 am–4:00 pm ET on weekdays, adds **pre-market** or **after hours**, here and on the detail
+card), the change since the rating, and the number of runs (or "not run yet"). Sort by list order, rating,
+score, last run or change; click a row for the detail, which ends with a **History** table of every past
+rating (time, rating, score, the six factor scores Growth / Quality / Balance sheet / Valuation / Trend /
+News from `ratings.csv`, confidence, price, models, cost). On a phone the table scrolls sideways inside
+its card with the time column pinned.
 
 **Batch runs.** Tick rows (or **Select all in this list**); the Run panel shows the count and an
 estimate (count × the average cost of the last 10 stock runs) and asks before starting. The workflow
@@ -177,7 +180,10 @@ re-scored, but the news topic ratings and source checks are the latest run's, as
 "news from <time>" on the page and in the email), and the only Claude call is the write-up. The ratings
 stay Claude's, but the caps are code, so they are applied again (with the evidence dated as of the news
 run): a cap added since, like the date rule below, lowers a reused rating, and the page and email say
-which ones changed. The row is
+which ones changed. Runs from before the direction labels (below) have none: their evidence counts as
+pointing the rating's way, so nothing changes, and every non-zero topic resting on unlabelled evidence is
+listed as **direction not checked** (`news.direction_unchecked`; page, email, batch email) until a fresh
+run labels it. The row is
 appended as usual with `news_from` set to the run whose news was used (blank for a run's own news). A
 re-score costs about $0.03 a ticker (the write-up), so it is titled "Stock research (rescore) <tickers>"
 and counted against its own cap of 30 tickers a day (`batch.max_rescore_tickers_per_day`), not the full
@@ -267,16 +273,28 @@ calls valuation expensive, rich, stretched or high while the label is cheap, or 
 expensive, or calls a not-comparable multiple either, gets the write-up regenerated once with the conflict
 named; a sentence still in conflict is dropped, and Run details on the page (and the email) say so.
 
+**Write-up precision.** The write-up's input is rounded (the stored data is not): multiples to one decimal
+(8.5x), percentages and percentage points to one decimal (12.3%, −4.1 pp), as the page shows them;
+dollar amounts and the balance-sheet ratios as stored. The prompt tells Claude to keep that precision.
+
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
 tiered (primary / major / other) and fetched as in the capex pipeline. Only in-window evidence counts toward
 the caps: a source that was verified or unreachable and whose event date is no more than
 `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
 insider sales of Sep 4 and 14, Oracle's Sep 10 results, Palantir's Aug 3 guidance, in an Oct 15 run)
-support nothing. A topic's rating can't exceed, in size, the number of its in-window sources (one: ±1);
-±2 needs a verified in-window primary or major source ("capped: weak sources" otherwise); and with no
-in-window source at all the rating is capped at 0, shown as **capped: only older evidence**. Code turns
-the ratings into 50 + Σ weight × rating × 25.
+support nothing. Claude also labels each evidence item's **direction**, positive, negative or neutral
+(what that item alone says for the company: a downgrade or a reiterated Sell is negative, a delay is
+negative, guidance reiterated unchanged is neutral), a label like the event date, never a score. An item
+supports a rating only if it is in-window **and** points the rating's way (positive for +1/+2, negative for
+−1/−2; neutral supports neither), and the counts use only those items. A topic's rating can't exceed, in
+size, the number of its supporting sources (one: ±1); ±2 needs a verified supporting primary or major
+source ("capped: weak sources" otherwise); with no in-window source at all the rating is capped at 0, shown
+as **capped: only older evidence**; and with in-window sources that all point the other way (or neither
+way) it is capped at 0, shown as **capped: no recent evidence in this direction** (Oracle's guidance +1
+whose only in-window item was "Project Jupiter at risk of delay"; Rubrik's analyst actions +1 resting on
+"Weiss Ratings reiterated a Sell"). `scoring.cap_all` runs the four caps in that order. Code turns the
+ratings into 50 + Σ weight × rating × 25.
 
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
 missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data

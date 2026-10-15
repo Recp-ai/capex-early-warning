@@ -122,6 +122,15 @@ svg { display: block; width: 100%; height: auto; overflow: visible; }
 .when { font-size: 12px; font-weight: 600; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; margin-left: 4px; }
 .when.undated { font-weight: 400; color: var(--muted); }
 .bg { font-size: 11px; font-weight: 600; color: var(--muted); border: 1px dashed var(--axis); border-radius: 4px; padding: 0 5px; margin-left: 4px; white-space: nowrap; }
+.dir { font-size: 11px; font-weight: 600; margin-left: 4px; white-space: nowrap; color: var(--muted); }
+.dir.positive { color: var(--good); }
+.dir.negative { color: var(--serious); }
+.sess { font-size: 11px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--ring); border-radius: 4px; padding: 0 4px; margin-left: 3px; white-space: nowrap; }
+/* History: many columns; the table scrolls sideways inside its card with the time column pinned */
+.hist { overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+.hist th:first-child, .hist td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); box-shadow: 1px 0 0 var(--grid); }
+.hist .fx { color: var(--ink-2); }
+.hist td.wrap { min-width: 10em; }
 blockquote { margin: 6px 0 10px; padding: 2px 0 2px 12px; border-left: 3px solid var(--grid); font-size: 13.5px; overflow-wrap: anywhere; }
 blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-bottom: 2px; }
 .errors { color: var(--muted); font-size: 12.5px; margin-top: 10px; overflow-wrap: anywhere; }
@@ -281,6 +290,10 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     : `<time class="when" datetime="${esc(e.event_date)}" title="When it happened (event date)">${esc(shortDate(e.event_date))}</time>` +
       (e.background ? `<span class="bg" title="${esc(`Happened ${e.age_days} days before this run`)}">background</span>` : "");
   const link = (u, text) => safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(text)}</a>` : esc(text);
+  const DIR_TITLE = "Which way this item points for the company on this topic (Claude's label, never a score). A rating counts only on recent sources pointing its way.";
+  const dirTag = e => ["positive", "negative", "neutral"].includes(e.direction) ? `<span class="dir ${e.direction}" title="${esc(DIR_TITLE)}">${e.direction}</span>` : "";
+  const CAP_TAGS = [["weak_sources_note", "capped: weak sources"], ["old_evidence_note", "capped: only older evidence"],
+    ["direction_note", "capped: no recent evidence in this direction"]]; // stocks/scoring.py CAP_TAGS
   const fmtMetric = (k, v) => {
     if (v == null) return "—";
     const [, unit] = METRIC[k] || ["", ""];
@@ -293,11 +306,11 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const pad = n => String(n).padStart(2, "0");
   const localTime = ts => { const d = new Date(ts); return isNaN(d) ? "—" : `${MONTHS[d.getMonth()]} ${d.getDate()}, ${pad(d.getHours())}:${pad(d.getMinutes())}`; };
   const ET_FMT = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" });
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23", weekday: "short" });
   function etParts(ms) {
     const p = {};
     for (const x of ET_FMT.formatToParts(new Date(ms))) p[x.type] = x.value;
-    return { date: `${p.year}-${p.month}-${p.day}`, hour: +p.hour % 24, minute: +p.minute, weekday: p.weekday };
+    return { date: `${p.year}-${p.month}-${p.day}`, hour: +p.hour % 24, minute: +p.minute, second: +p.second, weekday: p.weekday };
   }
   const etClock = ms => { const p = etParts(ms); return `${p.hour % 12 || 12}:${pad(p.minute)} ${p.hour < 12 ? "am" : "pm"} ET`; };
   const shortDay = d => d ? `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8, 10)}` : "—";
@@ -313,6 +326,17 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   // "4:00 pm ET" today (US Eastern), "Oct 14, 4:00 pm ET" on an earlier day
   const quoteTime = asOf => { const ms = Date.parse(asOf); if (isNaN(ms)) return ""; const d = etParts(ms).date;
     return (d === etParts(Date.now()).date ? "" : shortDay(d) + ", ") + etClock(ms); };
+  // By the quote's own timestamp: "pre-market" before 9:30 am ET on a weekday, "after hours" after 4:00 pm ET
+  // (or on a weekend), "" in the regular session (9:30 am to 4:00 pm ET inclusive, Monday to Friday; holidays
+  // not known). Display only.
+  function quoteSession(asOf) {
+    const ms = Date.parse(asOf);
+    if (isNaN(ms)) return "";
+    const p = etParts(ms), sec = (p.hour * 60 + p.minute) * 60 + p.second;
+    if (p.weekday === "Sat" || p.weekday === "Sun") return "after hours";
+    return sec < 34200 ? "pre-market" : sec > 57600 ? "after hours" : "";
+  }
+  const sessTag = asOf => { const s = quoteSession(asOf); return s ? ` <span class="sess" title="Quote time outside the regular session (9:30 am to 4:00 pm ET, weekdays)">${s}</span>` : ""; };
   function age(ts) {
     const ms = Date.now() - Date.parse(ts);
     if (isNaN(ms)) return "";
@@ -438,7 +462,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     if (!L) return "—";
     const d = L.as_of ? etParts(Date.parse(L.as_of)).date : L.date;
     const brief = L.as_of && d === etParts(Date.now()).date ? etClock(Date.parse(L.as_of)).replace(" ET", "") : shortDay(d);
-    return `${num(L.price, 2)} <span class="pt hide-sm">· ${L.as_of ? esc(quoteTime(L.as_of)) : "close " + esc(shortDay(L.date))}</span><span class="show-sm">${esc(brief)}</span>`;
+    const sess = L.as_of ? sessTag(L.as_of) : "";
+    return `${num(L.price, 2)} <span class="pt hide-sm">· ${L.as_of ? esc(quoteTime(L.as_of)) : "close " + esc(shortDay(L.date))}${sess}</span><span class="show-sm">${esc(brief)}${sess}</span>`;
   };
 
   function viewRows() {
@@ -692,7 +717,20 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const q = state.quotes[D.ticker] || D.quote, P = D.price || {};
     if (!q || q.price == null) return "";
     const ch = P.close ? (q.price / P.close - 1) * 100 : null;
-    return `Latest ${num(q.price, 2)} · ${esc(quoteTime(q.as_of))}${ch == null ? "" : ` (${signed(ch, 1, "%")} vs the scoring close)`} <span class="sub">· near-live quote, display only</span>`;
+    return `Latest ${num(q.price, 2)} · ${esc(quoteTime(q.as_of))}${sessTag(q.as_of)}${ch == null ? "" : ` (${signed(ch, 1, "%")} vs the scoring close)`} <span class="sub">· near-live quote, display only</span>`;
+  }
+
+  // Every past rating (ratings.csv rows, newest first) with its factor scores; "" when there are none. The
+  // table scrolls sideways inside its card (time column pinned) on narrow screens.
+  const HIST_FACTORS = [["growth", "Growth"], ["quality", "Quality"], ["balance_sheet", "Balance sheet"], ["valuation", "Valuation"],
+    ["trend", "Trend"], ["news_risk", "News"]];
+  function historyTable(rows) {
+    if (!(rows || []).length) return "";
+    const cell = v => v == null || v === "" || isNaN(+v) ? "—" : String(Math.round(+v));
+    const body = rows.map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td>` +
+      HIST_FACTORS.map(([k, l]) => `<td class="fx" title="${esc(l)}">${cell(h[k])}</td>`).join("") +
+      `<td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm wrap">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}${h.news_from ? ` <span class="sub" title="News reused from the run of ${esc(runTime(h.news_from))}">· news ${esc(localTime(h.news_from))}</span>` : ""}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
+    return `<div class="scroll hist"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th>${HIST_FACTORS.map(([k, l]) => `<th title="${esc(l)} factor score (0–100)">${l}</th>`).join("")}<th class="left">Confidence</th><th>Price</th><th class="left hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
 
   function renderDetail() {
@@ -758,18 +796,18 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const phrases = Object.entries(G.phrases || {}).filter(([, v]) => v.count || v.previous);
     const topics = (D.news || {}).topics || {};
     const topicHtml = Object.entries(topics).map(([k, t]) => {
-      const ev = (t.evidence || []).map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)}${when(e)} ${esc(e.claim)} — ${link(e.url, hostOf(e.url))}</li>`).join("");
-      const weak = [[t.weak_sources_note, "capped: weak sources"], [t.old_evidence_note, "capped: only older evidence"]]
-        .filter(([n]) => n).map(([n, tag]) => `<span class="weakcap" title="${esc(n)}">${tag}</span>`).join(" ");
-      const notes = [t.cap_note, t.weak_sources_note, t.old_evidence_note].filter(Boolean).map(n => `<div class="capnote">${esc(n)}</div>`).join("");
+      const ev = (t.evidence || []).map(e => `<li>${badge(e.status, e.check)}${tierTag(e.tier)}${when(e)}${dirTag(e)} ${esc(e.claim)} — ${link(e.url, hostOf(e.url))}</li>`).join("");
+      const weak = CAP_TAGS.filter(([n]) => t[n]).map(([n, tag]) => `<span class="weakcap" title="${esc(t[n])}">${tag}</span>`).join(" ");
+      const notes = [t.cap_note, t.weak_sources_note, t.old_evidence_note, t.direction_note].filter(Boolean).map(n => `<div class="capnote">${esc(n)}</div>`).join("");
       return `<div class="topic"><div class="topic-head"><b>${esc(t.label || (METRIC[k] || [k])[0])}</b><span class="topic-right">${weak}<span class="score-chip">${signed(t.rating, 0)}</span></span></div>
         <p>${esc(t.summary || "")}</p>${notes}${ev ? `<ul class="ev">${ev}</ul>` : ""}</div>`;
     }).join("");
     const cost = D.cost || {}, models = D.models || {};
     const steps = Object.entries(cost.steps || {}).map(([k, u]) => `${esc(k)}: ${esc(short(u.model))}, ${num(u.input_tokens, 0)} in / ${num(u.output_tokens, 0)} out${u.web_searches ? `, ${u.web_searches} searches` : ""} · ${usd(u.cost_usd)}`).join("<br>");
-    const hist = (D.history || []).map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td><td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}${h.news_from ? ` <span class="sub" title="News reused from the run of ${esc(runTime(h.news_from))}">· news ${esc(localTime(h.news_from))}</span>` : ""}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
+    const hist = historyTable(D.history);
     const errs = Object.entries(D.errors || {});
     const recap = (((D.news || {}).caps_reapplied) || []).map(c => `${c.label}: ${signed(c.was, 0)} → ${signed(c.now, 0)}`).join("; ");
+    const unchecked = (((D.news || {}).direction_unchecked) || []).map(c => `${c.label} ${signed(c.rating, 0)}`).join(", ");
     const wcheck = (D.writeup_check || {}).note;
     const T2 = (k, label, u) => kv(label, T[k] == null ? "—" : signed(T[k], 1, u));
 
@@ -822,12 +860,12 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           <h3>Cautious phrases <span class="sub">· regex counts${G.previous ? ", vs the previous release" : ""}</span></h3>
           ${phrases.length ? `<table><thead><tr><th>Phrase</th><th>Now</th>${G.previous ? "<th>Previous</th>" : ""}</tr></thead><tbody>${phrases.map(([k, v]) => `<tr><td title="${esc((v.sentences || []).join("\n\n"))}">${esc(k)}</td><td>${v.count}</td>${G.previous ? `<td>${v.previous ?? "—"}</td>` : ""}</tr>`).join("")}</tbody></table>` : '<p class="sub">None of the tracked phrases appear.</p>'}`}
         </div>
-        <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources and their tier</span></h2>
-          ${D.news_from ? `<div class="flag quiet" style="margin:0 0 10px">News from ${esc(localTime(D.news_from))} (${esc(age(D.news_from))}): reused, not refreshed this run; the 30 days and source checks are as of then${Array.isArray((D.news || {}).caps_reapplied) ? `, and the code caps were applied again${recap ? ` (${esc(recap)})` : ""}` : ""}.</div>` : ""}
+        <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources, their tier, date and direction</span></h2>
+          ${D.news_from ? `<div class="flag quiet" style="margin:0 0 10px">News from ${esc(localTime(D.news_from))} (${esc(age(D.news_from))}): reused, not refreshed this run; the 30 days and source checks are as of then${Array.isArray((D.news || {}).caps_reapplied) ? `, and the code caps were applied again${recap ? ` (${esc(recap)})` : ""}` : ""}.${unchecked ? ` Direction not checked for ${esc(unchecked)}: the reused news has no direction labels; a fresh run checks it.` : ""}</div>` : ""}
           ${topicHtml || `<p class="sub">${esc(((D.factors || {}).news_risk || {}).missing || "No news step this run.")}</p>`}</div>
       </section>
-      ${hist ? `<section class="card" style="margin-bottom:16px"><h2>History <span class="sub">· every rating of ${esc(D.ticker)}, newest first; times in your timezone (UTC on hover)</span></h2>
-        <div class="scroll"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th><th class="left">Confidence</th><th>Price</th><th class="left hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${hist}</tbody></table></div></section>` : ""}
+      ${hist ? `<section class="card" style="margin-bottom:16px"><h2>History <span class="sub">· every rating of ${esc(D.ticker)}, newest first; factor scores 0–100; times in your timezone (UTC on hover)</span></h2>
+        ${hist}<div class="sub show-sm" style="margin-top:6px">Swipe the table sideways for every factor.</div></section>` : ""}
       <section class="card" style="margin-bottom:16px"><h2>Run details</h2>
         <div class="sub">Models: research ${esc(short(models.research))}, scoring ${esc(short(models.scoring))}${D.llm ? "" : " (Claude step off)"} · cost <b>${cost.total_usd == null ? "n/a" : usd(cost.total_usd)}</b>${D.batch && D.batch.tickers && D.batch.tickers.length > 1 ? ` · batch of ${D.batch.tickers.length}` : ""}</div>
         ${steps ? `<div class="sub" style="margin-top:4px;font-variant-numeric:tabular-nums">${steps}</div>` : ""}
