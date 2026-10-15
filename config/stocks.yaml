@@ -20,8 +20,26 @@ news_window_days: 30
 prices:
   provider: tiingo              # end-of-day prices; key in the STOCK_PRICE_API_KEY secret
   years: 5
-  benchmarks: [SPY, QQQ]
-  refresh_now_max: 10           # other rated tickers whose "now" price is refreshed each run (1 request each)
+  benchmarks: [SPY, QQQ]         # fetched once per batch by the plan job and shared with every ticker's job
+  # Near-live quote, display only (never a score input; factors use the latest official daily close):
+  # Tiingo IEX tngoLast, which becomes the official close once that prints. ONE request for all tickers
+  # (iex/?tickers=a,b,c); above quotes_max_tickers, or if that form fails, the all-tickers endpoint
+  # (iex, about 10 MB) filtered in code. Never one request per ticker.
+  quotes_max_tickers: 100
+
+# The stocks page's list view and batch runs
+page:
+  stale_after_days: 14          # a rating older than this shows a "stale" tag in the list view
+batch:
+  max_batch: 15                 # tickers per run (the plan job and site/api/stock.js both enforce it)
+  max_tickers_per_day: 30       # tickers across stocks.yml runs in any 24 hours (site/api/stock.js counts them)
+  max_parallel: 5               # ticker jobs at once (matrix max-parallel)
+# Lists live in the STOCK_LISTS repo Actions variable ({version, lists: [{id, name, tickers}]}), saved
+# whole by site/api/stock.js, which enforces these limits (GitHub's limit for one variable is 48 KB).
+lists:
+  max_lists: 30
+  max_tickers_per_list: 100
+  max_bytes: 40000              # compact JSON
 
 factors:
   weights:

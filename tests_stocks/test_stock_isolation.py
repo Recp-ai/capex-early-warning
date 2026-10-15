@@ -19,21 +19,57 @@ def workflow(name):
     return wf, wf[True] if True in wf else wf["on"]  # PyYAML reads the "on" key as a boolean
 
 
-def test_stock_workflow_is_dispatch_only_and_passes_inputs_through_env():
+def test_stock_workflow_plans_runs_one_job_per_ticker_and_collects_once():
     wf, on = workflow("stocks.yml")
     assert list(on) == ["workflow_dispatch"] and "schedule" not in on
-    assert set(on["workflow_dispatch"]["inputs"]) == {"ticker", "research_model", "scoring_model", "send_email"}
-    assert on["workflow_dispatch"]["inputs"]["send_email"]["default"] is False
-    steps = wf["jobs"]["research"]["steps"]
-    for s in steps:
-        assert "${{" not in s.get("run", ""), f"expression inside run: of {s.get('name')}"
-    assert next(s for s in steps if s.get("name") == "Unit tests (stock module)")["run"] == "python -m pytest -q tests_stocks"
-    env = next(s for s in steps if s.get("name") == "Research the stock")["env"]
-    assert env["INPUT_TICKER"] == "${{ inputs.ticker }}" and env["STOCK_PRICE_API_KEY"] == "${{ secrets.STOCK_PRICE_API_KEY }}"
-    assert env["INPUT_SCORING_MODEL"] == "${{ inputs.scoring_model }}" and env["INPUT_SEND_EMAIL"] == "${{ inputs.send_email }}"
-    save = next(s for s in steps if s.get("name") == "Save results")
-    assert "data/stocks site/data/stocks" in save["run"] and "tr -cd" in save["run"]
-    assert wf["concurrency"]["group"] != "weekly-run"
+    inputs = on["workflow_dispatch"]["inputs"]
+    assert set(inputs) == {"tickers", "research_model", "scoring_model", "send_email"} and inputs["tickers"]["required"] is True
+    assert inputs["send_email"]["default"] is False
+    assert wf["run-name"] == "Stock research ${{ inputs.tickers }}"  # api/stock.js counts tickers from run titles
+    assert wf["concurrency"] == {"group": "stocks", "cancel-in-progress": False}
+    jobs = wf["jobs"]
+    assert list(jobs) == ["plan", "rate", "collect"]
+    for job in jobs.values():
+        for s in job["steps"]:
+            assert "${{" not in s.get("run", ""), f"expression inside run: of {s.get('name')}"
+    plan = jobs["plan"]["steps"]
+    assert next(s for s in plan if s.get("name") == "Unit tests (stock module)")["run"] == "python -m pytest -q tests_stocks"
+    step = next(s for s in plan if s.get("name") == "Plan the batch")
+    assert step["env"]["INPUT_TICKERS"] == "${{ inputs.tickers }}" and step["run"] == "python -m stocks.batch plan --shared shared"
+    rate = jobs["rate"]
+    assert rate["strategy"]["fail-fast"] is False and rate["needs"] == "plan"
+    assert rate["strategy"]["matrix"]["ticker"] == "${{ fromJSON(needs.plan.outputs.tickers) }}"
+    assert rate["strategy"]["max-parallel"] == "${{ fromJSON(needs.plan.outputs.max_parallel) }}"
+    assert rate["name"] == "rate ${{ matrix.ticker }}"  # api/stock.js reads per-ticker status from these job names
+    env = next(s for s in rate["steps"] if s.get("name") == "Research the stock")["env"]
+    assert env["INPUT_TICKER"] == "${{ matrix.ticker }}" and env["STOCK_PRICE_API_KEY"] == "${{ secrets.STOCK_PRICE_API_KEY }}"
+    assert env["INPUT_SCORING_MODEL"] == "${{ inputs.scoring_model }}" and "SMTP_PASSWORD" not in env
+    assert not any("git " in s.get("run", "") for s in rate["steps"]), "ticker jobs never commit"
+    upload = next(s for s in rate["steps"] if s.get("uses", "").startswith("actions/upload-artifact"))
+    assert upload["if"] == "always()" and upload["with"]["name"] == "stock-${{ matrix.ticker }}"
+    col = jobs["collect"]
+    assert col["if"] == "always() && needs.plan.result == 'success'" and col["needs"] == ["plan", "rate"]
+    env = next(s for s in col["steps"] if s.get("name") == "Write the results and send one email")["env"]
+    assert env["PLAN_TICKERS"] == "${{ needs.plan.outputs.tickers }}" and env["INPUT_SEND_EMAIL"] == "${{ inputs.send_email }}"
+    commit = next(s for s in col["steps"] if s.get("name") == "Commit once")["run"]
+    assert "data/stocks site/data/stocks" in commit and commit.count("git commit") == 2 and "git pull --rebase" in commit
+    assert "for i in 1 2 3 4 5" in commit and "git rebase --abort" in commit
+    assert sum("git push" in s.get("run", "") for j in jobs.values() for s in j["steps"]) == 1
+
+
+def test_function_limits_match_the_config():
+    cfg = yaml.safe_load((ROOT / "config" / "stocks.yaml").read_text())
+    js = (ROOT / "site" / "api" / "stock.js").read_text()
+    const = lambda name: int(re.search(rf"const {name} = (\d+);", js).group(1))  # noqa: E731
+    assert const("MAX_BATCH") == cfg["batch"]["max_batch"] == 15
+    assert const("MAX_TICKERS_PER_DAY") == cfg["batch"]["max_tickers_per_day"] == 30
+    assert const("MAX_LISTS") == cfg["lists"]["max_lists"] == 30
+    assert const("MAX_PER_LIST") == cfg["lists"]["max_tickers_per_list"] == 100
+    assert const("MAX_LIST_BYTES") == cfg["lists"]["max_bytes"] and cfg["lists"]["max_bytes"] <= 45000  # GitHub's limit: 48 KB
+    assert const("MAX_QUOTES") == cfg["prices"]["quotes_max_tickers"] == 100
+    assert cfg["batch"]["max_parallel"] == 5 and cfg["page"]["stale_after_days"] == 14
+    page = (ROOT / "site" / "stocks.html").read_text()
+    assert "const MAX_LISTS = 30, MAX_PER_LIST = 100;" in page
 
 
 def test_capex_workflow_runs_only_the_capex_tests():
@@ -68,80 +104,228 @@ def test_page_script_and_function_parse(tmp_path):
 
 
 HARNESS = r"""
+const world = JSON.parse(process.argv[3]);
 process.env.GITHUB_TOKEN = "ghp_TOKEN_SECRET"; process.env.RUN_PASSCODE = "pass-SECRET"; process.env.GITHUB_REPO = "o/r";
+if (world.key !== null) process.env.STOCK_PRICE_API_KEY = world.key || "tiingo-KEY-SECRET";
 const calls = [];
-const recent = Number(process.argv[3]);
 const now = Date.now();
-const resp = (status, body) => ({ status, ok: status < 300, text: async () => (body == null ? "" : JSON.stringify(body)),
+const resp = (status, body) => ({ status, ok: status < 300, text: async () => (body == null ? "" : typeof body === "string" ? body : JSON.stringify(body)),
   json: async () => body });
+let variable = world.variable === undefined ? null : world.variable;
 global.fetch = async (url, opts = {}) => {
-  calls.push({ url, method: opts.method || "GET", body: opts.body ? JSON.parse(opts.body) : null,
-               auth: (opts.headers || {}).Authorization });
-  if (url.includes("/dispatches")) return process.argv[4] === "fail" ? resp(403, { message: "Resource not accessible by ghp_TOKEN_SECRET" })
-    : resp(200, { html_url: "https://github.com/o/r/actions/runs/9" });
+  const h = opts.headers || {};
+  calls.push({ url, method: opts.method || "GET", body: opts.body ? JSON.parse(opts.body) : null, auth: h.Authorization });
+  if (url.startsWith("https://api.tiingo.com/iex")) {
+    const form = url.includes("?tickers=") ? "tickers" : "all";
+    const mode = (world.iex || {})[form] || "ok";
+    if (mode !== "ok") return resp(Number(mode), { detail: "Error for token tiingo-KEY-SECRET" });
+    return resp(200, (world.iexRows || []));
+  }
+  if (url.includes("/dispatches")) return world.dispatch === "fail" ? resp(403, { message: "Resource not accessible by ghp_TOKEN_SECRET" })
+    : resp(200, { html_url: "https://github.com/o/r/actions/runs/9", id: 9 });
+  if (url.includes("/actions/variables")) {
+    if (opts.method === "PATCH") { if (variable === null) return resp(404, { message: "Not Found" }); variable = JSON.parse(opts.body).value; return resp(204, null); }
+    if (opts.method === "POST") { variable = JSON.parse(opts.body).value; return resp(201, null); }
+    return variable === null ? resp(404, { message: "Not Found" }) : resp(200, { name: "STOCK_LISTS", value: variable });
+  }
+  if (/\/actions\/runs\/\d+\/jobs/.test(url)) return resp(200, { jobs: world.jobs || [] });
+  if (/\/actions\/runs\/\d+$/.test(url)) return resp(200, Object.assign({ id: 77, path: ".github/workflows/stocks.yml", html_url: "https://github.com/o/r/actions/runs/77" }, world.run || {}));
   if (url.includes("/actions/workflows/stocks.yml/runs")) {
-    const runs = Array.from({ length: recent }, (_, i) => ({ created_at: new Date(now - (i + 1) * 3600e3).toISOString(),
-      status: "in_progress", conclusion: null, display_title: "Stock research MSFT", html_url: "https://github.com/o/r/actions/runs/" + i }));
+    const runs = (world.runs || []).map((r, i) => ({ id: 100 + i, created_at: new Date(now - (r.hours_ago ?? i + 1) * 3600e3).toISOString(),
+      status: r.status || "completed", conclusion: r.conclusion || "success", display_title: r.title, html_url: "https://github.com/o/r/actions/runs/" + (100 + i) }));
     return resp(200, { workflow_runs: runs });
   }
   return resp(404, {});
 };
 const handler = require(process.argv[2]);
-const call = (method, body) => new Promise(resolve => {
+const call = (method, url, body) => new Promise(resolve => {
   const res = { statusCode: 0, headers: {}, setHeader(k, v) { this.headers[k] = v; },
-                end(b) { resolve({ status: this.statusCode, body: JSON.parse(b) }); } };
-  handler({ method, url: "/api/stock", headers: { host: "localhost" }, body }, res);
+                end(b) { resolve({ status: this.statusCode, body: JSON.parse(b), cache: this.headers["Cache-Control"] }); } };
+  handler({ method, url, headers: { host: "localhost" }, body }, res);
 });
 (async () => {
   const out = {};
-  for (const [name, method, body] of JSON.parse(process.argv[5])) out[name] = await call(method, body);
-  console.log(JSON.stringify({ out, calls }));
+  for (const [name, method, url, body] of JSON.parse(process.argv[4])) out[name] = await call(method, url, body);
+  console.log(JSON.stringify({ out, calls, variable }));
 })();
 """
 
 
-def run_function(tmp_path, cases, recent=0, mode="ok"):
+def run_function(tmp_path, cases, **world):
     h = tmp_path / "harness.js"
     h.write_text(HARNESS)
-    p = subprocess.run([NODE, str(h), str(ROOT / "site" / "api" / "stock.js"), str(recent), mode, json.dumps(cases)],
+    p = subprocess.run([NODE, str(h), str(ROOT / "site" / "api" / "stock.js"), json.dumps(world), json.dumps(cases)],
                        capture_output=True, text=True, cwd=tmp_path, timeout=60)
     assert p.returncode == 0, p.stderr
-    return json.loads(p.stdout)
+    out = json.loads(p.stdout)
+    assert "SECRET" not in json.dumps(out["out"]), "a secret leaked into a response"
+    return out
 
 
-@pytest.mark.skipif(not NODE, reason="node not installed")
-def test_function_validates_caps_and_dispatches(tmp_path):
-    good = {"passcode": "pass-SECRET", "ticker": " brk.b ", "research_model": "claude-sonnet-5-5",
-            "scoring_model": "claude-opus-5-5", "send_email": True}
+node = pytest.mark.skipif(not NODE, reason="node not installed")
+GOOD = {"passcode": "pass-SECRET", "research_model": "claude-sonnet-5-5", "scoring_model": "claude-opus-5-5", "send_email": True}
+
+
+@node
+def test_function_validates_and_dispatches_a_single_ticker_and_a_batch(tmp_path):
     r = run_function(tmp_path, [
-        ["wrong", "POST", {"passcode": "nope", "ticker": "MSFT"}],
-        ["bad_ticker", "POST", {"passcode": "pass-SECRET", "ticker": "MSFT; rm -rf /"}],
-        ["bad_model", "POST", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "gpt-5"}],
-        ["unknown_model", "POST", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "claude-nope-1"}],
-        ["ok", "POST", good],
-        ["status", "GET", None],
-        ["put", "PUT", None]], recent=9)
+        ["wrong", "POST", "/api/stock", {"passcode": "nope", "ticker": "MSFT"}],
+        ["bad_ticker", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT; rm -rf /"}],
+        ["bad_in_batch", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["MSFT", "1BAD"]}],
+        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(16)]}],
+        ["bad_model", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "gpt-5"}],
+        ["unknown_model", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "claude-nope-1"}],
+        ["single", "POST", "/api/stock", {**GOOD, "ticker": " brk.b "}],
+        ["batch", "POST", "/api/stock", {**GOOD, "tickers": ["msft", "NVDA", "MSFT", "tic"], "send_email": False}],
+        ["unknown_action", "POST", "/api/stock", {"passcode": "pass-SECRET", "action": "nuke"}],
+        ["put", "PUT", "/api/stock", None]], runs=[{"title": "Stock research MSFT"}])
     out, calls = r["out"], r["calls"]
-    assert out["wrong"] == {"status": 401, "body": {"error": "Wrong passcode"}}
+    assert out["wrong"] == {"status": 401, "body": {"error": "Wrong passcode"}, "cache": "no-store"}
     assert out["bad_ticker"]["status"] == 400 and "Invalid ticker" in out["bad_ticker"]["body"]["error"]
-    assert out["bad_model"] == {"status": 400, "body": {"error": "Invalid scoring_model"}}
+    assert out["bad_in_batch"]["status"] == 400 and '"1BAD"' in out["bad_in_batch"]["body"]["error"]
+    assert out["too_many"]["status"] == 400 and "at most 15" in out["too_many"]["body"]["error"]
+    assert out["bad_model"]["body"] == {"error": "Invalid scoring_model"}
     assert out["unknown_model"]["body"]["error"] == "Unknown scoring_model: not in data/models.json"
-    assert out["ok"] == {"status": 200, "body": {"ok": True, "ticker": "BRK.B", "run_url": "https://github.com/o/r/actions/runs/9", "run_found": True}}
-    dispatch = next(c for c in calls if c["url"].endswith("/dispatches"))
-    assert dispatch["url"] == "https://api.github.com/repos/o/r/actions/workflows/stocks.yml/dispatches"
-    assert dispatch["body"] == {"ref": "main", "inputs": {"ticker": "BRK.B", "send_email": "true",
-                                                          "research_model": "claude-sonnet-5-5", "scoring_model": "claude-opus-5-5"}}
-    assert all("workflows/stocks.yml" in c["url"] for c in calls) and all(c["auth"] == "Bearer ghp_TOKEN_SECRET" for c in calls)
-    assert out["status"]["body"]["status"] == "in_progress" and out["status"]["body"]["title"] == "Stock research MSFT"
-    assert out["put"]["status"] == 405
-    assert "SECRET" not in json.dumps(out)
+    assert out["single"]["status"] == 200 and out["single"]["body"]["tickers"] == ["BRK.B"] and out["single"]["body"]["run_id"] == 9
+    assert out["batch"]["body"]["tickers"] == ["MSFT", "NVDA", "TIC"] and out["batch"]["body"]["used_24h"] == 4
+    dispatches = [c for c in calls if c["url"].endswith("/dispatches")]
+    assert [d["body"] for d in dispatches] == [
+        {"ref": "main", "inputs": {"tickers": "BRK.B", "send_email": "true", "research_model": "claude-sonnet-5-5", "scoring_model": "claude-opus-5-5"}},
+        {"ref": "main", "inputs": {"tickers": "MSFT,NVDA,TIC", "send_email": "false", "research_model": "claude-sonnet-5-5", "scoring_model": "claude-opus-5-5"}}]
+    assert dispatches[0]["url"] == "https://api.github.com/repos/o/r/actions/workflows/stocks.yml/dispatches"
+    assert all(c["auth"] == "Bearer ghp_TOKEN_SECRET" for c in calls)
+    assert out["unknown_action"]["status"] == 400 and out["put"]["status"] == 405
 
 
-@pytest.mark.skipif(not NODE, reason="node not installed")
-def test_function_caps_at_ten_runs_a_day_and_never_echoes_secrets(tmp_path):
-    r = run_function(tmp_path, [["capped", "POST", {"passcode": "pass-SECRET", "ticker": "MSFT"}]], recent=10)
-    assert r["out"]["capped"]["status"] == 429 and "10 stock runs in the last 24 hours" in r["out"]["capped"]["body"]["error"]
-    assert not any(c["url"].endswith("/dispatches") for c in r["calls"])
-    r = run_function(tmp_path, [["fail", "POST", {"passcode": "pass-SECRET", "ticker": "MSFT"}]], recent=0, mode="fail")
+@node
+def test_function_caps_tickers_per_day_and_refuses_a_second_waiting_batch(tmp_path):
+    runs = [{"title": "Stock research MSFT,NVDA,TIC"}, {"title": "Stock research AAPL"}, {"title": "Stock research " + ",".join(f"A{i}" for i in range(24))},
+            {"title": "Stock research OLD,ER", "hours_ago": 30}]  # older than 24 h: not counted
+    r = run_function(tmp_path, [["over", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["X", "Y", "Z"]}],
+                                ["fits", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["X", "Y"]}]], runs=runs)
+    assert r["out"]["over"]["status"] == 429
+    assert r["out"]["over"]["body"]["error"] == "Limit: 28 of 30 tickers used in the last 24 hours; this batch has 3"
+    assert r["out"]["fits"]["status"] == 200 and r["out"]["fits"]["body"]["used_24h"] == 30
+    assert sum(c["url"].endswith("/dispatches") for c in r["calls"]) == 1
+    r = run_function(tmp_path, [["queued", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT"}]],
+                     runs=[{"title": "Stock research A", "status": "in_progress"}, {"title": "Stock research B", "status": "queued"}])
+    assert r["out"]["queued"]["status"] == 409 and "already waiting" in r["out"]["queued"]["body"]["error"]
+    r = run_function(tmp_path, [["fail", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT"}]], dispatch="fail")
     err = r["out"]["fail"]["body"]["error"]
-    assert r["out"]["fail"]["status"] == 502 and "GitHub returned 403" in err and "ghp_TOKEN_SECRET" not in err and "***" in err
+    assert r["out"]["fail"]["status"] == 502 and "GitHub returned 403" in err and "***" in err
+
+
+@node
+def test_function_reports_each_tickers_job(tmp_path):
+    jobs = [{"name": "plan", "status": "completed", "conclusion": "success"},
+            {"name": "rate MSFT", "status": "completed", "conclusion": "success"},
+            {"name": "rate NVDA", "status": "in_progress", "conclusion": None},
+            {"name": "rate ZZZZ", "status": "completed", "conclusion": "failure",
+             "steps": [{"name": "Install dependencies", "conclusion": "success"}, {"name": "Research the stock", "conclusion": "failure"}]},
+            {"name": "collect", "status": "queued", "conclusion": None}]
+    r = run_function(tmp_path, [["run", "GET", "/api/stock?run=77", None], ["bad", "GET", "/api/stock?run=x1", None],
+                                ["latest", "GET", "/api/stock", None]],
+                     run={"display_title": "Stock research MSFT,NVDA,ZZZZ,TIC", "status": "in_progress", "conclusion": None},
+                     jobs=jobs, runs=[{"title": "Stock research MSFT,NVDA,ZZZZ,TIC", "status": "in_progress"}])
+    body = r["out"]["run"]["body"]
+    assert body["run_id"] == 77 and body["status"] == "in_progress" and body["plan"] == "success" and body["collect"] == "queued"
+    assert body["tickers"] == [{"ticker": "MSFT", "status": "done"}, {"ticker": "NVDA", "status": "running"},
+                               {"ticker": "ZZZZ", "status": "failed", "reason": "failure", "step": "Research the stock"},
+                               {"ticker": "TIC", "status": "queued"}]
+    assert r["out"]["run"]["cache"] == "public, s-maxage=5" and r["out"]["bad"]["status"] == 400
+    assert r["out"]["latest"]["body"]["tickers"][0] == {"ticker": "MSFT", "status": "done"}
+
+
+def lists_doc(*lists, revision=3):
+    return json.dumps({"version": 1, "revision": revision, "lists": [{"id": i, "name": n, "tickers": t} for i, n, t in lists]})
+
+
+@node
+def test_function_reads_and_saves_lists_without_touching_the_run_cap(tmp_path):
+    good = [{"id": "ai", "name": " AI names ", "tickers": ["nvda", "MSFT"]}, {"id": "w2", "name": "Watch", "tickers": ["MSFT", "brk.b"]}]
+    r = run_function(tmp_path, [
+        ["empty", "GET", "/api/stock?lists", None],
+        ["no_pass", "POST", "/api/stock", {"passcode": "x", "action": "save_lists", "lists": good}],
+        ["save", "POST", "/api/stock", {"passcode": "pass-SECRET", "action": "save_lists", "lists": good, "base_revision": 0}],
+        ["after", "GET", "/api/stock?lists", None]])
+    out = r["out"]
+    assert out["empty"]["body"] == {"version": 1, "revision": 0, "lists": []} and out["empty"]["cache"] == "no-store"
+    assert out["no_pass"]["status"] == 401
+    saved = out["save"]["body"]
+    assert saved["ok"] and saved["revision"] == 1 and saved["version"] == 1
+    assert saved["lists"] == [{"id": "ai", "name": "AI names", "tickers": ["NVDA", "MSFT"]}, {"id": "w2", "name": "Watch", "tickers": ["MSFT", "BRK.B"]}]
+    assert out["after"]["body"]["lists"] == saved["lists"] and out["after"]["body"]["revision"] == 1
+    methods = [(c["method"], c["url"].split("/repos/o/r")[1]) for c in r["calls"]]
+    assert ("PATCH", "/actions/variables/STOCK_LISTS") in methods and ("POST", "/actions/variables") in methods  # created on 404
+    assert not any("dispatches" in u or "/runs" in u for _, u in methods)  # no dispatch, not counted in the cap
+    stored = json.loads(r["variable"])
+    assert stored["lists"] == saved["lists"] and "," in r["variable"] and ": " not in r["variable"]  # compact JSON
+
+
+@node
+def test_function_validates_lists_and_guards_the_variable_size(tmp_path):
+    bad = lambda lists: {"passcode": "pass-SECRET", "action": "save_lists", "lists": lists}  # noqa: E731
+    big = [{"id": f"l{i}", "name": f"List number {i:02d} with a long name", "tickers": [f"T{i:02d}{j:07d}" for j in range(100)]}
+           for i in range(30)]
+    r = run_function(tmp_path, [
+        ["not_array", "POST", "/api/stock", bad({"a": 1})],
+        ["bad_ticker", "POST", "/api/stock", bad([{"id": "a", "name": "A", "tickers": ["MSFT", "BAD TICKER"]}])],
+        ["dupe", "POST", "/api/stock", bad([{"id": "a", "name": "A", "tickers": ["MSFT", "msft"]}])],
+        ["dupe_id", "POST", "/api/stock", bad([{"id": "a", "name": "A", "tickers": []}, {"id": "a", "name": "B", "tickers": []}])],
+        ["bad_id", "POST", "/api/stock", bad([{"id": "A B", "name": "A", "tickers": []}])],
+        ["no_name", "POST", "/api/stock", bad([{"id": "a", "name": "  ", "tickers": []}])],
+        ["31_lists", "POST", "/api/stock", bad([{"id": f"l{i}", "name": "x", "tickers": []} for i in range(31)])],
+        ["101", "POST", "/api/stock", bad([{"id": "a", "name": "A", "tickers": [f"T{i}" for i in range(101)]}])],
+        ["too_big", "POST", "/api/stock", bad(big)]])
+    out = r["out"]
+    assert out["not_array"]["body"]["error"] == "lists must be an array"
+    assert out["bad_ticker"]["body"]["error"] == 'List "A": invalid ticker "BAD TICKER"'
+    assert out["dupe"]["body"]["error"] == 'List "A" has MSFT twice'
+    assert out["dupe_id"]["body"]["error"] == "Two lists share the id a" and "invalid id" in out["bad_id"]["body"]["error"]
+    assert "1-40 characters" in out["no_name"]["body"]["error"]
+    assert out["31_lists"]["body"]["error"] == "Too many lists: 31 (max 30)"
+    assert out["101"]["body"]["error"] == 'List "A" has 101 tickers (max 100)'
+    assert out["too_big"]["status"] == 413 and "max 40000" in out["too_big"]["body"]["error"]
+    assert not any(c["method"] in ("PATCH", "POST") for c in r["calls"])  # nothing saved
+
+
+@node
+def test_function_refuses_a_stale_lists_save_unless_forced(tmp_path):
+    lists = [{"id": "a", "name": "A", "tickers": ["MSFT"]}]
+    r = run_function(tmp_path, [
+        ["stale", "POST", "/api/stock", {"passcode": "pass-SECRET", "action": "save_lists", "lists": lists, "base_revision": 2}],
+        ["forced", "POST", "/api/stock", {"passcode": "pass-SECRET", "action": "save_lists", "lists": lists, "base_revision": 2, "force": True}],
+        ["broken", "GET", "/api/stock?lists", None]], variable=lists_doc(("a", "A", ["NVDA"]), revision=3))
+    assert r["out"]["stale"]["status"] == 409 and "another tab or device" in r["out"]["stale"]["body"]["error"]
+    assert r["out"]["forced"]["body"]["revision"] == 4 and json.loads(r["variable"])["lists"] == lists
+    r = run_function(tmp_path, [["broken", "GET", "/api/stock?lists", None]], variable="not json")
+    assert r["out"]["broken"]["body"]["lists"] == [] and "saving replaces it" in r["out"]["broken"]["body"]["error"]
+
+
+@node
+def test_function_quotes_all_tickers_in_one_tiingo_request(tmp_path):
+    rows = [{"ticker": "TIC", "tngoLast": 8.68, "last": None, "prevClose": 9.12, "timestamp": "2026-10-14T20:00:00+00:00"},
+            {"ticker": "BRK-B", "tngoLast": 480.1, "last": 481, "prevClose": 479, "timestamp": "2026-10-14T19:59:00.123+00:00"},
+            {"ticker": "NODATA", "tngoLast": None, "timestamp": "2026-10-14T20:00:00+00:00"},
+            {"ticker": "AAPL", "tngoLast": 230.0, "timestamp": "2026-10-14T20:00:00+00:00"}]
+    r = run_function(tmp_path, [["ok", "GET", "/api/stock?quotes=tic,BRK.B,NODATA,TIC", None]], iexRows=rows)
+    ok = r["out"]["ok"]
+    assert ok["status"] == 200 and ok["cache"] == "public, s-maxage=300"
+    assert ok["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}, "BRK.B": {"price": 480.1, "as_of": "2026-10-14T19:59:00Z"}}
+    assert [c["url"] for c in r["calls"]] == ["https://api.tiingo.com/iex/?tickers=brk-b,nodata,tic"]  # one request, sorted
+    assert r["calls"][0]["auth"] == "Token tiingo-KEY-SECRET" and "SECRET" not in r["calls"][0]["url"]
+    # the ?tickers= form failing falls back to the all-tickers endpoint once; a rejected key or the rate limit does not
+    r = run_function(tmp_path, [["fallback", "GET", "/api/stock?quotes=TIC", None]], iexRows=rows, iex={"tickers": "404"})
+    assert r["out"]["fallback"]["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}}
+    assert [c["url"] for c in r["calls"]] == ["https://api.tiingo.com/iex/?tickers=tic", "https://api.tiingo.com/iex"]
+    for code, status, msg in (("401", 502, "rejected the key"), ("429", 503, "rate limit")):
+        r = run_function(tmp_path, [["e", "GET", "/api/stock?quotes=TIC", None]], iex={"tickers": code})
+        assert r["out"]["e"]["status"] == status and msg in r["out"]["e"]["body"]["error"] and len(r["calls"]) == 1
+        assert r["out"]["e"]["cache"] == "public, s-maxage=60"
+    r = run_function(tmp_path, [["bad", "GET", "/api/stock?quotes=MSFT,1BAD", None],
+                                ["many", "GET", "/api/stock?quotes=" + ",".join(f"T{i}" for i in range(101)), None],
+                                ["none", "GET", "/api/stock?quotes=", None]])
+    assert r["out"]["bad"]["status"] == 400 and r["out"]["many"]["body"]["error"] == "Too many tickers: 101 (max 100)"
+    assert r["out"]["none"]["status"] == 400 and not r["calls"]
+    r = run_function(tmp_path, [["nokey", "GET", "/api/stock?quotes=MSFT", None]], key=None)
+    assert r["out"]["nokey"]["status"] == 503 and "STOCK_PRICE_API_KEY" in r["out"]["nokey"]["body"]["error"] and not r["calls"]

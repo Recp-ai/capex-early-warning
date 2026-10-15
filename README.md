@@ -134,10 +134,39 @@ from `source_tiers`), and a follow-up's status may not rest on an "other"-tier n
 
 ## Stock research (on demand)
 
-A separate module rates one stock at a time: open **Stock research →** on the dashboard
-(`stocks.html`), enter a ticker, pick the models and press **Run**. It runs its own workflow
+A separate module rates stocks on demand: open **Stock research →** on the dashboard (`stocks.html`),
+tick tickers in a list (or type one), pick the models and press **Run**. It runs its own workflow
 (`.github/workflows/stocks.yml`, manual only, never scheduled), writes its own files, and never changes
 how the capex pipeline runs; it only reads the capex dashboard's latest level for the overlay below.
+
+**Lists.** The page's Lists panel keeps your watch lists in one repo Actions variable, `STOCK_LISTS`
+(`{version, revision, updated_at, lists: [{id, name, tickers}]}`, compact JSON, at most 30 lists of
+100 tickers and 40,000 bytes, well under GitHub's 48 KB per variable; a ticker can be in several lists).
+Create, rename, delete (asks first) and reorder lists; add, remove, reorder, copy or move tickers, with
+up/down buttons rather than drag and drop. Edits stay in a local draft marked **Unsaved changes** until
+**Save changes** (passcode) writes the whole document once; **Discard** reverts. If another tab or
+device saved in between, the save is refused and you choose to reload or overwrite. **All rated** shows
+every ticker ever run. Nothing is seeded.
+
+**List view.** Each row shows the rating, score and confidence, the last run in your timezone (UTC on
+hover) and its age, a **stale** tag past `page.stale_after_days` (14), the close the rating was scored
+on, the latest price with its time (e.g. `8.68 · 4:00 pm ET`), the change since the rating, and the
+number of runs (or "not run yet"). Sort by list order, rating, score, last run or change; click a row
+for the detail, which ends with a **History** table of every past rating (time, rating, score,
+confidence, price, models, cost).
+
+**Batch runs.** Tick rows (or **Select all in this list**); the Run panel shows the count and an
+estimate (count × the average cost of the last 10 stock runs) and asks before starting. The workflow
+has three jobs: **plan** (runs the stock tests, validates and de-duplicates the tickers, fetches
+SPY/QQQ once and shares them as an artifact), **rate** (one job per ticker, `batch.max_parallel` = 5 at
+a time, fail-fast off; each uploads its result and never commits) and **collect** (writes the
+append-only files, refreshes the latest prices in one request, commits once with pull-rebase retries,
+and sends one summary email if email is on; a batch of one gets the full single-stock email). The page
+shows each ticker as queued / running / done / failed from the jobs, then reloads the list when the
+data is deployed; a failed ticker shows its error (from `site/data/stocks/batch.json`) and never blocks
+the others. Limits (`config/stocks.yaml` `batch`, enforced by `site/api/stock.js`): 15 tickers per run
+and 30 tickers in any 24 hours, counted across stocks.yml runs. Stock runs share the concurrency group
+`stocks`, so two batches never overlap; the capex workflow is unaffected.
 
 **Six factors, each 0–100.** Five are computed by code; Claude never sets a number or the rating.
 
@@ -179,16 +208,29 @@ has set the rating, and is told the points to the next band.
 
 **Output.** Every run is kept: `data/stocks/runs/<TICKER>/<UTC timestamp>.json` (never overwritten) and
 a row in `data/stocks/ratings.csv` (timestamp, ticker, rating, score, confidence, each factor, price at
-rating time, models, cost; append-only). `site/data/stocks/index.json` lists the latest rating per ticker
-and `site/data/stocks/<TICKER>.json` the latest detail. The "now" price in the table is the latest close
-any stock run fetched: each run refreshes up to 10 other rated tickers. The email is optional per run
-and uses the same SMTP secrets. `python scripts/evaluate_stocks.py [--refresh]` prints forward 1/3/6-month
+rating time, models, cost, overlay, then `quote_price` and `quote_as_of`; append-only).
+`site/data/stocks/index.json` lists the latest rating and latest price per ticker, the page settings and
+the recent average cost; `site/data/stocks/<TICKER>.json` holds the latest detail and the full history;
+`site/data/stocks/batch.json` the last batch's per-ticker status. The email is optional per run and uses
+the same SMTP secrets. `python scripts/evaluate_stocks.py [--refresh]` prints forward 1/3/6-month
 returns by rating band, and versus SPY, from `ratings.csv`.
+
+**Near-live prices (display only).** Scores always use the latest official daily close. Tiingo
+publishes a day's close some time after 4 pm ET, so a run at 5 pm can still score on the previous
+day's close. The page therefore says **Scored on the close of <date>**, adds "today's close not yet
+published; scored on <date>" when the run's quote (or, without one, the latest weekday) is newer, and a
+run between 16:00 and 18:00 ET says so in its summary and email. The latest price comes from Tiingo's
+IEX endpoint: `tngoLast` (the official close once it prints; `last` needs an IEX entitlement and is
+ignored), `prevClose` and the timestamp, all tickers in **one request** (`iex/?tickers=a,b,c`; the
+all-tickers endpoint, filtered in code, only if that form fails). Each run stores
+`quote: {price, as_of, prev_close}`, never a score input. The page asks `api/stock?quotes=...` once on
+load and every 10 minutes while the tab is visible and US markets are open (9:30 am–4:15 pm ET); the
+function makes the one Tiingo request server-side and the response is cached at the edge for 5 minutes.
 
 **Cost.** A run makes four Claude calls: research (Sonnet, up to 8 searches), topic ratings, the
 write-up, and guidance extraction (Opus; once per earnings release, then cached). The first live run
 (MSFT) cost $0.45 at list prices, $0.36 of it research: 8 searches and the ~118K tokens of search results
-they pulled in. The page estimates each run from the last run's tokens.
+they pulled in. The page estimates a run as the number of tickers × the average cost of the last 10 stock runs.
 
 ### Price data: Tiingo
 
@@ -202,21 +244,29 @@ series on paid plans. Yahoo Finance has no official API and often blocks cloud I
 
 **Free-tier limits** (Tiingo's "Starter" plan, for personal use; check
 [tiingo.com/about/pricing](https://www.tiingo.com/about/pricing) for the current numbers): about 50
-requests an hour, 1,000 a day and 500 unique symbols a month. A run uses 3 requests (the ticker, SPY
-and QQQ) plus up to 10 for the "now" prices. With the 10-runs-a-day cap that stays well inside the
-daily limit. If a key is missing, rejected or rate-limited, valuation and trend are marked missing,
-confidence drops, and the run still completes.
+requests an hour, 1,000 a day and 500 unique symbols a month, shared by runs and the page's quotes.
+A batch of n tickers uses n + 3 requests: SPY and QQQ once (plan), one daily history per ticker, and one
+quote request (collect); a full batch of 15 uses 18, and the 30-tickers-a-day cap at most 36 in a day.
+The page's quotes are one request per load or 10-minute refresh, and the 5-minute edge cache bounds them
+at 12 an hour for the same ticker set (6 an hour for one open tab while markets are open, none after
+hours beyond page loads). A heavy hour (one full batch plus a polling tab) is about 24 requests. If a
+key is missing, rejected or rate-limited, valuation and trend are marked missing, confidence drops,
+and the run still completes; a failed quote only leaves the latest price at the stored close.
 
 **Setup.**
 1. Sign up at tiingo.com (free), then copy your API token from Account → API → Token.
 2. Add it as a repository secret: Settings → Secrets and variables → Actions → New repository secret,
    name `STOCK_PRICE_API_KEY`.
-3. The stocks page's Run button uses the same Vercel variables as Run now (`GITHUB_TOKEN`,
-   `RUN_PASSCODE`) through its own function, [`site/api/stock.js`](site/api/stock.js). The token's
-   **Actions: Read and write** permission already covers `stocks.yml`. Runs are capped at 10 per 24
-   hours, counted on `stocks.yml` only.
+3. The stocks page uses the same Vercel variables as Run now (`GITHUB_TOKEN`, `RUN_PASSCODE`) through
+   its own function, [`site/api/stock.js`](site/api/stock.js). The token's **Actions: Read and write**
+   permission covers `stocks.yml`; its **Variables: Read and write** permission covers the
+   `STOCK_LISTS` variable (lists). Runs are capped at 15 tickers each and 30 tickers per 24 hours,
+   counted on `stocks.yml` only.
+4. For live prices on the page, also add the Tiingo token in Vercel (Settings → Environment Variables)
+   as `STOCK_PRICE_API_KEY`, then redeploy. Without it the page shows the stored latest close.
 
-**Use it** from the page, or Actions → **Stock research** → Run workflow (ticker, models, email), or locally:
+**Use it** from the page, or Actions → **Stock research** → Run workflow (comma-separated tickers,
+models, email), or locally:
 
 ```bash
 python -m pytest -q tests_stocks
@@ -225,6 +275,7 @@ python -m stocks.run MSFT              # full run, no email
 python -m stocks.run MSFT --email      # and email it
 python -m stocks.run MSFT --no-llm     # code factors only
 python -m stocks.run MSFT --offline --no-llm   # re-score cached data
+INPUT_TICKERS=MSFT,NVDA python -m stocks.batch plan --shared shared   # what the plan job does
 python scripts/evaluate_stocks.py --refresh    # forward returns by rating band
 ```
 
@@ -271,7 +322,7 @@ Settings → Secrets and variables → Actions → **New repository secret**:
 | `SMTP_PASSWORD` | yes | That account's app password (Gmail: myaccount.google.com/apppasswords) |
 | `SEC_USER_AGENT` | recommended | SEC asks for a contact, e.g. `CapexEarlyWarning you@example.com`. Falls back to `SMTP_USERNAME`. |
 | `SMTP_HOST` / `SMTP_PORT` | only if not Gmail | Defaults: `smtp.gmail.com` / `465` |
-| `STOCK_PRICE_API_KEY` | for stock research | Free Tiingo API token (see [Stock research](#stock-research-on-demand)); without it valuation and trend are left out |
+| `STOCK_PRICE_API_KEY` | for stock research | Free Tiingo API token (see [Stock research](#stock-research-on-demand)); without it valuation and trend are left out. Add it in Vercel too for the page's live prices. |
 
 Optional repository **variables** (Variables tab):
 
@@ -279,6 +330,7 @@ Optional repository **variables** (Variables tab):
 |---|---|
 | `DASHBOARD_URL` | Your Vercel URL, linked from the email |
 | `RESEARCH_MODEL` / `ASSESSMENT_MODEL` | Default models for scheduled runs (the dashboard's "Save as default" sets these) |
+| `STOCK_LISTS` | The stocks page's lists (written by the page; don't edit by hand) |
 
 ### 2. First run
 Actions → **Weekly capex early-warning** → **Run workflow**. It takes a few minutes, commits the new
@@ -319,6 +371,7 @@ environment, marked Sensitive:
 | `GITHUB_TOKEN` | the token from step a |
 | `RUN_PASSCODE` | a long random passcode, e.g. the output of `openssl rand -base64 24` |
 | `GITHUB_REPO` | optional, `owner/name`; only if the Vercel project isn't linked to this repo |
+| `STOCK_PRICE_API_KEY` | optional, the Tiingo token: live prices on the stocks page (`api/stock.js?quotes=`) |
 
 **c. Redeploy**: Deployments → the latest production deployment → ⋯ → **Redeploy**. Environment
 variables only apply to new deployments.
@@ -357,8 +410,8 @@ python -m pytest -q tests_stocks && python -m stocks.run MSFT   # stock research
 ```
 cew/            pipeline (fetch_fred, fetch_edgar, fetch_taiwan, edgar_text, leases, calls, scoring, analyst,
                 sources, events, models, notify, publish, run)
-stocks/         stock research (resolve, fundamentals, prices, guidance, metrics, scoring, research, publish,
-                notify, run)
+stocks/         stock research (resolve, fundamentals, prices and quotes, guidance, metrics, scoring, research,
+                publish, notify, run; batch = plan and collect for batch runs)
 config/         signals.yaml — thresholds, series, companies, models; models.yaml — prices; events.yaml — event days;
                 stocks.yaml — stock factors, weights, bands, overlay
 data/           history (FRED CSVs, EDGAR metrics and lease footnotes, earnings releases in calls/, Taiwan

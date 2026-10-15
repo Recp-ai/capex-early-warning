@@ -224,6 +224,21 @@ def tiingo_url(t):
     return f"https://api.tiingo.com/tiingo/daily/{t.lower()}/prices"
 
 
+IEX_URL = "https://api.tiingo.com/iex/"
+IEX_ALL_URL = "https://api.tiingo.com/iex"
+
+
+def iex_row(ticker, last, prev=None, ts="2026-10-14T20:00:00+00:00"):
+    """One row of Tiingo's IEX endpoint as the free plan returns it (`last` and the book are null)."""
+    return {"ticker": ticker.upper(), "tngoLast": last, "last": None, "prevClose": prev, "timestamp": ts, "open": last,
+            "high": last, "low": last, "mid": None, "volume": 1000, "lastSaleTimestamp": None, "quoteTimestamp": None,
+            "bidPrice": None, "askPrice": None, "bidSize": None, "askSize": None, "lastSize": None}
+
+
+def iex_url(*tickers):
+    return IEX_URL + "?tickers=" + ",".join(t.lower().replace(".", "-") for t in tickers)
+
+
 def price_routes(ticker="MSFT", split=None):
     return {tiingo_url(ticker): as_json(tiingo_rows(300, 0.0004, split=split, wiggle=0.02)),
             tiingo_url("SPY"): as_json(tiingo_rows(400, 0.0003)),

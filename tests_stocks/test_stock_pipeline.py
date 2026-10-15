@@ -32,8 +32,11 @@ def fetch(url):
     return (PAGES[url], None) if url in PAGES else (None, "HTTP 404")
 
 
+QUOTES = F.as_json([F.iex_row("MSFT", 310.5, 305.0)])
+
+
 def setup(monkeypatch, sandbox, claude=None, key="k", llm=True, latest=None, routes=None):
-    sess = F.FakeSession({**F.sec_routes(), **F.price_routes(), **(routes or {})})
+    sess = F.FakeSession({**F.sec_routes(), **F.price_routes(), F.iex_url("MSFT"): QUOTES, **(routes or {})})
     monkeypatch.setattr(util, "session", lambda ua=None: sess)
     monkeypatch.setattr(sources, "make_fetcher", lambda *a, **k: fetch)
     if key:
@@ -101,7 +104,10 @@ def test_full_run(sandbox, monkeypatch, capsys):
     assert len(detail["chart"]) > 1000 and "notes" not in detail["claude"]["research"] and len(detail["history"]) == 1
     assert "chart" not in r and r["claude"]["research"]["notes"].startswith("Notes")
     index = util.read_json(util.SITE_DATA / "stocks" / "index.json")
-    assert [e["ticker"] for e in index["tickers"]] == ["MSFT"] and index["tickers"][0]["change_pct"] == 0
+    assert [e["ticker"] for e in index["tickers"]] == ["MSFT"]
+    assert index["tickers"][0]["change_pct"] == round((310.5 / r["price"]["close"] - 1) * 100, 2)
+    assert index["settings"] == {"stale_after_days": 14, "max_batch": 15, "max_tickers_per_day": 30}
+    assert index["recent_cost"] == {"avg_usd": r["cost"]["total_usd"], "runs": 1}
     assert "Not investment advice" in index["disclaimer"] and index["last_run"]["steps"]["research"]["web_searches"] == 3
     assert r["email"] == "skipped (email off)"
     printed = capsys.readouterr().out
@@ -234,16 +240,28 @@ def test_new_ratings_column_extends_the_header_and_leaves_rows_alone(sandbox):
     assert rows[0]["overlay"] in ("", None) and rows[1]["overlay"] == "note"
 
 
-def test_index_keeps_names_and_refreshes_other_tickers_now_prices(sandbox, monkeypatch):
-    sess, _ = setup(monkeypatch, sandbox, claude=[], llm=False, routes={F.tiingo_url("AAPL"): F.as_json(F.tiingo_rows(200, 0.0))})
+def test_index_keeps_names_and_refreshes_every_rated_ticker_in_one_quote_request(sandbox, monkeypatch):
+    quotes = F.as_json([F.iex_row("AAPL", 200.0, 198.0), F.iex_row("MSFT", 310.5, 305.0)])
+    sess, _ = setup(monkeypatch, sandbox, claude=[], llm=False, routes={F.iex_url("MSFT", "AAPL"): quotes})
     publish.append_rating({"timestamp": "2026-09-01T00:00:00Z", "ticker": "AAPL", "rating": "Hold", "score": 50,
                            "confidence": "High", "price": 180, "price_date": "2026-08-29"})
     util.write_json(util.SITE_DATA / "stocks" / "index.json", {"tickers": [{"ticker": "AAPL", "name": "APPLE INC"}]})
     assert run.main(["MSFT", "--no-llm"]) == 0
+    iex = [c for c in sess.calls if "/iex" in c["url"]]
+    assert [c["url"] for c in iex] == [F.iex_url("MSFT", "AAPL")] and iex[0]["headers"]["Authorization"] == "Token k"
+    assert not [c for c in sess.calls if c["url"] == F.tiingo_url("AAPL")]  # no per-ticker daily refresh
     idx = {e["ticker"]: e for e in util.read_json(util.SITE_DATA / "stocks" / "index.json")["tickers"]}
     assert idx["AAPL"]["name"] == "APPLE INC" and idx["AAPL"]["price_now"] == pytest.approx(200)
-    assert idx["AAPL"]["price_now_date"] == "2026-10-09" and idx["AAPL"]["change_pct"] == pytest.approx(11.11, abs=0.01)
+    assert idx["AAPL"]["price_now_date"] == "2026-10-14" and idx["AAPL"]["price_now_as_of"] == "2026-10-14T20:00:00Z"
+    assert idx["AAPL"]["change_pct"] == pytest.approx(11.11, abs=0.01) and idx["AAPL"]["quote"]["price"] == 200
     assert idx["MSFT"]["name"] == "MICROSOFT CORP" and list(idx) == ["MSFT", "AAPL"]
+    r = latest_run()
+    assert r["quote"] == {"price": 310.5, "as_of": "2026-10-14T20:00:00Z", "prev_close": 305.0}
+    assert r["factors"]["valuation"]["score"] is not None and r["price"]["date"] == "2026-10-09"  # scored on the close
+    assert idx["MSFT"]["price"] == r["price"]["close"] and idx["MSFT"]["price_now"] == 310.5  # quote newer than the close
+    row = util.read_csv(publish.ratings_csv())[-1]
+    assert row["quote_price"] == "310.5" and row["quote_as_of"] == "2026-10-14T20:00:00Z"
+    assert r["close_note"]["note"] == "today's close not yet published; scored on 2026-10-09"
 
 
 def test_models_come_from_inputs_then_config(monkeypatch):

@@ -1,12 +1,14 @@
 name: Stock research
-run-name: Stock research ${{ inputs.ticker }}
+run-name: Stock research ${{ inputs.tickers }}
 
-# On demand only (the stocks page's Run button, or Run workflow here). No schedule.
+# On demand only (the stocks page's Run panel, or Run workflow here). No schedule.
+# plan (validate, fetch SPY/QQQ once) -> one job per ticker (matrix; no commits) -> collect (quotes in one
+# request, append-only files, one email, one commit). See stocks/batch.py.
 on:
   workflow_dispatch:
     inputs:
-      ticker:
-        description: "Ticker, e.g. MSFT (SEC-registered companies only)"
+      tickers:
+        description: "Ticker(s), comma-separated, e.g. MSFT,NVDA (SEC-registered companies; max 15)"
         type: string
         required: true
       research_model:
@@ -20,21 +22,25 @@ on:
         required: false
         default: ""
       send_email:
-        description: "Email the result"
+        description: "Email the result (one summary email for the batch)"
         type: boolean
         default: false
 
 permissions:
   contents: write
 
+# One stock batch at a time. The capex workflow (weekly.yml) is not in this group and never waits on it.
 concurrency:
-  group: stock-research
+  group: stocks
   cancel-in-progress: false
 
 jobs:
-  research:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
+    outputs:
+      tickers: ${{ steps.plan.outputs.tickers }}
+      max_parallel: ${{ steps.plan.outputs.max_parallel }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,33 +55,116 @@ jobs:
       - name: Unit tests (stock module)
         run: python -m pytest -q tests_stocks
 
+      - name: Plan the batch
+        id: plan
+        env:
+          STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
+          # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
+          INPUT_TICKERS: ${{ inputs.tickers }}
+        run: python -m stocks.batch plan --shared shared
+
+      - name: Share the benchmark prices with every ticker's job
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmarks
+          path: shared/
+          if-no-files-found: ignore
+          retention-days: 3
+
+  rate:
+    name: rate ${{ matrix.ticker }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.plan.outputs.max_parallel) }}
+      matrix:
+        ticker: ${{ fromJSON(needs.plan.outputs.tickers) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Get the shared benchmark prices
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: benchmarks
+          path: shared
+
       - name: Research the stock
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          INPUT_TICKER: ${{ matrix.ticker }}
+          INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
+          INPUT_SCORING_MODEL: ${{ inputs.scoring_model }}
+        run: python -m stocks.run --batch-out out --shared shared
+
+      - name: Hand the result to the collect job
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-${{ matrix.ticker }}
+          path: out/
+          if-no-files-found: ignore
+          retention-days: 3
+
+  collect:
+    needs: [plan, rate]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Get the shared benchmark prices
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: benchmarks
+          path: shared
+
+      - name: Get every ticker's result
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: stock-*
+          path: out
+          merge-multiple: true
+
+      - name: Write the results and send one email
+        env:
+          STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
           ALERT_EMAIL_TO: ${{ secrets.ALERT_EMAIL_TO }}
           SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
-          # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
-          INPUT_TICKER: ${{ inputs.ticker }}
-          INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
-          INPUT_SCORING_MODEL: ${{ inputs.scoring_model }}
+          PLAN_TICKERS: ${{ needs.plan.outputs.tickers }}
           INPUT_SEND_EMAIL: ${{ inputs.send_email }}
-        run: |
-          if [ "$INPUT_SEND_EMAIL" = "true" ]; then
-            python -m stocks.run --email
-          else
-            python -m stocks.run
-          fi
+        run: python -m stocks.batch collect --out out --shared shared --message-file "$RUNNER_TEMP/commit-message.txt"
 
-      - name: Save results
+      - name: Commit once
         if: always()
-        env:
-          INPUT_TICKER: ${{ inputs.ticker }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -86,7 +175,18 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          SAFE_TICKER=$(printf '%s' "$INPUT_TICKER" | tr -cd 'A-Za-z0-9.-' | cut -c1-10)
-          git commit -m "Stock research ${SAFE_TICKER} $(date -u +%Y-%m-%d)"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          if [ -s "$RUNNER_TEMP/commit-message.txt" ]; then
+            git commit -q -F "$RUNNER_TEMP/commit-message.txt"
+          else
+            git commit -q -m "Stock research $(date -u +%Y-%m-%d)"
+          fi
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Push attempt $i failed; retrying"
+            sleep $((i * 5))
+          done
+          echo "::error::Could not push the stock results"
+          exit 1

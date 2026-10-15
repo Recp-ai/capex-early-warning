@@ -1,10 +1,16 @@
-// Vercel function behind the stocks page's Run panel. Node, no dependencies. Separate from api/run.js.
-//   POST /api/stock {passcode, ticker, research_model, scoring_model, send_email}
-//                   -> dispatches .github/workflows/stocks.yml on main and returns the run URL
-//   GET  /api/stock -> {status, conclusion, title, created_at, run_url} of the latest stocks.yml run
-// Vercel environment variables (the same ones api/run.js uses): RUN_PASSCODE, GITHUB_TOKEN (fine-grained,
-// this repo only, Actions read and write), optional GITHUB_REPO ("owner/name").
-// Never put either secret in a response, an error, or a log line.
+// Vercel function behind the stocks page. Node, no dependencies. Separate from api/run.js.
+//   POST /api/stock {passcode, tickers: [...] | ticker, research_model, scoring_model, send_email}
+//                   -> dispatches .github/workflows/stocks.yml on main (one batch: a job per ticker)
+//   GET  /api/stock [?run=<id>] -> {status, conclusion, title, run_url, run_id, tickers: [{ticker, status}]}
+//                   for that (or the latest) stocks.yml run; each ticker queued / running / done / failed
+//   GET  /api/stock?lists -> the lists document from the STOCK_LISTS repo variable ({lists: []} if unset)
+//   POST /api/stock {passcode, action: "save_lists", lists, base_revision, force} -> validates and saves
+//                   the whole document (no dispatch; not counted in the ticker cap)
+//   GET  /api/stock?quotes=T1,T2 -> {T1: {price, as_of}, ...}: near-live Tiingo IEX quotes (tngoLast), one
+//                   request for all tickers, cached 5 minutes at the edge. Display only.
+// Vercel environment variables: RUN_PASSCODE, GITHUB_TOKEN (fine-grained, this repo only: Actions read and
+// write, Variables read and write), STOCK_PRICE_API_KEY (Tiingo; quotes only), optional GITHUB_REPO.
+// Never put a secret in a response, an error, or a log line.
 "use strict";
 
 const crypto = require("crypto");
@@ -17,30 +23,55 @@ const REPO = process.env.GITHUB_REPO ||
     : "recp-ai/capex-early-warning");
 const WORKFLOW = "stocks.yml";
 const REF = "main";
-const MAX_RUNS_PER_DAY = 10; // counted on stocks.yml only
+// The same limits as config/stocks.yaml (a test checks they match).
+const MAX_BATCH = 15;            // batch.max_batch
+const MAX_TICKERS_PER_DAY = 30;  // batch.max_tickers_per_day, counted across stocks.yml runs
+const MAX_LISTS = 30;            // lists.max_lists
+const MAX_PER_LIST = 100;        // lists.max_tickers_per_list
+const MAX_LIST_BYTES = 40000;    // lists.max_bytes (GitHub's variable limit is 48 KB)
+const MAX_QUOTES = 100;          // prices.quotes_max_tickers
+const LISTS_VAR = "STOCK_LISTS";
+const LISTS_VERSION = 1;
 const MODEL_RE = /^claude-[a-z0-9.-]+$/;
 const TICKER_RE = /^[A-Z][A-Z0-9.\-]{0,9}$/;
+const LIST_ID_RE = /^[a-z0-9][a-z0-9_-]{0,23}$/;
 const STEPS = ["research_model", "scoring_model"];
+const IEX = "https://api.tiingo.com/iex";
+const ACTIVE = ["queued", "waiting", "pending", "requested"];
 
 class Fail extends Error {
-  constructor(status, message) { super(message); this.status = status; }
+  constructor(status, message, cache) { super(message); this.status = status; this.cache = cache; }
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function scrub(s) {
   let out = String(s || "");
-  for (const secret of [process.env.GITHUB_TOKEN, process.env.RUN_PASSCODE]) {
+  for (const secret of [process.env.GITHUB_TOKEN, process.env.RUN_PASSCODE, process.env.STOCK_PRICE_API_KEY]) {
     if (secret) out = out.split(secret).join("***");
   }
   return out;
+}
+
+// Every string in a response is scrubbed too (secrets of 6+ characters, so a short value can't mangle text).
+function scrubDeep(v) {
+  if (typeof v === "string") {
+    let out = v;
+    for (const secret of [process.env.GITHUB_TOKEN, process.env.RUN_PASSCODE, process.env.STOCK_PRICE_API_KEY]) {
+      if (secret && secret.length >= 6) out = out.split(secret).join("***");
+    }
+    return out;
+  }
+  if (Array.isArray(v)) return v.map(scrubDeep);
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, scrubDeep(x)]));
+  return v;
 }
 
 function send(res, status, body, cache) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", cache || "no-store");
-  res.end(JSON.stringify(body));
+  res.end(JSON.stringify(scrubDeep(body)));
 }
 
 function passcodeOk(given) {
@@ -77,11 +108,17 @@ function ghFail(what, r) {
 
 const runsPath = params => `/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?${new URLSearchParams(params)}`;
 
-async function runsSince(sinceMs) {
+// The run name is "Stock research <tickers>" (stocks.yml run-name), so the tickers of a run come from its title.
+function tickersInTitle(title) {
+  const rest = String(title || "").replace(/^Stock research\s*/i, "");
+  return rest.split(/[\s,]+/).filter(Boolean).map(t => t.toUpperCase()).filter(t => t.length <= 12);
+}
+
+async function recentRuns(sinceMs) {
   const since = new Date(sinceMs).toISOString().replace(/\.\d{3}Z$/, "Z");
   const r = await gh("GET", runsPath({ event: "workflow_dispatch", created: `>=${since}`, per_page: "100" }));
   if (!r.ok) throw ghFail("checking recent stock runs", r);
-  return (r.data.workflow_runs || []).filter(x => Date.parse(x.created_at) >= sinceMs).length;
+  return (r.data.workflow_runs || []).filter(x => Date.parse(x.created_at) >= sinceMs);
 }
 
 async function findRun(sinceMs) {
@@ -94,6 +131,12 @@ async function findRun(sinceMs) {
     if (run) return run;
   }
   return null;
+}
+
+async function saveVariable(name, value) {
+  let r = await gh("PATCH", `/repos/${REPO}/actions/variables/${name}`, { name, value });
+  if (r.status === 404) r = await gh("POST", `/repos/${REPO}/actions/variables`, { name, value });
+  if (!r.ok) throw ghFail(`saving the ${name} variable`, r);
 }
 
 const idsFrom = catalog => new Set(((catalog && catalog.models) || []).map(m => m && m.id).filter(id => MODEL_RE.test(id || "")));
@@ -121,7 +164,7 @@ async function readBody(req) {
     let size = 0;
     for await (const c of req) {
       size += c.length;
-      if (size > 10000) throw new Fail(413, "Request body too large");
+      if (size > 64000) throw new Fail(413, "Request body too large");
       chunks.push(c);
     }
     return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
@@ -142,15 +185,176 @@ function normalizeTicker(v) {
   return TICKER_RE.test(t) ? t : null;
 }
 
-async function handleStatus(res) {
+const query = req => new URL(String(req.url || "/"), "http://x").searchParams;
+
+// ---------------------------------------------------------------- lists (STOCK_LISTS variable)
+function validateLists(lists) {
+  if (!Array.isArray(lists)) throw new Fail(400, "lists must be an array");
+  if (lists.length > MAX_LISTS) throw new Fail(400, `Too many lists: ${lists.length} (max ${MAX_LISTS})`);
+  const ids = new Set();
+  const out = lists.map((l, i) => {
+    if (!l || typeof l !== "object" || Array.isArray(l)) throw new Fail(400, `List ${i + 1} must be an object`);
+    const id = typeof l.id === "string" ? l.id : "";
+    if (!LIST_ID_RE.test(id)) throw new Fail(400, `List ${i + 1} has an invalid id`);
+    if (ids.has(id)) throw new Fail(400, `Two lists share the id ${id}`);
+    ids.add(id);
+    const name = typeof l.name === "string" ? l.name.trim() : "";
+    if (!name || name.length > 40 || /[\u0000-\u001f\u007f]/.test(name)) {
+      throw new Fail(400, `List ${i + 1}: the name must be 1-40 characters`);
+    }
+    if (!Array.isArray(l.tickers)) throw new Fail(400, `List "${name}": tickers must be an array`);
+    if (l.tickers.length > MAX_PER_LIST) throw new Fail(400, `List "${name}" has ${l.tickers.length} tickers (max ${MAX_PER_LIST})`);
+    const seen = new Set();
+    const tickers = l.tickers.map(raw => {
+      const t = normalizeTicker(raw);
+      if (!t) throw new Fail(400, `List "${name}": invalid ticker "${String(raw).slice(0, 12)}"`);
+      if (seen.has(t)) throw new Fail(400, `List "${name}" has ${t} twice`);
+      seen.add(t);
+      return t;
+    });
+    return { id, name, tickers };
+  });
+  return out;
+}
+
+function listsDoc(lists, revision) {
+  const doc = { version: LISTS_VERSION, revision, updated_at: new Date().toISOString().replace(/\.\d{3}Z$/, "Z"), lists };
+  const bytes = Buffer.byteLength(JSON.stringify(doc), "utf8");
+  if (bytes > MAX_LIST_BYTES) {
+    throw new Fail(413, `Lists too large to save: ${bytes} bytes (max ${MAX_LIST_BYTES}); remove some tickers or lists`);
+  }
+  return doc;
+}
+
+async function readLists() {
+  const r = await gh("GET", `/repos/${REPO}/actions/variables/${LISTS_VAR}`);
+  if (r.status === 404) return { version: LISTS_VERSION, revision: 0, lists: [] };
+  if (!r.ok) throw ghFail(`reading the ${LISTS_VAR} variable`, r);
+  let doc;
+  try { doc = JSON.parse((r.data && r.data.value) || ""); } catch (e) { doc = null; }
+  if (!doc || typeof doc !== "object" || !Array.isArray(doc.lists)) {
+    return { version: LISTS_VERSION, revision: 0, lists: [], error: `The saved ${LISTS_VAR} variable is not a lists document; saving replaces it` };
+  }
+  let lists;
+  try { lists = validateLists(doc.lists); } catch (e) {
+    return { version: LISTS_VERSION, revision: Number(doc.revision) || 0, lists: [], error: `The saved lists are invalid (${e.message}); saving replaces them` };
+  }
+  return { version: LISTS_VERSION, revision: Number(doc.revision) || 0, updated_at: doc.updated_at || null, lists };
+}
+
+async function handleGetLists(res) {
   configured();
-  const r = await gh("GET", runsPath({ event: "workflow_dispatch", per_page: "1" }));
-  if (!r.ok) throw ghFail("reading the latest stock run", r);
-  const run = (r.data.workflow_runs || [])[0];
-  return send(res, 200, run ? {
-    status: run.status, conclusion: run.conclusion, title: String(run.display_title || "").slice(0, 80),
-    created_at: run.created_at, run_url: run.html_url,
-  } : { status: null, conclusion: null }, "public, s-maxage=5");
+  return send(res, 200, await readLists());
+}
+
+async function handleSaveLists(body, res) {
+  const lists = validateLists(body.lists);
+  const current = await readLists();
+  const base = body.base_revision;
+  if (body.force !== true && typeof base === "number" && base !== current.revision) {
+    throw new Fail(409, "The lists were saved from another tab or device since you loaded them. Reload them, or save again to overwrite.");
+  }
+  const doc = listsDoc(lists, (current.revision || 0) + 1);
+  await saveVariable(LISTS_VAR, JSON.stringify(doc));
+  return send(res, 200, { ok: true, ...doc });
+}
+
+// ---------------------------------------------------------------- quotes (Tiingo IEX, display only)
+const tiingoSymbol = t => t.replace(/\./g, "-").toLowerCase();
+
+async function iex(url) {
+  let r;
+  try {
+    r = await fetch(url, { headers: { Authorization: `Token ${process.env.STOCK_PRICE_API_KEY}`, "Content-Type": "application/json" } });
+  } catch (e) {
+    return { error: "Quote API unreachable", fallback: true };
+  }
+  if (r.status === 401 || r.status === 403) return { error: `Quote API rejected the key (HTTP ${r.status})` };
+  if (r.status === 429) return { error: "Quote API rate limit reached; try again later", status: 503 };
+  if (!r.ok) return { error: `Quote API returned HTTP ${r.status}`, fallback: true };
+  let data = null;
+  try { data = JSON.parse(await r.text()); } catch (e) { /* not JSON */ }
+  if (!Array.isArray(data)) return { error: "Quote API returned an unexpected response", fallback: true };
+  return { data };
+}
+
+function parseQuotes(data, tickers) {
+  const wanted = new Map(tickers.map(t => [tiingoSymbol(t).toUpperCase(), t]));
+  const out = {};
+  for (const d of data) {
+    const t = d && wanted.get(String(d.ticker || "").toUpperCase());
+    const price = t ? Number(d.tngoLast) : NaN; // tngoLast: Tiingo's last price, the official close once it prints
+    if (!t || d.tngoLast == null || !Number.isFinite(price) || price <= 0) continue;
+    const ms = Date.parse(d.timestamp);
+    out[t] = { price, as_of: Number.isFinite(ms) ? new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z") : null };
+  }
+  return out;
+}
+
+async function handleQuotes(raw, res) {
+  const parts = String(raw || "").split(",").map(s => s.trim()).filter(Boolean);
+  if (!parts.length) throw new Fail(400, "Give tickers: ?quotes=MSFT,NVDA");
+  const tickers = [];
+  for (const p of parts) {
+    const t = normalizeTicker(p);
+    if (!t) throw new Fail(400, `Invalid ticker "${p.slice(0, 12)}"`);
+    if (!tickers.includes(t)) tickers.push(t);
+  }
+  if (tickers.length > MAX_QUOTES) throw new Fail(400, `Too many tickers: ${tickers.length} (max ${MAX_QUOTES})`);
+  if (!process.env.STOCK_PRICE_API_KEY) throw new Fail(503, "Live quotes are not set up: add STOCK_PRICE_API_KEY in Vercel, then redeploy");
+  tickers.sort();
+  // One request for every ticker; only if that form fails (not a rejected key or the rate limit), the
+  // all-tickers endpoint filtered here. Never one request per ticker.
+  let got = await iex(`${IEX}/?tickers=${tickers.map(tiingoSymbol).join(",")}`);
+  if (got.error && got.fallback) got = await iex(IEX);
+  if (got.error) throw new Fail(got.status || 502, got.error, "public, s-maxage=60");
+  return send(res, 200, parseQuotes(got.data, tickers), "public, s-maxage=300");
+}
+
+// ---------------------------------------------------------------- runs
+function jobState(job) {
+  if (!job) return { status: "queued" };
+  if (job.status !== "completed") return { status: job.status === "in_progress" ? "running" : "queued" };
+  if (job.conclusion === "success") return { status: "done" };
+  const step = (job.steps || []).find(s => s.conclusion === "failure" || s.conclusion === "cancelled");
+  return { status: "failed", reason: job.conclusion || "failed", ...(step ? { step: String(step.name || "").slice(0, 80) } : {}) };
+}
+
+async function handleStatus(req, res) {
+  configured();
+  const id = query(req).get("run");
+  let run;
+  if (id) {
+    if (!/^\d{1,20}$/.test(id)) throw new Fail(400, "Invalid run id");
+    const r = await gh("GET", `/repos/${REPO}/actions/runs/${id}`);
+    if (!r.ok) throw ghFail("reading the stock run", r);
+    run = r.data;
+    if (!run || !String(run.path || "").endsWith(`workflows/${WORKFLOW}`)) throw new Fail(404, "Not a stock research run");
+  } else {
+    const r = await gh("GET", runsPath({ event: "workflow_dispatch", per_page: "1" }));
+    if (!r.ok) throw ghFail("reading the latest stock run", r);
+    run = (r.data.workflow_runs || [])[0];
+  }
+  if (!run) return send(res, 200, { status: null, conclusion: null }, "public, s-maxage=5");
+  const j = await gh("GET", `/repos/${REPO}/actions/runs/${run.id}/jobs?per_page=100`);
+  const jobs = j.ok ? (j.data.jobs || []) : [];
+  const byTicker = new Map();
+  for (const job of jobs) {
+    const m = /^rate (\S+)$/.exec(String(job.name || ""));
+    if (m) byTicker.set(m[1].toUpperCase(), job);
+  }
+  const named = n => jobs.find(x => x.name === n);
+  const tickers = tickersInTitle(run.display_title).map(t => {
+    const st = byTicker.has(t) ? jobState(byTicker.get(t))
+      : run.status === "completed" ? { status: run.conclusion === "success" ? "done" : "failed", reason: run.conclusion } : { status: "queued" };
+    return { ticker: t, ...st };
+  });
+  const state = job => (job ? (job.status === "completed" ? job.conclusion : job.status) : null);
+  return send(res, 200, {
+    status: run.status, conclusion: run.conclusion, title: String(run.display_title || "").slice(0, 200),
+    created_at: run.created_at, run_url: run.html_url, run_id: run.id, tickers,
+    plan: state(named("plan")), collect: state(named("collect")),
+  }, "public, s-maxage=5");
 }
 
 async function handleRun(req, res) {
@@ -161,8 +365,19 @@ async function handleRun(req, res) {
     await sleep(1000); // slow down guessing
     throw new Fail(401, "Wrong passcode");
   }
-  const ticker = normalizeTicker(body.ticker);
-  if (!ticker) throw new Fail(400, "Invalid ticker: 1-10 characters, a letter first, then letters, digits, '.' or '-'");
+  if (body.action === "save_lists") return handleSaveLists(body, res);
+  if (body.action !== undefined) throw new Fail(400, "Unknown action");
+
+  const raw = Array.isArray(body.tickers) ? body.tickers : typeof body.ticker === "string" ? [body.ticker] : null;
+  if (!raw || !raw.length) throw new Fail(400, "Give a ticker or a list of tickers");
+  if (raw.length > 100) throw new Fail(400, `A batch takes at most ${MAX_BATCH} tickers`);
+  const tickers = [];
+  for (const v of raw) {
+    const t = normalizeTicker(v);
+    if (!t) throw new Fail(400, `Invalid ticker "${String(v).slice(0, 12)}": 1-10 characters, a letter first, then letters, digits, '.' or '-'`);
+    if (!tickers.includes(t)) tickers.push(t);
+  }
+  if (tickers.length > MAX_BATCH) throw new Fail(400, `${tickers.length} tickers; a batch takes at most ${MAX_BATCH}`);
 
   const chosen = {};
   for (const field of STEPS) {
@@ -180,30 +395,40 @@ async function handleRun(req, res) {
   }
 
   const now = Date.now();
-  const recent = await runsSince(now - 24 * 3600 * 1000);
-  if (recent >= MAX_RUNS_PER_DAY) {
-    throw new Fail(429, `Limit reached: ${recent} stock runs in the last 24 hours (max ${MAX_RUNS_PER_DAY})`);
+  const runs = await recentRuns(now - 24 * 3600 * 1000);
+  const used = runs.reduce((n, x) => n + tickersInTitle(x.display_title).length, 0);
+  if (used + tickers.length > MAX_TICKERS_PER_DAY) {
+    throw new Fail(429, `Limit: ${used} of ${MAX_TICKERS_PER_DAY} tickers used in the last 24 hours; this batch has ${tickers.length}`);
+  }
+  // GitHub keeps one running and one waiting run per concurrency group and cancels an older waiting one.
+  if (runs.some(x => ACTIVE.includes(x.status))) {
+    throw new Fail(409, "A stock batch is already waiting to start; run this one when it has started");
   }
 
-  const inputs = { ticker, send_email: body.send_email === true ? "true" : "false", ...chosen };
+  const inputs = { tickers: tickers.join(","), send_email: body.send_email === true ? "true" : "false", ...chosen };
   const r = await gh("POST", `/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { ref: REF, inputs });
   if (!r.ok) throw ghFail("starting the stock workflow", r);
   const run = (r.data && r.data.html_url) ? r.data : await findRun(now);
   return send(res, 200, {
-    ok: true, ticker,
+    ok: true, ticker: tickers[0], tickers, used_24h: used + tickers.length, max_24h: MAX_TICKERS_PER_DAY,
     run_url: (run && run.html_url) || `https://github.com/${REPO}/actions/workflows/${WORKFLOW}`,
-    run_found: Boolean(run && run.html_url),
+    run_id: (run && run.id) || null, run_found: Boolean(run && run.html_url),
   });
 }
 
 module.exports = async function handler(req, res) {
   try {
-    if (req.method === "GET") return await handleStatus(res);
+    if (req.method === "GET") {
+      const q = query(req);
+      if (q.has("quotes")) return await handleQuotes(q.get("quotes"), res);
+      if (q.has("lists")) return await handleGetLists(res);
+      return await handleStatus(req, res);
+    }
     if (req.method === "POST") return await handleRun(req, res);
     res.setHeader("Allow", "GET, POST");
     return send(res, 405, { error: "Method not allowed" });
   } catch (e) {
-    if (e instanceof Fail) return send(res, e.status, { error: scrub(e.message) });
+    if (e instanceof Fail) return send(res, e.status, { error: scrub(e.message) }, e.cache);
     console.error("api/stock failed:", scrub(e && e.message));
     return send(res, 500, { error: "Unexpected server error" });
   }
