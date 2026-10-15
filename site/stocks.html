@@ -675,8 +675,9 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       const has = f.score != null;
       const subs = Object.entries(f.metrics || {}).map(([mk, mv]) => {
         const miss = mv.value == null && mv.score == null && /^missing/.test(mv.note || "");
-        const note = miss ? (mv.note || "").replace(/^missing:?\s*/, "") : mv.note;
-        const val = miss ? '<span class="miss">missing</span>' : esc(fmtMetric(mk, mv.value));
+        const nc = mv.value == null && mv.score == null && /^not comparable \((.*)\)$/.exec(mv.note || "");  // left out, weight 0
+        const note = miss ? (mv.note || "").replace(/^missing:?\s*/, "") : nc ? nc[1] : mv.note;
+        const val = miss ? '<span class="miss">missing</span>' : nc ? "not comparable" : esc(fmtMetric(mk, mv.value));
         return `<tr><td>${esc((METRIC[mk] || [mk])[0])}</td><td class="wrap">${val}${note ? ` <span class="sub">(${esc(note)})</span>` : ""}</td><td>${mv.score == null ? "—" : Math.round(mv.score)}</td><td>${Math.round((mv.weight || 0) * 100)}%</td></tr>`;
       }).join("");
       return `<div class="factor"><span class="lbl">${esc(label)}</span>
@@ -747,9 +748,10 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       const negTitle = h.negative_points ? ` title="${h.negative_points} of ${h.points} month-ends had a zero or negative ${k === "ev_to_ebit" ? "EBIT" : k === "price_to_fcf" ? "FCF" : "figure"}"` : "";
       return `<tr><td>${l}</td><td>${h.current == null ? (neg || "—") : num(h.current, 1) + "x"}</td><td${negTitle}>${mult(h.median, h.median_yield_pct != null && h.median_yield_pct <= 0)}</td>` +
         `<td class="hide-sm">${mult(h.low, false)}</td><td class="hide-sm"${negTitle}>${mult(h.high, h.negative_points > 0)}</td>` +
-        `<td${(VWM[k] || {}).phrase ? ` title="Now ${esc(VWM[k].phrase)}"` : ""}>${h.percentile == null ? (h.points && h.points < (h.min_points || 24) ? `${h.points} pts, too few` : "—") : num(h.percentile, 0)}</td></tr>`;
+        (h.not_comparable ? `<td><span class="sub" title="${esc(`${h.not_comparable[0].toUpperCase()}${h.not_comparable.slice(1)}: left out of the valuation score and the overall label`)}">not comparable</span></td></tr>`
+          : `<td${(VWM[k] || {}).phrase ? ` title="Now ${esc(VWM[k].phrase)}"` : ""}>${h.percentile == null ? (h.points && h.points < (h.min_points || 24) ? `${h.points} pts, too few` : "—") : num(h.percentile, 0)}</td></tr>`);
     }).join("");
-    const histFrom = (VH.price_to_sales || {}).from;
+    const histFrom = (VH.price_to_sales || {}).from, maxNeg = (VH.price_to_fcf || {}).max_negative_share;
     const q = (S.quarterly || []).slice().reverse();
     const qRows = q.map(r => `<tr><td>${esc(r.end)}</td><td>${money(r.revenue)}</td><td>${signed(r.revenue_yoy_pct, 1, "%")}</td><td>${r.operating_margin_pct == null ? "—" : num(r.operating_margin_pct) + "%"}</td><td>${money(r.fcf)}</td><td>${shares(r.diluted_shares)}</td></tr>`).join("");
     const quotes = (G.guidance || []).map(x => `<blockquote><span class="meta">${esc(x.metric.replace(/_/g, " "))} · ${esc(x.period || "")}${x.stated_change && x.stated_change !== "not stated" ? " · " + esc(x.stated_change) : ""}</span>“${esc(x.sentence)}”</blockquote>`).join("");
@@ -806,7 +808,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
         <div class="card"><h2>Valuation vs own history <span class="sub">· month-end${histFrom ? " since " + esc(histFrom.slice(0, 7)) : ""}, filings known at each date</span></h2>
           ${V.missing ? `<p class="sub">${esc(V.missing)}</p>` : `<div class="scroll"><table><thead><tr><th>Multiple</th><th>Now</th><th>Median</th><th class="hide-sm">Low</th><th class="hide-sm">High</th><th title="Share of month-ends that were cheaper than now, ranked on yields (sales, FCF or EBIT over market cap or EV)">Percentile</th></tr></thead><tbody>${valRows}</tbody></table></div>
           ${VW.label ? `<p style="margin:8px 0 0">Overall: <b>${esc(VW.text)}</b></p>` : ""}
-          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"}${V.fcf_basis && V.fcf_basis !== "reported" ? ` (${V.fcf_basis})` : ""} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company. History is ranked on yields, so months with near-zero or negative FCF or EBIT count as the most expensive ("neg." when the median or high had no positive multiple); median, low and high are the multiples those yields imply.${V.fcf_basis && V.fcf_basis !== "reported" ? ` P/FCF and its history use ${V.fcf_basis === "normalised" ? "normalised FCF" : "FCF ex-prepayments"} (reported P/FCF ${V.price_to_fcf_reported == null ? "negative" : num(V.price_to_fcf_reported, 1) + "x"}).` : ""}</p>
+          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"}${V.fcf_basis && V.fcf_basis !== "reported" ? ` (${V.fcf_basis})` : ""} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company. History is ranked on yields; median, low and high are the multiples those yields imply ("neg." when the median or high had no positive multiple).${maxNeg != null ? ` P/FCF and EV/EBIT are compared only when FCF or EBIT is positive now and was negative in at most ${num(maxNeg * 100, 0)}% of the month-ends; otherwise "not comparable", left out of the valuation score and the overall label.` : ""}${V.fcf_basis && V.fcf_basis !== "reported" ? ` P/FCF and its history use ${V.fcf_basis === "normalised" ? "normalised FCF" : "FCF ex-prepayments"} (reported P/FCF ${V.price_to_fcf_reported == null ? "negative" : num(V.price_to_fcf_reported, 1) + "x"}).` : ""}</p>
           ${(V.share_outliers || []).length ? `<p class="sub">Left out ${V.share_outliers.length} diluted share count${V.share_outliers.length === 1 ? "" : "s"} more than 10x off the neighbouring quarters: ${esc(V.share_outliers.map(x => `${x.end} (${num(x.val, 0)})`).join(", "))}.</p>` : ""}`}
           ${qRows ? `<h3>Last ${q.length} quarters</h3><div class="scroll"><table><thead><tr><th>Quarter end</th><th>Revenue</th><th>YoY</th><th>Op. margin</th><th>FCF</th><th>Diluted shares</th></tr></thead><tbody>${qRows}</tbody></table></div>` : ""}
         </div>

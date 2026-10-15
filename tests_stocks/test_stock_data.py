@@ -560,11 +560,69 @@ def test_share_counts_off_by_more_than_10x_are_dropped_but_splits_are_kept():
 def test_history_percentiles_rank_yields_so_negative_periods_count_as_expensive():
     assert metrics.cheaper_share(5.0, [1, 2, 5, 9]) == 37.5 and metrics.cheaper_share(None, [1]) is None
     assert metrics.cheaper_share(-1.0, [-5, -2, 0.001, 3]) == 50.0
-    # capex above operating cash flow before 2024: negative FCF months rank as dearest, not dropped
-    capex = F.flow(lambda e: round(F.revenue(e) * (0.6 if e.year < 2024 else 0.15), -6), True)
-    rec = fund.extract(F.companyfacts(PaymentsToAcquirePropertyPlantAndEquipment=capex), F.CIK)
-    v = metrics.valuation(fund.summarize(rec, CFG), rec, rows_of(F.tiingo_rows(300, 0.0004)), None, CFG)
+    # capex above operating cash flow before 2024: with the negative-share rule off, negative FCF months rank
+    # as dearest, not dropped
+    cfg = copy.deepcopy(CFG)
+    cfg["valuation"]["history_max_negative_share"] = 1.0
+    rec = negative_fcf_before(2024)
+    v = metrics.valuation(fund.summarize(rec, cfg), rec, rows_of(F.tiingo_rows(300, 0.0004)), None, cfg)
     h = v["vs_history"]["price_to_fcf"]
     assert h["negative_points"] > 0 and h["points"] == v["vs_history"]["price_to_sales"]["points"]
-    assert h["high"] is None and h["low"] is not None and 0 <= h["percentile"] < 50
+    assert h["high"] is None and h["low"] is not None and 0 <= h["percentile"] < 50 and h["not_comparable"] is None
     assert all(x["price_to_fcf"] is None for x in v["history"] if x["fcf_yield_pct"] <= 0)
+
+
+def negative_fcf_before(year: int):
+    capex = F.flow(lambda e: round(F.revenue(e) * (0.6 if e.year < year else 0.15), -6), True)
+    return fund.extract(F.companyfacts(PaymentsToAcquirePropertyPlantAndEquipment=capex), F.CIK)
+
+
+def test_history_not_comparable_when_the_figure_was_often_negative_or_is_negative_now():
+    assert CFG["valuation"]["history_max_negative_share"] == 0.2
+    # INOD-like: FCF negative in 34 of the 61 month-ends, positive now. Without the rule it ranked "cheaper
+    # than most month-ends" only because the company turned profitable.
+    rec = negative_fcf_before(2024)
+    s = fund.summarize(rec, CFG)
+    v = metrics.valuation(s, rec, rows_of(F.tiingo_rows(300, 0.0004)), {"value": 4.0, "date": "2026-10-14"}, CFG)
+    h = v["vs_history"]["price_to_fcf"]
+    assert h["not_comparable"] == "negative in 34 of 61 month-ends" and h["max_negative_share"] == 0.2
+    assert (h["percentile"], h["cheaper_points"], h["dearer_points"]) == (None, None, None)
+    assert h["low"] is not None and h["points"] == 61  # the history itself is still shown
+    # P/S is always compared; EV/EBIT (EBIT positive throughout) is compared
+    assert v["vs_history"]["price_to_sales"]["percentile"] is not None and v["vs_history"]["price_to_sales"]["not_comparable"] is None
+    assert v["vs_history"]["price_to_sales"]["max_negative_share"] is None
+    assert v["vs_history"]["ev_to_ebit"]["percentile"] is not None and v["vs_history"]["ev_to_ebit"]["not_comparable"] is None
+    # out of the label and the write-up's words
+    vw = v["vs_own_history"]
+    assert vw["multiples"]["price_to_fcf"] == {"label": None, "phrase": "not comparable (negative in 34 of 61 month-ends)",
+                                               "not_comparable": "negative in 34 of 61 month-ends"}
+    assert vw["label"] == "cheap" and vw["text"] == "cheap against its own history (P/FCF not comparable)"
+    # out of the valuation score: weight 0, the other inputs re-normalised, coverage and confidence untouched
+    vs = scoring.valuation(v, CFG)
+    assert vs["price_to_fcf_percentile"] == {"value": None, "score": None, "weight": 0.0,
+                                             "note": "not comparable (negative in 34 of 61 month-ends)"}
+    f = scoring.combine(vs, 0.5)
+    have = {k: m for k, m in vs.items() if m["score"] is not None}
+    assert f["coverage"] == 1.0 and f["score"] == round(sum(m["score"] * m["weight"] for m in have.values())
+                                                        / sum(m["weight"] for m in have.values()))
+    fs = {k: {"score": 60, "metrics": {}} for k in scoring.FACTORS}
+    fs["valuation"] = f
+    c = scoring.confidence_detail(fs, 60, s, v, {}, CFG)
+    assert not [x for x in c["reasons"] if x["issue"] in ("missing_sub_metric", "short_valuation_history")]
+    # FCF negative now (capex above operating cash flow throughout): not comparable either
+    rec = negative_fcf_before(2100)
+    v = metrics.valuation(fund.summarize(rec, CFG), rec, rows_of(F.tiingo_rows(300, 0.0004)), None, CFG)
+    h = v["vs_history"]["price_to_fcf"]
+    assert h["current_yield_pct"] < 0 and h["not_comparable"] == "negative now and in 61 of 61 month-ends"
+    assert scoring.valuation(v, CFG)["price_to_fcf"]["note"] == "negative FCF"  # the absolute multiple still scores 0
+
+
+def test_not_comparable_rule_edges():
+    nc = metrics.not_comparable
+    assert nc("price_to_fcf", 2.0, [1.0] * 8 + [-1.0] * 2, 0.2) is None              # 20% exactly: compared
+    assert nc("price_to_fcf", 2.0, [1.0] * 7 + [-1.0] * 2 + [0.0], 0.2) == "negative in 3 of 10 month-ends"  # zero counts
+    assert nc("ev_to_ebit", -0.5, [1.0] * 10, 0.2) == "negative now"
+    assert nc("ev_to_ebit", 0.0, [1.0] * 9 + [-1.0], 0.2) == "negative now and in 1 of 10 month-ends"
+    assert nc("price_to_sales", -1.0, [-1.0] * 10, 0.2) is None                     # P/S: never
+    assert nc("price_to_fcf", None, [1.0], 0.2) is None and nc("price_to_fcf", 1.0, [], 0.2) is None
+    assert nc("price_to_fcf", 2.0, [1.0] * 5 + [-1.0] * 5, 0.5) is None             # the share is a setting

@@ -106,25 +106,54 @@ def test_news_risk_from_topic_ratings():
     assert scoring.news_risk(mixed, CFG)["score"] == round(50 - 0.25 * 2 * 25 + 0.15 * 25)
 
 
+IN, OLD = {"event_date": "2026-10-10", "background": False}, {"event_date": "2026-09-01", "background": True}  # run on Oct 15
+
+
 def test_topic_rating_capped_by_checkable_sources():
-    t = {"rating": 2, "evidence": [{"status": "verified"}, {"status": "unverified"}]}
-    scoring.cap_topic(t)
-    assert t["rating"] == 1 and t["rating_before_cap"] == 2 and "1 of 2 sources" in t["cap_note"]
-    t = {"rating": -1, "evidence": [{"status": "unverified"}]}
-    scoring.cap_topic(t)
-    assert t["rating"] == 0
-    t = {"rating": -2, "evidence": [{"status": "verified"}, {"status": "unreachable"}]}
-    scoring.cap_topic(t)
+    t = {"rating": 2, "evidence": [{"status": "verified", **IN}, {"status": "unverified", **IN}]}
+    scoring.cap_topic(t, CFG)
+    assert t["rating"] == 1 and t["rating_before_cap"] == 2
+    assert t["cap_note"] == "Capped at +1 (was +2): 1 of 2 sources verified or unreachable and dated within the last 30 days"
+    t = {"rating": -1, "evidence": [{"status": "unverified", **IN}]}
+    scoring.cap_topic(t, CFG)
+    assert t["rating"] == 0 and t["cap_note"] == "Capped at 0 (was -1): 0 of 1 sources verified or unreachable"
+    t = {"rating": -2, "evidence": [{"status": "verified", **IN}, {"status": "unreachable", **IN}]}
+    scoring.cap_topic(t, CFG)
     assert t["rating"] == -2 and "cap_note" not in t
     t = {"rating": 0, "evidence": []}
-    scoring.cap_topic(t)
+    scoring.cap_topic(t, CFG)
     assert t == {"rating": 0, "evidence": []}
 
 
+def test_only_in_window_sources_count_toward_the_count_and_quality_caps():
+    # two verified major sources, one older: +-2 no longer holds (it did when every checked source counted)
+    for other in ({"status": "verified", **OLD}, {"status": "verified", "event_date": None, "background": False}):
+        t = {"rating": 2, "evidence": [{"tier": "major", "status": "verified", **IN}, {"tier": "major", **other}]}
+        scoring.cap_all(t, CFG)
+        assert t["rating"] == 1 and t["rating_before_cap"] == 2 and "old_evidence_note" not in t
+        assert t["cap_note"] == ("Capped at +1 (was +2): 1 of 2 sources verified or unreachable and dated within the last "
+                                 "30 days (1 more checked out but is older or undated)")
+    t = {"rating": -2, "evidence": [{"tier": "major", "status": "verified", **IN}, {"tier": "other", "status": "unreachable", **IN}]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == -2 and not set(scoring.CAP_NOTES) & set(t)
+    # the quality cap: an older verified primary / major source doesn't make +-2 possible
+    t = {"rating": -2, "evidence": [{"tier": "primary", "status": "verified", **OLD},
+                                    {"tier": "other", "status": "verified", **IN}, {"tier": "other", "status": "verified", **IN}]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == -1 and "cap_note" not in t and "old_evidence_note" not in t
+    assert t["weak_sources_note"] == ("Capped at -1 (was -2): a rating above ±1 needs 1 verified primary- or major-tier "
+                                      "source dated within the last 30 days; 0 of its 3 sources qualify")
+    # none in the window: the date cap's job (0, "only older evidence"), not the count cap's
+    t = {"rating": 1, "evidence": [{"tier": "major", "status": "verified", **OLD}]}
+    scoring.cap_all(t, CFG)
+    assert t["rating"] == 0 and "cap_note" not in t and t["old_evidence_note"].startswith("Capped at 0 (was +1)")
+    assert scoring.in_window({"status": "unreachable", **IN}) and not scoring.in_window({"status": "unverified", **IN})
+
+
 def capped(rating, sources, cfg=CFG):
-    """`sources`: (tier, status) pairs. Both caps, in the run's order."""
-    t = {"rating": rating, "evidence": [{"tier": a, "status": b} for a, b in sources]}
-    scoring.cap_topic(t)
+    """`sources`: (tier, status) pairs, all dated inside the window. Both caps, in the run's order."""
+    t = {"rating": rating, "evidence": [{"tier": a, "status": b, **IN} for a, b in sources]}
+    scoring.cap_topic(t, cfg)
     scoring.cap_weak_sources(t, cfg)
     return t
 
@@ -156,7 +185,7 @@ def test_weak_sources_note_only_when_the_quality_rule_caps():
     t = capped(2, [("primary", "unreachable"), ("other", "verified")])
     assert t["rating_before_cap"] == 2 and "cap_note" not in t
     assert t["weak_sources_note"] == ("Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or "
-                                      "major-tier source; 0 of its 2 sources qualify")
+                                      "major-tier source dated within the last 30 days; 0 of its 2 sources qualify")
     t = capped(-1, [("other", "unreachable")])
     assert t["weak_sources_note"] == "Capped at 0 (was -1): only other-tier sources, none verified"
     # both rules cap: each says so, the lower cap wins, rating_before_cap stays Claude's rating
@@ -184,7 +213,8 @@ def test_weak_sources_thresholds_come_from_config():
     assert capped(2, [("primary", "verified")] * 2, cfg)["rating"] == 2
     assert capped(-1, [("other", "unreachable")], cfg)["rating"] == -1
     t = capped(2, [("major", "verified")] * 2, cfg)   # major isn't a strong tier here
-    assert t["rating"] == 1 and "needs 2 verified primary-tier sources; 0 of its 2 sources qualify" in t["weak_sources_note"]
+    assert t["rating"] == 1 and ("needs 2 verified primary-tier sources dated within the last 30 days; 0 of its 2 sources "
+                                 "qualify") in t["weak_sources_note"]
     assert scoring.source_quality_rule(cfg) == ("a rating above ±1 needs at least 2 verified primary-tier sources; a topic "
                                                 "with no primary-tier source is capped at ±1, and at ±1 if none of its "
                                                 "sources verify.")

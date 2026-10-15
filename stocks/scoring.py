@@ -2,9 +2,11 @@
 
 Every threshold and weight comes from config/stocks.yaml. Claude never sets a score: the news & risk
 factor is computed here from the per-topic ratings (-2..+2) after the source check has capped them (by the
-number of checkable sources, then by their tier, then by their dates).
+number of checkable sources dated inside the window, then by their tier, then by their dates).
 """
 from __future__ import annotations
+
+from . import wording
 
 FACTORS = ["growth", "quality", "balance_sheet", "valuation", "trend", "news_risk"]
 LABELS = {"growth": "Growth", "quality": "Quality", "balance_sheet": "Balance sheet", "valuation": "Valuation",
@@ -135,6 +137,9 @@ def valuation(v: dict, cfg: dict) -> dict:
     for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit"):
         h = (v.get("vs_history") or {}).get(k) or {}
         p = h.get("percentile")
+        if h.get("not_comparable"):  # left out by design: weight 0, so the other inputs' weights re-normalise
+            out[f"{k}_percentile"] = _metric(None, None, 0.0, wording.not_comparable(h["not_comparable"]))
+            continue
         if p is not None:
             note = f"cheaper than now in {p:g}% of {h.get('points')} month-ends (ranked on yields)"
         elif k == "ev_to_ebit" and v.get("ev_note"):
@@ -162,15 +167,37 @@ def factors(summary: dict, val: dict, trend: dict, cfg: dict) -> dict:
     }
 
 
-def cap_topic(topic: dict) -> None:
-    """A topic's rating can't exceed, in size, the number of its sources verified or unreachable. In place."""
-    ok = sum(1 for e in topic.get("evidence") or [] if e.get("status") in ("verified", "unreachable"))
+CHECKED = ("verified", "unreachable")
+
+
+def in_window(e: dict) -> bool:
+    """A source that counts toward a topic's caps: it checked out (verified, or unreachable) and is dated inside
+    the window (an event_date, not background: sources.tag_dates, evidence_dates.background_after_days)."""
+    return e.get("status") in CHECKED and bool(e.get("event_date")) and not e.get("background")
+
+
+def _days(cfg: dict | None) -> int:
+    return int(((cfg or {}).get("evidence_dates") or {}).get("background_after_days", 30))
+
+
+def cap_topic(topic: dict, cfg: dict | None = None) -> None:
+    """A topic's rating can't exceed, in size, the number of its in-window sources (`in_window`). No source
+    checked out at all: 0. Sources checked out but none in the window: left to `cap_old_evidence` (0, "capped:
+    only older evidence"). In place."""
+    ev = topic.get("evidence") or []
+    ok = sum(1 for e in ev if e.get("status") in CHECKED)
+    win = sum(1 for e in ev if in_window(e))
     r = int(topic.get("rating") or 0)
-    if abs(r) > ok:
+    if ok and not win:
+        return
+    if abs(r) > win:
         topic["rating_before_cap"] = r
-        topic["rating"] = (1 if r > 0 else -1) * min(abs(r), ok)
-        topic["cap_note"] = (f"Capped at {topic['rating']:+d} (was {r:+d}): {ok} of {len(topic.get('evidence') or [])} "
-                             "sources verified or unreachable")
+        topic["rating"] = (1 if r > 0 else -1) * min(abs(r), win)
+        topic["cap_note"] = (f"Capped at 0 (was {r:+d}): {ok} of {len(ev)} sources verified or unreachable" if not ok else
+                             f"Capped at {topic['rating']:+d} (was {r:+d}): {win} of {len(ev)} sources verified or unreachable "
+                             f"and dated within the last {_days(cfg)} days"
+                             + (f" ({ok - win} more checked out but {'is' if ok - win == 1 else 'are'} older or undated)"
+                                if ok > win else ""))
 
 
 WEAK_SOURCES = "capped: weak sources"
@@ -205,19 +232,20 @@ def source_quality_rule(cfg: dict) -> str:
 
 def cap_weak_sources(topic: dict, cfg: dict) -> None:
     """Source quality (news_risk.source_quality), after `cap_topic`: a rating needs `strong_min_verified`
-    verified sources from `strong_tiers` to exceed `cap_without_strong`; a topic with no source from those
-    tiers caps at `cap_other_only`, or `cap_other_only_unverified` when none of its sources verified. The
-    topic keeps the lower of this cap and `cap_topic`'s; "weak_sources_note" is set when this cap is below
-    Claude's rating and not above `cap_topic`'s, so its "Capped at" value is the final rating. In place."""
+    verified in-window sources (`in_window`) from `strong_tiers` to exceed `cap_without_strong`; a topic with no
+    source from those tiers caps at `cap_other_only`, or `cap_other_only_unverified` when none of its sources
+    verified. The topic keeps the lower of this cap and `cap_topic`'s; "weak_sources_note" is set when this
+    cap is below Claude's rating and not above `cap_topic`'s. In place."""
     q = source_quality(cfg)
     ev = topic.get("evidence") or []
     tiers, need = q["strong_tiers"], q["strong_min_verified"]
-    n_strong = sum(1 for e in ev if e.get("status") == "verified" and e.get("tier") in tiers)
+    n_strong = sum(1 for e in ev if e.get("status") == "verified" and e.get("tier") in tiers and in_window(e))
     limit, why = 2, None
     if n_strong < need:
         limit = q["cap_without_strong"]
-        why = (f"a rating above {_pm(limit)} needs {need} verified {_tiers(tiers)} source{'s' * (need != 1)}; "
-               f"{n_strong} of its {len(ev)} source{'s' * (len(ev) != 1)} {'qualifies' if n_strong == 1 else 'qualify'}")
+        why = (f"a rating above {_pm(limit)} needs {need} verified {_tiers(tiers)} source{'s' * (need != 1)} dated "
+               f"within the last {_days(cfg)} days; {n_strong} of its {len(ev)} source{'s' * (len(ev) != 1)} "
+               f"{'qualifies' if n_strong == 1 else 'qualify'}")
     if ev and not any(e.get("tier") in tiers for e in ev):
         verified = any(e.get("status") == "verified" for e in ev)
         lim = q["cap_other_only"] if verified else q["cap_other_only_unverified"]
@@ -247,10 +275,10 @@ def cap_old_evidence(topic: dict, cfg: dict) -> None:
     r = int(topic.get("rating") or 0)
     if not r:
         return
-    ok = [e for e in topic.get("evidence") or [] if e.get("status") in ("verified", "unreachable")]
-    if any(e.get("event_date") and not e.get("background") for e in ok):
+    ok = [e for e in topic.get("evidence") or [] if e.get("status") in CHECKED]
+    if any(in_window(e) for e in ok):
         return
-    days = int((cfg.get("evidence_dates") or {}).get("background_after_days", 30))
+    days = _days(cfg)
     older = sorted(e["event_date"] for e in ok if e.get("event_date"))
     undated = sum(1 for e in ok if not e.get("event_date"))
     parts = ([f"{len(older)} dated more than {days} days before the run ({', '.join(older)})"] if older else []) + \
@@ -263,8 +291,8 @@ def cap_old_evidence(topic: dict, cfg: dict) -> None:
 
 
 def cap_all(topic: dict, cfg: dict) -> None:
-    """The three code caps in order: checkable sources, source quality, evidence dates. In place."""
-    cap_topic(topic)
+    """The three code caps in order: in-window sources, source quality, evidence dates. In place."""
+    cap_topic(topic, cfg)
     cap_weak_sources(topic, cfg)
     cap_old_evidence(topic, cfg)
 
@@ -361,8 +389,8 @@ def confidence_detail(fs: dict, score: int | None, summary: dict, val: dict, top
     subs = []
     for k in have:
         for mk, m in ((fs[k].get("metrics") or {}).items()):
-            if m.get("score") is not None or k == "news_risk":
-                continue
+            if m.get("score") is not None or k == "news_risk" or m.get("weight") == 0:
+                continue  # weight 0: left out by design (a history comparison that isn't comparable), not missing
             if mk.endswith("_percentile") and mk[:-len("_percentile")] in short:
                 continue  # counted as short history
             if mk.startswith("ev_to_ebit") and val.get("ev_note") and bs.get("unknown"):

@@ -5,9 +5,12 @@ diluted weighted-average count, else the diluted count. Valuation history: at ea
 last `valuation.history_years`, the multiples use only the TTM figures, balance sheet and share count
 already filed on that date, in today's share units (stock splits come from the price data's split
 factors; share counts more than `valuation.share_outlier_x` off their neighbours are dropped). The
-percentile versus history is computed on yields (revenue / FCF / EBIT over market cap or EV), so periods
-with near-zero or negative FCF or EBIT rank as the most expensive instead of producing huge multiples;
-the page still shows the multiples. The write-up gets that comparison only in words (stocks/wording.py).
+percentile versus history is computed on yields (revenue / FCF / EBIT over market cap or EV); the page
+still shows the multiples. P/FCF and EV/EBIT are compared only when FCF / EBIT is positive now and was
+negative in at most `valuation.history_max_negative_share` of the month-ends: a company that just turned
+profitable would otherwise rank "cheaper than every month-end". Otherwise the comparison is "not
+comparable (negative in N of M month-ends)" and counts nowhere (score, label, write-up). The write-up gets
+the comparison only in words (stocks/wording.py).
 Trend: the chart, moving averages and drawdown use split-adjusted closes (what a price chart shows);
 momentum and relative strength use total-return closes (dividends included).
 """
@@ -156,13 +159,29 @@ def percentile(cur: float, hist: list[float]) -> float | None:
 
 def cheaper_share(cur_yield: float | None, hist_yields: list[float]) -> float | None:
     """The share of month-ends that were cheaper than now (a higher yield), ties counted half: the same as a
-    multiple's percentile when every figure is positive, but near-zero and negative FCF / EBIT periods rank
-    as the most expensive instead of exploding or dropping out."""
+    multiple's percentile when every figure is positive (near-zero or negative periods, few by then, rank as
+    the most expensive instead of exploding or dropping out)."""
     if cur_yield is None or not hist_yields:
         return None
     higher = sum(1 for h in hist_yields if h > cur_yield)
     equal = sum(1 for h in hist_yields if h == cur_yield)
     return round(100 * (higher + 0.5 * equal) / len(hist_yields), 1)
+
+
+# The multiples whose figure (FCF, EBIT) can be negative. P/S is always compared with its history.
+SIGNED = ("price_to_fcf", "ev_to_ebit")
+
+
+def not_comparable(k: str, cur_yield: float | None, hist_yields: list[float], max_share: float) -> str | None:
+    """Why a multiple's own-history comparison doesn't count, or None: its FCF / EBIT is zero or negative now
+    ("negative now and in 17 of 61 month-ends"), or was in more than `max_share` of the month-ends
+    ("negative in 36 of 61 month-ends"). Only for SIGNED multiples."""
+    if k not in SIGNED or cur_yield is None or not hist_yields:
+        return None
+    neg, n = sum(1 for v in hist_yields if v <= 0), len(hist_yields)
+    if cur_yield <= 0:
+        return f"negative now and in {neg} of {n} month-ends" if neg else "negative now"
+    return f"negative in {neg} of {n} month-ends" if neg / n > max_share else None
 
 
 def _implied(y: float | None) -> float | None:
@@ -212,18 +231,23 @@ def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | Non
     out["history"] = hist
     out["share_outliers"] = s.get("share_outliers") or []
     out["vs_history"] = {}
+    max_neg = float(vc.get("history_max_negative_share", 0.2))
     for k, y in MULTIPLES.items():
         ys = [h[y] for h in hist if h.get(y) is not None]
         enough = len(ys) >= int(vc.get("min_history_points", 24)) and out[y] is not None
+        nc = not_comparable(k, out[y], ys, max_neg) if enough else None
+        counted = enough and not nc
         out["vs_history"][k] = {"current": out[k], "current_yield_pct": out[y], "points": len(ys),
                                 "median": _implied(median(ys)) if ys else None,
                                 "low": _implied(max(ys)) if ys else None, "high": _implied(min(ys)) if ys else None,
                                 "negative_points": sum(1 for v in ys if v <= 0),
                                 "median_yield_pct": _r(median(ys), 3) if ys else None,
-                                "percentile": cheaper_share(out[y], ys) if enough else None,
+                                "percentile": cheaper_share(out[y], ys) if counted else None,
                                 # month-ends cheaper than now (a higher yield) and dearer (a lower one)
-                                "cheaper_points": sum(1 for v in ys if v > out[y]) if enough else None,
-                                "dearer_points": sum(1 for v in ys if v < out[y]) if enough else None,
+                                "cheaper_points": sum(1 for v in ys if v > out[y]) if counted else None,
+                                "dearer_points": sum(1 for v in ys if v < out[y]) if counted else None,
+                                # why the comparison doesn't count (FCF / EBIT negative now or too often), else None
+                                "not_comparable": nc, "max_negative_share": max_neg if k in SIGNED else None,
                                 "min_points": int(vc.get("min_history_points", 24)),
                                 "from": hist[0]["date"] if hist else None}
     out["vs_own_history"] = wording.history_view(out, cfg)

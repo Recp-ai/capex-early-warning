@@ -239,10 +239,19 @@ down; if both apply, the lower FCF is scored):
 
 **Valuation history on yields.** Each multiple's place in its own history is computed on the yield
 behind it (sales, FCF or EBIT over market cap or EV): the share of month-ends that were cheaper than now.
-That equals the multiple's percentile when everything is positive, but months with near-zero or negative
-FCF or EBIT rank as the most expensive instead of producing multiples like 36,569x, and a negative figure
-today ranks too. The page still shows today's multiples; median, low and high are the multiples the
-yields imply ("neg." when there is none).
+That equals the multiple's percentile when everything is positive, and the few months with near-zero or
+negative FCF or EBIT rank as the most expensive instead of producing multiples like 36,569x. The page
+still shows today's multiples; median, low and high are the multiples the yields imply ("neg." when there
+is none).
+
+**Not comparable.** Against a history of losses that ranking means nothing: every loss-making month counts
+as "most expensive", so any company that turned profitable reads "cheaper than every month-end" (Innodata's
+P/FCF, negative in 36 of 61 month-ends; GitLab's EV/EBIT, negative in all 55 and today). So P/FCF and
+EV/EBIT are compared with their history only when FCF / EBIT is positive now and was negative in at most
+`valuation.history_max_negative_share` (20%) of the month-ends. Otherwise the comparison is **not
+comparable (negative in 36 of 61 month-ends)**: it leaves the valuation score (its weight is 0 and the
+other inputs' weights re-normalise), the cheap / middle / expensive label and the percentile column, and
+the write-up gets that phrase instead. P/S is always compared.
 
 **Valuation history in words.** The write-up never sees that percentile (given "cheaper than now in 0% of
 61 month-ends", it wrote that NVIDIA "has not been more expensive than now at any of the last 61
@@ -250,24 +259,24 @@ month-ends"). Code turns the month-end counts into a phrase per multiple, "cheap
 61 month-ends", "more expensive than at 57 of the last 61 month-ends" or "near the middle of the last 61
 month-ends (...)", and an overall label, **cheap / middle / expensive** against its own history: cheap
 when fewer than 33% of month-ends were cheaper than now, expensive above 67% (`valuation.history_label`),
-the overall label from the three shares weighted like their sub-scores. The page shows the label under
-the history table. The absolute measures (the multiples, FCF yield vs the 10-year) go to the write-up
+the overall label from the compared multiples' shares weighted like their sub-scores (not-comparable ones
+named after it). The page shows the label under the history table. The absolute measures (the multiples, FCF yield vs the 10-year) go to the write-up
 labelled absolute, and the prompt says to use the history phrases as given. A post-check then reads the
 note: a clause about the company's own history (history, month-ends, five-year, its usual range) that
 calls valuation expensive, rich, stretched or high while the label is cheap, or cheap while it is
-expensive, gets the write-up regenerated once with the conflict named; a sentence still in conflict is
-dropped, and Run details on the page (and the email) say so.
+expensive, or calls a not-comparable multiple either, gets the write-up regenerated once with the conflict
+named; a sentence still in conflict is dropped, and Run details on the page (and the email) say so.
 
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
-tiered (primary / major / other) and fetched as in the capex pipeline. A topic's rating can't exceed, in
-size, the number of its sources that were verified or unreachable; ±2 needs a verified primary or major
-source ("capped: weak sources" otherwise). And only evidence dated inside the 30-day window supports a
-rating: a non-zero rating needs at least one verified-or-unreachable source whose event date is no more
-than `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
+tiered (primary / major / other) and fetched as in the capex pipeline. Only in-window evidence counts toward
+the caps: a source that was verified or unreachable and whose event date is no more than
+`evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
 insider sales of Sep 4 and 14, Oracle's Sep 10 results, Palantir's Aug 3 guidance, in an Oct 15 run)
-support nothing; with none, the rating is capped at 0 and shown as **capped: only older evidence**. Code
-turns the ratings into 50 + Σ weight × rating × 25.
+support nothing. A topic's rating can't exceed, in size, the number of its in-window sources (one: ±1);
+±2 needs a verified in-window primary or major source ("capped: weak sources" otherwise); and with no
+in-window source at all the rating is capped at 0, shown as **capped: only older evidence**. Code turns
+the ratings into 50 + Σ weight × rating × 25.
 
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
 missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data

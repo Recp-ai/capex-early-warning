@@ -7,18 +7,21 @@ share of month-ends that were cheaper than now. Given that bare number, the writ
 of them"). So the write-up gets only words, built here: per multiple "cheaper than at 58 of the last 61
 month-ends", "more expensive than at 57 of the last 61 month-ends" or "near the middle of the last 61
 month-ends (...)", and an overall label, cheap / middle / expensive vs own history (thresholds in
-valuation.history_label). `conflicts` then finds write-up sentences that call valuation expensive (or
-cheap) against its own history while the label says the opposite; stocks/run.py regenerates the write-up
-once naming them, and drops any sentence still in conflict (noted in the run details).
+valuation.history_label). A P/FCF or EV/EBIT comparison whose FCF / EBIT is negative now or was negative in
+too many month-ends (metrics.not_comparable) gets "not comparable (negative in 36 of 61 month-ends)"
+instead and stays out of the label. `conflicts` then finds write-up sentences that call valuation expensive
+(or cheap) against its own history while the label says the opposite, or call a not-comparable multiple
+either; stocks/run.py regenerates the write-up once naming them, and drops any sentence still in conflict
+(noted in the run details).
 """
 from __future__ import annotations
 
 import re
 
 MULTIPLES = {"price_to_sales": "P/S", "price_to_fcf": "P/FCF", "ev_to_ebit": "EV/EBIT"}
-FIGURE = {"price_to_sales": "revenue", "price_to_fcf": "FCF", "ev_to_ebit": "EBIT"}
 OVERALL = {"cheap": "cheap against its own history", "middle": "near the middle of its own history",
            "expensive": "expensive against its own history"}
+NOT_COMPARABLE = "not comparable"
 FIELDS = ("headline", "thesis", "key_risks", "what_would_change")
 
 
@@ -52,10 +55,16 @@ def phrase(h: dict, lab: str) -> str:
     return f"near the middle of the last {n} month-ends (cheaper than at {dearer}, more expensive than at {cheaper})"
 
 
+def not_comparable(reason: str) -> str:
+    """The phrase for a comparison that doesn't count: "not comparable (negative in 36 of 61 month-ends)"."""
+    return f"{NOT_COMPARABLE} ({reason})"
+
+
 def history_view(val: dict, cfg: dict | None) -> dict:
-    """{"label": cheap|middle|expensive|None, "text", "multiples": {key: {"label", "phrase", "note"?} or
-    {"label": None, "phrase": None, "missing": why}}}. The overall label is the average of the multiples'
-    shares, weighted by valuation.<multiple>_percentile.weight."""
+    """{"label": cheap|middle|expensive|None, "text", "multiples": {key: {"label", "phrase"}, or
+    {"label": None, "phrase": "not comparable (...)", "not_comparable": reason}, or
+    {"label": None, "phrase": None, "missing": why}}}. The overall label is the average of the compared
+    multiples' shares, weighted by valuation.<multiple>_percentile.weight; not-comparable ones are left out."""
     vc = (cfg or {}).get("valuation") or {}
     min_pts = int(vc.get("min_history_points", 24))
     vs = val.get("vs_history") or {}
@@ -63,37 +72,36 @@ def history_view(val: dict, cfg: dict | None) -> dict:
     for k in MULTIPLES:
         h = vs.get(k) or {}
         p = h.get("percentile")
+        if h.get("not_comparable"):
+            by[k] = {"label": None, "phrase": not_comparable(h["not_comparable"]), "not_comparable": h["not_comparable"]}
+            continue
         if p is None:
             why = (val["ev_note"] if k == "ev_to_ebit" and val.get("ev_note")
                    else f"{h.get('points') or 0} month-ends of history (needs {min_pts})" if h else "no history")
             by[k] = {"label": None, "phrase": None, "missing": why}
             continue
         lab = label(p, cfg)
-        e = {"label": lab, "phrase": phrase(h, lab)}
-        y = h.get("current_yield_pct")
-        if y is not None and y <= 0:
-            e["note"] = (f"{FIGURE[k]} is zero or negative now, so there is no {MULTIPLES[k]} multiple; the comparison ranks "
-                         f"the {FIGURE[k]} yield ({h.get('negative_points') or 0} of the {h['points']} month-ends were zero "
-                         "or negative too)")
-        by[k] = e
+        by[k] = {"label": lab, "phrase": phrase(h, lab)}
         shares[k], weights[k] = p, float((vc.get(f"{k}_percentile") or {}).get("weight", 1))
     total = sum(weights.values())
+    nc = [MULTIPLES[k] for k, v in by.items() if v.get("not_comparable")]
+    extra = [" and ".join(nc) + " not comparable"] if nc else []
     if not shares or not total:
-        return {"label": None, "text": "no comparison with its own history", "multiples": by}
+        return {"label": None, "text": "no comparison with its own history" + (f" ({extra[0]})" if extra else ""),
+                "multiples": by}
     lab = label(sum(shares[k] * weights[k] for k in shares) / total, cfg)
-    text = OVERALL[lab]
     if {"cheap", "expensive"} <= {by[k]["label"] for k in shares}:
-        text += " (the multiples disagree: " + ", ".join(f"{MULTIPLES[k]} {by[k]['label']}" for k in shares) + ")"
-    return {"label": lab, "text": text, "multiples": by}
+        extra.insert(0, "the multiples disagree: " + ", ".join(f"{MULTIPLES[k]} {by[k]['label']}" for k in shares))
+    return {"label": lab, "text": OVERALL[lab] + (f" ({'; '.join(extra)})" if extra else ""), "multiples": by}
 
 
 def brief(view: dict | None, missing: str | None = None) -> dict:
     """What the write-up is given: the label and phrases, no percentile."""
-    if not view or not view.get("label"):
+    if not view or not any(v.get("phrase") for v in (view.get("multiples") or {}).values()):
         return {"label": None, "overall": (view or {}).get("text") or "no comparison with its own history"
                 + (f" ({missing})" if missing else "")}
     return {"label": view["label"], "overall": view["text"],
-            "multiples": {MULTIPLES[k]: ({"label": v["label"], "phrase": v["phrase"], **({"note": v["note"]} if v.get("note") else {})}
+            "multiples": {MULTIPLES[k]: ({"label": v["label"] or NOT_COMPARABLE, "phrase": v["phrase"]}
                                          if v.get("phrase") else {"label": None, "not_compared": v.get("missing")})
                           for k, v in view["multiples"].items()}}
 
@@ -162,32 +170,36 @@ def _claims(clause: str) -> set[str]:
 
 
 def _code_phrases(view: dict) -> list[str]:
-    """Each multiple's phrase and note (the middle phrase holds both directions). Not the overall text: it has
-    one direction, and "not cheap against its own history" must still count."""
-    out = [x for v in (view.get("multiples") or {}).values() for x in (v.get("phrase"), v.get("note")) if x]
+    """Each multiple's phrase (the middle phrase holds both directions). Not the overall text: it has one
+    direction, and "not cheap against its own history" must still count."""
+    out = [v["phrase"] for v in (view.get("multiples") or {}).values() if v.get("phrase")]
     return sorted(out, key=len, reverse=True)
 
 
 def sentence_conflict(sentence: str, view: dict) -> dict | None:
     """{"claims", "label", "about"} when a clause about the company's own history (history, month-ends, its
-    usual range ...) calls valuation expensive while the code's label is cheap, or the reverse. The label is
-    that of the multiples the clause (else the sentence) names, else the overall one. The code's own
-    phrases are taken out first, and clauses that say "absolute" are skipped."""
-    if not view or not view.get("label"):
+    usual range ...) calls valuation expensive while the code's label is cheap, or the reverse, or calls a
+    multiple cheap or expensive against its history when every multiple the clause names is not comparable
+    (label "not comparable"). The label is that of the multiples the clause (else the sentence) names, else
+    the overall one. The code's own phrases are taken out first, and clauses that say "absolute" are skipped."""
+    labels = (view or {}).get("multiples") or {}
+    if not view or not (view.get("label") or any(v.get("not_comparable") for v in labels.values())):
         return None
     clean = sentence
     for p in _code_phrases(view):
         clean = re.sub(re.escape(p), " ", clean, flags=re.I)
     clean = _NOT_VALUATION.sub(" ", clean)
     named = [k for k, rx in _MULT.items() if rx.search(sentence)]
-    labels = view.get("multiples") or {}
     for clause in _CLAUSE.split(clean):
         if not _HISTORY.search(clause) or _ABSOLUTE.search(clause):
             continue
         claims = _claims(clause)
         if not claims:
             continue
-        about = [k for k, rx in _MULT.items() if rx.search(clause)] or named
+        here = [k for k, rx in _MULT.items() if rx.search(clause)]
+        if here and all((labels.get(k) or {}).get("not_comparable") for k in here):
+            return {"claims": sorted(claims)[0], "label": NOT_COMPARABLE, "about": [MULTIPLES[k] for k in here]}
+        about = here or named
         labs = {(labels.get(k) or {}).get("label") for k in about} - {None} or {view["label"]}
         for claim in claims:
             if _FLIP[claim] in labs and claim not in labs:
@@ -240,12 +252,14 @@ def _describe(c: dict, verb: str = "calls") -> str:
 def correction(found: list[dict], view: dict) -> str:
     """The note for the one regeneration: what conflicted, and the code's labels and phrases."""
     lines = "\n".join(f'- "{c["sentence"]}" {_describe(c)}' for c in found)
-    per = "\n".join(f"- {MULTIPLES[k]}: {v['label']}, \"{v['phrase']}\"" for k, v in (view.get("multiples") or {}).items() if v.get("phrase"))
+    per = "\n".join(f"- {MULTIPLES[k]}: {v['label'] or NOT_COMPARABLE}, \"{v['phrase']}\""
+                    for k, v in (view.get("multiples") or {}).items() if v.get("phrase"))
     return ("## Correction needed\nA check by code found sentences in your note that contradict the valuation-vs-history "
             f"labels:\n{lines}\n\nThe code's labels: overall \"{view['text']}\"; per multiple:\n{per}\n\n"
             "Write the whole note again. Keep what was right. Describe valuation against its own history only with "
             "these phrases, word for word; never call it expensive, rich, stretched or high against its history when "
-            "the label is cheap, or cheap when it is expensive. The multiples themselves and the FCF yield vs the "
+            "the label is cheap, or cheap when it is expensive, and never call a multiple that is not comparable "
+            "cheap or expensive against its history. The multiples themselves and the FCF yield vs the "
             "10-year are absolute levels: call them high or low only in absolute terms.")
 
 

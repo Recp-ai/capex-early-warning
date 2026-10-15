@@ -159,21 +159,26 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   only link to each other.
 - **Numbers only from code.** Growth, quality, balance sheet, valuation and trend (0-100 each) are
   computed from SEC companyfacts, Tiingo prices and `data/fred/DGS10.csv` by `stocks/scoring.py` with
-  `config/stocks.yaml`. Claude rates six news topics -2..+2 (the rubric in the config and prompt); the
-  source check caps each rating at its number of verified-or-unreachable sources, then by source quality
-  (`news_risk.source_quality`: ±2 needs a verified primary- or major-tier source, else ±1; only other-tier
-  sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources` sets `weak_sources_note`, shown as
-  "capped: weak sources" on the page and in the email), then by date (`scoring.cap_old_evidence`: a non-zero
-  rating needs a verified-or-unreachable source dated inside the window, i.e. an `event_date` that is not
-  `background`; undated or older items support nothing; with none, 0 and `old_evidence_note`, shown as
-  "capped: only older evidence"); `scoring.cap_all` runs the three in that order. Code turns the ratings
+  `config/stocks.yaml`. Claude rates six news topics -2..+2 (the rubric in the config and prompt). Only
+  in-window evidence counts toward the caps (`scoring.in_window`: verified or unreachable, and an
+  `event_date` that is not `background`; undated or older items support nothing). The source check caps
+  each rating at its number of in-window sources (`scoring.cap_topic`; none checked out at all: 0), then
+  by source quality (`news_risk.source_quality`: ±2 needs a verified in-window primary- or major-tier
+  source, else ±1; only other-tier sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources`
+  sets `weak_sources_note`, shown as "capped: weak sources" on the page and in the email), then by date
+  (`scoring.cap_old_evidence`: no in-window source, 0 and `old_evidence_note`, shown as "capped: only older
+  evidence"); `scoring.cap_all` runs the three in that order. Code turns the ratings
   into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
   is set, and never sets a rating, score or number. Valuation versus own history reaches the write-up only
   as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
   month-ends"; overall label cheap / middle / expensive, thresholds `valuation.history_label`), never the
-  bare percentile; the absolute multiples are labelled absolute. `run.checked_writeup` post-checks the
-  note (`wording.conflicts`: a clause about its own history calling valuation expensive while the label is
-  cheap, or the reverse), regenerates once naming the conflict, then drops any sentence still in conflict
+  bare percentile; the absolute multiples are labelled absolute. P/FCF and EV/EBIT are compared with their
+  history only when FCF / EBIT is positive now and was negative in at most
+  `valuation.history_max_negative_share` of the month-ends (`metrics.not_comparable`); otherwise "not
+  comparable (negative in N of M month-ends)": weight 0 in the valuation score (the rest re-normalised), out
+  of the label, and that phrase in the write-up. P/S is always compared. `run.checked_writeup` post-checks
+  the note (`wording.conflicts`: a clause about its own history calling valuation expensive while the label
+  is cheap, or the reverse, or calling a not-comparable multiple either), regenerates once naming the conflict, then drops any sentence still in conflict
   (`writeup_check.note`, shown in Run details). Guidance sentences from the 8-K count only
   when `edgar_text.found_in` finds them verbatim (as in `cew/calls.py`); they are display and context,
   not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when

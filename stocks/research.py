@@ -54,10 +54,10 @@ For each topic give a rating on this fixed rubric:
 Default to 0 unless the notes give specific, sourced news. Rules:
 - Only cite URLs that appear in the research notes. Never invent sources or numbers.
 - Every evidence URL is fetched after you answer and checked for the claim's numbers and names, so write
-  each claim with the figures and names exactly as the cited page states them. A rating's size is capped
-  at the number of its sources that check out (or cannot be reached), and by their tier: {quality_rule}
-  A non-zero rating also needs at least one of those sources dated within the last {window} days; undated
-  or older items are background and support nothing (the rating is then capped at 0).
+  each claim with the figures and names exactly as the cited page states them. Only sources that check out
+  (or cannot be reached) AND are dated within the last {window} days count; undated or older items are
+  background and support nothing. A rating's size is capped at the number of those sources (none: 0), and
+  by their tier: {quality_rule}
 - event_date for every evidence item: when it happened, YYYY-MM-DD, not when it was published; null when
   the notes don't establish it. Never guess.
 - Prefer primary and major-tier sources; the tier of each site in the notes is listed.
@@ -80,7 +80,9 @@ the data, exactly as given, and never give a price target. Plain English, no hyp
   describe that only with its label and phrases, word for word as given (e.g. "cheaper than at 58 of the
   last 61 month-ends"). Never restate it as a percentile or a percentage, never reverse it, and never call
   valuation expensive, rich, stretched or high against its own history when the label is cheap, or cheap
-  when it is expensive."""
+  when it is expensive. A multiple labelled "not comparable" (its FCF or EBIT was negative now or in too
+  many month-ends) has no comparison with its history: use its phrase as given, and never call it cheap or
+  expensive against its history."""
 
 TOPIC_KEYS = ["guidance", "analyst_actions", "litigation_regulation", "customer_concentration",
               "insider_activity", "product_competitive"]

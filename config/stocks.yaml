@@ -145,16 +145,21 @@ valuation:
     points: [[-4, 0], [-2, 25], [0, 50], [2, 75], [4, 100]]
   # Each multiple versus the company's own month-end history: the share of month-ends that were cheaper
   # than now (score = 100 - that share, so cheaper than usual scores higher). Ranked on yields (sales / FCF
-  # / EBIT over market cap or EV), so periods with near-zero or negative FCF or EBIT count as the most
-  # expensive instead of giving huge multiples. History uses only the filings known on each date.
+  # / EBIT over market cap or EV). History uses only the filings known on each date.
   price_to_sales_percentile: {weight: 0.10}
   price_to_fcf_percentile: {weight: 0.15}
   ev_to_ebit_percentile: {weight: 0.15}
+  # P/FCF and EV/EBIT are compared with their history only when FCF / EBIT is positive now and was zero or
+  # negative in at most this share of the month-ends. Otherwise the comparison is "not comparable (negative
+  # in 36 of 61 month-ends)": left out of the valuation score (the other inputs' weights re-normalised), out
+  # of the cheap / middle / expensive label, and the write-up gets that phrase instead. (A company that just
+  # turned profitable would otherwise be "cheaper than at every month-end".) P/S is always compared.
+  history_max_negative_share: 0.2
   # The write-up gets this comparison in words, never as a percentile (stocks/wording.py): a multiple is
   # "cheap" vs its own history when fewer than cheap_below % of the month-ends were cheaper than now
   # ("cheaper than at 58 of the last 61 month-ends"), "expensive" when more than expensive_above % were
   # ("more expensive than at 57 of the last 61 month-ends"), else "near the middle". The overall label
-  # (cheap / middle / expensive) uses the average of the three shares, weighted as above.
+  # (cheap / middle / expensive) uses the average of the compared multiples' shares, weighted as above.
   history_label:
     cheap_below: 33
     expensive_above: 67
@@ -192,19 +197,20 @@ trend:
 #    0  nothing material, or mixed
 #   -1  modest or single-source negative news
 #   -2  clear, material negative news from at least two credible sources
-# After the source check a topic's rating can't exceed (in size) the number of its sources that were
-# verified or unreachable: no checkable source -> 0, one -> at most +-1. Then source quality (below; tiers
-# from source_tiers): the topic keeps the lower of the two caps, and the stocks page and email show
-# "capped: weak sources" when the quality rule lowered it. Then evidence dates: a non-zero rating needs at
-# least one of those verified-or-unreachable sources dated inside the window (an event date no more than
-# evidence_dates.background_after_days before the run; undated or older items don't count). With none,
-# the rating is capped at 0, shown as "capped: only older evidence". --reuse-news re-applies all three caps
-# to the archived ratings (as of the news run's date).
+# Only in-window evidence counts toward these caps: a source that was verified or unreachable AND is dated
+# inside the window (an event date no more than evidence_dates.background_after_days before the run;
+# undated or older items count for nothing). After the source check a topic's rating can't exceed (in size)
+# the number of its in-window sources: one -> at most +-1 (no checkable source at all -> 0). Then source
+# quality (below; tiers from source_tiers; the strong-tier sources it counts must be in-window too): the
+# topic keeps the lower of the two caps, and the stocks page and email show "capped: weak sources" when the
+# quality rule lowered it. Then evidence dates: with no in-window source, the rating is capped at 0, shown
+# as "capped: only older evidence". --reuse-news re-applies all three caps to the archived ratings (as of
+# the news run's date).
 news_risk:
   points_per_step: 25
   source_quality:
     strong_tiers: [primary, major]
-    strong_min_verified: 1        # verified sources from strong_tiers a rating above cap_without_strong needs;
+    strong_min_verified: 1        # verified in-window sources from strong_tiers a rating above cap_without_strong needs;
     cap_without_strong: 1         # with fewer, capped at +-1 (so +-2 needs a verified primary or major source)
     cap_other_only: 1             # no source from strong_tiers (only other-tier): capped at +-1,
     cap_other_only_unverified: 0  # and at 0 when none of its sources verified

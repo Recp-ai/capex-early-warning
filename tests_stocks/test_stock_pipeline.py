@@ -133,7 +133,10 @@ def test_weak_sources_cap_topics_and_show_on_page_data_and_email(sandbox, monkey
     t = r["news"]["topics"]
     pc, ia, g = t["product_competitive"], t["insider_activity"], t["guidance"]
     assert [e["status"] for e in pc["evidence"]] == ["verified", "verified"] and {e["tier"] for e in pc["evidence"]} == {"other"}
-    assert pc["rating"] == 1 and pc["rating_before_cap"] == 2 and "cap_note" not in pc
+    # only the dated blog post counts toward the limits: the count cap and the quality cap both give +1
+    assert pc["rating"] == 1 and pc["rating_before_cap"] == 2
+    assert pc["cap_note"] == ("Capped at +1 (was +2): 1 of 2 sources verified or unreachable and dated within the last 30 "
+                              "days (1 more checked out but is older or undated)")
     assert pc["weak_sources_note"].startswith("Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or major-tier")
     assert ia["evidence"][0]["status"] == "unreachable" and ia["rating"] == 0 and "cap_note" not in ia
     assert ia["weak_sources_note"] == "Capped at 0 (was -1): only other-tier sources, none verified"
@@ -174,7 +177,7 @@ def test_only_older_evidence_caps_a_topic_at_zero_and_shows_on_page_data_and_ema
     assert g["rating"] == 1 and "old_evidence_note" not in g  # dated inside the window
     assert r["factors"]["news_risk"]["score"] == round(50 + 0.25 * 25)
     # Claude is told the rule; the write-up sees the cap
-    assert "dated within the last 30 days; undated" in fake.calls[2]["system"] and "{window}" not in fake.calls[2]["system"]
+    assert "AND are dated within the last 30 days count; undated" in fake.calls[2]["system"] and "{window}" not in fake.calls[2]["system"]
     assert "no source that checked out is dated within the last 30 days" in fake.calls[3]["messages"][0]["content"]
     # the page reads it from the site JSON; the email shows it like the weak-sources cap
     detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
@@ -265,6 +268,34 @@ def test_a_failed_rewrite_drops_the_conflicting_sentences_of_the_first_draft(san
     assert r["writeup"]["thesis"] == "Growth is steady." and not r["writeup_check"]["regenerated"]
     assert "regenerating failed (RuntimeError: overloaded); 1 sentence still in conflict was dropped" in r["writeup_check"]["note"]
     assert "claude:writeup" not in r["errors"]
+
+
+def test_a_multiple_not_comparable_with_its_history_reaches_the_write_up_as_that_phrase(sandbox, monkeypatch):
+    # INOD-like: capex above operating cash flow until 2024, so FCF was negative in most month-ends
+    capex = F.flow(lambda e: round(F.revenue(e) * (0.6 if e.year < 2024 else 0.15), -6), True)
+    facts = F.companyfacts(PaymentsToAcquirePropertyPlantAndEquipment=capex)
+    wrong = "P/FCF is cheaper than at 50 of the last 61 month-ends."
+    _, fake = setup(monkeypatch, sandbox, routes=F.sec_routes(facts=facts), claude=[
+        F.guidance_reply(), F.research_reply("n"), F.topics_reply(), note(thesis=f"Growth is steady. {wrong}"),
+        note(thesis="Growth is steady.")])
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    h = r["valuation"]["vs_history"]["price_to_fcf"]
+    n, m = (int(x) for x in re.fullmatch(r"negative in (\d+) of (\d+) month-ends", h["not_comparable"]).groups())
+    assert n == h["negative_points"] and m == h["points"] and n / m > 0.2 and h["percentile"] is None
+    phrase = f"not comparable (negative in {n} of {m} month-ends)"
+    assert r["factors"]["valuation"]["metrics"]["price_to_fcf_percentile"] == {"value": None, "score": None, "weight": 0.0, "note": phrase}
+    assert r["valuation"]["vs_own_history"]["text"].endswith("(P/FCF not comparable)")
+    v = brief_of(fake.calls[3])["factors"]["valuation"]["vs_own_history"]
+    assert v["multiples"]["P/FCF"] == {"label": "not comparable", "phrase": phrase} and "percentile" not in json.dumps(v)
+    assert 'labelled "not comparable"' in fake.calls[3]["system"]
+    # calling it cheap against its history is a conflict: rewritten once
+    assert len(fake.calls) == 5 and r["writeup"]["thesis"] == "Growth is steady."
+    assert r["writeup_check"]["conflicts"][0]["label"] == "not comparable"
+    assert f'- P/FCF: not comparable, "{phrase}"' in fake.calls[4]["messages"][2]["content"]
+    assert not [x for x in r["confidence_detail"]["reasons"] if "P/FCF vs history" in x["text"]]
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["valuation"]["vs_history"]["price_to_fcf"]["not_comparable"] == h["not_comparable"]
 
 
 def test_a_middle_label_is_not_checked(sandbox, monkeypatch):
@@ -564,6 +595,11 @@ def test_reuse_news_applies_the_code_caps_again_to_claudes_archived_ratings(sand
     old["news"]["topics"]["insider_activity"].update(rating=-1, evidence=[
         {"claim": "Satya Nadella sold 10,000 shares", "url": f"https://www.sec.gov/{n}", "event_date": d, "status": "verified",
          "tier": "primary"} for n, d in (("a", d40), ("b", d44))])
+    # and one written before only in-window sources counted: +2 on two Reuters items, one of them older
+    d5 = (util.today() - timedelta(days=5)).isoformat()
+    old["news"]["topics"]["product_competitive"] = {"label": "Product and competitive news", "rating": 2, "summary": "Launch.", "evidence": [
+        {"claim": "Microsoft launched Copilot Max", "url": f"https://www.reuters.com/{n}", "event_date": d, "status": "verified",
+         "tier": "major"} for n, d in (("a", d5), ("b", d40))]}
     publish.archive_run(old)
     before = {p.name: p.read_bytes() for p in archived()}
     monkeypatch.setattr(sources, "check_evidence", lambda *a, **k: pytest.fail("reused news is not checked again"))
@@ -574,8 +610,13 @@ def test_reuse_news_applies_the_code_caps_again_to_claudes_archived_ratings(sand
     assert ia["rating"] == 0 and ia["rating_before_cap"] == -1 and ia["old_evidence_note"].startswith("Capped at 0 (was -1)")
     assert [e["background"] for e in ia["evidence"]] == [True, True] and [e["age_days"] for e in ia["evidence"]] == [40, 44]
     assert g == old["news"]["topics"]["guidance"]  # Claude's +2, capped to +1 by the count rule exactly as before
-    assert r["news"]["caps_reapplied"] == [{"topic": "insider_activity", "label": "Insider activity", "was": -1, "now": 0}]
-    assert r["factors"]["news_risk"]["score"] == round(50 + 0.25 * 25 - 0.15 * 25)
+    pc = r["news"]["topics"]["product_competitive"]
+    assert pc["rating"] == 1 and pc["rating_before_cap"] == 2 and "old_evidence_note" not in pc
+    assert pc["cap_note"].endswith("1 of 2 sources verified or unreachable and dated within the last 30 days "
+                                   "(1 more checked out but is older or undated)")
+    assert r["news"]["caps_reapplied"] == [{"topic": "insider_activity", "label": "Insider activity", "was": -1, "now": 0},
+                                           {"topic": "product_competitive", "label": "Product and competitive news", "was": 2, "now": 1}]
+    assert r["factors"]["news_risk"]["score"] == round(50 + 0.25 * 25 - 0.15 * 25 + 0.20 * 25)
     assert r["news"]["source_check"] == old["news"]["source_check"] and len(fake.calls) == 1
     assert {p.name: p.read_bytes() for p in archived()[:-1]} == before  # earlier runs untouched
     _, body_html, text = notify.build_email(r, None)
