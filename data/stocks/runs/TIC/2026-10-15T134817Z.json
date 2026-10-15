@@ -1,0 +1,895 @@
+{
+  "run_id": "2026-10-15T13:48:17Z",
+  "generated_at": "2026-10-15T13:48:19+00:00",
+  "ticker": "TIC",
+  "sec_ticker": "TIC",
+  "cik": "0002032966",
+  "name": "TIC Solutions, Inc.",
+  "sector": "Services-Business Services, NEC",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "config",
+      "scoring": "config"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 37,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (TTM), diluted shares YoY"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 0 month-ends, P/FCF 0 month-ends, EV/EBIT 0 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 8
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 8
+    }
+  },
+  "composite": {
+    "score": 37,
+    "raw": 36.6,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 86.14,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": -22.23,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.7,
+      "score": 64,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 33.93,
+          "score": 39.9,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -2.15,
+          "score": 15.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 1.08,
+          "score": 23.2,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 1.87,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.85,
+      "score": 38,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 56.26,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.22,
+          "score": 27.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 11,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.922,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 85.222,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -4.037,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 17,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -5.83,
+          "score": 20.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -1.7,
+          "score": 45.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -24.63,
+          "score": 6.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 3.1,
+          "score": 56.2,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -1.0,
+          "score": 48.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -34.83,
+          "score": 8.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 28,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "AMBER",
+      "total": 6.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-15T01:43:15Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "AMBER",
+    "total": 6.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-15T01:43:15Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 8.68,
+    "date": "2026-10-14"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 584347000.0,
+    "revenue_yoy_q": 86.14,
+    "revenue_yoy_q_prev": 108.37,
+    "acceleration_pp": -22.23,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 2054532000.0,
+    "revenue_yoy_ttm": null,
+    "gross_profit_ttm": 697048000.0,
+    "operating_income_ttm": -44228000.0,
+    "operating_cash_flow_ttm": 68871000.0,
+    "capex_ttm": 46645000.0,
+    "sbc_ttm": 38412000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 22226000.0,
+    "gross_margin_pct": 33.93,
+    "operating_margin_pct": -2.15,
+    "fcf_margin_pct": 1.08,
+    "capex_intensity_pct": 2.27,
+    "sbc_pct_revenue": 1.87,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 493000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": null,
+      "base_date": null,
+      "revenue_growth_pct": null,
+      "expected": null,
+      "excess": null,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": null,
+      "note": "no contract-liability balance a year earlier: the excess over revenue growth can't be measured"
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 1.08,
+      "fcf_margin_year_earlier_pct": null,
+      "median_margin_pct": 1.52,
+      "quarters": 6,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 22226000.0,
+    "fcf_scored_margin_pct": 1.08,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 362420000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 362420000.0,
+      "debt": 1612744000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 1612744000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 1250324000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "shares_outstanding": {
+      "val": 218220356.0,
+      "end": "2026-07-31",
+      "filed": "2026-08-06",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2024-06-30",
+        "revenue": 309292000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 6.39,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 262042000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -1.31,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 234215000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -4.03,
+        "fcf": 28316000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 313925000.0,
+        "revenue_yoy_pct": 1.5,
+        "operating_margin_pct": 5.85,
+        "fcf": -14505000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 473888000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -1.37,
+        "fcf": 10332000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 508268000.0,
+        "revenue_yoy_pct": 93.96,
+        "operating_margin_pct": -3.84,
+        "fcf": 37117000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 488029000.0,
+        "revenue_yoy_pct": 108.37,
+        "operating_margin_pct": -5.96,
+        "fcf": 4228000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 584347000.0,
+        "revenue_yoy_pct": 86.14,
+        "operating_margin_pct": 1.86,
+        "fcf": -29451000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 8.68,
+    "price_date": "2026-10-14",
+    "shares": {
+      "shares": 218220356.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-31"
+    },
+    "market_cap": 1894152690.08,
+    "enterprise_value": 3144476690.08,
+    "price_to_sales": 0.922,
+    "price_to_fcf": 85.222,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 108.467,
+    "fcf_yield_pct": 1.173,
+    "ebit_yield_pct": -1.407,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 5.21,
+    "ust10y_date": "2026-10-13",
+    "fcf_yield_vs_10y_pp": -4.037,
+    "history": [],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.922,
+        "current_yield_pct": 108.467,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": null
+      },
+      "price_to_fcf": {
+        "current": 85.222,
+        "current_yield_pct": 1.173,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -1.407,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 8.68,
+    "date": "2026-10-14",
+    "ma50": 9.22,
+    "ma200": 8.83,
+    "vs_ma50_pct": -5.83,
+    "vs_ma200_pct": -1.7,
+    "momentum_12_1_pct": -24.63,
+    "high_52w": 13.32,
+    "drawdown_52w_pct": -34.83,
+    "return_rs_pct": 13.61,
+    "rs_days": 126,
+    "spy_return_pct": 10.51,
+    "rs_spy_pp": 3.1,
+    "qqq_return_pct": 14.61,
+    "rs_qqq_pp": -1.0
+  },
+  "ust10y": {
+    "value": 5.21,
+    "date": "2026-10-13"
+  },
+  "guidance": {
+    "accession": "0001628280-26-053818",
+    "filing_date": "2026-08-06",
+    "period_end": "2026-06-30",
+    "period_source": "companyfacts",
+    "period_rejected": "2025-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/2032966/000162828026053818/ticsolutions-x2q26earnings.htm",
+    "summary": "TIC Solutions reaffirmed its previously issued full-year 2026 guidance, which includes an Adjusted EBITDA range, but the excerpts do not include the guidance figures.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "reiterated",
+        "sentence": "TIC Solutions is reaffirming its previously issued full-year 2026 guidance of:",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-030884",
+      "filing_date": "2026-05-06",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2032966/000162828026030884/ticsolutions-x1q26earnings.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or Q3 results in the past month; the company last reaffirmed its full-year 2026 guidance with Q2 results on 2026-08-06.",
+        "evidence": [
+          {
+            "claim": "TIC Solutions is reaffirming its previously issued full-year 2026 guidance.",
+            "url": "https://www.sec.gov/Archives/edgar/data/2032966/000162828026053818/ticsolutions-x2q26earnings.htm",
+            "event_date": "2026-08-06",
+            "tier": "primary",
+            "age_days": 69,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "No rating or price-target changes in the window. The JP Morgan and UBS upgrades came in August, outside the window.",
+        "evidence": [
+          {
+            "claim": "JP Morgan upgraded Underweight to Neutral with a $11 target; UBS upgraded Neutral to Buy with a $12.50 target.",
+            "url": "https://finviz.com/stock?t=TIC",
+            "event_date": "2026-08-21",
+            "tier": "other",
+            "age_days": 54,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 6/6"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions involving TIC Solutions were found.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No customer wins, losses or concentration news in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider filing was the CFO's tax-withholding disposal on vesting of performance RSUs, not an open-market sale. Nothing material.",
+        "evidence": [
+          {
+            "claim": "CFO Kristin Schultes had 60,000 performance-based RSUs converted to common stock, with 18,624 shares disposed under code F at $8.32.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002032966/000121390026106422/ownership.xml",
+            "event_date": "2026-09-30",
+            "tier": "primary",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "No product or competitive news in the window. The August acquisitions of we-do-IT, GeoVerra and Core Group fall outside it.",
+        "evidence": [
+          {
+            "claim": "TIC completed the acquisitions of we-do-IT, GeoVerra and Core Group.",
+            "url": "https://finance.yahoo.com/technology/articles/tic-solutions-completes-three-strategic-110000020.html",
+            "event_date": "2026-08-18",
+            "tier": "other",
+            "age_days": 57,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": "2026-10-14T21:00:57Z",
+    "caps_reapplied": [],
+    "direction_unchecked": []
+  },
+  "claude": {
+    "enabled": true,
+    "news_reused": {
+      "news_from": "2026-10-14T21:00:57Z",
+      "archived": "data/stocks/runs/TIC/2026-10-15T103314Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
+    }
+  },
+  "news_from": "2026-10-14T21:00:57Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "TIC Solutions rates Sell: fast revenue growth undercut by heavy debt, thin cash flow and weak price trend.",
+    "thesis": "TIC Solutions scores 37, a Sell with medium confidence, sitting 8 points from both Hold and Strong Sell. Growth is the bright spot at 64, with quarterly revenue up 86.1% year on year, though growth slowed by 22.2 pp from the previous quarter. The balance sheet scores only 11: net debt is 56.26 times free cash flow and cash covers just 0.22 of debt. Valuation scores 17, as the stock looks high in absolute terms on free cash flow at 85.2x, with the FCF yield 4.0 pp below the 10-year Treasury yield, even though P/S of 0.9x is low in absolute terms; EV/EBIT is not meaningful because EBIT is negative, and there is no comparison with its own history. Quality (38) and trend (28) add to the drag, with an operating margin of -2.1%, an FCF margin of 1.1%, and shares 34.8% below their 52-week high.",
+    "key_risks": [
+      "High leverage: net debt at 56.26 times free cash flow and cash-to-debt of 0.22",
+      "Operating margin is negative at -2.1% and the FCF margin is just 1.1%",
+      "Revenue growth slowed by 22.2 pp from the previous quarter, and the August acquisitions add integration risk",
+      "Weak price trend: down 24.6% from 12 months ago to 1 month ago and 5.8% below its 50-day average",
+      "Missing data (trailing revenue growth, dilution, valuation history) limits confidence"
+    ],
+    "what_would_change": [
+      "A gain of 8 points to 45 would lift the rating to Hold, for example through better free cash flow that improves the balance sheet, valuation and quality scores together",
+      "A positive operating margin would make EV/EBIT measurable and could help the quality score",
+      "A drop of more than 8 points, below 30, would mean Strong Sell, for instance if growth keeps slowing or the price trend weakens further",
+      "Q3 results or a guidance change would move the currently neutral news score of 50 either way"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3174,
+        "output_tokens": 715,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3174,
+            "output_tokens": 715,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.027,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.027,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 8.565,
+    "as_of": "2026-10-15T13:49:12Z",
+    "prev_close": 8.68
+  },
+  "close_note": {
+    "scored_on": "2026-10-14",
+    "latest": "2026-10-14",
+    "latest_from": "weekday",
+    "run_et": "2026-10-15 09:48",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "38745669208",
+    "tickers": [
+      "RBRK",
+      "ORCL",
+      "MSFT",
+      "GOOGL",
+      "META",
+      "MSGS",
+      "NTAP",
+      "SHOP",
+      "TIC",
+      "ZS",
+      "GTLB",
+      "PLTR",
+      "INOD",
+      "NVDA"
+    ]
+  }
+}

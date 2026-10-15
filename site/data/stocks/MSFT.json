@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:33:48Z",
-  "generated_at": "2026-10-15T10:33:48+00:00",
+  "run_id": "2026-10-15T13:47:52Z",
+  "generated_at": "2026-10-15T13:47:52+00:00",
   "ticker": "MSFT",
   "sec_ticker": "MSFT",
   "cik": "0000789019",
@@ -1173,6 +1173,8 @@
     "accession": "0001193125-26-323632",
     "filing_date": "2026-07-29",
     "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-ex99_1.htm",
     "summary": "The release gives no numeric outlook; Microsoft says it will provide forward-looking guidance on its earnings conference call and webcast.",
     "read": true,
@@ -1228,6 +1230,7 @@
     "previous": {
       "accession": "0001193125-26-191457",
       "filing_date": "2026-04-29",
+      "period_end": "2026-03-31",
       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/msft-ex99_1.htm"
     },
     "note": null
@@ -1406,13 +1409,25 @@
       }
     },
     "reused_from": "2026-10-15T06:32:01Z",
-    "caps_reapplied": []
+    "caps_reapplied": [],
+    "direction_unchecked": [
+      {
+        "topic": "analyst_actions",
+        "label": "Analyst actions",
+        "rating": 1
+      },
+      {
+        "topic": "product_competitive",
+        "label": "Product and competitive news",
+        "rating": 1
+      }
+    ]
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T06:32:01Z",
-      "archived": "data/stocks/runs/MSFT/2026-10-15T091909Z.json",
+      "archived": "data/stocks/runs/MSFT/2026-10-15T103348Z.json",
       "models": {
         "sources": {
           "research": "config",
@@ -1436,19 +1451,20 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Microsoft rates Buy on strong quality and balance sheet, but sits just 2 points above Hold.",
-    "thesis": "Microsoft scores 66, a Buy with medium confidence, held up mainly by an 86 quality score (46.78% operating margin, 20.19% FCF margin, slight share count reduction) and a 99 balance sheet score reflecting net cash and cash at 1.91 times debt. Growth scores 65 on revenue up 17.75% year on year in the latest quarter, with slight deceleration of 0.55 points, and trend scores 76 with the price 22.75% above its 200-day average and only 1.8% off its 52-week high. Valuation is the main drag at 26: in absolute terms the multiples are high (P/S 11.942, P/FCF 59.16, EV/EBIT 25.293, FCF yield 3.52 points below the 10-year Treasury). Against its own history the overall picture is near the middle of its own history, though P/FCF is more expensive than at 60 of the last 61 month-ends. News is mildly positive at 59, with analyst upgrades and a revamped Copilot launch, while the AI capex early warning sits at AMBER 6/18 without capping the rating.",
+    "headline": "Microsoft rates a Buy on strong quality, a net-cash balance sheet and firm trend, held back by valuation.",
+    "thesis": "Microsoft scores 66, a Buy with medium confidence, only 2 points above the Hold line at 65. The case rests on a near-perfect balance sheet score of 99 (net cash, with cash covering debt 1.91 times) and quality at 86, with a 46.8% operating margin, a 20.2% FCF margin and diluted shares down 0.2% year on year. Growth scores 65, with revenue up 17.8% year on year, though growth slowed by 0.6 pp from the previous quarter. Trend is strong at 76: the shares are 1.8% below their 52-week high and 19.8 pp ahead of SPY over the last 126 trading days. Valuation is the drag at 26. In absolute terms the multiples are high, at 11.9x sales, 59.2x FCF and 25.3x EV/EBIT, with the FCF yield 3.5 pp below the 10-year Treasury yield. Against its own history valuation is near the middle overall, although P/FCF is more expensive than at 60 of the last 61 month-ends.",
     "key_risks": [
-      "Score is only 2 points above the Hold line, so small changes could drop the rating.",
-      "High absolute valuation, with P/FCF more expensive than at 60 of the last 61 month-ends.",
-      "AI capex early warning at AMBER 6/18 flags warning signs for heavy AI spending.",
-      "Competition from Anthropic and low Copilot penetration of commercial seats; ongoing dependence on OpenAI.",
-      "Ongoing UK CMA cloud-licensing probe and UK class action."
+      "The score sits just 2 points above Hold, so a small slip in any factor could lower the rating.",
+      "Valuation is high in absolute terms, with the FCF yield 3.5 pp below the 10-year Treasury yield.",
+      "The AI capex early warning is AMBER at 6/18, and heavy spending is weighing on free cash flow.",
+      "Competition from Anthropic and low Copilot penetration of commercial seats could limit AI monetisation.",
+      "Ongoing exposure to OpenAI dependence, the UK CMA cloud-licensing probe and the UK class action."
     ],
     "what_would_change": [
-      "Down to Hold: a loss of just 2 points, e.g. weaker growth or guidance at the October 28 FY27 Q1 results, or a pullback in the trend score.",
-      "Up to Strong Buy: 14 more points needed, which would likely require a much better valuation score alongside sustained or re-accelerating growth.",
-      "A worsening AI capex warning beyond AMBER could weigh on the outlook, while easing it would support the rating."
+      "A drop of 2 or more points in the composite, for example from weaker FY27 Q1 results on October 28 or a softer trend, would move the rating to Hold.",
+      "Reaching Strong Buy needs 14 more points, most plausibly from a better valuation score or faster revenue growth.",
+      "A worsening of the capex early warning from AMBER could lead to the rating being capped.",
+      "Free cash flow recovering relative to price would improve P/FCF and the valuation score."
     ]
   },
   "writeup_check": {
@@ -1463,15 +1479,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3050,
-        "output_tokens": 729,
+        "input_tokens": 3451,
+        "output_tokens": 748,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3050,
-            "output_tokens": 729,
+            "input_tokens": 3451,
+            "output_tokens": 748,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1482,46 +1498,46 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0268,
+        "cost_usd": 0.0288,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0268,
+    "total_usd": 0.0288,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 533.69,
-    "as_of": "2026-10-14T20:00:00Z",
-    "prev_close": 543.45
+    "price": 535.52,
+    "as_of": "2026-10-15T13:49:21Z",
+    "prev_close": 533.69
   },
   "close_note": {
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
-    "latest_from": "quote",
-    "run_et": "2026-10-15 06:33",
+    "latest_from": "weekday",
+    "run_et": "2026-10-15 09:47",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38720937288",
+    "run_id": "38745669208",
     "tickers": [
-      "PLTR",
-      "GTLB",
-      "ORCL",
-      "NVDA",
-      "INOD",
-      "SHOP",
       "RBRK",
-      "ZS",
-      "TIC",
-      "NTAP",
-      "MSGS",
-      "META",
+      "ORCL",
+      "MSFT",
       "GOOGL",
-      "MSFT"
+      "META",
+      "MSGS",
+      "NTAP",
+      "SHOP",
+      "TIC",
+      "ZS",
+      "GTLB",
+      "PLTR",
+      "INOD",
+      "NVDA"
     ]
   },
   "chart": [
@@ -9099,6 +9115,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T13:47:52Z",
+      "ticker": "MSFT",
+      "rating": "Buy",
+      "score": "66",
+      "confidence": "Medium",
+      "growth": "65",
+      "quality": "86",
+      "balance_sheet": "99",
+      "valuation": "26",
+      "trend": "76",
+      "news_risk": "59",
+      "price": "533.69",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0288",
+      "overlay": "note",
+      "quote_price": "535.52",
+      "quote_as_of": "2026-10-15T13:49:21Z",
+      "news_from": "2026-10-15T06:32:01Z"
+    },
     {
       "timestamp": "2026-10-15T10:33:48Z",
       "ticker": "MSFT",
