@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T13:48:19Z",
-  "generated_at": "2026-10-15T13:48:21+00:00",
+  "run_id": "2026-10-15T14:08:35Z",
+  "generated_at": "2026-10-15T14:08:36+00:00",
   "ticker": "NTAP",
   "sec_ticker": "NTAP",
   "cik": "0001002047",
@@ -395,6 +395,7 @@
     "share_outliers": [],
     "diluted_shares": 200000000.0,
     "diluted_shares_end": "2026-07-31",
+    "diluted_shares_derived": null,
     "dilution_yoy_pct": -1.48,
     "shares_outstanding": {
       "val": 196419005.0,
@@ -1366,8 +1367,8 @@
             "tier": "primary",
             "age_days": 14,
             "background": false,
-            "status": "unverified",
-            "check": "numbers 1/2, names 2/3 · missing: 212, Director"
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3 · Form 4 XML normalised"
           },
           {
             "claim": "Director Carrie Palin sold 5,000 shares at $216.43.",
@@ -1433,8 +1434,8 @@
           "unreachable": 0
         },
         "insider_activity": {
-          "verified": 3,
-          "unverified": 1,
+          "verified": 4,
+          "unverified": 0,
           "unreachable": 0
         },
         "product_competitive": {
@@ -1442,7 +1443,8 @@
           "unverified": 0,
           "unreachable": 0
         }
-      }
+      },
+      "form4_rechecked": 1
     },
     "reused_from": "2026-10-15T07:28:28Z",
     "caps_reapplied": [],
@@ -1462,13 +1464,22 @@
         "label": "Product and competitive news",
         "rating": 1
       }
+    ],
+    "rechecked": [
+      {
+        "topic": "insider_activity",
+        "label": "Insider activity",
+        "claim": "Director Gerald Held sold 5,757 shares at $212.",
+        "was": "unverified",
+        "now": "verified"
+      }
     ]
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:28Z",
-      "archived": "data/stocks/runs/NTAP/2026-10-15T103325Z.json",
+      "archived": "data/stocks/runs/NTAP/2026-10-15T134819Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1492,19 +1503,20 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "NetApp rates Buy on accelerating growth, strong margins and net cash, held back by a full valuation.",
-    "thesis": "NetApp scores 71, a Buy with high confidence, driven by strong growth, quality, balance sheet and trend scores. Revenue was up 29.9% year on year in the latest quarter, and growth sped up by 17.4 pp from the previous quarter. Margins are solid, with a 70.6% gross margin, 25.0% operating margin and 22.3% FCF margin, while diluted shares are down 1.5% year on year and the company holds net cash. The stock is 54.7% above its 200-day average and 112.1 pp ahead of SPY over the last 126 trading days. Valuation is the main drag at a score of 28: in absolute terms the multiples are high (5.9x sales, 26.5x FCF, 23.0x EV/EBIT, FCF yield 1.4 pp below the 10-year Treasury yield), and the stock is expensive against its own history, more expensive than at 60 of the last 61 month-ends on P/S and P/FCF.",
+    "headline": "NetApp rates Buy on accelerating growth, strong margins and net cash, held back by a high valuation.",
+    "thesis": "NetApp scores 71, a Buy, driven by strong growth, quality, balance sheet and trend scores. Quarterly revenue was up 29.9% year on year, and growth sped up by 17.4 pp from the previous quarter, while margins are healthy: 70.6% gross, 25.0% operating and 22.3% free cash flow, with diluted shares down 1.5% year on year. The balance sheet scores 95 thanks to net cash, and the shares are 54.7% above their 200-day average and 112.1 pp ahead of SPY over the last 126 trading days. The main drag is valuation, scoring 28: in absolute terms the stock trades at 26.5x free cash flow and 23.0x EV/EBIT, with an FCF yield 1.4 pp below the 10-year Treasury yield. Against its own history it is expensive, more expensive than at 60 of the last 61 month-ends on P/S and P/FCF.",
     "key_risks": [
-      "Valuation is expensive against its own history, leaving little room for disappointment if growth slows.",
-      "After a large run-up, a pullback could hit the trend score, which is now 96.",
-      "Four insiders, including the CEO, sold shares with no open-market purchases; two directors' sales were not flagged as plan sales.",
-      "Barclays downgraded the stock, citing the large year-to-date gain and no meaningful AI inflection yet.",
-      "News ratings were reused from an earlier run and not refreshed this run."
+      "Valuation is expensive against its own history, leaving little room if growth disappoints",
+      "The latest quarter's 29.9% growth may not be sustained, given TTM growth of up 12.2% year on year",
+      "After a strong run the stock could pull back; Barclays downgraded citing the large gain and no meaningful AI inflection yet",
+      "Several insiders, including the CEO, sold shares with no open-market purchases",
+      "Competition in AI-focused storage could pressure the newly launched Novus architecture"
     ],
     "what_would_change": [
-      "A 9-point rise in the score to 80 would lift the rating to Strong Buy, for example through a better valuation score if prices ease while earnings grow.",
-      "A 7-point drop below 65 would cut the rating to Hold, which could follow a reversal in the trend factor or a fade in quarterly growth.",
-      "More negative insider selling or analyst downgrades would weigh on the news risk score of 56."
+      "A rise of 9 points to 80 would lift it to Strong Buy, for example via continued growth acceleration or a lower valuation after earnings growth",
+      "A fall of 7 points below 65 would cut it to Hold, such as from a sharp drop in the trend score or a growth slowdown",
+      "Further insider selling or negative analyst actions would weigh on the news risk score",
+      "Delivery against the raised FY27 guidance would support growth and quality scores"
     ]
   },
   "writeup_check": {
@@ -1519,15 +1531,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3391,
-        "output_tokens": 671,
+        "input_tokens": 3505,
+        "output_tokens": 675,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3391,
-            "output_tokens": 671,
+            "input_tokens": 3505,
+            "output_tokens": 675,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1538,31 +1550,31 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.027,
+        "cost_usd": 0.0275,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.027,
+    "total_usd": 0.0275,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 212.41,
-    "as_of": "2026-10-15T13:49:22Z",
+    "price": 213.9,
+    "as_of": "2026-10-15T14:09:11Z",
     "prev_close": 222.2
   },
   "close_note": {
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "weekday",
-    "run_et": "2026-10-15 09:48",
+    "run_et": "2026-10-15 10:08",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38745669208",
+    "run_id": "38748587437",
     "tickers": [
       "RBRK",
       "ORCL",
@@ -9155,6 +9167,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T14:08:35Z",
+      "ticker": "NTAP",
+      "rating": "Buy",
+      "score": "71",
+      "confidence": "High",
+      "growth": "82",
+      "quality": "82",
+      "balance_sheet": "95",
+      "valuation": "28",
+      "trend": "96",
+      "news_risk": "56",
+      "price": "222.2",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0275",
+      "overlay": "",
+      "quote_price": "213.9",
+      "quote_as_of": "2026-10-15T14:09:11Z",
+      "news_from": "2026-10-15T07:28:28Z"
+    },
     {
       "timestamp": "2026-10-15T13:48:19Z",
       "ticker": "NTAP",

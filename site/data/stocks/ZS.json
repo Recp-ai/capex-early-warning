@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T13:48:23Z",
-  "generated_at": "2026-10-15T13:48:23+00:00",
+  "run_id": "2026-10-15T14:08:43Z",
+  "generated_at": "2026-10-15T14:08:44+00:00",
   "ticker": "ZS",
   "sec_ticker": "ZS",
   "cik": "0001713683",
@@ -390,6 +390,7 @@
     "share_outliers": [],
     "diluted_shares": 160219000.0,
     "diluted_shares_end": "2026-07-31",
+    "diluted_shares_derived": null,
     "dilution_yoy_pct": 3.77,
     "shares_outstanding": {
       "val": 163054698.0,
@@ -1341,7 +1342,7 @@
             "age_days": 29,
             "background": false,
             "status": "unverified",
-            "check": "numbers 1/2, names 2/3 · missing: 192.76, RSU"
+            "check": "numbers 1/2, names 2/3 · missing: 192.76, RSU · Form 4 XML normalised"
           },
           {
             "claim": "CRO Mike Rich sold 4,108 shares at $192.76 to cover tax withholding.",
@@ -1351,7 +1352,7 @@
             "age_days": 29,
             "background": false,
             "status": "unverified",
-            "check": "numbers 1/2, names 2/3 · missing: 192.76, Mike"
+            "check": "numbers 1/2, names 2/3 · missing: 192.76, Mike · Form 4 XML normalised"
           }
         ],
         "label": "Insider activity"
@@ -1421,13 +1422,14 @@
         "label": "Analyst actions",
         "rating": 1
       }
-    ]
+    ],
+    "rechecked": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:28Z",
-      "archived": "data/stocks/runs/ZS/2026-10-15T103311Z.json",
+      "archived": "data/stocks/runs/ZS/2026-10-15T134823Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1451,20 +1453,19 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Zscaler rates Hold: strong growth and net cash offset by GAAP losses and high absolute valuation.",
-    "thesis": "Zscaler scores 59, a Hold, 6 points short of Buy. Growth is the main support at a score of 73, with revenue up 24.9% year on year in the latest quarter and up 25.4% on a trailing basis, though growth slowed by 0.6 pp from the previous quarter. The balance sheet scores 100 thanks to net cash, but quality sits at 50: gross margin is 76.8% and FCF margin 25.4%, while operating margin is -4.0%, stock-based compensation is 24.5% of revenue and diluted shares are up 3.8% year on year. Valuation scores 36 because absolute multiples are high, at 10.7x sales and 42.2x FCF, with the FCF yield 2.8 pp below the 10-year Treasury yield. Against its own history it is labelled cheap: P/S is cheaper than at 51 of the last 61 month-ends and P/FCF is cheaper than at 46 of the last 61 month-ends, while EV/EBIT is not comparable (negative now and in 61 of 61 month-ends). The trend score of 61 reflects a sharp rebound, with the stock 33.0% above its 200-day average, but it is still 34.3% below its 52-week high.",
+    "headline": "Zscaler rates Hold: strong growth and net cash offset by absolute valuation and GAAP operating losses.",
+    "thesis": "Zscaler scores 59, a Hold, 6 points short of Buy. Growth is the main support at 73, with revenue up 24.9% year on year last quarter, though growth slowed by 0.6 pp from the previous quarter. The balance sheet scores a full 100 thanks to net cash, with cash at 2.05 times debt. Quality is middling at 50: a 76.8% gross margin and 25.4% FCF margin are offset by a -4.0% operating margin, stock-based pay at 24.5% of revenue and diluted shares up 3.8% year on year. Valuation scores 36 because absolute multiples are high (10.7x sales, 42.2x FCF, FCF yield 2.8 pp below the 10-year Treasury yield), even though the stock is cheap against its own history, cheaper than at 51 of the last 61 month-ends on P/S.",
     "key_risks": [
-      "Guidance reaffirmed at Investor Day implies growth slowing to roughly 17%, and Jefferies noted the CRO's departure is not reflected in it.",
-      "GAAP operating losses and heavy stock-based compensation (24.5% of revenue) dilute shareholders, with diluted shares up 3.8% year on year.",
-      "High absolute valuation, with P/FCF of 42.2x and the FCF yield 2.8 pp below the 10-year Treasury yield, leaves little room for disappointment.",
-      "Momentum is fragile: the stock is down 38.1% from 12 months ago to 1 month ago despite its recent recovery.",
-      "A Pomerantz law-firm investigation into possible securities fraud could turn into litigation, though no suit has been filed."
+      "Guidance reaffirmed at Investor Day implies growth slowing to roughly 17%.",
+      "The Chief Revenue Officer's departure triggered a share slide and is not reflected in guidance, per Jefferies.",
+      "GAAP operating losses and heavy stock-based pay, with diluted shares up 3.8% year on year.",
+      "High absolute valuation leaves little room if growth disappoints.",
+      "The shares remain 34.3% below their 52-week high after a weak 12-month run, despite the recent rebound."
     ],
     "what_would_change": [
-      "A 6-point rise in the composite score would reach Buy, for example through better quality from a move to positive operating margin or lower stock-based compensation.",
-      "Sustained revenue growth near current levels instead of the guided slowdown would support the growth score and the rating.",
-      "A 15-point fall to below 45 would mean Sell, which would likely take a sharp growth deceleration, a reversal in trend, or negative news on guidance or litigation.",
-      "A lower share price relative to FCF would lift the valuation score from its current 36."
+      "A 6-point gain in the composite score would reach Buy, for example from re-accelerating growth or positive GAAP operating margins lifting quality.",
+      "A lower share price or faster FCF growth would improve the absolute valuation score from 36.",
+      "A drop of 15 points or more would mean Sell, such as from a guidance cut, sharper deceleration or a reversal in the recent price trend."
     ]
   },
   "writeup_check": {
@@ -1479,15 +1480,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3384,
-        "output_tokens": 887,
+        "input_tokens": 3498,
+        "output_tokens": 645,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3384,
-            "output_tokens": 887,
+            "input_tokens": 3498,
+            "output_tokens": 645,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1498,31 +1499,31 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0313,
+        "cost_usd": 0.0269,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0313,
+    "total_usd": 0.0269,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 220.52,
-    "as_of": "2026-10-15T13:49:02Z",
+    "price": 220.62,
+    "as_of": "2026-10-15T14:08:56Z",
     "prev_close": 220.79
   },
   "close_note": {
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "weekday",
-    "run_et": "2026-10-15 09:48",
+    "run_et": "2026-10-15 10:08",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38745669208",
+    "run_id": "38748587437",
     "tickers": [
       "RBRK",
       "ORCL",
@@ -9115,6 +9116,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T14:08:43Z",
+      "ticker": "ZS",
+      "rating": "Hold",
+      "score": "59",
+      "confidence": "High",
+      "growth": "73",
+      "quality": "50",
+      "balance_sheet": "100",
+      "valuation": "36",
+      "trend": "61",
+      "news_risk": "54",
+      "price": "220.79",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0269",
+      "overlay": "",
+      "quote_price": "220.62",
+      "quote_as_of": "2026-10-15T14:08:56Z",
+      "news_from": "2026-10-15T07:28:28Z"
+    },
     {
       "timestamp": "2026-10-15T13:48:23Z",
       "ticker": "ZS",

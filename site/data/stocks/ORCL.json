@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T13:47:54Z",
-  "generated_at": "2026-10-15T13:47:55+00:00",
+  "run_id": "2026-10-15T14:08:11Z",
+  "generated_at": "2026-10-15T14:08:12+00:00",
   "ticker": "ORCL",
   "sec_ticker": "ORCL",
   "cik": "0001341439",
@@ -415,6 +415,7 @@
     "share_outliers": [],
     "diluted_shares": 3000000000.0,
     "diluted_shares_end": "2026-08-31",
+    "diluted_shares_derived": null,
     "dilution_yoy_pct": 3.13,
     "shares_outstanding": {
       "val": 3023736000.0,
@@ -1486,13 +1487,14 @@
     },
     "reused_from": "2026-10-15T12:49:11Z",
     "caps_reapplied": [],
-    "direction_unchecked": []
+    "direction_unchecked": [],
+    "rechecked": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T12:49:11Z",
-      "archived": "data/stocks/runs/ORCL/2026-10-15T124911Z.json",
+      "archived": "data/stocks/runs/ORCL/2026-10-15T134754Z.json",
       "models": {
         "sources": {
           "research": "config",
@@ -1516,20 +1518,20 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Oracle rates Sell at 43: strong growth outweighed by heavy cash burn, debt and a broken price trend.",
-    "thesis": "Oracle scores 43, a Sell with low confidence, just 2 points below the Hold edge at 45. Growth is the standout (score 86): revenue was up 29.6% year on year in the latest quarter and growth sped up by 9.0 pp from the previous quarter. That is offset by a weak balance sheet (score 13, cash covering only 0.3x debt, with negative free cash flow) and a free cash flow margin of -60.3% excluding prepayments, as AI data-center spending consumes cash. The price trend scores just 1, with the stock 58.3% below its 52-week high and 33.1 pp behind SPY over the last 126 trading days. Valuation scores 41. In absolute terms P/S of 5.5x and EV/EBIT of 20.9x are moderate, and the FCF yield is 16.2 pp below the 10-year Treasury yield. Against its own history the stock is cheap (P/FCF not comparable): EV/EBIT is cheaper than at 58 of the last 61 month-ends.",
+    "headline": "Oracle rates Sell: fast growth is outweighed by heavy cash burn, a weak balance sheet and a collapsing share price.",
+    "thesis": "Oracle scores 43, a Sell, just 2 points below the Hold line at 45. Growth is the clear strength, with a score of 86: revenue is up 29.6% year on year in the latest quarter and growth sped up by 9.0 pp from the previous quarter, helped by AI cloud demand. That is offset by deeply negative free cash flow from data-center spending, with an FCF margin of -60.3% excluding prepayments, which drags quality to 48 and the balance sheet to 13, where cash covers only 0.3 of debt. On absolute levels valuation is mixed: 5.5x sales and 20.9x EV/EBIT, with the FCF yield 16.2 pp below the 10-year Treasury yield. Against its own history the stock looks cheap (EV/EBIT is cheaper than at 58 of the last 61 month-ends), but the trend score of 1 reflects a share price 58.3% below its 52-week high and 33.1 pp behind SPY over the last 126 trading days.",
     "key_risks": [
-      "Deeply negative free cash flow from AI capex, with the capex early warning at AMBER 6/18.",
-      "Weak balance sheet: cash covers 0.3x debt, and net debt sits alongside negative FCF.",
-      "Customer concentration: outside estimates put OpenAI at roughly half of the $664 billion backlog.",
-      "Contract liabilities rose $17.43B over the year, well beyond what revenue growth explains, which clouds the cash flow picture.",
-      "Litigation: an Oracle Health data breach investigation, an ongoing securities class action and an EU licensing inquiry."
+      "Heavy AI data-center capex keeps free cash flow deeply negative and adds to debt",
+      "Customer concentration: OpenAI is estimated at roughly half of the $664 billion backlog",
+      "Weak balance sheet with a cash-to-debt ratio of 0.3",
+      "Steep downtrend, with the share price 18.8% below its 200-day average and down 54.0% from 12 months ago to 1 month ago",
+      "Legal overhang from the Oracle Health data-breach claims, the securities class action and the EU licensing inquiry"
     ],
     "what_would_change": [
-      "A 2-point gain in the composite, for example from a trend recovery or improving FCF lifting quality, would move the rating to Hold.",
-      "Free cash flow turning positive would help quality, the balance sheet and valuation at once.",
-      "A fall of 14 points or more, for example growth fading from its 86 score or new negative news, would push it to Strong Sell.",
-      "Confidence would rise if the gross margin data became available and prepayment distortions eased."
+      "A gain of 2 points, for example a stabilising share price that lifts the trend score from 1, would move the rating to Hold",
+      "Evidence that capex is turning into positive free cash flow would lift quality, balance sheet and valuation scores",
+      "A drop of 14 points, such as growth slowing sharply or new funding strain, would push it to Strong Sell",
+      "News on OpenAI contract terms or delivery on the FY2027 guidance of at least $90 billion of revenue could swing news and growth scores"
     ]
   },
   "writeup_check": {
@@ -1544,14 +1546,14 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3743,
+        "input_tokens": 3857,
         "output_tokens": 741,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3743,
+            "input_tokens": 3857,
             "output_tokens": 741,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
@@ -1563,31 +1565,31 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0298,
+        "cost_usd": 0.0302,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0298,
+    "total_usd": 0.0302,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 130.6,
-    "as_of": "2026-10-15T13:49:22Z",
+    "price": 131.465,
+    "as_of": "2026-10-15T14:09:39Z",
     "prev_close": 130.55
   },
   "close_note": {
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "weekday",
-    "run_et": "2026-10-15 09:47",
+    "run_et": "2026-10-15 10:08",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38745669208",
+    "run_id": "38748587437",
     "tickers": [
       "RBRK",
       "ORCL",
@@ -9180,6 +9182,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T14:08:11Z",
+      "ticker": "ORCL",
+      "rating": "Sell",
+      "score": "43",
+      "confidence": "Low",
+      "growth": "86",
+      "quality": "48",
+      "balance_sheet": "13",
+      "valuation": "41",
+      "trend": "1",
+      "news_risk": "45",
+      "price": "130.55",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0302",
+      "overlay": "note",
+      "quote_price": "131.465",
+      "quote_as_of": "2026-10-15T14:09:39Z",
+      "news_from": "2026-10-15T12:49:11Z"
+    },
     {
       "timestamp": "2026-10-15T13:47:54Z",
       "ticker": "ORCL",
