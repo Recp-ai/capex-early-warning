@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:33:03Z",
-  "generated_at": "2026-10-15T10:33:04+00:00",
+  "run_id": "2026-10-15T12:49:22Z",
+  "generated_at": "2026-10-15T12:50:18+00:00",
   "ticker": "RBRK",
   "sec_ticker": "RBRK",
   "cik": "0001943896",
@@ -18,16 +18,21 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 58,
+  "score": 57,
   "confidence": "Medium",
   "confidence_detail": {
     "level": "Medium",
-    "points": 1.0,
+    "points": 2.0,
     "reasons": [
       {
         "issue": "short_valuation_history",
         "points": 1.0,
         "text": "valuation history: P/S 20 month-ends, P/FCF 20 month-ends, EV/EBIT 20 month-ends (needs 24)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
       }
     ],
     "factors_with_data": 6
@@ -36,17 +41,17 @@
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 7
+      "points": 8
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 14
+      "points": 13
     }
   },
   "composite": {
-    "score": 58,
-    "raw": 57.5,
+    "score": 57,
+    "raw": 57.35,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -240,7 +245,7 @@
       "missing": null
     },
     "news_risk": {
-      "score": 56,
+      "score": 55,
       "metrics": {
         "guidance": {
           "value": 0,
@@ -249,8 +254,8 @@
           "note": null
         },
         "analyst_actions": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.15,
           "note": null
         },
@@ -267,8 +272,8 @@
           "note": null
         },
         "insider_activity": {
-          "value": -1,
-          "score": 25.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.1,
           "note": null
         },
@@ -877,100 +882,87 @@
     "topics": {
       "guidance": {
         "rating": 0,
-        "summary": "There was no guidance change in the window. The last update was the August 27 Q2 report, which came before the window and raised all fiscal 2027 guided metrics, including subscription ARR.",
+        "summary": "No guidance change in the last month. Rubrik's raise of all FY27 guided metrics came on 2026-08-27, which is before the window and counts as background only.",
         "evidence": [
           {
-            "claim": "Subscription ARR between $1,880 million and $1,885 million.",
+            "claim": "Rubrik raised FY27 guidance, including Subscription ARR between $1,880 million and $1,885 million.",
             "url": "https://www.sec.gov/Archives/edgar/data/1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
             "event_date": "2026-08-27",
+            "direction": "positive",
             "tier": "primary",
             "age_days": 49,
             "background": true,
             "status": "verified",
-            "check": "numbers 2/2, names 2/2"
+            "check": "numbers 3/3, names 3/4"
           }
         ],
         "label": "Guidance changes"
       },
       "analyst_actions": {
-        "rating": 1,
-        "summary": "Analyst moves in the window leaned positive. Baird raised its target and Yorkville Ives & Co initiated at Buy with a $145 target, offset partly by Weiss Ratings' Sell and Cestrian's Distribute call.",
+        "rating": 0,
+        "summary": "Wedbush assumed coverage at Outperform with a $120 target on 2026-10-09. No other rating or target changes fell inside the window.",
         "evidence": [
           {
-            "claim": "Baird (Shrenik Kothari) raised its price target on Rubrik to $139 from $130 and maintained an Outperform rating.",
-            "url": "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
-            "event_date": "2026-09-23",
+            "claim": "Wedbush assumed coverage of Rubrik at Outperform with a $120 price target.",
+            "url": "https://in.investing.com/equities/rubrik-consensus-estimates",
+            "event_date": "2026-10-09",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 22,
+            "age_days": 6,
             "background": false,
-            "status": "unverified",
-            "check": "numbers 0/2, names 5/5 · missing: 139, 130"
-          },
-          {
-            "claim": "Yorkville Ives & Co (Daniel Ives) initiated coverage of Rubrik at Buy with a $145 price target.",
-            "url": "https://www.google.com/finance/beta/quote/RBRK:NYSE",
-            "event_date": "2026-10-06",
-            "tier": "other",
-            "age_days": 9,
-            "background": false,
-            "status": "unverified",
-            "check": "numbers 0/1, names 0/5 · missing: 145, Yorkville, Ives, Daniel, Rubrik, Buy"
-          },
-          {
-            "claim": "Weiss Ratings reiterated a Sell (D-) rating on Rubrik.",
-            "url": "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
-            "event_date": "2026-09-21",
-            "tier": "other",
-            "age_days": 24,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 4/4"
+            "status": "unreachable",
+            "check": "HTTP 403"
           }
         ],
-        "label": "Analyst actions"
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
       },
       "litigation_regulation": {
         "rating": 0,
-        "summary": "No new litigation or regulatory developments surfaced in the window. The older DOJ subpoena matter from 2023 had no reported update.",
+        "summary": "No new litigation or regulatory developments in the window.",
         "evidence": [],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
         "rating": 0,
-        "summary": "No material customer wins, losses or concentration issues were reported in the window.",
+        "summary": "No customer wins, losses or concentration disclosures in the window.",
         "evidence": [],
         "label": "Customer concentration"
       },
       "insider_activity": {
-        "rating": -1,
-        "summary": "Insiders were steady sellers, including a director and the CFO, with no purchases. The sales were mostly under 10b5-1 plans, so the signal is modestly negative.",
+        "rating": 0,
+        "summary": "Insiders kept making routine sales under 10b5-1 plans, including a small 721-share sale by a director. There were no purchases, and the pattern looks like planned selling rather than a meaningful signal.",
         "evidence": [
           {
-            "claim": "Director John W. Thompson sold 13,500 Class A shares for about $1.56 million at prices between $114.68 and $116.47 under a 10b5-1 plan.",
-            "url": "https://www.investing.com/news/insider-trading-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4945363",
-            "event_date": "2026-10-01",
-            "tier": "other",
-            "age_days": 14,
-            "background": false,
-            "status": "unreachable",
-            "check": "HTTP 403"
-          },
-          {
-            "claim": "A Form 4 shows sales of Rubrik shares at $101.47 to $103.48 on 2026-09-15 and at $102.05 to $108.05 on 2026-09-17, plus a tax-withholding disposal of 13,995 shares.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001943896/000202022026000022/form4-09182026_010913.xml",
-            "event_date": "2026-09-15",
+            "claim": "Form 4 reports a sale under a 10b5-1 plan adopted October 6, 2025, at weighted-average prices of $114.18–$115.16.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000022/form4-10022026_091056.xml",
+            "event_date": null,
+            "direction": "negative",
             "tier": "primary",
-            "age_days": 30,
+            "age_days": null,
             "background": false,
             "status": "verified",
-            "check": "numbers 10/10, names 2/2"
+            "check": "numbers 8/8, names 1/1"
           },
           {
-            "claim": "CFO Kiran Choudary sold 6,000 shares at an average price of $107.32.",
-            "url": "https://www.dailypolitical.com/2026/09/24/rubrik-inc-nyserbrk-given-average-recommendation-of-moderate-buy-by-analysts.html",
-            "event_date": "2026-09-17",
+            "claim": "Form 4 reports a sale under a 10b5-1 plan adopted October 15, 2025, at prices from $118.48 to $122.45.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000023/form4-10072026_101053.xml",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 8/8, names 1/1"
+          },
+          {
+            "claim": "Director Yvonne Wassenaar sold 721 shares of Rubrik.",
+            "url": "https://www.gurufocus.com/news/9112408/director-yvonne-wassenaar-sells-721-shares-of-rubrik-inc-rbrk",
+            "event_date": "2026-10-05",
+            "direction": "negative",
             "tier": "other",
-            "age_days": 28,
+            "age_days": 10,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
@@ -980,27 +972,40 @@
       },
       "product_competitive": {
         "rating": 1,
-        "summary": "Rubrik launched AI-security products in the window: Code Guardian with Anthropic's Claude, MCP support with a CrowdStrike integration, and an expanded Project Hourglass. All sources are single, lower-tier sites.",
+        "summary": "Rubrik unveiled Code Guardian, built on Anthropic's Claude Mythos 5, and added MCP access for AI agents. Both are only in private preview, and competitor Cohesity launched a rival AI-agent protection product, so this is a modest positive.",
         "evidence": [
           {
-            "claim": "Rubrik announced Code Guardian and MCP support.",
-            "url": "https://www.stocktitan.net/news/RBRK/rubrik-deepens-commitment-to-msp-operated-cyber-resilience-with-fhi2n6hrkvrt.html",
+            "claim": "Rubrik unveiled Code Guardian, using Anthropic's Claude Mythos 5 to red-team code.",
+            "url": "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-unveils-code-guardian",
             "event_date": "2026-09-15",
+            "direction": "positive",
             "tier": "other",
             "age_days": 30,
             "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 4/4"
+            "status": "unreachable",
+            "check": "HTTP 403"
           },
           {
-            "claim": "Rubrik expanded Project Hourglass, with Code Guardian powered by Claude and partners AHEAD, Trace3 and WWT.",
-            "url": "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/news/is-project-hourglass-expansion-altering-the-investment-case",
-            "event_date": "2026-10-09",
+            "claim": "Rubrik AI Now Used by One Third of Global Customers.",
+            "url": "https://www.storagenewsletter.com/2026/09/22/rubrik-unveils-rubrik-code-guardian-harnessing-anthropics-claude-mythos-5-to-red-team-code-and-prioritize-cyber-risks/",
+            "event_date": "2026-09-16",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 6,
+            "age_days": 29,
             "background": false,
             "status": "verified",
-            "check": "numbers 1/1, names 9/9"
+            "check": "numbers 0/0, names 8/8"
+          },
+          {
+            "claim": "Code Guardian and the new MCP access for AI agents are in private preview.",
+            "url": "https://technode.global/2026/09/16/rubrik-code-guardian-mcp-agentic-cyber-resilience/",
+            "event_date": "2026-09-16",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 29,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
           }
         ],
         "label": "Product and competitive news"
@@ -1014,67 +1019,123 @@
           "unreachable": 0
         },
         "analyst_actions": {
-          "verified": 1,
-          "unverified": 2,
-          "unreachable": 0
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
         },
         "insider_activity": {
-          "verified": 1,
+          "verified": 2,
           "unverified": 0,
-          "unreachable": 2
+          "unreachable": 1
         },
         "product_competitive": {
           "verified": 2,
           "unverified": 0,
-          "unreachable": 0
+          "unreachable": 1
         }
       }
     },
-    "reused_from": "2026-10-15T07:18:35Z",
-    "caps_reapplied": []
+    "reused_from": null
   },
   "claude": {
     "enabled": true,
-    "news_reused": {
-      "news_from": "2026-10-15T07:18:35Z",
-      "archived": "data/stocks/runs/RBRK/2026-10-15T093534Z.json",
-      "models": {
-        "sources": {
-          "research": "input",
-          "scoring": "input"
-        },
-        "research": "claude-sonnet-5-5",
-        "scoring": "claude-opus-5-5"
-      }
+    "research": {
+      "urls": [
+        "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/news/rubrik-rbrk-is-down-65-after-strong-fy27-guidance-and-record",
+        "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/future",
+        "https://seekingalpha.com/article/4885806-rubrik-excellent-operational-performance-but-stock-performance-lagging",
+        "https://stockanalysis.com/stocks/rbrk/",
+        "https://seekingalpha.com/article/4852772-rubrik-strong-fundamentals-why-now-is-the-time-to-buy",
+        "https://seekingalpha.com/article/4923571-rubrik-great-investments-are-never-easy-in-real-time",
+        "https://fn2.ai/earnings/rbrk/2026-q2",
+        "https://www.stocktitan.net/sec-filings/RBRK/8-k-rubrik-inc-reports-material-event-66cb05fbaed5.html",
+        "https://tickernerd.com/stock/rbrk-forecast/",
+        "https://www.benzinga.com/quote/RBRK/price-targets",
+        "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
+        "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik",
+        "https://www.etoro.com/markets/rbrk",
+        "https://www.investing.com/equities/rubrik-consensus-estimates",
+        "https://in.investing.com/equities/rubrik-consensus-estimates",
+        "https://www.marketbeat.com/stocks/NYSE/RBRK/price-target",
+        "https://www.marketbeat.com/instant-alerts/rubrik-inc-nyserbrk-given-average-rating-of-moderate-buy-by-brokerages-2025-05-30",
+        "https://www.techtarget.com/searchstorage/news/252481971/Commvault-lawsuit-says-Rubrik-Cohesity-infringed-on-patents",
+        "https://www.storagenewsletter.com/2020/07/06/actifio-initiates-patent-infringement-litigation-vs-rubrik/",
+        "https://www.commvault.com/news/commvault-initiates-patent-infringement-litigation-against-cohesity-and-rubrik",
+        "https://www.prnewswire.com/news-releases/actifio-initiates-patent-infringement-litigation-against-rubrik-301085531.html",
+        "https://www.theinformation.com/briefings/rubrik-said-to-plan-april-ipo-after-justice-depart-fraud-probe",
+        "https://www.cnbc.com/2024/02/03/cybersecurity-software-startup-rubrik-plans-to-go-public-as-early-as-april-amid-us-probe-into-former-employee-sources-say.html",
+        "https://aithority.com/technology/analytics/actifio-initiates-patent-infringement-litigation-against-rubrik/",
+        "https://varindia.com/news/actifio-sues-rubrik-for-patent-infringement",
+        "https://www.forbes.com/sites/justinwarren/2020/04/21/commvault-initiates-patent-infringement-litigation-against-cohesity-and-rubrik/",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000023/form4-10072026_101053.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000015/form4-07082026_110722.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000019/form4-09112026_120951.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000017/form4-08052026_110833.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000022/form4-10022026_091056.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000020/form4-09042026_120923.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000018/form4-08042026_070803.xml",
+        "https://www.gurufocus.com/news/9112408/director-yvonne-wassenaar-sells-721-shares-of-rubrik-inc-rbrk",
+        "https://www.stocktitan.net/sec-filings/RBRK/form-4-rubrik-inc-insider-trading-activity-ef0b05001a09.html",
+        "https://finance.yahoo.com/markets/stocks/articles/rubrik-ai-push-forward-2026-221700858.html",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-now-available-as-ai-agent",
+        "https://en.wikipedia.org/wiki/Rubik%27s_WOWCube",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-unlocks-unstructured-data",
+        "https://securitybrief.com.au/story/rubrik-launches-cloud-recovery-tool-for-cyber-attacks",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-advances-identity-resilience-through-strata-acquisition-and-identity-roll-forward-innovation",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-named-gartner-mq-leader-seven-years-running",
+        "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-is-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant/default.aspx",
+        "https://www.stocktitan.net/news/RBRK/rubrik-deepens-commitment-to-msp-operated-cyber-resilience-with-fhi2n6hrkvrt.html",
+        "https://www.rubrik.com/blog/company/26/6/congratulations-to-the-rubrik-2026-global-partner-award-winners",
+        "https://www.carahsoft.com/buy/slg-contracts/all-states/omnia-partners-edu/docFileDownload/291568/7934/42102476/0",
+        "https://aws.amazon.com/marketplace/pp/prodview-4k635i7dgeiwa",
+        "https://www.rubrik.com/content/dam/rubrik/en/resources/policy/rubrik-service-agreement.pdf",
+        "https://www.rubrik.com/content/dam/rubrik/en/resources/policy/rubrik-eula.pdf",
+        "https://support.rubrik.com/resource/1693825756000/SupportCommunityTermsAndConditions",
+        "https://www.rubrik.com/blog/company/25/11/rubrik-and-aws-sign-strategic-collaboration-agreement-to-accelerate-cyber-resilience-and-secure-ai-adoption",
+        "https://www.eon.io/blog/rubrik-pricing",
+        "https://gabgrowth.com/p/rubrik-deep-dive",
+        "https://www.sec.gov/Archives/edgar/data/1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
+        "https://s203.q4cdn.com/667520861/files/content_files/Rubrik-Inc-99-1-Press-Release-7-31-2026-VFINAL.pdf",
+        "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results/default.aspx",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-reports-second-quarter-fiscal-year-2027-financial-results",
+        "https://www.businesswire.com/news/home/20260827447423/en/Rubrik-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results",
+        "https://www.nasdaq.com/press-release/rubrik-reports-second-quarter-fiscal-year-2027-financial-results-2026-08-27",
+        "https://www.investing.com/equities/rubrik-earnings",
+        "https://www.marketbeat.com/stocks/NYSE/RBRK/earnings/",
+        "https://www.stocktitan.net/news/RBRK/rubrik-reports-second-quarter-fiscal-year-2027-financial-0ru6sfyuq6xe.html",
+        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-unveils-code-guardian",
+        "https://www.storagenewsletter.com/2026/09/22/rubrik-unveils-rubrik-code-guardian-harnessing-anthropics-claude-mythos-5-to-red-team-code-and-prioritize-cyber-risks/",
+        "https://technode.global/2026/09/16/rubrik-code-guardian-mcp-agentic-cyber-resilience/",
+        "https://www.itvoice.in/rubrik-unveils-rubrik-code-guardian-harnessing-anthropics-claude-mythos-5-to-red-team-code-and-prioritize-cyber-risks",
+        "https://vmblog.com/news/rubrik-unveils-rubrik-code-guardian-harnessing-anthropics-claude-mythos-5-to-red-team-code-and-prioritize-cyber-risks/",
+        "https://securitymea.com/2026/09/17/rubrik-unveils-code-guardian-for-air-gapped-code-red-teaming/",
+        "https://stockhouse.com/news/press-releases/2026/09/15/rubrik-unveils-rubrik-code-guardian-harnessing-anthropic-s-claude-mythos-5-to",
+        "https://cyberriskleaders.com/rubrik-launches-code-guardian-and-adds-mcp-support-for-ai-agents/",
+        "https://en.wikipedia.org/wiki/Claude_Mythos"
+      ],
+      "searches": 8
     }
   },
-  "news_from": "2026-10-15T07:18:35Z",
-  "news_models": {
-    "sources": {
-      "research": "input",
-      "scoring": "input"
-    },
-    "research": "claude-sonnet-5-5",
-    "scoring": "claude-opus-5-5"
-  },
+  "news_from": null,
+  "news_models": null,
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Rubrik rates Hold: strong growth, cash and momentum are offset by a very high valuation.",
-    "thesis": "Rubrik scores 58, a Hold, 7 points short of Buy. Growth is a clear strength (score 84), with revenue up 37.89% year over year in the quarter and 42.45% on a trailing basis, though growth slowed by 1.1 points. The balance sheet (96) is strong, with net cash and cash at 1.54 times debt, and the price trend (90) is strong, trading 54.74% above its 200-day average. Against that, valuation scores just 4: in absolute terms a P/S of 15.222 and P/FCF of 77.243 are high, EV/EBIT cannot be computed because EBIT is negative, and there is no comparison with its own history. Quality is middling (42): an 80.21% gross margin and 19.71% FCF margin are offset by a -18.31% operating margin, stock-based pay at 22.16% of revenue and 5.75% dilution.",
+    "headline": "Rubrik rates Hold: fast growth, strong trend and net cash offset by a very high absolute valuation.",
+    "thesis": "Rubrik scores 57, a Hold, with medium confidence. Growth is the main support (score 84), with revenue up 37.9% year on year in the latest quarter and 42.5% over the trailing twelve months, though growth slowed by -1.1 pp. The balance sheet (96) shows net cash, and the price trend (90) is strong, trading 54.7% above its 200-day average with 12-1 momentum of 24.5%. Against that, valuation scores just 4: in absolute terms the stock is expensive at 15.2x sales and 77.2x free cash flow, with an FCF yield -3.9 pp below the 10-year Treasury, and EV/EBIT is not meaningful because EBIT is negative. There is no comparison with its own history. Quality is middling (42): an 80.2% gross margin and 19.7% FCF margin sit alongside a -18.3% operating margin, stock-based compensation at 22.2% of revenue and 5.8% dilution.",
     "key_risks": [
-      "High absolute valuation (P/S 15.222, P/FCF 77.243) leaves little room for disappointment",
-      "Operating losses persist, with operating margin at -18.31%",
-      "Heavy stock-based pay (22.16% of revenue) and 5.75% yearly dilution",
-      "Steady insider selling, including the CFO and a director",
-      "A sharp run-up (54.74% above the 200-day average) could reverse"
+      "High absolute multiples (15.2x sales, 77.2x FCF) leave little room if growth disappoints.",
+      "Still unprofitable on an operating basis, with a -18.3% operating margin.",
+      "Stock-based compensation of 22.2% of revenue and 5.8% annual dilution erode per-share value.",
+      "Growth is decelerating slightly (-1.1 pp), and Cohesity is launching rival AI-agent protection products.",
+      "After a large run-up, the stock sits 9.5% below its 52-week high and could be volatile."
     ],
     "what_would_change": [
-      "A 7-point score gain would reach Buy, e.g. from improving quality via narrower operating losses and less dilution",
-      "A lower valuation from price weakness or faster FCF growth could lift the valuation score from 4",
-      "A drop of more than 13 points (below 45) would mean Sell, e.g. if growth slows sharply and the trend breaks down",
-      "Confidence would rise once 24 month-ends of valuation history are available (currently 20)"
+      "A rise of 8 points to 65 would move it to Buy, most plausibly through a better quality score from narrowing operating losses and lower dilution, or a lower valuation after a price pullback.",
+      "A fall of 13 points below 45 would make it a Sell, for example if the price trend breaks down or growth slows sharply.",
+      "Positive guidance or verified analyst actions in the news could lift the news risk score of 55, while negative developments would lower it.",
+      "Once 24 month-ends of valuation history are available, a comparison with its own history could shift the valuation picture and confidence."
     ]
   },
   "writeup_check": {
@@ -1086,18 +1147,44 @@
   },
   "cost": {
     "steps": {
-      "writeup": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 118288,
+        "output_tokens": 4557,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 118288,
+            "output_tokens": 4557,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3621,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2872,
-        "output_tokens": 629,
+        "input_tokens": 7277,
+        "output_tokens": 1763,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2872,
-            "output_tokens": 629,
+            "input_tokens": 7277,
+            "output_tokens": 1763,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1108,12 +1195,38 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0241,
+        "cost_usd": 0.0644,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2924,
+        "output_tokens": 744,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2924,
+            "output_tokens": 744,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0266,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0241,
+    "total_usd": 0.4531,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1126,28 +1239,16 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 06:33",
+    "run_et": "2026-10-15 08:49",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38720937288",
+    "run_id": "38737481196",
     "tickers": [
-      "PLTR",
-      "GTLB",
       "ORCL",
-      "NVDA",
-      "INOD",
-      "SHOP",
-      "RBRK",
-      "ZS",
-      "TIC",
-      "NTAP",
-      "MSGS",
-      "META",
-      "GOOGL",
-      "MSFT"
+      "RBRK"
     ]
   },
   "chart": [
@@ -4873,6 +4974,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T12:49:22Z",
+      "ticker": "RBRK",
+      "rating": "Hold",
+      "score": "57",
+      "confidence": "Medium",
+      "growth": "84",
+      "quality": "42",
+      "balance_sheet": "96",
+      "valuation": "4",
+      "trend": "90",
+      "news_risk": "55",
+      "price": "113.9",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4531",
+      "overlay": "",
+      "quote_price": "113.9",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-15T10:33:03Z",
       "ticker": "RBRK",

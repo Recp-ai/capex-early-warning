@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:32:37Z",
-  "generated_at": "2026-10-15T10:32:38+00:00",
+  "run_id": "2026-10-15T12:49:11Z",
+  "generated_at": "2026-10-15T12:50:13+00:00",
   "ticker": "ORCL",
   "sec_ticker": "ORCL",
   "cik": "0001341439",
@@ -18,11 +18,11 @@
   "llm": true,
   "rating": "Sell",
   "rating_before_overlay": "Sell",
-  "score": 44,
+  "score": 43,
   "confidence": "Low",
   "confidence_detail": {
     "level": "Low",
-    "points": 4.0,
+    "points": 3.0,
     "reasons": [
       {
         "issue": "missing_sub_metric",
@@ -37,12 +37,7 @@
       {
         "issue": "near_band_edge",
         "points": 1.0,
-        "text": "score 44 is within 2 points of the Hold edge (45)"
-      },
-      {
-        "issue": "weak_sources",
-        "points": 1.0,
-        "text": "news topics capped for weak sources: Customer concentration"
+        "text": "score 43 is within 2 points of the Hold edge (45)"
       }
     ],
     "factors_with_data": 6
@@ -51,17 +46,17 @@
     "up": {
       "label": "Hold",
       "at": 45,
-      "points": 1
+      "points": 2
     },
     "down": {
       "label": "Strong Sell",
       "below": 30,
-      "points": 15
+      "points": 14
     }
   },
   "composite": {
-    "score": 44,
-    "raw": 44.1,
+    "score": 43,
+    "raw": 43.2,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -255,11 +250,11 @@
       "missing": null
     },
     "news_risk": {
-      "score": 51,
+      "score": 45,
       "metrics": {
         "guidance": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.25,
           "note": null
         },
@@ -1317,13 +1312,14 @@
   "news": {
     "topics": {
       "guidance": {
-        "rating": 1,
-        "summary": "Oracle's Q1 FY27 report on 2026-09-10 beat estimates and set FY27 guidance of at least $90B revenue and $8.10 non-GAAP EPS, with Q2 revenue growth guided at 30-34%. No guidance change was found during the window, though reports flag delay risk at Project Jupiter.",
+        "rating": 0,
+        "summary": "Oracle raised its FY2027 outlook to at least $90 billion of revenue and $8.10 non-GAAP EPS, and guided Q2 revenue growth of 30-34%. This came with the September 10 report, just before the 30-day window, so it counts only as background. No new guidance changes or pre-announcements appeared in the window.",
         "evidence": [
           {
             "claim": "For fiscal year 2027, we now expect total revenue to be at least $90 billion, and non-GAAP EPS to be at $8.10.",
             "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
             "event_date": "2026-09-10",
+            "direction": "positive",
             "tier": "primary",
             "age_days": 35,
             "background": true,
@@ -1334,254 +1330,264 @@
             "claim": "Total revenues are expected to grow between 30% and 34% in constant currency and USD.",
             "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
             "event_date": "2026-09-10",
+            "direction": "positive",
             "tier": "primary",
             "age_days": 35,
             "background": true,
             "status": "verified",
             "check": "numbers 2/2, names 2/2"
-          },
-          {
-            "claim": "Q1 FY27 revenue was $19.3B, up 30%, and non-GAAP EPS was $1.92, both ahead of consensus.",
-            "url": "https://tickeron.com/blogs/oracle-orcl-delivers-strong-fiscal-q1-2027-results-as-cloud-infrastructure-accelerates-16548/",
-            "event_date": "2026-09-10",
-            "tier": "other",
-            "age_days": 35,
-            "background": true,
-            "status": "unverified",
-            "check": "numbers 3/5, names 2/3 · missing: 27, 19.3, FY27"
-          },
-          {
-            "claim": "Project Jupiter in New Mexico is at risk of delay over pipeline approval.",
-            "url": "https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/",
-            "event_date": "2026-10-14",
-            "tier": "other",
-            "age_days": 1,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 3/3"
           }
         ],
         "label": "Guidance changes"
       },
       "analyst_actions": {
         "rating": 0,
-        "summary": "Analyst actions were mixed: Yorkville initiated at Hold with a $155 target, while Mizuho and Citizens reiterated Outperform-type ratings. No upgrades or downgrades turned up in the window.",
+        "summary": "Analyst activity in the window was mostly Buy or Outperform ratings being reiterated, plus one small price-target cut. There were no upgrades, downgrades or initiations, so the picture is mixed and neutral.",
         "evidence": [
           {
-            "claim": "Yorkville Ives & Co initiated coverage at Hold with a $155 price target.",
-            "url": "https://stockanalysis.com/stocks/orcl/forecast/",
-            "event_date": "2026-10-07",
+            "claim": "Freedom Broker cut its price target on Oracle to $205 from $210 and kept a Buy rating.",
+            "url": "https://www.defenseworld.net/2026/09/16/oracle-nyseorcl-shares-down-3-1-after-analyst-downgrade.html",
+            "event_date": "2026-09-15",
+            "direction": "negative",
             "tier": "other",
-            "age_days": 8,
+            "age_days": 30,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/2, names 4/4 · missing: 205, 210"
+          },
+          {
+            "claim": "Bernstein maintained a Buy rating on Oracle with a $325 price target.",
+            "url": "https://stockanalysis.com/stocks/orcl/forecast/",
+            "event_date": "2026-09-25",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 20,
             "background": false,
             "status": "verified",
             "check": "numbers 1/1, names 3/3"
           },
           {
-            "claim": "Mizuho maintained Outperform with a $320 price target.",
-            "url": "https://www.investing.com/equities/oracle-corp-consensus-estimates",
-            "event_date": "2026-10-14",
-            "tier": "other",
-            "age_days": 1,
-            "background": false,
-            "status": "unreachable",
-            "check": "HTTP 403"
-          },
-          {
-            "claim": "Citizens reiterated Market Outperform with a $285 price target.",
+            "claim": "Citizens reiterated Market Outperform on Oracle with a $285 price target.",
             "url": "https://finance.yahoo.com/quote/ORCL/analyst-insights/",
             "event_date": "2026-10-02",
+            "direction": "positive",
             "tier": "other",
             "age_days": 13,
             "background": false,
             "status": "verified",
-            "check": "numbers 1/1, names 3/3"
+            "check": "numbers 1/1, names 4/4"
           }
         ],
         "label": "Analyst actions"
       },
       "litigation_regulation": {
         "rating": -1,
-        "summary": "A securities class action is still pending in Delaware. The Oracle Health breach count grew to nearly 20M individuals, and a law firm is investigating customer claims over it.",
+        "summary": "Law firm Ademi LLP announced an investigation into customer claims tied to an alleged Oracle Health data breach, which is a modest negative. Payouts under the earlier $115 million privacy settlement have started, and the securities class action and EU licensing inquiry are ongoing.",
         "evidence": [
           {
-            "claim": "A securities class action is pending in the District of Delaware against Oracle and certain officers and a director.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
-            "event_date": null,
+            "claim": "Ademi LLP announced it is investigating claims for possible damages suffered by customers in connection with an alleged Oracle Health data breach.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/14/3380321/884/en/oracle-health-data-breach-ademi-llp-investigates-claims-for-possible-damages-suffered-by-customers.html",
+            "event_date": "2026-10-14",
+            "direction": "negative",
             "tier": "primary",
-            "age_days": null,
+            "age_days": 1,
             "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 3/3"
+            "status": "unreachable",
+            "check": "HTTP 403"
           },
           {
-            "claim": "The Oracle Health data breach total reached nearly 20 million individuals, per an updated Texas AG filing.",
-            "url": "https://www.hipaajournal.com/oracle-health-data-breach/",
-            "event_date": "2026-10-02",
+            "claim": "Settlement payments of $37.42 per claimant began in the $115 million Oracle class action lawsuit.",
+            "url": "https://political.org/2026/09/21/oracle-settlement-payments-begin-monday-in-115-million-class-action-lawsuit/",
+            "event_date": "2026-09-21",
+            "direction": "neutral",
             "tier": "other",
-            "age_days": 13,
+            "age_days": 24,
             "background": false,
             "status": "verified",
-            "check": "numbers 1/1, names 3/4"
+            "check": "numbers 2/2, names 2/2"
           }
         ],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
         "rating": 0,
-        "summary": "A low-reliability source says roughly half of the $664B backlog is linked to AI labs, with OpenAI about half of that. That leaves meaningful exposure to a few customers, though no customer loss was found.",
+        "summary": "Concentration on OpenAI, estimated by outside sources at roughly half of Oracle's $664 billion backlog, remains a background risk. No new dated news on it appeared in the window.",
         "evidence": [
           {
-            "claim": "Roughly 45-50% of Oracle's $664B RPO is lab-linked, with OpenAI about half.",
-            "url": "https://technosight.substack.com/p/hyperscalers-two-customer-problem",
-            "event_date": null,
+            "claim": "RPO was $664B, up $26B from the prior quarter, after more than $30B of new AI contracts.",
+            "url": "https://www.storagenewsletter.com/2026/09/23/oracle-fiscal-1q27-financial-results/",
+            "event_date": "2026-09-10",
+            "direction": "neutral",
             "tier": "other",
-            "age_days": null,
-            "background": false,
-            "status": "unreachable",
-            "check": "HTTP 403"
+            "age_days": 35,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
           }
         ],
-        "label": "Customer concentration",
-        "weak_sources_note": "Capped at 0 (was -1): only other-tier sources, none verified",
-        "rating_before_cap": -1
+        "label": "Customer concentration"
       },
       "insider_activity": {
         "rating": 0,
-        "summary": "The CEO sold shares under a pre-arranged 10b5-1 plan, and the Chief Accounting Officer made a small sale. No purchases were found, and the selling looks routine.",
-        "evidence": [
-          {
-            "claim": "CEO Michael Sicilia sold 22,562 shares at $151.59 under a 10b5-1 plan.",
-            "url": "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-b82de526eed7.html",
-            "event_date": "2026-09-22",
-            "tier": "other",
-            "age_days": 23,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 5/5, names 2/2"
-          },
-          {
-            "claim": "Chief Accounting Officer Maria Smith sold 2,631 shares at $151.70.",
-            "url": "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-d65bcac64b84.html",
-            "event_date": "2026-09-22",
-            "tier": "other",
-            "age_days": 23,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 2/2, names 5/5"
-          }
-        ],
+        "summary": "The research notes contain no insider buying or selling news.",
+        "evidence": [],
         "label": "Insider activity"
       },
       "product_competitive": {
         "rating": 0,
-        "summary": "AI cloud demand remains strong: RPO reached $664B, and Oracle signed more than $30B of new AI contracts in Q1. Possible data-center delays temper the picture.",
+        "summary": "Nothing material on products or competition in the window; the New Mexico Project Jupiter data center is still awaiting government approvals.",
         "evidence": [
           {
-            "claim": "Oracle's RPO reached $664B in Q1 FY27.",
-            "url": "https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/",
-            "event_date": "2026-09-10",
+            "claim": "Project Jupiter in New Mexico is pending government approvals.",
+            "url": "https://www.fool.com/coverage/stock-market-today/2026/10/14/stock-market-today-oct-14-oracle-tumbles-on-hotter-cpi-data-lifting-treasury-yields/",
+            "event_date": null,
+            "direction": "neutral",
             "tier": "other",
-            "age_days": 35,
-            "background": true,
+            "age_days": null,
+            "background": false,
             "status": "verified",
-            "check": "numbers 3/3, names 2/3"
-          },
-          {
-            "claim": "Oracle signed more than $30B of new AI contracts in Q1.",
-            "url": "https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/",
-            "event_date": "2026-09-10",
-            "tier": "other",
-            "age_days": 35,
-            "background": true,
-            "status": "verified",
-            "check": "numbers 2/2, names 2/2"
+            "check": "numbers 0/0, names 2/3"
           }
         ],
-        "label": "Product and competitive news",
-        "rating_before_cap": 1,
-        "old_evidence_note": "Capped at 0 (was +1): no source that checked out is dated within the last 30 days; of the 2 that did, 2 dated more than 30 days before the run (2026-09-10, 2026-09-10)"
+        "label": "Product and competitive news"
       }
     },
     "source_check": {
       "counts": {
         "guidance": {
-          "verified": 3,
-          "unverified": 1,
+          "verified": 2,
+          "unverified": 0,
           "unreachable": 0
         },
         "analyst_actions": {
           "verified": 2,
-          "unverified": 0,
-          "unreachable": 1
-        },
-        "litigation_regulation": {
-          "verified": 2,
-          "unverified": 0,
+          "unverified": 1,
           "unreachable": 0
         },
-        "customer_concentration": {
-          "verified": 0,
+        "litigation_regulation": {
+          "verified": 1,
           "unverified": 0,
           "unreachable": 1
         },
-        "insider_activity": {
-          "verified": 2,
+        "customer_concentration": {
+          "verified": 1,
           "unverified": 0,
           "unreachable": 0
         },
         "product_competitive": {
-          "verified": 2,
+          "verified": 1,
           "unverified": 0,
           "unreachable": 0
         }
       }
     },
-    "reused_from": "2026-10-15T07:18:37Z",
-    "caps_reapplied": []
+    "reused_from": null
   },
   "claude": {
     "enabled": true,
-    "news_reused": {
-      "news_from": "2026-10-15T07:18:37Z",
-      "archived": "data/stocks/runs/ORCL/2026-10-15T100935Z.json",
-      "models": {
-        "sources": {
-          "research": "input",
-          "scoring": "input"
-        },
-        "research": "claude-sonnet-5-5",
-        "scoring": "claude-opus-5-5"
-      }
+    "research": {
+      "urls": [
+        "https://www.webull.com/blog/306-Oracle-Q1-FY2027-Earnings-Recap-Revenue-EPS-and-Guidance",
+        "https://www.storagenewsletter.com/2026/09/23/oracle-fiscal-1q27-financial-results/",
+        "https://s23.q4cdn.com/440135859/files/content_files/Q1-FY27-Oracle-Earnings-Slides.pdf",
+        "https://investwithcolby.substack.com/p/oracle-corporation-orcl-q1-fy2027",
+        "https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/",
+        "https://tenkdigest.com/oracle-earnings-report-q1-fiscal-2027/",
+        "https://r40.io/stocks/orcl/earnings/2027-q1/",
+        "https://finance.biggo.com/quote/ORCL/earnings-call/US_ORCL_2026-09-10",
+        "https://tickeron.com/blogs/oracle-orcl-delivers-strong-fiscal-q1-2027-results-as-cloud-infrastructure-accelerates-16548/",
+        "https://www.top1markets.com/insights/stocks/oracle-orcl-q1-fy2027-rpo-earnings-guide-2026",
+        "https://beinsure.com/news/oracle-stock-price-forecast-analyst-target/",
+        "https://stockanalysis.com/stocks/orcl/",
+        "https://www.etoro.com/markets/orcl",
+        "https://finance.yahoo.com/quote/ORCL/analyst-insights/",
+        "https://stockanalysis.com/stocks/orcl/forecast/",
+        "https://www.investing.com/equities/oracle-corp-consensus-estimates",
+        "https://public.com/stocks/orcl/forecast-price-target",
+        "https://coincodex.com/stock/ORCL/price-prediction/",
+        "https://finbold.com/wall-street-analyst-updates-oracle-stock-price-target/",
+        "https://tickernerd.com/stock/orcl-forecast/",
+        "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526277521/orcl-20260531.htm",
+        "https://www.sec.gov/Archives/edgar/data/1341439/000119312526101045/orcl-20260228.htm",
+        "https://wisconsinwatch.org/2026/06/oracle-sues-wisconsin-regulators-data-center-credit-requirements-public-service-commission/",
+        "https://finance.yahoo.com/markets/stocks/articles/eu-regulators-send-early-warning-000300590.html",
+        "https://money.usnews.com/investing/news/articles/2026-09-01/oracle-licensing-practices-on-eu-antitrust-regulators-radar-source-says",
+        "https://www.thestreet.com/investing/stocks/eu-regulators-warn-oracle-antitrust-ahead-of-earnings",
+        "https://political.org/2026/09/21/oracle-settlement-payments-begin-monday-in-115-million-class-action-lawsuit/",
+        "https://www.investmentnews.com/regulation-legal-compliance/investors-sue-oracle-allege-executives-dumped-187b-amid-ai-hype/265164",
+        "https://www.fool.com/investing/2026/01/07/oracles-secret-weapon-against-ai-customer-risk-has/",
+        "https://alphametrics1.substack.com/p/oracle-just-got-the-answer-it-needed",
+        "https://finance.yahoo.com/markets/stocks/articles/openai-shortfall-puts-oracle-ai-050252163.html",
+        "https://medium.com/@fahey_james/oracle-just-got-downgraded-and-openai-is-the-reason-why-4c1841fae011",
+        "https://technosight.substack.com/p/hyperscalers-two-customer-problem",
+        "https://finance.yahoo.com/markets/stocks/articles/why-oracle-orcl-18-4-052219402.html",
+        "https://medium.com/@hello_9187/how-will-openai-pay-for-their-300-billion-oracle-contract-2357307ca322",
+        "https://www.cnbc.com/2025/09/13/openai-spending-spree-powering-much-of-tech-oracle-latest-example.html",
+        "https://convexityos.com/blog/openai-revenue-gap-2026",
+        "https://finance.yahoo.com/news/oracles-secret-weapon-against-ai-103500441.html",
+        "https://www.marketscreener.com/news/oracle-insider-sold-shares-worth-63-664-040-according-to-a-recent-sec-filing-ce7f5fd9d18bff20",
+        "https://ng.investing.com/news/stock-market-news/oracle-director-sells-shares-amid-insider-selling-trend-93CH-1143401",
+        "https://www.marketscreener.com/news/oracle-insider-sold-shares-worth-1-925-152-according-to-a-recent-sec-filing-ce7e59dadb8dfe22",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-b82de526eed7.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-dc617db2d699.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-49a366313cbe.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-c7c1a7222dbe.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-d65bcac64b84.html",
+        "https://benzinga.com/z/23114458",
+        "https://www.marketbeat.com/instant-alerts/insider-selling-oracle-nyseorcl-director-sells-49365-shares-of-stock-2025-10-30/",
+        "https://www.cmswire.com/events/conference/oracle-ai-world-las-vegas-2026/",
+        "https://go.oracle.com/LP=150556?elqCampaignId=647044",
+        "https://www.oracle.com/ai-world/faq/",
+        "https://community.oracle.com/products/oracleanalytics/kb/articles/146-fusion-analytics-newsletter-october-2026",
+        "https://www.oracle.com/news/",
+        "https://www.ibm.com/events/oracle-ai-world",
+        "https://blogs.oracle.com/ai-and-datascience/whats-new-in-oracle-ai-october-2026",
+        "https://www.pwc.com/us/en/technology/alliances/oracle-implementation/oracle-ai-world.html",
+        "https://www.oracle.com/openworld/",
+        "https://en.wikipedia.org/wiki/Oracle_Database",
+        "https://www.gurufocus.com/news/9124186/oracle-corporation-orcl-shares-plunge-883-amid-tech-sector-selloff-on-october-14-2026",
+        "https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/",
+        "https://www.fool.com/coverage/stock-market-today/2026/10/14/stock-market-today-oct-14-oracle-tumbles-on-hotter-cpi-data-lifting-treasury-yields/",
+        "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-14-211246271.html",
+        "https://www.marketbeat.com/stocks/NYSE/ORCL/news/",
+        "https://www.fxleaders.com/news/2026/10/14/oracle-stock-orcl-breaks-136-support-as-coreweave-debt-concerns-rattle-ai-cloud-stocks/",
+        "https://finance.yahoo.com/markets/stocks/articles/oracle-sinks-9-hot-inflation-014801113.html",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262216628-oracle-stock-drop-cpi-inflation-rate-hike-ai-financing-project-jupiter-tadingkey",
+        "https://www.tradingkey.com/news/market-movers/262216421-market-movers-orcl-20261014",
+        "https://finance.yahoo.com/news/oracle-upgraded-workday-downgraded-wall-143205044.html",
+        "https://finance.yahoo.com/news/analysts-split-oracle-corporation-orcl-190010092.html",
+        "https://finance.yahoo.com/news/synopsys-downgraded-oracle-upgraded-wall-135131050.html",
+        "https://finviz.com/news/329947/analysts-split-on-oracle-corporation-orcl-stock-sees-upgrade-and-downgrade",
+        "https://seekingalpha.com/article/4924364-oracle-cheap-enough-rating-upgrade",
+        "https://startupfortune.com/sps-downgrade-leaves-oracle-financing-openais-bet-years-before-it-pays-off/",
+        "https://www.defenseworld.net/2026/09/16/oracle-nyseorcl-shares-down-3-1-after-analyst-downgrade.html",
+        "https://www.marketbeat.com/instant-alerts/oracle-nyseorcl-trading-down-2-on-analyst-downgrade-2025-11-11/",
+        "https://www.marketbeat.com/instant-alerts/oracle-nyseorcl-issues-q2-2026-earnings-guidance-2025-09-09"
+      ],
+      "searches": 8
     }
   },
-  "news_from": "2026-10-15T07:18:37Z",
-  "news_models": {
-    "sources": {
-      "research": "input",
-      "scoring": "input"
-    },
-    "research": "claude-sonnet-5-5",
-    "scoring": "claude-opus-5-5"
-  },
+  "news_from": null,
+  "news_models": null,
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Oracle rates Sell at 44, one point below Hold, as strong growth meets cash burn and a broken trend.",
-    "thesis": "Oracle scores 44, a Sell with Low confidence, sitting just 1 point under the Hold line at 45. Growth is the bright spot at 86, with quarterly revenue up 29.61% year on year and accelerating by 8.98 points, but quality scores only 48 because the FCF margin ex-prepayments is -60.27% (reported -40.0%), and the balance sheet scores 13 with negative free cash flow and cash covering only 0.3 of debt. The trend score is 1: the shares are 58.29% below their 52-week high and 18.83% under the 200-day average, with 12-1 momentum of -53.99%. Valuation scores 41; in absolute terms P/S of 5.5 and EV/EBIT of 20.949 are moderate, while the FCF yield sits 16.168 points below the 10-year Treasury yield. Against its own history the stock is cheap: P/S is cheaper than at 44 of the last 61 month-ends, EV/EBIT is cheaper than at 58 of the last 61 month-ends, and P/FCF is not comparable (negative now and in 17 of 61 month-ends).",
+    "headline": "Oracle rates Sell at 43: strong growth outweighed by negative free cash flow, heavy debt and weak trend.",
+    "thesis": "Oracle's composite score of 43 sits 2 points below the Hold edge, so this is a borderline Sell with Low confidence. Growth is the clear strength (score 86), with quarterly revenue up 29.6% year on year, trailing revenue up 21.6% and 9.0 pp of acceleration. That is offset by a very weak balance sheet (score 13, cash covering only 0.3x debt) and free cash flow ex-prepayments at -60.3% of revenue (reported -40.0%) as AI data center spending runs ahead of cash generation. The price trend is near the floor (score 1), with shares 58.3% below their 52-week high and 12-1 month momentum of -54.0%. On valuation, absolute levels are mixed, a P/S of 5.5x and EV/EBIT of 20.9x, but the FCF yield sits 16.2 pp below the 10-year Treasury, which is low in absolute terms; against its own history the stock looks cheap against its own history (P/FCF not comparable), with EV/EBIT cheaper than at 58 of the last 61 month-ends.",
     "key_risks": [
-      "Heavy AI data-center spending is driving deeply negative free cash flow; the capex early warning is AMBER at 6/18.",
+      "Deeply negative free cash flow and a low cash-to-debt ratio of 0.3 as AI capex continues; the capex early warning is AMBER 6/18.",
+      "Customer concentration: OpenAI is estimated by outside sources at roughly half of the $664 billion backlog.",
       "Contract liabilities rose $17.43B, $14.54B more than revenue growth explains, so cash flow leans on customer prepayments.",
-      "Backlog may be concentrated in a few AI customers, though this comes from a low-reliability source.",
-      "Weak balance sheet: cash covers 0.3 of debt, with negative FCF.",
-      "Legal overhang from a pending securities class action and an Oracle Health breach affecting nearly 20M individuals."
+      "Litigation: an Ademi LLP probe tied to an alleged Oracle Health data breach, plus an ongoing securities class action and EU licensing inquiry.",
+      "Dilution of 3.1% a year and stock-based compensation at 6.7% of revenue."
     ],
     "what_would_change": [
-      "A gain of just 1 point, to 45, would lift the rating to Hold, for example from a modest recovery in the trend factor (currently 1).",
-      "Free cash flow turning less negative would help both quality and the balance sheet.",
-      "Delays at Project Jupiter or a growth slowdown that weakens the growth score of 86 could push the score down; Strong Sell is 15 points away, below 30.",
-      "A worsening AI capex warning or adverse news on litigation or customer concentration would add downside pressure."
+      "A 2-point score gain would lift the rating to Hold, for example from a recovery in the trend factor (now 1) or better news flow.",
+      "Free cash flow turning positive would help the quality, balance sheet and valuation factors at the same time.",
+      "Delivering the raised FY2027 outlook of at least $90 billion revenue could support growth and sentiment.",
+      "A fall of 14 points to below 30 would mean Strong Sell, for example if growth slows or the capex warning worsens."
     ]
   },
   "writeup_check": {
@@ -1593,18 +1599,44 @@
   },
   "cost": {
     "steps": {
-      "writeup": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 132700,
+        "output_tokens": 4707,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 132700,
+            "output_tokens": 4707,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3925,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3493,
-        "output_tokens": 791,
+        "input_tokens": 7945,
+        "output_tokens": 2085,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3493,
-            "output_tokens": 791,
+            "input_tokens": 7945,
+            "output_tokens": 2085,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1615,46 +1647,60 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0298,
+        "cost_usd": 0.0735,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3399,
+        "output_tokens": 813,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3399,
+            "output_tokens": 813,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0299,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0298,
+    "total_usd": 0.4959,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 130.55,
-    "as_of": "2026-10-14T20:00:00Z",
-    "prev_close": 143.2
+    "price": 128.63,
+    "as_of": "2026-10-15T12:30:08Z",
+    "prev_close": 130.55
   },
   "close_note": {
     "scored_on": "2026-10-14",
-    "latest": "2026-10-14",
+    "latest": "2026-10-15",
     "latest_from": "quote",
-    "run_et": "2026-10-15 06:32",
-    "note": null,
+    "run_et": "2026-10-15 08:49",
+    "note": "today's close not yet published; scored on 2026-10-14",
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38720937288",
+    "run_id": "38737481196",
     "tickers": [
-      "PLTR",
-      "GTLB",
       "ORCL",
-      "NVDA",
-      "INOD",
-      "SHOP",
-      "RBRK",
-      "ZS",
-      "TIC",
-      "NTAP",
-      "MSGS",
-      "META",
-      "GOOGL",
-      "MSFT"
+      "RBRK"
     ]
   },
   "chart": [
@@ -9232,6 +9278,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T12:49:11Z",
+      "ticker": "ORCL",
+      "rating": "Sell",
+      "score": "43",
+      "confidence": "Low",
+      "growth": "86",
+      "quality": "48",
+      "balance_sheet": "13",
+      "valuation": "41",
+      "trend": "1",
+      "news_risk": "45",
+      "price": "130.55",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4959",
+      "overlay": "note",
+      "quote_price": "128.63",
+      "quote_as_of": "2026-10-15T12:30:08Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-15T10:32:37Z",
       "ticker": "ORCL",
