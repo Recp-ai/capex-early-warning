@@ -175,8 +175,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   `scoring.cap_all` runs the four in that order (`scoring.CAP_TAGS` holds the tags; the page's `CAP_TAGS`
   must match, a test checks). Source checks go through `form4.check_evidence`: sec.gov XML is fetched raw
   with the run's SEC session (redirects only within sec.gov) and an ownership document is checked on
-  `form4.ownership_text` (values kept, trailing decimal zeros trimmed in page and claim, role flags and
-  transaction codes S/P/M/F as words, written dates also ISO); everything else goes to
+  `form4.ownership_text` (values kept, trailing decimal zeros trimmed in page and claim, prices also to
+  the cent, role flags and transaction codes S/P/M/F as words, written dates also ISO; `form4.VERSION`,
+  stored as `form4_check`, so re-scores re-check items an older version left unverified); everything else goes to
   `cew.sources.check_evidence` unchanged. Code turns the ratings into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
   is set, and never sets a rating, score or number. Its input (`run.writeup_brief`) rounds multiples and
   percentages / percentage points to 1 decimal (`run.ONE_DECIMAL`; dollar amounts and balance-sheet ratios

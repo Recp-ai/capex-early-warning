@@ -18,12 +18,12 @@ ARCHIVE = util.ROOT / "data" / "stocks" / "runs"
 
 def form4_xml(owner, roles, transactions, footnotes=(), title=None):
     """An SEC ownershipDocument: `roles` from director / officer / ten / other; transactions (date, code, shares,
-    price) with prices written as SEC does ("219.7200")."""
+    price) with prices written as SEC does, four decimals ("212.0000", or a weighted average "219.7166")."""
     flag = lambda r: "1" if r in roles else "0"  # noqa: E731
     tx = "".join(f"""<nonDerivativeTransaction><securityTitle><value>Common Stock</value></securityTitle>
 <transactionDate><value>{d}</value></transactionDate><transactionCoding><transactionFormType>4</transactionFormType>
 <transactionCode>{code}</transactionCode><equitySwapInvolved>0</equitySwapInvolved></transactionCoding>
-<transactionAmounts><transactionShares><value>{n}</value></transactionShares><transactionPricePerShare><value>{p:.4f}</value>
+<transactionAmounts><transactionShares><value>{n}</value></transactionShares><transactionPricePerShare><value>{p if isinstance(p, str) else f"{p:.4f}"}</value>
 </transactionPricePerShare><transactionAcquiredDisposedCode><value>D</value></transactionAcquiredDisposedCode></transactionAmounts>
 <ownershipNature><directOrIndirectOwnership><value>D</value></directOrIndirectOwnership></ownershipNature>
 </nonDerivativeTransaction>""" for d, code, n, p in transactions)
@@ -44,7 +44,7 @@ TAX = "Shares sold to cover tax withholding obligations upon the vesting of rest
 FILINGS = {  # the archived items' URLs (news runs of Oct 15) and the filings' content
     "NVDA": ("2026-10-15T063201Z.json", {
         "wk-form4_1790110579.xml": form4_xml("STEVENS MARK A", {"director"}, [
-            ("2026-09-18", "S", 1356000, 219.72), ("2026-09-18", "S", 10000, 220.42)], ["Held by The Stevens Trust."]),
+            ("2026-09-18", "S", 1356000, "219.7166"), ("2026-09-18", "S", 10000, "220.4189")], ["Held by The Stevens Trust."]),
         "wk-form4_1790196985.xml": form4_xml("Teter Timothy S.", {"officer"}, [("2026-09-22", "S", 26000, 221.15)],
                                              [PLAN.format("May 22, 2026")], title="EVP, General Counsel and Secretary"),
     }),
@@ -52,9 +52,9 @@ FILINGS = {  # the archived items' URLs (news runs of Oct 15) and the filings' c
         "000119312526414223/ownership.xml": form4_xml("HELD GERALD", {"director"}, [("2026-10-01", "S", 5757, 212.0)]),
     }),
     "ZS": ("2026-10-15T072828Z.json", {
-        "wk-form4_1789688713.xml": form4_xml("Rubin Kevin", {"officer"}, [("2026-09-16", "S", 5957, 192.76)], [TAX],
+        "wk-form4_1789688713.xml": form4_xml("Rubin Kevin", {"officer"}, [("2026-09-16", "S", 5957, "192.7553")], [TAX],
                                              title="Chief Financial Officer"),
-        "wk-form4_1789688583.xml": form4_xml("Rich Michael", {"officer"}, [("2026-09-16", "S", 4108, 192.76)], [TAX],
+        "wk-form4_1789688583.xml": form4_xml("Rich Michael", {"officer"}, [("2026-09-16", "S", 4108, "192.7553")], [TAX],
                                              title="CRO"),
     }),
 }
@@ -84,6 +84,17 @@ def test_archived_form4_items_verify_on_the_normalised_xml(ticker):
     assert form4.recheck(topics, CFG, sess) == [] and len(sess.calls) == len(items)  # checked once, then left alone
 
 
+def test_items_checked_with_an_older_normalisation_are_checked_again():
+    # NVDA's Stevens item after the first live pass: roles matched, the weighted-average prices didn't
+    topics, items, routes = archived("NVDA")
+    stevens = items[0]
+    stevens.update(status="unverified", check="numbers 2/4, names 3/3 · missing: 219.72, 220.42 · Form 4 XML normalised")
+    items[1].update(status="verified", form4_check=form4.VERSION)
+    changed = form4.recheck(topics, CFG, F.FakeSession(routes))
+    assert [c["claim"] for c in changed] == [stevens["claim"]] and stevens["status"] == "verified"
+    assert stevens["form4_check"] == form4.VERSION
+
+
 def test_nvda_insider_rating_is_no_longer_capped_after_the_recheck():
     topics, _, routes = archived("NVDA")
     t = topics["insider_activity"]
@@ -111,6 +122,10 @@ def test_normalised_text_keeps_every_value_and_adds_what_the_tags_mean():
     assert form4.trim_zeros("$219.7200 and $212.0000, 1,356,000 at 220.42 or 10.50; 2026-05-22") == \
         "$219.72 and $212, 1,356,000 at 220.42 or 10.5; 2026-05-22"
     assert form4.iso_dates("adopted on May 22, 2026 and February 30, 2026") == ["2026-05-22"]
+    assert [form4.cents(v) for v in ("219.7166", "192.7550", "220.415", "212.0000", "212.00", "1.5", "abc")] == \
+        ["219.72", "192.76", "220.42", "212", None, None, None]
+    weighted = form4.ownership_text(form4_xml("X Y", {"director"}, [("2026-09-18", "S", 100, "219.7166")]))
+    assert "219.7166" in weighted and "219.72" in weighted
 
 
 def test_fresh_runs_read_sec_xml_raw_and_everything_else_through_cew(monkeypatch):

@@ -4,16 +4,18 @@ cew.sources reads every cited page as plain text, which for a raw ownership XML 
 .../ownership.xml, wk-form4_*.xml) leaves prices as "219.7200" and roles as a bare "1"
 (<isDirector>1</isDirector>), so claims such as "Director Mark Stevens sold ... at $219.72" fail. Here such a
 file is fetched raw from sec.gov (with the run's SEC session) and turned into text that keeps every value
-and adds what the tags meant: numbers with trailing decimal zeros trimmed (the claim's numbers too), role
-flags as words (Director, Officer + officerTitle, 10% owner), transaction codes S / P / M / F as sale /
-purchase / exercise / tax withholding, and written dates in footnotes also as YYYY-MM-DD. The claim is then
-checked with cew.sources.check_claim, as for any page. Any other page goes through cew.sources unchanged.
+and adds what the tags meant: numbers with trailing decimal zeros trimmed (the claim's numbers too), prices
+also rounded to the cent (a weighted average of 219.7166 is reported as $219.72), role flags as words
+(Director, Officer + officerTitle, 10% owner), transaction codes S / P / M / F as sale / purchase /
+exercise / tax withholding, and written dates in footnotes also as YYYY-MM-DD. The claim is then checked
+with cew.sources.check_claim, as for any page. Any other page goes through cew.sources unchanged.
 """
 from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
 from datetime import date
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from urllib.parse import urljoin, urlsplit
 
 from cew import sources, util
@@ -27,6 +29,18 @@ MONTHS = ("january", "february", "march", "april", "may", "june", "july", "augus
           "november", "december")
 WRITTEN_DATE = re.compile(r"\b(" + "|".join(m.capitalize() for m in MONTHS) + r")\s+(\d{1,2}),\s+(\d{4})\b")
 NORMALISED = "Form 4 XML normalised"
+VERSION = 2  # of the normalisation; a re-score re-checks unverified items checked with an older one
+
+
+def cents(value: str) -> str | None:
+    """A price with more than two decimals rounded to the cent, half up ("219.7166" -> "219.72"), else None."""
+    v = (value or "").strip()
+    if not re.fullmatch(r"\d+\.\d{3,}", v):
+        return None
+    try:
+        return trim_zeros(str(Decimal(v).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)))
+    except InvalidOperation:
+        return None
 
 
 def is_sec_xml(url: str | None) -> bool:
@@ -74,8 +88,11 @@ def ownership_text(raw: bytes | str) -> str | None:
                 title = kids.get("officerTitle" if tag == "isOfficer" else "otherText")
                 words.append(word + (f" ({title.text.strip()})" if title is not None and (title.text or "").strip() else ""))
     for el in root.iter():
-        if _local(el.tag) == "transactionCode" and (el.text or "").strip().upper() in CODES:
+        tag = _local(el.tag)
+        if tag == "transactionCode" and (el.text or "").strip().upper() in CODES:
             words.append(CODES[el.text.strip().upper()])
+        elif "Price" in tag:  # transactionPricePerShare, conversionOrExercisePrice: <value> inside
+            words += [c for c in (cents(v.text) for v in el.iter() if _local(v.tag) == "value") if c]
     plain = "\n".join(values)
     return "\n".join([plain, trim_zeros(plain), *words, *iso_dates(plain)])
 
@@ -123,7 +140,7 @@ def check_item(e: dict, sess, timeout: float = 10, recheck: bool = False) -> boo
         e["status"], e["check"] = sources.check_claim(e.get("claim", ""), util.html_to_text(raw.decode("utf-8", "replace")))
     else:
         status, detail = sources.check_claim(trim_zeros(e.get("claim", "")), text)
-        e["status"], e["check"] = status, f"{detail} · {NORMALISED}"
+        e["status"], e["check"], e["form4_check"] = status, f"{detail} · {NORMALISED}", VERSION
     return True
 
 
@@ -147,7 +164,7 @@ def recheck(topics: dict, cfg: dict, sess) -> list[dict]:
     changed = []
     for k, t in topics.items():
         for e in t.get("evidence") or []:
-            if is_sec_xml(e.get("url")) and e.get("status") == "unverified" and NORMALISED not in (e.get("check") or ""):
+            if is_sec_xml(e.get("url")) and e.get("status") == "unverified" and e.get("form4_check") != VERSION:
                 was = e["status"]
                 if check_item(e, sess, timeout, recheck=True) and e["status"] != was:
                     changed.append({"topic": k, "label": t.get("label") or k, "claim": e.get("claim"), "was": was,

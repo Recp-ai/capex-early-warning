@@ -295,7 +295,8 @@ two credible sources; ±1 = modest or single-source; 0 = nothing material). Ever
 tiered (primary / major / other) and fetched as in the capex pipeline, except a raw SEC Form 4 XML file
 (sec.gov `.../ownership.xml`, `wk-form4_*.xml`): read as plain text its prices are "219.7200" and its roles a
 bare "1", so `stocks/form4.py` reads it raw and checks the claim on a normalised text (trailing decimal
-zeros trimmed, in the claim too; Director / Officer + title / 10% owner from the role flags; sale /
+zeros trimmed, in the claim too; prices also rounded to the cent, since a weighted average of 219.7166 is
+reported as $219.72; Director / Officer + title / 10% owner from the role flags; sale /
 purchase / exercise / tax withholding for codes S / P / M / F; written dates also as YYYY-MM-DD). Only in-window evidence counts toward
 the caps: a source that was verified or unreachable and whose event date is no more than
 `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
