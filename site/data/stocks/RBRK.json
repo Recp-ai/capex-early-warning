@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:35:34Z",
-  "generated_at": "2026-10-15T09:35:35+00:00",
+  "run_id": "2026-10-15T10:33:03Z",
+  "generated_at": "2026-10-15T10:33:04+00:00",
   "ticker": "RBRK",
   "sec_ticker": "RBRK",
   "cik": "0001943896",
@@ -713,6 +713,10 @@
         "negative_points": 0,
         "median_yield_pct": 7.95,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2025-03-31"
       },
@@ -726,6 +730,10 @@
         "negative_points": 0,
         "median_yield_pct": 1.379,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2025-03-31"
       },
@@ -739,8 +747,33 @@
         "negative_points": 20,
         "median_yield_pct": -3.002,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2025-03-31"
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "20 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "20 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "20 month-ends of history (needs 24)"
+        }
       }
     }
   },
@@ -997,13 +1030,14 @@
         }
       }
     },
-    "reused_from": "2026-10-15T07:18:35Z"
+    "reused_from": "2026-10-15T07:18:35Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:18:35Z",
-      "archived": "data/stocks/runs/RBRK/2026-10-15T091957Z.json",
+      "archived": "data/stocks/runs/RBRK/2026-10-15T093534Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1027,36 +1061,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Rubrik rates Hold: fast growth, strong trend and net cash offset by a very rich valuation.",
-    "thesis": "Rubrik scores 58, a Hold, 7 points below the Buy threshold of 65. Growth (84), trend (90) and balance sheet (96) are strong: revenue grew 37.89% year on year last quarter and 42.45% on a trailing basis, the shares sit 54.74% above their 200-day average, and the company holds net cash. Valuation scores just 4, with price-to-sales of 15.222 and price-to-FCF of 77.243, and EBIT is negative. Quality is middling at 42: gross margin is 80.21% and FCF margin 19.71%, but operating margin is -18.31%, stock-based pay is 22.16% of revenue and the share count rose 5.75%. Confidence is Medium because valuation history covers only 20 month-ends, short of the 24 needed for percentile comparisons.",
+    "headline": "Rubrik rates Hold: strong growth, cash and momentum are offset by a very high valuation.",
+    "thesis": "Rubrik scores 58, a Hold, 7 points short of Buy. Growth is a clear strength (score 84), with revenue up 37.89% year over year in the quarter and 42.45% on a trailing basis, though growth slowed by 1.1 points. The balance sheet (96) is strong, with net cash and cash at 1.54 times debt, and the price trend (90) is strong, trading 54.74% above its 200-day average. Against that, valuation scores just 4: in absolute terms a P/S of 15.222 and P/FCF of 77.243 are high, EV/EBIT cannot be computed because EBIT is negative, and there is no comparison with its own history. Quality is middling (42): an 80.21% gross margin and 19.71% FCF margin are offset by a -18.31% operating margin, stock-based pay at 22.16% of revenue and 5.75% dilution.",
     "key_risks": [
-      "Valuation is stretched (P/S 15.222, P/FCF 77.243), leaving little room for disappointment.",
-      "Growth is slowing slightly, with acceleration at -1.1 points.",
-      "Heavy stock-based pay (22.16% of revenue) and 5.75% dilution weigh on per-share value.",
-      "Steady insider selling, including the CFO and a director, though mostly under 10b5-1 plans.",
-      "Recent product news comes from single, lower-tier sources, and the news ratings were not refreshed this run."
+      "High absolute valuation (P/S 15.222, P/FCF 77.243) leaves little room for disappointment",
+      "Operating losses persist, with operating margin at -18.31%",
+      "Heavy stock-based pay (22.16% of revenue) and 5.75% yearly dilution",
+      "Steady insider selling, including the CFO and a director",
+      "A sharp run-up (54.74% above the 200-day average) could reverse"
     ],
     "what_would_change": [
-      "Up to Buy: a 7-point gain, for example from a cheaper valuation after a price pullback or faster revenue growth.",
-      "Up: better quality metrics, such as a narrower operating loss or lower stock-based pay and dilution.",
-      "Down to Sell: a 14-point drop, for example if the trend score falls on a sharp sell-off or growth decelerates markedly.",
-      "Down: negative guidance or analyst news pushing the news-risk score below 56."
+      "A 7-point score gain would reach Buy, e.g. from improving quality via narrower operating losses and less dilution",
+      "A lower valuation from price weakness or faster FCF growth could lift the valuation score from 4",
+      "A drop of more than 13 points (below 45) would mean Sell, e.g. if growth slows sharply and the trend breaks down",
+      "Confidence would rise once 24 month-ends of valuation history are available (currently 20)"
     ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2618,
-        "output_tokens": 656,
+        "input_tokens": 2872,
+        "output_tokens": 629,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2618,
-            "output_tokens": 656,
+            "input_tokens": 2872,
+            "output_tokens": 629,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1067,12 +1108,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0236,
+        "cost_usd": 0.0241,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0236,
+    "total_usd": 0.0241,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1085,18 +1126,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:35",
+    "run_et": "2026-10-15 06:33",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38713987453",
+    "run_id": "38720937288",
     "tickers": [
+      "PLTR",
+      "GTLB",
       "ORCL",
+      "NVDA",
       "INOD",
+      "SHOP",
       "RBRK",
-      "ZS"
+      "ZS",
+      "TIC",
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -4822,6 +4873,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:33:03Z",
+      "ticker": "RBRK",
+      "rating": "Hold",
+      "score": "58",
+      "confidence": "Medium",
+      "growth": "84",
+      "quality": "42",
+      "balance_sheet": "96",
+      "valuation": "4",
+      "trend": "90",
+      "news_risk": "56",
+      "price": "113.9",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0241",
+      "overlay": "",
+      "quote_price": "113.9",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:18:35Z"
+    },
     {
       "timestamp": "2026-10-15T09:35:34Z",
       "ticker": "RBRK",

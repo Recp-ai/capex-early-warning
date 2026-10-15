@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:19:15Z",
-  "generated_at": "2026-10-15T09:19:16+00:00",
+  "run_id": "2026-10-15T10:33:42Z",
+  "generated_at": "2026-10-15T10:33:42+00:00",
   "ticker": "META",
   "sec_ticker": "META",
   "cik": "0001326801",
@@ -341,10 +341,31 @@
     "prepayments": {
       "increase": 284000000.0,
       "source": "balance sheet: contract 2025-06-30 to 2026-06-30",
-      "share_of_ocf": 0.0022,
+      "base": 876000000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 27.65,
+      "expected": 242232097.71593478,
+      "excess": 41767902.28406522,
       "max_share_of_ocf": 0.25,
-      "applies": false
+      "applies": false,
+      "share_of_ocf": 0.0003
     },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 17.95,
+      "fcf_margin_year_earlier_pct": 28.04,
+      "median_margin_pct": 24.13,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 40976000000.0,
+    "fcf_scored_margin_pct": 17.95,
     "balance_sheet": {
       "date": "2026-06-30",
       "cash": 15462000000.0,
@@ -1061,6 +1082,10 @@
         "negative_points": 0,
         "median_yield_pct": 12.542,
         "percentile": 58.2,
+        "cheaper_points": 35,
+        "dearer_points": 25,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1074,6 +1099,10 @@
         "negative_points": 0,
         "median_yield_pct": 3.452,
         "percentile": 99.2,
+        "cheaper_points": 60,
+        "dearer_points": 0,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1087,8 +1116,30 @@
         "negative_points": 0,
         "median_yield_pct": 4.869,
         "percentile": 56.6,
+        "cheaper_points": 34,
+        "dearer_points": 26,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 25, more expensive than at 35)"
+        },
+        "price_to_fcf": {
+          "label": "expensive",
+          "phrase": "more expensive than at 60 of the last 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 26, more expensive than at 34)"
+        }
       }
     }
   },
@@ -1426,13 +1477,14 @@
         }
       }
     },
-    "reused_from": "2026-10-15T07:18:34Z"
+    "reused_from": "2026-10-15T07:18:34Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:18:34Z",
-      "archived": "data/stocks/runs/META/2026-10-15T071834Z.json",
+      "archived": "data/stocks/runs/META/2026-10-15T091915Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1456,36 +1508,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Meta rates Hold at 64, one point below Buy, as strong fundamentals meet a stretched valuation.",
-    "thesis": "Meta scores 64, a Hold with medium confidence, just 1 point under the Buy edge at 65. The business side is strong: balance sheet scores 93 on a net cash position (cash-to-debt 1.08), quality scores 79 with an 81.75% gross margin and 38.08% operating margin, and growth scores 70 on revenue up 27.96% year on year, though growth slowed by 5.12 points. Valuation is the main drag at 29. Price-to-FCF is 46.186 and dearer than 99.2% of the past 61 month-ends, partly because heavy AI spending holds the FCF margin to 17.95%. Trend (65) and news (59) are moderately positive, helped by broker target raises and a well-received smart-glasses launch, while the AI capex early warning sits at AMBER 6/18 without capping the rating.",
+    "headline": "Meta rates Hold at 64, one point below Buy, as strong fundamentals meet a demanding valuation.",
+    "thesis": "Meta scores 64, a Hold that sits just 1 point under the Buy line at 65, so confidence is Medium. The business itself scores well: revenue grew 27.96% year on year last quarter with an 81.75% gross margin and a 38.08% operating margin (quality 79), and the balance sheet is net cash (balance sheet 93). Growth scores 70 but is slowing, down 5.12 percentage points from the prior pace. Valuation is the main drag at 29. In absolute terms the multiples are high, at 8.292 times sales and 46.186 times free cash flow, and the FCF yield is 3.045 points below the 10-year Treasury. Against its own history valuation is labelled expensive overall: P/FCF is more expensive than at 60 of the last 61 month-ends, while P/S and EV/EBIT are near the middle of the last 61 month-ends.",
     "key_risks": [
-      "AI capex of $130-145B planned for FY26 keeps free cash flow thin relative to revenue (FCF margin 17.95%).",
-      "Valuation on free cash flow is near the top of its five-year range (price-to-FCF 46.186, 99.2th percentile).",
-      "Revenue growth is decelerating (acceleration -5.12 points).",
-      "FTC appeal to revive the antitrust case and remaining youth-harm trials are still pending.",
-      "Q3 results on October 21 could move the stock and the scores sharply."
+      "AI capex early warning is AMBER (6/18), with 2026 capex guided at $130-145B weighing on free cash flow (FCF margin 17.95%).",
+      "Revenue growth is decelerating (acceleration -5.12 pp), which could pressure a stock priced at 46.186 times free cash flow.",
+      "The FTC is pursuing its antitrust appeal, and youth-harm trials are still ahead.",
+      "Stock-based compensation is 11.01% of revenue.",
+      "Q3 results on October 21 could move the score either way, and the news ratings were not refreshed this run."
     ],
     "what_would_change": [
-      "A gain of just 1 point, e.g. from a better trend or news score after Q3 results, would lift the rating to Buy.",
-      "Cheaper valuation, either through a lower price or higher free cash flow, would most directly raise the score from its 29 valuation factor.",
-      "A drop of 20 points to below 45 would be needed for Sell, e.g. a sharp growth slowdown plus negative guidance or regulatory news.",
-      "A worsening of the AI capex early warning from AMBER could lead to an overlay cap on the rating."
+      "A gain of just 1 point, for example from a better valuation or trend score, would lift the rating to Buy.",
+      "Stronger Q3 results on October 21, with growth re-accelerating or free cash flow improving, could push growth or valuation scores up.",
+      "A drop of 20 points would be needed to reach Sell, which would take a broad deterioration such as weaker growth, margin pressure from capex, or negative news.",
+      "If the capex warning escalated from AMBER, it could cap the rating."
     ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2749,
-        "output_tokens": 683,
+        "input_tokens": 3154,
+        "output_tokens": 699,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2749,
-            "output_tokens": 683,
+            "input_tokens": 3154,
+            "output_tokens": 699,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1496,12 +1555,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0247,
+        "cost_usd": 0.0266,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0247,
+    "total_usd": 0.0266,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1514,28 +1573,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:19",
+    "run_et": "2026-10-15 06:33",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38720937288",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
-      "NVDA",
-      "ORCL",
       "PLTR",
-      "RBRK",
+      "GTLB",
+      "ORCL",
+      "NVDA",
+      "INOD",
       "SHOP",
+      "RBRK",
+      "ZS",
       "TIC",
-      "ZS"
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -9113,6 +9172,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:33:42Z",
+      "ticker": "META",
+      "rating": "Hold",
+      "score": "64",
+      "confidence": "Medium",
+      "growth": "70",
+      "quality": "79",
+      "balance_sheet": "93",
+      "valuation": "29",
+      "trend": "65",
+      "news_risk": "59",
+      "price": "737.54",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0266",
+      "overlay": "note",
+      "quote_price": "737.54",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:18:34Z"
+    },
     {
       "timestamp": "2026-10-15T09:19:15Z",
       "ticker": "META",

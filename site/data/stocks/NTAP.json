@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:19:40Z",
-  "generated_at": "2026-10-15T09:19:41+00:00",
+  "run_id": "2026-10-15T10:33:25Z",
+  "generated_at": "2026-10-15T10:33:26+00:00",
   "ticker": "NTAP",
   "sec_ticker": "NTAP",
   "cik": "0001002047",
@@ -335,10 +335,31 @@
     "prepayments": {
       "increase": 361000000.0,
       "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
-      "share_of_ocf": 0.1903,
+      "base": 4526000000.0,
+      "base_date": "2025-07-25",
+      "revenue_growth_pct": 12.15,
+      "expected": 550125341.4264041,
+      "excess": -189125341.42640412,
       "max_share_of_ocf": 0.25,
-      "applies": false
+      "applies": false,
+      "share_of_ocf": -0.0997
     },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 22.32,
+      "fcf_margin_year_earlier_pct": 25.16,
+      "median_margin_pct": 20.2,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 1650000000.0,
+    "fcf_scored_margin_pct": 22.32,
     "balance_sheet": {
       "date": "2026-07-31",
       "cash": 1573000000.0,
@@ -1065,6 +1086,10 @@
         "negative_points": 0,
         "median_yield_pct": 31.348,
         "percentile": 98.4,
+        "cheaper_points": 60,
+        "dearer_points": 1,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1078,6 +1103,10 @@
         "negative_points": 0,
         "median_yield_pct": 6.148,
         "percentile": 98.4,
+        "cheaper_points": 60,
+        "dearer_points": 1,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1091,8 +1120,30 @@
         "negative_points": 0,
         "median_yield_pct": 6.312,
         "percentile": 96.7,
+        "cheaper_points": 59,
+        "dearer_points": 2,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 60 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "expensive",
+          "phrase": "more expensive than at 60 of the last 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "expensive",
+          "phrase": "more expensive than at 59 of the last 61 month-ends"
+        }
       }
     }
   },
@@ -1390,13 +1441,14 @@
         }
       }
     },
-    "reused_from": "2026-10-15T07:28:28Z"
+    "reused_from": "2026-10-15T07:28:28Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:28Z",
-      "archived": "data/stocks/runs/NTAP/2026-10-15T072828Z.json",
+      "archived": "data/stocks/runs/NTAP/2026-10-15T091940Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1420,36 +1472,42 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "NetApp rates Buy on accelerating growth, strong margins and net cash, held back by a stretched valuation.",
-    "thesis": "NetApp scores 71, a Buy with high confidence, driven by strong fundamentals and momentum. Growth scores 82, with quarterly revenue up 29.89% year over year versus 12.15% on a trailing basis, an acceleration of 17.42 points. Quality (82) and balance sheet (95) are strong: gross margin is 70.63%, FCF margin 22.32%, share count fell 1.48%, and the company holds net cash with cash covering debt 1.44 times. Trend scores 96 after a 61.88% 12-1 month gain, with the stock 54.73% above its 200-day average. The main drag is valuation at 28: price-to-FCF of 26.451 and price-to-sales of 5.905 sit at the expensive end of the past five years, cheaper than now in roughly 98% of month-ends.",
+    "headline": "NetApp rates Buy on accelerating growth, strong margins and net cash, though valuation is a drag.",
+    "thesis": "NetApp scores 71, a Buy with high confidence, driven by strong fundamentals and price trend. Growth scores 82, with quarterly revenue up 29.89% year over year versus 12.15% on a trailing basis, an acceleration of 17.42 points. Quality (82) and balance sheet (95) are strong: a 70.63% gross margin, 22.32% FCF margin, shrinking share count (-1.48%) and a net cash position. Trend scores 96, with the stock 54.73% above its 200-day average and 61.88% 12-1 month momentum. The main offset is valuation at 28: absolute multiples are high (P/S 5.905, P/FCF 26.451, EV/EBIT 23.016, FCF yield 1.429 points below the 10-year Treasury), and the stock is expensive against its own history, with P/S and P/FCF more expensive than at 60 of the last 61 month-ends.",
     "key_risks": [
-      "Valuation is near five-year highs, so any growth slowdown could hit the shares hard.",
-      "The stock is 54.73% above its 200-day average, leaving room for a sharp pullback.",
-      "Four insiders including the CEO sold shares; two directors' sales were not flagged as 10b5-1 plan sales.",
-      "Barclays downgraded, citing the large gain and no meaningful AI inflection yet.",
-      "The 29.89% quarterly growth rate may not be sustainable against tougher comparisons."
+      "Valuation is high in absolute terms and expensive against its own history, leaving little room for disappointment.",
+      "After a large run-up, momentum could reverse; Barclays downgraded citing the year-to-date gain and no meaningful AI inflection yet.",
+      "Four insiders, including the CEO, sold shares with no open-market purchases; two directors' sales were not flagged as plan sales.",
+      "The recent revenue acceleration may not be sustained, which would weigh on the growth score.",
+      "News ratings were reused from an earlier run and not refreshed."
     ],
     "what_would_change": [
-      "Up to Strong Buy needs 9 more points, most plausibly from a cheaper valuation (price pullback or faster earnings growth) or further positive news.",
-      "Down to Hold would take a drop of 7 points, for example a weakening trend score or a fade in revenue acceleration.",
-      "More unplanned insider selling or negative guidance news would lower the news risk score (now 56).",
-      "Delivery on the raised FY27 guidance would support the growth and quality scores."
+      "A drop of 7 points in the composite score would move the rating to Hold, for example from weakening trend or slowing growth.",
+      "A gain of 9 points would reach Strong Buy, most plausibly if valuation improved through earnings growth outpacing the share price.",
+      "Negative guidance, analyst or insider news would pull the news risk score (56) lower and could push the rating toward Hold."
     ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2611,
-        "output_tokens": 650,
+        "input_tokens": 2990,
+        "output_tokens": 666,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2611,
-            "output_tokens": 650,
+            "input_tokens": 2990,
+            "output_tokens": 666,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1460,12 +1518,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0234,
+        "cost_usd": 0.0253,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0234,
+    "total_usd": 0.0253,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1478,28 +1536,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:19",
+    "run_et": "2026-10-15 06:33",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38720937288",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
-      "NVDA",
-      "ORCL",
       "PLTR",
-      "RBRK",
+      "GTLB",
+      "ORCL",
+      "NVDA",
+      "INOD",
       "SHOP",
+      "RBRK",
+      "ZS",
       "TIC",
-      "ZS"
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -9077,6 +9135,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:33:25Z",
+      "ticker": "NTAP",
+      "rating": "Buy",
+      "score": "71",
+      "confidence": "High",
+      "growth": "82",
+      "quality": "82",
+      "balance_sheet": "95",
+      "valuation": "28",
+      "trend": "96",
+      "news_risk": "56",
+      "price": "222.2",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0253",
+      "overlay": "",
+      "quote_price": "222.2",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:28Z"
+    },
     {
       "timestamp": "2026-10-15T09:19:40Z",
       "ticker": "NTAP",

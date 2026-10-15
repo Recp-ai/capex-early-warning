@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:09:35Z",
-  "generated_at": "2026-10-15T10:09:36+00:00",
+  "run_id": "2026-10-15T10:32:37Z",
+  "generated_at": "2026-10-15T10:32:38+00:00",
   "ticker": "ORCL",
   "sec_ticker": "ORCL",
   "cik": "0001341439",
@@ -18,7 +18,7 @@
   "llm": true,
   "rating": "Sell",
   "rating_before_overlay": "Sell",
-  "score": 43,
+  "score": 44,
   "confidence": "Low",
   "confidence_detail": {
     "level": "Low",
@@ -37,7 +37,7 @@
       {
         "issue": "near_band_edge",
         "points": 1.0,
-        "text": "score 43 is within 2 points of the Hold edge (45)"
+        "text": "score 44 is within 2 points of the Hold edge (45)"
       },
       {
         "issue": "weak_sources",
@@ -51,17 +51,17 @@
     "up": {
       "label": "Hold",
       "at": 45,
-      "points": 2
+      "points": 1
     },
     "down": {
       "label": "Strong Sell",
       "below": 30,
-      "points": 14
+      "points": 15
     }
   },
   "composite": {
-    "score": 43,
-    "raw": 42.9,
+    "score": 44,
+    "raw": 44.1,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -195,10 +195,10 @@
           "note": "cheaper than now in 27.9% of 61 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
-          "value": 98.4,
-          "score": 1.6,
-          "weight": 0.15,
-          "note": "cheaper than now in 98.4% of 61 month-ends (ranked on yields)"
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 17 of 61 month-ends)"
         },
         "ev_to_ebit_percentile": {
           "value": 4.9,
@@ -208,7 +208,7 @@
         }
       },
       "coverage": 1.0,
-      "score": 35,
+      "score": 41,
       "missing": null
     },
     "trend": {
@@ -1115,6 +1115,8 @@
         "percentile": 27.9,
         "cheaper_points": 17,
         "dearer_points": 44,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1127,9 +1129,11 @@
         "high": null,
         "negative_points": 17,
         "median_yield_pct": 2.506,
-        "percentile": 98.4,
-        "cheaper_points": 60,
-        "dearer_points": 1,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 17 of 61 month-ends",
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1145,22 +1149,24 @@
         "percentile": 4.9,
         "cheaper_points": 3,
         "dearer_points": 58,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       }
     },
     "vs_own_history": {
-      "label": "middle",
-      "text": "near the middle of its own history (the multiples disagree: P/S cheap, P/FCF expensive, EV/EBIT cheap)",
+      "label": "cheap",
+      "text": "cheap against its own history (P/FCF not comparable)",
       "multiples": {
         "price_to_sales": {
           "label": "cheap",
           "phrase": "cheaper than at 44 of the last 61 month-ends"
         },
         "price_to_fcf": {
-          "label": "expensive",
-          "phrase": "more expensive than at 60 of the last 61 month-ends",
-          "note": "FCF is zero or negative now, so there is no P/FCF multiple; the comparison ranks the FCF yield (17 of the 61 month-ends were zero or negative too)"
+          "label": null,
+          "phrase": "not comparable (negative now and in 17 of 61 month-ends)",
+          "not_comparable": "negative now and in 17 of 61 month-ends"
         },
         "ev_to_ebit": {
           "label": "cheap",
@@ -1532,20 +1538,13 @@
       }
     },
     "reused_from": "2026-10-15T07:18:37Z",
-    "caps_reapplied": [
-      {
-        "topic": "product_competitive",
-        "label": "Product and competitive news",
-        "was": 1,
-        "now": 0
-      }
-    ]
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:18:37Z",
-      "archived": "data/stocks/runs/ORCL/2026-10-15T093534Z.json",
+      "archived": "data/stocks/runs/ORCL/2026-10-15T100935Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1569,24 +1568,24 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Oracle rates Sell at 43: strong growth is outweighed by negative cash flow, heavy debt and a broken price trend.",
-    "thesis": "Oracle scores 43, a Sell with Low confidence, just 2 points below the Hold line at 45. Growth is the clear strength (score 86), with quarterly revenue up 29.61% year on year and accelerating by 8.98 points versus the trailing twelve months. That is offset by a balance sheet score of 13: cash covers only 0.3 times debt and free cash flow is negative, at a -60.27% margin excluding prepayments (reported -40.0%). The price trend scores 1, with the stock 58.29% below its 52-week high and trailing the S&P 500 by 33.08 points. Valuation scores 35. In absolute terms P/S of 5.5 and EV/EBIT of 20.949 are moderate, but the FCF yield sits 16.168 points below the 10-year Treasury. Against its own history the stock is near the middle of its own history (the multiples disagree: P/S cheap, P/FCF expensive, EV/EBIT cheap).",
+    "headline": "Oracle rates Sell at 44, one point below Hold, as strong growth meets cash burn and a broken trend.",
+    "thesis": "Oracle scores 44, a Sell with Low confidence, sitting just 1 point under the Hold line at 45. Growth is the bright spot at 86, with quarterly revenue up 29.61% year on year and accelerating by 8.98 points, but quality scores only 48 because the FCF margin ex-prepayments is -60.27% (reported -40.0%), and the balance sheet scores 13 with negative free cash flow and cash covering only 0.3 of debt. The trend score is 1: the shares are 58.29% below their 52-week high and 18.83% under the 200-day average, with 12-1 momentum of -53.99%. Valuation scores 41; in absolute terms P/S of 5.5 and EV/EBIT of 20.949 are moderate, while the FCF yield sits 16.168 points below the 10-year Treasury yield. Against its own history the stock is cheap: P/S is cheaper than at 44 of the last 61 month-ends, EV/EBIT is cheaper than at 58 of the last 61 month-ends, and P/FCF is not comparable (negative now and in 17 of 61 month-ends).",
     "key_risks": [
-      "Heavy AI data-center spending keeps free cash flow deeply negative while debt far exceeds cash (cash-to-debt 0.3).",
-      "Contract liabilities rose $17.43B, $14.54B more than revenue growth explains, so reported cash flow leans on customer prepayments.",
-      "Possible concentration of the $664B backlog in AI labs such as OpenAI, from an unverified source, plus reported delay risk at Project Jupiter.",
-      "Litigation: a pending securities class action and an Oracle Health breach affecting nearly 20M individuals.",
-      "AI capex early warning is AMBER (6/18), and dilution runs 3.13% a year with stock pay at 6.71% of revenue."
+      "Heavy AI data-center spending is driving deeply negative free cash flow; the capex early warning is AMBER at 6/18.",
+      "Contract liabilities rose $17.43B, $14.54B more than revenue growth explains, so cash flow leans on customer prepayments.",
+      "Backlog may be concentrated in a few AI customers, though this comes from a low-reliability source.",
+      "Weak balance sheet: cash covers 0.3 of debt, with negative FCF.",
+      "Legal overhang from a pending securities class action and an Oracle Health breach affecting nearly 20M individuals."
     ],
     "what_would_change": [
-      "A 2-point gain to 45 would move the rating to Hold, for example from a recovery in the trend score (now 1) or improving free cash flow lifting quality.",
-      "Delivering Q2 revenue growth within the guided 30-34% and turning free cash flow less negative would support the quality and balance sheet scores.",
-      "A 14-point drop below 30 would mean Strong Sell, for instance if growth slows sharply, data-center delays materialise or news on litigation or customer concentration worsens.",
-      "Gross margin data, missing now, and fresher verified news could change the score and raise confidence."
+      "A gain of just 1 point, to 45, would lift the rating to Hold, for example from a modest recovery in the trend factor (currently 1).",
+      "Free cash flow turning less negative would help both quality and the balance sheet.",
+      "Delays at Project Jupiter or a growth slowdown that weakens the growth score of 86 could push the score down; Strong Sell is 15 points away, below 30.",
+      "A worsening AI capex warning or adverse news on litigation or customer concentration would add downside pressure."
     ]
   },
   "writeup_check": {
-    "history_label": "middle",
+    "history_label": "cheap",
     "conflicts": [],
     "regenerated": false,
     "dropped": [],
@@ -1597,15 +1596,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3506,
-        "output_tokens": 812,
+        "input_tokens": 3493,
+        "output_tokens": 791,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3506,
-            "output_tokens": 812,
+            "input_tokens": 3493,
+            "output_tokens": 791,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1616,12 +1615,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0303,
+        "cost_usd": 0.0298,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0303,
+    "total_usd": 0.0298,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1634,20 +1633,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 06:09",
+    "run_et": "2026-10-15 06:32",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38718161689",
+    "run_id": "38720937288",
     "tickers": [
-      "NVDA",
+      "PLTR",
       "GTLB",
-      "SHOP",
-      "INOD",
       "ORCL",
-      "PLTR"
+      "NVDA",
+      "INOD",
+      "SHOP",
+      "RBRK",
+      "ZS",
+      "TIC",
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -9225,6 +9232,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:32:37Z",
+      "ticker": "ORCL",
+      "rating": "Sell",
+      "score": "44",
+      "confidence": "Low",
+      "growth": "86",
+      "quality": "48",
+      "balance_sheet": "13",
+      "valuation": "41",
+      "trend": "1",
+      "news_risk": "51",
+      "price": "130.55",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0298",
+      "overlay": "note",
+      "quote_price": "130.55",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:18:37Z"
+    },
     {
       "timestamp": "2026-10-15T10:09:35Z",
       "ticker": "ORCL",

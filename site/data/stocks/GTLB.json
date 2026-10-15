@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:09:36Z",
-  "generated_at": "2026-10-15T10:09:37+00:00",
+  "run_id": "2026-10-15T10:32:47Z",
+  "generated_at": "2026-10-15T10:32:48+00:00",
   "ticker": "GTLB",
   "sec_ticker": "GTLB",
   "cik": "0001653482",
@@ -18,35 +18,29 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 64,
-  "confidence": "Medium",
+  "score": 60,
+  "confidence": "High",
   "confidence_detail": {
-    "level": "Medium",
-    "points": 1.0,
-    "reasons": [
-      {
-        "issue": "near_band_edge",
-        "points": 1.0,
-        "text": "score 64 is within 2 points of the Buy edge (65)"
-      }
-    ],
+    "level": "High",
+    "points": 0,
+    "reasons": [],
     "factors_with_data": 6
   },
   "bands": {
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 1
+      "points": 5
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 20
+      "points": 16
     }
   },
   "composite": {
-    "score": 64,
-    "raw": 63.6,
+    "score": 60,
+    "raw": 60.0,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -180,20 +174,20 @@
           "note": "cheaper than now in 20.9% of 55 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
-          "value": 19.1,
-          "score": 80.9,
-          "weight": 0.15,
-          "note": "cheaper than now in 19.1% of 55 month-ends (ranked on yields)"
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 29 of 55 month-ends)"
         },
         "ev_to_ebit_percentile": {
-          "value": 4.5,
-          "score": 95.5,
-          "weight": 0.15,
-          "note": "cheaper than now in 4.5% of 55 month-ends (ranked on yields)"
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 55 of 55 month-ends)"
         }
       },
       "coverage": 1.0,
-      "score": 46,
+      "score": 28,
       "missing": null
     },
     "trend": {
@@ -1012,6 +1006,8 @@
         "percentile": 20.9,
         "cheaper_points": 11,
         "dearer_points": 43,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2022-04-29"
       },
@@ -1024,9 +1020,11 @@
         "high": null,
         "negative_points": 29,
         "median_yield_pct": -0.002,
-        "percentile": 19.1,
-        "cheaper_points": 10,
-        "dearer_points": 44,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 29 of 55 month-ends",
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2022-04-29"
       },
@@ -1039,29 +1037,32 @@
         "high": null,
         "negative_points": 55,
         "median_yield_pct": -2.533,
-        "percentile": 4.5,
-        "cheaper_points": 2,
-        "dearer_points": 52,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 55 of 55 month-ends",
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2022-04-29"
       }
     },
     "vs_own_history": {
       "label": "cheap",
-      "text": "cheap against its own history",
+      "text": "cheap against its own history (P/FCF and EV/EBIT not comparable)",
       "multiples": {
         "price_to_sales": {
           "label": "cheap",
           "phrase": "cheaper than at 43 of the last 55 month-ends"
         },
         "price_to_fcf": {
-          "label": "cheap",
-          "phrase": "cheaper than at 44 of the last 55 month-ends"
+          "label": null,
+          "phrase": "not comparable (negative in 29 of 55 month-ends)",
+          "not_comparable": "negative in 29 of 55 month-ends"
         },
         "ev_to_ebit": {
-          "label": "cheap",
-          "phrase": "cheaper than at 52 of the last 55 month-ends",
-          "note": "EBIT is zero or negative now, so there is no EV/EBIT multiple; the comparison ranks the EBIT yield (55 of the 55 month-ends were zero or negative too)"
+          "label": null,
+          "phrase": "not comparable (negative now and in 55 of 55 month-ends)",
+          "not_comparable": "negative now and in 55 of 55 month-ends"
         }
       }
     }
@@ -1338,7 +1339,7 @@
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:27Z",
-      "archived": "data/stocks/runs/GTLB/2026-10-15T091914Z.json",
+      "archived": "data/stocks/runs/GTLB/2026-10-15T100936Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1362,19 +1363,19 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "GitLab rates Hold at 64, one point below Buy, with strong trend and cash offset by losses and valuation.",
-    "thesis": "GitLab scores 64, a Hold that sits just 1 point under the Buy line at 65, so confidence is Medium. The strongest supports are a debt-free, net-cash balance sheet (score 100) and a strong price trend (score 88), with shares 61.46% above their 200-day average and only 5.09% off their 52-week high. Growth is solid but easing (score 68), with quarterly revenue up 21.31% year on year against 22.99% over the trailing twelve months. Quality is middling (score 49): gross margin is 85.75% and FCF margin 20.25%, but the operating margin is -8.55% and stock-based pay equals 21.79% of revenue. Valuation scores 46. In absolute terms the multiples are high, with P/S at 8.499, P/FCF at 41.972 and an FCF yield 2.827 points below the 10-year Treasury, yet the stock is cheap against its own history, cheaper than at 43 of the last 55 month-ends on P/S.",
+    "headline": "GitLab rates Hold: strong trend, net cash and steady growth offset by high absolute valuation and GAAP losses.",
+    "thesis": "GitLab scores 60, a Hold with high confidence, 5 points below the Buy threshold of 65. Strengths are a net-cash balance sheet (score 100), a strong price trend (score 88, 61.46% above its 200-day average and 5.09% off its 52-week high) and solid growth (score 68, revenue up 21.31% year on year last quarter, though 1.84 points slower than the trailing-twelve-month pace of 22.99%). Quality is middling at 49: the gross margin of 85.75% and FCF margin of 20.25% are good, but the operating margin is -8.55% and stock-based pay equals 21.79% of revenue. Valuation scores only 28 because absolute multiples are high (P/S of 8.499, P/FCF of 41.972, and an FCF yield 2.827 points below the 10-year Treasury), even though it is cheap against its own history on P/S, \"cheaper than at 43 of the last 55 month-ends\", with P/FCF and EV/EBIT not comparable. News risk is neutral at 52: a modest product positive is offset by insider selling.",
     "key_risks": [
-      "GAAP operating losses continue (operating margin -8.55%), so there is no EV/EBIT multiple.",
-      "Heavy stock-based compensation (21.79% of revenue) and 1.66% yearly share dilution.",
-      "Revenue growth is slowing (acceleration of -1.84 points).",
-      "Insider selling by the CTO and co-founder Sijbrandij, with no insider purchases.",
-      "After a sharp run-up (61.46% above the 200-day average), the price is exposed to a pullback; derivative lawsuits are still pending with unknown status."
+      "Revenue growth is decelerating (-1.84 points vs. the trailing pace), which could pressure a high absolute multiple.",
+      "GAAP operating losses (-8.55% margin) and heavy stock-based pay (21.79% of revenue) with 1.66% annual dilution.",
+      "The stock is up sharply (14.27% above its 50-day average), so a trend reversal could cut the trend score quickly.",
+      "Open-market insider sales by the CTO and co-founder, with no insider purchases.",
+      "Competition in AI-driven developer tools; derivative lawsuits remain with unknown status."
     ],
     "what_would_change": [
-      "A gain of just 1 point in the composite score, for example from improving operating margin or re-accelerating growth, would move the rating to Buy.",
-      "Fresh positive news on guidance or analyst actions could lift the news-risk score (52) enough to cross the Buy edge.",
-      "A drop to Sell would need a 20-point fall to below 45, such as a sharp trend reversal combined with weaker growth or quality."
+      "Up to Buy: a 5-point gain in the composite, e.g. from re-accelerating growth, improving operating margin lifting quality, or a lower absolute valuation.",
+      "Down toward Sell (16 points away): a sharp reversal in the strong trend score combined with further growth slowdown or negative news such as guidance cuts.",
+      "A move to positive operating income would make EV/EBIT measurable and likely improve both quality and valuation scores."
     ]
   },
   "writeup_check": {
@@ -1390,14 +1391,14 @@
         "model": "claude-opus-5-5",
         "requests": 1,
         "input_tokens": 3063,
-        "output_tokens": 706,
+        "output_tokens": 770,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
             "input_tokens": 3063,
-            "output_tokens": 706,
+            "output_tokens": 770,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1408,12 +1409,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0264,
+        "cost_usd": 0.0277,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0264,
+    "total_usd": 0.0277,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1426,20 +1427,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 06:09",
+    "run_et": "2026-10-15 06:32",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38718161689",
+    "run_id": "38720937288",
     "tickers": [
-      "NVDA",
+      "PLTR",
       "GTLB",
-      "SHOP",
-      "INOD",
       "ORCL",
-      "PLTR"
+      "NVDA",
+      "INOD",
+      "SHOP",
+      "RBRK",
+      "ZS",
+      "TIC",
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -8975,6 +8984,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:32:47Z",
+      "ticker": "GTLB",
+      "rating": "Hold",
+      "score": "60",
+      "confidence": "High",
+      "growth": "68",
+      "quality": "49",
+      "balance_sheet": "100",
+      "valuation": "28",
+      "trend": "88",
+      "news_risk": "52",
+      "price": "53.16",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0277",
+      "overlay": "",
+      "quote_price": "53.16",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:27Z"
+    },
     {
       "timestamp": "2026-10-15T10:09:36Z",
       "ticker": "GTLB",

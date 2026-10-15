@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:19:32Z",
-  "generated_at": "2026-10-15T09:19:33+00:00",
+  "run_id": "2026-10-15T10:33:34Z",
+  "generated_at": "2026-10-15T10:33:35+00:00",
   "ticker": "MSGS",
   "sec_ticker": "MSGS",
   "cik": "0001636519",
@@ -18,35 +18,29 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 57,
-  "confidence": "Medium",
+  "score": 55,
+  "confidence": "High",
   "confidence_detail": {
-    "level": "Medium",
-    "points": 1.0,
-    "reasons": [
-      {
-        "issue": "missing_sub_metric",
-        "points": 1.0,
-        "text": "missing inputs: gross margin"
-      }
-    ],
+    "level": "High",
+    "points": 0,
+    "reasons": [],
     "factors_with_data": 6
   },
   "bands": {
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 8
+      "points": 10
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 13
+      "points": 11
     }
   },
   "composite": {
-    "score": 57,
-    "raw": 56.55,
+    "score": 55,
+    "raw": 55.15,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -94,10 +88,10 @@
     "quality": {
       "metrics": {
         "gross_margin_pct": {
-          "value": null,
-          "score": null,
+          "value": 27.74,
+          "score": 29.6,
           "weight": 0.2,
-          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+          "note": null
         },
         "operating_margin_pct": {
           "value": 2.5,
@@ -124,8 +118,8 @@
           "note": null
         }
       },
-      "coverage": 0.8,
-      "score": 50,
+      "coverage": 1.0,
+      "score": 46,
       "missing": null
     },
     "balance_sheet": {
@@ -186,14 +180,14 @@
           "note": "cheaper than now in 64.8% of 61 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
-          "value": 68.0,
-          "score": 32.0,
-          "weight": 0.15,
-          "note": "cheaper than now in 68% of 61 month-ends (ranked on yields)"
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 14 of 61 month-ends)"
         }
       },
       "coverage": 1.0,
-      "score": 15,
+      "score": 12,
       "missing": null
     },
     "trend": {
@@ -324,29 +318,48 @@
     "ttm_end": "2026-06-30",
     "revenue_ttm": 1153822000.0,
     "revenue_yoy_ttm": 11.03,
-    "gross_profit_ttm": null,
+    "gross_profit_ttm": 320120000.0,
     "operating_income_ttm": 28868000.0,
     "operating_cash_flow_ttm": 62663000.0,
     "capex_ttm": 1407000.0,
     "sbc_ttm": 21524000.0,
-    "gross_profit_source": null,
+    "gross_profit_source": "revenue - DirectOperatingCosts",
     "operating_income_source": "OperatingIncomeLoss",
     "fcf_ttm": 61256000.0,
-    "gross_margin_pct": null,
+    "gross_margin_pct": 27.74,
     "operating_margin_pct": 2.5,
     "fcf_margin_pct": 5.31,
     "capex_intensity_pct": 0.12,
     "sbc_pct_revenue": 1.87,
-    "missing_inputs": {
-      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
-    },
+    "missing_inputs": {},
     "prepayments": {
       "increase": 1130000.0,
       "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability + IncreaseDecreaseInDeferredRevenue",
-      "share_of_ocf": 0.018,
+      "base": 164840000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 11.03,
+      "expected": 18178050.537903413,
+      "excess": -17048050.537903413,
       "max_share_of_ocf": 0.25,
-      "applies": false
+      "applies": false,
+      "share_of_ocf": -0.2721
     },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 5.31,
+      "fcf_margin_year_earlier_pct": 8.47,
+      "median_margin_pct": 10.55,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 61256000.0,
+    "fcf_scored_margin_pct": 5.31,
     "balance_sheet": {
       "date": "2026-06-30",
       "cash": 164511000.0,
@@ -1063,6 +1076,10 @@
         "negative_points": 0,
         "median_yield_pct": 19.423,
         "percentile": 87.7,
+        "cheaper_points": 53,
+        "dearer_points": 7,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1076,6 +1093,10 @@
         "negative_points": 4,
         "median_yield_pct": 2.158,
         "percentile": 64.8,
+        "cheaper_points": 39,
+        "dearer_points": 21,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1088,9 +1109,32 @@
         "high": null,
         "negative_points": 14,
         "median_yield_pct": 1.742,
-        "percentile": 68.0,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 14 of 61 month-ends",
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 53 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 21, more expensive than at 39)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative in 14 of 61 month-ends)",
+          "not_comparable": "negative in 14 of 61 month-ends"
+        }
       }
     }
   },
@@ -1279,13 +1323,14 @@
         }
       }
     },
-    "reused_from": "2026-10-14T20:56:19Z"
+    "reused_from": "2026-10-14T20:56:19Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-14T20:56:19Z",
-      "archived": "data/stocks/runs/MSGS/2026-10-14T205619Z.json",
+      "archived": "data/stocks/runs/MSGS/2026-10-15T091932Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1309,36 +1354,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "MSGS rates Hold: strong growth and momentum offset by a very stretched valuation ahead of the Rangers spin-off.",
-    "thesis": "Madison Square Garden Sports scores 57, a Hold, sitting 8 points below the Buy band and 13 above Sell. Growth (85) is the standout, with quarterly revenue up 36.67% year over year against 11.03% on a trailing basis, and trend (81) is strong, with 12-1 month momentum of 79.77% and the price just 2.94% off its 52-week high. Valuation (15) is the main drag: the stock trades at 8.494 times sales, 159.988 times free cash flow and 342.74 times EV/EBIT, and price-to-sales has been cheaper in 87.7% of the last 61 month-ends. Quality is middling at 50, with a 2.5% operating margin and 5.31% FCF margin, while the balance sheet scores a reasonable 69 (net debt 1.53 times FCF). Confidence is Medium because gross margin data is missing, and news is neutral at 50.",
+    "headline": "MSG Sports rates Hold: strong growth and price trend offset by a very high absolute valuation.",
+    "thesis": "MSG Sports scores 55, a Hold with high confidence, sitting 10 points below Buy and 11 points above Sell. Growth (85) is the strongest factor, with quarterly revenue up 36.67% year on year against 11.03% on a trailing basis, and the trend factor (81) reflects a share price 14.98% above its 200-day average, 12-1 month momentum of 79.77% and only a 2.94% drawdown from its 52-week high. Valuation (12) is the main drag: in absolute terms the multiples are high, at 8.494 times sales, 159.988 times free cash flow and 342.74 times EBIT, with a free cash flow yield 4.585 points below the 10-year Treasury. Against its own history the stock is labelled expensive overall: it is \"more expensive than at 53 of the last 61 month-ends\" on P/S, \"near the middle of the last 61 month-ends (cheaper than at 21, more expensive than at 39)\" on P/FCF, and EV/EBIT is \"not comparable (negative in 14 of 61 month-ends)\". Quality is middling at 46, with thin margins (2.5% operating, 5.31% FCF), while the balance sheet (69) is reasonable and news risk is neutral at 50.",
     "key_risks": [
-      "Valuation is extreme on earnings and cash flow (EV/EBIT 342.74, P/FCF 159.988), leaving little room for disappointment.",
-      "The Rangers spin-off, expected around 2026-10-26, will change the company's structure and make current figures less comparable.",
-      "Thin operating margin of 2.5% means profits are sensitive to player costs and league economics.",
-      "After a 79.77% 12-1 month run, momentum could reverse quickly.",
-      "News ratings were reused from the prior run and not refreshed, and gross margin data is missing."
+      "Absolute valuation is high: 159.988x free cash flow and 342.74x EBIT leave little room for disappointment.",
+      "Thin operating margin of 2.5% means small cost or revenue swings can move profits sharply.",
+      "The Rangers spin-off expected on 2026-10-26 will change the company's structure and the comparability of its figures.",
+      "After 79.77% momentum, the strong trend score could reverse quickly if sentiment turns.",
+      "News ratings were reused from the 2026-10-14 run and not refreshed this run."
     ],
     "what_would_change": [
-      "An 8-point gain in the composite to 65 would reach Buy, most plausibly via a better valuation score (now 15) from a lower price or higher earnings and cash flow.",
-      "Improved operating or FCF margins lifting quality above 50 would help close the gap to Buy.",
-      "A 13-point drop to below 45 would mean Sell, for example if growth (85) or trend (81) fade sharply after the spin-off.",
-      "Negative news after the spin-off, such as guidance cuts or analyst downgrades, would pull the news score below its neutral 50."
+      "A rise of 10 points in the composite score to 65 would move the rating to Buy, most plausibly from a lower valuation or better margins lifting quality from 46.",
+      "A drop of 11 points to below 45 would move it to Sell, for example if the trend score (81) or growth score (85) fell back sharply.",
+      "Post-spin-off financials that change revenue growth, margins or multiples could shift several factors at once.",
+      "Negative news on guidance, analyst actions or the spin-off would pull the neutral news risk score (50) down."
     ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2603,
-        "output_tokens": 734,
+        "input_tokens": 2945,
+        "output_tokens": 822,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2603,
-            "output_tokens": 734,
+            "input_tokens": 2945,
+            "output_tokens": 822,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1349,12 +1401,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0251,
+        "cost_usd": 0.0282,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0251,
+    "total_usd": 0.0282,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1367,28 +1419,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:19",
+    "run_et": "2026-10-15 06:33",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38720937288",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
-      "NVDA",
-      "ORCL",
       "PLTR",
-      "RBRK",
+      "GTLB",
+      "ORCL",
+      "NVDA",
+      "INOD",
       "SHOP",
+      "RBRK",
+      "ZS",
       "TIC",
-      "ZS"
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -8966,6 +9018,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:33:34Z",
+      "ticker": "MSGS",
+      "rating": "Hold",
+      "score": "55",
+      "confidence": "High",
+      "growth": "85",
+      "quality": "46",
+      "balance_sheet": "69",
+      "valuation": "12",
+      "trend": "81",
+      "news_risk": "50",
+      "price": "404.1",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0282",
+      "overlay": "",
+      "quote_price": "404.1",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-14T20:56:19Z"
+    },
     {
       "timestamp": "2026-10-15T09:19:32Z",
       "ticker": "MSGS",

@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T10:09:58Z",
-  "generated_at": "2026-10-15T10:09:58+00:00",
+  "run_id": "2026-10-15T10:32:42Z",
+  "generated_at": "2026-10-15T10:32:43+00:00",
   "ticker": "PLTR",
   "sec_ticker": "PLTR",
   "cik": "0001321655",
@@ -18,7 +18,7 @@
   "llm": true,
   "rating": "Buy",
   "rating_before_overlay": "Buy",
-  "score": 71,
+  "score": 69,
   "confidence": "High",
   "confidence_detail": {
     "level": "High",
@@ -30,17 +30,17 @@
     "up": {
       "label": "Strong Buy",
       "at": 80,
-      "points": 9
+      "points": 11
     },
     "down": {
       "label": "Hold",
       "below": 65,
-      "points": 7
+      "points": 5
     }
   },
   "composite": {
-    "score": 71,
-    "raw": 71.4,
+    "score": 69,
+    "raw": 68.8,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -180,14 +180,14 @@
           "note": "cheaper than now in 64.8% of 61 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
-          "value": 7.9,
-          "score": 92.1,
-          "weight": 0.15,
-          "note": "cheaper than now in 7.9% of 57 month-ends (ranked on yields)"
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 21 of 57 month-ends)"
         }
       },
       "coverage": 1.0,
-      "score": 21,
+      "score": 8,
       "missing": null
     },
     "trend": {
@@ -1071,6 +1071,8 @@
         "percentile": 82.8,
         "cheaper_points": 50,
         "dearer_points": 10,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1086,6 +1088,8 @@
         "percentile": 64.8,
         "cheaper_points": 39,
         "dearer_points": 21,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1098,16 +1102,18 @@
         "high": null,
         "negative_points": 21,
         "median_yield_pct": 0.123,
-        "percentile": 7.9,
-        "cheaper_points": 4,
-        "dearer_points": 52,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 21 of 57 month-ends",
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": "2021-10-29"
       }
     },
     "vs_own_history": {
-      "label": "middle",
-      "text": "near the middle of its own history (the multiples disagree: P/S expensive, P/FCF middle, EV/EBIT cheap)",
+      "label": "expensive",
+      "text": "expensive against its own history (EV/EBIT not comparable)",
       "multiples": {
         "price_to_sales": {
           "label": "expensive",
@@ -1118,8 +1124,9 @@
           "phrase": "near the middle of the last 61 month-ends (cheaper than at 21, more expensive than at 39)"
         },
         "ev_to_ebit": {
-          "label": "cheap",
-          "phrase": "cheaper than at 52 of the last 57 month-ends"
+          "label": null,
+          "phrase": "not comparable (negative in 21 of 57 month-ends)",
+          "not_comparable": "negative in 21 of 57 month-ends"
         }
       }
     }
@@ -1456,20 +1463,13 @@
       }
     },
     "reused_from": "2026-10-15T07:28:28Z",
-    "caps_reapplied": [
-      {
-        "topic": "guidance",
-        "label": "Guidance changes",
-        "was": 1,
-        "now": 0
-      }
-    ]
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:28Z",
-      "archived": "data/stocks/runs/PLTR/2026-10-15T091941Z.json",
+      "archived": "data/stocks/runs/PLTR/2026-10-15T100958Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1493,24 +1493,24 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Palantir rates Buy on exceptional growth, margins and net cash, held back by very high absolute valuation.",
-    "thesis": "Palantir scores 71, a Buy with High confidence, driven by growth (98), with quarterly revenue up 92.83% year on year and accelerating by 8.12 points. Quality (86) and the balance sheet (100) add support: an 84.8% gross margin, a 42.8% operating margin, a 54.55% free cash flow margin and net cash with no debt. Trend is also strong (82): the stock is 31.75% above its 200-day average and only 3.87% below its 52-week high. The main drag is valuation (21). In absolute terms the multiples are very high: P/S of 83.859, P/FCF of 153.719 and EV/EBIT of 192.367, with a free cash flow yield 4.559 points below the 10-year Treasury. Against its own history, valuation is near the middle, and the multiples disagree: P/S is more expensive than at 50 of the last 61 month-ends, while EV/EBIT is cheaper than at 52 of the last 57 month-ends.",
+    "headline": "Palantir rates Buy on exceptional growth, margins and net cash, held back by a very high valuation.",
+    "thesis": "Palantir scores 69, a Buy with high confidence, driven by growth (98), with quarterly revenue up 92.83% year on year and accelerating by 8.12 points, and quality (86), with an 84.8% gross margin, 42.8% operating margin and 54.55% free cash flow margin. The balance sheet scores 100 thanks to net cash and no reported debt, and the trend score of 82 reflects a price 31.75% above its 200-day average and only 3.87% below its 52-week high. Valuation is the main drag at 8: in absolute terms the multiples are very high, at 83.859 times sales, 153.719 times free cash flow and 192.367 times EBIT, with a free cash flow yield 4.559 points below the 10-year Treasury. Against its own history the stock is labelled expensive overall (EV/EBIT not comparable): P/S is more expensive than at 50 of the last 61 month-ends, while P/FCF is near the middle of the last 61 month-ends (cheaper than at 21, more expensive than at 39). News risk is neutral-to-positive at 54, helped by mostly favourable analyst actions.",
     "key_risks": [
-      "Very high absolute multiples leave little room for any growth slowdown.",
-      "Government work is about half of revenue, and a UK parliamentary committee recommended using a break clause in the £330M NHS contract.",
-      "Stock-based compensation runs at 13.57% of revenue.",
-      "12-1 month momentum is slightly negative (-2.62%) despite the strong short-term trend.",
-      "News ratings were reused from an earlier run, and there has been no fresh guidance in the past 30 days."
+      "Very high absolute valuation leaves little room for any growth slowdown or guidance miss.",
+      "Government work is about half of revenue, exposing results to contract and budget decisions.",
+      "UK scrutiny, including a parliamentary committee recommendation to use a break clause in the £330M NHS contract.",
+      "Stock-based compensation at 13.57% of revenue, though dilution has been small at 0.23% a year.",
+      "12-1 month momentum is slightly negative at -2.62%, so the strong trend could fade."
     ],
     "what_would_change": [
-      "A 9-point rise in the score to 80 would lift the rating to Strong Buy, most plausibly through a better valuation score or more positive news.",
-      "A 7-point drop below 65 would cut the rating to Hold, for example if growth decelerates or the price trend weakens.",
-      "A guidance cut at the next earnings report, or a loss of the NHS contract, would weigh on the news-risk score of 54.",
-      "A sharp price fall would improve valuation but hurt the trend score of 82."
+      "A drop of 5 points in the composite score would move the rating down to Hold, for example from weaker trend or news scores.",
+      "A gain of 11 points would be needed for Strong Buy, which would most likely require a much better valuation score.",
+      "A slowdown in revenue growth or margin compression would cut the growth and quality scores that carry the rating.",
+      "Negative news, such as losing the NHS contract or a guidance cut, would lower the news risk score."
     ]
   },
   "writeup_check": {
-    "history_label": "middle",
+    "history_label": "expensive",
     "conflicts": [],
     "regenerated": false,
     "dropped": [],
@@ -1521,15 +1521,15 @@
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3095,
-        "output_tokens": 699,
+        "input_tokens": 3147,
+        "output_tokens": 743,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3095,
-            "output_tokens": 699,
+            "input_tokens": 3147,
+            "output_tokens": 743,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1540,12 +1540,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0264,
+        "cost_usd": 0.0274,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0264,
+    "total_usd": 0.0274,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1558,20 +1558,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 06:09",
+    "run_et": "2026-10-15 06:32",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38718161689",
+    "run_id": "38720937288",
     "tickers": [
-      "NVDA",
+      "PLTR",
       "GTLB",
-      "SHOP",
-      "INOD",
       "ORCL",
-      "PLTR"
+      "NVDA",
+      "INOD",
+      "SHOP",
+      "RBRK",
+      "ZS",
+      "TIC",
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -9149,6 +9157,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:32:42Z",
+      "ticker": "PLTR",
+      "rating": "Buy",
+      "score": "69",
+      "confidence": "High",
+      "growth": "98",
+      "quality": "86",
+      "balance_sheet": "100",
+      "valuation": "8",
+      "trend": "82",
+      "news_risk": "54",
+      "price": "200.97",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0274",
+      "overlay": "",
+      "quote_price": "200.97",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:28Z"
+    },
     {
       "timestamp": "2026-10-15T10:09:58Z",
       "ticker": "PLTR",

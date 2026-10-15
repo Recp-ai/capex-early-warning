@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:20:08Z",
-  "generated_at": "2026-10-15T09:20:08+00:00",
+  "run_id": "2026-10-15T10:33:14Z",
+  "generated_at": "2026-10-15T10:33:15+00:00",
   "ticker": "TIC",
   "sec_ticker": "TIC",
   "cik": "0002032966",
@@ -346,10 +346,32 @@
     "prepayments": {
       "increase": 493000.0,
       "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
-      "share_of_ocf": 0.0072,
+      "base": null,
+      "base_date": null,
+      "revenue_growth_pct": null,
+      "expected": null,
+      "excess": null,
       "max_share_of_ocf": 0.25,
-      "applies": false
+      "applies": false,
+      "share_of_ocf": null,
+      "note": "no contract-liability balance a year earlier: the excess over revenue growth can't be measured"
     },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 1.08,
+      "fcf_margin_year_earlier_pct": null,
+      "median_margin_pct": 1.52,
+      "quarters": 6,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 22226000.0,
+    "fcf_scored_margin_pct": 1.08,
     "balance_sheet": {
       "date": "2026-06-30",
       "cash": 362420000.0,
@@ -481,6 +503,10 @@
         "negative_points": 0,
         "median_yield_pct": null,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
         "min_points": 24,
         "from": null
       },
@@ -494,6 +520,10 @@
         "negative_points": 0,
         "median_yield_pct": null,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": null
       },
@@ -507,8 +537,33 @@
         "negative_points": 0,
         "median_yield_pct": null,
         "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
         "min_points": 24,
         "from": null
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
       }
     }
   },
@@ -713,13 +768,14 @@
         }
       }
     },
-    "reused_from": "2026-10-14T21:00:57Z"
+    "reused_from": "2026-10-14T21:00:57Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-14T21:00:57Z",
-      "archived": "data/stocks/runs/TIC/2026-10-14T210057Z.json",
+      "archived": "data/stocks/runs/TIC/2026-10-15T092008Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -743,36 +799,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "TIC Solutions rates Sell: fast quarterly growth is outweighed by a stretched balance sheet, thin margins and weak trend.",
-    "thesis": "TIC Solutions scores 37, a Sell, sitting 8 points from both Hold (45) and Strong Sell (below 30). Growth is the bright spot at 64, with quarterly revenue up 86.14% year over year, though that pace slowed by 22.23 percentage points. The balance sheet scores just 11, with net debt at 56.26 times free cash flow and cash covering only 0.22 of debt. Quality (38) and valuation (17) are also weak: operating margin is -2.15%, FCF margin is 1.08%, the stock trades at 85.222 times FCF, and its FCF yield is 4.037 points below the 10-year Treasury. The trend score of 28 reflects a price below its 50- and 200-day averages, -24.63% 12-1 momentum and a 34.83% drawdown from its 52-week high. Confidence is Medium because TTM revenue growth, dilution data and valuation history are missing.",
+    "headline": "TIC Solutions rates Sell at 37: fast revenue growth, but heavy debt, thin cash flow and a weak trend.",
+    "thesis": "TIC scores 37, a Sell with Medium confidence, sitting 8 points from both Hold and Strong Sell. Growth is the strongest factor (64), with quarterly revenue up 86.14% year over year, though growth slowed by 22.23 percentage points. The balance sheet scores just 11: net debt is 56.26 times free cash flow and cash covers only 0.22 of debt. Valuation scores 17. In absolute terms P/S of 0.922 is low, but P/FCF of 85.222 is high, and EV/EBIT cannot be calculated because EBIT is negative. There is no comparison with its own history. Quality (38) is held back by a -2.15% operating margin and a 1.08% FCF margin, the trend (28) is weak with the stock 34.83% below its 52-week high, and news is neutral at 50.",
     "key_risks": [
-      "High leverage: net debt is 56.26 times free cash flow, with cash covering only 0.22 of debt.",
-      "Operating margin is negative (-2.15%) and FCF margin is thin (1.08%), which leaves little cushion.",
-      "Revenue growth is decelerating (-22.23 pp) and likely acquisition-driven, which raises integration risk from the August deals.",
-      "Weak price trend: a 34.83% drawdown from the 52-week high and negative 12-1 momentum.",
-      "Missing dilution and TTM data limit visibility, and the news ratings were not refreshed this run."
+      "High leverage: net debt is 56.26 times free cash flow, and cash covers only 0.22 of debt",
+      "Operating margin of -2.15% and FCF margin of 1.08% leave little cushion",
+      "Revenue growth is slowing, down 22.23 percentage points, and the August acquisitions add integration risk",
+      "Weak price trend: 12-1 momentum is -24.63% and the stock is 34.83% below its 52-week high",
+      "Confidence is limited because TTM revenue growth, dilution data and valuation history are missing"
     ],
     "what_would_change": [
-      "Up to Hold (8 points needed): improvement in the balance sheet (score 11) through debt reduction or stronger FCF, or a turn to positive operating margin that lifts quality (38).",
-      "Up: a price recovery above the moving averages that raises the trend score (28), or positive Q3 results and guidance news that move news risk above its neutral 50.",
-      "Down to Strong Sell (8-point drop): further growth deceleration that cuts the growth score (64), or negative Q3 or guidance news.",
-      "Down: a further fall in FCF that pushes leverage and valuation multiples higher."
+      "Up to Hold (8 points needed): stronger free cash flow that cuts net debt to FCF and lifts the balance sheet and valuation scores",
+      "Up: operating margin turning positive, which would improve quality and make EV/EBIT measurable",
+      "Down to Strong Sell (8-point drop): further slowing in growth, a worsening price trend, or negative guidance or other news at Q3 results",
+      "Confidence would change once TTM revenue, dilution data and 24 month-ends of valuation history become available"
     ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2539,
-        "output_tokens": 767,
+        "input_tokens": 2793,
+        "output_tokens": 685,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2539,
-            "output_tokens": 767,
+            "input_tokens": 2793,
+            "output_tokens": 685,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -783,12 +846,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0255,
+        "cost_usd": 0.0249,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0255,
+    "total_usd": 0.0249,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -801,28 +864,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:20",
+    "run_et": "2026-10-15 06:33",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38720937288",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
-      "NVDA",
-      "ORCL",
       "PLTR",
-      "RBRK",
+      "GTLB",
+      "ORCL",
+      "NVDA",
+      "INOD",
       "SHOP",
+      "RBRK",
+      "ZS",
       "TIC",
-      "ZS"
+      "NTAP",
+      "MSGS",
+      "META",
+      "GOOGL",
+      "MSFT"
     ]
   },
   "chart": [
@@ -3318,6 +3381,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:33:14Z",
+      "ticker": "TIC",
+      "rating": "Sell",
+      "score": "37",
+      "confidence": "Medium",
+      "growth": "64",
+      "quality": "38",
+      "balance_sheet": "11",
+      "valuation": "17",
+      "trend": "28",
+      "news_risk": "50",
+      "price": "8.68",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0249",
+      "overlay": "",
+      "quote_price": "8.68",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-14T21:00:57Z"
+    },
     {
       "timestamp": "2026-10-15T09:20:08Z",
       "ticker": "TIC",
