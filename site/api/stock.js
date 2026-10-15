@@ -6,8 +6,10 @@
 //   GET  /api/stock?lists -> the lists document from the STOCK_LISTS repo variable ({lists: []} if unset)
 //   POST /api/stock {passcode, action: "save_lists", lists, base_revision, force} -> validates and saves
 //                   the whole document (no dispatch; not counted in the ticker cap)
-//   GET  /api/stock?quotes=T1,T2 -> {T1: {price, as_of}, ...}: near-live Tiingo IEX quotes (tngoLast), one
-//                   request for all tickers, cached 5 minutes at the edge. Display only.
+//   GET  /api/stock?quotes=all -> {TICKER: {price, as_of}, ...}: near-live Tiingo IEX quotes (tngoLast) for
+//                   every ticker that is rated (site/data/stocks/index.json) or in STOCK_LISTS, in one request
+//                   (two past 100 tickers; the all-tickers endpoint past 200). One fixed URL, cached 5 minutes
+//                   at the edge, so Tiingo sees at most a fill per 5 minutes. Display only.
 // Vercel environment variables: RUN_PASSCODE, GITHUB_TOKEN (fine-grained, this repo only: Actions read and
 // write, Variables read and write), STOCK_PRICE_API_KEY (Tiingo; quotes only), optional GITHUB_REPO.
 // Never put a secret in a response, an error, or a log line.
@@ -29,7 +31,8 @@ const MAX_TICKERS_PER_DAY = 30;  // batch.max_tickers_per_day, counted across st
 const MAX_LISTS = 30;            // lists.max_lists
 const MAX_PER_LIST = 100;        // lists.max_tickers_per_list
 const MAX_LIST_BYTES = 40000;    // lists.max_bytes (GitHub's variable limit is 48 KB)
-const MAX_QUOTES = 100;          // prices.quotes_max_tickers
+const QUOTES_PER_REQUEST = 100;  // prices.quotes_max_tickers: tickers per iex/?tickers= request
+const MAX_QUOTE_REQUESTS = 2;    // more tickers than this many requests hold: the all-tickers endpoint
 const LISTS_VAR = "STOCK_LISTS";
 const LISTS_VERSION = 1;
 const MODEL_RE = /^claude-[a-z0-9.-]+$/;
@@ -291,24 +294,51 @@ function parseQuotes(data, tickers) {
   return out;
 }
 
-async function handleQuotes(raw, res) {
-  const parts = String(raw || "").split(",").map(s => s.trim()).filter(Boolean);
-  if (!parts.length) throw new Fail(400, "Give tickers: ?quotes=MSFT,NVDA");
-  const tickers = [];
-  for (const p of parts) {
-    const t = normalizeTicker(p);
-    if (!t) throw new Fail(400, `Invalid ticker "${p.slice(0, 12)}"`);
-    if (!tickers.includes(t)) tickers.push(t);
+// The tickers the page can show: rated ones (index.json, written by the stock workflow) and listed ones.
+// Nothing else is ever sent to Tiingo.
+async function ratedTickers(req) {
+  let index = null;
+  try { index = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "stocks", "index.json"), "utf8")); } catch (e) { /* not bundled */ }
+  const host = String(req.headers.host || "");
+  if (!index && /^[a-z0-9.-]+(:\d+)?$/i.test(host)) {
+    try {
+      const r = await fetch(`https://${host}/data/stocks/index.json`, { cache: "no-store" });
+      if (r.ok) index = await r.json();
+    } catch (e) { /* fall through */ }
   }
-  if (tickers.length > MAX_QUOTES) throw new Fail(400, `Too many tickers: ${tickers.length} (max ${MAX_QUOTES})`);
+  if (!index || !Array.isArray(index.tickers)) return null;
+  return index.tickers.map(e => normalizeTicker(e && e.ticker)).filter(Boolean);
+}
+
+async function listedTickers() {
+  if (!process.env.GITHUB_TOKEN) return null;
+  try { return (await readLists()).lists.flatMap(l => l.tickers); } catch (e) { return null; }
+}
+
+async function handleQuotes(req, res) {
+  // One fixed URL, so the edge cache bounds Tiingo use: anything else is refused before any upstream call.
+  const q = [...query(req).entries()];
+  if (q.length !== 1 || q[0][0] !== "quotes" || q[0][1] !== "all") throw new Fail(400, "Use ?quotes=all");
   if (!process.env.STOCK_PRICE_API_KEY) throw new Fail(503, "Live quotes are not set up: add STOCK_PRICE_API_KEY in Vercel, then redeploy");
-  tickers.sort();
-  // One request for every ticker; only if that form fails (not a rejected key or the rate limit), the
-  // all-tickers endpoint filtered here. Never one request per ticker.
-  let got = await iex(`${IEX}/?tickers=${tickers.map(tiingoSymbol).join(",")}`);
-  if (got.error && got.fallback) got = await iex(IEX);
+  const [rated, listed] = await Promise.all([ratedTickers(req), listedTickers()]);
+  if (!rated && !listed) throw new Fail(503, "Ticker list unavailable; try again shortly", "public, s-maxage=60");
+  const tickers = [...new Set([...(rated || []), ...(listed || [])])].sort();
+  if (!tickers.length) return send(res, 200, {}, "public, s-maxage=300");
+  // iex/?tickers= in chunks of 100 (one request for up to 100 tickers); beyond two chunks, or if that form
+  // fails (not a rejected key or the rate limit), the all-tickers endpoint once, filtered here.
+  const chunks = [];
+  for (let i = 0; i < tickers.length; i += QUOTES_PER_REQUEST) chunks.push(tickers.slice(i, i + QUOTES_PER_REQUEST));
+  let rows = [], got = { fallback: chunks.length > MAX_QUOTE_REQUESTS };
+  if (!got.fallback) {
+    for (const c of chunks) {
+      got = await iex(`${IEX}/?tickers=${c.map(tiingoSymbol).join(",")}`);
+      if (got.error) break;
+      rows = rows.concat(got.data);
+    }
+  }
+  if (got.fallback) { got = await iex(IEX); rows = got.data || []; }
   if (got.error) throw new Fail(got.status || 502, got.error, "public, s-maxage=60");
-  return send(res, 200, parseQuotes(got.data, tickers), "public, s-maxage=300");
+  return send(res, 200, parseQuotes(rows, tickers), "public, s-maxage=300");
 }
 
 // ---------------------------------------------------------------- runs
@@ -420,7 +450,7 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
       const q = query(req);
-      if (q.has("quotes")) return await handleQuotes(q.get("quotes"), res);
+      if (q.has("quotes")) return await handleQuotes(req, res);
       if (q.has("lists")) return await handleGetLists(res);
       return await handleStatus(req, res);
     }

@@ -223,9 +223,14 @@ run between 16:00 and 18:00 ET says so in its summary and email. The latest pric
 IEX endpoint: `tngoLast` (the official close once it prints; `last` needs an IEX entitlement and is
 ignored), `prevClose` and the timestamp, all tickers in **one request** (`iex/?tickers=a,b,c`; the
 all-tickers endpoint, filtered in code, only if that form fails). Each run stores
-`quote: {price, as_of, prev_close}`, never a score input. The page asks `api/stock?quotes=...` once on
-load and every 10 minutes while the tab is visible and US markets are open (9:30 am–4:15 pm ET); the
-function makes the one Tiingo request server-side and the response is cached at the edge for 5 minutes.
+`quote: {price, as_of, prev_close}`, never a score input. The page always asks one fixed URL,
+`api/stock?quotes=all`, once on load and every 10 minutes while the tab is visible and US markets are
+open (9:30 am–4:15 pm ET), and picks out the tickers it shows. The function quotes every ticker that is
+rated (`site/data/stocks/index.json`) or in `STOCK_LISTS`, so no other ticker can ever reach Tiingo: one
+`?tickers=` request up to 100 tickers, two up to 200, the all-tickers endpoint beyond. Any other query
+(`?quotes=MSFT`, extra parameters) is refused with 400 before any upstream call. The response is cached
+at the edge for 5 minutes (errors for 60 s), so a ticker added to a list since the last cache fill shows
+its stored close until the next refresh.
 
 **Cost.** A run makes four Claude calls: research (Sonnet, up to 8 searches), topic ratings, the
 write-up, and guidance extraction (Opus; once per earnings release, then cached). The first live run
@@ -247,9 +252,10 @@ series on paid plans. Yahoo Finance has no official API and often blocks cloud I
 requests an hour, 1,000 a day and 500 unique symbols a month, shared by runs and the page's quotes.
 A batch of n tickers uses n + 3 requests: SPY and QQQ once (plan), one daily history per ticker, and one
 quote request (collect); a full batch of 15 uses 18, and the 30-tickers-a-day cap at most 36 in a day.
-The page's quotes are one request per load or 10-minute refresh, and the 5-minute edge cache bounds them
-at 12 an hour for the same ticker set (6 an hour for one open tab while markets are open, none after
-hours beyond page loads). A heavy hour (one full batch plus a polling tab) is about 24 requests. If a
+The page's quotes come from one fixed, edge-cached URL, so Tiingo sees at most one cache fill per
+5 minutes however many tabs or devices are open: at most 12 requests an hour (24 past 100 rated or
+listed tickers; Vercel caches per region, so a second region could add as many). One open tab while
+markets are open is 6 an hour. A heavy hour (one full batch plus a polling tab) is about 24 requests. If a
 key is missing, rejected or rate-limited, valuation and trend are marked missing, confidence drops,
 and the run still completes; a failed quote only leaves the latest price at the stored close.
 
@@ -371,7 +377,7 @@ environment, marked Sensitive:
 | `GITHUB_TOKEN` | the token from step a |
 | `RUN_PASSCODE` | a long random passcode, e.g. the output of `openssl rand -base64 24` |
 | `GITHUB_REPO` | optional, `owner/name`; only if the Vercel project isn't linked to this repo |
-| `STOCK_PRICE_API_KEY` | optional, the Tiingo token: live prices on the stocks page (`api/stock.js?quotes=`) |
+| `STOCK_PRICE_API_KEY` | optional, the Tiingo token: live prices on the stocks page (`api/stock?quotes=all`) |
 
 **c. Redeploy**: Deployments → the latest production deployment → ⋯ → **Redeploy**. Environment
 variables only apply to new deployments.

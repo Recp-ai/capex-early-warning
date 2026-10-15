@@ -179,6 +179,10 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   `api/stock.js` equal to `config/stocks.yaml` (a test checks).
 - **Tiingo budget** (free tier ~50 requests/hour, shared): a batch of n costs n + 3; quotes are always ONE
   request for any number of tickers (`iex/?tickers=`, else the all-tickers endpoint), never one per ticker.
+  The page's quotes use one fixed URL, `GET api/stock?quotes=all` (anything else is a 400 before any
+  upstream call), cached `public, s-maxage=300` (errors 60 s): the function quotes only tickers that are
+  rated (`site/data/stocks/index.json`) or in `STOCK_LISTS` (one request up to 100, two up to 200, the
+  all-tickers endpoint beyond), so unknown tickers never reach Tiingo. Keep it that way.
 - **Append-only.** `data/stocks/runs/<TICKER>/<UTC timestamp>.json` is opened with mode "x";
   `data/stocks/ratings.csv` is only appended to (a new column goes on the end of `publish.RATING_FIELDS`,
   earlier rows stay byte for byte). Never hand-edit `data/stocks/` or `site/data/stocks/`.

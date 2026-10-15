@@ -60,16 +60,17 @@ def test_stock_workflow_plans_runs_one_job_per_ticker_and_collects_once():
 def test_function_limits_match_the_config():
     cfg = yaml.safe_load((ROOT / "config" / "stocks.yaml").read_text())
     js = (ROOT / "site" / "api" / "stock.js").read_text()
-    const = lambda name: int(re.search(rf"const {name} = (\d+);", js).group(1))  # noqa: E731
+    const = lambda name: int(re.search(rf"const {name} = +(\d+);", js).group(1))  # noqa: E731
     assert const("MAX_BATCH") == cfg["batch"]["max_batch"] == 15
     assert const("MAX_TICKERS_PER_DAY") == cfg["batch"]["max_tickers_per_day"] == 30
     assert const("MAX_LISTS") == cfg["lists"]["max_lists"] == 30
     assert const("MAX_PER_LIST") == cfg["lists"]["max_tickers_per_list"] == 100
     assert const("MAX_LIST_BYTES") == cfg["lists"]["max_bytes"] and cfg["lists"]["max_bytes"] <= 45000  # GitHub's limit: 48 KB
-    assert const("MAX_QUOTES") == cfg["prices"]["quotes_max_tickers"] == 100
+    assert const("QUOTES_PER_REQUEST") == cfg["prices"]["quotes_max_tickers"] == 100 and const("MAX_QUOTE_REQUESTS") == 2
     assert cfg["batch"]["max_parallel"] == 5 and cfg["page"]["stale_after_days"] == 14
     page = (ROOT / "site" / "stocks.html").read_text()
     assert "const MAX_LISTS = 30, MAX_PER_LIST = 100;" in page
+    assert page.count("quotes=") == 1 and 'fetch("api/stock?quotes=all")' in page  # the one cacheable quote URL
 
 
 def test_capex_workflow_runs_only_the_capex_tests():
@@ -115,6 +116,7 @@ let variable = world.variable === undefined ? null : world.variable;
 global.fetch = async (url, opts = {}) => {
   const h = opts.headers || {};
   calls.push({ url, method: opts.method || "GET", body: opts.body ? JSON.parse(opts.body) : null, auth: h.Authorization });
+  if (url === "https://localhost/data/stocks/index.json") return world.hostIndex ? resp(200, world.hostIndex) : resp(404, null);
   if (url.startsWith("https://api.tiingo.com/iex")) {
     const form = url.includes("?tickers=") ? "tickers" : "all";
     const mode = (world.iex || {})[form] || "ok";
@@ -126,6 +128,7 @@ global.fetch = async (url, opts = {}) => {
   if (url.includes("/actions/variables")) {
     if (opts.method === "PATCH") { if (variable === null) return resp(404, { message: "Not Found" }); variable = JSON.parse(opts.body).value; return resp(204, null); }
     if (opts.method === "POST") { variable = JSON.parse(opts.body).value; return resp(201, null); }
+    if (world.variableStatus) return resp(world.variableStatus, { message: "Server Error" });
     return variable === null ? resp(404, { message: "Not Found" }) : resp(200, { name: "STOCK_LISTS", value: variable });
   }
   if (/\/actions\/runs\/\d+\/jobs/.test(url)) return resp(200, { jobs: world.jobs || [] });
@@ -151,9 +154,16 @@ const call = (method, url, body) => new Promise(resolve => {
 """
 
 
-def run_function(tmp_path, cases, **world):
+def run_function(tmp_path, cases, index=None, **world):
+    """index: the rated tickers bundled with the function (data/stocks/index.json under its working dir)."""
     h = tmp_path / "harness.js"
     h.write_text(HARNESS)
+    bundled = tmp_path / "data" / "stocks" / "index.json"
+    if index is not None:
+        bundled.parent.mkdir(parents=True, exist_ok=True)
+        bundled.write_text(json.dumps({"tickers": [{"ticker": t} for t in index]}))
+    elif bundled.exists():
+        bundled.unlink()
     p = subprocess.run([NODE, str(h), str(ROOT / "site" / "api" / "stock.js"), json.dumps(world), json.dumps(cases)],
                        capture_output=True, text=True, cwd=tmp_path, timeout=60)
     assert p.returncode == 0, p.stderr
@@ -302,30 +312,64 @@ def test_function_refuses_a_stale_lists_save_unless_forced(tmp_path):
     assert r["out"]["broken"]["body"]["lists"] == [] and "saving replaces it" in r["out"]["broken"]["body"]["error"]
 
 
-@node
-def test_function_quotes_all_tickers_in_one_tiingo_request(tmp_path):
-    rows = [{"ticker": "TIC", "tngoLast": 8.68, "last": None, "prevClose": 9.12, "timestamp": "2026-10-14T20:00:00+00:00"},
+IEX_ROWS = [{"ticker": "TIC", "tngoLast": 8.68, "last": None, "prevClose": 9.12, "timestamp": "2026-10-14T20:00:00+00:00"},
             {"ticker": "BRK-B", "tngoLast": 480.1, "last": 481, "prevClose": 479, "timestamp": "2026-10-14T19:59:00.123+00:00"},
             {"ticker": "NODATA", "tngoLast": None, "timestamp": "2026-10-14T20:00:00+00:00"},
             {"ticker": "AAPL", "tngoLast": 230.0, "timestamp": "2026-10-14T20:00:00+00:00"}]
-    r = run_function(tmp_path, [["ok", "GET", "/api/stock?quotes=tic,BRK.B,NODATA,TIC", None]], iexRows=rows)
+
+
+def tiingo_urls(r):
+    return [c["url"] for c in r["calls"] if "tiingo" in c["url"]]
+
+
+@node
+def test_function_quotes_every_rated_and_listed_ticker_at_one_fixed_url(tmp_path):
+    lists = lists_doc(("a", "A", ["NODATA", "TIC"]), ("b", "B", ["BRK.B"]))
+    r = run_function(tmp_path, [["ok", "GET", "/api/stock?quotes=all", None]], index=["TIC", "MSFT"], variable=lists, iexRows=IEX_ROWS)
     ok = r["out"]["ok"]
     assert ok["status"] == 200 and ok["cache"] == "public, s-maxage=300"
     assert ok["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}, "BRK.B": {"price": 480.1, "as_of": "2026-10-14T19:59:00Z"}}
-    assert [c["url"] for c in r["calls"]] == ["https://api.tiingo.com/iex/?tickers=brk-b,nodata,tic"]  # one request, sorted
-    assert r["calls"][0]["auth"] == "Token tiingo-KEY-SECRET" and "SECRET" not in r["calls"][0]["url"]
-    # the ?tickers= form failing falls back to the all-tickers endpoint once; a rejected key or the rate limit does not
-    r = run_function(tmp_path, [["fallback", "GET", "/api/stock?quotes=TIC", None]], iexRows=rows, iex={"tickers": "404"})
-    assert r["out"]["fallback"]["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}}
-    assert [c["url"] for c in r["calls"]] == ["https://api.tiingo.com/iex/?tickers=tic", "https://api.tiingo.com/iex"]
-    for code, status, msg in (("401", 502, "rejected the key"), ("429", 503, "rate limit")):
-        r = run_function(tmp_path, [["e", "GET", "/api/stock?quotes=TIC", None]], iex={"tickers": code})
-        assert r["out"]["e"]["status"] == status and msg in r["out"]["e"]["body"]["error"] and len(r["calls"]) == 1
-        assert r["out"]["e"]["cache"] == "public, s-maxage=60"
-    r = run_function(tmp_path, [["bad", "GET", "/api/stock?quotes=MSFT,1BAD", None],
-                                ["many", "GET", "/api/stock?quotes=" + ",".join(f"T{i}" for i in range(101)), None],
-                                ["none", "GET", "/api/stock?quotes=", None]])
-    assert r["out"]["bad"]["status"] == 400 and r["out"]["many"]["body"]["error"] == "Too many tickers: 101 (max 100)"
-    assert r["out"]["none"]["status"] == 400 and not r["calls"]
-    r = run_function(tmp_path, [["nokey", "GET", "/api/stock?quotes=MSFT", None]], key=None)
+    # one request for the rated and listed tickers, sorted; AAPL (in Tiingo's reply, but neither rated nor listed) is dropped
+    assert tiingo_urls(r) == ["https://api.tiingo.com/iex/?tickers=brk-b,msft,nodata,tic"]
+    tiingo = next(c for c in r["calls"] if "tiingo" in c["url"])
+    assert tiingo["auth"] == "Token tiingo-KEY-SECRET" and "SECRET" not in tiingo["url"]
+    # without a bundled index.json the function reads the deployed one from its own host
+    r = run_function(tmp_path, [["host", "GET", "/api/stock?quotes=all", None]], hostIndex={"tickers": [{"ticker": "TIC"}, {"ticker": "bad ticker"}]})
+    assert tiingo_urls(r) == ["https://api.tiingo.com/iex/?tickers=tic"]  # invalid entries never reach Tiingo
+    # STOCK_LISTS unreadable: the rated tickers are still quoted; neither source: refused, cached briefly
+    r = run_function(tmp_path, [["rated", "GET", "/api/stock?quotes=all", None]], index=["TIC"], variableStatus=500, iexRows=IEX_ROWS)
+    assert r["out"]["rated"]["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}}
+    r = run_function(tmp_path, [["none", "GET", "/api/stock?quotes=all", None]], variableStatus=500)
+    assert r["out"]["none"]["status"] == 503 and r["out"]["none"]["cache"] == "public, s-maxage=60" and not tiingo_urls(r)
+    r = run_function(tmp_path, [["empty", "GET", "/api/stock?quotes=all", None]], index=[])
+    assert r["out"]["empty"] == {"status": 200, "body": {}, "cache": "public, s-maxage=300"} and not tiingo_urls(r)
+
+
+@node
+def test_function_refuses_any_other_quote_url_before_calling_anyone(tmp_path):
+    bad = ["/api/stock?quotes=MSFT", "/api/stock?quotes=MSFT,NVDA", "/api/stock?quotes=", "/api/stock?quotes=ALL",
+           "/api/stock?quotes=all&x=1", "/api/stock?quotes=all&quotes=all", "/api/stock?v=1&quotes=all", "/api/stock?quotes"]
+    r = run_function(tmp_path, [[u, "GET", u, None] for u in bad], index=["TIC"], iexRows=IEX_ROWS)
+    for u in bad:
+        assert r["out"][u]["status"] == 400 and r["out"][u]["body"] == {"error": "Use ?quotes=all"}, u
+    assert not r["calls"]  # neither Tiingo nor GitHub
+    r = run_function(tmp_path, [["nokey", "GET", "/api/stock?quotes=all", None]], index=["TIC"], key=None)
     assert r["out"]["nokey"]["status"] == 503 and "STOCK_PRICE_API_KEY" in r["out"]["nokey"]["body"]["error"] and not r["calls"]
+
+
+@node
+def test_function_splits_past_100_tickers_and_falls_back_to_the_all_tickers_endpoint(tmp_path):
+    many = [f"T{i:03d}" for i in range(150)]
+    r = run_function(tmp_path, [["two", "GET", "/api/stock?quotes=all", None]], index=many)
+    urls = tiingo_urls(r)
+    assert len(urls) == 2 and urls[0].count(",") == 99 and urls[1].count(",") == 49
+    r = run_function(tmp_path, [["all", "GET", "/api/stock?quotes=all", None]], index=[f"T{i:03d}" for i in range(201)], iexRows=IEX_ROWS)
+    assert tiingo_urls(r) == ["https://api.tiingo.com/iex"]  # past two requests: the all-tickers endpoint once
+    # the ?tickers= form failing falls back to the all-tickers endpoint once; a rejected key or the rate limit does not
+    r = run_function(tmp_path, [["fallback", "GET", "/api/stock?quotes=all", None]], index=["TIC"], iexRows=IEX_ROWS, iex={"tickers": "404"})
+    assert r["out"]["fallback"]["body"] == {"TIC": {"price": 8.68, "as_of": "2026-10-14T20:00:00Z"}}
+    assert tiingo_urls(r) == ["https://api.tiingo.com/iex/?tickers=tic", "https://api.tiingo.com/iex"]
+    for code, status, msg in (("401", 502, "rejected the key"), ("429", 503, "rate limit")):
+        r = run_function(tmp_path, [["e", "GET", "/api/stock?quotes=all", None]], index=["TIC"], iex={"tickers": code})
+        assert r["out"]["e"]["status"] == status and msg in r["out"]["e"]["body"]["error"] and len(tiingo_urls(r)) == 1
+        assert r["out"]["e"]["cache"] == "public, s-maxage=60"

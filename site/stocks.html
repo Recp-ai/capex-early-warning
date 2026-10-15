@@ -560,8 +560,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     } catch (e) { /* network error */ }
     if (res && res.ok) {
       state.lists = data; state.draft = clone(data.lists || []); state.listsError = null; renderLists();
-      if (quoteTickers().some(t => !state.quotes[t])) loadQuotes(); // newly listed tickers: one more quote request
-      return;
+      return; // a newly listed ticker shows its stored close until the next quote refresh
     }
     const m = $("#l-save-msg");
     if (!m) return;
@@ -981,19 +980,12 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
 
   // ---------------------------------------------------------------- near-live quotes (display only)
   let quotesOff = false;
-  function quoteTickers() {
-    const set = new Set(rated().map(e => e.ticker));
-    for (const l of state.draft || []) for (const t of l.tickers) set.add(t);
-    let list = [...set].sort();
-    if (list.length > 100) list = viewRows().map(e => e.ticker).slice(0, 100).sort(); // the API takes 100 per request
-    return list;
-  }
   async function loadQuotes() {
-    const list = quoteTickers();
-    if (!list.length || quotesOff) return;
+    if (quotesOff || (!rated().length && !(state.draft || []).some(l => l.tickers.length))) return;
     state.quotesAt = Date.now();
-    // One request for every ticker on the page; the same URL is cached 5 minutes at the edge.
-    const r = await fetch("api/stock?quotes=" + list.join(",")).catch(() => null);
+    // Always the one fixed URL (cached 5 minutes at the edge): quotes for every rated or listed ticker, as
+    // of the last cache fill; each view picks out the tickers it shows.
+    const r = await fetch("api/stock?quotes=all").catch(() => null);
     if (!r) return;
     const data = await r.json().catch(() => null);
     if (!r.ok) { if (r.status === 404 || (data && /not set up/.test(data.error || ""))) quotesOff = true; return; }
