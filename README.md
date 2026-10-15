@@ -274,8 +274,13 @@ expensive, or calls a not-comparable multiple either, gets the write-up regenera
 named; a sentence still in conflict is dropped, and Run details on the page (and the email) say so.
 
 **Write-up precision.** The write-up's input is rounded (the stored data is not): multiples to one decimal
-(8.5x), percentages and percentage points to one decimal (12.3%, −4.1 pp), as the page shows them;
-dollar amounts and the balance-sheet ratios as stored. The prompt tells Claude to keep that precision.
+(8.5x), percentages and percentage points to one decimal (12.3%, 4.1 pp), as the page shows them;
+dollar amounts and the balance-sheet ratios as stored. Signed changes and gaps (revenue growth, growth
+acceleration, dilution, FCF yield vs the 10-year, the trend inputs) go as a direction word plus the size,
+never a signed number: "growth slowed by 1.1 pp from the previous quarter", "FCF yield 3.9 pp below the
+10-year Treasury yield", "58.3% below its 52-week high" (`run.SIGNED`), so the note can't say "slowed by
+−1.1 pp". Levels such as margins stay numbers. The prompt tells Claude to keep that precision and that
+form.
 
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,

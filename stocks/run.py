@@ -78,27 +78,57 @@ def topic_brief(ticker, name, sector, s, val, tr, fs, g, ctx) -> dict:
 # (stored to 2 decimals), news ratings and dollar amounts go as they are.
 ONE_DECIMAL = {*scoring.SUB["growth"], *scoring.SUB["quality"], *scoring.SUB["trend"],
                "price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp"}
+# Signed changes and gaps go as a direction word plus the size, never a signed number, so the write-up can't
+# say "slowed by -1.1 pp" or "-3.9 pp below the 10-year": (positive, negative, zero after rounding); {x} is the
+# size to 1 decimal, {days} the relative-strength window. Levels (margins, multiples) stay numbers.
+SIGNED = {
+    "revenue_yoy_q": ("up {x}% year on year", "down {x}% year on year", "flat year on year"),
+    "revenue_yoy_ttm": ("up {x}% year on year", "down {x}% year on year", "flat year on year"),
+    "acceleration_pp": ("growth sped up by {x} pp from the previous quarter", "growth slowed by {x} pp from the previous quarter",
+                        "growth unchanged from the previous quarter"),
+    "dilution_yoy_pct": ("diluted shares up {x}% year on year", "diluted shares down {x}% year on year",
+                         "diluted shares flat year on year"),
+    "fcf_yield_vs_10y_pp": ("FCF yield {x} pp above the 10-year Treasury yield", "FCF yield {x} pp below the 10-year Treasury yield",
+                            "FCF yield level with the 10-year Treasury yield"),
+    "vs_ma50_pct": ("{x}% above its 50-day average", "{x}% below its 50-day average", "at its 50-day average"),
+    "vs_ma200_pct": ("{x}% above its 200-day average", "{x}% below its 200-day average", "at its 200-day average"),
+    "momentum_12_1_pct": ("up {x}% from 12 months ago to 1 month ago", "down {x}% from 12 months ago to 1 month ago",
+                          "flat from 12 months ago to 1 month ago"),
+    "rs_spy_pp": ("{x} pp ahead of SPY over the last {days} trading days", "{x} pp behind SPY over the last {days} trading days",
+                  "level with SPY over the last {days} trading days"),
+    "rs_qqq_pp": ("{x} pp ahead of QQQ over the last {days} trading days", "{x} pp behind QQQ over the last {days} trading days",
+                  "level with QQQ over the last {days} trading days"),
+    "drawdown_52w_pct": ("{x}% above its 52-week high", "{x}% below its 52-week high", "at its 52-week high"),
+}
 
 
-def brief_value(k: str, v):
-    """A factor input as the write-up gets it: rounded to 1 decimal when `k` is in ONE_DECIMAL."""
-    return round(v, 1) if k in ONE_DECIMAL and isinstance(v, (int, float)) and not isinstance(v, bool) else v
+def brief_value(k: str, v, days: int = 126):
+    """A factor input as the write-up gets it: a signed change in words with its size (SIGNED), else rounded to
+    1 decimal when `k` is in ONE_DECIMAL, else as stored."""
+    if not isinstance(v, (int, float)) or isinstance(v, bool):
+        return v
+    if k in SIGNED:
+        x = round(v, 1)
+        up, down, flat = SIGNED[k]
+        return (flat if x == 0 else up if x > 0 else down).format(x=f"{abs(x):.1f}", days=days)
+    return round(v, 1) if k in ONE_DECIMAL else v
 
 
-def _factor_brief(k: str, f: dict) -> dict:
+def _factor_brief(k: str, f: dict, days: int = 126) -> dict:
     ms = f.get("metrics") or {}
     if k == "valuation":  # the history comparison goes in words only (vs_own_history), never as a percentile
         ms = {m: v for m, v in ms.items() if not m.endswith("_percentile")}
     return {"score": f.get("score"), "missing": f.get("missing"),
-            "inputs": {m: brief_value(m, v.get("value")) for m, v in ms.items()},
+            "inputs": {m: brief_value(m, v.get("value"), days) for m, v in ms.items()},
             "notes": {m: v["note"] for m, v in ms.items() if v.get("note")}}
 
 
 def writeup_brief(r: dict) -> dict:
     fs = r["factors"]
-    factors = {k: _factor_brief(k, fs[k]) for k in scoring.FACTORS}
+    days = int((r.get("trend") or {}).get("rs_days") or 126)
+    factors = {k: _factor_brief(k, fs[k], days) for k in scoring.FACTORS}
     val = r.get("valuation") or {}
-    factors["valuation"]["inputs_are"] = ("absolute levels today (P/S, P/FCF, EV/EBIT; FCF yield minus the 10-year "
+    factors["valuation"]["inputs_are"] = ("absolute levels today (P/S, P/FCF, EV/EBIT; FCF yield versus the 10-year "
                                           "Treasury yield), not a comparison with the company's own history")
     factors["valuation"]["vs_own_history"] = wording.brief(val.get("vs_own_history"), val.get("missing"))
     return {

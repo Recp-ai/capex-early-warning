@@ -296,27 +296,71 @@ def test_write_up_numbers_are_rounded_in_its_input_not_in_the_stored_data(sandbo
     assert run.main(["MSFT"]) == 0
     r = latest_run()
     brief = brief_of(fake.calls[3])
-    rounded = 0
+    days = r["trend"]["rs_days"]
+    rounded = phrased = 0
     for k, f in brief["factors"].items():
         for m, v in f["inputs"].items():
             stored = r["factors"][k]["metrics"][m]["value"]
-            if m in run.ONE_DECIMAL and stored is not None:
+            if m in run.SIGNED and stored is not None:  # a signed change: words plus its size, no signed number
+                assert v == run.brief_value(m, stored, days) and isinstance(v, str), (k, m)
+                assert f"{abs(round(stored, 1)):.1f}" in v or v == run.SIGNED[m][2].format(days=days), (k, m)
+                assert not re.search(r"-\d", v), (k, m, v)
+                phrased += 1
+            elif m in run.ONE_DECIMAL and stored is not None:
                 assert v == round(stored, 1), (k, m)
                 rounded += v != stored
             else:
                 assert v == stored, (k, m)  # balance-sheet ratios and news ratings as they are
-    assert rounded >= 5  # the synthetic company's percentages and multiples carry more decimals
+    assert phrased == 11 and rounded >= 3  # the synthetic company's margins and multiples carry more decimals
+    assert set(run.SIGNED) <= set(run.ONE_DECIMAL)
     assert set(run.ONE_DECIMAL) >= {"price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp", "revenue_yoy_q",
                                      "acceleration_pp", "operating_margin_pct", "rs_spy_pp", "drawdown_52w_pct"}
     assert "net_debt_to_fcf" not in run.ONE_DECIMAL and brief["price"] == r["price"]  # dollar amounts as now
     stored = [m["value"] for f in r["factors"].values() for m in (f.get("metrics") or {}).values()
               if isinstance(m.get("value"), float)]
     assert any(round(v, 1) != v for v in stored)  # the archive keeps full precision
-    assert run.brief_value("price_to_sales", 8.4523) == 8.5 and run.brief_value("revenue_yoy_q", -12.349) == -12.3
+    assert run.brief_value("price_to_sales", 8.4523) == 8.5 and run.brief_value("operating_margin_pct", -18.349) == -18.3
     assert run.brief_value("price_to_fcf", None) is None and run.brief_value("cash_to_debt", 0.34) == 0.34
     system = fake.calls[3]["system"]
     assert "multiples to one decimal (8.5x), percentages and\n  percentage points to one decimal" in system
     assert "Keep that precision" in system
+    assert "Changes and gaps come as a direction word plus a size" in system and "never put a minus sign on it" in system
+
+
+@pytest.mark.parametrize("key, value, words", [
+    ("acceleration_pp", -1.1, "growth slowed by 1.1 pp from the previous quarter"),       # RBRK's "slowed by -1.1 pp"
+    ("acceleration_pp", 8.98, "growth sped up by 9.0 pp from the previous quarter"),
+    ("acceleration_pp", -0.04, "growth unchanged from the previous quarter"),               # rounds to zero
+    ("fcf_yield_vs_10y_pp", -3.94, "FCF yield 3.9 pp below the 10-year Treasury yield"),   # RBRK's "-3.9 pp below"
+    ("fcf_yield_vs_10y_pp", -16.168, "FCF yield 16.2 pp below the 10-year Treasury yield"),
+    ("fcf_yield_vs_10y_pp", 2.06, "FCF yield 2.1 pp above the 10-year Treasury yield"),
+    ("fcf_yield_vs_10y_pp", 0.0, "FCF yield level with the 10-year Treasury yield"),
+    ("revenue_yoy_q", 37.92, "up 37.9% year on year"),
+    ("revenue_yoy_ttm", -12.349, "down 12.3% year on year"),
+    ("revenue_yoy_q", 0.03, "flat year on year"),
+    ("dilution_yoy_pct", 5.8, "diluted shares up 5.8% year on year"),
+    ("dilution_yoy_pct", -1.24, "diluted shares down 1.2% year on year"),
+    ("vs_ma50_pct", -10.35, "10.3% below its 50-day average"),
+    ("vs_ma200_pct", 54.72, "54.7% above its 200-day average"),
+    ("momentum_12_1_pct", -53.99, "down 54.0% from 12 months ago to 1 month ago"),
+    ("rs_spy_pp", -33.08, "33.1 pp behind SPY over the last 126 trading days"),
+    ("rs_qqq_pp", 4.0, "4.0 pp ahead of QQQ over the last 126 trading days"),
+    ("drawdown_52w_pct", -58.29, "58.3% below its 52-week high"),
+    ("drawdown_52w_pct", 0.0, "at its 52-week high"),
+])
+def test_signed_changes_reach_the_write_up_as_words_and_a_size(key, value, words):
+    assert run.brief_value(key, value) == words
+    assert not re.search(r"-\d", words)
+
+
+def test_signed_changes_use_the_runs_relative_strength_window():
+    assert run.brief_value("rs_spy_pp", 12.0, 63) == "12.0 pp ahead of SPY over the last 63 trading days"
+    r = {"factors": {k: {"score": 50, "metrics": {}} for k in scoring.FACTORS}, "trend": {"rs_days": 63},
+         "ticker": "X", "name": "X", "rating": "Hold", "score": 50, "confidence": "High", "bands": {},
+         "rating_before_overlay": "Hold", "composite": {}}
+    r["factors"]["trend"]["metrics"] = {"rs_qqq_pp": {"value": -7.26}, "vs_ma200_pct": {"value": None}}
+    inputs = run.writeup_brief(r)["factors"]["trend"]["inputs"]
+    assert inputs == {"rs_qqq_pp": "7.3 pp behind QQQ over the last 63 trading days", "vs_ma200_pct": None}
 
 
 def test_a_conflict_left_after_the_rewrite_is_dropped_and_noted_in_run_details(sandbox, monkeypatch):

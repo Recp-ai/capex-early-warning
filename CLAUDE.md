@@ -176,7 +176,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   must match, a test checks). Code turns the ratings into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
   is set, and never sets a rating, score or number. Its input (`run.writeup_brief`) rounds multiples and
   percentages / percentage points to 1 decimal (`run.ONE_DECIMAL`; dollar amounts and balance-sheet ratios
-  as stored, the stored data never rounded) and the prompt says to keep that precision. Valuation versus own history reaches the write-up only
+  as stored, the stored data never rounded) and gives signed changes and gaps as a direction word plus the
+  size ("growth slowed by 1.1 pp", "FCF yield 3.9 pp below the 10-year Treasury yield"; `run.SIGNED`, never
+  a signed number); the prompt says to keep that precision and that form. Valuation versus own history reaches the write-up only
   as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
   month-ends"; overall label cheap / middle / expensive, thresholds `valuation.history_label`), never the
   bare percentile; the absolute multiples are labelled absolute. P/FCF and EV/EBIT are compared with their

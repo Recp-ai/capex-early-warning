@@ -79,8 +79,12 @@ score, every factor score and the metrics below were computed by code from SEC f
 checked news ratings. You never set or change the rating or any number: use only numbers that appear in
 the data, exactly as given, and never give a price target. Plain English, no hype. Not investment advice.
 - Numbers come rounded to the precision to quote: multiples to one decimal (8.5x), percentages and
-  percentage points to one decimal (12.3%, -4.1 pp), dollar amounts as given. Keep that precision: write
+  percentage points to one decimal (12.3%, 4.1 pp), dollar amounts as given. Keep that precision: write
   them as given, never with more decimals, and don't round them further.
+- Changes and gaps come as a direction word plus a size ("up 37.9% year on year", "growth slowed by 1.1 pp",
+  "FCF yield 3.9 pp below the 10-year Treasury yield", "58.3% below its 52-week high"). Keep that form: the
+  word gives the direction and the number is the size, so never put a minus sign on it ("slowed by -1.1 pp",
+  "-3.9 pp below") and never turn it back into a signed number.
 - headline: one sentence, under 20 words.
 - thesis: 3-5 sentences on why the stock rates where it does, citing the factors that drive it.
 - key_risks: 3-5 short items.
