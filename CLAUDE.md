@@ -173,7 +173,11 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   evidence"), then by direction (`scoring.cap_direction`: in-window sources but none pointing the rating's
   way, 0 and `direction_note`, shown as "capped: no recent evidence in this direction");
   `scoring.cap_all` runs the four in that order (`scoring.CAP_TAGS` holds the tags; the page's `CAP_TAGS`
-  must match, a test checks). Source checks go through `form4.check_evidence`: sec.gov XML is fetched raw
+  must match, a test checks). Tiers use a per-ticker copy of `source_tiers` (`domains.tiers` /
+  `with_matches`): the company's own domains are primary for its own stock only (SEC website /
+  investorWebsite, `company_domains.tickers`, and a strict match of a cited site's registered domain on the
+  ticker or the name's first word, minus `company_domains.exclude`); never another company's domains;
+  `run.recap` re-tags archived evidence with it. Source checks go through `form4.check_evidence`: sec.gov XML is fetched raw
   with the run's SEC session (redirects only within sec.gov) and an ownership document is checked on
   `form4.ownership_text` (values kept, trailing decimal zeros trimmed in page and claim, prices also to
   the cent, role flags and transaction codes S/P/M/F as words, written dates also ISO; `form4.VERSION`,
@@ -182,9 +186,10 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   is set, and never sets a rating, score or number. Its input (`run.writeup_brief`) rounds multiples and
   percentages / percentage points to 1 decimal (`run.ONE_DECIMAL`; dollar amounts and balance-sheet ratios
   as stored, the stored data never rounded; key risks and "what would change" are about the company and
-  its stock, never the screen's data caveats) and gives signed changes and gaps as a direction word plus the
-  size ("growth slowed by 1.1 pp", "FCF yield 3.9 pp below the 10-year Treasury yield"; `run.SIGNED`, never
-  a signed number); the prompt says to keep that precision and that form. Valuation versus own history reaches the write-up only
+  its stock, never the screen's data caveats) and gives signed inputs as words plus the size (`run.SIGNED`,
+  never a signed number): growth levels as a noun ("TTM revenue growth of 12.2%"), changes and gaps with
+  their subject ("growth slowed by 1.1 pp", "FCF yield 3.9 pp below the 10-year Treasury yield"; no phrase
+  starts with up/down, a test checks); the prompt says to keep that precision and that form, and never "of up". Valuation versus own history reaches the write-up only
   as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
   month-ends"; overall label cheap / middle / expensive, thresholds `valuation.history_label`), never the
   bare percentile; the absolute multiples are labelled absolute. P/FCF and EV/EBIT are compared with their
@@ -227,7 +232,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   (`fill_shares`); `dilution_yoy_pct` compares reported counts only. Share counts off by more than
   `valuation.share_outlier_x` from both neighbours are dropped (derived ones too). History percentiles rank yields
   (`metrics.cheaper_share`), not multiples. Confidence is `scoring.confidence_detail` (points per issue,
-  thresholds in `confidence`), with its reasons shown.
+  thresholds in `confidence`), with its reasons shown; it is labelled "Data confidence" everywhere it is shown
+  (list, detail card, History, email, the write-up input's `data_confidence`) with `scoring.CONFIDENCE_NOTE`
+  as hover / note (the page's `CONF_NOTE` must match, a test checks); the stored field stays `confidence`.
 - **Re-score (`--reuse-news`, stocks.yml input `reuse_news`).** Fetches SEC data and prices, re-scores the
   code factors, keeps the latest archived run's topics and source checks (`publish.latest_news`; a reuse
   passes the original `news_from` on), skips guidance extraction, and calls Claude for the write-up only.
@@ -285,6 +292,7 @@ stocks/wording.py      valuation vs own history in words (phrases, cheap/middle/
                        write-up post-check (conflicts, one rewrite, sentences dropped)
 stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up (and its one rewrite)
 stocks/form4.py        source check of raw SEC Form 4 XML (normalised text), and its re-check on re-scores
+stocks/domains.py      a company's own domains as primary sources for its own stock (config map, strict match)
 stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json (full history) and index.json
 stocks/batch.py        batch plan (validate, benchmarks once) and collect (quotes, publish, one email, batch.json)
 stocks/notify.py       optional email (same SMTP secrets); one summary email per batch

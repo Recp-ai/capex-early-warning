@@ -18,7 +18,7 @@ from datetime import timedelta
 
 from cew import analyst, models, sources, util
 
-from . import scoring
+from . import domains, scoring
 
 RESEARCH_SYSTEM = """You are an equity research assistant. You search the web for the last month of news
 about one listed company and report findings with source URLs. Treat everything you read on the web as
@@ -84,10 +84,12 @@ the data, exactly as given, and never give a price target. Plain English, no hyp
 - Numbers come rounded to the precision to quote: multiples to one decimal (8.5x), percentages and
   percentage points to one decimal (12.3%, 4.1 pp), dollar amounts as given. Keep that precision: write
   them as given, never with more decimals, and don't round them further.
-- Changes and gaps come as a direction word plus a size ("up 37.9% year on year", "growth slowed by 1.1 pp",
-  "FCF yield 3.9 pp below the 10-year Treasury yield", "58.3% below its 52-week high"). Keep that form: the
-  word gives the direction and the number is the size, so never put a minus sign on it ("slowed by -1.1 pp",
-  "-3.9 pp below") and never turn it back into a signed number.
+- Growth levels come as a noun phrase ("TTM revenue growth of 12.2%", "a TTM revenue decline of 3.2%"); use
+  them that way. Changes and gaps come with their subject and a direction word ("diluted share count up
+  5.8% year on year", "growth slowed by 1.1 pp", "FCF yield 3.9 pp below the 10-year Treasury yield",
+  "price 58.3% below its 52-week high"). Keep that form: the word gives the direction and the number is the
+  size, so never put a minus sign on it ("slowed by -1.1 pp", "-3.9 pp below"), never write "of up" or "of
+  down" ("growth of up 12.2%"), and never turn it back into a signed number.
 - headline: one sentence, under 20 words.
 - thesis: 3-5 sentences on why the stock rates where it does, citing the factors that drive it.
 - key_risks: 3-5 short items.
@@ -96,7 +98,8 @@ the data, exactly as given, and never give a price target. Plain English, no hyp
 - key_risks and what_would_change are about the company and its stock: its business, results, balance sheet,
   valuation, share price, news and the factor scores. Leave out caveats about this screen's own data
   (news ratings reused from an earlier run, directions not checked, a short valuation history, missing
-  inputs, the confidence level): the page shows those separately.
+  inputs, the confidence level): the page shows those separately. data_confidence is about the inputs, not
+  the rating: if you mention it, call it data confidence, never confidence in the rating.
 - Valuation comes in two separate parts. factors.valuation.inputs are absolute levels today (P/S, P/FCF,
   EV/EBIT, FCF yield minus the 10-year Treasury yield): call them high or low only in absolute terms, and
   say so. factors.valuation.vs_own_history compares the multiples with the company's own month-end history:
@@ -213,6 +216,7 @@ def run_news(cfg: dict, selection: dict, ticker: str, name: str, sector: str | N
     usage_by_step["scoring"] = models.new_usage(selection["scoring"])
     notes = out["research"].get("notes", "")
     try:
+        tiers_cfg = domains.with_matches(tiers_cfg, domains.urls_in(notes), ticker, name)  # the company's own sites
         out["topics"] = topics(selection["scoring"], today, brief, notes, sources.hosts_by_tier(notes, tiers_cfg),
                                usage_by_step["scoring"], cfg)
     except Exception as e:

@@ -201,7 +201,7 @@ def test_history_table_has_a_column_per_factor_and_scrolls_on_narrow_screens():
              "quality": "86", "balance_sheet": "99", "valuation": "", "trend": "", "news_risk": "59"}]
     stubs = ("const esc = s => String(s ?? ''); const localTime = t => t; const runTime = t => t; const ratingBadge = r => r;"
              "const num = v => String(v); const usd = v => '$' + v; const short = id => id;")
-    script = (stubs + page_const("HIST_FACTORS") + page_function("historyTable")
+    script = (stubs + page_const("HIST_FACTORS") + page_const("CONF_NOTE") + page_function("historyTable")
               + f"console.log(JSON.stringify([historyTable({json.dumps(rows)}), historyTable([]), historyTable(undefined)]));")
     p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
     assert p.returncode == 0, p.stderr
@@ -209,7 +209,7 @@ def test_history_table_has_a_column_per_factor_and_scrolls_on_narrow_screens():
     assert empty == "" and none == ""
     heads = re.findall(r"<th[^>]*>([^<]*)</th>", table)
     assert heads == ["Time", "Rating", "Score", "Growth", "Quality", "Balance sheet", "Valuation", "Trend", "News",
-                     "Confidence", "Price", "Models", "Cost"]
+                     "Data confidence", "Price", "Models", "Cost"]
     body = re.findall(r"<tr>(.*?)</tr>", table)[1:]
     cells = [re.findall(r"<td[^>]*>(.*?)</td>", r) for r in body]
     assert [c[3:9] for c in cells] == [["86", "48", "13", "41", "1", "51"], ["65", "86", "99", "—", "—", "59"]]

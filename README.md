@@ -282,17 +282,24 @@ named; a sentence still in conflict is dropped, and Run details on the page (and
 
 **Write-up precision.** The write-up's input is rounded (the stored data is not): multiples to one decimal
 (8.5x), percentages and percentage points to one decimal (12.3%, 4.1 pp), as the page shows them;
-dollar amounts and the balance-sheet ratios as stored. Signed changes and gaps (revenue growth, growth
-acceleration, dilution, FCF yield vs the 10-year, the trend inputs) go as a direction word plus the size,
-never a signed number: "growth slowed by 1.1 pp from the previous quarter", "FCF yield 3.9 pp below the
-10-year Treasury yield", "58.3% below its 52-week high" (`run.SIGNED`), so the note can't say "slowed by
-−1.1 pp". Levels such as margins stay numbers. The prompt tells Claude to keep that precision and that
+dollar amounts and the balance-sheet ratios as stored. Signed inputs go as words plus the size, never a
+signed number (`run.SIGNED`): growth levels as a noun ("TTM revenue growth of 12.2%", "a TTM revenue decline
+of 3.2%"), changes and gaps with their subject ("growth slowed by 1.1 pp from the previous quarter",
+"diluted share count up 5.8% year on year", "FCF yield 3.9 pp below the 10-year Treasury yield", "price
+58.3% below its 52-week high"), so the note can't say "slowed by −1.1 pp" or NetApp's "growth of up 12.2%".
+Levels such as margins stay numbers. The prompt tells Claude to keep that precision and that
 form, and that the key risks and "what would change" are about the company and its stock: caveats about
 the screen's own data (reused news, unchecked directions, a short history) are shown elsewhere and stay out.
 
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
-tiered (primary / major / other) and fetched as in the capex pipeline, except a raw SEC Form 4 XML file
+tiered (primary / major / other) and fetched as in the capex pipeline. A company's own sites are primary for
+its own stock only (`stocks/domains.py`): SEC's website / investorWebsite (empty for all 14 rated so far),
+the curated `company_domains.tickers` in `config/stocks.yaml` (zscaler.com, shopify.com, msgsports.com, ...),
+and a strict match on cited sites whose registered domain is the ticker (3+ characters) or the company name's
+first word (4+ letters, not generic), except `company_domains.exclude` (shop.com, alphabet.com, madison.com
+belong to others). A re-score re-tags the archived evidence the same way. The exception to the capex check
+is a raw SEC Form 4 XML file
 (sec.gov `.../ownership.xml`, `wk-form4_*.xml`): read as plain text its prices are "219.7200" and its roles a
 bare "1", so `stocks/form4.py` reads it raw and checks the claim on a normalised text (trailing decimal
 zeros trimmed, in the claim too; prices also rounded to the cent, since a weighted average of 219.7166 is
@@ -316,8 +323,9 @@ whose only in-window item was "Project Jupiter at risk of delay"; Rubrik's analy
 ratings into 50 + Σ weight × rating × 25.
 
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
-missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data
-quality: it starts at High and each issue adds a point (`confidence` in the config): each factor with no
+missing. A factor needs at least half of its inputs (by weight) to count. **Data confidence** (stored as
+`confidence`) is how complete and clean the inputs are, not the chance the rating is right, as the page's
+hover and note and the email say: it starts at High and each issue adds a point (`confidence` in the config): each factor with no
 data, missing inputs of a scored factor, unknown cash or debt, FCF ex-prepayments, an FCF spike, a valuation history
 under 24 month-ends, a score within 2 points of a band edge, news topics capped for weak sources. 1–2
 points is Medium, 3+ Low (so 4–5 factors alone still read Medium and 3 Low, as before). The reasons are

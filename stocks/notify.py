@@ -73,7 +73,7 @@ def unchecked_text(r: dict) -> str | None:
 def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     w = r.get("writeup") or {}
     headline = w.get("headline") or f"{r['name']} rated {r['rating']}"
-    subject = f"{r.get('subject_prefix', '[Stock]')} {r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} confidence) — {headline}"
+    subject = f"{r.get('subject_prefix', '[Stock]')} {r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} {scoring.CONFIDENCE_LABEL}) — {headline}"
     ov = r.get("overlay") or {}
     rows = []
     for k in scoring.FACTORS:
@@ -100,6 +100,8 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     cost = (r.get("cost") or {}).get("total_usd")
     reasons = [x["text"] for x in (r.get("confidence_detail") or {}).get("reasons") or []]
     reasons_html = (f"<ul style='margin:0 0 8px;font-size:13px;color:#555'>{li(reasons)}</ul>" if reasons else "")
+    note = scoring.CONFIDENCE_NOTE if reasons else scoring.CONFIDENCE_NOTE.split(". ")[0] + "."
+    reasons_html += f"<p style='margin:0 0 8px;font-size:12px;color:#777'>{html.escape(note)}</p>"
     news_from = (f"<p style='font-size:13px;color:#555'>News &amp; risk reused from the run of {html.escape(r['news_from'])} "
                  "(not refreshed this run).</p>" if r.get("news_from") else "")
     link = f"<p><a href='{html.escape(dashboard_url.rstrip('/') + '/stocks.html#' + r['ticker'])}'>Open on the stocks page</a></p>" if dashboard_url else ""
@@ -120,7 +122,7 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">Stock research · {html.escape(r['run_id'])} · {html.escape(r['name'])} ({html.escape(r['ticker'])})</p>
 <h2 style="margin:0 0 4px;color:{RATING_COLOR.get(r['rating'], '#333')}">{html.escape(r['rating'])} — {r['score']} / 100</h2>
-<p style="margin-top:0">{html.escape(headline)} · {html.escape(r['confidence'])} confidence ({len((r.get('composite') or {}).get('available') or [])} of 6 factors had data)</p>
+<p style="margin-top:0">{html.escape(headline)} · {html.escape(r['confidence'])} {scoring.CONFIDENCE_LABEL} ({len((r.get('composite') or {}).get('available') or [])} of 6 factors had data)</p>
 {reasons_html}{f"<p style='font-size:13px;color:#555'><b>Capex overlay:</b> {html.escape(ov['note'])}</p>" if ov.get('note') and ov.get('ai_exposed') else ''}
 <p>{html.escape(w.get('thesis') or '')}</p>
 <h3>Factors</h3><table>{''.join(rows)}</table>
@@ -133,8 +135,8 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
 {f"<p style='color:#777;font-size:12px'>{html.escape(check)}</p>" if check else ''}
 {link}{"<p style='color:#777;font-size:12px'>Data issues: " + html.escape('; '.join(f'{k}: {v}' for k, v in errs.items())[:800]) + "</p>" if errs else ''}
 <p style="color:#777;font-size:12px">{html.escape(publish.DISCLAIMER)}</p></div>"""
-    body_text = (f"{r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} confidence)\n{headline}\n"
-                 + "".join(f"  - {x}\n" for x in reasons)
+    body_text = (f"{r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} {scoring.CONFIDENCE_LABEL})\n{headline}\n"
+                 + "".join(f"  - {x}\n" for x in reasons) + f"  ({note})\n"
                  + "".join(f"{x}\n" for x in close_lines(r))
                  + (f"News & risk reused from the run of {r['news_from']}\n" if r.get("news_from") else "") + "\n"
                  f"{w.get('thesis') or ''}\n\n" + "\n".join(
@@ -178,7 +180,7 @@ def build_batch_email(b: dict, dashboard_url: str | None, prefix: str = "[Stock]
                 f"<td style='{td}'>{html.escape(quote_text(x.get('quote')) or '—')}</td>"
                 f"<td style='{td}'>{cost}</td></tr>")
     th = "".join(f"<th style='{td};text-align:left'>{h}</th>" for h in
-                 ("Ticker", "Rating", "Score", "Confidence", "Before", "Scored on close", "Latest quote", "Cost"))
+                 ("Ticker", "Rating", "Score", "Data confidence", "Before", "Scored on close", "Latest quote", "Cost"))
     fails = "".join(f"<li><b>{html.escape(x['ticker'])}</b>: {html.escape(str(x.get('error') or 'failed'))}</li>" for x in failed)
     total = b.get("cost_usd")
     total_text = "n/a" if total is None else f"${total:.2f}"
@@ -203,7 +205,7 @@ def build_batch_email(b: dict, dashboard_url: str | None, prefix: str = "[Stock]
 {window}
 <p style="font-size:13px;color:#555">Total cost {total_text}{page_link}</p>
 <p style="color:#777;font-size:12px">{html.escape(publish.DISCLAIMER)}</p></div>"""
-    lines = [f"{x['ticker']}: {x['rating']} {x['score']}/100 ({x['confidence']}), before: {was(x)}; scored on the close of "
+    lines = [f"{x['ticker']}: {x['rating']} {x['score']}/100 ({x['confidence']} {scoring.CONFIDENCE_LABEL}), before: {was(x)}; scored on the close of "
              f"{x.get('scored_on') or 'n/a'}" + (f" ({x['close_note']})" if x.get("close_note") else "")
              + (f"; latest quote {quote_text(x.get('quote'))}" if quote_text(x.get("quote")) else "") for x in done]
     lines += [f"{x['ticker']}: FAILED: {x.get('error') or 'failed'}" for x in failed]

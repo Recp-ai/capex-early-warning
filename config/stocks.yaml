@@ -278,8 +278,31 @@ source_check:
 evidence_dates:
   background_after_days: 30     # older than the news window (keep equal to news_window_days): labelled
                                 # background, and no support for a non-zero topic rating
+# A company's own domains are primary-tier sources for its own stock only (stocks/domains.py; any subdomain):
+# SEC submissions "website" / "investorWebsite" when given (empty for all 14 below), plus `tickers`, plus a
+# strict match on the cited sites: a registered domain whose second-level label is the ticker (3+
+# characters) or the first word of the company name (4+ letters, not a generic word). Never another
+# company's domain: a match that belongs to someone else goes under `exclude`.
+company_domains:
+  tickers:
+    GOOGL: [abc.xyz, blog.google]
+    GTLB: [gitlab.com]
+    INOD: [innodata.com]
+    META: [meta.com, atmeta.com, about.fb.com]
+    MSFT: [microsoft.com]
+    MSGS: [msgsports.com]
+    NTAP: [netapp.com]
+    NVDA: [nvidia.com]
+    ORCL: [oracle.com]
+    PLTR: [palantir.com]
+    RBRK: [rubrik.com]
+    SHOP: [shopify.com]
+    TIC: []                     # not confirmed yet; add TIC Solutions' own domain here
+    ZS: [zscaler.com]
+  exclude: [shop.com, alphabet.com, madison.com]   # SHOP's ticker, Alphabet's and Madison Square Garden's first words: other owners
+
 source_tiers:
-  # the company's own website (from its SEC submissions record) is added to primary on each run
+  # the company's own domains (company_domains above) are added to primary on that ticker's runs
   primary:
     [gov, europa.eu, businesswire.com, prnewswire.com, globenewswire.com, accessnewswire.com,
      microsoft.com, abc.xyz, blog.google, aboutamazon.com, atmeta.com, about.fb.com,

@@ -324,7 +324,8 @@ def test_write_up_numbers_are_rounded_in_its_input_not_in_the_stored_data(sandbo
     system = fake.calls[3]["system"]
     assert "multiples to one decimal (8.5x), percentages and\n  percentage points to one decimal" in system
     assert "Keep that precision" in system
-    assert "Changes and gaps come as a direction word plus a size" in system and "never put a minus sign on it" in system
+    assert "Changes and gaps come with their subject and a direction word" in system and "never put a minus sign on it" in system
+    assert 'never write "of up" or "of\n  down"' in system and '"TTM revenue growth of 12.2%"' in system
 
 
 @pytest.mark.parametrize("key, value, words", [
@@ -335,32 +336,44 @@ def test_write_up_numbers_are_rounded_in_its_input_not_in_the_stored_data(sandbo
     ("fcf_yield_vs_10y_pp", -16.168, "FCF yield 16.2 pp below the 10-year Treasury yield"),
     ("fcf_yield_vs_10y_pp", 2.06, "FCF yield 2.1 pp above the 10-year Treasury yield"),
     ("fcf_yield_vs_10y_pp", 0.0, "FCF yield level with the 10-year Treasury yield"),
-    ("revenue_yoy_q", 37.92, "up 37.9% year on year"),
-    ("revenue_yoy_ttm", -12.349, "down 12.3% year on year"),
-    ("revenue_yoy_q", 0.03, "flat year on year"),
-    ("dilution_yoy_pct", 5.8, "diluted shares up 5.8% year on year"),
-    ("dilution_yoy_pct", -1.24, "diluted shares down 1.2% year on year"),
-    ("vs_ma50_pct", -10.35, "10.3% below its 50-day average"),
-    ("vs_ma200_pct", 54.72, "54.7% above its 200-day average"),
-    ("momentum_12_1_pct", -53.99, "down 54.0% from 12 months ago to 1 month ago"),
-    ("rs_spy_pp", -33.08, "33.1 pp behind SPY over the last 126 trading days"),
-    ("rs_qqq_pp", 4.0, "4.0 pp ahead of QQQ over the last 126 trading days"),
-    ("drawdown_52w_pct", -58.29, "58.3% below its 52-week high"),
-    ("drawdown_52w_pct", 0.0, "at its 52-week high"),
+    ("revenue_yoy_ttm", 12.24, "TTM revenue growth of 12.2%"),                            # NTAP's "of up 12.2%"
+    ("revenue_yoy_q", 37.92, "latest-quarter revenue growth of 37.9% year on year"),
+    ("revenue_yoy_ttm", -12.349, "a TTM revenue decline of 12.3%"),
+    ("revenue_yoy_q", 0.03, "latest-quarter revenue flat year on year"),
+    ("dilution_yoy_pct", 5.8, "diluted share count up 5.8% year on year"),
+    ("dilution_yoy_pct", -1.24, "diluted share count down 1.2% year on year"),
+    ("vs_ma50_pct", -10.35, "price 10.3% below its 50-day average"),
+    ("vs_ma200_pct", 54.72, "price 54.7% above its 200-day average"),
+    ("momentum_12_1_pct", -53.99, "shares down 54.0% from 12 months ago to 1 month ago"),
+    ("rs_spy_pp", -33.08, "shares 33.1 pp behind SPY over the last 126 trading days"),
+    ("rs_qqq_pp", 4.0, "shares 4.0 pp ahead of QQQ over the last 126 trading days"),
+    ("drawdown_52w_pct", -58.29, "price 58.3% below its 52-week high"),
+    ("drawdown_52w_pct", 0.0, "price at its 52-week high"),
 ])
 def test_signed_changes_reach_the_write_up_as_words_and_a_size(key, value, words):
     assert run.brief_value(key, value) == words
     assert not re.search(r"-\d", words)
 
 
+def test_no_phrase_starts_with_a_bare_direction_word():
+    # "TTM revenue growth of" + "up 12.2%" gave NTAP's "growth of up 12.2%": every phrase has its own subject
+    for key, forms in run.SIGNED.items():
+        for form in forms:
+            words = form.format(x="1.0", days=126).split()
+            assert words[0] not in ("up", "down", "above", "below", "ahead", "behind", "flat"), (key, form)
+            assert not re.search(r"-\d", form.format(x="1.0", days=126))
+    assert run.brief_value("revenue_yoy_ttm", 12.2).startswith("TTM revenue growth of 12.2%")
+    assert run.brief_value("acceleration_pp", -1.1) == "growth slowed by 1.1 pp from the previous quarter"  # a change: up/down
+
+
 def test_signed_changes_use_the_runs_relative_strength_window():
-    assert run.brief_value("rs_spy_pp", 12.0, 63) == "12.0 pp ahead of SPY over the last 63 trading days"
+    assert run.brief_value("rs_spy_pp", 12.0, 63) == "shares 12.0 pp ahead of SPY over the last 63 trading days"
     r = {"factors": {k: {"score": 50, "metrics": {}} for k in scoring.FACTORS}, "trend": {"rs_days": 63},
          "ticker": "X", "name": "X", "rating": "Hold", "score": 50, "confidence": "High", "bands": {},
          "rating_before_overlay": "Hold", "composite": {}}
     r["factors"]["trend"]["metrics"] = {"rs_qqq_pp": {"value": -7.26}, "vs_ma200_pct": {"value": None}}
     inputs = run.writeup_brief(r)["factors"]["trend"]["inputs"]
-    assert inputs == {"rs_qqq_pp": "7.3 pp behind QQQ over the last 63 trading days", "vs_ma200_pct": None}
+    assert inputs == {"rs_qqq_pp": "shares 7.3 pp behind QQQ over the last 63 trading days", "vs_ma200_pct": None}
 
 
 def test_a_conflict_left_after_the_rewrite_is_dropped_and_noted_in_run_details(sandbox, monkeypatch):
@@ -592,6 +605,28 @@ def test_email_quotes_guidance_without_doubled_quote_marks():
     assert notify.unquote('"Quoted," he said.') == 'Quoted," he said.' and notify.unquote(None) == ""
 
 
+def test_confidence_is_labelled_data_confidence_with_what_it_means(sandbox, monkeypatch):
+    note = "How complete and clean the inputs are, not the chance the rating is right. The reasons listed lower it."
+    assert scoring.CONFIDENCE_NOTE == note
+    page = (ROOT / "site" / "stocks.html").read_text()
+    assert f'const CONF_NOTE = "{note}";' in page  # the page's hover and note are the module's
+    assert page.count('title="${esc(CONF_NOTE)}">Data confidence</th>') == 2  # the list and History
+    assert "${esc(D.confidence)} data confidence</span>" in page and '<div class="sub confnote">' in page
+    assert ">Confidence<" not in page
+    _, fake = setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    assert r["confidence"] == "High"  # the stored field keeps its name
+    subject, body_html, text = notify.build_email(r, None)
+    assert "(High data confidence)" in subject and "High data confidence (6 of 6 factors had data)" in body_html
+    assert "How complete and clean the inputs are, not the chance the rating is right." in body_html
+    assert "(High data confidence)" in text and ">Confidence<" not in body_html
+    brief = brief_of(fake.calls[3])
+    assert brief["data_confidence"] == "High" and "confidence" not in brief
+    assert brief["data_confidence_means"] == "how complete and clean the inputs are, not the chance the rating is right"
+    assert "call it data confidence, never confidence in the rating" in fake.calls[3]["system"].replace("\n  ", " ")
+
+
 def test_claude_output_schemas_hold_no_rating_or_score():
     topics = research.TOPICS_SCHEMA["properties"]["topics"]["properties"]
     assert list(topics) == research.TOPIC_KEYS
@@ -610,7 +645,7 @@ def test_email_build_and_send_skipped_without_secrets(sandbox, monkeypatch):
     r = latest_run()
     assert r["email"].startswith("skipped: ALERT_EMAIL_TO")
     subject, body_html, text = notify.build_email(r, "https://dash.example")
-    assert subject.startswith(f"[Stock] MSFT {r['rating']} {r['score']}/100 (High confidence)")
+    assert subject.startswith(f"[Stock] MSFT {r['rating']} {r['score']}/100 (High data confidence)")
     assert "Not investment advice" in body_html and "Not investment advice" in text
     assert "Capped at Hold" in body_html and "https://dash.example/stocks.html#MSFT" in body_html
     assert "Microsoft guided revenue to $122 billion" in body_html and "We expect revenue for the first quarter" in body_html
@@ -810,6 +845,28 @@ def test_reuse_news_treats_unlabelled_evidence_as_matching_and_lists_what_a_fres
                  "a fresh run checks it")
     assert unchecked in text and unchecked in body_html
     assert "Product and competitive news: +0, capped: no recent evidence in this direction" in text
+
+
+
+def test_reuse_news_retags_tiers_with_the_companys_own_domains(sandbox, monkeypatch):
+    setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    old = latest_run()
+    # archived before own domains counted: news.microsoft.com tagged "other", so +2 was capped at +1
+    ev = [{"claim": "Microsoft launched Copilot Max", "url": "https://news.microsoft.com/copilot-max", "event_date": RECENT,
+           "status": "verified", "tier": "other"},
+          {"claim": "Microsoft launched Copilot Max", "url": "https://blog.example/copilot", "event_date": RECENT,
+           "status": "verified", "tier": "other"}]
+    old["news"]["topics"]["product_competitive"] = {"label": "Product and competitive news", "rating": 1, "rating_before_cap": 2,
+                                                   "weak_sources_note": "Capped at +1 (was +2): ...", "summary": "Launch.",
+                                                   "evidence": ev}
+    publish.archive_run(old)
+    F.fake_claude(monkeypatch, [F.writeup_reply()])
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    pc = latest_run()["news"]["topics"]["product_competitive"]
+    assert [e["tier"] for e in pc["evidence"]] == ["primary", "other"]
+    assert pc["rating"] == 2 and "weak_sources_note" not in pc
+    assert {"topic": "product_competitive", "label": "Product and competitive news", "was": 1, "now": 2} in latest_run()["news"]["caps_reapplied"]
 
 
 def test_reuse_news_without_an_earlier_run_rates_without_news(sandbox, monkeypatch):

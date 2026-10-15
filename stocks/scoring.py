@@ -413,6 +413,8 @@ def composite(fs: dict, cfg: dict) -> dict:
             "available": list(have), "missing": [k for k in FACTORS if k not in have]}
 
 
+CONFIDENCE_LABEL = "data confidence"
+CONFIDENCE_NOTE = "How complete and clean the inputs are, not the chance the rating is right. The reasons listed lower it."
 CONFIDENCE_POINTS = {"missing_factor": 1, "missing_sub_metric": 1, "unknown_cash_debt": 1, "fcf_ex_prepayments": 1, "fcf_spike": 1,
                      "short_valuation_history": 1, "near_band_edge": 1, "weak_sources": 1}
 SUB_LABELS = {

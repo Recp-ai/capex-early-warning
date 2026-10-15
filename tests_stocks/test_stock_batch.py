@@ -252,7 +252,7 @@ def test_batch_email_lists_each_rating_its_close_and_the_failures():
     assert subject == "[Stock] Batch of 2: TIC Sell 38 (1 failed)"
     assert "https://dash.example/stocks.html#TIC" in body_html and "Hold 47" in body_html and "8.68 at 4:00 pm ET on 2026-10-14" in body_html
     assert "BAD is not in SEC" in body_html and "Not investment advice" in body_html and "$0.91" in body_html
-    assert ("TIC: Sell 38/100 (High), before: Hold 47; scored on the close of 2026-10-13 (today's close not yet published; "
+    assert ("TIC: Sell 38/100 (High data confidence), before: Hold 47; scored on the close of 2026-10-13 (today's close not yet published; "
             "scored on 2026-10-13); latest quote 8.68 at 4:00 pm ET on 2026-10-14") in text
     assert "BAD: FAILED: BAD is not in SEC" in text and "Run at 5:00 pm ET" in text
 

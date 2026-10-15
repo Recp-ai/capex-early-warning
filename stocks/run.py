@@ -26,37 +26,18 @@ no email, no append-only files. The batch's collect job does those once for ever
 from __future__ import annotations
 
 import argparse
-import copy
 import json
 import sys
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlsplit
 
 from cew import edgar_text, models, sources, util
 
-from . import batch, config, form4, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring, wording
+from . import batch, config, domains, form4, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring, wording
 
 BRIEF_SUMMARY_KEYS = ["latest_quarter_end", "ttm_end", "currency", "foreign", "revenue_ttm", "revenue_yoy_q",
                       "revenue_yoy_ttm", "acceleration_pp", "gross_margin_pct", "operating_margin_pct", "fcf_ttm",
                       "fcf_margin_pct", "capex_intensity_pct", "sbc_pct_revenue", "dilution_yoy_pct"]
-
-
-def _host(url: str | None) -> str | None:
-    u = (url or "").strip()
-    if not u:
-        return None
-    host = (urlsplit(u if "://" in u else "https://" + u).hostname or "").lower().removeprefix("www.")
-    return host or None
-
-
-def tiers_config(cfg: dict, website: str | None) -> dict:
-    """cfg's source tiers, with the company's own website added to primary."""
-    t = copy.deepcopy(cfg)
-    host = _host(website)
-    if host:
-        t.setdefault("source_tiers", {}).setdefault("primary", []).append(host)
-    return t
 
 
 def topic_brief(ticker, name, sector, s, val, tr, fs, g, ctx) -> dict:
@@ -80,27 +61,32 @@ def topic_brief(ticker, name, sector, s, val, tr, fs, g, ctx) -> dict:
 # (stored to 2 decimals), news ratings and dollar amounts go as they are.
 ONE_DECIMAL = {*scoring.SUB["growth"], *scoring.SUB["quality"], *scoring.SUB["trend"],
                "price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp"}
-# Signed changes and gaps go as a direction word plus the size, never a signed number, so the write-up can't
-# say "slowed by -1.1 pp" or "-3.9 pp below the 10-year": (positive, negative, zero after rounding); {x} is the
-# size to 1 decimal, {days} the relative-strength window. Levels (margins, multiples) stay numbers.
+# Signed inputs go as words plus the size, never a signed number, so the write-up can't say "slowed by
+# -1.1 pp" or "-3.9 pp below the 10-year": (positive, negative, zero after rounding); {x} is the size to 1
+# decimal, {days} the relative-strength window. Growth levels read as a noun ("TTM revenue growth of 12.2%",
+# never "of up 12.2%"); changes and gaps carry their subject and up / down / above / below ("diluted share
+# count up 5.8% year on year"). Levels such as margins and multiples stay numbers.
 SIGNED = {
-    "revenue_yoy_q": ("up {x}% year on year", "down {x}% year on year", "flat year on year"),
-    "revenue_yoy_ttm": ("up {x}% year on year", "down {x}% year on year", "flat year on year"),
+    "revenue_yoy_q": ("latest-quarter revenue growth of {x}% year on year", "a latest-quarter revenue decline of {x}% year on year",
+                      "latest-quarter revenue flat year on year"),
+    "revenue_yoy_ttm": ("TTM revenue growth of {x}%", "a TTM revenue decline of {x}%", "TTM revenue flat year on year"),
     "acceleration_pp": ("growth sped up by {x} pp from the previous quarter", "growth slowed by {x} pp from the previous quarter",
                         "growth unchanged from the previous quarter"),
-    "dilution_yoy_pct": ("diluted shares up {x}% year on year", "diluted shares down {x}% year on year",
-                         "diluted shares flat year on year"),
+    "dilution_yoy_pct": ("diluted share count up {x}% year on year", "diluted share count down {x}% year on year",
+                         "diluted share count flat year on year"),
     "fcf_yield_vs_10y_pp": ("FCF yield {x} pp above the 10-year Treasury yield", "FCF yield {x} pp below the 10-year Treasury yield",
                             "FCF yield level with the 10-year Treasury yield"),
-    "vs_ma50_pct": ("{x}% above its 50-day average", "{x}% below its 50-day average", "at its 50-day average"),
-    "vs_ma200_pct": ("{x}% above its 200-day average", "{x}% below its 200-day average", "at its 200-day average"),
-    "momentum_12_1_pct": ("up {x}% from 12 months ago to 1 month ago", "down {x}% from 12 months ago to 1 month ago",
-                          "flat from 12 months ago to 1 month ago"),
-    "rs_spy_pp": ("{x} pp ahead of SPY over the last {days} trading days", "{x} pp behind SPY over the last {days} trading days",
-                  "level with SPY over the last {days} trading days"),
-    "rs_qqq_pp": ("{x} pp ahead of QQQ over the last {days} trading days", "{x} pp behind QQQ over the last {days} trading days",
-                  "level with QQQ over the last {days} trading days"),
-    "drawdown_52w_pct": ("{x}% above its 52-week high", "{x}% below its 52-week high", "at its 52-week high"),
+    "vs_ma50_pct": ("price {x}% above its 50-day average", "price {x}% below its 50-day average", "price at its 50-day average"),
+    "vs_ma200_pct": ("price {x}% above its 200-day average", "price {x}% below its 200-day average", "price at its 200-day average"),
+    "momentum_12_1_pct": ("shares up {x}% from 12 months ago to 1 month ago", "shares down {x}% from 12 months ago to 1 month ago",
+                          "shares flat from 12 months ago to 1 month ago"),
+    "rs_spy_pp": ("shares {x} pp ahead of SPY over the last {days} trading days",
+                  "shares {x} pp behind SPY over the last {days} trading days",
+                  "shares level with SPY over the last {days} trading days"),
+    "rs_qqq_pp": ("shares {x} pp ahead of QQQ over the last {days} trading days",
+                  "shares {x} pp behind QQQ over the last {days} trading days",
+                  "shares level with QQQ over the last {days} trading days"),
+    "drawdown_52w_pct": ("price {x}% above its 52-week high", "price {x}% below its 52-week high", "price at its 52-week high"),
 }
 
 
@@ -135,10 +121,11 @@ def writeup_brief(r: dict) -> dict:
     factors["valuation"]["vs_own_history"] = wording.brief(val.get("vs_own_history"), val.get("missing"))
     return {
         "company": {"ticker": r["ticker"], "name": r["name"], "sector": r.get("sector")},
-        "rating": r["rating"], "score": r["score"], "confidence": r["confidence"],
+        "rating": r["rating"], "score": r["score"], "data_confidence": r["confidence"],
+        "data_confidence_means": scoring.CONFIDENCE_NOTE.split(". ")[0].lower().rstrip("."),
         "band_distance": r["bands"], "rating_before_overlay": r["rating_before_overlay"],
         "capex_overlay_note": (r.get("overlay") or {}).get("note"),
-        "confidence_reasons": [x["text"] for x in (r.get("confidence_detail") or {}).get("reasons") or []],
+        "data_confidence_reasons": [x["text"] for x in (r.get("confidence_detail") or {}).get("reasons") or []],
         "factors": factors,
         "factor_weights_used": r["composite"].get("weights_used"),
         "news_topics": {k: {"rating": t.get("rating"), "summary": t.get("summary"),
@@ -151,10 +138,11 @@ def writeup_brief(r: dict) -> dict:
     }
 
 
-def recap(topics: dict, news_from: str | None, today, cfg: dict) -> list[dict]:
+def recap(topics: dict, news_from: str | None, today, cfg: dict, tiers_cfg: dict | None = None) -> list[dict]:
     """--reuse-news: Claude's archived ratings with the code caps applied again (current config; event dates
-    re-checked as of the news run's date; source checks and tiers as archived; evidence without a direction
-    label counts as pointing the rating's way). In place. Returns the topics whose rating changed:
+    re-checked as of the news run's date; tiers re-tagged from `tiers_cfg`, the domain lists with the
+    company's own domains, when given; source checks as archived; evidence without a direction label counts
+    as pointing the rating's way). In place. Returns the topics whose rating changed:
     [{"topic", "label", "was", "now"}]."""
     try:
         day = date.fromisoformat(str(news_from)[:10])
@@ -164,6 +152,8 @@ def recap(topics: dict, news_from: str | None, today, cfg: dict) -> list[dict]:
     for k, t in topics.items():
         was = t.get("rating")
         scoring.uncap(t)
+        if tiers_cfg is not None:
+            sources.tag_tiers(t.get("evidence") or [], tiers_cfg)
         sources.tag_dates(t.get("evidence") or [], day, cfg)
         scoring.cap_all(t, cfg)
         if t.get("rating") != was:
@@ -276,7 +266,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     # 3. Claude news, checked by code (or, with --reuse-news, the latest run's as it was)
     claude: dict = {"enabled": llm_on}
     topics, source_check, news_from, news_models, news_missing = None, None, None, None, None
-    tcfg = tiers_config(cfg, website)
+    tcfg = domains.tiers(cfg, ticker, name, subs)
     if reuse_news:
         prev = publish.latest_news(ticker)
         if prev:
@@ -301,7 +291,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         for k, t in topics.items():
             t["label"] = labels.get(k, k)
         ev = [e for t in topics.values() for e in t.get("evidence") or []]
-        sources.tag_tiers(ev, tcfg)
+        sources.tag_tiers(ev, domains.with_matches(tcfg, [e.get("url") for e in ev], ticker, name))
         sources.tag_dates(ev, today, cfg)
         if offline:
             source_check = {"skipped": "offline run"}
@@ -317,7 +307,8 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
             source_check = {**(source_check or {}), "counts": sources.summary(topics), "form4_rechecked": len(rechecked)}
             print("Form 4 items checked again: " + "; ".join(f"{c['topic']} {c['was']} -> {c['now']}" for c in rechecked),
                   flush=True)
-        news_recap = recap(topics, news_from, today, cfg)
+        ev = [e for t in topics.values() for e in t.get("evidence") or []]
+        news_recap = recap(topics, news_from, today, cfg, domains.with_matches(tcfg, [e.get("url") for e in ev], ticker, name))
         if news_recap:
             print("Caps re-applied to the reused news: " + "; ".join(f"{c['topic']} {c['was']:+d} -> {c['now']:+d}"
                                                                      for c in news_recap), flush=True)

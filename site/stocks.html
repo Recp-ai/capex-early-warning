@@ -201,6 +201,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
 .closeinfo { margin-top: 10px; font-size: 14px; }
 .reasons { margin: 4px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--ink-2); }
 .reasons li { margin-bottom: 2px; }
+.confnote { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .miss { color: var(--serious); font-weight: 600; }
 .kv b.unk { color: var(--serious); }
 .prog-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
@@ -297,6 +298,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const link = (u, text) => safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(text)}</a>` : esc(text);
   const DIR_TITLE = "Which way this item points for the company on this topic (Claude's label, never a score). A rating counts only on recent sources pointing its way.";
   const dirTag = e => ["positive", "negative", "neutral"].includes(e.direction) ? `<span class="dir ${e.direction}" title="${esc(DIR_TITLE)}">${e.direction}</span>` : "";
+  // "Data confidence": what it means (stocks/scoring.py CONFIDENCE_NOTE, a test checks they match)
+  const CONF_NOTE = "How complete and clean the inputs are, not the chance the rating is right. The reasons listed lower it.";
   const CAP_TAGS = [["weak_sources_note", "capped: weak sources"], ["old_evidence_note", "capped: only older evidence"],
     ["direction_note", "capped: no recent evidence in this direction"]]; // stocks/scoring.py CAP_TAGS
   const fmtMetric = (k, v) => {
@@ -559,7 +562,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
             <button type="button" class="ibtn" data-act="t-remove" aria-label="Remove ${esc(e.ticker)}">✕</button>
             ${opts ? `<select data-act="t-copymove" aria-label="Copy or move ${esc(e.ticker)} to another list">${opts}</select>` : ""}</span></td></tr>`).join("")}</tbody></table></div>`;
     } else {
-      table = `<div class="scroll"><table><thead><tr><th class="ck"></th><th class="tkh">Ticker</th><th class="left">Rating</th><th class="hide-sm">Score</th><th class="left hide-sm">Confidence</th>
+      table = `<div class="scroll"><table><thead><tr><th class="ck"></th><th class="tkh">Ticker</th><th class="left">Rating</th><th class="hide-sm">Score</th><th class="left hide-sm" title="${esc(CONF_NOTE)}">Data confidence</th>
         <th class="left hide-sm">Last run</th><th class="hide-sm">At rating</th><th>Latest</th><th>Change</th><th class="hide-sm">Runs</th></tr></thead><tbody>${rows.map(e => {
           const Lp = latest(e), ch = changeOf(e), stale = !e.unrated && ageDays(e.timestamp) > S.stale_after_days;
           return `<tr class="pick${e.ticker === state.ticker ? " on" : ""}" data-t="${esc(e.ticker)}" tabindex="0">
@@ -567,7 +570,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           <td class="tk">${esc(e.ticker)}${statusTag(e.ticker)}<small>${esc(e.name || "")}</small></td>
           <td class="left">${e.unrated ? '<span class="sub">not run yet</span>' : ratingBadge(e.rating) + (e.overlay && e.overlay.startsWith("capped") ? ' <span class="badge" title="Capped by the capex overlay">capped</span>' : "") +
             `<span class="show-sm">${esc(e.score)} · ${esc(age(e.timestamp))}${stale ? '<span class="tag">stale</span>' : ""}</span>`}</td>
-          <td class="hide-sm">${e.unrated ? "—" : esc(e.score)}</td><td class="left hide-sm">${e.unrated ? "—" : esc(e.confidence)}</td>
+          <td class="hide-sm">${e.unrated ? "—" : esc(e.score)}</td><td class="left hide-sm" title="${e.unrated ? "" : esc(CONF_NOTE)}">${e.unrated ? "—" : esc(e.confidence)}</td>
           <td class="left hide-sm" title="${e.unrated ? "" : esc(runTime(e.timestamp))}">${e.unrated ? "—" : `${esc(localTime(e.timestamp))} · ${esc(age(e.timestamp))}${stale ? `<span class="tag" title="Rated more than ${S.stale_after_days} days ago">stale</span>` : ""}`}</td>
           <td class="hide-sm" title="${e.price_date ? "Close on " + esc(e.price_date) : ""}">${e.price == null ? "—" : num(e.price, 2)}</td>
           <td title="${Lp && Lp.as_of ? "Quote at " + esc(runTime(Lp.as_of)) : Lp ? "Close on " + esc(Lp.date || "") : ""}">${priceLabel(Lp)}</td>
@@ -747,7 +750,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const body = rows.map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td>` +
       HIST_FACTORS.map(([k, l]) => `<td class="fx" title="${esc(l)}">${cell(h[k])}</td>`).join("") +
       `<td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm wrap">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}${h.news_from ? ` <span class="sub" title="News reused from the run of ${esc(runTime(h.news_from))}">· news ${esc(localTime(h.news_from))}</span>` : ""}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
-    return `<div class="scroll hist"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th>${HIST_FACTORS.map(([k, l]) => `<th title="${esc(l)} factor score (0–100)">${l}</th>`).join("")}<th class="left">Confidence</th><th>Price</th><th class="left hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${body}</tbody></table></div>`;
+    return `<div class="scroll hist"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th>${HIST_FACTORS.map(([k, l]) => `<th title="${esc(l)} factor score (0–100)">${l}</th>`).join("")}<th class="left" title="${esc(CONF_NOTE)}">Data confidence</th><th>Price</th><th class="left hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
 
   function renderDetail() {
@@ -834,8 +837,9 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
         <div class="card">
           <div class="rating"><span class="dot" style="background:var(${RATING_DOT[D.rating] || "--muted"})"></span>${esc(D.ticker)} · ${esc(D.rating)}</div>
           <div class="big">${esc(D.score)}<small> / 100</small></div>
-          <div class="sub">${esc(D.confidence)} confidence · ${(comp.available || []).length} of 6 factors had data</div>
+          <div class="sub"><span title="${esc(CONF_NOTE)}">${esc(D.confidence)} data confidence</span> · ${(comp.available || []).length} of 6 factors had data</div>
           ${((D.confidence_detail || {}).reasons || []).length ? `<ul class="reasons">${D.confidence_detail.reasons.map(x => `<li>${esc(x.text)}</li>`).join("")}</ul>` : ""}
+          <div class="sub confnote">${esc(((D.confidence_detail || {}).reasons || []).length ? CONF_NOTE : CONF_NOTE.split(". ")[0] + ".")}</div>
           ${D.rating !== D.rating_before_overlay ? `<div class="sub">Composite band: ${esc(D.rating_before_overlay)}</div>` : ""}
           ${bandText ? `<div class="sub" style="margin-top:6px">${esc(bandText)}</div>` : ""}
           ${ov}
