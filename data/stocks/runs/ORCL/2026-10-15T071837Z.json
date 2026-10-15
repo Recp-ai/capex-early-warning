@@ -1,0 +1,1416 @@
+{
+  "run_id": "2026-10-15T07:18:37Z",
+  "generated_at": "2026-10-15T07:19:43+00:00",
+  "ticker": "ORCL",
+  "sec_ticker": "ORCL",
+  "cik": "0001341439",
+  "name": "ORACLE CORP",
+  "sector": "Services-Prepackaged Software",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 50,
+  "confidence": "High",
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 15
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 6
+    }
+  },
+  "composite": {
+    "score": 50,
+    "raw": 49.65,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 29.61,
+          "score": 87.8,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 21.62,
+          "score": 77.2,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 8.98,
+          "score": 94.9,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 86,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 32.12,
+          "score": 87.1,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -40.01,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 6.71,
+          "score": 69.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 3.13,
+          "score": 38.7,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 48,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 28.7,
+          "weight": 0.6,
+          "note": "net cash, negative FCF: 1.3 years of cash at the current burn"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt tagged in XBRL on this date (counted as zero)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 57,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 5.5,
+          "score": 54.2,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF"
+        },
+        "ev_to_ebit": {
+          "value": 15.513,
+          "score": 68.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -12.486,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 27.9,
+          "score": 72.1,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit_percentile": {
+          "value": 8.2,
+          "score": 91.8,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.85,
+      "score": 43,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -10.35,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -18.83,
+          "score": 2.9,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -53.99,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -33.08,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -37.18,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -58.29,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 1,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 56,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": true,
+    "applies": true,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": "AI-exposed; capex early warning AMBER 6/18: warning signs for AI capex, rating not capped",
+    "capex": {
+      "level": "AMBER",
+      "total": 6.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-15T01:43:15Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "AMBER",
+    "total": 6.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-15T01:43:15Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 130.55,
+    "date": "2026-10-14"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-08-31",
+    "revenue_q": 19345000000.0,
+    "revenue_yoy_q": 29.61,
+    "revenue_yoy_q_prev": 20.63,
+    "acceleration_pp": 8.98,
+    "ttm_end": "2026-08-31",
+    "revenue_ttm": 71777000000.0,
+    "revenue_yoy_ttm": 21.62,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 23056000000.0,
+    "operating_cash_flow_ttm": 46940000000.0,
+    "capex_ttm": 75660000000.0,
+    "sbc_ttm": 4814000000.0,
+    "fcf_ttm": -28720000000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 32.12,
+    "fcf_margin_pct": -40.01,
+    "capex_intensity_pct": 105.41,
+    "sbc_pct_revenue": 6.71,
+    "balance_sheet": {
+      "date": "2026-08-31",
+      "cash": 36369000000.0,
+      "short_term_investments": 708000000.0,
+      "cash_and_investments": 37077000000.0,
+      "debt": 0,
+      "debt_tags": [],
+      "debt_note": "no debt tagged in XBRL on this date (counted as zero)",
+      "net_debt": -37077000000.0
+    },
+    "diluted_shares": 3000000000.0,
+    "diluted_shares_end": "2026-08-31",
+    "dilution_yoy_pct": 3.13,
+    "shares_outstanding": {
+      "val": 3023736000.0,
+      "end": "2026-09-07",
+      "filed": "2026-09-11",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-11-30",
+        "revenue": 12941000000.0,
+        "revenue_yoy_pct": 5.43,
+        "operating_margin_pct": 27.99,
+        "fcf": -937000000.0,
+        "diluted_shares": 2817000000.0
+      },
+      {
+        "end": "2024-02-29",
+        "revenue": 13280000000.0,
+        "revenue_yoy_pct": 7.11,
+        "operating_margin_pct": 28.24,
+        "fcf": 3801000000.0,
+        "diluted_shares": 2819000000.0
+      },
+      {
+        "end": "2024-05-31",
+        "revenue": 14287000000.0,
+        "revenue_yoy_pct": 3.26,
+        "operating_margin_pct": 32.8,
+        "fcf": 3283000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-08-31",
+        "revenue": 13307000000.0,
+        "revenue_yoy_pct": 6.86,
+        "operating_margin_pct": 29.99,
+        "fcf": 5124000000.0,
+        "diluted_shares": 2851000000.0
+      },
+      {
+        "end": "2024-11-30",
+        "revenue": 14059000000.0,
+        "revenue_yoy_pct": 8.64,
+        "operating_margin_pct": 30.02,
+        "fcf": -2666000000.0,
+        "diluted_shares": 2869000000.0
+      },
+      {
+        "end": "2025-02-28",
+        "revenue": 14130000000.0,
+        "revenue_yoy_pct": 6.4,
+        "operating_margin_pct": 30.84,
+        "fcf": 71000000.0,
+        "diluted_shares": 2874000000.0
+      },
+      {
+        "end": "2025-05-31",
+        "revenue": 15903000000.0,
+        "revenue_yoy_pct": 11.31,
+        "operating_margin_pct": 32.13,
+        "fcf": -2923000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-08-31",
+        "revenue": 14926000000.0,
+        "revenue_yoy_pct": 12.17,
+        "operating_margin_pct": 28.65,
+        "fcf": -362000000.0,
+        "diluted_shares": 2909000000.0
+      },
+      {
+        "end": "2025-11-30",
+        "revenue": 16058000000.0,
+        "revenue_yoy_pct": 14.22,
+        "operating_margin_pct": 29.46,
+        "fcf": -9967000000.0,
+        "diluted_shares": 2922000000.0
+      },
+      {
+        "end": "2026-02-28",
+        "revenue": 17190000000.0,
+        "revenue_yoy_pct": 21.66,
+        "operating_margin_pct": 31.79,
+        "fcf": -11484000000.0,
+        "diluted_shares": 2912000000.0
+      },
+      {
+        "end": "2026-05-31",
+        "revenue": 19184000000.0,
+        "revenue_yoy_pct": 20.63,
+        "operating_margin_pct": 31.97,
+        "fcf": -1873000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-08-31",
+        "revenue": 19345000000.0,
+        "revenue_yoy_pct": 29.61,
+        "operating_margin_pct": 34.78,
+        "fcf": -5396000000.0,
+        "diluted_shares": 3000000000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 130.55,
+    "price_date": "2026-10-14",
+    "shares": {
+      "shares": 3023736000.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-09-07"
+    },
+    "market_cap": 394748734800.0,
+    "enterprise_value": 357671734800.0,
+    "price_to_sales": 5.5,
+    "price_to_fcf": null,
+    "ev_to_ebit": 15.513,
+    "fcf_negative": true,
+    "ebit_negative": false,
+    "fcf_yield_pct": -7.276,
+    "ust10y_pct": 5.21,
+    "ust10y_date": "2026-10-13",
+    "fcf_yield_vs_10y_pp": -12.486,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 6.721,
+        "price_to_fcf": 21.847,
+        "ev_to_ebit": 15.242
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 6.357,
+        "price_to_fcf": 20.663,
+        "ev_to_ebit": 14.278
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 5.675,
+        "price_to_fcf": 32.919,
+        "ev_to_ebit": 19.244
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 5.281,
+        "price_to_fcf": 30.635,
+        "ev_to_ebit": 17.765
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 4.944,
+        "price_to_fcf": 28.676,
+        "ev_to_ebit": 16.497
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 5.447,
+        "price_to_fcf": 34.568,
+        "ev_to_ebit": 18.644
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 4.833,
+        "price_to_fcf": 30.67,
+        "ev_to_ebit": 16.301
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 4.735,
+        "price_to_fcf": 30.051,
+        "ev_to_ebit": 15.929
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 4.587,
+        "price_to_fcf": 38.715,
+        "ev_to_ebit": 15.81
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 5.11,
+        "price_to_fcf": 43.131,
+        "ev_to_ebit": 17.842
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 4.868,
+        "price_to_fcf": 41.086,
+        "ev_to_ebit": 16.901
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 3.799,
+        "price_to_fcf": 31.217,
+        "ev_to_ebit": 15.464
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 4.857,
+        "price_to_fcf": 39.907,
+        "ev_to_ebit": 20.077
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 5.165,
+        "price_to_fcf": 42.442,
+        "ev_to_ebit": 21.423
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 4.872,
+        "price_to_fcf": 26.737,
+        "ev_to_ebit": 15.488
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 5.272,
+        "price_to_fcf": 28.935,
+        "ev_to_ebit": 16.804
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 5.209,
+        "price_to_fcf": 28.588,
+        "ev_to_ebit": 16.597
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 5.379,
+        "price_to_fcf": 35.345,
+        "ev_to_ebit": 18.518
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 5.483,
+        "price_to_fcf": 36.029,
+        "ev_to_ebit": 18.889
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 6.132,
+        "price_to_fcf": 40.297,
+        "ev_to_ebit": 21.204
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 6.594,
+        "price_to_fcf": 38.891,
+        "ev_to_ebit": 24.379
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 6.491,
+        "price_to_fcf": 38.283,
+        "ev_to_ebit": 23.986
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 6.666,
+        "price_to_fcf": 39.315,
+        "ev_to_ebit": 24.653
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 5.867,
+        "price_to_fcf": 31.625,
+        "ev_to_ebit": 20.842
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 5.728,
+        "price_to_fcf": 30.872,
+        "ev_to_ebit": 20.325
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 6.437,
+        "price_to_fcf": 34.697,
+        "ev_to_ebit": 22.952
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 5.753,
+        "price_to_fcf": 29.394,
+        "ev_to_ebit": 20.136
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 6.095,
+        "price_to_fcf": 31.142,
+        "ev_to_ebit": 21.37
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 6.094,
+        "price_to_fcf": 31.136,
+        "ev_to_ebit": 21.366
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 6.743,
+        "price_to_fcf": 28.887,
+        "ev_to_ebit": 23.244
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 6.107,
+        "price_to_fcf": 26.159,
+        "ev_to_ebit": 20.986
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 6.291,
+        "price_to_fcf": 26.95,
+        "ev_to_ebit": 21.641
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 7.526,
+        "price_to_fcf": 33.76,
+        "ev_to_ebit": 25.267
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 7.433,
+        "price_to_fcf": 33.342,
+        "ev_to_ebit": 24.945
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 7.531,
+        "price_to_fcf": 33.782,
+        "ev_to_ebit": 25.283
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 9.027,
+        "price_to_fcf": 43.103,
+        "ev_to_ebit": 29.591
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 8.892,
+        "price_to_fcf": 42.455,
+        "ev_to_ebit": 29.136
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 9.792,
+        "price_to_fcf": 46.755,
+        "ev_to_ebit": 32.156
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 8.703,
+        "price_to_fcf": 50.104,
+        "ev_to_ebit": 28.04
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 8.882,
+        "price_to_fcf": 51.132,
+        "ev_to_ebit": 28.629
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 8.673,
+        "price_to_fcf": 49.929,
+        "ev_to_ebit": 27.94
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 7.203,
+        "price_to_fcf": 69.135,
+        "ev_to_ebit": 22.254
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 7.25,
+        "price_to_fcf": 69.585,
+        "ev_to_ebit": 22.405
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 8.528,
+        "price_to_fcf": 81.854,
+        "ev_to_ebit": 26.538
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 10.916,
+        "price_to_fcf": null,
+        "ev_to_ebit": 34.811
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 12.671,
+        "price_to_fcf": null,
+        "ev_to_ebit": 40.508
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 11.291,
+        "price_to_fcf": null,
+        "ev_to_ebit": 36.027
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 13.862,
+        "price_to_fcf": null,
+        "ev_to_ebit": 44.93
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 12.944,
+        "price_to_fcf": null,
+        "ev_to_ebit": 41.913
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 9.954,
+        "price_to_fcf": null,
+        "ev_to_ebit": 32.09
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 9.334,
+        "price_to_fcf": null,
+        "ev_to_ebit": 29.757
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 7.881,
+        "price_to_fcf": null,
+        "ev_to_ebit": 24.96
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 6.963,
+        "price_to_fcf": null,
+        "ev_to_ebit": 21.927
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 6.685,
+        "price_to_fcf": null,
+        "ev_to_ebit": 19.879
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.334,
+        "price_to_fcf": null,
+        "ev_to_ebit": 22.003
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 10.261,
+        "price_to_fcf": null,
+        "ev_to_ebit": 31.579
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 6.34,
+        "price_to_fcf": null,
+        "ev_to_ebit": 19.178
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 5.618,
+        "price_to_fcf": null,
+        "ev_to_ebit": 16.819
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 6.451,
+        "price_to_fcf": null,
+        "ev_to_ebit": 19.541
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 5.739,
+        "price_to_fcf": null,
+        "ev_to_ebit": 16.257
+      },
+      {
+        "date": "2026-10-14",
+        "price_to_sales": 5.456,
+        "price_to_fcf": null,
+        "ev_to_ebit": 15.379
+      }
+    ],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 5.5,
+        "points": 61,
+        "median": 6.437,
+        "low": 3.799,
+        "high": 13.862,
+        "percentile": 27.9,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "points": 44,
+        "median": 34.175,
+        "low": 20.663,
+        "high": 81.854,
+        "percentile": null,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 15.513,
+        "points": 61,
+        "median": 21.37,
+        "low": 14.278,
+        "high": 44.93,
+        "percentile": 8.2,
+        "from": "2021-10-29"
+      }
+    }
+  },
+  "trend": {
+    "close": 130.55,
+    "date": "2026-10-14",
+    "ma50": 145.62,
+    "ma200": 160.84,
+    "vs_ma50_pct": -10.35,
+    "vs_ma200_pct": -18.83,
+    "momentum_12_1_pct": -53.99,
+    "high_52w": 313.0,
+    "drawdown_52w_pct": -58.29,
+    "return_rs_pct": -22.57,
+    "rs_days": 126,
+    "spy_return_pct": 10.51,
+    "rs_spy_pp": -33.08,
+    "qqq_return_pct": 14.61,
+    "rs_qqq_pp": -37.18
+  },
+  "ust10y": {
+    "value": 5.21,
+    "date": "2026-10-13"
+  },
+  "guidance": {
+    "accession": "0001193125-26-387905",
+    "filing_date": "2026-09-10",
+    "period_end": "2026-08-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
+    "summary": "Oracle expects Q2 FY2027 total revenue growth of 30%-34%, cloud revenue growth of 64%-71%, and non-GAAP EPS of $1.83-$1.93, and for full FY2027 now expects total revenue of at least $90 billion and non-GAAP EPS of $8.10.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q2 FY2027",
+        "amount_text": "between 30% and 34%",
+        "stated_change": "not stated",
+        "sentence": "Total revenues are expected to grow between 30% and 34% in constant currency and USD.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "Q2 FY2027",
+        "amount_text": "between 64% and 70% in constant currency and between 65% and 71% in USD",
+        "stated_change": "not stated",
+        "sentence": "Total Cloud revenue is expected to grow between 64% and 70% in constant currency and between 65% and 71% in USD.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "Q2 FY2027",
+        "amount_text": "between $1.83 and $1.91 in constant currency and between $1.85 and $1.93 in USD",
+        "stated_change": "not stated",
+        "sentence": "Non-GAAP earnings per share is expected to be between $1.83 and $1.91 in constant currency and between $1.85 and $1.93 in USD, which represents growth of 19% to 23% in constant currency and 21% to 25% in USD excluding a one-time gain from Q2 FY2026 1 .",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "Q2 FY2027",
+        "amount_text": "between -19% and -15% in constant currency and decline between -18% and -14% in USD",
+        "stated_change": "not stated",
+        "sentence": "Including the investment gain, Q2 FY27 non-GAAP earnings per share is expected to decline between -19% and -15% in constant currency and decline between -18% and -14% in USD.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2027",
+        "amount_text": "at least $90 billion",
+        "stated_change": "not stated",
+        "sentence": "For fiscal year 2027, we now expect total revenue to be at least $90 billion, and non-GAAP EPS to be at $8.10.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "FY2027",
+        "amount_text": "$8.10",
+        "stated_change": "not stated",
+        "sentence": "For fiscal year 2027, we now expect total revenue to be at least $90 billion, and non-GAAP EPS to be at $8.10.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-265848",
+      "filing_date": "2026-06-10",
+      "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526265848/orcl-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Oracle's Q1 FY27 report on 2026-09-10 beat estimates and set FY27 guidance of at least $90B revenue and $8.10 non-GAAP EPS, with Q2 revenue growth guided at 30-34%. No guidance change was found during the window, though reports flag delay risk at Project Jupiter.",
+        "evidence": [
+          {
+            "claim": "For fiscal year 2027, we now expect total revenue to be at least $90 billion, and non-GAAP EPS to be at $8.10.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
+            "event_date": "2026-09-10",
+            "tier": "primary",
+            "age_days": 35,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          },
+          {
+            "claim": "Total revenues are expected to grow between 30% and 34% in constant currency and USD.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
+            "event_date": "2026-09-10",
+            "tier": "primary",
+            "age_days": 35,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "Q1 FY27 revenue was $19.3B, up 30%, and non-GAAP EPS was $1.92, both ahead of consensus.",
+            "url": "https://tickeron.com/blogs/oracle-orcl-delivers-strong-fiscal-q1-2027-results-as-cloud-infrastructure-accelerates-16548/",
+            "event_date": "2026-09-10",
+            "tier": "other",
+            "age_days": 35,
+            "background": true,
+            "status": "unverified",
+            "check": "numbers 3/5, names 2/3 · missing: 27, 19.3, FY27"
+          },
+          {
+            "claim": "Project Jupiter in New Mexico is at risk of delay over pipeline approval.",
+            "url": "https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/",
+            "event_date": "2026-10-14",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions were mixed: Yorkville initiated at Hold with a $155 target, while Mizuho and Citizens reiterated Outperform-type ratings. No upgrades or downgrades turned up in the window.",
+        "evidence": [
+          {
+            "claim": "Yorkville Ives & Co initiated coverage at Hold with a $155 price target.",
+            "url": "https://stockanalysis.com/stocks/orcl/forecast/",
+            "event_date": "2026-10-07",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          },
+          {
+            "claim": "Mizuho maintained Outperform with a $320 price target.",
+            "url": "https://www.investing.com/equities/oracle-corp-consensus-estimates",
+            "event_date": "2026-10-14",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Citizens reiterated Market Outperform with a $285 price target.",
+            "url": "https://finance.yahoo.com/quote/ORCL/analyst-insights/",
+            "event_date": "2026-10-02",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": -1,
+        "summary": "A securities class action is still pending in Delaware. The Oracle Health breach count grew to nearly 20M individuals, and a law firm is investigating customer claims over it.",
+        "evidence": [
+          {
+            "claim": "A securities class action is pending in the District of Delaware against Oracle and certain officers and a director.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
+            "event_date": null,
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "The Oracle Health data breach total reached nearly 20 million individuals, per an updated Texas AG filing.",
+            "url": "https://www.hipaajournal.com/oracle-health-data-breach/",
+            "event_date": "2026-10-02",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "A low-reliability source says roughly half of the $664B backlog is linked to AI labs, with OpenAI about half of that. That leaves meaningful exposure to a few customers, though no customer loss was found.",
+        "evidence": [
+          {
+            "claim": "Roughly 45-50% of Oracle's $664B RPO is lab-linked, with OpenAI about half.",
+            "url": "https://technosight.substack.com/p/hyperscalers-two-customer-problem",
+            "event_date": null,
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration",
+        "weak_sources_note": "Capped at 0 (was -1): only other-tier sources, none verified",
+        "rating_before_cap": -1
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The CEO sold shares under a pre-arranged 10b5-1 plan, and the Chief Accounting Officer made a small sale. No purchases were found, and the selling looks routine.",
+        "evidence": [
+          {
+            "claim": "CEO Michael Sicilia sold 22,562 shares at $151.59 under a 10b5-1 plan.",
+            "url": "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-b82de526eed7.html",
+            "event_date": "2026-09-22",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          },
+          {
+            "claim": "Chief Accounting Officer Maria Smith sold 2,631 shares at $151.70.",
+            "url": "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-d65bcac64b84.html",
+            "event_date": "2026-09-22",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "AI cloud demand remains strong: RPO reached $664B, and Oracle signed more than $30B of new AI contracts in Q1. Possible data-center delays temper the picture.",
+        "evidence": [
+          {
+            "claim": "Oracle's RPO reached $664B in Q1 FY27.",
+            "url": "https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/",
+            "event_date": "2026-09-10",
+            "tier": "other",
+            "age_days": 35,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/3"
+          },
+          {
+            "claim": "Oracle signed more than $30B of new AI contracts in Q1.",
+            "url": "https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/",
+            "event_date": "2026-09-10",
+            "tier": "other",
+            "age_days": 35,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 3,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    }
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Coverage note:** Oracle's Q1 FY27 report (2026-09-10) falls just before the window. I include it because it set the guidance that stands during the window. Several dates below come from aggregators, and I say so where that applies.\n\n## 1. Guidance and results\n- Q1 FY27 revenue was $19.3B (+30%) against consensus of about $19.13B. Non-GAAP EPS was $1.92 against $1.74. — 2026-09-10 — https://tickeron.com/blogs/oracle-orcl-delivers-strong-fiscal-q1-2027-results-as-cloud-infrastructure-accelerates-16548/ (aggregator; Oracle's own release is mirrored at https://www.storagenewsletter.com/2026/09/23/oracle-fiscal-1q27-financial-results/)\n- FY27 guidance was raised to revenue of at least $90B (+34%) and non-GAAP EPS of $8.10. Capex is guided to $90–95B, with net cash capex of no more than $70B. — 2026-09-10 — https://www.alphaspread.com/security/nyse/orcl/investor-relations/earnings-call/q1-2027\n- Q2 guidance is revenue growth of 30–34% and cloud growth of 65–71%. Non-GAAP EPS is guided to $1.85–1.93. — 2026-09-10 — https://www.alphaspread.com/security/nyse/orcl/investor-relations/earnings-call/q1-2027 and https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/\n- RPO was $664B, versus roughly $640B expected. Free cash flow was –$5.4B. — 2026-09-10 — https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/\n- I found no pre-announcement or guidance change after 2026-09-15. The next earnings date is 2026-12-14. — https://www.fool.com/coverage/stock-market-today/2026/10/14/stock-market-today-oct-14-oracle-tumbles-on-hotter-cpi-data-lifting-treasury-yields/\n- ORCL fell 8.83% to $130.55 on 2026-10-14. Reports attribute it to hot CPI data and rate-hike bets, with AI financing worries also cited. — 2026-10-14 — https://www.fool.com/coverage/stock-market-today/2026/10/14/stock-market-today-oct-14-oracle-tumbles-on-hotter-cpi-data-lifting-treasury-yields/ and https://cryptobriefing.com/oracle-shares-drop-rate-hike-bets-ai/ (cites Reuters)\n- Project Jupiter (New Mexico) is reported to be at risk of delay over pipeline approval. — 2026-10-14 — https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/\n\n## 2. Analyst actions\nNo upgrades or downgrades turned up in the window.\n- Yorkville Ives & Co initiated at Hold, PT $155. — 2026-10-07 — https://stockanalysis.com/stocks/orcl/forecast/ and https://www.investing.com/equities/oracle-corp-consensus-estimates\n- Mizuho maintained Outperform, PT $320. — 2026-10-14 — https://www.investing.com/equities/oracle-corp-consensus-estimates\n- Citizens reiterated Market Outperform, PT $285. — 2026-10-02 — https://finance.yahoo.com/quote/ORCL/analyst-insights/\n- RBC Capital maintained Hold, with no PT listed. — 2026-10-12 — https://stockanalysis.com/stocks/orcl/forecast/ A separate article lists RBC at Sector Perform, PT $165, undated. — date unknown — https://beinsure.com/news/oracle-stock-price-forecast-analyst-target/\n- Stifel maintained Buy, PT $200. — 2026-09-24 — https://www.investing.com/equities/oracle-corp-consensus-estimates\n- Goldman Sachs is at Buy, PT $240, up from $239 in September. — date unknown — https://beinsure.com/news/oracle-stock-price-forecast-analyst-target/\n- Consensus PT is $237.97 (S&P Global, 43 analysts) — https://stockanalysis.com/stocks/orcl/forecast/. MarketBeat shows $251.72 (47 analysts). — https://beinsure.com/news/oracle-stock-price-forecast-analyst-target/\n\n## 3. Litigation and regulation\n- A securities class action is pending in the District of Delaware against Oracle, its CTO, one CEO, two other executives and one director. The amended complaint was filed 2026-07-14. The defendants' response was due 2026-09-16, and any motion to dismiss would be fully briefed by 2026-12-18. — 2026-09-16 — https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm\n- The EU Commission is gathering third-party information on Oracle's licensing practices. A Commission spokesperson said there is no formal investigation. — 2026-09-01 (just before the window) — https://money.usnews.com/investing/news/articles/2026-09-01/oracle-licensing-practices-on-eu-antitrust-regulators-radar-source-says\n- The Oracle Health/Cerner breach total reached nearly 20M individuals per an updated Texas AG filing. — 2026-10-02 — https://www.hipaajournal.com/oracle-health-data-breach/\n- A law firm is investigating potential customer claims over the Oracle Health breach. — 2026-10-14 — https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/\n- Oracle's subsidiary sued the Wisconsin PSC over data-center credit requirements. — 2026-06 (before the window) — https://www.wpr.org/news/oracle-sues-wisconsin-utility-regulators-psc-financial-requirements-data-centers\n- I found no export-control or fine news in the window.\n\n## 4. Customer concentration\n- Oracle signed more than $30B of new AI contracts in Q1, mostly via prepay or bring-your-own-hardware structures. Management says these need no incremental Oracle capital. — 2026-09-10 — https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/\n- Roughly 45–50% of the $664B RPO is lab-linked, with OpenAI about half. — date unknown — https://technosight.substack.com/p/hyperscalers-two-customer-problem (Substack, low reliability; the figures are press-reported).\n- The same piece says OpenAI's annualized revenue was reported near $50B in September, against $68–70B circulated earlier. — date unknown — https://technosight.substack.com/p/hyperscalers-two-customer-problem\n- Oracle says about half of RPO should convert to sales within 36 months. — 2026-09-10 — https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/\n- I found no specific customer loss or contract change in the window.\n\n## 5. Insider activity\nNo open-market purchases found.\n- CEO Michael Sicilia sold 22,562 shares at $151.59 (~$3.42M) under a 10b5-1 plan adopted 2025-12-24. — 2026-09-22 — https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-b82de526eed7.html\n- Sicilia also sold 10,882 shares at $139.94. — 2026-09-16 — https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-49a366313cbe.html\n- Chief Accounting Officer Maria Smith sold 2,631 shares at $151.70 (~$399K), with no 10b5-1 plan reported. — 2026-09-22 — https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-d65bcac64b84.html (Form 144",
+      "urls": [
+        "https://stockanalysis.com/stocks/orcl/transcripts/689425-q1-2027/",
+        "https://www.alphaspread.com/security/nyse/orcl/investor-relations/earnings-call/q1-2027",
+        "https://www.kucoin.com/news/flash/oracle-q1-fy27-revenue-hits-19-3b-rpo-surpasses-664b",
+        "https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/",
+        "https://s23.q4cdn.com/440135859/files/doc_earnings/2026/q4/earnings-result/4q26-pressrelease-final.pdf",
+        "https://finance.yahoo.com/markets/stocks/articles/oracle-corp-orcl-q1-2027-090101356.html",
+        "https://www.storagenewsletter.com/2026/09/23/oracle-fiscal-1q27-financial-results/",
+        "https://tickeron.com/blogs/oracle-orcl-delivers-strong-fiscal-q1-2027-results-as-cloud-infrastructure-accelerates-16548/",
+        "https://www.top1markets.com/insights/stocks/oracle-orcl-q1-fy2027-rpo-earnings-guide-2026",
+        "https://beinsure.com/news/oracle-stock-price-forecast-analyst-target/",
+        "https://stockanalysis.com/stocks/orcl/",
+        "https://www.etoro.com/markets/orcl",
+        "https://finance.yahoo.com/quote/ORCL/analyst-insights/",
+        "https://stockanalysis.com/stocks/orcl/forecast/",
+        "https://www.investing.com/equities/oracle-corp-consensus-estimates",
+        "https://finance.yahoo.com/quote/ORCL/",
+        "https://public.com/stocks/orcl/forecast-price-target",
+        "https://tickernerd.com/stock/orcl-forecast/",
+        "https://www.marketbeat.com/stocks/NYSE/ORCL/price-target/",
+        "https://wisconsinwatch.org/2026/06/oracle-sues-wisconsin-regulators-data-center-credit-requirements-public-service-commission/",
+        "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
+        "https://www.hipaajournal.com/oracle-health-data-breach/",
+        "https://www.investmentnews.com/regulation-legal-compliance/investors-sue-oracle-allege-executives-dumped-187b-amid-ai-hype/265164",
+        "https://www.thestreet.com/investing/stocks/eu-regulators-warn-oracle-antitrust-ahead-of-earnings",
+        "https://www.wpr.org/news/oracle-sues-wisconsin-utility-regulators-psc-financial-requirements-data-centers",
+        "https://money.usnews.com/investing/news/articles/2026-09-01/oracle-licensing-practices-on-eu-antitrust-regulators-radar-source-says",
+        "https://www.dexpose.io/oracle-data-breach/",
+        "https://thenextweb.com/news/oracle-eu-antitrust-cloud-licensing",
+        "https://www.fool.com/investing/2026/01/07/oracles-secret-weapon-against-ai-customer-risk-has/",
+        "https://alphametrics1.substack.com/p/oracle-just-got-the-answer-it-needed",
+        "https://finance.yahoo.com/markets/stocks/articles/openai-shortfall-puts-oracle-ai-050252163.html",
+        "https://medium.com/@fahey_james/oracle-just-got-downgraded-and-openai-is-the-reason-why-4c1841fae011",
+        "https://technosight.substack.com/p/hyperscalers-two-customer-problem",
+        "https://finance.yahoo.com/markets/stocks/articles/why-oracle-orcl-18-4-052219402.html",
+        "https://medium.com/@hello_9187/how-will-openai-pay-for-their-300-billion-oracle-contract-2357307ca322",
+        "https://www.cnbc.com/2025/09/13/openai-spending-spree-powering-much-of-tech-oracle-latest-example.html",
+        "https://finance.yahoo.com/news/oracles-secret-weapon-against-ai-103500441.html",
+        "https://finance.yahoo.com/news/oracle-orcl-mike-sicilia-ai-142416039.html",
+        "https://finance.yahoo.com/news/insider-sell-alert-director-george-120305743.html",
+        "https://ng.investing.com/news/stock-market-news/oracle-director-sells-shares-amid-insider-selling-trend-93CH-1143401",
+        "https://www.secform4.com/insider-trading/1341439.htm",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-d65bcac64b84.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-b82de526eed7.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-dc617db2d699.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-49a366313cbe.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/form-4-oracle-corp-insider-trading-activity-c7c1a7222dbe.html",
+        "https://www.stocktitan.net/sec-filings/ORCL/144-oracle-corp-sec-filing-cf9740da1562.html",
+        "https://benzinga.com/z/23114458",
+        "https://blogs.oracle.com/ai-and-datascience/whats-new-in-oracle-ai-october-2026",
+        "https://docs.oracle.com/en-us/iaas/releasenotes/",
+        "https://blogs.oracle.com/cloud-infrastructure/oracle-nvidia-gtc-2026-key-announcements",
+        "https://www.oracle.com/news/announcement/oracle-unveils-ai-data-platform-for-us-federal-government-2026-03-31/",
+        "https://blogs.oracle.com/ai-and-datascience/announcing-oci-enterprise-ai-ga",
+        "https://www.executivebiz.com/articles/oracle-ai-platform-launch",
+        "https://www.datacenterknowledge.com/infrastructure/oracle-eyes-50-billion-for-ai-infrastructure-in-2026",
+        "https://blogs.nvidia.com/blog/nvidia-oracle-accelerate-enterprise-ai-data-processing/",
+        "https://www.oracle.com/artificial-intelligence/enterprise-ai/",
+        "https://www.fool.com/coverage/stock-market-today/2026/10/14/stock-market-today-oct-14-oracle-tumbles-on-hotter-cpi-data-lifting-treasury-yields/",
+        "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-14-211246271.html",
+        "https://www.marketbeat.com/instant-alerts/price-oracle-nyse-orcl-stock-falls-88-heres-what-happened-2026-10-14/",
+        "https://www.tikr.com/blog/oracle-sinks-9-on-hot-inflation-data-rates-now-reach-its-earnings",
+        "https://cryptobriefing.com/oracle-shares-drop-rate-hike-bets-ai/",
+        "https://biztoc.com/x/32f7b5d298703c4f",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262216628-oracle-stock-drop-cpi-inflation-rate-hike-ai-financing-project-jupiter-tadingkey",
+        "https://www.tradingkey.com/news/market-movers/262216421-market-movers-orcl-20261014",
+        "https://www.nasdaq.com/articles/heres-why-oracle-stock-slumped-today",
+        "https://www.ibm.com/events/oracle-ai-world",
+        "https://finance.yahoo.com/news/oracle-analyst-day-spotlights-full-141558342.html",
+        "https://www.marketbeat.com/stocks/NYSE/ORCL/forecast/",
+        "https://stocktwits.com/news-articles/markets/equity/oracle-ai-world-conference-to-shed-light-on-cloud-margins-and-ambitions-report/ch6SN6KR3kD",
+        "https://www.grantthornton.com/events/region/2026/10-26-oracle-ai-world-2026",
+        "https://www.morningstar.com/stocks/oracle-earnings-skyrocketing-ai-data-center-demand-fuels-outlook",
+        "https://cfgi.io/oracle-stock-prediction/",
+        "https://intellectia.ai/blog/oracle-stock-price-prediction-2026-orcl-analysis"
+      ],
+      "searches": 8
+    }
+  },
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Oracle rates Hold: strong AI-driven growth offset by heavy cash burn and a collapsed share price trend.",
+    "thesis": "Oracle scores 50, a Hold with high confidence, because standout growth is cancelled out by weak trend, cash flow and valuation readings. Growth scores 86, with quarterly revenue up 29.61% year on year and accelerating by 8.98 points versus the trailing twelve months. Quality scores only 48: the 32.12% operating margin is solid, but free cash flow margin is -40.01% as AI data-center spending consumes cash, and share count dilution is 3.13%. The trend factor scores 1, with the stock 58.29% below its 52-week high and 18.83% below its 200-day average. Valuation scores 43 and news risk 56, as strong guidance and a $664B backlog are balanced by litigation and a data breach.",
+    "key_risks": [
+      "Deeply negative free cash flow (-40.01% margin) from AI capex; the capex early-warning check is AMBER at 6/18.",
+      "Possible customer concentration: a low-reliability, unverified source links about half of the $664B backlog to AI labs, with OpenAI a large share.",
+      "Data-center delays, including flagged risk at Project Jupiter, could push out revenue.",
+      "Pending securities class action and an Oracle Health breach affecting nearly 20M individuals.",
+      "Severe price weakness: momentum of -53.99% and underperformance versus SPY by 33.08 points."
+    ],
+    "what_would_change": [
+      "A drop of 6 points in the composite score (below 45) would move the rating to Sell, for example from further trend weakness or a worsening news-risk score.",
+      "Rising 15 points to 65 would require broad improvement, such as free cash flow turning positive to lift quality and valuation.",
+      "A recovery in the share price trend from its score of 1 would add meaningful points given its 15% weight.",
+      "Escalation of the AI capex warning beyond AMBER, or a guidance cut from the FY27 target of at least $90B revenue, would push the rating down."
+    ]
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3078,
+        "output_tokens": 1069,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0337
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 128983,
+        "output_tokens": 4734,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3853
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7441,
+        "output_tokens": 2442,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0786
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2476,
+        "output_tokens": 679,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0235
+      }
+    },
+    "total_usd": 0.5211,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 130.55,
+    "as_of": "2026-10-14T20:00:00Z",
+    "prev_close": 143.2
+  },
+  "close_note": {
+    "scored_on": "2026-10-14",
+    "latest": "2026-10-14",
+    "latest_from": "quote",
+    "run_et": "2026-10-15 03:18",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "38697813879",
+    "tickers": [
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK"
+    ]
+  }
+}
