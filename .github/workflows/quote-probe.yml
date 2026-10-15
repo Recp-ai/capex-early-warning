@@ -1,0 +1,46 @@
+name: Quote probe (temporary)
+# One-off check that the Tiingo free plan returns tngoLast on the IEX endpoint. Removed in the next commit.
+on:
+  push:
+    branches: [claude/quirky-galileo-r1v5a9]
+    paths: [.github/workflows/quote-probe.yml]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Tiingo IEX quote probe
+        env:
+          STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          key = os.environ.get("STOCK_PRICE_API_KEY") or ""
+          print("key set:", bool(key))
+          def get(url):
+              req = urllib.request.Request(url, headers={"Authorization": "Token " + key, "Content-Type": "application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as r:
+                      return r.status, r.read()
+              except urllib.error.HTTPError as e:
+                  return e.code, e.read()
+          for url in ("https://api.tiingo.com/iex/?tickers=msft,nvda,tic,spy", "https://api.tiingo.com/iex"):
+              status, body = get(url)
+              print("URL", url, "HTTP", status, "bytes", len(body))
+              try:
+                  data = json.loads(body)
+              except ValueError:
+                  print("not JSON:", body[:200].decode("utf-8", "replace").replace(key, "***") if key else body[:200]); continue
+              if not isinstance(data, list):
+                  print("not a list:", json.dumps(data)[:300].replace(key, "***") if key else json.dumps(data)[:300]); continue
+              print("items", len(data))
+              want = {"MSFT", "NVDA", "TIC", "SPY"}
+              for d in data:
+                  if str(d.get("ticker", "")).upper() in want:
+                      print(json.dumps({k: d.get(k) for k in ("ticker", "tngoLast", "last", "prevClose", "timestamp",
+                                                              "lastSaleTimestamp", "quoteTimestamp", "mid", "open", "high", "low", "volume")}))
+              if data:
+                  print("keys:", sorted(data[0].keys()))
+          PY
