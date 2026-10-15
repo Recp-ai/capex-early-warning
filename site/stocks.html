@@ -144,7 +144,53 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
 .btn:disabled { opacity: .5; cursor: default; }
 .run-msg { margin-top: 10px; min-height: 1.5em; }
 .run-est { font-size: 13.5px; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
-@media (max-width: 760px) { .run input[type=text], .run input[type=password], .run select { font-size: 16px; } } /* no zoom-on-focus on iOS */
+@media (max-width: 760px) { .run input[type=text], .run input[type=password], .run select, .inp, .toolbar select, .acts select { font-size: 16px; } } /* no zoom-on-focus on iOS */
+.tabs { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 6px; margin: 0 0 8px; scrollbar-width: thin; }
+.tab { font: inherit; font-size: 13px; white-space: nowrap; border: 1px solid var(--ring); background: none; color: var(--ink-2);
+  border-radius: 999px; padding: 4px 12px; cursor: pointer; flex: none; }
+.tab.on { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.tab.add { border-style: dashed; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 10px; font-size: 13px; }
+.toolbar label { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); }
+.sbtn { font: inherit; font-size: 12.5px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink);
+  border-radius: 8px; padding: 4px 10px; cursor: pointer; min-height: 30px; }
+.sbtn:disabled { opacity: .4; cursor: default; }
+.sbtn.danger { color: var(--critical); }
+.ibtn { font: inherit; font-size: 13px; width: 30px; height: 30px; border: 1px solid var(--ring); background: var(--surface);
+  color: var(--ink); border-radius: 7px; cursor: pointer; padding: 0; }
+.ibtn:disabled { opacity: .3; cursor: default; }
+.inp, .toolbar select, .acts select { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--page); border: 1px solid var(--axis);
+  border-radius: 8px; padding: 5px 8px; min-width: 0; }
+#l-add, #run-ticker { text-transform: uppercase; width: 12em; }
+#l-add::placeholder, #run-ticker::placeholder { text-transform: none; }
+td.tk, th.tkh { text-align: left; }
+.show-sm { display: none; }
+@media (max-width: 600px) {
+  .show-sm { display: block; font-size: 11.5px; color: var(--muted); font-weight: 400; }
+  #lists .tk small { max-width: 110px; }
+}
+.acts { display: flex; gap: 4px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
+.acts select { max-width: 9.5em; font-size: 12.5px; padding: 4px 6px; }
+td.ck, th.ck { width: 28px; padding-right: 0; }
+td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 17px; margin: 0; vertical-align: -3px; }
+.dirty { font-size: 12.5px; font-weight: 600; color: var(--serious); margin-left: 8px; }
+.savebar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; padding: 10px; border-radius: 10px;
+  background: color-mix(in srgb, var(--warning) 14%, transparent); font-size: 13.5px; }
+.savebar .inp { width: 11em; }
+.tag { font-size: 11px; font-weight: 600; border-radius: 4px; padding: 0 5px; margin-left: 4px; white-space: nowrap; color: var(--ink);
+  background: color-mix(in srgb, var(--warning) 26%, transparent); }
+.pt { color: var(--muted); font-size: 11.5px; }
+.st { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 0 7px; margin-left: 4px; white-space: nowrap; border: 1px solid var(--ring); color: var(--ink-2); }
+.st.running { color: var(--s1); border-color: var(--s1); }
+.st.done { color: var(--good); border-color: var(--good); }
+.st.failed { color: var(--critical); border-color: var(--critical); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 8px 0; }
+.chips li { font-size: 13px; border: 1px solid var(--ring); border-radius: 999px; padding: 2px 4px 2px 10px; display: inline-flex; align-items: center; gap: 4px; }
+.chips li button { border: 0; background: none; color: var(--muted); cursor: pointer; font: inherit; padding: 0 4px; }
+.prog { font-size: 13.5px; margin-top: 10px; }
+.prog li { padding-right: 10px; }
+.closeinfo { margin-top: 10px; font-size: 14px; }
+.closeinfo .flag { margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -156,11 +202,11 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     </div>
     <div class="head-right"><a href="./">← Capex dashboard</a><button class="toggle" id="theme" type="button">Theme</button></div>
   </header>
-  <p class="notice"><b>Not investment advice.</b> An automated screen: five factors are computed by code from SEC filings and end-of-day prices; the news &amp; risk factor comes from Claude's reading of the last 30 days of news, with every source checked. Ratings can be wrong or stale.</p>
-  <section class="card" id="list" style="margin-bottom:16px"></section>
+  <p class="notice"><b>Not investment advice.</b> An automated screen: five factors are computed by code from SEC filings and official end-of-day closes; the news &amp; risk factor comes from Claude's reading of the last 30 days of news, with every source checked. Latest prices are near-live quotes shown for context only. Ratings can be wrong or stale.</p>
+  <section class="card" id="lists" style="margin-bottom:16px"></section>
   <section id="detail"></section>
   <section class="card run" id="run"></section>
-  <p class="sub" style="margin-top:28px">Data: SEC EDGAR (XBRL companyfacts, earnings 8-Ks), Tiingo end-of-day prices, FRED 10-year Treasury yield, the capex dashboard's latest level. Not investment advice.</p>
+  <p class="sub" style="margin-top:28px">Data: SEC EDGAR (XBRL companyfacts, earnings 8-Ks), Tiingo end-of-day prices and IEX quotes (display only), FRED 10-year Treasury yield, the capex dashboard's latest level. Not investment advice.</p>
 </main>
 
 <script>
@@ -236,6 +282,50 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     return (unit === "%" || unit === " pp" ? signed(v, 1) : num(v, unit === "x" || unit === " yrs" ? 1 : 0)) + unit;
   };
 
+
+  // ---------------------------------------------------------------- time: local, UTC and US Eastern
+  const pad = n => String(n).padStart(2, "0");
+  const localTime = ts => { const d = new Date(ts); return isNaN(d) ? "—" : `${MONTHS[d.getMonth()]} ${d.getDate()}, ${pad(d.getHours())}:${pad(d.getMinutes())}`; };
+  const ET_FMT = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" });
+  function etParts(ms) {
+    const p = {};
+    for (const x of ET_FMT.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return { date: `${p.year}-${p.month}-${p.day}`, hour: +p.hour % 24, minute: +p.minute, weekday: p.weekday };
+  }
+  const etClock = ms => { const p = etParts(ms); return `${p.hour % 12 || 12}:${pad(p.minute)} ${p.hour < 12 ? "am" : "pm"} ET`; };
+  const shortDay = d => d ? `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8, 10)}` : "—";
+  const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
+  function latestWeekdayET(ms) { // the US Eastern date, moved back to Friday on a weekend (holidays not known)
+    const p = etParts(ms);
+    return p.weekday === "Sat" ? addDays(p.date, -1) : p.weekday === "Sun" ? addDays(p.date, -2) : p.date;
+  }
+  function marketOpen(ms = Date.now()) { // Mon-Fri 9:30 am to 4:15 pm ET (the close prints a few minutes after 4)
+    const p = etParts(ms), m = p.hour * 60 + p.minute;
+    return p.weekday !== "Sat" && p.weekday !== "Sun" && m >= 570 && m < 975;
+  }
+  // "4:00 pm ET" today (US Eastern), "Oct 14, 4:00 pm ET" on an earlier day
+  const quoteTime = asOf => { const ms = Date.parse(asOf); if (isNaN(ms)) return ""; const d = etParts(ms).date;
+    return (d === etParts(Date.now()).date ? "" : shortDay(d) + ", ") + etClock(ms); };
+  function age(ts) {
+    const ms = Date.now() - Date.parse(ts);
+    if (isNaN(ms)) return "";
+    const m = Math.floor(ms / 60e3), h = Math.floor(m / 60), d = Math.floor(h / 24);
+    return d >= 1 ? `${d} d ago` : h >= 1 ? `${h} h ago` : m >= 1 ? `${m} min ago` : "just now";
+  }
+  const ageDays = ts => (Date.now() - Date.parse(ts)) / 864e5;
+  // Which close a run was scored on; whether a newer close existed then (the run's quote date, or without one
+  // the latest weekday at run time); and whether it ran between 16:00 and 18:00 ET. Display only.
+  function closeNote(D) {
+    const P = D.price || {}, runMs = Date.parse(D.run_id);
+    if (!P.date || isNaN(runMs)) return {};
+    const q = D.quote && Date.parse(D.quote.as_of);
+    const newer = q && !isNaN(q) ? etParts(q).date : latestWeekdayET(runMs);
+    const p = etParts(runMs), wd = p.weekday !== "Sat" && p.weekday !== "Sun";
+    return { stale: newer > P.date, window: (D.close_note && D.close_note.close_window) ||
+      (wd && p.hour >= 16 && p.hour < 18 ? `Run at ${etClock(runMs)}, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet` : "") };
+  }
+
   // ---------------------------------------------------------------- charts
   function niceTicks(lo, hi, n = 4) {
     if (lo === hi) { lo -= 1; hi += 1; }
@@ -303,34 +393,259 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     $(".hit", el).addEventListener("pointerleave", leave);
   }
 
-  // ---------------------------------------------------------------- state
-  const state = { index: null, models: null, detail: null, ticker: null, range: "2y" };
-  const get = u => fetch(u + "?v=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
 
-  function renderList() {
-    const I = state.index, el = $("#list");
-    const rows = (I && I.tickers) || [];
-    $("#asof").textContent = rows.length ? `${rows.length} rated ticker${rows.length === 1 ? "" : "s"} · updated ${runTime(I.generated_at)}` : "No stock rated yet";
+  // ---------------------------------------------------------------- state
+  const state = { index: null, models: null, detail: null, ticker: null, range: "2y",
+    lists: null, draft: null, listsError: null, view: "all", sort: "order", edit: false,
+    selected: new Set(), quotes: {}, quotesAt: 0, batch: null };
+  const get = u => fetch(u + "?v=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
+  const store = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const load = k => { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } };
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const MAX_LISTS = 30, MAX_PER_LIST = 100; // config/stocks.yaml lists.* (api/stock.js enforces them)
+  const RANK = { "Strong Buy": 5, "Buy": 4, "Hold": 3, "Sell": 2, "Strong Sell": 1 };
+  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 15, max_tickers_per_day: 30 }, (state.index || {}).settings || {});
+  const rated = () => (state.index && state.index.tickers) || [];
+  const entry = t => rated().find(e => e.ticker === t);
+  const savedLists = () => (state.lists && state.lists.lists) || [];
+  const dirty = () => state.draft != null && JSON.stringify(state.draft) !== JSON.stringify(savedLists());
+  const currentList = () => state.view === "all" ? null : (state.draft || []).find(l => l.id === state.view) || null;
+
+  // The latest price: the near-live quote when it is at least as new as the stored price, else the stored
+  // latest price (a quote or an official close written by the last run).
+  function latest(e) {
+    const q = state.quotes[e.ticker];
+    const qd = q && q.as_of ? etParts(Date.parse(q.as_of)).date : null;
+    if (q && qd && (!e.price_now_date || qd >= e.price_now_date)) return { price: q.price, as_of: q.as_of };
+    if (e.price_now != null) return { price: e.price_now, as_of: e.price_now_as_of || null, date: e.price_now_date };
+    return null;
+  }
+  const changeOf = e => { const L = latest(e); return L && e.price ? (L.price / e.price - 1) * 100 : null; };
+  // Phones get a shorter time label ("4:00 pm" today, else the date) on its own line.
+  const priceLabel = L => {
+    if (!L) return "—";
+    const d = L.as_of ? etParts(Date.parse(L.as_of)).date : L.date;
+    const brief = L.as_of && d === etParts(Date.now()).date ? etClock(Date.parse(L.as_of)).replace(" ET", "") : shortDay(d);
+    return `${num(L.price, 2)} <span class="pt hide-sm">· ${L.as_of ? esc(quoteTime(L.as_of)) : "close " + esc(shortDay(L.date))}</span><span class="show-sm">${esc(brief)}</span>`;
+  };
+
+  function viewRows() {
+    const L = currentList();
+    const rows = L ? L.tickers.map((t, i) => Object.assign({ ticker: t, unrated: true }, entry(t) || {}, { order: i }))
+      : rated().map((e, i) => Object.assign({}, e, { order: i }));
+    for (const r of rows) if (!r.timestamp) r.unrated = true; else delete r.unrated;
+    const last = (a, b, f) => (a == null) - (b == null) || (a == null ? 0 : f());
+    const by = {
+      order: (a, b) => a.order - b.order,
+      rating: (a, b) => last(RANK[a.rating], RANK[b.rating], () => RANK[b.rating] - RANK[a.rating]) || (b.score ?? -1) - (a.score ?? -1),
+      score: (a, b) => last(a.timestamp && a.score, b.timestamp && b.score, () => b.score - a.score),
+      run: (a, b) => last(a.timestamp, b.timestamp, () => (b.timestamp > a.timestamp) - (b.timestamp < a.timestamp)),
+      change: (a, b) => last(changeOf(a), changeOf(b), () => changeOf(b) - changeOf(a)),
+    }[state.edit ? "order" : state.sort] || ((a, b) => a.order - b.order);
+    return rows.sort((a, b) => by(a, b) || a.order - b.order);
+  }
+
+  function statusTag(t) {
+    const s = state.batch && state.batch.statuses && state.batch.statuses[t];
+    return s ? `<span class="st ${esc(s.status)}" title="${esc(s.step ? "Failed at: " + s.step : "This run")}">${esc(s.status)}</span>` : "";
+  }
+
+  function renderLists() {
+    const el = $("#lists");
+    if (state.view !== "all" && !currentList()) { state.view = "all"; state.edit = false; }
+    const L = currentList(), S = settings(), all = rated(), I = state.index || {};
+    $("#asof").textContent = all.length ? `${all.length} rated ticker${all.length === 1 ? "" : "s"} · updated ${localTime(I.generated_at)}` : "No stock rated yet";
+    const tabs = [`<button type="button" class="tab${state.view === "all" ? " on" : ""}" data-view="all">All rated (${all.length})</button>`]
+      .concat((state.draft || []).map(l => `<button type="button" class="tab${state.view === l.id ? " on" : ""}" data-view="${esc(l.id)}">${esc(l.name)} (${l.tickers.length})</button>`));
+    if (state.draft) tabs.push(`<button type="button" class="tab add" data-act="new"${state.draft.length >= MAX_LISTS ? " disabled" : ""}>+ New list</button>`);
+    const rows = viewRows();
+    const idx = L ? state.draft.indexOf(L) : -1;
+    const allSel = rows.length && rows.every(r => state.selected.has(r.ticker));
+    let toolbar;
+    if (L && state.edit) {
+      toolbar = `<div class="toolbar"><b>${esc(L.name)}</b>
+          <button type="button" class="sbtn" data-act="rename">Rename</button>
+          <button type="button" class="sbtn" data-act="list-up"${idx === 0 ? " disabled" : ""} aria-label="Move this list up">↑ Move list</button>
+          <button type="button" class="sbtn" data-act="list-down"${idx === state.draft.length - 1 ? " disabled" : ""} aria-label="Move this list down">↓ Move list</button>
+          <button type="button" class="sbtn danger" data-act="delete">Delete list</button>
+          <button type="button" class="sbtn" data-act="done">Done editing</button></div>
+        <div class="toolbar"><input class="inp" id="l-add" maxlength="10" autocomplete="off" spellcheck="false" placeholder="Ticker, e.g. NVDA" aria-label="Ticker to add">
+          <button type="button" class="sbtn" data-act="add">Add ticker</button><span class="sub" id="l-msg" role="status"></span></div>`;
+    } else {
+      toolbar = `<div class="toolbar"><label>Sort <select id="l-sort">${[["order", L ? "List order" : "Last run"], ["rating", "Rating"], ["score", "Score"], ["run", "Last run"], ["change", "Change"]]
+          .filter(([k], i) => L || i !== 3).map(([k, t]) => `<option value="${k}"${state.sort === k ? " selected" : ""}>${t}</option>`).join("")}</select></label>
+        ${rows.length ? `<button type="button" class="sbtn" data-act="select-all">${allSel ? "Clear selection" : L ? "Select all in this list" : "Select all"}</button>` : ""}
+        ${L ? `<button type="button" class="sbtn" data-act="edit">Edit list</button>` : ""}
+        ${state.selected.size ? `<button type="button" class="sbtn" data-act="to-run"><b>${state.selected.size} selected</b> · Run…</button>` : ""}
+        ${state.listsError ? `<span class="sub">${esc(state.listsError)}</span>` : ""}</div>`;
+    }
+    let table;
     if (!rows.length) {
-      el.innerHTML = '<h2>Rated tickers</h2><div class="empty">No stock has been rated yet. Enter a ticker under <b>Research a stock</b> below.</div>';
+      table = `<div class="empty">${L ? (state.edit ? "No tickers yet: add one above." : `No tickers in ${esc(L.name)} yet. Press <b>Edit list</b> to add some.`)
+        : "No stock has been rated yet. Add a ticker under <b>Research stocks</b> below, or create a list."}</div>`;
+    } else if (L && state.edit) {
+      const others = state.draft.filter(x => x !== L);
+      const opts = others.length ? `<option value="">Copy / move…</option><optgroup label="Copy to">${others.map(o => `<option value="copy:${esc(o.id)}">${esc(o.name)}</option>`).join("")}</optgroup>` +
+        `<optgroup label="Move to">${others.map(o => `<option value="move:${esc(o.id)}">${esc(o.name)}</option>`).join("")}</optgroup>` : "";
+      table = `<div class="scroll"><table><thead><tr><th>Ticker</th><th class="left hide-sm">Rating</th><th>Order and actions</th></tr></thead><tbody>${rows.map((e, i) => `
+        <tr><td class="tk">${esc(e.ticker)}<small>${esc(e.name || "")}</small></td>
+          <td class="left hide-sm">${e.unrated ? '<span class="sub">not run yet</span>' : ratingBadge(e.rating)}</td>
+          <td><span class="acts" data-t="${esc(e.ticker)}">
+            <button type="button" class="ibtn" data-act="t-up"${i === 0 ? " disabled" : ""} aria-label="Move ${esc(e.ticker)} up">↑</button>
+            <button type="button" class="ibtn" data-act="t-down"${i === rows.length - 1 ? " disabled" : ""} aria-label="Move ${esc(e.ticker)} down">↓</button>
+            <button type="button" class="ibtn" data-act="t-remove" aria-label="Remove ${esc(e.ticker)}">✕</button>
+            ${opts ? `<select data-act="t-copymove" aria-label="Copy or move ${esc(e.ticker)} to another list">${opts}</select>` : ""}</span></td></tr>`).join("")}</tbody></table></div>`;
+    } else {
+      table = `<div class="scroll"><table><thead><tr><th class="ck"></th><th class="tkh">Ticker</th><th class="left">Rating</th><th class="hide-sm">Score</th><th class="left hide-sm">Confidence</th>
+        <th class="left hide-sm">Last run</th><th class="hide-sm">At rating</th><th>Latest</th><th>Change</th><th class="hide-sm">Runs</th></tr></thead><tbody>${rows.map(e => {
+          const Lp = latest(e), ch = changeOf(e), stale = !e.unrated && ageDays(e.timestamp) > S.stale_after_days;
+          return `<tr class="pick${e.ticker === state.ticker ? " on" : ""}" data-t="${esc(e.ticker)}" tabindex="0">
+          <td class="ck"><input type="checkbox" data-act="pick" ${state.selected.has(e.ticker) ? "checked" : ""} aria-label="Select ${esc(e.ticker)} for a run"></td>
+          <td class="tk">${esc(e.ticker)}${statusTag(e.ticker)}<small>${esc(e.name || "")}</small></td>
+          <td class="left">${e.unrated ? '<span class="sub">not run yet</span>' : ratingBadge(e.rating) + (e.overlay && e.overlay.startsWith("capped") ? ' <span class="badge" title="Capped by the capex overlay">capped</span>' : "") +
+            `<span class="show-sm">${esc(e.score)} · ${esc(age(e.timestamp))}${stale ? '<span class="tag">stale</span>' : ""}</span>`}</td>
+          <td class="hide-sm">${e.unrated ? "—" : esc(e.score)}</td><td class="left hide-sm">${e.unrated ? "—" : esc(e.confidence)}</td>
+          <td class="left hide-sm" title="${e.unrated ? "" : esc(runTime(e.timestamp))}">${e.unrated ? "—" : `${esc(localTime(e.timestamp))} · ${esc(age(e.timestamp))}${stale ? `<span class="tag" title="Rated more than ${S.stale_after_days} days ago">stale</span>` : ""}`}</td>
+          <td class="hide-sm" title="${e.price_date ? "Close on " + esc(e.price_date) : ""}">${e.price == null ? "—" : num(e.price, 2)}</td>
+          <td title="${Lp && Lp.as_of ? "Quote at " + esc(runTime(Lp.as_of)) : Lp ? "Close on " + esc(Lp.date || "") : ""}">${priceLabel(Lp)}</td>
+          <td title="${e.price == null ? "" : `From ${num(e.price, 2)} on ${esc(e.price_date || "")}`}">${signed(ch, 1, "%")}</td>
+          <td class="hide-sm">${e.unrated ? "0" : esc(e.runs)}</td></tr>`;
+        }).join("")}</tbody></table></div>
+        <div class="sub" style="margin-top:8px">Change runs from the close the rating was scored on ("At rating") to the latest price: a near-live Tiingo quote (refreshed every 10 minutes while US markets are open), else the latest stored close. Prices are display only. Tick rows to run them as a batch below.</div>`;
+    }
+    const save = dirty() ? `<div class="savebar"><b>Unsaved changes</b>
+        <input type="password" class="inp" id="l-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode">
+        <button type="button" class="btn" data-act="save">Save changes</button>
+        <button type="button" class="sbtn" data-act="discard">Discard</button><span class="sub" id="l-save-msg" role="status"></span></div>` : "";
+    const focus = document.activeElement && document.activeElement.id;
+    el.innerHTML = `<h2>Lists${dirty() ? '<span class="dirty">● Unsaved changes</span>' : ""}</h2>
+      <div class="tabs" role="tablist" aria-label="Lists">${tabs.join("")}</div>${toolbar}${table}${save}`;
+    if (focus === "l-add" && $("#l-add")) $("#l-add").focus();
+  }
+
+  // ---------------------------------------------------------------- list edits (in a local draft until saved)
+  function listMsg(text) { const m = $("#l-msg"); if (m) m.textContent = text; }
+  function newId() { let id; do { id = "l" + Math.random().toString(36).slice(2, 8); } while ((state.draft || []).some(l => l.id === id)); return id; }
+  function askName(title, cur) {
+    const v = prompt(title, cur || "");
+    if (v == null) return null;
+    const name = v.trim().replace(/[\u0000-\u001f\u007f]/g, "");
+    if (!name || name.length > 40) { alert("A list name needs 1-40 characters."); return null; }
+    return name;
+  }
+  function addTicker() {
+    const L = currentList(), inp = $("#l-add");
+    if (!L || !inp) return;
+    const t = inp.value.trim().toUpperCase();
+    if (!TICKER_RE.test(t)) { listMsg("1-10 characters: a letter first, then letters, digits, '.' or '-'."); return; }
+    if (L.tickers.includes(t)) { listMsg(`${t} is already in this list.`); return; }
+    if (L.tickers.length >= MAX_PER_LIST) { listMsg(`A list holds at most ${MAX_PER_LIST} tickers.`); return; }
+    L.tickers.push(t);
+    inp.value = "";
+    renderLists();
+    $("#l-add").focus();
+    listMsg(`Added ${t}${entry(t) ? "" : " (not run yet)"}.`);
+  }
+  function move(arr, i, d) { const j = i + d; if (j < 0 || j >= arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; }
+
+  async function saveLists(force) {
+    const pass = $("#l-pass"), msg = $("#l-save-msg");
+    if (!pass || !pass.value) { if (msg) msg.textContent = "Enter the passcode."; if (pass) pass.focus(); return; }
+    msg.textContent = "Saving…";
+    let res = null, data = {};
+    try {
+      res = await fetch("api/stock", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode: pass.value, action: "save_lists", lists: state.draft, base_revision: (state.lists || {}).revision ?? 0, force: force === true }) });
+      data = await res.json().catch(() => ({}));
+    } catch (e) { /* network error */ }
+    if (res && res.ok) {
+      state.lists = data; state.draft = clone(data.lists || []); state.listsError = null; renderLists();
+      if (quoteTickers().some(t => !state.quotes[t])) loadQuotes(); // newly listed tickers: one more quote request
       return;
     }
-    el.innerHTML = `<h2>Rated tickers <span class="sub">· latest rating per ticker; tap a row for the detail</span></h2>
-      <div class="scroll"><table><thead><tr><th>Ticker</th><th class="left">Rating</th><th>Score</th><th class="left hide-sm">Confidence</th>
-      <th class="hide-sm">Rated</th><th class="hide-sm">Then</th><th>Now</th><th>Change</th></tr></thead><tbody>${rows.map(e => `
-      <tr class="pick${e.ticker === state.ticker ? " on" : ""}" data-t="${esc(e.ticker)}" tabindex="0">
-        <td class="tk">${esc(e.ticker)}<small>${esc(e.name)}</small></td>
-        <td class="left">${ratingBadge(e.rating)}${e.overlay && e.overlay.startsWith("capped") ? ' <span class="badge" title="Capped by the capex overlay">capped</span>' : ""}</td>
-        <td>${esc(e.score)}</td><td class="left hide-sm">${esc(e.confidence)}</td>
-        <td class="hide-sm" title="${esc(runTime(e.timestamp))}">${esc(shortDate(String(e.timestamp || "").slice(0, 10)))}</td>
-        <td class="hide-sm" title="Close on ${esc(e.price_date || "")}">${e.price == null ? "—" : num(e.price, 2)}</td>
-        <td title="Close on ${esc(e.price_now_date || "")}">${e.price_now == null ? "—" : num(e.price_now, 2)}</td>
-        <td title="${e.price == null ? "" : `From ${num(e.price, 2)} on ${esc(e.price_date || "")}`}">${signed(e.change_pct, 1, "%")}</td></tr>`).join("")}</tbody></table></div>
-      <div class="sub" style="margin-top:8px">Change runs from the close used for the rating ("Then") to the latest close any stock run fetched ("Now"; each run refreshes up to 10 other tickers).</div>`;
-    el.querySelectorAll("tr.pick").forEach(tr => {
-      const go = () => { location.hash = tr.dataset.t; };
-      tr.onclick = go; tr.onkeydown = e => { if (e.key === "Enter") go(); };
-    });
+    const m = $("#l-save-msg");
+    if (!m) return;
+    m.textContent = data.error || (res ? `Save failed (HTTP ${res.status})` : "Network error");
+    if (res && res.status === 409) {
+      m.insertAdjacentHTML("beforeend", ' <button type="button" class="sbtn" data-act="overwrite">Overwrite with mine</button> <button type="button" class="sbtn" data-act="reload">Load the saved lists</button>');
+    }
+  }
+
+  async function loadLists() {
+    let res = null, data = null;
+    try { res = await fetch("api/stock?lists", { cache: "no-store" }); data = await res.json().catch(() => null); } catch (e) { /* offline */ }
+    if (res && res.ok && data && Array.isArray(data.lists)) {
+      state.lists = data; state.draft = clone(data.lists); state.listsError = data.error || null;
+    } else {
+      state.lists = null; state.draft = null;
+      state.listsError = "Lists unavailable" + (data && data.error ? `: ${data.error}` : res ? ` (HTTP ${res.status})` : "");
+    }
+  }
+
+  function onListsClick(ev) {
+    const b = ev.target.closest("[data-act], [data-view]");
+    if (b && b.dataset.view) { state.view = b.dataset.view; state.edit = false; store("stocks-view", state.view); renderLists(); return; }
+    const act = b && b.dataset.act, L = currentList();
+    if (act === "pick") { ev.stopPropagation(); const t = b.closest("tr").dataset.t; b.checked ? state.selected.add(t) : state.selected.delete(t); renderLists(); renderSelection(); return; }
+    if (act === "t-copymove") return; // handled on change
+    if (act) {
+      ev.preventDefault();
+      const t = b.closest("[data-t]") && b.closest("[data-t]").dataset.t;
+      if (act === "new") {
+        const name = askName("Name of the new list");
+        if (!name) return;
+        const id = newId();
+        state.draft.push({ id, name, tickers: [] });
+        state.view = id; state.edit = true;
+      } else if (act === "rename" && L) { const name = askName("Rename the list", L.name); if (name) L.name = name; }
+      else if (act === "delete" && L) {
+        if (!confirm(`Delete the list "${L.name}" (${L.tickers.length} ticker${L.tickers.length === 1 ? "" : "s"})? Ratings are kept. Nothing is saved until you press Save changes.`)) return;
+        state.draft.splice(state.draft.indexOf(L), 1); state.view = "all"; state.edit = false;
+      }
+      else if (act === "list-up" && L) move(state.draft, state.draft.indexOf(L), -1);
+      else if (act === "list-down" && L) move(state.draft, state.draft.indexOf(L), 1);
+      else if (act === "edit") state.edit = true;
+      else if (act === "done") state.edit = false;
+      else if (act === "add") return addTicker();
+      else if (act === "t-up" && L) move(L.tickers, L.tickers.indexOf(t), -1);
+      else if (act === "t-down" && L) move(L.tickers, L.tickers.indexOf(t), 1);
+      else if (act === "t-remove" && L) L.tickers.splice(L.tickers.indexOf(t), 1);
+      else if (act === "select-all") {
+        const ts = viewRows().map(r => r.ticker), on = ts.every(x => state.selected.has(x));
+        for (const x of ts) on ? state.selected.delete(x) : state.selected.add(x);
+        renderSelection();
+      }
+      else if (act === "to-run") { $("#run").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+      else if (act === "save") return saveLists(false);
+      else if (act === "overwrite") return saveLists(true);
+      else if (act === "reload") { if (!confirm("Load the saved lists? Your unsaved changes are lost.")) return; return loadLists().then(renderLists); }
+      else if (act === "discard") { if (!confirm("Discard your unsaved list changes?")) return; state.draft = clone(savedLists()); }
+      renderLists();
+      return;
+    }
+    const tr = ev.target.closest("tr.pick");
+    if (tr && !state.edit) openTicker(tr.dataset.t);
+  }
+
+  function onListsChange(ev) {
+    const el = ev.target, L = currentList();
+    if (el.id === "l-sort") { state.sort = el.value; store("stocks-sort", state.sort); renderLists(); return; }
+    if (el.dataset.act === "t-copymove" && L && el.value) {
+      const [how, id] = el.value.split(":"), t = el.closest("[data-t]").dataset.t, to = state.draft.find(x => x.id === id);
+      if (!to) return;
+      if (!to.tickers.includes(t)) {
+        if (to.tickers.length >= MAX_PER_LIST) { alert(`${to.name} already holds ${MAX_PER_LIST} tickers.`); el.value = ""; return; }
+        to.tickers.push(t);
+      }
+      if (how === "move") L.tickers.splice(L.tickers.indexOf(t), 1);
+      renderLists();
+      listMsg(`${how === "move" ? "Moved" : "Copied"} ${t} to ${to.name}.`);
+    }
+  }
+
+  function openTicker(t) {
+    if (location.hash.slice(1) === t) route(); else location.hash = t;
+    setTimeout(() => { const d = $("#detail"); if (d && d.firstElementChild) d.scrollIntoView({ behavior: "smooth", block: "start" }); }, 350);
   }
 
   function factorRows(D) {
@@ -347,11 +662,18 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     }).join("");
   }
 
+  function latestLine(D) {
+    const q = state.quotes[D.ticker] || D.quote, P = D.price || {};
+    if (!q || q.price == null) return "";
+    const ch = P.close ? (q.price / P.close - 1) * 100 : null;
+    return `Latest ${num(q.price, 2)} · ${esc(quoteTime(q.as_of))}${ch == null ? "" : ` (${signed(ch, 1, "%")} vs the scoring close)`} <span class="sub">· near-live quote, display only</span>`;
+  }
+
   function renderDetail() {
     const D = state.detail, el = $("#detail");
     if (!D) { el.innerHTML = ""; return; }
     const S = D.fundamentals || {}, V = D.valuation || {}, T = D.trend || {}, G = D.guidance || {}, O = D.overlay || {}, Wr = D.writeup || {};
-    const comp = D.composite || {}, bands = D.bands || {}, bs = S.balance_sheet || {};
+    const comp = D.composite || {}, bands = D.bands || {}, bs = S.balance_sheet || {}, P = D.price || {}, CN = closeNote(D);
     const bandText = [bands.up ? `${bands.up.points} point${bands.up.points === 1 ? "" : "s"} to ${bands.up.label}` : "",
       bands.down ? `${bands.down.points} point${bands.down.points === 1 ? "" : "s"} of slack before ${bands.down.label}` : ""].filter(Boolean).join(" · ");
     const ov = O.ai_exposed && O.note ? `<div class="flag ${O.capped ? "cap" : O.applies ? "" : "quiet"}">Capex overlay: ${esc(O.note)}</div>` : "";
@@ -399,7 +721,7 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
     }).join("");
     const cost = D.cost || {}, models = D.models || {};
     const steps = Object.entries(cost.steps || {}).map(([k, u]) => `${esc(k)}: ${esc(short(u.model))}, ${num(u.input_tokens, 0)} in / ${num(u.output_tokens, 0)} out${u.web_searches ? `, ${u.web_searches} searches` : ""} · ${usd(u.cost_usd)}`).join("<br>");
-    const hist = (D.history || []).map(h => `<tr><td>${esc(runTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td><td class="left hide-sm">${esc(h.confidence)}</td><td>${h.price ? num(+h.price, 2) : "—"}</td><td class="hide-sm">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "—"}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
+    const hist = (D.history || []).map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td><td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
     const errs = Object.entries(D.errors || {});
     const T2 = (k, label, u) => kv(label, T[k] == null ? "—" : signed(T[k], 1, u));
 
@@ -412,7 +734,11 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
           ${D.rating !== D.rating_before_overlay ? `<div class="sub">Composite band: ${esc(D.rating_before_overlay)}</div>` : ""}
           ${bandText ? `<div class="sub" style="margin-top:6px">${esc(bandText)}</div>` : ""}
           ${ov}
-          <div class="sub" style="margin-top:10px">${esc(D.name)}${D.sector ? " · " + esc(D.sector) : ""}<br>Rated ${esc(runTime(D.run_id))} · close ${D.price && D.price.close != null ? num(D.price.close, 2) + " on " + esc(D.price.date) : "n/a"}</div>
+          <div class="closeinfo">${P.date ? `Scored on the close of <b>${esc(shortDate(P.date))}</b> (${num(P.close, 2)})` : "No price data this run"}
+            ${CN.stale ? `<div class="flag">Today's close not yet published; scored on ${esc(shortDate(P.date))}.</div>` : ""}
+            <div id="d-latest" style="margin-top:4px">${latestLine(D)}</div>
+            ${CN.window ? `<div class="sub" style="margin-top:4px">${esc(CN.window)}.</div>` : ""}</div>
+          <div class="sub" style="margin-top:10px">${esc(D.name)}${D.sector ? " · " + esc(D.sector) : ""}<br><span title="${esc(runTime(D.run_id))}">Rated ${esc(localTime(D.run_id))} (${esc(age(D.run_id))})</span></div>
         </div>
         <div class="card prose"><h2>${esc(Wr.headline || `${D.name}: ${D.rating}`)}</h2>
           ${Wr.thesis ? `<p>${esc(Wr.thesis)}</p>` : '<p class="sub">No write-up this run (Claude step off or failed). Scores are rule-based.</p>'}
@@ -448,10 +774,11 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
         <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources and their tier</span></h2>
           ${topicHtml || `<p class="sub">${esc(((D.factors || {}).news_risk || {}).missing || "No news step this run.")}</p>`}</div>
       </section>
+      ${hist ? `<section class="card" style="margin-bottom:16px"><h2>History <span class="sub">· every rating of ${esc(D.ticker)}, newest first; times in your timezone (UTC on hover)</span></h2>
+        <div class="scroll"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th><th class="left">Confidence</th><th>Price</th><th class="left hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${hist}</tbody></table></div></section>` : ""}
       <section class="card" style="margin-bottom:16px"><h2>Run details</h2>
-        <div class="sub">Models: research ${esc(short(models.research))}, scoring ${esc(short(models.scoring))}${D.llm ? "" : " (Claude step off)"} · cost <b>${cost.total_usd == null ? "n/a" : usd(cost.total_usd)}</b></div>
+        <div class="sub">Models: research ${esc(short(models.research))}, scoring ${esc(short(models.scoring))}${D.llm ? "" : " (Claude step off)"} · cost <b>${cost.total_usd == null ? "n/a" : usd(cost.total_usd)}</b>${D.batch && D.batch.tickers && D.batch.tickers.length > 1 ? ` · batch of ${D.batch.tickers.length}` : ""}</div>
         ${steps ? `<div class="sub" style="margin-top:4px;font-variant-numeric:tabular-nums">${steps}</div>` : ""}
-        ${hist ? `<h3>Rating history</h3><div class="scroll"><table><thead><tr><th>Time</th><th class="left">Rating</th><th>Score</th><th class="left hide-sm">Confidence</th><th>Price</th><th class="hide-sm">Models</th><th>Cost</th></tr></thead><tbody>${hist}</tbody></table></div>` : ""}
         ${errs.length ? `<p class="errors">Data issues this run: ${errs.map(([k, v]) => esc(k + ": " + String(v).slice(0, 200))).join(" · ")}</p>` : ""}
       </section>`;
     el.querySelectorAll(".seg button").forEach(b => { b.onclick = () => { state.range = b.dataset.r; drawChart(); el.querySelectorAll(".seg button").forEach(x => x.classList.toggle("on", x === b)); }; });
@@ -474,27 +801,25 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
 
   async function showTicker(t) {
     state.ticker = t;
-    renderList();
+    renderLists();
     if (!t) { state.detail = null; renderDetail(); return; }
     const D = await get(`data/stocks/${encodeURIComponent(t)}.json`);
     if (state.ticker !== t) return;
     state.detail = D;
-    if (!D) { $("#detail").innerHTML = `<div class="card empty" style="margin-bottom:16px">No detail for ${esc(t)} yet.</div>`; return; }
+    if (!D) { $("#detail").innerHTML = `<div class="card empty" style="margin-bottom:16px">${esc(t)} has not been run yet. Tick it in the list and run it below.</div>`; return; }
     renderDetail();
   }
 
   function route() {
     const t = decodeURIComponent(location.hash.slice(1) || "").toUpperCase();
-    const rows = (state.index && state.index.tickers) || [];
+    const rows = rated();
     showTicker(TICKER_RE.test(t) ? t : rows.length ? rows[0].ticker : null);
   }
 
-  // ---------------------------------------------------------------- run panel
-  const STEP_MODEL = { research: "research", guidance: "scoring", scoring: "scoring", writeup: "scoring" };
-  const CACHE_W = 1.25, CACHE_R = 0.1; // prompt-cache multipliers, as in cew/models.py
+  // ---------------------------------------------------------------- run panel (one ticker or a batch)
   let polling = false;
   const catalog = () => (state.models && state.models.models) || [];
-  const findModel = id => catalog().find(m => m.id === id);
+  const wait = ms => new Promise(r => setTimeout(r, ms));
 
   function fillSelect(sel, list, preferred, research) {
     const keep = sel.value || preferred;
@@ -509,105 +834,204 @@ blockquote .meta { display: block; font-size: 12px; color: var(--ink-2); margin-
   }
 
   function buildRunPanel() {
+    const S = settings();
     $("#run").innerHTML = `
-      <h2 style="margin:0">Research a stock</h2>
-      <div class="sub">Starts the Stock research workflow on GitHub (a few minutes). Max 10 runs per 24 hours.</div>
+      <h2 style="margin:0">Research stocks</h2>
+      <div class="sub">Tick tickers in the list above (or add one here), then Run. Starts the Stock research workflow on GitHub: one job per ticker, results written once at the end (a few minutes). At most ${S.max_batch} tickers per run and ${S.max_tickers_per_day} tickers per 24 hours.</div>
+      <div id="run-sel" style="margin-top:10px"></div>
       <div class="run-grid">
-        <label class="field"><span>Ticker <small>· SEC-registered, e.g. MSFT</small></span><input type="text" id="run-ticker" maxlength="10" autocomplete="off" spellcheck="false" placeholder="MSFT"></label>
+        <div class="field"><span>Add a ticker <small>· SEC-registered, e.g. MSFT</small></span><span style="display:flex;gap:6px"><input type="text" id="run-ticker" class="inp" maxlength="10" autocomplete="off" spellcheck="false" placeholder="MSFT" aria-label="Ticker to add to the selection"><button type="button" class="sbtn" id="run-add">Add</button></span></div>
         <label class="field"><span>Research <small>· web search</small></span><select id="run-research"></select></label>
         <label class="field"><span>Scoring &amp; write-up</span><select id="run-scoring"></select></label>
       </div>
       <div class="run-est" id="run-est"></div>
-      <div class="run-checks"><label><input type="checkbox" id="run-email"> Send email</label></div>
+      <div class="run-checks"><label><input type="checkbox" id="run-email"> Send email <span class="sub">(one summary email for the batch)</span></label></div>
       <div class="run-go">
         <input type="password" id="run-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode">
         <button type="button" class="btn" id="run-btn">Run</button>
       </div>
-      <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>`;
+      <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>
+      <div id="run-progress"></div>`;
     $("#run-btn").onclick = startRun;
     $("#run-pass").onkeydown = e => { if (e.key === "Enter") startRun(); };
-    $("#run-research").onchange = $("#run-scoring").onchange = updateEstimate;
+    const add = () => {
+      const inp = $("#run-ticker"), t = inp.value.trim().toUpperCase();
+      if (!TICKER_RE.test(t)) { $("#run-msg").textContent = "Enter a ticker: 1-10 characters, a letter first, then letters, digits, '.' or '-'."; inp.focus(); return; }
+      state.selected.add(t); inp.value = ""; $("#run-msg").textContent = "";
+      renderSelection(); renderLists();
+    };
+    $("#run-add").onclick = add;
+    $("#run-ticker").onkeydown = e => { if (e.key === "Enter") add(); };
+    $("#run-sel").onclick = e => {
+      const b = e.target.closest("button[data-t], button[data-act=clear]");
+      if (!b) return;
+      if (b.dataset.t) state.selected.delete(b.dataset.t); else state.selected.clear();
+      renderSelection(); renderLists();
+    };
     const list = catalog();
     fillSelect($("#run-research"), list.filter(m => m.supports_web_search !== false), DEFAULTS.research, true);
     fillSelect($("#run-scoring"), list, DEFAULTS.scoring, false);
-    updateEstimate();
+    renderSelection();
+    renderProgress();
   }
 
-  function updateEstimate() {
-    const el = $("#run-est"), last = (state.index || {}).last_run;
-    if (!catalog().length) { el.textContent = ""; return; }
-    const ws = state.models.web_search_per_1k ?? 10;
-    if (!last || !last.steps || !Object.keys(last.steps).length) { el.innerHTML = '<span class="sub">A cost estimate appears after the first stock run.</span>'; return; }
-    const pick = { research: $("#run-research").value, scoring: $("#run-scoring").value };
-    let total = 0, unknown = false;
-    for (const [k, u] of Object.entries(last.steps)) {
-      const p = (findModel(pick[STEP_MODEL[k] || "scoring"]) || {}).price;
-      if (!p) { unknown = true; continue; }
-      total += (((u.input_tokens || 0) + (u.cache_write_tokens || 0) * CACHE_W + (u.cache_read_tokens || 0) * CACHE_R) * p.input + (u.output_tokens || 0) * p.output) / 1e6 + (u.web_searches || 0) * ws / 1000;
-    }
-    el.innerHTML = unknown ? 'Estimated cost per run: <span class="sub">unknown (a selected model has no price)</span>'
-      : `Estimated cost per run: <b>~${usd(total)}</b> <span class="sub">· last stock run's tokens (${esc(last.ticker)}) × selected prices</span>`;
+  function renderSelection() {
+    const el = $("#run-sel");
+    if (!el) return;
+    const sel = [...state.selected], S = settings(), n = sel.length;
+    el.innerHTML = n ? `<b>Selected (${n})</b>${n > S.max_batch ? ` <span class="tag">over the ${S.max_batch}-ticker limit</span>` : ""} <button type="button" class="sbtn" data-act="clear">Clear</button>
+      <ul class="chips">${sel.map(t => `<li>${esc(t)}<button type="button" data-t="${esc(t)}" aria-label="Remove ${esc(t)} from the selection">✕</button></li>`).join("")}</ul>`
+      : '<span class="sub">Nothing selected yet.</span>';
+    const rc = (state.index || {}).recent_cost, est = $("#run-est");
+    est.innerHTML = !n ? "" : rc && rc.avg_usd != null
+      ? `Estimated cost: <b>~${usd(n * rc.avg_usd)}</b> <span class="sub">· ${n} × ${usd(rc.avg_usd)}, the average of the last ${rc.runs} stock run${rc.runs === 1 ? "" : "s"}</span>`
+      : '<span class="sub">A cost estimate appears after the first stock run.</span>';
+    $("#run-btn").textContent = n > 1 ? `Run ${n} tickers` : "Run";
   }
 
   async function startRun() {
-    if (polling) return;
-    const tk = $("#run-ticker"), pass = $("#run-pass"), btn = $("#run-btn"), msg = $("#run-msg");
-    const ticker = tk.value.trim().toUpperCase();
-    if (!TICKER_RE.test(ticker)) { msg.textContent = "Enter a ticker: 1-10 characters, a letter first, then letters, digits, '.' or '-'."; tk.focus(); return; }
+    if (polling) { $("#run-msg").textContent = "A run is still in progress (see below)."; return; }
+    const pass = $("#run-pass"), btn = $("#run-btn"), msg = $("#run-msg"), S = settings();
+    const typed = $("#run-ticker").value.trim().toUpperCase();
+    if (typed && TICKER_RE.test(typed)) { state.selected.add(typed); $("#run-ticker").value = ""; renderSelection(); }
+    const tickers = [...state.selected];
+    if (!tickers.length) { msg.textContent = "Tick tickers in the list above, or add one here."; return; }
+    if (tickers.length > S.max_batch) { msg.textContent = `At most ${S.max_batch} tickers per run; you selected ${tickers.length}.`; return; }
     if (!pass.value) { msg.textContent = "Enter the passcode."; pass.focus(); return; }
+    const rc = (state.index || {}).recent_cost;
+    const cost = rc && rc.avg_usd != null ? `\nEstimated cost: ~${usd(tickers.length * rc.avg_usd)} (${tickers.length} × ${usd(rc.avg_usd)}).` : "";
+    if (!confirm(`Run ${tickers.length} ticker${tickers.length === 1 ? "" : "s"}: ${tickers.join(", ")}?${cost}\nCounts ${tickers.length} of the ${S.max_tickers_per_day} tickers allowed per 24 hours.${$("#run-email").checked ? "\nOne summary email when it finishes." : ""}`)) return;
     btn.disabled = true;
     msg.textContent = "Starting…";
     let res = null, data = {};
     try {
       res = await fetch("api/stock", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passcode: pass.value, ticker, research_model: $("#run-research").value, scoring_model: $("#run-scoring").value, send_email: $("#run-email").checked }),
+        body: JSON.stringify({ passcode: pass.value, tickers, research_model: $("#run-research").value, scoring_model: $("#run-scoring").value, send_email: $("#run-email").checked }),
       });
       data = await res.json().catch(() => ({}));
     } catch (e) { /* network error */ }
-    if (!res || !res.ok) { msg.textContent = data.error || (res ? `Request failed (HTTP ${res.status})` : "Network error"); btn.disabled = false; return; }
+    btn.disabled = false;
+    if (!res || !res.ok) { msg.textContent = data.error || (res ? `Request failed (HTTP ${res.status})` : "Network error"); return; }
     pass.value = "";
-    msg.innerHTML = `${esc(data.ticker)} started · ${link(data.run_url, "view on GitHub")} · <span id="run-live">queued</span>`;
-    pollRun(data.ticker);
+    msg.textContent = "";
+    state.batch = { run_id: data.run_id || null, run_url: data.run_url, tickers: data.tickers || tickers, started: Date.now(),
+      statuses: Object.fromEntries((data.tickers || tickers).map(t => [t, { ticker: t, status: "queued" }])), phase: "running" };
+    state.selected.clear();
+    store("stocks-batch", state.batch);
+    renderSelection(); renderLists();
+    pollBatch();
   }
 
-  async function pollRun(ticker) {
+  function renderProgress() {
+    const el = $("#run-progress"), B = state.batch;
+    if (!el) return;
+    if (!B) { el.innerHTML = ""; return; }
+    const st = B.statuses || {}, list = B.tickers.map(t => st[t] || { ticker: t, status: "queued" });
+    const count = k => list.filter(x => x.status === k).length;
+    const result = B.result ? Object.fromEntries((B.result.tickers || []).map(x => [x.ticker, x])) : {};
+    const phase = B.phase === "updated" ? "finished · page updated"
+      : B.phase === "deploying" ? `finished${B.conclusion && B.conclusion !== "success" ? ` (${B.conclusion})` : ""} · waiting for the page to redeploy…`
+      : B.phase === "lost" ? "no update yet; check GitHub or refresh in a few minutes"
+      : B.collect && B.collect !== "success" && count("queued") + count("running") === 0 ? "writing the results…" : "in progress";
+    el.innerHTML = `<div class="prog"><b>${B.tickers.length > 1 ? `Batch of ${B.tickers.length}` : esc(B.tickers[0])}</b> · ${phase}${B.run_url ? ` · ${link(B.run_url, "view on GitHub")}` : ""}
+      <div class="sub">${["queued", "running", "done", "failed"].map(k => `${count(k)} ${k}`).join(" · ")}</div>
+      <ul class="chips">${list.map(x => {
+        const err = (result[x.ticker] && result[x.ticker].error) || (x.status === "failed" ? (x.step ? `failed at: ${x.step}` : x.reason || "") : "");
+        return `<li class="st-row"><a href="#${esc(x.ticker)}">${esc(x.ticker)}</a><span class="st ${esc(x.status)}">${esc(x.status)}</span>${err ? `<span class="sub">${esc(err)}</span>` : ""}</li>`;
+      }).join("")}</ul></div>`;
+  }
+
+  async function pollBatch() {
+    const B = state.batch;
+    if (!B || polling) return;
     polling = true;
-    const live = t => { const el = $("#run-live"); if (el) el.textContent = t; };
-    const wait = ms => new Promise(r => setTimeout(r, ms));
-    const before = (state.index || {}).generated_at || null;
-    const t0 = Date.now();
-    let sawActive = false, finished = null;
-    while (Date.now() - t0 < 25 * 60e3) {
-      await wait(10000);
-      const s = await fetch("api/stock", { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null);
-      if (!s || !s.status) continue;
-      if (s.status !== "completed") { sawActive = true; live(s.status.replace(/_/g, " ")); continue; }
-      if (sawActive || Date.now() - t0 > 3 * 60e3) { finished = s.conclusion || "done"; break; }
+    const save = () => store("stocks-batch", B);
+    while (state.batch === B && B.phase === "running" && Date.now() - B.started < 60 * 60e3) {
+      const s = await fetch("api/stock" + (B.run_id ? `?run=${encodeURIComponent(B.run_id)}` : ""), { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (s && s.run_id && !B.run_id && Date.parse(s.created_at) >= B.started - 15000) { B.run_id = s.run_id; B.run_url = s.run_url; }
+      if (s && s.run_id && String(s.run_id) === String(B.run_id)) {
+        for (const x of s.tickers || []) if (B.tickers.includes(x.ticker)) B.statuses[x.ticker] = x;
+        B.collect = s.collect; B.conclusion = s.conclusion;
+        if (s.status === "completed") B.phase = "deploying";
+        save(); renderProgress(); renderLists();
+      }
+      if (B.phase === "running") await wait(10000);
     }
-    live(finished ? `finished: ${finished} · waiting for the page to redeploy…` : "still not finished; check GitHub");
-    if (finished) {
-      for (let i = 0; i < 36; i++) { // the workflow commits the data, then Vercel redeploys (~1-3 min)
-        await wait(10000);
-        const I = await get("data/stocks/index.json");
-        if (I && I.generated_at !== before) {
-          state.index = I;
-          live(`finished: ${finished} · page updated`);
-          if (location.hash.slice(1) === ticker) route(); else location.hash = ticker;
+    if (B.phase === "deploying") {
+      // The collect job commits once; Vercel then redeploys (about 1-3 minutes). batch.json names the run.
+      for (let i = 0; i < 40 && state.batch === B; i++) {
+        const bj = await get("data/stocks/batch.json");
+        if (bj && String(bj.run_id) === String(B.run_id)) {
+          B.result = bj; B.phase = "updated";
+          for (const x of bj.tickers || []) B.statuses[x.ticker] = Object.assign({}, B.statuses[x.ticker], { ticker: x.ticker, status: x.status === "done" ? "done" : "failed" });
+          const I = await get("data/stocks/index.json");
+          if (I) state.index = I;
           break;
         }
-        if (i === 35) live(`finished: ${finished} · no new data yet; refresh in a few minutes`);
+        await wait(10000);
       }
-    }
+      if (B.phase !== "updated") B.phase = "lost";
+    } else if (B.phase === "running") B.phase = "lost";
+    save();
     polling = false;
-    $("#run-btn").disabled = false;
+    renderProgress(); renderSelection(); renderLists();
+    if (B.phase === "updated") { route(); loadQuotes(); }
   }
 
-  Promise.all([get("data/stocks/index.json"), get("data/models.json")]).then(([index, models]) => {
+  // ---------------------------------------------------------------- near-live quotes (display only)
+  let quotesOff = false;
+  function quoteTickers() {
+    const set = new Set(rated().map(e => e.ticker));
+    for (const l of state.draft || []) for (const t of l.tickers) set.add(t);
+    let list = [...set].sort();
+    if (list.length > 100) list = viewRows().map(e => e.ticker).slice(0, 100).sort(); // the API takes 100 per request
+    return list;
+  }
+  async function loadQuotes() {
+    const list = quoteTickers();
+    if (!list.length || quotesOff) return;
+    state.quotesAt = Date.now();
+    // One request for every ticker on the page; the same URL is cached 5 minutes at the edge.
+    const r = await fetch("api/stock?quotes=" + list.join(",")).catch(() => null);
+    if (!r) return;
+    const data = await r.json().catch(() => null);
+    if (!r.ok) { if (r.status === 404 || (data && /not set up/.test(data.error || ""))) quotesOff = true; return; }
+    if (!data || typeof data !== "object") return;
+    state.quotes = Object.assign({}, state.quotes, data);
+    renderLists();
+    const d = $("#d-latest");
+    if (d && state.detail) d.innerHTML = latestLine(state.detail);
+  }
+  const quoteTick = () => {
+    if (document.visibilityState === "visible" && marketOpen() && Date.now() - state.quotesAt >= 10 * 60e3) loadQuotes();
+  };
+
+  // ---------------------------------------------------------------- start
+  const L0 = $("#lists");
+  L0.addEventListener("click", onListsClick);
+  L0.addEventListener("change", onListsChange);
+  L0.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.id === "l-add") { e.preventDefault(); addTicker(); }
+    else if (e.key === "Enter" && e.target.matches("tr.pick") && !state.edit) openTicker(e.target.dataset.t);
+  });
+  addEventListener("beforeunload", e => { if (dirty()) { e.preventDefault(); e.returnValue = ""; } });
+  state.view = load("stocks-view") || "all";
+  state.sort = load("stocks-sort") || "order";
+  Promise.all([get("data/stocks/index.json"), get("data/models.json"), loadLists()]).then(([index, models]) => {
     state.index = index; state.models = models;
     buildRunPanel();
     route();
+    loadQuotes();
+    const B = load("stocks-batch");
+    if (B && Array.isArray(B.tickers) && Date.now() - B.started < 2 * 3600e3) {
+      state.batch = B;
+      renderProgress();
+      if (B.phase === "running" || B.phase === "deploying") pollBatch();
+    }
   });
+  setInterval(quoteTick, 60e3);
+  document.addEventListener("visibilitychange", quoteTick);
   addEventListener("hashchange", route);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderDetail);
   let rt, lastW = innerWidth;

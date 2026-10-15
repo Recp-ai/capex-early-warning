@@ -148,7 +148,8 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
 
 - **Isolation.** Code in `stocks/`, config in `config/stocks.yaml`, data in `data/stocks/` and
   `site/data/stocks/`, tests in `tests_stocks/`, workflow `.github/workflows/stocks.yml` (workflow_dispatch
-  only, never a schedule), page `site/stocks.html`, function `site/api/stock.js`. `stocks/` may import cew
+  only, never a schedule; concurrency group `stocks`, never the capex group), page `site/stocks.html`,
+  function `site/api/stock.js`, lists in the `STOCK_LISTS` repo variable. `stocks/` may import cew
   helpers (`util`, `edgar_text`, `fetch_edgar`, `models`, `sources`, `analyst`, `calls`, `publish`, `notify`);
   `cew/` must never import `stocks` (a test checks). If a shared helper needs more, add a new function;
   don't change an existing cew function's behaviour. `weekly.yml` runs `python -m pytest -q tests` and
@@ -167,13 +168,26 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   when `edgar_text.found_in` finds them verbatim (as in `cew/calls.py`); they are display and context,
   not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.
+  Quotes (`prices.quotes`, Tiingo IEX `tngoLast`) are display only, never a score input: factors use the
+  latest official daily close, and the page says which close was scored (`prices.close_note`).
+- **Batches.** `stocks.yml`: plan (`python -m stocks.batch plan`: validate, de-duplicate, max `batch.max_batch`,
+  fetch SPY/QQQ once as an artifact) -> one `rate <TICKER>` matrix job per ticker
+  (`python -m stocks.run --batch-out out --shared shared`; never commits, never fetches other tickers'
+  prices) -> collect (`python -m stocks.batch collect`: one quote request, the append-only files, one
+  email, one commit). Keep the job names, the run-name `Stock research <tickers>` (api/stock.js counts
+  tickers per 24 h from run titles and reads per-ticker status from job names) and the limits in
+  `api/stock.js` equal to `config/stocks.yaml` (a test checks).
+- **Tiingo budget** (free tier ~50 requests/hour, shared): a batch of n costs n + 3; quotes are always ONE
+  request for any number of tickers (`iex/?tickers=`, else the all-tickers endpoint), never one per ticker.
 - **Append-only.** `data/stocks/runs/<TICKER>/<UTC timestamp>.json` is opened with mode "x";
   `data/stocks/ratings.csv` is only appended to (a new column goes on the end of `publish.RATING_FIELDS`,
   earlier rows stay byte for byte). Never hand-edit `data/stocks/` or `site/data/stocks/`.
-- **Secrets.** `STOCK_PRICE_API_KEY` (GitHub secret) goes in the Tiingo Authorization header, never a URL
-  or an error message. `api/stock.js` uses the same `RUN_PASSCODE` (timingSafeEqual) and `GITHUB_TOKEN` as
-  `api/run.js`, validates the ticker (`^[A-Z][A-Z0-9.\-]{0,9}$` after uppercasing) and models, caps
-  dispatches at 10 per 24 h counted on `stocks.yml`, and scrubs both secrets from every response.
+- **Secrets.** `STOCK_PRICE_API_KEY` (GitHub secret, and a Vercel env var for the page's quotes) goes in
+  the Tiingo Authorization header, never a URL or an error message. `api/stock.js` uses the same
+  `RUN_PASSCODE` (timingSafeEqual) and `GITHUB_TOKEN` as `api/run.js`, validates every ticker
+  (`^[A-Z][A-Z0-9.\-]{0,9}$` after uppercasing) and models, caps runs at 15 tickers and 30 tickers per 24 h
+  counted on `stocks.yml`, saves lists only with the passcode (validated: 30 lists, 100 tickers each,
+  40,000 bytes), and scrubs all three secrets from every response.
 
 ```
 stocks/run.py          one run: resolve -> companyfacts -> prices -> 8-K -> factors -> Claude news + source checks
@@ -181,19 +195,22 @@ stocks/run.py          one run: resolve -> companyfacts -> prices -> 8-K -> fact
 stocks/resolve.py      ticker -> CIK (SEC company_tickers.json); TickerNotFound stops the run (exit 2, nothing written)
 stocks/fundamentals.py companyfacts -> quarterly/annual flows (YTD differencing, first-filed dates), balance sheet,
                        share counts; IFRS / 20-F handled; cache data/stocks/fundamentals/<TICKER>.json
-stocks/prices.py       Tiingo EOD (ticker, SPY, QQQ, 5 years) -> data/stocks/prices/<TICKER>.csv; failures recorded
+stocks/prices.py       Tiingo EOD (ticker, SPY, QQQ, 5 years) -> data/stocks/prices/<TICKER>.csv; failures recorded;
+                       quotes() one IEX request for all tickers; close_note() which close was scored
 stocks/guidance.py     latest earnings 8-K Exhibit 99.1: verbatim-checked guidance, phrase counts vs previous release
 stocks/metrics.py      valuation (now and point-in-time month-end history), trend, DGS10, capex context, chart
 stocks/scoring.py      sub-metric points, factors, news & risk, composite, confidence, bands, overlay
 stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up
-stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json and index.json
-stocks/notify.py       optional email (same SMTP secrets)
+stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json (full history) and index.json
+stocks/batch.py        batch plan (validate, benchmarks once) and collect (quotes, publish, one email, batch.json)
+stocks/notify.py       optional email (same SMTP secrets); one summary email per batch
 scripts/evaluate_stocks.py  forward 1/3/6-month returns by rating band and vs SPY
 ```
 
 ```bash
 python -m pytest -q tests_stocks
 python -m stocks.run MSFT --offline --no-llm    # re-score cached data (writes data/stocks/, site/data/stocks/)
+node --check site/api/stock.js
 ```
 
 ## Commands

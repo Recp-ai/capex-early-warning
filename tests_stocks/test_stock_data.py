@@ -158,11 +158,19 @@ def test_no_key_marks_prices_missing_without_calling(sandbox):
     assert out["series"] == {} and set(out["errors"].values()) == {"STOCK_PRICE_API_KEY not set"} and not sess.calls
 
 
-def test_tiingo_symbols_and_latest_close():
-    assert prices.symbol("BRK.B") == "brk-b"
+def test_tiingo_symbols():
+    assert prices.symbol("BRK.B") == "brk-b" and prices.symbol("MSFT") == "msft"
+
+
+def test_batch_ticker_jobs_read_benchmarks_from_the_shared_folder_never_tiingo(sandbox, tmp_path):
+    shared = tmp_path / "shared"
+    util.write_csv(shared / "SPY.csv", [{"date": "2026-10-09", "close": 1, "adj_close": 1, "split_factor": 1}], prices.FIELDS)
     sess = F.FakeSession(F.price_routes())
-    assert prices.latest_close(sess, "SPY", "k") == {"date": "2026-10-09", "close": pytest.approx(400 * 2.718281828 ** (0.0003 * 1309), rel=1e-3)}
-    assert prices.latest_close(sess, "NOPE", "k") is None
+    out = prices.run("MSFT", CFG, "k", sess=sess, shared_dir=shared)
+    assert [c["url"] for c in sess.calls] == [F.tiingo_url("MSFT")]
+    assert out["series"]["SPY"][0]["close"] == 1 and "MSFT" in out["series"]
+    assert out["errors"] == {"QQQ": "no shared benchmark prices from the batch's plan job"}
+    assert not prices.cache_path("SPY").exists()  # the collect job copies the shared files into the cache
 
 
 # ---------------------------------------------------------------- price metrics

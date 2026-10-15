@@ -6,7 +6,12 @@ Usage:
   python -m stocks.run MSFT --email         # also email the result
   python -m stocks.run MSFT --no-llm        # rule-based factors only (no news & risk, no write-up)
   python -m stocks.run MSFT --offline       # re-score cached data in data/stocks/ (no network)
-The ticker may also come from INPUT_TICKER (the workflow input).
+  python -m stocks.run MSFT --batch-out out --shared shared   # one ticker of a batch (stocks/batch.py)
+The ticker may also come from INPUT_TICKER.
+
+A batch's ticker job (--batch-out) rates the ticker with the benchmark prices the plan job fetched once
+(--shared), then writes its result and cache files under the --batch-out folder and nothing else: no quote,
+no email, no append-only files. The batch's collect job does those once for every ticker.
 """
 from __future__ import annotations
 
@@ -14,11 +19,12 @@ import argparse
 import copy
 import json
 import sys
+from pathlib import Path
 from urllib.parse import urlsplit
 
 from cew import edgar_text, models, sources, util
 
-from . import config, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring
+from . import batch, config, fundamentals, guidance, metrics, notify, prices, publish, research, resolve, scoring
 
 BRIEF_SUMMARY_KEYS = ["latest_quarter_end", "ttm_end", "currency", "foreign", "revenue_ttm", "revenue_yoy_q",
                       "revenue_yoy_ttm", "acceleration_pp", "gross_margin_pct", "operating_margin_pct", "fcf_ttm",
@@ -77,41 +83,20 @@ def writeup_brief(r: dict) -> dict:
     }
 
 
-def refresh_now(ticker: str, cfg: dict, key: str | None) -> dict:
-    """Latest closes for other rated tickers (the "now" column), oldest first, at most prices.refresh_now_max."""
-    if not key:
-        return {}
-    index = util.read_json(config.site_dir() / "index.json") or {}
-    others = sorted((e for e in index.get("tickers") or [] if e.get("ticker") != ticker),
-                    key=lambda e: e.get("price_now_date") or "")
-    n = int((cfg.get("prices") or {}).get("refresh_now_max", 10))
-    sess = util.session("stock-research/1.0")
-    out = {}
-    for e in others[:n]:
-        p = prices.latest_close(sess, e["ticker"], key)
-        if p:
-            out[e["ticker"]] = p
-    return out
+class RunError(Exception):
+    def __init__(self, message: str, code: int = 1):
+        super().__init__(message)
+        self.code = code
 
 
-def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description="Research one stock")
-    p.add_argument("ticker", nargs="?")
-    p.add_argument("--offline", action="store_true")
-    p.add_argument("--no-llm", action="store_true")
-    p.add_argument("--email", action="store_true")
-    args = p.parse_args(argv)
-
-    cfg = config.load()
-    ticker = config.normalize_ticker(args.ticker or util.env("INPUT_TICKER"))
-    if not ticker:
-        print("Invalid ticker: use 1-10 characters, a letter first, then letters, digits, '.' or '-'.", file=sys.stderr)
-        return 2
+def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = False, shared=None) -> tuple[dict, list]:
+    """Rate one ticker: everything up to (not including) the quote, email and publish steps.
+    Returns (report, price chart); raises RunError when there is nothing to rate."""
     started = util.now_utc()
     run_id = started.strftime("%Y-%m-%dT%H:%M:%SZ")
     today = started.date()
     selection = config.resolve_models(cfg)
-    llm_on = bool(util.env("ANTHROPIC_API_KEY")) and not args.no_llm
+    llm_on = bool(util.env("ANTHROPIC_API_KEY")) and not no_llm
     key = util.env("STOCK_PRICE_API_KEY")
     sec_ua = util.env("SEC_USER_AGENT") or f"StockResearch {util.env('SMTP_USERNAME', 'research@example.com')}"
     sec = util.session(sec_ua)
@@ -120,25 +105,22 @@ def main(argv: list[str] | None = None) -> int:
           f"scoring={selection['scoring']} ({selection['sources']['scoring']}); Claude {'on' if llm_on else 'off'}", flush=True)
 
     # 1. ticker -> CIK
-    if args.offline:
+    if offline:
         cached = util.read_json(fundamentals.cache_path(ticker))
         if not cached:
-            print(f"Offline and no cached data for {ticker}.", file=sys.stderr)
-            return 2
+            raise RunError(f"Offline and no cached data for {ticker}.", 2)
         ent = {"ticker": ticker, "sec_ticker": ticker, "cik": cached["cik"], "name": cached.get("entity") or ticker}
     else:
         try:
             ent = resolve.lookup(sec, ticker)
         except resolve.TickerNotFound as e:
-            print(str(e), file=sys.stderr)
-            return 2
+            raise RunError(str(e), 2) from None
         except Exception as e:
-            print(f"Could not read SEC company_tickers.json: {type(e).__name__}: {str(e)[:200]}", file=sys.stderr)
-            return 1
+            raise RunError(f"Could not read SEC company_tickers.json: {type(e).__name__}: {str(e)[:200]}") from None
     cik, name = ent["cik"], ent["name"]
     print(f"{ticker} -> CIK {cik} ({name})", flush=True)
     subs: dict = {}
-    if not args.offline:
+    if not offline:
         try:
             subs = edgar_text.submissions(sec, cik)
         except Exception as e:
@@ -148,20 +130,20 @@ def main(argv: list[str] | None = None) -> int:
 
     # 2. data
     print("Fetching SEC companyfacts ...", flush=True)
-    f = fundamentals.run(sec, ticker, cik, args.offline)
+    f = fundamentals.run(sec, ticker, cik, offline)
     if f.get("error"):
         errors["sec:companyfacts"] = f["error"]
     s = fundamentals.summarize(f) if not f.get("error") else {}
     if not f.get("error") and not f.get("taxonomy"):
         errors["sec:companyfacts"] = "no revenue in us-gaap or ifrs-full XBRL facts"
     print("Fetching prices ...", flush=True)
-    px = prices.run(ticker, cfg, key, args.offline)
+    px = prices.run(ticker, cfg, key, offline, shared_dir=shared)
     for t, e in px["errors"].items():
         errors[f"prices:{t}"] = e
     rows = px["series"].get(ticker)
     usage_by_step: dict = {}
     print("Reading the latest earnings release ...", flush=True)
-    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on, args.offline, usage_by_step, cfg)
+    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on, offline, usage_by_step, cfg)
     if g.get("error"):
         errors["guidance"] = g["error"]
     dgs10, ctx = metrics.ust10y(), metrics.capex_context(today=today)
@@ -191,7 +173,7 @@ def main(argv: list[str] | None = None) -> int:
         ev = [e for t in topics.values() for e in t.get("evidence") or []]
         sources.tag_tiers(ev, tcfg)
         sources.tag_dates(ev, today, cfg)
-        if args.offline:
+        if offline:
             source_check = {"skipped": "offline run"}
         else:
             print("Checking evidence URLs ...", flush=True)
@@ -204,8 +186,7 @@ def main(argv: list[str] | None = None) -> int:
     # 4. composite, rating, overlay
     comp = scoring.composite(fs, cfg)
     if comp["score"] is None:
-        print("No factor had data; nothing to rate. " + json.dumps(errors, default=str), file=sys.stderr)
-        return 1
+        raise RunError("No factor had data; nothing to rate. " + json.dumps(errors, default=str))
     band = scoring.band(comp["score"], cfg)
     ov = scoring.overlay(ticker, band, ctx, cfg)
     report = {
@@ -232,24 +213,81 @@ def main(argv: list[str] | None = None) -> int:
             errors["claude:writeup"] = f"{type(e).__name__}: {str(e)[:300]}"
     used = {k: u for k, u in usage_by_step.items() if u["requests"]}
     report["cost"] = models.cost_summary(used, models.load_prices()) if used else None
+    return report, metrics.chart(rows)
 
+
+def summary(report: dict, archived: str | None = None) -> dict:
+    fs = report.get("factors") or {}
+    cn = report.get("close_note") or {}
+    return {"run_id": report["run_id"], "ticker": report["ticker"],
+            **({"archived": f"data/stocks/runs/{report['ticker']}/{archived}"} if archived else {}),
+            "rating": report["rating"], "rating_before_overlay": report.get("rating_before_overlay"), "score": report["score"],
+            "confidence": report["confidence"], "factors": {k: (fs.get(k) or {}).get("score") for k in scoring.FACTORS},
+            "overlay": (report.get("overlay") or {}).get("note"), "cost_usd": (report.get("cost") or {}).get("total_usd"),
+            "scored_on": (report.get("price") or {}).get("date"), "quote": report.get("quote"),
+            "close_note": cn.get("note"), "close_window": cn.get("close_window"),
+            "source_check": (report.get("news") or {}).get("source_check"), "email": report.get("email"),
+            "errors": report.get("errors")}
+
+
+def main(argv: list[str] | None = None) -> int:
+    p = argparse.ArgumentParser(description="Research one stock")
+    p.add_argument("ticker", nargs="?")
+    p.add_argument("--offline", action="store_true")
+    p.add_argument("--no-llm", action="store_true")
+    p.add_argument("--email", action="store_true")
+    p.add_argument("--batch-out", help="one ticker of a batch: write the result here, publish nothing")
+    p.add_argument("--shared", help="benchmark price CSVs fetched once by the batch's plan job")
+    args = p.parse_args(argv)
+
+    cfg = config.load()
+    raw = args.ticker or util.env("INPUT_TICKER")
+    ticker = config.normalize_ticker(raw)
+    if not ticker:
+        msg = "Invalid ticker: use 1-10 characters, a letter first, then letters, digits, '.' or '-'."
+        print(msg, file=sys.stderr)
+        if args.batch_out:
+            batch.write_result(Path(args.batch_out), str(raw or "")[:12], {"status": "failed", "error": msg})
+        return 2
+    try:
+        report, chart = research_one(ticker, cfg, args.offline, args.no_llm, args.shared)
+    except RunError as e:
+        print(str(e), file=sys.stderr)
+        if args.batch_out:
+            batch.write_result(Path(args.batch_out), ticker, {"status": "failed", "error": batch.scrub(str(e))[:500]})
+        return e.code
+    except Exception as e:
+        if not args.batch_out:
+            raise
+        msg = batch.scrub(f"{type(e).__name__}: {str(e)[:400]}")
+        print(f"Run failed: {msg}", file=sys.stderr)
+        batch.write_result(Path(args.batch_out), ticker, {"status": "failed", "error": msg})
+        return 1
+
+    if args.batch_out:
+        batch.write_result(Path(args.batch_out), ticker, {"status": "ok", "report": report, "chart": chart})
+        batch.stage(Path(args.batch_out), ticker)
+        print(json.dumps(summary(report), indent=1, default=str))
+        return 0
+
+    # A single run: one quote request for this ticker and every rated ticker (the list's latest prices)
+    q: dict = {"quotes": {}, "error": None}
+    if not args.offline:
+        q = prices.quotes([ticker, *publish.rated_tickers()], util.env("STOCK_PRICE_API_KEY"),
+                          max_tickers=int((cfg.get("prices") or {}).get("quotes_max_tickers", 100)))
+    if q.get("error"):
+        report["errors"]["quotes"] = q["error"]
+    publish.attach_quote(report, q["quotes"].get(ticker))
     if args.email:
         try:
             report["email"] = notify.send(report)
         except Exception as e:
             report["email"] = f"failed: {type(e).__name__}"
-            errors["email"] = f"{type(e).__name__}: {str(e)[:200]}"
+            report["errors"]["email"] = f"{type(e).__name__}: {str(e)[:200]}"
     else:
         report["email"] = "skipped (email off)"
-    now = refresh_now(ticker, cfg, key) if not args.offline else {}
-    archived = publish.write_all(report, now, metrics.chart(rows))
-
-    print(json.dumps({"run_id": run_id, "ticker": ticker, "archived": f"data/stocks/runs/{ticker}/{archived}",
-                      "rating": report["rating"], "rating_before_overlay": band, "score": comp["score"],
-                      "confidence": report["confidence"],
-                      "factors": {k: fs[k].get("score") for k in scoring.FACTORS},
-                      "overlay": ov.get("note"), "cost_usd": (report["cost"] or {}).get("total_usd"),
-                      "source_check": source_check, "email": report["email"], "errors": errors}, indent=1, default=str))
+    archived = publish.write_all(report, q["quotes"], chart, cfg)
+    print(json.dumps(summary(report, archived), indent=1, default=str))
     return 0
 
 
