@@ -203,8 +203,9 @@ come from tag lists in `stocks/fundamentals.py`. Debt is read by family: `LongTe
 notes (`LongTermNotesPayable`, `NotesPayableCurrent`), convertibles, other long-term debt and loans,
 `DebtCurrent` for all current borrowings, `DebtLongtermAndShorttermCombinedAmount` when given; leases are
 excluded. A figure is **unknown**, never zero, when a tag of its group stopped reporting (a non-zero value
-in the last 4 quarters, 8 for debt, and nothing covering the latest date) or when only tags the screen
-doesn't read carry a value on the latest balance sheet. Then the balance-sheet factor and EV/EBIT count
+in the last 4 quarters, 8 for debt, and nothing covering the latest date), when only tags the screen
+doesn't read carry a value on the latest balance sheet, or when one such tag is larger than everything the
+screen read (Oracle's `LongTermNotesAndLoans` next to its `NotesPayableCurrent`). Then the balance-sheet factor and EV/EBIT count
 as missing, with the reason on the page. "No debt" means no debt tag had a value in the last 8 quarters.
 Key metrics shows the tags behind each figure on hover; `python -m stocks.fundamentals tags NVDA ORCL`
 prints them from the cache, with any debt or investment tags on the latest balance sheet that the

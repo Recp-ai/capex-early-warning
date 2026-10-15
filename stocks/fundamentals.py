@@ -40,7 +40,7 @@ FLOW_TAGS = {
     "cost_of_revenue": {   # gross profit = revenue - cost of revenue when GrossProfit isn't tagged
         "us-gaap": ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfServices", "CostOfGoodsSold",
                     "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
-                    "CostOfServicesExcludingDepreciationDepletionAndAmortization"],
+                    "CostOfServicesExcludingDepreciationDepletionAndAmortization", "DirectOperatingCosts"],
         "ifrs-full": ["CostOfSales"],
     },
     "operating_income": {"us-gaap": ["OperatingIncomeLoss"], "ifrs-full": ["ProfitLossFromOperatingActivities"]},
@@ -89,7 +89,7 @@ CASH_AND_INVESTMENT_TAGS = {"us-gaap": ["CashCashEquivalentsAndShortTermInvestme
 DEBT_FAMILIES = {
     "us-gaap": {
         "long": {"total": ["LongTermDebt"], "noncurrent": ["LongTermDebtNoncurrent"], "current": ["LongTermDebtCurrent"]},
-        "notes": {"total": ["NotesPayable"], "noncurrent": ["LongTermNotesPayable", "SeniorLongTermNotes"],
+        "notes": {"total": ["NotesPayable"], "noncurrent": ["LongTermNotesPayable", "LongTermNotesAndLoans", "SeniorLongTermNotes"],
                   "current": ["NotesPayableCurrent"]},
         "convertible": {"total": ["ConvertibleNotesPayable", "ConvertibleDebt"],
                         "noncurrent": ["ConvertibleLongTermNotesPayable", "ConvertibleDebtNoncurrent",
@@ -142,14 +142,14 @@ INSTANT_TAGS = {tax: sorted({t for group in (CASH_TAGS, INVESTMENT_TAGS, CASH_AN
 # The tag scan of the latest balance sheet (diagnostics, the page's hover, and the "only tags we don't read"
 # guard): every instant tag on that date whose name matches SCAN_RE.
 SCAN_RE = re.compile(r"Cash|Investments|Securities|Debt|Notes|Borrowing|Loan|LineOfCredit|CommercialPaper"
-                     r"|ContractWithCustomerLiability|CustomerAdvance|CustomerDeposit|DeferredRevenue")
-DEBT_CANDIDATE_RE = re.compile(r"Debt|NotesPayable|Borrowings|LoansPayable|LinesOfCredit|LineOfCredit$|CommercialPaper"
-                               r"|ConvertibleNotes|SeniorNotes|SeniorLongTermNotes")
+                     r"|ContractWithCustomerLiability|Advance|CustomerDeposit|DeferredRevenue|Liabilit")
+DEBT_CANDIDATE_RE = re.compile(r"Debt|Notes|Loans|Borrowing|LinesOfCredit|LineOfCredit$|CommercialPaper")
 DEBT_CANDIDATE_NOT = re.compile(r"Securit|Investment|Receivable|Lease|Interest|Issuance|Discount|Premium|FairValue"
                                 r"|Proceeds|Repayment|Payment|Maturit|Face|Unamortized|Extinguishment|Fee|Covenant"
                                 r"|Capacity|Percentage|Rate|Ratio|Increase|Decrease|Gross|Collateral|Guarantee|Conversion")
 INVESTMENT_CANDIDATE_RE = re.compile(r"(Securit|Investments).*Current$|ShortTermInvestments$")
 INVESTMENT_CANDIDATE_NOT = re.compile(r"Noncurrent|Restricted|Pledged|Unrealized|Gain|Loss(?!Current)|Receivable")
+UNREAD_LARGER_X = 1.1  # an unread tag above this multiple of what the read tags add up to: the figure is unknown
 
 
 def _days(a: str, b: str) -> int:
@@ -322,7 +322,7 @@ def extract(facts: dict, cik: str) -> dict:
     return out
 
 
-FLOW_SCAN_RE = re.compile(r"Cost|Expense|OperatingIncome|GrossProfit|IncreaseDecreaseIn(ContractWithCustomer|DeferredRevenue|Customer)")
+FLOW_SCAN_RE = re.compile(r"Cost|Expense|OperatingIncome|GrossProfit|IncreaseDecreaseIn")
 
 
 def tag_scan(facts: dict, tax: str, currency: str, latest_revenue_end: str | None) -> dict:
@@ -524,12 +524,22 @@ def stopped_tags(f: dict, tags: list[str], end: str, quarters: int) -> list[dict
     return out
 
 
-def untracked(scan: dict | None, end: str, include: re.Pattern, exclude: re.Pattern, known: list[str]) -> dict:
-    """Tags on the latest balance sheet's scan that look like the group but aren't in our lists."""
+def untracked(f: dict, end: str, include: re.Pattern, exclude: re.Pattern) -> dict:
+    """Tags on the latest balance sheet's scan that look like the group but that we didn't read on that date
+    (not in our lists, or in them but missing from a record cached before they were added)."""
+    scan = f.get("scan")
     if not scan or scan.get("balance_sheet_date") != end:
         return {}
     return {t: v for t, v in (scan.get("instants") or {}).items()
-            if v and t not in known and include.search(t) and not exclude.search(t)}
+            if v and _at(f, t, end) is None and include.search(t) and not exclude.search(t)}
+
+
+def _unread_larger(f: dict, end: str, read: float, include: re.Pattern, exclude: re.Pattern) -> tuple[str, float] | None:
+    """An unread tag on the latest balance sheet larger than the whole figure we read (a line is missing from
+    our lists, e.g. Oracle's LongTermNotesAndLoans next to its NotesPayableCurrent)."""
+    other = untracked(f, end, include, exclude)
+    big = max(other.items(), key=lambda x: x[1], default=None)
+    return big if big and big[1] > abs(read) * UNREAD_LARGER_X else None
 
 
 def _money(v: float) -> str:
@@ -551,7 +561,7 @@ def balance_sheet_at(f: dict, end: str, cfg: dict | None = None) -> dict:
     tax = f.get("taxonomy") or "us-gaap"
     bc = (cfg or {}).get("balance_sheet") or {}
     q_stop, q_debt = int(bc.get("stopped_tag_quarters", STOPPED_TAG_QUARTERS)), int(bc.get("no_debt_quarters", NO_DEBT_QUARTERS))
-    scan, unknown = f.get("scan"), []
+    unknown = []
     cash_t = _first(f, CASH_TAGS[tax], end)
     cash = cash_t and cash_t[1]
     inv_t = _first(f, INVESTMENT_TAGS[tax], end)
@@ -560,8 +570,7 @@ def balance_sheet_at(f: dict, end: str, cfg: dict | None = None) -> dict:
     if inv_t is None:
         comb = _first(f, CASH_AND_INVESTMENT_TAGS[tax], end)
         stopped = stopped_tags(f, INVESTMENT_TAGS[tax], end, q_stop)
-        other = untracked(scan, end, INVESTMENT_CANDIDATE_RE, INVESTMENT_CANDIDATE_NOT,
-                          [*INVESTMENT_TAGS[tax], *CASH_AND_INVESTMENT_TAGS[tax]])
+        other = untracked(f, end, INVESTMENT_CANDIDATE_RE, INVESTMENT_CANDIDATE_NOT)
         if comb and cash is not None and comb[1] >= cash:
             inv, inv_parts = comb[1] - cash, [comb]
             inv_note = f"{comb[0]} minus cash"
@@ -572,11 +581,15 @@ def balance_sheet_at(f: dict, end: str, cfg: dict | None = None) -> dict:
                            f"{end} ({', '.join(f'{t} {_money(v)}' for t, v in list(other.items())[:3])})")
         else:
             inv = 0.0
+    elif bigger := _unread_larger(f, end, inv, INVESTMENT_CANDIDATE_RE, INVESTMENT_CANDIDATE_NOT):
+        inv = None
+        unknown.append(f"short-term investments unknown: {bigger[0]} is {_money(bigger[1])} on {end}, more than the "
+                       f"{_money(inv_t[1])} read from {inv_t[0]}")
     debt, parts = debt_at(f, end)
     note = None
     if debt is None:
         stopped = stopped_tags(f, DEBT_TAGS[tax], end, q_debt)
-        other = untracked(scan, end, DEBT_CANDIDATE_RE, DEBT_CANDIDATE_NOT, DEBT_TAGS[tax])
+        other = untracked(f, end, DEBT_CANDIDATE_RE, DEBT_CANDIDATE_NOT)
         if stopped:
             unknown.append(_stopped_note("debt", stopped, end))
         elif other:
@@ -585,6 +598,10 @@ def balance_sheet_at(f: dict, end: str, cfg: dict | None = None) -> dict:
         else:
             debt = 0.0
             note = f"no debt: no debt tag with a value in the last {q_debt} quarters"
+    elif bigger := _unread_larger(f, end, debt, DEBT_CANDIDATE_RE, DEBT_CANDIDATE_NOT):
+        unknown.append(f"debt unknown: {bigger[0]} is {_money(bigger[1])} on {end}, more than the {_money(debt)} "
+                       f"the debt tags read add up to ({' + '.join(t for t, _ in parts)})")
+        debt = None
     cash_inv = None if cash is None or inv is None else cash + inv
     return {"date": end, "cash": cash, "cash_tag": cash_t and cash_t[0], "short_term_investments": inv,
             "investment_tags": [{"tag": t, "val": v} for t, v in inv_parts], "investment_note": inv_note,
@@ -677,8 +694,16 @@ def prepayment_points(f: dict) -> dict:
             now_v, then_v = _family(f, fam, end), _family(f, fam, prev)
             if not now_v or not then_v:
                 continue
-            val = lambda g: g["total"][1] if g["total"] else sum(p[1] for p in (g["noncurrent"], g["current"]) if p)  # noqa: E731
-            total += val(now_v) - val(then_v)
+            # the same basis on both dates: the total, else current + non-current, else the current part alone
+            if now_v["total"] and then_v["total"]:
+                change = now_v["total"][1] - then_v["total"][1]
+            elif all(g[k] for g in (now_v, then_v) for k in ("noncurrent", "current")):
+                change = sum(now_v[k][1] - then_v[k][1] for k in ("noncurrent", "current"))
+            elif now_v["current"] and then_v["current"]:
+                change = now_v["current"][1] - then_v["current"][1]
+            else:
+                continue
+            total += change
             used.append(name)
         if used:
             out[end] = {"val": total, "filed": filed[end], "source": f"balance sheet: {', '.join(used)} {prev} to {end}"}
@@ -801,7 +826,6 @@ def tag_report(ticker: str, rec: dict, cfg: dict | None = None) -> str:
     s = summarize(rec, cfg)
     bs = s.get("balance_sheet") or {}
     scan = rec.get("scan") or {}
-    tax = rec.get("taxonomy") or "us-gaap"
     lines = [f"{ticker}: balance sheet {bs.get('date')} (filed data as of {rec.get('fetched_at')})",
              f"  cash: {bs.get('cash_tag')} {_money(bs['cash']) if bs.get('cash') is not None else 'n/a'}",
              "  short-term investments: " + (", ".join(f"{x['tag']} {_money(x['val'])}" for x in bs.get("investment_tags") or [])
@@ -810,10 +834,8 @@ def tag_report(ticker: str, rec: dict, cfg: dict | None = None) -> str:
                           or (bs.get("debt_note") or "unknown"))]
     lines += [f"  UNKNOWN: {u}" for u in bs.get("unknown") or []]
     if scan.get("balance_sheet_date") == bs.get("date"):
-        read = {*INSTANT_TAGS[tax]}
-        other = {t: v for t, v in (scan.get("instants") or {}).items() if t not in read and v and (
-            DEBT_CANDIDATE_RE.search(t) and not DEBT_CANDIDATE_NOT.search(t)
-            or INVESTMENT_CANDIDATE_RE.search(t) and not INVESTMENT_CANDIDATE_NOT.search(t))}
+        other = {**untracked(rec, bs["date"], DEBT_CANDIDATE_RE, DEBT_CANDIDATE_NOT),
+                 **untracked(rec, bs["date"], INVESTMENT_CANDIDATE_RE, INVESTMENT_CANDIDATE_NOT)}
         lines.append("  other debt / investment tags on this date (not read): "
                      + (", ".join(f"{t} {_money(v)}" for t, v in other.items()) or "none"))
     else:

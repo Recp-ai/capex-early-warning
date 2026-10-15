@@ -341,8 +341,10 @@ NO_LTD = {"LongTermDebtNoncurrent": None, "LongTermDebtCurrent": None}
 
 
 def test_debt_families_read_notes_convertibles_and_all_current_debt():
+    b = bs_of(**NO_LTD, NotesPayableCurrent=F.instant(lambda e: 7.6e9), LongTermNotesAndLoans=F.instant(lambda e: 117.7e9))
+    assert b["debt"] == pytest.approx(125.3e9) and b["debt_tags"] == ["LongTermNotesAndLoans", "NotesPayableCurrent"]  # Oracle
     b = bs_of(**NO_LTD, NotesPayableCurrent=F.instant(lambda e: 7e9), LongTermNotesPayable=F.instant(lambda e: 90e9))
-    assert b["debt"] == 97e9 and b["debt_tags"] == ["LongTermNotesPayable", "NotesPayableCurrent"]  # Oracle-style notes
+    assert b["debt"] == 97e9 and b["debt_tags"] == ["LongTermNotesPayable", "NotesPayableCurrent"]
     assert b["debt_parts"] == [{"tag": "LongTermNotesPayable", "val": 90e9}, {"tag": "NotesPayableCurrent", "val": 7e9}]
     # DebtCurrent holds every current borrowing (the commercial paper too); families add their non-current parts
     b = bs_of(**NO_LTD, DebtCurrent=F.instant(lambda e: 5e9), LongTermNotesPayable=F.instant(lambda e: 90e9),
@@ -397,6 +399,15 @@ def test_cash_and_investments_reported_together_and_tags_the_screen_does_not_rea
     assert "only tags this screen doesn't read carry a value on 2026-06-30 (SubordinatedDebt $2.00B)" in b["unknown"][1]
     assert "HeldToMaturitySecuritiesFairValueCurrent $9.00B" in b["unknown"][0]
     assert "SubordinatedDebt $2.00B" in fund.tag_report("X", rec, CFG)
+    # an unread line bigger than everything read: unknown, not the small part (Oracle before LongTermNotesAndLoans)
+    rec = fund.extract(F.companyfacts(**NO_LTD, NotesPayableCurrent=F.instant(lambda e: 7.6e9),
+                                      FutureNotesAndLoansPayableNoncurrent=F.instant(lambda e: 117.7e9)), F.CIK)
+    b = fund.summarize(rec, CFG)["balance_sheet"]
+    assert b["debt"] is None and b["unknown"] == [
+        "debt unknown: FutureNotesAndLoansPayableNoncurrent is $117.70B on 2026-06-30, more than the $7.60B the debt "
+        "tags read add up to (NotesPayableCurrent)"]
+    assert bs_of(**NO_LTD, NotesPayableCurrent=F.instant(lambda e: 7.6e9), NotesAndLoansReceivableNetCurrent=F.instant(
+        lambda e: 9e9))["debt"] == 7.6e9  # receivables never count
 
 
 def test_unknown_cash_or_debt_leaves_the_balance_sheet_and_ev_out_with_a_note():
@@ -420,6 +431,7 @@ def test_margins_fall_back_to_revenue_minus_costs_and_say_when_missing():
     cost = F.flow(lambda e: round(F.revenue(e) * 0.31, -6))
     s = summ(GrossProfit=None, CostOfServices=cost)
     assert s["gross_margin_pct"] == pytest.approx(69, abs=0.01) and s["gross_profit_source"] == "revenue - CostOfServices"
+    assert summ(GrossProfit=None, DirectOperatingCosts=cost)["gross_profit_source"] == "revenue - DirectOperatingCosts"  # INOD
     s = summ(OperatingIncomeLoss=None, CostsAndExpenses=F.flow(lambda e: round(F.revenue(e) * 0.56, -6)))
     assert s["operating_margin_pct"] == pytest.approx(44, abs=0.01) and s["operating_income_source"] == "revenue - CostsAndExpenses"
     s = summ(OperatingIncomeLoss=None, OperatingExpenses=F.flow(lambda e: round(F.revenue(e) * 0.25, -6)))
@@ -462,6 +474,10 @@ def test_fcf_ex_prepayments_when_prepayments_are_a_large_share_of_operating_cash
     s = summ(ContractWithCustomerLiabilityCurrent=F.instant(lambda e: 67e9 if e.isoformat() > "2025-06-30" else 1.8e9))
     assert s["prepayments"]["increase"] == pytest.approx(65.2e9) and s["prepayments"]["applies"]
     assert s["prepayments"]["source"] == "balance sheet: contract 2025-06-30 to 2026-06-30"
+    # the same basis on both dates: a total a year ago vs only the current part now is no "decrease"
+    s = summ(ContractWithCustomerLiability=upto(F.instant(lambda e: 50e9), "2025-06-30"),
+             ContractWithCustomerLiabilityCurrent=F.instant(lambda e: 30e9 if e.isoformat() > "2025-06-30" else 28e9))
+    assert s["prepayments"]["increase"] == pytest.approx(2e9)
 
 
 def fs_conf(s, v):

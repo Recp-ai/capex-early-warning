@@ -173,8 +173,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   latest official daily close, and the page says which close was scored (`prices.close_note`).
 - **Data quality, not silent zeros.** Balance-sheet tag lists live in `stocks/fundamentals.py` (debt by
   family; leases excluded). A cash / investment / debt figure is unknown (None), never zero, when a tag of
-  its group stopped reporting (`balance_sheet.stopped_tag_quarters` / `no_debt_quarters`) or only tags we
-  don't read carry a value (the record's `scan` of the latest balance sheet); the balance-sheet factor and
+  its group stopped reporting (`balance_sheet.stopped_tag_quarters` / `no_debt_quarters`), only tags we
+  don't read carry a value, or one unread tag is larger than all we read (the record's `scan` of the latest
+  balance sheet); the balance-sheet factor and
   EV then count as missing with the reason. Missing margins show as "missing" in the factor inputs (after
   the revenue-minus-costs fallbacks). FCF ex-prepayments replaces FCF in quality and valuation when
   prepayments exceed `prepayments.max_share_of_ocf`. Share counts off by more than
