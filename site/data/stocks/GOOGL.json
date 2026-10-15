@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T07:18:34Z",
-  "generated_at": "2026-10-15T07:19:26+00:00",
+  "run_id": "2026-10-15T09:19:14Z",
+  "generated_at": "2026-10-15T09:19:15+00:00",
   "ticker": "GOOGL",
   "sec_ticker": "GOOGL",
   "cik": "0001652044",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "input",
-      "scoring": "input"
+      "research": "config",
+      "scoring": "config"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -19,7 +19,19 @@
   "rating": "Hold",
   "rating_before_overlay": "Hold",
   "score": 60,
-  "confidence": "High",
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 1.0,
+    "reasons": [
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 6
+  },
   "bands": {
     "up": {
       "label": "Buy",
@@ -165,19 +177,19 @@
           "value": 62.5,
           "score": 37.5,
           "weight": 0.1,
-          "note": null
+          "note": "cheaper than now in 62.5% of 28 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
           "value": 94.6,
           "score": 5.4,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 94.6% of 28 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
           "value": 58.9,
           "score": 41.1,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 58.9% of 28 month-ends (ranked on yields)"
         }
       },
       "coverage": 1.0,
@@ -317,16 +329,34 @@
     "operating_cash_flow_ttm": 185675000000.0,
     "capex_ttm": 132402000000.0,
     "sbc_ttm": 28147000000.0,
+    "gross_profit_source": "revenue - CostOfRevenue",
+    "operating_income_source": "OperatingIncomeLoss",
     "fcf_ttm": 53273000000.0,
     "gross_margin_pct": 60.9,
     "operating_margin_pct": 33.11,
     "fcf_margin_pct": 11.95,
     "capex_intensity_pct": 29.7,
     "sbc_pct_revenue": 6.31,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 2573000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "share_of_ocf": 0.0139,
+      "max_share_of_ocf": 0.25,
+      "applies": false
+    },
     "balance_sheet": {
       "date": "2026-06-30",
       "cash": 55911000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
       "short_term_investments": 186563000000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 186563000000.0
+        }
+      ],
+      "investment_note": null,
       "cash_and_investments": 242474000000.0,
       "debt": 100164000000.0,
       "debt_tags": [
@@ -334,9 +364,25 @@
         "LongTermDebtCurrent",
         "CommercialPaper"
       ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 98165000000.0
+        },
+        {
+          "tag": "LongTermDebtCurrent",
+          "val": 1999000000.0
+        },
+        {
+          "tag": "CommercialPaper",
+          "val": 0.0
+        }
+      ],
       "debt_note": null,
-      "net_debt": -142310000000.0
+      "net_debt": -142310000000.0,
+      "unknown": []
     },
+    "share_outliers": [],
     "diluted_shares": 12309000000.0,
     "diluted_shares_end": "2026-06-30",
     "dilution_yoy_pct": 0.91,
@@ -453,9 +499,12 @@
     "price_to_sales": 9.597,
     "price_to_fcf": 80.324,
     "ev_to_ebit": 28.022,
+    "sales_yield_pct": 10.42,
+    "fcf_yield_pct": 1.245,
+    "ebit_yield_pct": 3.569,
     "fcf_negative": false,
     "ebit_negative": false,
-    "fcf_yield_pct": 1.245,
+    "fcf_basis": "reported",
     "ust10y_pct": 5.21,
     "ust10y_date": "2026-10-13",
     "fcf_yield_vs_10y_pp": -3.965,
@@ -464,197 +513,294 @@
         "date": "2024-07-31",
         "price_to_sales": 6.737,
         "price_to_fcf": 31.014,
-        "ev_to_ebit": 22.262
+        "ev_to_ebit": 22.119,
+        "sales_yield_pct": 14.843,
+        "fcf_yield_pct": 3.224,
+        "ebit_yield_pct": 4.521
       },
       {
         "date": "2024-08-30",
         "price_to_sales": 6.417,
         "price_to_fcf": 29.538,
-        "ev_to_ebit": 21.158
+        "ev_to_ebit": 21.015,
+        "sales_yield_pct": 15.584,
+        "fcf_yield_pct": 3.385,
+        "ebit_yield_pct": 4.759
       },
       {
         "date": "2024-09-30",
         "price_to_sales": 6.514,
         "price_to_fcf": 29.985,
-        "ev_to_ebit": 21.492
+        "ev_to_ebit": 21.349,
+        "sales_yield_pct": 15.352,
+        "fcf_yield_pct": 3.335,
+        "ebit_yield_pct": 4.684
       },
       {
         "date": "2024-10-31",
         "price_to_sales": 6.679,
         "price_to_fcf": 30.748,
-        "ev_to_ebit": 22.145
+        "ev_to_ebit": 22.023,
+        "sales_yield_pct": 14.971,
+        "fcf_yield_pct": 3.252,
+        "ebit_yield_pct": 4.541
       },
       {
         "date": "2024-11-29",
         "price_to_sales": 6.595,
         "price_to_fcf": 30.36,
-        "ev_to_ebit": 21.854
+        "ev_to_ebit": 21.732,
+        "sales_yield_pct": 15.163,
+        "fcf_yield_pct": 3.294,
+        "ebit_yield_pct": 4.601
       },
       {
         "date": "2024-12-31",
         "price_to_sales": 7.389,
         "price_to_fcf": 34.017,
-        "ev_to_ebit": 24.591
+        "ev_to_ebit": 24.469,
+        "sales_yield_pct": 13.533,
+        "fcf_yield_pct": 2.94,
+        "ebit_yield_pct": 4.087
       },
       {
         "date": "2025-01-31",
         "price_to_sales": 7.964,
         "price_to_fcf": 36.662,
-        "ev_to_ebit": 26.571
+        "ev_to_ebit": 26.448,
+        "sales_yield_pct": 12.556,
+        "fcf_yield_pct": 2.728,
+        "ebit_yield_pct": 3.781
       },
       {
         "date": "2025-02-28",
         "price_to_sales": 6.662,
         "price_to_fcf": 30.668,
-        "ev_to_ebit": 22.069
+        "ev_to_ebit": 22.069,
+        "sales_yield_pct": 15.011,
+        "fcf_yield_pct": 3.261,
+        "ebit_yield_pct": 4.531
       },
       {
         "date": "2025-03-31",
         "price_to_sales": 6.05,
         "price_to_fcf": 27.851,
-        "ev_to_ebit": 19.962
+        "ev_to_ebit": 19.962,
+        "sales_yield_pct": 16.529,
+        "fcf_yield_pct": 3.591,
+        "ebit_yield_pct": 5.01
       },
       {
         "date": "2025-04-30",
         "price_to_sales": 6.135,
         "price_to_fcf": 28.242,
-        "ev_to_ebit": 20.258
+        "ev_to_ebit": 20.258,
+        "sales_yield_pct": 16.3,
+        "fcf_yield_pct": 3.541,
+        "ebit_yield_pct": 4.936
       },
       {
         "date": "2025-05-30",
         "price_to_sales": 6.635,
         "price_to_fcf": 30.543,
-        "ev_to_ebit": 21.981
+        "ev_to_ebit": 21.981,
+        "sales_yield_pct": 15.072,
+        "fcf_yield_pct": 3.274,
+        "ebit_yield_pct": 4.549
       },
       {
         "date": "2025-06-30",
         "price_to_sales": 6.808,
         "price_to_fcf": 31.342,
-        "ev_to_ebit": 22.578
+        "ev_to_ebit": 22.578,
+        "sales_yield_pct": 14.688,
+        "fcf_yield_pct": 3.191,
+        "ebit_yield_pct": 4.429
       },
       {
         "date": "2025-07-31",
         "price_to_sales": 7.13,
         "price_to_fcf": 38.508,
-        "ev_to_ebit": 23.211
+        "ev_to_ebit": 23.211,
+        "sales_yield_pct": 14.024,
+        "fcf_yield_pct": 2.597,
+        "ebit_yield_pct": 4.308
       },
       {
         "date": "2025-08-29",
         "price_to_sales": 7.911,
         "price_to_fcf": 42.724,
-        "ev_to_ebit": 25.828
+        "ev_to_ebit": 25.828,
+        "sales_yield_pct": 12.641,
+        "fcf_yield_pct": 2.341,
+        "ebit_yield_pct": 3.872
       },
       {
         "date": "2025-09-30",
         "price_to_sales": 9.033,
         "price_to_fcf": 48.782,
-        "ev_to_ebit": 29.588
+        "ev_to_ebit": 29.588,
+        "sales_yield_pct": 11.071,
+        "fcf_yield_pct": 2.05,
+        "ebit_yield_pct": 3.38
       },
       {
         "date": "2025-10-31",
         "price_to_sales": 10.096,
         "price_to_fcf": 61.469,
-        "ev_to_ebit": 31.96
+        "ev_to_ebit": 31.96,
+        "sales_yield_pct": 9.904,
+        "fcf_yield_pct": 1.627,
+        "ebit_yield_pct": 3.129
       },
       {
         "date": "2025-11-28",
         "price_to_sales": 11.496,
         "price_to_fcf": 69.992,
-        "ev_to_ebit": 36.486
+        "ev_to_ebit": 36.486,
+        "sales_yield_pct": 8.698,
+        "fcf_yield_pct": 1.429,
+        "ebit_yield_pct": 2.741
       },
       {
         "date": "2025-12-31",
         "price_to_sales": 11.239,
         "price_to_fcf": 68.422,
-        "ev_to_ebit": 35.653
+        "ev_to_ebit": 35.653,
+        "sales_yield_pct": 8.898,
+        "fcf_yield_pct": 1.462,
+        "ebit_yield_pct": 2.805
       },
       {
         "date": "2026-01-30",
         "price_to_sales": 12.136,
         "price_to_fcf": 73.887,
-        "ev_to_ebit": 38.555
+        "ev_to_ebit": 38.555,
+        "sales_yield_pct": 8.24,
+        "fcf_yield_pct": 1.353,
+        "ebit_yield_pct": 2.594
       },
       {
         "date": "2026-02-27",
         "price_to_sales": 10.893,
         "price_to_fcf": 52.4,
-        "ev_to_ebit": 33.233
+        "ev_to_ebit": 33.233,
+        "sales_yield_pct": 9.18,
+        "fcf_yield_pct": 1.908,
+        "ebit_yield_pct": 3.009
       },
       {
         "date": "2026-03-31",
         "price_to_sales": 10.048,
         "price_to_fcf": 48.332,
-        "ev_to_ebit": 30.6
+        "ev_to_ebit": 30.6,
+        "sales_yield_pct": 9.953,
+        "fcf_yield_pct": 2.069,
+        "ebit_yield_pct": 3.268
       },
       {
         "date": "2026-04-30",
         "price_to_sales": 11.146,
         "price_to_fcf": 73.091,
-        "ev_to_ebit": 33.75
+        "ev_to_ebit": 33.75,
+        "sales_yield_pct": 8.972,
+        "fcf_yield_pct": 1.368,
+        "ebit_yield_pct": 2.963
       },
       {
         "date": "2026-05-29",
         "price_to_sales": 11.017,
         "price_to_fcf": 72.244,
-        "ev_to_ebit": 33.355
+        "ev_to_ebit": 33.355,
+        "sales_yield_pct": 9.077,
+        "fcf_yield_pct": 1.384,
+        "ebit_yield_pct": 2.998
       },
       {
         "date": "2026-06-30",
         "price_to_sales": 10.351,
         "price_to_fcf": 67.881,
-        "ev_to_ebit": 31.32
+        "ev_to_ebit": 31.32,
+        "sales_yield_pct": 9.66,
+        "fcf_yield_pct": 1.473,
+        "ebit_yield_pct": 3.193
       },
       {
         "date": "2026-07-31",
         "price_to_sales": 9.832,
         "price_to_fcf": 82.286,
-        "ev_to_ebit": 28.73
+        "ev_to_ebit": 28.73,
+        "sales_yield_pct": 10.171,
+        "fcf_yield_pct": 1.215,
+        "ebit_yield_pct": 3.481
       },
       {
         "date": "2026-08-31",
         "price_to_sales": 9.368,
         "price_to_fcf": 78.409,
-        "ev_to_ebit": 27.331
+        "ev_to_ebit": 27.331,
+        "sales_yield_pct": 10.674,
+        "fcf_yield_pct": 1.275,
+        "ebit_yield_pct": 3.659
       },
       {
         "date": "2026-09-30",
         "price_to_sales": 9.499,
         "price_to_fcf": 79.501,
-        "ev_to_ebit": 27.725
+        "ev_to_ebit": 27.725,
+        "sales_yield_pct": 10.527,
+        "fcf_yield_pct": 1.258,
+        "ebit_yield_pct": 3.607
       },
       {
         "date": "2026-10-14",
         "price_to_sales": 9.597,
         "price_to_fcf": 80.324,
-        "ev_to_ebit": 28.022
+        "ev_to_ebit": 28.022,
+        "sales_yield_pct": 10.42,
+        "fcf_yield_pct": 1.245,
+        "ebit_yield_pct": 3.569
       }
     ],
+    "share_outliers": [],
     "vs_history": {
       "price_to_sales": {
         "current": 9.597,
+        "current_yield_pct": 10.42,
         "points": 28,
-        "median": 8.498,
+        "median": 8.465,
         "low": 6.05,
         "high": 12.136,
+        "negative_points": 0,
+        "median_yield_pct": 11.813,
         "percentile": 62.5,
+        "min_points": 24,
         "from": "2024-07-31"
       },
       "price_to_fcf": {
         "current": 80.324,
+        "current_yield_pct": 1.245,
         "points": 28,
-        "median": 45.528,
-        "low": 27.851,
-        "high": 82.286,
+        "median": 45.351,
+        "low": 27.847,
+        "high": 82.305,
+        "negative_points": 0,
+        "median_yield_pct": 2.205,
         "percentile": 94.6,
+        "min_points": 24,
         "from": "2024-07-31"
       },
       "ev_to_ebit": {
         "current": 28.022,
+        "current_yield_pct": 3.569,
         "points": 28,
-        "median": 26.951,
-        "low": 19.962,
-        "high": 38.555,
+        "median": 26.882,
+        "low": 19.96,
+        "high": 38.551,
+        "negative_points": 0,
+        "median_yield_pct": 3.72,
         "percentile": 58.9,
+        "min_points": 24,
         "from": "2024-07-31"
       }
     }
@@ -917,170 +1063,83 @@
           "unreachable": 0
         }
       }
-    }
+    },
+    "reused_from": "2026-10-15T07:18:34Z"
   },
   "claude": {
     "enabled": true,
-    "research": {
-      "urls": [
-        "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm",
-        "https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-beats-q2-2026-estimates-shares-fall-on-capex-surge-93CH-4807140",
-        "https://admiralmarkets.com/education/articles/shares/alphabet-stock-q3-2026-earnings-preview",
-        "https://finance.yahoo.com/markets/stocks/articles/alphabet-stock-46-since-last-140417535.html",
-        "https://financebuzz.com/news/alphabet-cloud-backlog-ai-capex",
-        "https://www.simpletechtrend.com/en/post/google-alphabet-q2-2026-earnings-capex-optical-en",
-        "https://tickeron.com/earnings/GOOGL/",
-        "https://valueaddvc.com/blog/alphabet-205b-ai-capex-guidance-2026-what-googles-q2-earnings-raise-actually-buys",
-        "https://www.tradingkey.com/analysis/stocks/us-stocks/262201281-alphabet-googl-stock-forecast-october-6-2026",
-        "https://gurufocus.com/news/9123672/googl-maintained-by-ubs-price-target-raised-to-380",
-        "https://stockanalysis.com/stocks/googl/",
-        "https://www.gurufocus.com/news/9088173/analyst-sets-jawdropping-price-target-on-alphabet-stock",
-        "https://gurufocus.com/news/9123670/goog-maintains-neutral-by-ubs-price-target-raised-to-380",
-        "https://simplywall.st/stocks/us/media/nasdaq-googl/alphabet",
-        "https://simplywall.st/stocks/us/media/nasdaq-googl/alphabet/future",
-        "https://www.cnn.com/markets/stocks/GOOG",
-        "https://tipranks.com/news/google-stock-googl-gets-a-price-target-boost-heres-why",
-        "https://defenseworld.net/2026/10/14/alphabet-inc-googl-stock-krilogy-financial-llc-raises-stake.html",
-        "https://defenseworld.net/2026/10/15/fy2027-eps-estimate-for-alphabet-increased-by-analyst.html",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm",
-        "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000130817926000344/goog014907-ars.pdf",
-        "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
-        "https://www.techpolicy.press/search-remedies-in-google-antitrust-case-can-work-even-if-company-stays-on-top/",
-        "https://www.adexchanger.com/platforms/the-court-just-unsealed-judge-brinkemas-remedies-decision-in-the-google-ad-tech-antitrust-case-heres-your-tldr/",
-        "https://www.itechguides.com/us-v-google-search-antitrust-trial-august-2026-updates/",
-        "https://www.globallawwire.com/articles/us-files-appeal-in-google-search-antitrust-case-112f7685",
-        "https://tech-insider.org/google-antitrust-appeal-doj-search-monopoly-2026/",
-        "https://www.silicon.co.uk/e-innovation/artificial-intelligence/anthropic-google-ai-627181",
-        "https://lightsource.ai/blog/google-sold-anthropic-a-million-tpus",
-        "https://www.datacenterdynamics.com/en/news/google-and-anthropic-confirm-massive-1gw-cloud-deal-with-up-to-one-million-google-tpus/",
-        "https://finance.biggo.com/news/202605090027_Anthropic_200B_Google_Cloud_Deal",
-        "https://www.idlen.io/news/anthropic-200-billion-google-cloud-tpu-five-years-may-2026/",
-        "https://thetechportal.com/2026/05/06/anthropic-enters-200-billion-agreement-with-google-for-cloud-and-tpu-chips/",
-        "https://seekingalpha.com/news/4508262-googles-new-deal-with-anthropic-increases-potential-for-more-tpu-clients-hsbc",
-        "https://www.tipranks.com/news/googles-googl-deal-with-anthropic-could-lead-to-more-tpu-customers-says-hsbc",
-        "https://finance.yahoo.com/news/google-seals-multi-billion-dollar-152458472.html",
-        "https://www.marketscreener.com/news/alphabet-insider-sold-shares-worth-9-743-373-according-to-a-recent-sec-filing-ce7d50dcdb8ff722",
-        "https://www.marketscreener.com/news/alphabet-insider-sold-shares-worth-8-108-846-according-to-a-recent-sec-filing-ce7d58d9d981fe2c",
-        "https://www.marketscreener.com/news/alphabet-insider-sold-shares-worth-6-497-244-according-to-a-recent-sec-filing-ce7c50dad08ffe20",
-        "https://www.marketbeat.com/instant-alerts/insider-insider-selling-alphabet-nasdaq-goog-director-sells-2825735-in-stock-2026-10-02/",
-        "https://www.stocktitan.net/sec-filings/GOOG/form-4-alphabet-inc-insider-trading-activity-5e1db77de4e5.html",
-        "https://www.stocktitan.net/sec-filings/GOOG/form-4-alphabet-inc-insider-trading-activity-aae60e2fe584.html",
-        "https://www.stocktitan.net/sec-filings/GOOG/form-4-alphabet-inc-insider-trading-activity-219aa10528c1.html",
-        "https://www.stocktitan.net/sec-filings/GOOG/form-4-alphabet-inc-insider-trading-activity-c2ed2b6472c3.html",
-        "https://www.stocktitan.net/sec-filings/GOOG/form-4-alphabet-inc-insider-trading-activity-33df242cac61.html",
-        "https://benzinga.com/z/22931567",
-        "https://techcrunch.com/2026/08/12/google-unveils-pixel-11-lineup-new-airtag-rival-and-gemini-features-at-made-by-google-2026/",
-        "https://9to5google.com/2026/08/12/made-by-google-2026-announcements/",
-        "https://en.wikipedia.org/wiki/Pixel_6",
-        "https://en.wikipedia.org/wiki/Google_Assistant",
-        "https://en.wikipedia.org/wiki/2023_in_artificial_intelligence",
-        "https://en.wikipedia.org/wiki/Googlebook",
-        "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
-        "https://techcrunch.com/2026/09/24/google-tests-letting-gemini-make-phone-calls-initially-for-us-pixel-owners/",
-        "https://blog.google/products-and-platforms/devices/pixel/google-pixel-11-pro-xl/",
-        "https://www.vitallaw.com/news/antitrust-news-google-and-government-plaintiffs-file-joint-proposed-final-judgment-in-publisher-ad-tech-antitrust-litigation/ald01f0ccf5b677d64ae3b2950efb82e7653d",
-        "https://www.thecurrent.com/ad-tech/google-ad-tech-decision-takeaways",
-        "https://thenextweb.com/news/google-ad-tech-ruling-unsealed",
-        "https://digiday.com/media-buying/google-avoided-yet-another-breakup-now-comes-the-test-of-the-ad-tech-remedies/",
-        "https://www.adexchanger.com/antitrust/google-wont-have-to-break-up-its-ad-tech-business-judge-brinkema-rules/",
-        "https://verdictwiki.com/google-adtech-antitrust/",
-        "https://newsletter.semianalysis.com/p/tpuv7-google-takes-a-swing-at-the",
-        "https://www.datacenterknowledge.com/data-center-chips/anthropic-secures-multi-gigawatt-tpu-deal-with-google-broadcom",
-        "https://www.siliconrepublic.com/machines/anthropic-google-broadcom-announce-3-5gw-tpu-deal",
-        "https://ajsai.substack.com/p/anthropics-1m-google-tpu-deal-breaks",
-        "https://www.metaintro.com/blog/google-tpu-squeeze-2026-ai-researchers",
-        "https://automate.bworldtools.com/Articles/2026-04-09_Anthropic_Secures_Massive_TPU_Deal_with_Google_and_Broadcom_pkx.html",
-        "https://oplexa.com/broadcom-google-tpu-deal-2026/"
-      ],
-      "searches": 8
+    "news_reused": {
+      "news_from": "2026-10-15T07:18:34Z",
+      "archived": "data/stocks/runs/GOOGL/2026-10-15T071834Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
     }
+  },
+  "news_from": "2026-10-15T07:18:34Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
   },
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Alphabet rates Hold at 60: strong growth and balance sheet offset by a rich valuation.",
-    "thesis": "Alphabet scores 60, five points below the Buy band, with high confidence. The business side is strong: revenue grew 24.23% year over year in the latest quarter and is accelerating (+2.44 pp), operating margin is 33.11%, and the balance sheet scores 100 with net cash and a cash-to-debt ratio of 2.42. What holds the rating back is valuation, which scores just 20. The stock trades at 80.324 times free cash flow (94.6th percentile) because heavy AI spending has pushed the FCF margin down to 11.95%. Trend (60) and news (55) are middling: the shares sit slightly above their 50- and 200-day averages with 41.67% 12-1 momentum, but they have lagged SPY and QQQ recently.",
+    "headline": "Alphabet rates Hold at 60: strong growth and balance sheet, offset by a stretched valuation.",
+    "thesis": "Alphabet scores 60, a Hold, 5 points below the Buy threshold of 65. The business side is strong: revenue grew 24.23% year on year last quarter and is accelerating by 2.44 percentage points (growth 74), operating margin is 33.11% (quality 71), and net cash earns a perfect balance sheet score of 100. Valuation is the main drag at 20. Price to free cash flow is 80.324, the stock was cheaper than now in 94.6% of the last 28 month-ends on that measure, and the FCF yield sits 3.965 points below the 10-year Treasury. Trend (60) and news (55) are middling: the stock is just above its 50- and 200-day averages but has lagged SPY by 7.26 points and QQQ by 11.36 points, and news is neutral apart from a mildly positive read on Gemini product launches.",
     "key_risks": [
-      "AI capex early warning is AMBER (6/18); further spending increases could keep squeezing free cash flow.",
-      "Valuation leaves little room for error at 80.324x free cash flow and 9.597x sales.",
-      "Regulatory overhang: the ad tech remedies bring worldwide behavioral obligations and a six-year monitor, and search appeals are still pending.",
-      "Competition in AI and search, including ChatGPT moving into ads.",
-      "Concentration risk from the large Anthropic commitment."
+      "Valuation risk: price to FCF of 80.324 leaves little room for disappointment.",
+      "AI capex early warning is AMBER (6/18), and free cash flow margin is only 11.95% against a 33.11% operating margin.",
+      "Regulatory overhang: ad tech remedies impose worldwide behavioral obligations and a six-year monitor, and search appeals are still pending.",
+      "Competition from ChatGPT ads, plus background concentration risk from the large Anthropic commitment.",
+      "Relative weakness: the stock has trailed SPY and QQQ and sits 13.66% below its 52-week high."
     ],
     "what_would_change": [
-      "Up: a gain of 5 points would reach Buy (65), for example from better free cash flow that lifts the valuation score from 20, or stronger relative strength that improves the trend score.",
-      "Up: a positive Q3 report (expected around 2026-10-28) or verified analyst upgrades could lift the news and growth scores.",
-      "Down: a drop of 16 points would reach Sell (below 45), most plausibly through growth deceleration, margin pressure from capex, or an adverse regulatory ruling.",
-      "Down: the capex warning escalating beyond AMBER could put the rating under pressure."
+      "A 5-point rise in the composite to 65 would make it a Buy. That could come from Q3 results around 2026-10-28 that improve free cash flow and lift the valuation score from 20.",
+      "Verified analyst upgrades would lift the analyst actions topic, which is currently capped at 0 for weak sources.",
+      "A drop of 16 points to below 45 would mean Sell. That would likely require growth to slow, the capex warning to turn red, or adverse regulatory or search appeal news.",
+      "Stronger relative performance against SPY and QQQ would push the trend score above 60."
     ]
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 1480,
-        "output_tokens": 16,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0062
-      },
-      "research": {
-        "model": "claude-sonnet-5-5",
-        "requests": 1,
-        "input_tokens": 121675,
-        "output_tokens": 4690,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 8,
-        "price": {
-          "input": 2.0,
-          "output": 10.0,
-          "verify": false
-        },
-        "cost_usd": 0.3703
-      },
-      "scoring": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 6851,
-        "output_tokens": 1474,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0569
-      },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2257,
-        "output_tokens": 665,
+        "input_tokens": 2547,
+        "output_tokens": 731,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2547,
+            "output_tokens": 731,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0223
+        "cost_usd": 0.0248,
+        "tiers": [],
+        "tiered_requests": 0
       }
     },
-    "total_usd": 0.4557,
+    "total_usd": 0.0248,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1093,19 +1152,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 03:18",
+    "run_et": "2026-10-15 05:19",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38697813879",
+    "run_id": "38711992549",
     "tickers": [
-      "ORCL",
       "GOOGL",
+      "GTLB",
+      "INOD",
       "META",
+      "MSFT",
+      "MSGS",
+      "NTAP",
+      "NVDA",
+      "ORCL",
+      "PLTR",
+      "RBRK",
       "SHOP",
-      "RBRK"
+      "TIC",
+      "ZS"
     ]
   },
   "chart": [
@@ -8684,6 +8752,28 @@
   ],
   "history": [
     {
+      "timestamp": "2026-10-15T09:19:14Z",
+      "ticker": "GOOGL",
+      "rating": "Hold",
+      "score": "60",
+      "confidence": "Medium",
+      "growth": "74",
+      "quality": "71",
+      "balance_sheet": "100",
+      "valuation": "20",
+      "trend": "60",
+      "news_risk": "55",
+      "price": "347.64",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0248",
+      "overlay": "note",
+      "quote_price": "347.64",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:18:34Z"
+    },
+    {
       "timestamp": "2026-10-15T07:18:34Z",
       "ticker": "GOOGL",
       "rating": "Hold",
@@ -8702,7 +8792,8 @@
       "cost_usd": "0.4557",
       "overlay": "note",
       "quote_price": "347.64",
-      "quote_as_of": "2026-10-14T20:00:00Z"
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": null
     }
   ]
 }

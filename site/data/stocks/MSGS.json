@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-14T20:56:19Z",
-  "generated_at": "2026-10-14T20:57:17+00:00",
+  "run_id": "2026-10-15T09:19:32Z",
+  "generated_at": "2026-10-15T09:19:33+00:00",
   "ticker": "MSGS",
   "sec_ticker": "MSGS",
   "cik": "0001636519",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "input",
-      "scoring": "input"
+      "research": "config",
+      "scoring": "config"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -18,23 +18,35 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 56,
-  "confidence": "High",
+  "score": 57,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 1.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      }
+    ],
+    "factors_with_data": 6
+  },
   "bands": {
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 9
+      "points": 8
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 12
+      "points": 13
     }
   },
   "composite": {
-    "score": 56,
-    "raw": 55.65,
+    "score": 57,
+    "raw": 56.55,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -85,7 +97,7 @@
           "value": null,
           "score": null,
           "weight": 0.2,
-          "note": null
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
         },
         "operating_margin_pct": {
           "value": 2.5,
@@ -138,25 +150,25 @@
     "valuation": {
       "metrics": {
         "price_to_sales": {
-          "value": 8.495,
+          "value": 8.494,
           "score": 39.6,
           "weight": 0.1,
           "note": null
         },
         "price_to_fcf": {
-          "value": 160.008,
+          "value": 159.988,
           "score": 0.0,
           "weight": 0.15,
           "note": null
         },
         "ev_to_ebit": {
-          "value": 342.782,
+          "value": 342.74,
           "score": 0.0,
           "weight": 0.15,
           "note": null
         },
         "fcf_yield_vs_10y_pp": {
-          "value": -4.595,
+          "value": -4.585,
           "score": 0.0,
           "weight": 0.2,
           "note": null
@@ -165,66 +177,66 @@
           "value": 87.7,
           "score": 12.3,
           "weight": 0.1,
-          "note": null
+          "note": "cheaper than now in 87.7% of 61 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
-          "value": 69.3,
-          "score": 30.7,
+          "value": 64.8,
+          "score": 35.2,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 64.8% of 61 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
-          "value": 88.3,
-          "score": 11.7,
+          "value": 68.0,
+          "score": 32.0,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 68% of 61 month-ends (ranked on yields)"
         }
       },
       "coverage": 1.0,
-      "score": 12,
+      "score": 15,
       "missing": null
     },
     "trend": {
       "metrics": {
         "vs_ma50_pct": {
-          "value": 1.34,
-          "score": 56.7,
+          "value": 1.28,
+          "score": 56.4,
           "weight": 0.15,
           "note": null
         },
         "vs_ma200_pct": {
-          "value": 15.23,
-          "score": 88.1,
+          "value": 14.98,
+          "score": 87.5,
           "weight": 0.2,
           "note": null
         },
         "momentum_12_1_pct": {
-          "value": 83.97,
+          "value": 79.77,
           "score": 100.0,
           "weight": 0.25,
           "note": null
         },
         "rs_spy_pp": {
-          "value": 6.36,
-          "score": 62.7,
+          "value": 10.19,
+          "score": 70.3,
           "weight": 0.125,
           "note": null
         },
         "rs_qqq_pp": {
-          "value": 0.42,
-          "score": 50.8,
+          "value": 6.09,
+          "score": 62.2,
           "weight": 0.125,
           "note": null
         },
         "drawdown_52w_pct": {
-          "value": -2.93,
+          "value": -2.94,
           "score": 90.2,
           "weight": 0.15,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 79,
+      "score": 81,
       "missing": null
     },
     "news_risk": {
@@ -279,24 +291,24 @@
     "note": null,
     "capex": {
       "level": "AMBER",
-      "total": 5.0,
+      "total": 6.0,
       "max": 18.0,
       "red_confirmed": false,
-      "run_id": "2026-10-13T20:12:21Z",
-      "age_days": 1
+      "run_id": "2026-10-15T01:43:15Z",
+      "age_days": 0
     }
   },
   "capex_context": {
     "level": "AMBER",
-    "total": 5.0,
+    "total": 6.0,
     "max": 18.0,
     "red_confirmed": false,
-    "run_id": "2026-10-13T20:12:21Z",
-    "age_days": 1
+    "run_id": "2026-10-15T01:43:15Z",
+    "age_days": 0
   },
   "price": {
-    "close": 404.15,
-    "date": "2026-10-13"
+    "close": 404.1,
+    "date": "2026-10-14"
   },
   "fundamentals": {
     "currency": "USD",
@@ -317,26 +329,52 @@
     "operating_cash_flow_ttm": 62663000.0,
     "capex_ttm": 1407000.0,
     "sbc_ttm": 21524000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
     "fcf_ttm": 61256000.0,
     "gross_margin_pct": null,
     "operating_margin_pct": 2.5,
     "fcf_margin_pct": 5.31,
     "capex_intensity_pct": 0.12,
     "sbc_pct_revenue": 1.87,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 1130000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability + IncreaseDecreaseInDeferredRevenue",
+      "share_of_ocf": 0.018,
+      "max_share_of_ocf": 0.25,
+      "applies": false
+    },
     "balance_sheet": {
       "date": "2026-06-30",
       "cash": 164511000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
       "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
       "cash_and_investments": 164511000.0,
       "debt": 258500000.0,
       "debt_tags": [
         "LongTermDebtNoncurrent",
-        "LongTermDebtCurrent",
         "ShortTermBorrowings"
       ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 242000000.0
+        },
+        {
+          "tag": "ShortTermBorrowings",
+          "val": 16500000.0
+        }
+      ],
       "debt_note": null,
-      "net_debt": 93989000.0
+      "net_debt": 93989000.0,
+      "unknown": []
     },
+    "share_outliers": [],
     "diluted_shares": 24252000.0,
     "diluted_shares_end": "2026-06-30",
     "dilution_yoy_pct": 0.68,
@@ -441,442 +479,641 @@
     ]
   },
   "valuation": {
-    "price": 404.15,
-    "price_date": "2026-10-13",
+    "price": 404.1,
+    "price_date": "2026-10-14",
     "shares": {
       "shares": 24252000.0,
       "source": "diluted weighted-average shares",
       "date": "2026-06-30"
     },
-    "market_cap": 9801445800.0,
-    "enterprise_value": 9895434800.0,
-    "price_to_sales": 8.495,
-    "price_to_fcf": 160.008,
-    "ev_to_ebit": 342.782,
+    "market_cap": 9800233200.0,
+    "enterprise_value": 9894222200.0,
+    "price_to_sales": 8.494,
+    "price_to_fcf": 159.988,
+    "ev_to_ebit": 342.74,
+    "sales_yield_pct": 11.773,
+    "fcf_yield_pct": 0.625,
+    "ebit_yield_pct": 0.292,
     "fcf_negative": false,
     "ebit_negative": false,
-    "fcf_yield_pct": 0.625,
-    "ust10y_pct": 5.22,
-    "ust10y_date": "2026-10-08",
-    "fcf_yield_vs_10y_pp": -4.595,
+    "fcf_basis": "reported",
+    "ust10y_pct": 5.21,
+    "ust10y_date": "2026-10-13",
+    "fcf_yield_vs_10y_pp": -4.585,
     "history": [
       {
         "date": "2021-10-29",
         "price_to_sales": 10.999,
         "price_to_fcf": null,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.091,
+        "fcf_yield_pct": -0.783,
+        "ebit_yield_pct": -1.603
       },
       {
         "date": "2021-11-30",
         "price_to_sales": 11.031,
         "price_to_fcf": 1824.764,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.065,
+        "fcf_yield_pct": 0.055,
+        "ebit_yield_pct": -1.904
       },
       {
         "date": "2021-12-31",
         "price_to_sales": 11.125,
         "price_to_fcf": 1840.229,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.989,
+        "fcf_yield_pct": 0.054,
+        "ebit_yield_pct": -1.889
       },
       {
         "date": "2022-01-31",
         "price_to_sales": 10.634,
         "price_to_fcf": 1759.09,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.403,
+        "fcf_yield_pct": 0.057,
+        "ebit_yield_pct": -1.969
       },
       {
         "date": "2022-02-28",
         "price_to_sales": 6.606,
         "price_to_fcf": 437.626,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.138,
+        "fcf_yield_pct": 0.229,
+        "ebit_yield_pct": -0.258
       },
       {
         "date": "2022-03-31",
         "price_to_sales": 6.849,
         "price_to_fcf": 453.715,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.601,
+        "fcf_yield_pct": 0.22,
+        "ebit_yield_pct": -0.249
       },
       {
         "date": "2022-04-29",
         "price_to_sales": 6.19,
         "price_to_fcf": 410.079,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.155,
+        "fcf_yield_pct": 0.244,
+        "ebit_yield_pct": -0.274
       },
       {
         "date": "2022-05-31",
         "price_to_sales": 5.04,
         "price_to_fcf": 48.534,
-        "ev_to_ebit": 102.435
+        "ev_to_ebit": 102.435,
+        "sales_yield_pct": 19.84,
+        "fcf_yield_pct": 2.06,
+        "ebit_yield_pct": 0.976
       },
       {
         "date": "2022-06-30",
         "price_to_sales": 4.645,
         "price_to_fcf": 44.725,
-        "ev_to_ebit": 94.897
+        "ev_to_ebit": 94.897,
+        "sales_yield_pct": 21.53,
+        "fcf_yield_pct": 2.236,
+        "ebit_yield_pct": 1.054
       },
       {
         "date": "2022-07-29",
         "price_to_sales": 4.73,
         "price_to_fcf": 45.548,
-        "ev_to_ebit": 96.526
+        "ev_to_ebit": 96.526,
+        "sales_yield_pct": 21.141,
+        "fcf_yield_pct": 2.195,
+        "ebit_yield_pct": 1.036
       },
       {
         "date": "2022-08-31",
         "price_to_sales": 4.762,
         "price_to_fcf": 22.083,
-        "ev_to_ebit": 47.286
+        "ev_to_ebit": 47.286,
+        "sales_yield_pct": 20.999,
+        "fcf_yield_pct": 4.528,
+        "ebit_yield_pct": 2.115
       },
       {
         "date": "2022-09-30",
         "price_to_sales": 4.061,
         "price_to_fcf": 18.83,
-        "ev_to_ebit": 40.592
+        "ev_to_ebit": 40.592,
+        "sales_yield_pct": 24.627,
+        "fcf_yield_pct": 5.311,
+        "ebit_yield_pct": 2.464
       },
       {
         "date": "2022-10-31",
         "price_to_sales": 4.603,
         "price_to_fcf": 19.252,
-        "ev_to_ebit": 46.685
+        "ev_to_ebit": 46.685,
+        "sales_yield_pct": 21.726,
+        "fcf_yield_pct": 5.194,
+        "ebit_yield_pct": 2.142
       },
       {
         "date": "2022-11-30",
         "price_to_sales": 4.786,
         "price_to_fcf": 20.018,
-        "ev_to_ebit": 48.463
+        "ev_to_ebit": 48.463,
+        "sales_yield_pct": 20.895,
+        "fcf_yield_pct": 4.995,
+        "ebit_yield_pct": 2.063
       },
       {
         "date": "2022-12-30",
         "price_to_sales": 5.388,
         "price_to_fcf": 22.537,
-        "ev_to_ebit": 54.311
+        "ev_to_ebit": 54.311,
+        "sales_yield_pct": 18.56,
+        "fcf_yield_pct": 4.437,
+        "ebit_yield_pct": 1.841
       },
       {
         "date": "2023-01-31",
         "price_to_sales": 5.344,
         "price_to_fcf": 22.354,
-        "ev_to_ebit": 53.886
+        "ev_to_ebit": 53.886,
+        "sales_yield_pct": 18.712,
+        "fcf_yield_pct": 4.473,
+        "ebit_yield_pct": 1.856
       },
       {
         "date": "2023-02-28",
         "price_to_sales": 5.19,
         "price_to_fcf": 25.075,
-        "ev_to_ebit": 49.788
+        "ev_to_ebit": 49.788,
+        "sales_yield_pct": 19.266,
+        "fcf_yield_pct": 3.988,
+        "ebit_yield_pct": 2.009
       },
       {
         "date": "2023-03-31",
         "price_to_sales": 5.291,
         "price_to_fcf": 25.562,
-        "ev_to_ebit": 50.679
+        "ev_to_ebit": 50.679,
+        "sales_yield_pct": 18.899,
+        "fcf_yield_pct": 3.912,
+        "ebit_yield_pct": 1.973
       },
       {
         "date": "2023-04-28",
         "price_to_sales": 5.445,
         "price_to_fcf": 26.303,
-        "ev_to_ebit": 52.036
+        "ev_to_ebit": 52.036,
+        "sales_yield_pct": 18.367,
+        "fcf_yield_pct": 3.802,
+        "ebit_yield_pct": 1.922
       },
       {
         "date": "2023-05-31",
         "price_to_sales": 4.542,
         "price_to_fcf": 18.68,
-        "ev_to_ebit": 37.706
+        "ev_to_ebit": 37.706,
+        "sales_yield_pct": 22.014,
+        "fcf_yield_pct": 5.353,
+        "ebit_yield_pct": 2.652
       },
       {
         "date": "2023-06-30",
         "price_to_sales": 4.836,
         "price_to_fcf": 19.886,
-        "ev_to_ebit": 39.972
+        "ev_to_ebit": 39.972,
+        "sales_yield_pct": 20.68,
+        "fcf_yield_pct": 5.029,
+        "ebit_yield_pct": 2.502
       },
       {
         "date": "2023-07-31",
         "price_to_sales": 5.471,
         "price_to_fcf": 22.497,
-        "ev_to_ebit": 44.881
+        "ev_to_ebit": 44.881,
+        "sales_yield_pct": 18.279,
+        "fcf_yield_pct": 4.445,
+        "ebit_yield_pct": 2.228
       },
       {
         "date": "2023-08-31",
         "price_to_sales": 4.853,
         "price_to_fcf": 28.465,
-        "ev_to_ebit": 53.903
+        "ev_to_ebit": 53.903,
+        "sales_yield_pct": 20.607,
+        "fcf_yield_pct": 3.513,
+        "ebit_yield_pct": 1.855
       },
       {
         "date": "2023-09-29",
         "price_to_sales": 4.806,
         "price_to_fcf": 28.193,
-        "ev_to_ebit": 53.42
+        "ev_to_ebit": 53.42,
+        "sales_yield_pct": 20.806,
+        "fcf_yield_pct": 3.547,
+        "ebit_yield_pct": 1.872
       },
       {
         "date": "2023-10-31",
         "price_to_sales": 4.584,
         "price_to_fcf": 26.888,
-        "ev_to_ebit": 51.102
+        "ev_to_ebit": 51.102,
+        "sales_yield_pct": 21.815,
+        "fcf_yield_pct": 3.719,
+        "ebit_yield_pct": 1.957
       },
       {
         "date": "2023-11-30",
         "price_to_sales": 4.474,
         "price_to_fcf": 42.358,
-        "ev_to_ebit": 41.454
+        "ev_to_ebit": 41.454,
+        "sales_yield_pct": 22.349,
+        "fcf_yield_pct": 2.361,
+        "ebit_yield_pct": 2.412
       },
       {
         "date": "2023-12-29",
         "price_to_sales": 4.809,
         "price_to_fcf": 45.523,
-        "ev_to_ebit": 44.306
+        "ev_to_ebit": 44.306,
+        "sales_yield_pct": 20.796,
+        "fcf_yield_pct": 2.197,
+        "ebit_yield_pct": 2.257
       },
       {
         "date": "2024-01-31",
         "price_to_sales": 4.895,
         "price_to_fcf": 46.342,
-        "ev_to_ebit": 45.044
+        "ev_to_ebit": 45.044,
+        "sales_yield_pct": 20.428,
+        "fcf_yield_pct": 2.158,
+        "ebit_yield_pct": 2.22
       },
       {
         "date": "2024-02-29",
         "price_to_sales": 5.149,
         "price_to_fcf": 45.685,
-        "ev_to_ebit": 58.062
+        "ev_to_ebit": 58.062,
+        "sales_yield_pct": 19.423,
+        "fcf_yield_pct": 2.189,
+        "ebit_yield_pct": 1.722
       },
       {
         "date": "2024-03-28",
         "price_to_sales": 5.048,
         "price_to_fcf": 44.794,
-        "ev_to_ebit": 57.005
+        "ev_to_ebit": 57.005,
+        "sales_yield_pct": 19.809,
+        "fcf_yield_pct": 2.232,
+        "ebit_yield_pct": 1.754
       },
       {
         "date": "2024-04-30",
         "price_to_sales": 5.087,
         "price_to_fcf": 45.134,
-        "ev_to_ebit": 57.408
+        "ev_to_ebit": 57.408,
+        "sales_yield_pct": 19.66,
+        "fcf_yield_pct": 2.216,
+        "ebit_yield_pct": 1.742
       },
       {
         "date": "2024-05-31",
         "price_to_sales": 4.801,
         "price_to_fcf": 220.082,
-        "ev_to_ebit": 58.501
+        "ev_to_ebit": 58.501,
+        "sales_yield_pct": 20.827,
+        "fcf_yield_pct": 0.454,
+        "ebit_yield_pct": 1.709
       },
       {
         "date": "2024-06-28",
         "price_to_sales": 4.892,
         "price_to_fcf": 224.23,
-        "ev_to_ebit": 59.529
+        "ev_to_ebit": 59.529,
+        "sales_yield_pct": 20.442,
+        "fcf_yield_pct": 0.446,
+        "ebit_yield_pct": 1.68
       },
       {
         "date": "2024-07-31",
         "price_to_sales": 5.211,
         "price_to_fcf": 238.867,
-        "ev_to_ebit": 63.159
+        "ev_to_ebit": 63.159,
+        "sales_yield_pct": 19.189,
+        "fcf_yield_pct": 0.419,
+        "ebit_yield_pct": 1.583
       },
       {
         "date": "2024-08-30",
         "price_to_sales": 4.904,
         "price_to_fcf": 55.55,
-        "ev_to_ebit": 35.971
+        "ev_to_ebit": 35.971,
+        "sales_yield_pct": 20.391,
+        "fcf_yield_pct": 1.8,
+        "ebit_yield_pct": 2.78
       },
       {
         "date": "2024-09-30",
         "price_to_sales": 4.886,
         "price_to_fcf": 55.34,
-        "ev_to_ebit": 35.841
+        "ev_to_ebit": 35.841,
+        "sales_yield_pct": 20.468,
+        "fcf_yield_pct": 1.807,
+        "ebit_yield_pct": 2.79
       },
       {
         "date": "2024-10-31",
         "price_to_sales": 5.224,
         "price_to_fcf": 59.177,
-        "ev_to_ebit": 38.223
+        "ev_to_ebit": 38.223,
+        "sales_yield_pct": 19.141,
+        "fcf_yield_pct": 1.69,
+        "ebit_yield_pct": 2.616
       },
       {
         "date": "2024-11-29",
         "price_to_sales": 5.331,
         "price_to_fcf": 46.591,
-        "ev_to_ebit": 37.898
+        "ev_to_ebit": 37.898,
+        "sales_yield_pct": 18.759,
+        "fcf_yield_pct": 2.146,
+        "ebit_yield_pct": 2.639
       },
       {
         "date": "2024-12-31",
         "price_to_sales": 5.232,
         "price_to_fcf": 45.725,
-        "ev_to_ebit": 37.225
+        "ev_to_ebit": 37.225,
+        "sales_yield_pct": 19.114,
+        "fcf_yield_pct": 2.187,
+        "ebit_yield_pct": 2.686
       },
       {
         "date": "2025-01-31",
         "price_to_sales": 5.097,
         "price_to_fcf": 44.548,
-        "ev_to_ebit": 36.309
+        "ev_to_ebit": 36.309,
+        "sales_yield_pct": 19.619,
+        "fcf_yield_pct": 2.245,
+        "ebit_yield_pct": 2.754
       },
       {
         "date": "2025-02-28",
         "price_to_sales": 4.608,
         "price_to_fcf": 33.565,
-        "ev_to_ebit": 37.347
+        "ev_to_ebit": 37.347,
+        "sales_yield_pct": 21.701,
+        "fcf_yield_pct": 2.979,
+        "ebit_yield_pct": 2.678
       },
       {
         "date": "2025-03-31",
         "price_to_sales": 4.405,
         "price_to_fcf": 32.087,
-        "ev_to_ebit": 35.765
+        "ev_to_ebit": 35.765,
+        "sales_yield_pct": 22.701,
+        "fcf_yield_pct": 3.116,
+        "ebit_yield_pct": 2.796
       },
       {
         "date": "2025-04-30",
         "price_to_sales": 4.356,
         "price_to_fcf": 31.733,
-        "ev_to_ebit": 35.386
+        "ev_to_ebit": 35.386,
+        "sales_yield_pct": 22.955,
+        "fcf_yield_pct": 3.151,
+        "ebit_yield_pct": 2.826
       },
       {
         "date": "2025-05-30",
         "price_to_sales": 4.308,
         "price_to_fcf": 31.216,
-        "ev_to_ebit": 53.2
+        "ev_to_ebit": 53.2,
+        "sales_yield_pct": 23.215,
+        "fcf_yield_pct": 3.203,
+        "ebit_yield_pct": 1.88
       },
       {
         "date": "2025-06-30",
         "price_to_sales": 4.74,
         "price_to_fcf": 34.349,
-        "ev_to_ebit": 58.323
+        "ev_to_ebit": 58.323,
+        "sales_yield_pct": 21.097,
+        "fcf_yield_pct": 2.911,
+        "ebit_yield_pct": 1.715
       },
       {
         "date": "2025-07-31",
         "price_to_sales": 4.585,
         "price_to_fcf": 33.223,
-        "ev_to_ebit": 56.482
+        "ev_to_ebit": 56.482,
+        "sales_yield_pct": 21.812,
+        "fcf_yield_pct": 3.01,
+        "ebit_yield_pct": 1.77
       },
       {
         "date": "2025-08-29",
         "price_to_sales": 4.586,
         "price_to_fcf": 54.165,
-        "ev_to_ebit": 331.723
+        "ev_to_ebit": 331.723,
+        "sales_yield_pct": 21.806,
+        "fcf_yield_pct": 1.846,
+        "ebit_yield_pct": 0.301
       },
       {
         "date": "2025-09-30",
         "price_to_sales": 5.262,
         "price_to_fcf": 62.149,
-        "ev_to_ebit": 379.159
+        "ev_to_ebit": 379.159,
+        "sales_yield_pct": 19.005,
+        "fcf_yield_pct": 1.609,
+        "ebit_yield_pct": 0.264
       },
       {
         "date": "2025-10-31",
         "price_to_sales": 5.042,
         "price_to_fcf": 177.196,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 19.832,
+        "fcf_yield_pct": 0.564,
+        "ebit_yield_pct": -0.08
       },
       {
         "date": "2025-11-28",
         "price_to_sales": 5.363,
         "price_to_fcf": 188.47,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.646,
+        "fcf_yield_pct": 0.531,
+        "ebit_yield_pct": -0.076
       },
       {
         "date": "2025-12-31",
         "price_to_sales": 6.083,
         "price_to_fcf": 213.778,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.438,
+        "fcf_yield_pct": 0.468,
+        "ebit_yield_pct": -0.067
       },
       {
         "date": "2026-01-30",
         "price_to_sales": 6.669,
         "price_to_fcf": 234.358,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.995,
+        "fcf_yield_pct": 0.427,
+        "ebit_yield_pct": -0.061
       },
       {
         "date": "2026-02-27",
         "price_to_sales": 7.501,
         "price_to_fcf": null,
-        "ev_to_ebit": 1823.379
+        "ev_to_ebit": 1823.379,
+        "sales_yield_pct": 13.332,
+        "fcf_yield_pct": -0.006,
+        "ebit_yield_pct": 0.055
       },
       {
         "date": "2026-03-31",
         "price_to_sales": 7.269,
         "price_to_fcf": null,
-        "ev_to_ebit": 1768.407
+        "ev_to_ebit": 1768.407,
+        "sales_yield_pct": 13.757,
+        "fcf_yield_pct": -0.006,
+        "ebit_yield_pct": 0.057
       },
       {
         "date": "2026-04-30",
         "price_to_sales": 7.745,
         "price_to_fcf": null,
-        "ev_to_ebit": 1881.245
+        "ev_to_ebit": 1881.245,
+        "sales_yield_pct": 12.911,
+        "fcf_yield_pct": -0.006,
+        "ebit_yield_pct": 0.053
       },
       {
         "date": "2026-05-29",
         "price_to_sales": 8.383,
         "price_to_fcf": 170.698,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.929,
+        "fcf_yield_pct": 0.586,
+        "ebit_yield_pct": -0.281
       },
       {
         "date": "2026-06-30",
         "price_to_sales": 9.0,
         "price_to_fcf": 183.263,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.111,
+        "fcf_yield_pct": 0.546,
+        "ebit_yield_pct": -0.262
       },
       {
         "date": "2026-07-31",
         "price_to_sales": 8.817,
         "price_to_fcf": 179.541,
-        "ev_to_ebit": null
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.341,
+        "fcf_yield_pct": 0.557,
+        "ebit_yield_pct": -0.268
       },
       {
         "date": "2026-08-31",
         "price_to_sales": 8.087,
         "price_to_fcf": 152.319,
-        "ev_to_ebit": 326.467
+        "ev_to_ebit": 326.467,
+        "sales_yield_pct": 12.366,
+        "fcf_yield_pct": 0.657,
+        "ebit_yield_pct": 0.306
       },
       {
         "date": "2026-09-30",
         "price_to_sales": 8.517,
         "price_to_fcf": 160.428,
-        "ev_to_ebit": 343.673
+        "ev_to_ebit": 343.673,
+        "sales_yield_pct": 11.741,
+        "fcf_yield_pct": 0.623,
+        "ebit_yield_pct": 0.291
       },
       {
-        "date": "2026-10-13",
-        "price_to_sales": 8.495,
-        "price_to_fcf": 160.008,
-        "ev_to_ebit": 342.782
+        "date": "2026-10-14",
+        "price_to_sales": 8.494,
+        "price_to_fcf": 159.988,
+        "ev_to_ebit": 342.74,
+        "sales_yield_pct": 11.773,
+        "fcf_yield_pct": 0.625,
+        "ebit_yield_pct": 0.292
       }
     ],
+    "share_outliers": [],
     "vs_history": {
       "price_to_sales": {
-        "current": 8.495,
+        "current": 8.494,
+        "current_yield_pct": 11.773,
         "points": 61,
         "median": 5.149,
         "low": 4.061,
         "high": 11.125,
+        "negative_points": 0,
+        "median_yield_pct": 19.423,
         "percentile": 87.7,
+        "min_points": 24,
         "from": "2021-10-29"
       },
       "price_to_fcf": {
-        "current": 160.008,
-        "points": 57,
-        "median": 45.685,
-        "low": 18.68,
-        "high": 1840.229,
-        "percentile": 69.3,
+        "current": 159.988,
+        "current_yield_pct": 0.625,
+        "points": 61,
+        "median": 46.339,
+        "low": 18.681,
+        "high": null,
+        "negative_points": 4,
+        "median_yield_pct": 2.158,
+        "percentile": 64.8,
+        "min_points": 24,
         "from": "2021-10-29"
       },
       "ev_to_ebit": {
-        "current": 342.782,
-        "points": 47,
-        "median": 53.2,
+        "current": 342.74,
+        "current_yield_pct": 0.292,
+        "points": 61,
+        "median": 57.405,
         "low": 35.386,
-        "high": 1881.245,
-        "percentile": 88.3,
+        "high": null,
+        "negative_points": 14,
+        "median_yield_pct": 1.742,
+        "percentile": 68.0,
+        "min_points": 24,
         "from": "2021-10-29"
       }
     }
   },
   "trend": {
-    "close": 404.15,
-    "date": "2026-10-13",
-    "ma50": 398.81,
-    "ma200": 350.74,
-    "vs_ma50_pct": 1.34,
-    "vs_ma200_pct": 15.23,
-    "momentum_12_1_pct": 83.97,
+    "close": 404.1,
+    "date": "2026-10-14",
+    "ma50": 399.0,
+    "ma200": 351.46,
+    "vs_ma50_pct": 1.28,
+    "vs_ma200_pct": 14.98,
+    "momentum_12_1_pct": 79.77,
     "high_52w": 416.34,
-    "drawdown_52w_pct": -2.93,
-    "return_rs_pct": 18.96,
+    "drawdown_52w_pct": -2.94,
+    "return_rs_pct": 20.7,
     "rs_days": 126,
-    "spy_return_pct": 12.6,
-    "rs_spy_pp": 6.36,
-    "qqq_return_pct": 18.54,
-    "rs_qqq_pp": 0.42
+    "spy_return_pct": 10.51,
+    "rs_spy_pp": 10.19,
+    "qqq_return_pct": 14.61,
+    "rs_qqq_pp": 6.09
   },
   "ust10y": {
-    "value": 5.22,
-    "date": "2026-10-08"
+    "value": 5.21,
+    "date": "2026-10-13"
   },
   "guidance": {
     "accession": "0001628280-26-056478",
@@ -1041,186 +1278,120 @@
           "unreachable": 1
         }
       }
-    }
+    },
+    "reused_from": "2026-10-14T20:56:19Z"
   },
   "claude": {
     "enabled": true,
-    "research": {
-      "urls": [
-        "https://finance.yahoo.com/quote/MSGS/news/",
-        "https://simplywall.st/stocks/us/media/nyse-msgs/madison-square-garden-sports/news/madison-square-garden-sports-msgs-could-be-16-undervalued-fo",
-        "https://investor.msgsports.com/press-releases/news-details/2026/MSG-Sports-Board-Approves-Spin-Off-of-Rangers-Business-From-Knicks-Business/default.aspx",
-        "https://www.msgsports.com/company-news/",
-        "https://www.cnbc.com/quotes/MSGS",
-        "https://www.cnn.com/markets/stocks/MSGS",
-        "https://stocktwits.com/symbol/MSGS/news",
-        "https://www.marketscreener.com/news/foot-locker-named-official-athletic-footwear-retailer-of-the-new-york-knicks-ce785dd2df8df626",
-        "https://www.stocktitan.net/news/MSGS/foot-locker-named-official-athletic-footwear-retailer-of-the-new-tq8bm2q0dm4k.html",
-        "https://ca.finance.yahoo.com/research/stock-forecast/MSGS?symbols=MSGS",
-        "https://finance.yahoo.com/quote/MSGS/",
-        "https://public.com/stocks/msgs",
-        "https://stockscan.io/stocks/MSGS/forecast",
-        "https://tickernerd.com/stock/msgs-forecast/",
-        "https://www.tradingkey.com/markets/stocks/msgs/forecast",
-        "https://intellectia.ai/stock/MSGS/forecast",
-        "https://www.benzinga.com/stock/MSGS/ratings",
-        "https://www.benzinga.com/quote/msgs/analyst-ratings",
-        "https://www.investing.com/news/insider-trading-news/madison-square-garden-sports-corp-sees-7m-stock-sale-by-charles-f-dolan-trust-93CH-3925351",
-        "https://finance.yahoo.com/quote/MSGS/insider-roster/",
-        "https://nz.finance.yahoo.com/quote/MSGS/insider-roster/",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526394317/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526394312/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526394328/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526394314/ownership.xml",
-        "https://www.stocktitan.net/sec-filings/MSGS/form-4-madison-square-garden-sports-corp-insider-trading-activity-db41ce3b3f6a.html",
-        "https://www.stocktitan.net/sec-filings/MSGS/form-4-madison-square-garden-sports-corp-insider-trading-activity-589871b3d60e.html",
-        "https://www.stocktitan.net/sec-filings/MSGS/form-4-madison-square-garden-sports-corp-insider-trading-activity-3e8c648a0ea0.html",
-        "https://www.yahoo.com/news/us/articles/knicks-title-glow-hit-lawsuit-150857243.html",
-        "https://www.yahoo.com/news/us/articles/msg-faces-lawsuit-over-data-022831927.html",
-        "https://www.cbssports.com/nba/news/bootleg-merchandisers-outside-madison-square-garden-hit-with-restraining-order-following-msg-sports-lawsuit/",
-        "https://www.yahoo.com/news/us/articles/madison-square-garden-hit-class-153312221.html",
-        "https://frontofficesports.com/madison-square-garden-hit-with-class-action-after-apparent-data-breach/",
-        "https://www.law360.com/articles/2268189/ny-knicks-rangers-sue-over-counterfeit-merch-vendors",
-        "https://frontofficesports.com/newsletter/msg-accused-of-exposing-fan-data/",
-        "https://www.cbssports.com/nba/news/charles-oakleys-lawsuit-against-madison-square-garden-reinstated-seeking-james-dolan-added-as-defendant",
-        "https://fortune.com/2022/10/18/lawyer-trolls-new-york-knicks-throughout-lawsuit-against-madison-square-garden",
-        "https://www.sec.gov/Archives/edgar/data/1636519/000162828026005609/msgsportscorpex991forearni.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000162828026032551/msgsportscorpex991forearni.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000162828026056478/msgsportscorpex991forearni.htm",
-        "https://www.barchart.com/story/news/35823753/madison-square-garden-sports-corp-reports-fiscal-2026-first-quarter-results",
-        "https://www.businesswire.com/news/home/20260813101909/en/Madison-Square-Garden-Sports-Corp.-Reports-Fiscal-2026-Fourth-Quarter-and-Full-Year-Results",
-        "https://www.msgsports.com/madison-square-garden-sports-corp-reports-fiscal-2026-second-quarter-results/",
-        "https://sg.finance.yahoo.com/news/madison-square-garden-sports-corp-113000843.html",
-        "https://www.businesswire.com/news/home/20251031289106/en/Madison-Square-Garden-Sports-Corp.-Reports-Fiscal-2026-First-Quarter-Results",
-        "https://www.msgsports.com/madison-square-garden-sports-corp-reports-fiscal-2026-third-quarter-results/",
-        "https://sports.yahoo.com/articles/knicks-pause-ticket-sales-error-171910005.html",
-        "https://pix11.com/news/local-news/new-york-knicks-roll-back-ticket-sales-after-1000-mistake/",
-        "https://sports.yahoo.com/articles/york-knicks-fans-blast-1-072800260.html",
-        "https://www.usnews.com/news/sports/articles/2026-09-17/knicks-pause-ticket-sales-after-error-caused-them-to-be-listed-at-prices-too-high",
-        "https://www.briefs.co/news/knicks-pause-single-game-ticket-sales-after-pricing-error/",
-        "https://www.tipranks.com/news/the-fly/knicks-owner-msg-sports-up-2-following-reports-of-celtics-sale-at-record-value",
-        "https://www.tikr.com/blog/madison-square-garden-sports-stock-is-up-35-in-the-past-3-months-heres-what-strong-q2-results-signal-for-2026",
-        "https://www.tipranks.com/news/the-fly/msg-sports-jumps-6-to-203-23-after-lakers-deal-values-team-at-10b-thefly",
-        "https://benzinga.com/z/38590991",
-        "https://www.cbsnews.com/newyork/news/msg-announces-price-hikes-for-knicks-rangers-tickets",
-        "https://finimize.com/content/msgs-asset-snapshot",
-        "https://finviz.com/stock?t=MSGS&ty=tr",
-        "https://ng.investing.com/news/stock-market-news/msg-sports-board-clears-spinoff-of-rangers-from-knicks-business-2716791",
-        "https://www.fidelity.com/webcontent/ap010098-etf-content/19.11.0/help/research/learn_er_upgrades_downgrades.shtml",
-        "https://ng.investing.com/news/stock-market-news/madison-square-garden-sports-to-spin-off-rangers-from-knicks-93CH-2716780",
-        "https://intellectia.ai/news/stock/madison-square-garden-sports-stock-rises-4-after-upgrade-ahead-of-spinoff",
-        "https://www.benzinga.com/analyst-stock-ratings",
-        "https://businessnewsthisweek.com/business/msg-sports-approves-rangers-knicks-spin-off/",
-        "https://www.tipranks.com/news/the-fly/msg-entertainment-downgraded-to-hold-from-buy-at-jefferies",
-        "https://www.tipranks.com/news/company-announcements/madison-square-garden-sports-realigns-senior-legal-leadership",
-        "https://www.sec.gov/Archives/edgar/data/0002132873/000119312526419170/d122415dex991.htm",
-        "https://www.tipranks.com/stocks/msgs",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526409143/d126791dex991.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526409143/d126791d8k.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526409143/d126791dex103.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002132873/000119312526419170/d122415d8k.htm",
-        "https://www.theglobeandmail.com/investing/markets/stocks/MSGS-N/pressreleases/4917033/msg-sports-advances-rangers-spin-off-and-board-changes/",
-        "https://www.sec.gov/Archives/edgar/data/0001636519/000119312526397309/d152993d8k.htm",
-        "https://www.law360.com/pulse/articles/2528349/msg-sports-shifts-coo-to-chief-legal-officer-role"
-      ],
-      "searches": 8
+    "news_reused": {
+      "news_from": "2026-10-14T20:56:19Z",
+      "archived": "data/stocks/runs/MSGS/2026-10-14T205619Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
     }
+  },
+  "news_from": "2026-10-14T20:56:19Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
   },
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "MSG Sports rates Hold: strong growth and momentum offset by a very expensive valuation.",
-    "thesis": "MSGS scores 56, a Hold with high confidence, sitting 9 points below Buy and 12 points above Sell. Growth (85) is the strongest factor, with quarterly revenue up 36.67% year over year against 11.03% on a trailing basis, and trend (79) is also strong: the shares are 15.23% above their 200-day average, up 83.97% on 12-1 momentum and only 2.93% off their 52-week high. Valuation (12) pulls hard the other way, at 8.495 times sales, 160 times free cash flow and about 343 times EV/EBIT, with free-cash-flow yield 4.595 points below the 10-year Treasury. Quality is middling (50) on a thin 2.5% operating margin and 5.31% FCF margin, while the balance sheet (69) is reasonable at 1.53 times net debt to FCF. News risk is neutral (50), with the main pending event being the Rangers spin-off expected around 2026-10-26.",
+    "headline": "MSGS rates Hold: strong growth and momentum offset by a very stretched valuation ahead of the Rangers spin-off.",
+    "thesis": "Madison Square Garden Sports scores 57, a Hold, sitting 8 points below the Buy band and 13 above Sell. Growth (85) is the standout, with quarterly revenue up 36.67% year over year against 11.03% on a trailing basis, and trend (81) is strong, with 12-1 month momentum of 79.77% and the price just 2.94% off its 52-week high. Valuation (15) is the main drag: the stock trades at 8.494 times sales, 159.988 times free cash flow and 342.74 times EV/EBIT, and price-to-sales has been cheaper in 87.7% of the last 61 month-ends. Quality is middling at 50, with a 2.5% operating margin and 5.31% FCF margin, while the balance sheet scores a reasonable 69 (net debt 1.53 times FCF). Confidence is Medium because gross margin data is missing, and news is neutral at 50.",
     "key_risks": [
-      "Valuation is stretched: price-to-sales and EV/EBIT sit near the 88th percentile, leaving little room for disappointment.",
-      "Thin profitability, with a 2.5% operating margin and 5.31% FCF margin.",
-      "The Rangers spin-off changes the company's makeup and may reset reported revenue, margins and valuation metrics.",
-      "After an 83.97% 12-1 momentum run, the shares are near their 52-week high and could give back gains if momentum fades.",
-      "No financial guidance is issued, so visibility on future results is limited."
+      "Valuation is extreme on earnings and cash flow (EV/EBIT 342.74, P/FCF 159.988), leaving little room for disappointment.",
+      "The Rangers spin-off, expected around 2026-10-26, will change the company's structure and make current figures less comparable.",
+      "Thin operating margin of 2.5% means profits are sensitive to player costs and league economics.",
+      "After a 79.77% 12-1 month run, momentum could reverse quickly.",
+      "News ratings were reused from the prior run and not refreshed, and gross margin data is missing."
     ],
     "what_would_change": [
-      "Up to Buy (+9 points): a meaningful improvement in valuation (currently 12) from lower multiples or higher cash flow, or better quality via wider margins.",
-      "Up: positive news flow, such as guidance or analyst upgrades inside the window, lifting news risk above its neutral 50.",
-      "Down to Sell (-12 points): growth cooling from its 36.67% quarterly pace together with a momentum reversal dragging the trend score (79) lower.",
-      "Down: a weaker post-spin-off balance sheet or cash flow profile reducing the balance sheet (69) and quality (50) scores."
+      "An 8-point gain in the composite to 65 would reach Buy, most plausibly via a better valuation score (now 15) from a lower price or higher earnings and cash flow.",
+      "Improved operating or FCF margins lifting quality above 50 would help close the gap to Buy.",
+      "A 13-point drop to below 45 would mean Sell, for example if growth (85) or trend (81) fade sharply after the spin-off.",
+      "Negative news after the spin-off, such as guidance cuts or analyst downgrades, would pull the news score below its neutral 50."
     ]
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 2785,
-        "output_tokens": 260,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0163
-      },
-      "research": {
-        "model": "claude-sonnet-5-5",
-        "requests": 1,
-        "input_tokens": 105971,
-        "output_tokens": 3988,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 8,
-        "price": {
-          "input": 2.0,
-          "output": 10.0,
-          "verify": false
-        },
-        "cost_usd": 0.3318
-      },
-      "scoring": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 6629,
-        "output_tokens": 937,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0453
-      },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2292,
-        "output_tokens": 758,
+        "input_tokens": 2603,
+        "output_tokens": 734,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2603,
+            "output_tokens": 734,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0243
+        "cost_usd": 0.0251,
+        "tiers": [],
+        "tiered_requests": 0
       }
     },
-    "total_usd": 0.4177,
+    "total_usd": 0.0251,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
+  "quote": {
+    "price": 404.1,
+    "as_of": "2026-10-14T20:00:00Z",
+    "prev_close": 404.15
+  },
+  "close_note": {
+    "scored_on": "2026-10-14",
+    "latest": "2026-10-14",
+    "latest_from": "quote",
+    "run_et": "2026-10-15 05:19",
+    "note": null,
+    "close_window": null
+  },
   "email": "skipped (email off)",
+  "batch": {
+    "run_id": "38711992549",
+    "tickers": [
+      "GOOGL",
+      "GTLB",
+      "INOD",
+      "META",
+      "MSFT",
+      "MSGS",
+      "NTAP",
+      "NVDA",
+      "ORCL",
+      "PLTR",
+      "RBRK",
+      "SHOP",
+      "TIC",
+      "ZS"
+    ]
+  },
   "chart": [
-    [
-      "2021-10-04",
-      188.46,
-      null,
-      null
-    ],
     [
       "2021-10-05",
       189.27,
@@ -1512,7 +1683,7 @@
     [
       "2021-12-13",
       166.14,
-      184.6,
+      null,
       null
     ],
     [
@@ -2413,7 +2584,7 @@
       "2022-07-20",
       159.32,
       155.81,
-      170.14
+      null
     ],
     [
       "2022-07-21",
@@ -2425,7 +2596,7 @@
       "2022-07-22",
       157.64,
       155.87,
-      169.83
+      169.82
     ],
     [
       "2022-07-25",
@@ -2533,7 +2704,7 @@
       "2022-08-17",
       161.16,
       154.57,
-      167.11
+      167.1
     ],
     [
       "2022-08-18",
@@ -8786,9 +8957,37 @@
       404.15,
       398.81,
       350.74
+    ],
+    [
+      "2026-10-14",
+      404.1,
+      399.0,
+      351.46
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T09:19:32Z",
+      "ticker": "MSGS",
+      "rating": "Hold",
+      "score": "57",
+      "confidence": "Medium",
+      "growth": "85",
+      "quality": "50",
+      "balance_sheet": "69",
+      "valuation": "15",
+      "trend": "81",
+      "news_risk": "50",
+      "price": "404.1",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0251",
+      "overlay": "",
+      "quote_price": "404.1",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-14T20:56:19Z"
+    },
     {
       "timestamp": "2026-10-14T20:56:19Z",
       "ticker": "MSGS",
@@ -8806,7 +9005,10 @@
       "research_model": "claude-sonnet-5-5",
       "scoring_model": "claude-opus-5-5",
       "cost_usd": "0.4177",
-      "overlay": ""
+      "overlay": "",
+      "quote_price": null,
+      "quote_as_of": null,
+      "news_from": null
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T07:18:35Z",
-  "generated_at": "2026-10-15T07:19:37+00:00",
+  "run_id": "2026-10-15T09:19:57Z",
+  "generated_at": "2026-10-15T09:19:58+00:00",
   "ticker": "RBRK",
   "sec_ticker": "RBRK",
   "cik": "0001943896",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "input",
-      "scoring": "input"
+      "research": "config",
+      "scoring": "config"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -18,23 +18,40 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 58,
-  "confidence": "High",
+  "score": 55,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "FCF scored ex-prepayments: customer prepayments rose $344.3M over the year (102% of operating cash flow; threshold 25%)"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 20 month-ends, P/FCF 20 month-ends, EV/EBIT 20 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
   "bands": {
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 7
+      "points": 10
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 14
+      "points": 11
     }
   },
   "composite": {
-    "score": 58,
-    "raw": 57.9,
+    "score": 55,
+    "raw": 54.5,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -94,10 +111,10 @@
           "note": null
         },
         "fcf_margin_pct": {
-          "value": 19.71,
-          "score": 72.7,
+          "value": -2.62,
+          "score": 14.8,
           "weight": 0.25,
-          "note": null
+          "note": "FCF ex-prepayments; reported FCF margin 19.7%"
         },
         "sbc_pct_revenue": {
           "value": 22.16,
@@ -113,26 +130,26 @@
         }
       },
       "coverage": 1.0,
-      "score": 42,
+      "score": 28,
       "missing": null
     },
     "balance_sheet": {
       "metrics": {
         "net_debt_to_fcf": {
-          "value": -5.75,
+          "value": -2.02,
           "score": 100.0,
           "weight": 0.6,
           "note": "net cash"
         },
         "cash_to_debt": {
-          "value": null,
-          "score": 100.0,
+          "value": 1.54,
+          "score": 90.9,
           "weight": 0.4,
-          "note": "no debt tagged in XBRL on this date (counted as zero)"
+          "note": null
         }
       },
       "coverage": 1.0,
-      "score": 100,
+      "score": 96,
       "missing": null
     },
     "valuation": {
@@ -144,10 +161,10 @@
           "note": null
         },
         "price_to_fcf": {
-          "value": 77.243,
-          "score": 1.4,
+          "value": null,
+          "score": 0.0,
           "weight": 0.15,
-          "note": null
+          "note": "negative FCF ex-prepayments"
         },
         "ev_to_ebit": {
           "value": null,
@@ -156,32 +173,32 @@
           "note": "negative EBIT"
         },
         "fcf_yield_vs_10y_pp": {
-          "value": -3.915,
-          "score": 1.1,
+          "value": -5.382,
+          "score": 0.0,
           "weight": 0.2,
-          "note": null
+          "note": "FCF ex-prepayments"
         },
         "price_to_sales_percentile": {
           "value": null,
           "score": null,
           "weight": 0.1,
-          "note": null
+          "note": "missing: 20 month-ends of history (needs 24)"
         },
         "price_to_fcf_percentile": {
           "value": null,
           "score": null,
           "weight": 0.15,
-          "note": null
+          "note": "missing: 20 month-ends of history (needs 24)"
         },
         "ev_to_ebit_percentile": {
           "value": null,
           "score": null,
           "weight": 0.15,
-          "note": null
+          "note": "missing: 20 month-ends of history (needs 24)"
         }
       },
       "coverage": 0.6,
-      "score": 4,
+      "score": 3,
       "missing": null
     },
     "trend": {
@@ -317,22 +334,52 @@
     "operating_cash_flow_ttm": 337064000.0,
     "capex_ttm": 33159000.0,
     "sbc_ttm": 341763000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
     "fcf_ttm": 303905000.0,
     "gross_margin_pct": 80.21,
     "operating_margin_pct": -18.31,
     "fcf_margin_pct": 19.71,
     "capex_intensity_pct": 2.15,
     "sbc_pct_revenue": 22.16,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 344343000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "share_of_ocf": 1.0216,
+      "max_share_of_ocf": 0.25,
+      "applies": true
+    },
+    "fcf_ex_prepayments_ttm": -40438000.0,
+    "fcf_ex_prepayments_margin_pct": -2.62,
     "balance_sheet": {
       "date": "2026-07-31",
       "cash": 416166000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
       "short_term_investments": 1331483000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 1331483000.0
+        }
+      ],
+      "investment_note": null,
       "cash_and_investments": 1747649000.0,
-      "debt": 0,
-      "debt_tags": [],
-      "debt_note": "no debt tagged in XBRL on this date (counted as zero)",
-      "net_debt": -1747649000.0
+      "debt": 1132895000.0,
+      "debt_tags": [
+        "ConvertibleLongTermNotesPayable"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleLongTermNotesPayable",
+          "val": 1132895000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -614754000.0,
+      "unknown": []
     },
+    "share_outliers": [],
     "diluted_shares": 206097000.0,
     "diluted_shares_end": "2026-07-31",
     "dilution_yoy_pct": 5.75,
@@ -445,164 +492,242 @@
       "date": "2026-07-31"
     },
     "market_cap": 23474448300.0,
-    "enterprise_value": 21726799300.0,
+    "enterprise_value": 22859694300.0,
     "price_to_sales": 15.222,
-    "price_to_fcf": 77.243,
+    "price_to_fcf": null,
     "ev_to_ebit": null,
-    "fcf_negative": false,
+    "sales_yield_pct": 6.57,
+    "fcf_yield_pct": -0.172,
+    "ebit_yield_pct": -1.235,
+    "fcf_negative": true,
     "ebit_negative": true,
-    "fcf_yield_pct": 1.295,
+    "fcf_basis": "ex-prepayments",
+    "price_to_fcf_reported": 77.243,
+    "fcf_yield_reported_pct": 1.295,
     "ust10y_pct": 5.21,
     "ust10y_date": "2026-10-13",
-    "fcf_yield_vs_10y_pp": -3.915,
+    "fcf_yield_vs_10y_pp": -5.382,
     "history": [
       {
         "date": "2025-03-31",
         "price_to_sales": 10.613,
-        "price_to_fcf": 300.19,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.422,
+        "fcf_yield_pct": -2.996,
+        "ebit_yield_pct": -12.564
       },
       {
         "date": "2025-04-30",
         "price_to_sales": 12.275,
-        "price_to_fcf": 347.202,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.147,
+        "fcf_yield_pct": -2.59,
+        "ebit_yield_pct": -10.801
       },
       {
         "date": "2025-05-30",
         "price_to_sales": 16.595,
-        "price_to_fcf": 469.385,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.026,
+        "fcf_yield_pct": -1.916,
+        "ebit_yield_pct": -7.914
       },
       {
         "date": "2025-06-30",
         "price_to_sales": 17.559,
-        "price_to_fcf": 166.405,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.695,
+        "fcf_yield_pct": -1.434,
+        "ebit_yield_pct": -3.003
       },
       {
         "date": "2025-07-31",
         "price_to_sales": 18.61,
-        "price_to_fcf": 176.361,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.374,
+        "fcf_yield_pct": -1.353,
+        "ebit_yield_pct": -2.829
       },
       {
         "date": "2025-08-29",
         "price_to_sales": 17.522,
-        "price_to_fcf": 166.052,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.707,
+        "fcf_yield_pct": -1.437,
+        "ebit_yield_pct": -3.009
       },
       {
         "date": "2025-09-30",
         "price_to_sales": 14.806,
-        "price_to_fcf": 82.6,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.754,
+        "fcf_yield_pct": -1.184,
+        "ebit_yield_pct": -2.74
       },
       {
         "date": "2025-10-31",
         "price_to_sales": 13.55,
-        "price_to_fcf": 75.59,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.38,
+        "fcf_yield_pct": -1.294,
+        "ebit_yield_pct": -3.001
       },
       {
         "date": "2025-11-28",
         "price_to_sales": 12.479,
-        "price_to_fcf": 69.615,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.014,
+        "fcf_yield_pct": -1.405,
+        "ebit_yield_pct": -3.267
       },
       {
         "date": "2025-12-31",
         "price_to_sales": 12.679,
-        "price_to_fcf": 59.085,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.887,
+        "fcf_yield_pct": -0.966,
+        "ebit_yield_pct": -2.58
       },
       {
         "date": "2026-01-30",
         "price_to_sales": 9.276,
-        "price_to_fcf": 43.224,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.781,
+        "fcf_yield_pct": -1.32,
+        "ebit_yield_pct": -3.568
       },
       {
         "date": "2026-02-27",
         "price_to_sales": 8.614,
-        "price_to_fcf": 40.142,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.609,
+        "fcf_yield_pct": -1.421,
+        "ebit_yield_pct": -3.855
       },
       {
         "date": "2026-03-31",
         "price_to_sales": 7.31,
-        "price_to_fcf": 37.986,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.68,
+        "fcf_yield_pct": -1.793,
+        "ebit_yield_pct": -3.806
       },
       {
         "date": "2026-04-30",
         "price_to_sales": 7.938,
-        "price_to_fcf": 41.252,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.597,
+        "fcf_yield_pct": -1.651,
+        "ebit_yield_pct": -3.488
       },
       {
         "date": "2026-05-29",
         "price_to_sales": 11.737,
-        "price_to_fcf": 60.994,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.52,
+        "fcf_yield_pct": -1.117,
+        "ebit_yield_pct": -2.318
       },
       {
         "date": "2026-06-30",
         "price_to_sales": 11.476,
-        "price_to_fcf": 55.636,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.714,
+        "fcf_yield_pct": -0.522,
+        "ebit_yield_pct": -1.938
       },
       {
         "date": "2026-07-31",
         "price_to_sales": 10.344,
-        "price_to_fcf": 50.147,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.668,
+        "fcf_yield_pct": -0.579,
+        "ebit_yield_pct": -2.16
       },
       {
         "date": "2026-08-31",
         "price_to_sales": 13.3,
-        "price_to_fcf": 64.479,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.519,
+        "fcf_yield_pct": -0.45,
+        "ebit_yield_pct": -1.664
       },
       {
         "date": "2026-09-30",
         "price_to_sales": 15.298,
-        "price_to_fcf": 77.629,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.537,
+        "fcf_yield_pct": -0.171,
+        "ebit_yield_pct": -1.229
       },
       {
         "date": "2026-10-14",
         "price_to_sales": 15.222,
-        "price_to_fcf": 77.243,
-        "ev_to_ebit": null
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.57,
+        "fcf_yield_pct": -0.172,
+        "ebit_yield_pct": -1.235
       }
     ],
+    "share_outliers": [],
     "vs_history": {
       "price_to_sales": {
         "current": 15.222,
+        "current_yield_pct": 6.57,
         "points": 20,
-        "median": 12.579,
+        "median": 12.578,
         "low": 7.31,
-        "high": 18.61,
+        "high": 18.608,
+        "negative_points": 0,
+        "median_yield_pct": 7.95,
         "percentile": null,
+        "min_points": 24,
         "from": "2025-03-31"
       },
       "price_to_fcf": {
-        "current": 77.243,
+        "current": null,
+        "current_yield_pct": -0.172,
         "points": 20,
-        "median": 72.602,
-        "low": 37.986,
-        "high": 469.385,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 20,
+        "median_yield_pct": -1.337,
         "percentile": null,
+        "min_points": 24,
         "from": "2025-03-31"
       },
       "ev_to_ebit": {
         "current": null,
-        "points": 0,
+        "current_yield_pct": -1.235,
+        "points": 20,
         "median": null,
         "low": null,
         "high": null,
+        "negative_points": 20,
+        "median_yield_pct": -3.002,
         "percentile": null,
+        "min_points": 24,
         "from": "2025-03-31"
       }
     }
@@ -859,172 +984,83 @@
           "unreachable": 0
         }
       }
-    }
+    },
+    "reused_from": "2026-10-15T07:18:35Z"
   },
   "claude": {
     "enabled": true,
-    "research": {
-      "urls": [
-        "https://www.investing.com/news/earnings/rubrik-surges-on-earnings-beat-and-strong-guidance-4558170",
-        "https://www.earningswhispers.com/epsdetails/RBRK",
-        "https://www.investing.com/equities/rubrik-earnings",
-        "https://www.cnbc.com/2025/12/05/rubrik-rbrk-stock-earnings-q3.html",
-        "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/future",
-        "https://in.investing.com/equities/rubrik-earnings",
-        "https://www.cestriancapitalresearch.com/rubrik-nyse-rbrk-stock-rating-distribute-after-q2-fy1-27-earnings/",
-        "https://fn2.ai/earnings/rbrk/2026-q2",
-        "https://stockinvest.us/earnings-report/RBRK",
-        "https://www.marketbeat.com/instant-alerts/rubrik-nyserbrk-releases-q3-2026-earnings-guidance-2025-09-09",
-        "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
-        "https://finance.yahoo.com/quote/RBRK/analyst-insights/",
-        "https://stockanalysis.com/stocks/rbrk/",
-        "https://www.investing.com/equities/rubrik-consensus-estimates",
-        "https://public.com/stocks/rbrk/forecast-price-target",
-        "https://stockscan.io/stocks/RBRK/forecast",
-        "https://tickernerd.com/stock/rbrk-forecast/",
-        "https://www.benzinga.com/quote/RBRK/analyst-ratings",
-        "https://www.tipranks.com/news/the-fly/rubrik-price-target-raised-to-83-from-72-at-piper-sandler",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000023/form4-10072026_101053.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000202022026000018/form4-07162026_090750.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000015/form4-07082026_110722.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000202022026000022/form4-09182026_010913.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000201914326000019/form4-09112026_120951.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000018/form4-08042026_070803.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000170774426000019/form4-08042026_070801.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000120743326000020/form4-09042026_120923.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001943896/000170774426000013/form4-06242026_110623.xml",
-        "https://finance.yahoo.com/markets/stocks/articles/rubrik-ai-push-forward-2026-221700858.html",
-        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-now-available-as-ai-agent",
-        "https://uk.finance.yahoo.com/quote/RBRK/press-releases/",
-        "https://en.wikipedia.org/wiki/Rubik%27s_WOWCube",
-        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-unlocks-unstructured-data",
-        "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/news/is-project-hourglass-expansion-altering-the-investment-case",
-        "https://securitybrief.com.au/story/rubrik-launches-cloud-recovery-tool-for-cyber-attacks",
-        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-advances-identity-resilience-through-strata-acquisition-and-identity-roll-forward-innovation",
-        "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-is-Named-a-Leader-in-the-2026-Gartner-Magic-Quadrant/default.aspx",
-        "https://www.stocktitan.net/news/RBRK/rubrik-deepens-commitment-to-msp-operated-cyber-resilience-with-fhi2n6hrkvrt.html",
-        "https://www.cybersecuritydive.com/news/rubrik-discloses-server-breach-compromise-of-access-information/741494/",
-        "https://www.techtarget.com/searchstorage/news/252481971/Commvault-lawsuit-says-Rubrik-Cohesity-infringed-on-patents",
-        "https://www.storagenewsletter.com/2020/07/06/actifio-initiates-patent-infringement-litigation-vs-rubrik/",
-        "https://www.commvault.com/news/commvault-initiates-patent-infringement-litigation-against-cohesity-and-rubrik",
-        "https://www.nextgov.com/acquisition/2024/10/rubrik-not-aware-connection-between-investigation-former-employee-and-fbis-carahsoft-raid/399985/",
-        "https://www.prnewswire.com/news-releases/actifio-initiates-patent-infringement-litigation-against-rubrik-301085531.html",
-        "https://www.cnbc.com/2024/02/03/cybersecurity-software-startup-rubrik-plans-to-go-public-as-early-as-april-amid-us-probe-into-former-employee-sources-say.html",
-        "https://grokipedia.com/page/Rubrik",
-        "https://en.wikipedia.org/wiki/Rubrik",
-        "https://s203.q4cdn.com/667520861/files/content_files/Rubrik-Inc-99-1-Press-Release-7-31-2026-VFINAL.pdf",
-        "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-to-Report-Second-Quarter-Fiscal-2027-Financial-Results-on-August-27-2026/default.aspx",
-        "https://www.rubrik.com/company/newsroom/press-releases/26/rubrik-reports-second-quarter-fiscal-year-2027-financial-results",
-        "https://finance.yahoo.com/markets/stocks/articles/rubrik-report-second-quarter-fiscal-120000574.html",
-        "https://www.nasdaq.com/press-release/rubrik-report-second-quarter-fiscal-2027-financial-results-august-27-2026-2026-08-06",
-        "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results/default.aspx",
-        "https://www.nasdaq.com/press-release/rubrik-reports-second-quarter-fiscal-year-2027-financial-results-2026-08-27",
-        "https://www.alphaspread.com/security/nyse/rbrk/investor-relations/earnings-call/q2-2027",
-        "https://stocknow.ai/en/calls/ku08pqwxhk97tejr1q0m3k1r/rbrk_q2-2027-earnings-call",
-        "https://www.fool.com/investing/2026/09/14/why-rubrik-stock-soared-15-today/",
-        "https://www.fool.com/investing/2026/09/18/why-shares-of-rubrik-stock-rallied-this-week/",
-        "https://finance.yahoo.com/markets/stocks/articles/why-shares-rubrik-stock-rallied-152344392.html",
-        "https://www.cnn.com/markets/stocks/RBRK",
-        "https://finance.yahoo.com/quote/RBRK/",
-        "https://www.google.com/finance/beta/quote/RBRK:NYSE",
-        "https://quiverquant.com/news/Rubrik+Slides+as+Investors+Appear+to+Take+Profits+Amid+Tech+Weakness",
-        "https://uk.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4906504",
-        "https://www.investing.com/news/insider-trading-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4945363",
-        "https://www.marketbeat.com/instant-alerts/insider-rubrik-nyse-rbrk-stock-insider-john-wendell-thompson-sells-11000-shares-2026-10-02/",
-        "https://ca.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-12-million-in-class-a-shares-93CH-4828368",
-        "https://ph.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-2624911",
-        "https://ng.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-2732672",
-        "https://ca.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4877051",
-        "https://au.investing.com/news/stock-market-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4685895",
-        "https://www.stocktitan.net/sec-filings/RBRK/form-4-rubrik-inc-insider-trading-activity-c77fe9dc2151.html",
-        "https://www.dailypolitical.com/2026/09/24/rubrik-inc-nyserbrk-given-average-recommendation-of-moderate-buy-by-analysts.html"
-      ],
-      "searches": 8
+    "news_reused": {
+      "news_from": "2026-10-15T07:18:35Z",
+      "archived": "data/stocks/runs/RBRK/2026-10-15T071835Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
     }
+  },
+  "news_from": "2026-10-15T07:18:35Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
   },
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Rubrik rates Hold: strong growth, cash and momentum offset by a very rich valuation.",
-    "thesis": "Rubrik scores 58, a Hold with high confidence, 7 points below the Buy band and 14 above Sell. Growth (84) is a key strength, with revenue up 37.89% year on year in the latest quarter and 42.45% on a trailing basis, though it slowed by 1.1 points. The balance sheet scores 100 with net cash, and the trend score of 90 reflects a price 54.74% above its 200-day average and 111.26 points of outperformance versus SPY. Valuation scores just 4, at 15.222 times sales and 77.243 times free cash flow, and quality is a middling 42 because an 80.21% gross margin and 19.71% FCF margin sit alongside an operating margin of -18.31%, stock pay at 22.16% of revenue and 5.75% share dilution. News risk is neutral at 56: positive analyst moves and product launches are offset by steady insider selling.",
+    "headline": "Rubrik rates Hold: strong growth, balance sheet and trend offset by weak quality and a very high valuation.",
+    "thesis": "Rubrik scores 55, a Hold with medium confidence, because strong and weak factors roughly cancel out. Revenue grew 37.89% year on year in the latest quarter and 42.45% on a trailing basis (growth score 84). The balance sheet is net cash with cash at 1.54 times debt (score 96), and the shares sit 54.74% above their 200-day average (trend score 90). Against that, quality scores only 28: operating margin is -18.31%, stock-based pay is 22.16% of revenue, and FCF margin is -2.62% once $344.3M of customer prepayments is stripped out, versus a reported 19.7%. Valuation scores 3, with price-to-sales at 15.222 and an FCF yield 5.382 points below the 10-year Treasury yield.",
     "key_risks": [
-      "Valuation is stretched at 15.222 times sales, leaving little room for a growth miss.",
-      "Revenue growth is slowing slightly (acceleration -1.1 points), which could pressure a premium multiple.",
-      "GAAP operating margin of -18.31% and stock-based pay at 22.16% of revenue mean FCF overstates owner economics.",
-      "Share count dilution of 5.75% a year erodes per-share value.",
-      "Steady insider selling, including by the CFO and a director, and an unresolved 2023 DOJ subpoena matter."
+      "Valuation is stretched at 15.222 times sales, leaving little room for a growth slowdown.",
+      "Reported cash flow leans on customer prepayments; excluding them, FCF is negative.",
+      "Stock-based pay of 22.16% of revenue and 5.75% annual share dilution weigh on per-share value.",
+      "Insiders, including a director and the CFO, sold steadily with no purchases.",
+      "Growth is slowing slightly, down 1.1 points of acceleration; any sharper slowdown could hit a stock trading well above its 200-day average."
     ],
     "what_would_change": [
-      "Up to Buy (7 points needed): a lower valuation, from a price pullback or faster sales growth, or better quality from narrower operating losses and less dilution.",
-      "Up: renewed revenue acceleration or confirmed guidance raises at the next report could lift growth and news scores.",
-      "Down to Sell (a 14-point drop): a sharp reversal in the trend score from 90, combined with slowing growth or negative guidance or legal news."
+      "Up to Buy needs 10 more points, most plausibly from better quality, such as operating losses narrowing or positive FCF excluding prepayments.",
+      "A meaningful drop in price-to-sales would lift the valuation score from 3 and could add points toward the Buy threshold of 65.",
+      "Down to Sell needs an 11-point drop, for example if the trend score of 90 fades on a sharp pullback or growth decelerates markedly.",
+      "Negative news, such as a guidance cut or heavier insider selling, would lower the news-risk score of 56."
     ]
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 3301,
-        "output_tokens": 405,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0213
-      },
-      "research": {
-        "model": "claude-sonnet-5-5",
-        "requests": 1,
-        "input_tokens": 173474,
-        "output_tokens": 4724,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 8,
-        "price": {
-          "input": 2.0,
-          "output": 10.0,
-          "verify": false
-        },
-        "cost_usd": 0.4742
-      },
-      "scoring": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 7077,
-        "output_tokens": 2028,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0689
-      },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2303,
-        "output_tokens": 679,
+        "input_tokens": 2762,
+        "output_tokens": 685,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2762,
+            "output_tokens": 685,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0228
+        "cost_usd": 0.0247,
+        "tiers": [],
+        "tiered_requests": 0
       }
     },
-    "total_usd": 0.5872,
+    "total_usd": 0.0247,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1037,19 +1073,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 03:18",
+    "run_et": "2026-10-15 05:19",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38697813879",
+    "run_id": "38711992549",
     "tickers": [
-      "ORCL",
       "GOOGL",
+      "GTLB",
+      "INOD",
       "META",
+      "MSFT",
+      "MSGS",
+      "NTAP",
+      "NVDA",
+      "ORCL",
+      "PLTR",
+      "RBRK",
       "SHOP",
-      "RBRK"
+      "TIC",
+      "ZS"
     ]
   },
   "chart": [
@@ -4776,6 +4821,28 @@
   ],
   "history": [
     {
+      "timestamp": "2026-10-15T09:19:57Z",
+      "ticker": "RBRK",
+      "rating": "Hold",
+      "score": "55",
+      "confidence": "Medium",
+      "growth": "84",
+      "quality": "28",
+      "balance_sheet": "96",
+      "valuation": "3",
+      "trend": "90",
+      "news_risk": "56",
+      "price": "113.9",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0247",
+      "overlay": "",
+      "quote_price": "113.9",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:18:35Z"
+    },
+    {
       "timestamp": "2026-10-15T07:18:35Z",
       "ticker": "RBRK",
       "rating": "Hold",
@@ -4794,7 +4861,8 @@
       "cost_usd": "0.5872",
       "overlay": "",
       "quote_price": "113.9",
-      "quote_as_of": "2026-10-14T20:00:00Z"
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": null
     }
   ]
 }

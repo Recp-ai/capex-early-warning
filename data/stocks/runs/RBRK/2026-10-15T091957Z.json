@@ -1,0 +1,1100 @@
+{
+  "run_id": "2026-10-15T09:19:57Z",
+  "generated_at": "2026-10-15T09:19:58+00:00",
+  "ticker": "RBRK",
+  "sec_ticker": "RBRK",
+  "cik": "0001943896",
+  "name": "Rubrik, Inc.",
+  "sector": "Services-Prepackaged Software",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "config",
+      "scoring": "config"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 55,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "FCF scored ex-prepayments: customer prepayments rose $344.3M over the year (102% of operating cash flow; threshold 25%)"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 20 month-ends, P/FCF 20 month-ends, EV/EBIT 20 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 10
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 11
+    }
+  },
+  "composite": {
+    "score": 55,
+    "raw": 54.5,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 37.89,
+          "score": 96.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 42.45,
+          "score": 97.5,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -1.1,
+          "score": 44.5,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 84,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 80.21,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -18.31,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -2.62,
+          "score": 14.8,
+          "weight": 0.25,
+          "note": "FCF ex-prepayments; reported FCF margin 19.7%"
+        },
+        "sbc_pct_revenue": {
+          "value": 22.16,
+          "score": 11.8,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 5.75,
+          "score": 17.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 28,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -2.02,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": 1.54,
+          "score": 90.9,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 96,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 15.222,
+          "score": 18.8,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF ex-prepayments"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -5.382,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": "FCF ex-prepayments"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 20 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 20 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 20 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 3,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 9.76,
+          "score": 98.8,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 54.74,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 24.47,
+          "score": 81.4,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 111.26,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 107.16,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -9.46,
+          "score": 62.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 90,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 56,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "AMBER",
+      "total": 6.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-15T01:43:15Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "AMBER",
+    "total": 6.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-15T01:43:15Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 113.9,
+    "date": "2026-10-14"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-07-31",
+    "revenue_q": 427260000.0,
+    "revenue_yoy_q": 37.89,
+    "revenue_yoy_q_prev": 38.99,
+    "acceleration_pp": -1.1,
+    "ttm_end": "2026-07-31",
+    "revenue_ttm": 1542178000.0,
+    "revenue_yoy_ttm": 42.45,
+    "gross_profit_ttm": 1236921000.0,
+    "operating_income_ttm": -282398000.0,
+    "operating_cash_flow_ttm": 337064000.0,
+    "capex_ttm": 33159000.0,
+    "sbc_ttm": 341763000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 303905000.0,
+    "gross_margin_pct": 80.21,
+    "operating_margin_pct": -18.31,
+    "fcf_margin_pct": 19.71,
+    "capex_intensity_pct": 2.15,
+    "sbc_pct_revenue": 22.16,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 344343000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "share_of_ocf": 1.0216,
+      "max_share_of_ocf": 0.25,
+      "applies": true
+    },
+    "fcf_ex_prepayments_ttm": -40438000.0,
+    "fcf_ex_prepayments_margin_pct": -2.62,
+    "balance_sheet": {
+      "date": "2026-07-31",
+      "cash": 416166000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 1331483000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 1331483000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 1747649000.0,
+      "debt": 1132895000.0,
+      "debt_tags": [
+        "ConvertibleLongTermNotesPayable"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleLongTermNotesPayable",
+          "val": 1132895000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -614754000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 206097000.0,
+    "diluted_shares_end": "2026-07-31",
+    "dilution_yoy_pct": 5.75,
+    "shares_outstanding": null,
+    "quarterly": [
+      {
+        "end": "2023-10-31",
+        "revenue": 165604000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -39.42,
+        "fcf": 5449000.0,
+        "diluted_shares": 61023000.0
+      },
+      {
+        "end": "2024-01-31",
+        "revenue": 175013000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -47.49,
+        "fcf": 9772000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-04-30",
+        "revenue": 187315000.0,
+        "revenue_yoy_pct": 38.0,
+        "operating_margin_pct": -386.96,
+        "fcf": -35020000.0,
+        "diluted_shares": 63794000.0
+      },
+      {
+        "end": "2024-07-31",
+        "revenue": 204951000.0,
+        "revenue_yoy_pct": 35.25,
+        "operating_margin_pct": -82.11,
+        "fcf": -29671000.0,
+        "diluted_shares": 179851000.0
+      },
+      {
+        "end": "2024-10-31",
+        "revenue": 236178000.0,
+        "revenue_yoy_pct": 42.62,
+        "operating_margin_pct": -52.84,
+        "fcf": 18026000.0,
+        "diluted_shares": 183590000.0
+      },
+      {
+        "end": "2025-01-31",
+        "revenue": 258100000.0,
+        "revenue_yoy_pct": 47.47,
+        "operating_margin_pct": -44.99,
+        "fcf": 78008000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-04-30",
+        "revenue": 278481000.0,
+        "revenue_yoy_pct": 48.67,
+        "operating_margin_pct": -33.43,
+        "fcf": 36805000.0,
+        "diluted_shares": 191625000.0
+      },
+      {
+        "end": "2025-07-31",
+        "revenue": 309860000.0,
+        "revenue_yoy_pct": 51.19,
+        "operating_margin_pct": -30.49,
+        "fcf": 61226000.0,
+        "diluted_shares": 194890000.0
+      },
+      {
+        "end": "2025-10-31",
+        "revenue": 350166000.0,
+        "revenue_yoy_pct": 48.26,
+        "operating_margin_pct": -21.56,
+        "fcf": 80745000.0,
+        "diluted_shares": 198379000.0
+      },
+      {
+        "end": "2026-01-31",
+        "revenue": 377684000.0,
+        "revenue_yoy_pct": 46.33,
+        "operating_margin_pct": -21.81,
+        "fcf": 74501000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-04-30",
+        "revenue": 387068000.0,
+        "revenue_yoy_pct": 38.99,
+        "operating_margin_pct": -13.6,
+        "fcf": 77412000.0,
+        "diluted_shares": 203668000.0
+      },
+      {
+        "end": "2026-07-31",
+        "revenue": 427260000.0,
+        "revenue_yoy_pct": 37.89,
+        "operating_margin_pct": -16.83,
+        "fcf": 71247000.0,
+        "diluted_shares": 206097000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 113.9,
+    "price_date": "2026-10-14",
+    "shares": {
+      "shares": 206097000.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-07-31"
+    },
+    "market_cap": 23474448300.0,
+    "enterprise_value": 22859694300.0,
+    "price_to_sales": 15.222,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 6.57,
+    "fcf_yield_pct": -0.172,
+    "ebit_yield_pct": -1.235,
+    "fcf_negative": true,
+    "ebit_negative": true,
+    "fcf_basis": "ex-prepayments",
+    "price_to_fcf_reported": 77.243,
+    "fcf_yield_reported_pct": 1.295,
+    "ust10y_pct": 5.21,
+    "ust10y_date": "2026-10-13",
+    "fcf_yield_vs_10y_pp": -5.382,
+    "history": [
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 10.613,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.422,
+        "fcf_yield_pct": -2.996,
+        "ebit_yield_pct": -12.564
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 12.275,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.147,
+        "fcf_yield_pct": -2.59,
+        "ebit_yield_pct": -10.801
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 16.595,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.026,
+        "fcf_yield_pct": -1.916,
+        "ebit_yield_pct": -7.914
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 17.559,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.695,
+        "fcf_yield_pct": -1.434,
+        "ebit_yield_pct": -3.003
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 18.61,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.374,
+        "fcf_yield_pct": -1.353,
+        "ebit_yield_pct": -2.829
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 17.522,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.707,
+        "fcf_yield_pct": -1.437,
+        "ebit_yield_pct": -3.009
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 14.806,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.754,
+        "fcf_yield_pct": -1.184,
+        "ebit_yield_pct": -2.74
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 13.55,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.38,
+        "fcf_yield_pct": -1.294,
+        "ebit_yield_pct": -3.001
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 12.479,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.014,
+        "fcf_yield_pct": -1.405,
+        "ebit_yield_pct": -3.267
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 12.679,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.887,
+        "fcf_yield_pct": -0.966,
+        "ebit_yield_pct": -2.58
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 9.276,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.781,
+        "fcf_yield_pct": -1.32,
+        "ebit_yield_pct": -3.568
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 8.614,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.609,
+        "fcf_yield_pct": -1.421,
+        "ebit_yield_pct": -3.855
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 7.31,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.68,
+        "fcf_yield_pct": -1.793,
+        "ebit_yield_pct": -3.806
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.938,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.597,
+        "fcf_yield_pct": -1.651,
+        "ebit_yield_pct": -3.488
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 11.737,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.52,
+        "fcf_yield_pct": -1.117,
+        "ebit_yield_pct": -2.318
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 11.476,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.714,
+        "fcf_yield_pct": -0.522,
+        "ebit_yield_pct": -1.938
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 10.344,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.668,
+        "fcf_yield_pct": -0.579,
+        "ebit_yield_pct": -2.16
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 13.3,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.519,
+        "fcf_yield_pct": -0.45,
+        "ebit_yield_pct": -1.664
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 15.298,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.537,
+        "fcf_yield_pct": -0.171,
+        "ebit_yield_pct": -1.229
+      },
+      {
+        "date": "2026-10-14",
+        "price_to_sales": 15.222,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.57,
+        "fcf_yield_pct": -0.172,
+        "ebit_yield_pct": -1.235
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 15.222,
+        "current_yield_pct": 6.57,
+        "points": 20,
+        "median": 12.578,
+        "low": 7.31,
+        "high": 18.608,
+        "negative_points": 0,
+        "median_yield_pct": 7.95,
+        "percentile": null,
+        "min_points": 24,
+        "from": "2025-03-31"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -0.172,
+        "points": 20,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 20,
+        "median_yield_pct": -1.337,
+        "percentile": null,
+        "min_points": 24,
+        "from": "2025-03-31"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -1.235,
+        "points": 20,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 20,
+        "median_yield_pct": -3.002,
+        "percentile": null,
+        "min_points": 24,
+        "from": "2025-03-31"
+      }
+    }
+  },
+  "trend": {
+    "close": 113.9,
+    "date": "2026-10-14",
+    "ma50": 103.77,
+    "ma200": 73.61,
+    "vs_ma50_pct": 9.76,
+    "vs_ma200_pct": 54.74,
+    "momentum_12_1_pct": 24.47,
+    "high_52w": 125.8,
+    "drawdown_52w_pct": -9.46,
+    "return_rs_pct": 121.77,
+    "rs_days": 126,
+    "spy_return_pct": 10.51,
+    "rs_spy_pp": 111.26,
+    "qqq_return_pct": 14.61,
+    "rs_qqq_pp": 107.16
+  },
+  "ust10y": {
+    "value": 5.21,
+    "date": "2026-10-13"
+  },
+  "guidance": {
+    "accession": "0001943896-26-000055",
+    "filing_date": "2026-08-27",
+    "period_end": "2026-01-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
+    "summary": "Rubrik says it is raising guidance for all guided fiscal 2027 metrics; the only figure in these excerpts is full-year Subscription ARR of between $1,880 million and $1,885 million, and the third-quarter figures are not shown.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2027",
+        "amount_text": "between $1,880 million and $1,885 million",
+        "stated_change": "raised",
+        "sentence": "Subscription ARR between $1,880 million and $1,885 million.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future, although it is important to note that these factors could be material to Rubrik’s results computed in accordance with GAAP."
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001943896-26-000041",
+      "filing_date": "2026-06-04",
+      "url": "https://www.sec.gov/Archives/edgar/data/1943896/000194389626000041/rubrikinc-991pressrelease4.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "There was no guidance change in the window. The last update was the August 27 Q2 report, which came before the window and raised all fiscal 2027 guided metrics, including subscription ARR.",
+        "evidence": [
+          {
+            "claim": "Subscription ARR between $1,880 million and $1,885 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
+            "event_date": "2026-08-27",
+            "tier": "primary",
+            "age_days": 49,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst moves in the window leaned positive. Baird raised its target and Yorkville Ives & Co initiated at Buy with a $145 target, offset partly by Weiss Ratings' Sell and Cestrian's Distribute call.",
+        "evidence": [
+          {
+            "claim": "Baird (Shrenik Kothari) raised its price target on Rubrik to $139 from $130 and maintained an Outperform rating.",
+            "url": "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
+            "event_date": "2026-09-23",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/2, names 5/5 · missing: 139, 130"
+          },
+          {
+            "claim": "Yorkville Ives & Co (Daniel Ives) initiated coverage of Rubrik at Buy with a $145 price target.",
+            "url": "https://www.google.com/finance/beta/quote/RBRK:NYSE",
+            "event_date": "2026-10-06",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/5 · missing: 145, Yorkville, Ives, Daniel, Rubrik, Buy"
+          },
+          {
+            "claim": "Weiss Ratings reiterated a Sell (D-) rating on Rubrik.",
+            "url": "https://www.marketbeat.com/stocks/NYSE/RBRK/forecast/",
+            "event_date": "2026-09-21",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new litigation or regulatory developments surfaced in the window. The older DOJ subpoena matter from 2023 had no reported update.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No material customer wins, losses or concentration issues were reported in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": -1,
+        "summary": "Insiders were steady sellers, including a director and the CFO, with no purchases. The sales were mostly under 10b5-1 plans, so the signal is modestly negative.",
+        "evidence": [
+          {
+            "claim": "Director John W. Thompson sold 13,500 Class A shares for about $1.56 million at prices between $114.68 and $116.47 under a 10b5-1 plan.",
+            "url": "https://www.investing.com/news/insider-trading-news/rubrik-director-john-thompson-sells-156-million-in-shares-93CH-4945363",
+            "event_date": "2026-10-01",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "A Form 4 shows sales of Rubrik shares at $101.47 to $103.48 on 2026-09-15 and at $102.05 to $108.05 on 2026-09-17, plus a tax-withholding disposal of 13,995 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001943896/000202022026000022/form4-09182026_010913.xml",
+            "event_date": "2026-09-15",
+            "tier": "primary",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 10/10, names 2/2"
+          },
+          {
+            "claim": "CFO Kiran Choudary sold 6,000 shares at an average price of $107.32.",
+            "url": "https://www.dailypolitical.com/2026/09/24/rubrik-inc-nyserbrk-given-average-recommendation-of-moderate-buy-by-analysts.html",
+            "event_date": "2026-09-17",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Rubrik launched AI-security products in the window: Code Guardian with Anthropic's Claude, MCP support with a CrowdStrike integration, and an expanded Project Hourglass. All sources are single, lower-tier sites.",
+        "evidence": [
+          {
+            "claim": "Rubrik announced Code Guardian and MCP support.",
+            "url": "https://www.stocktitan.net/news/RBRK/rubrik-deepens-commitment-to-msp-operated-cyber-resilience-with-fhi2n6hrkvrt.html",
+            "event_date": "2026-09-15",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "Rubrik expanded Project Hourglass, with Code Guardian powered by Claude and partners AHEAD, Trace3 and WWT.",
+            "url": "https://simplywall.st/stocks/us/software/nyse-rbrk/rubrik/news/is-project-hourglass-expansion-altering-the-investment-case",
+            "event_date": "2026-10-09",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 9/9"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 2,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": "2026-10-15T07:18:35Z"
+  },
+  "claude": {
+    "enabled": true,
+    "news_reused": {
+      "news_from": "2026-10-15T07:18:35Z",
+      "archived": "data/stocks/runs/RBRK/2026-10-15T071835Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
+    }
+  },
+  "news_from": "2026-10-15T07:18:35Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Rubrik rates Hold: strong growth, balance sheet and trend offset by weak quality and a very high valuation.",
+    "thesis": "Rubrik scores 55, a Hold with medium confidence, because strong and weak factors roughly cancel out. Revenue grew 37.89% year on year in the latest quarter and 42.45% on a trailing basis (growth score 84). The balance sheet is net cash with cash at 1.54 times debt (score 96), and the shares sit 54.74% above their 200-day average (trend score 90). Against that, quality scores only 28: operating margin is -18.31%, stock-based pay is 22.16% of revenue, and FCF margin is -2.62% once $344.3M of customer prepayments is stripped out, versus a reported 19.7%. Valuation scores 3, with price-to-sales at 15.222 and an FCF yield 5.382 points below the 10-year Treasury yield.",
+    "key_risks": [
+      "Valuation is stretched at 15.222 times sales, leaving little room for a growth slowdown.",
+      "Reported cash flow leans on customer prepayments; excluding them, FCF is negative.",
+      "Stock-based pay of 22.16% of revenue and 5.75% annual share dilution weigh on per-share value.",
+      "Insiders, including a director and the CFO, sold steadily with no purchases.",
+      "Growth is slowing slightly, down 1.1 points of acceleration; any sharper slowdown could hit a stock trading well above its 200-day average."
+    ],
+    "what_would_change": [
+      "Up to Buy needs 10 more points, most plausibly from better quality, such as operating losses narrowing or positive FCF excluding prepayments.",
+      "A meaningful drop in price-to-sales would lift the valuation score from 3 and could add points toward the Buy threshold of 65.",
+      "Down to Sell needs an 11-point drop, for example if the trend score of 90 fades on a sharp pullback or growth decelerates markedly.",
+      "Negative news, such as a guidance cut or heavier insider selling, would lower the news-risk score of 56."
+    ]
+  },
+  "cost": {
+    "steps": {
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2762,
+        "output_tokens": 685,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2762,
+            "output_tokens": 685,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0247,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.0247,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 113.9,
+    "as_of": "2026-10-14T20:00:00Z",
+    "prev_close": 118.47
+  },
+  "close_note": {
+    "scored_on": "2026-10-14",
+    "latest": "2026-10-14",
+    "latest_from": "quote",
+    "run_et": "2026-10-15 05:19",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "38711992549",
+    "tickers": [
+      "GOOGL",
+      "GTLB",
+      "INOD",
+      "META",
+      "MSFT",
+      "MSGS",
+      "NTAP",
+      "NVDA",
+      "ORCL",
+      "PLTR",
+      "RBRK",
+      "SHOP",
+      "TIC",
+      "ZS"
+    ]
+  }
+}

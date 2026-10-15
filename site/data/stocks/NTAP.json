@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T07:28:28Z",
-  "generated_at": "2026-10-15T07:29:28+00:00",
+  "run_id": "2026-10-15T09:19:40Z",
+  "generated_at": "2026-10-15T09:19:41+00:00",
   "ticker": "NTAP",
   "sec_ticker": "NTAP",
   "cik": "0001002047",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "input",
-      "scoring": "input"
+      "research": "config",
+      "scoring": "config"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -20,6 +20,12 @@
   "rating_before_overlay": "Buy",
   "score": 71,
   "confidence": "High",
+  "confidence_detail": {
+    "level": "High",
+    "points": 0,
+    "reasons": [],
+    "factors_with_data": 6
+  },
   "bands": {
     "up": {
       "label": "Strong Buy",
@@ -165,19 +171,19 @@
           "value": 98.4,
           "score": 1.6,
           "weight": 0.1,
-          "note": null
+          "note": "cheaper than now in 98.4% of 61 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
           "value": 98.4,
           "score": 1.6,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 98.4% of 61 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
           "value": 96.7,
           "score": 3.3,
           "weight": 0.15,
-          "note": null
+          "note": "cheaper than now in 96.7% of 61 month-ends (ranked on yields)"
         }
       },
       "coverage": 1.0,
@@ -317,25 +323,55 @@
     "operating_cash_flow_ttm": 1897000000.0,
     "capex_ttm": 247000000.0,
     "sbc_ttm": 397000000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
     "fcf_ttm": 1650000000.0,
     "gross_margin_pct": 70.63,
     "operating_margin_pct": 25.02,
     "fcf_margin_pct": 22.32,
     "capex_intensity_pct": 3.34,
     "sbc_pct_revenue": 5.37,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 361000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "share_of_ocf": 0.1903,
+      "max_share_of_ocf": 0.25,
+      "applies": false
+    },
     "balance_sheet": {
       "date": "2026-07-31",
       "cash": 1573000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
       "short_term_investments": 2003000000.0,
+      "investment_tags": [
+        {
+          "tag": "ShortTermInvestments",
+          "val": 2003000000.0
+        }
+      ],
+      "investment_note": null,
       "cash_and_investments": 3576000000.0,
       "debt": 2488000000.0,
       "debt_tags": [
         "LongTermDebt",
         "CommercialPaper"
       ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 2488000000.0
+        },
+        {
+          "tag": "CommercialPaper",
+          "val": 0.0
+        }
+      ],
       "debt_note": null,
-      "net_debt": -1088000000.0
+      "net_debt": -1088000000.0,
+      "unknown": []
     },
+    "share_outliers": [],
     "diluted_shares": 200000000.0,
     "diluted_shares_end": "2026-07-31",
     "dilution_yoy_pct": -1.48,
@@ -457,9 +493,12 @@
     "price_to_sales": 5.905,
     "price_to_fcf": 26.451,
     "ev_to_ebit": 23.016,
+    "sales_yield_pct": 16.935,
+    "fcf_yield_pct": 3.781,
+    "ebit_yield_pct": 4.345,
     "fcf_negative": false,
     "ebit_negative": false,
-    "fcf_yield_pct": 3.781,
+    "fcf_basis": "reported",
     "ust10y_pct": 5.21,
     "ust10y_date": "2026-10-13",
     "fcf_yield_vs_10y_pp": -1.429,
@@ -468,395 +507,591 @@
         "date": "2021-10-29",
         "price_to_sales": 3.467,
         "price_to_fcf": 17.419,
-        "ev_to_ebit": 16.203
+        "ev_to_ebit": 16.203,
+        "sales_yield_pct": 28.846,
+        "fcf_yield_pct": 5.741,
+        "ebit_yield_pct": 6.172
       },
       {
         "date": "2021-11-30",
         "price_to_sales": 3.45,
         "price_to_fcf": 17.337,
-        "ev_to_ebit": 16.118
+        "ev_to_ebit": 16.118,
+        "sales_yield_pct": 28.983,
+        "fcf_yield_pct": 5.768,
+        "ebit_yield_pct": 6.204
       },
       {
         "date": "2021-12-31",
         "price_to_sales": 3.483,
         "price_to_fcf": 16.142,
-        "ev_to_ebit": 15.248
+        "ev_to_ebit": 15.248,
+        "sales_yield_pct": 28.715,
+        "fcf_yield_pct": 6.195,
+        "ebit_yield_pct": 6.558
       },
       {
         "date": "2022-01-31",
         "price_to_sales": 3.275,
         "price_to_fcf": 15.181,
-        "ev_to_ebit": 14.249
+        "ev_to_ebit": 14.249,
+        "sales_yield_pct": 30.534,
+        "fcf_yield_pct": 6.587,
+        "ebit_yield_pct": 7.018
       },
       {
         "date": "2022-02-28",
         "price_to_sales": 2.967,
         "price_to_fcf": 13.754,
-        "ev_to_ebit": 12.767
+        "ev_to_ebit": 12.767,
+        "sales_yield_pct": 33.701,
+        "fcf_yield_pct": 7.271,
+        "ebit_yield_pct": 7.833
       },
       {
         "date": "2022-03-31",
         "price_to_sales": 3.536,
         "price_to_fcf": 16.343,
-        "ev_to_ebit": 13.223
+        "ev_to_ebit": 13.223,
+        "sales_yield_pct": 28.279,
+        "fcf_yield_pct": 6.119,
+        "ebit_yield_pct": 7.563
       },
       {
         "date": "2022-04-29",
         "price_to_sales": 3.121,
         "price_to_fcf": 14.423,
-        "ev_to_ebit": 11.53
+        "ev_to_ebit": 11.53,
+        "sales_yield_pct": 32.043,
+        "fcf_yield_pct": 6.933,
+        "ebit_yield_pct": 8.673
       },
       {
         "date": "2022-05-31",
         "price_to_sales": 3.065,
         "price_to_fcf": 14.167,
-        "ev_to_ebit": 11.304
+        "ev_to_ebit": 11.304,
+        "sales_yield_pct": 32.622,
+        "fcf_yield_pct": 7.059,
+        "ebit_yield_pct": 8.846
       },
       {
         "date": "2022-06-30",
         "price_to_sales": 2.716,
         "price_to_fcf": 15.167,
-        "ev_to_ebit": 11.618
+        "ev_to_ebit": 11.618,
+        "sales_yield_pct": 36.814,
+        "fcf_yield_pct": 6.593,
+        "ebit_yield_pct": 8.607
       },
       {
         "date": "2022-07-29",
         "price_to_sales": 2.97,
         "price_to_fcf": 16.583,
-        "ev_to_ebit": 12.823
+        "ev_to_ebit": 12.823,
+        "sales_yield_pct": 33.671,
+        "fcf_yield_pct": 6.03,
+        "ebit_yield_pct": 7.798
       },
       {
         "date": "2022-08-31",
         "price_to_sales": 2.868,
         "price_to_fcf": 15.997,
-        "ev_to_ebit": 13.203
+        "ev_to_ebit": 13.203,
+        "sales_yield_pct": 34.87,
+        "fcf_yield_pct": 6.251,
+        "ebit_yield_pct": 7.574
       },
       {
         "date": "2022-09-30",
         "price_to_sales": 2.459,
         "price_to_fcf": 13.717,
-        "ev_to_ebit": 11.223
+        "ev_to_ebit": 11.223,
+        "sales_yield_pct": 40.666,
+        "fcf_yield_pct": 7.29,
+        "ebit_yield_pct": 8.91
       },
       {
         "date": "2022-10-31",
         "price_to_sales": 2.754,
         "price_to_fcf": 15.363,
-        "ev_to_ebit": 12.652
+        "ev_to_ebit": 12.652,
+        "sales_yield_pct": 36.31,
+        "fcf_yield_pct": 6.509,
+        "ebit_yield_pct": 7.904
       },
       {
         "date": "2022-11-30",
         "price_to_sales": 2.688,
         "price_to_fcf": 14.995,
-        "ev_to_ebit": 12.332
+        "ev_to_ebit": 12.332,
+        "sales_yield_pct": 37.201,
+        "fcf_yield_pct": 6.669,
+        "ebit_yield_pct": 8.109
       },
       {
         "date": "2022-12-30",
         "price_to_sales": 2.306,
         "price_to_fcf": 14.763,
-        "ev_to_ebit": 10.919
+        "ev_to_ebit": 10.919,
+        "sales_yield_pct": 43.373,
+        "fcf_yield_pct": 6.774,
+        "ebit_yield_pct": 9.159
       },
       {
         "date": "2023-01-31",
         "price_to_sales": 2.542,
         "price_to_fcf": 16.28,
-        "ev_to_ebit": 12.098
+        "ev_to_ebit": 12.098,
+        "sales_yield_pct": 39.333,
+        "fcf_yield_pct": 6.143,
+        "ebit_yield_pct": 8.266
       },
       {
         "date": "2023-02-28",
         "price_to_sales": 2.478,
         "price_to_fcf": 15.867,
-        "ev_to_ebit": 11.777
+        "ev_to_ebit": 11.777,
+        "sales_yield_pct": 40.356,
+        "fcf_yield_pct": 6.302,
+        "ebit_yield_pct": 8.491
       },
       {
         "date": "2023-03-31",
         "price_to_sales": 2.164,
         "price_to_fcf": 13.777,
-        "ev_to_ebit": 13.204
+        "ev_to_ebit": 13.204,
+        "sales_yield_pct": 46.206,
+        "fcf_yield_pct": 7.259,
+        "ebit_yield_pct": 7.574
       },
       {
         "date": "2023-04-28",
         "price_to_sales": 2.132,
         "price_to_fcf": 13.569,
-        "ev_to_ebit": 12.994
+        "ev_to_ebit": 12.994,
+        "sales_yield_pct": 46.911,
+        "fcf_yield_pct": 7.37,
+        "ebit_yield_pct": 7.696
       },
       {
         "date": "2023-05-31",
         "price_to_sales": 2.249,
         "price_to_fcf": 14.316,
-        "ev_to_ebit": 13.75
+        "ev_to_ebit": 13.75,
+        "sales_yield_pct": 44.465,
+        "fcf_yield_pct": 6.985,
+        "ebit_yield_pct": 7.273
       },
       {
         "date": "2023-06-30",
         "price_to_sales": 2.642,
         "price_to_fcf": 19.364,
-        "ev_to_ebit": 15.842
+        "ev_to_ebit": 15.842,
+        "sales_yield_pct": 37.851,
+        "fcf_yield_pct": 5.164,
+        "ebit_yield_pct": 6.312
       },
       {
         "date": "2023-07-31",
         "price_to_sales": 2.698,
         "price_to_fcf": 19.772,
-        "ev_to_ebit": 16.19
+        "ev_to_ebit": 16.19,
+        "sales_yield_pct": 37.07,
+        "fcf_yield_pct": 5.058,
+        "ebit_yield_pct": 6.177
       },
       {
         "date": "2023-08-31",
         "price_to_sales": 2.671,
         "price_to_fcf": 15.483,
-        "ev_to_ebit": 16.984
+        "ev_to_ebit": 16.984,
+        "sales_yield_pct": 37.435,
+        "fcf_yield_pct": 6.459,
+        "ebit_yield_pct": 5.888
       },
       {
         "date": "2023-09-29",
         "price_to_sales": 2.643,
         "price_to_fcf": 15.318,
-        "ev_to_ebit": 16.796
+        "ev_to_ebit": 16.796,
+        "sales_yield_pct": 37.84,
+        "fcf_yield_pct": 6.528,
+        "ebit_yield_pct": 5.954
       },
       {
         "date": "2023-10-31",
         "price_to_sales": 2.535,
         "price_to_fcf": 14.692,
-        "ev_to_ebit": 16.084
+        "ev_to_ebit": 16.084,
+        "sales_yield_pct": 39.452,
+        "fcf_yield_pct": 6.806,
+        "ebit_yield_pct": 6.217
       },
       {
         "date": "2023-11-30",
         "price_to_sales": 3.161,
         "price_to_fcf": 18.722,
-        "ev_to_ebit": 19.786
+        "ev_to_ebit": 19.786,
+        "sales_yield_pct": 31.639,
+        "fcf_yield_pct": 5.341,
+        "ebit_yield_pct": 5.054
       },
       {
         "date": "2023-12-29",
         "price_to_sales": 3.049,
         "price_to_fcf": 18.06,
-        "ev_to_ebit": 19.079
+        "ev_to_ebit": 19.079,
+        "sales_yield_pct": 32.798,
+        "fcf_yield_pct": 5.537,
+        "ebit_yield_pct": 5.241
       },
       {
         "date": "2024-01-31",
         "price_to_sales": 3.016,
         "price_to_fcf": 17.863,
-        "ev_to_ebit": 18.868
+        "ev_to_ebit": 18.868,
+        "sales_yield_pct": 33.159,
+        "fcf_yield_pct": 5.598,
+        "ebit_yield_pct": 5.3
       },
       {
         "date": "2024-02-29",
         "price_to_sales": 3.042,
         "price_to_fcf": 16.225,
-        "ev_to_ebit": 15.798
+        "ev_to_ebit": 15.798,
+        "sales_yield_pct": 32.87,
+        "fcf_yield_pct": 6.163,
+        "ebit_yield_pct": 6.33
       },
       {
         "date": "2024-03-28",
         "price_to_sales": 3.583,
         "price_to_fcf": 19.11,
-        "ev_to_ebit": 18.689
+        "ev_to_ebit": 18.689,
+        "sales_yield_pct": 27.907,
+        "fcf_yield_pct": 5.233,
+        "ebit_yield_pct": 5.351
       },
       {
         "date": "2024-04-30",
         "price_to_sales": 3.489,
         "price_to_fcf": 18.608,
-        "ev_to_ebit": 18.185
+        "ev_to_ebit": 18.185,
+        "sales_yield_pct": 28.66,
+        "fcf_yield_pct": 5.374,
+        "ebit_yield_pct": 5.499
       },
       {
         "date": "2024-05-31",
         "price_to_sales": 4.111,
         "price_to_fcf": 21.925,
-        "ev_to_ebit": 21.508
+        "ev_to_ebit": 21.508,
+        "sales_yield_pct": 24.324,
+        "fcf_yield_pct": 4.561,
+        "ebit_yield_pct": 4.649
       },
       {
         "date": "2024-06-28",
         "price_to_sales": 4.377,
         "price_to_fcf": 17.931,
-        "ev_to_ebit": 21.89
+        "ev_to_ebit": 21.89,
+        "sales_yield_pct": 22.847,
+        "fcf_yield_pct": 5.577,
+        "ebit_yield_pct": 4.568
       },
       {
         "date": "2024-07-31",
         "price_to_sales": 4.315,
         "price_to_fcf": 17.678,
-        "ev_to_ebit": 21.571
+        "ev_to_ebit": 21.571,
+        "sales_yield_pct": 23.175,
+        "fcf_yield_pct": 5.657,
+        "ebit_yield_pct": 4.636
       },
       {
         "date": "2024-08-30",
         "price_to_sales": 4.013,
         "price_to_fcf": 18.125,
-        "ev_to_ebit": 18.944
+        "ev_to_ebit": 18.944,
+        "sales_yield_pct": 24.917,
+        "fcf_yield_pct": 5.517,
+        "ebit_yield_pct": 5.279
       },
       {
         "date": "2024-09-30",
         "price_to_sales": 4.106,
         "price_to_fcf": 18.544,
-        "ev_to_ebit": 19.393
+        "ev_to_ebit": 19.393,
+        "sales_yield_pct": 24.354,
+        "fcf_yield_pct": 5.393,
+        "ebit_yield_pct": 5.156
       },
       {
         "date": "2024-10-31",
         "price_to_sales": 3.833,
         "price_to_fcf": 17.313,
-        "ev_to_ebit": 18.074
+        "ev_to_ebit": 18.074,
+        "sales_yield_pct": 26.086,
+        "fcf_yield_pct": 5.776,
+        "ebit_yield_pct": 5.533
       },
       {
         "date": "2024-11-29",
         "price_to_sales": 3.979,
         "price_to_fcf": 18.73,
-        "ev_to_ebit": 18.782
+        "ev_to_ebit": 18.782,
+        "sales_yield_pct": 25.134,
+        "fcf_yield_pct": 5.339,
+        "ebit_yield_pct": 5.324
       },
       {
         "date": "2024-12-31",
         "price_to_sales": 3.766,
         "price_to_fcf": 17.729,
-        "ev_to_ebit": 17.769
+        "ev_to_ebit": 17.769,
+        "sales_yield_pct": 26.554,
+        "fcf_yield_pct": 5.641,
+        "ebit_yield_pct": 5.628
       },
       {
         "date": "2025-01-31",
         "price_to_sales": 3.961,
         "price_to_fcf": 18.648,
-        "ev_to_ebit": 18.699
+        "ev_to_ebit": 18.699,
+        "sales_yield_pct": 25.245,
+        "fcf_yield_pct": 5.363,
+        "ebit_yield_pct": 5.348
       },
       {
         "date": "2025-02-28",
         "price_to_sales": 3.19,
         "price_to_fcf": 16.411,
-        "ev_to_ebit": 15.124
+        "ev_to_ebit": 15.124,
+        "sales_yield_pct": 31.348,
+        "fcf_yield_pct": 6.093,
+        "ebit_yield_pct": 6.612
       },
       {
         "date": "2025-03-31",
         "price_to_sales": 2.807,
         "price_to_fcf": 14.443,
-        "ev_to_ebit": 13.287
+        "ev_to_ebit": 13.287,
+        "sales_yield_pct": 35.62,
+        "fcf_yield_pct": 6.924,
+        "ebit_yield_pct": 7.526
       },
       {
         "date": "2025-04-30",
         "price_to_sales": 2.868,
         "price_to_fcf": 14.757,
-        "ev_to_ebit": 13.58
+        "ev_to_ebit": 13.58,
+        "sales_yield_pct": 34.862,
+        "fcf_yield_pct": 6.776,
+        "ebit_yield_pct": 7.364
       },
       {
         "date": "2025-05-30",
         "price_to_sales": 3.169,
         "price_to_fcf": 16.305,
-        "ev_to_ebit": 15.025
+        "ev_to_ebit": 15.025,
+        "sales_yield_pct": 31.554,
+        "fcf_yield_pct": 6.133,
+        "ebit_yield_pct": 6.656
       },
       {
         "date": "2025-06-30",
         "price_to_sales": 3.388,
         "price_to_fcf": 16.643,
-        "ev_to_ebit": 16.199
+        "ev_to_ebit": 16.199,
+        "sales_yield_pct": 29.512,
+        "fcf_yield_pct": 6.008,
+        "ebit_yield_pct": 6.173
       },
       {
         "date": "2025-07-31",
         "price_to_sales": 3.311,
         "price_to_fcf": 16.265,
-        "ev_to_ebit": 15.821
+        "ev_to_ebit": 15.821,
+        "sales_yield_pct": 30.198,
+        "fcf_yield_pct": 6.148,
+        "ebit_yield_pct": 6.321
       },
       {
         "date": "2025-08-29",
         "price_to_sales": 3.474,
         "price_to_fcf": 13.81,
-        "ev_to_ebit": 16.171
+        "ev_to_ebit": 16.171,
+        "sales_yield_pct": 28.782,
+        "fcf_yield_pct": 7.241,
+        "ebit_yield_pct": 6.184
       },
       {
         "date": "2025-09-30",
         "price_to_sales": 3.649,
         "price_to_fcf": 14.504,
-        "ev_to_ebit": 17.015
+        "ev_to_ebit": 17.015,
+        "sales_yield_pct": 27.404,
+        "fcf_yield_pct": 6.895,
+        "ebit_yield_pct": 5.877
       },
       {
         "date": "2025-10-31",
         "price_to_sales": 3.628,
         "price_to_fcf": 14.421,
-        "ev_to_ebit": 16.914
+        "ev_to_ebit": 16.914,
+        "sales_yield_pct": 27.562,
+        "fcf_yield_pct": 6.935,
+        "ebit_yield_pct": 5.912
       },
       {
         "date": "2025-11-28",
         "price_to_sales": 3.395,
         "price_to_fcf": 13.446,
-        "ev_to_ebit": 15.52
+        "ev_to_ebit": 15.52,
+        "sales_yield_pct": 29.452,
+        "fcf_yield_pct": 7.437,
+        "ebit_yield_pct": 6.443
       },
       {
         "date": "2025-12-31",
         "price_to_sales": 3.259,
         "price_to_fcf": 12.907,
-        "ev_to_ebit": 14.883
+        "ev_to_ebit": 14.883,
+        "sales_yield_pct": 30.681,
+        "fcf_yield_pct": 7.748,
+        "ebit_yield_pct": 6.719
       },
       {
         "date": "2026-01-30",
         "price_to_sales": 2.932,
         "price_to_fcf": 11.613,
-        "ev_to_ebit": 13.353
+        "ev_to_ebit": 13.353,
+        "sales_yield_pct": 34.101,
+        "fcf_yield_pct": 8.611,
+        "ebit_yield_pct": 7.489
       },
       {
         "date": "2026-02-27",
         "price_to_sales": 2.952,
         "price_to_fcf": 12.31,
-        "ev_to_ebit": 12.942
+        "ev_to_ebit": 12.942,
+        "sales_yield_pct": 33.874,
+        "fcf_yield_pct": 8.124,
+        "ebit_yield_pct": 7.727
       },
       {
         "date": "2026-03-31",
         "price_to_sales": 3.052,
         "price_to_fcf": 12.727,
-        "ev_to_ebit": 13.393
+        "ev_to_ebit": 13.393,
+        "sales_yield_pct": 32.762,
+        "fcf_yield_pct": 7.857,
+        "ebit_yield_pct": 7.466
       },
       {
         "date": "2026-04-30",
         "price_to_sales": 3.302,
         "price_to_fcf": 13.769,
-        "ev_to_ebit": 14.518
+        "ev_to_ebit": 14.518,
+        "sales_yield_pct": 30.283,
+        "fcf_yield_pct": 7.263,
+        "ebit_yield_pct": 6.888
       },
       {
         "date": "2026-05-29",
         "price_to_sales": 5.196,
         "price_to_fcf": 21.664,
-        "ev_to_ebit": 23.044
+        "ev_to_ebit": 23.044,
+        "sales_yield_pct": 19.247,
+        "fcf_yield_pct": 4.616,
+        "ebit_yield_pct": 4.339
       },
       {
         "date": "2026-06-30",
         "price_to_sales": 4.492,
         "price_to_fcf": 16.644,
-        "ev_to_ebit": 17.927
+        "ev_to_ebit": 17.927,
+        "sales_yield_pct": 22.262,
+        "fcf_yield_pct": 6.008,
+        "ebit_yield_pct": 5.578
       },
       {
         "date": "2026-07-31",
         "price_to_sales": 5.181,
         "price_to_fcf": 19.197,
-        "ev_to_ebit": 20.777
+        "ev_to_ebit": 20.777,
+        "sales_yield_pct": 19.301,
+        "fcf_yield_pct": 5.209,
+        "ebit_yield_pct": 4.813
       },
       {
         "date": "2026-08-31",
         "price_to_sales": 5.378,
         "price_to_fcf": 19.927,
-        "ev_to_ebit": 21.593
+        "ev_to_ebit": 21.593,
+        "sales_yield_pct": 18.594,
+        "fcf_yield_pct": 5.018,
+        "ebit_yield_pct": 4.631
       },
       {
         "date": "2026-09-30",
         "price_to_sales": 5.685,
         "price_to_fcf": 25.464,
-        "ev_to_ebit": 22.135
+        "ev_to_ebit": 22.135,
+        "sales_yield_pct": 17.591,
+        "fcf_yield_pct": 3.927,
+        "ebit_yield_pct": 4.518
       },
       {
         "date": "2026-10-14",
         "price_to_sales": 6.013,
         "price_to_fcf": 26.933,
-        "ev_to_ebit": 23.446
+        "ev_to_ebit": 23.446,
+        "sales_yield_pct": 16.631,
+        "fcf_yield_pct": 3.713,
+        "ebit_yield_pct": 4.265
       }
     ],
+    "share_outliers": [],
     "vs_history": {
       "price_to_sales": {
         "current": 5.905,
+        "current_yield_pct": 16.935,
         "points": 61,
         "median": 3.19,
         "low": 2.132,
         "high": 6.013,
+        "negative_points": 0,
+        "median_yield_pct": 31.348,
         "percentile": 98.4,
+        "min_points": 24,
         "from": "2021-10-29"
       },
       "price_to_fcf": {
         "current": 26.451,
+        "current_yield_pct": 3.781,
         "points": 61,
         "median": 16.265,
         "low": 11.613,
-        "high": 26.933,
+        "high": 26.932,
+        "negative_points": 0,
+        "median_yield_pct": 6.148,
         "percentile": 98.4,
+        "min_points": 24,
         "from": "2021-10-29"
       },
       "ev_to_ebit": {
         "current": 23.016,
+        "current_yield_pct": 4.345,
         "points": 61,
-        "median": 15.842,
-        "low": 10.919,
-        "high": 23.446,
+        "median": 15.843,
+        "low": 10.918,
+        "high": 23.447,
+        "negative_points": 0,
+        "median_yield_pct": 6.312,
         "percentile": 96.7,
+        "min_points": 24,
         "from": "2021-10-29"
       }
     }
@@ -1154,172 +1389,83 @@
           "unreachable": 0
         }
       }
-    }
+    },
+    "reused_from": "2026-10-15T07:28:28Z"
   },
   "claude": {
     "enabled": true,
-    "research": {
-      "urls": [
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000100204726000003/ntap-ex99_1.htm",
-        "https://finance.yahoo.com/technology/ai/articles/netapp-q1-beat-raised-guidance-163600631.html",
-        "https://www.marketscreener.com/news/netapp-inc-provides-earnings-guidance-for-the-first-quarter-and-full-year-of-fiscal-year-2027-ce7f5ddbd989f526",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526380207/ntap-20260731.htm",
-        "https://pulse2.com/netapp-q1-fiscal-2027-revenue-reaches-record-2-03-billion-as-eps-hits-2-58-and-guidance-is-raised/",
-        "https://www.albawaba.com/business/pr/netapp-reports-first-quarter-fiscal-year-1636416",
-        "https://finance.yahoo.com/technology/ai/articles/ai-flash-demand-power-netapps-122700083.html",
-        "https://simplywall.st/stocks/us/tech/nasdaq-ntap/netapp/news/netapp-ntap-is-up-251-after-ai-driven-fy26-results-and-fy27/amp",
-        "https://www.stocktaper.com/earningsCallSummary/NTAP/2026/Q4",
-        "https://www.benzinga.com/quote/NTAP/analyst-ratings",
-        "https://simplywall.st/stocks/us/tech/nasdaq-ntap/netapp",
-        "https://www.tipranks.com/stocks/ntap",
-        "https://stockanalysis.com/stocks/ntap/",
-        "https://public.com/stocks/ntap/forecast-price-target",
-        "https://www.chartmill.com/stock/quote/NTAP/analyst-ratings",
-        "https://www.pricetargets.com/NASDAQ/NTAP",
-        "https://www.wallstreetzen.com/stocks/us/nasdaq/ntap/stock-forecast",
-        "https://www.tradingkey.com/markets/stocks/ntap/forecast",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526321239/ntap-2026_ars.pdf",
-        "https://www.sec.gov/Archives/edgar/data/1002047/000119312526076545/ntap-ex99_1.htm",
-        "https://www.sdxcentral.com/news/former-netapp-cto-wins-dismissal-of-lawsuit-after-vast-data-deal/",
-        "https://www.law.com/radar/card/pm-61025462-netapp-inc-v-stefansson/",
-        "https://www.calcalistech.com/ctechnews/article/h1r00ghse11x",
-        "https://www.sec.gov/Archives/edgar/data/1002047/000119312526076545/ntap-20260226.htm",
-        "https://chrismellor.substack.com/p/netapp-goes-to-court-against-former",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000100204726000003/ntap-20260902.htm",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526282862/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526357081/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526399472/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526405401/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526415633/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526414223/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526393231/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001002047/000119312526393227/ownership.xml",
-        "https://www.stocktitan.net/sec-filings/NTAP/form-4-net-app-inc-insider-trading-activity-8c73575ea236.html",
-        "https://www.stocktitan.net/sec-filings/NTAP/form-4-net-app-inc-insider-trading-activity-456fbfa4388b.html",
-        "https://www.oracle.com/news/announcement/netapp-and-oracle-to-launch-fully-managed-cloud-storage-service-for-demanding-ai-and-enterprise-workloads-2026-09-29/",
-        "https://www.gdnonline.com/Details/1409655/NetApp,-Oracle-launch-fully-managed-cloud-storage-service-",
-        "https://simplywall.st/stocks/us/tech/nasdaq-ntap/netapp/news/netapp-ntap-unveiled-novus-and-new-alliances-is-the-stock-fu",
-        "https://www.distillintelligence.com/news/netapp",
-        "https://www.computerweekly.com/news/366651416/NetApp-aims-Novus-storage-at-AI-factory-bottlenecks",
-        "https://tradersunion.com/news/stocks/show/3712486-netapp-gains-3-83percent-on-dividend/",
-        "https://www.netapp.com/newsroom/press-releases/news-rel-20260316-181478/",
-        "https://www.gurufocus.com/news/9103966/netapp-ntap-shares-rise-following-launch-of-novus-storage-architecture",
-        "https://www.zawya.com/en/press-release/companies-news/netapp-and-oracle-to-launch-fully-managed-cloud-storage-service-for-demanding-ai-and-enterprise-workloads-1591361",
-        "https://www.hpcwire.com/2026/10/01/netapp-eliminates-metadata-bottleneck-for-zettascale-storage-with-new-novus-architecture/",
-        "https://www.itpro.com/cloud/cloud-computing/netapp-ticks-another-hyperscaler-box-with-oracle-cloud-infrastructure-deal",
-        "https://www.thestack.technology/aws-wins-controversial-473m-hyperscaler-only-hmrc-contract/",
-        "https://careers.netapp.com/job/san-jose/senior-client-executive-hyperscaler/27600/95072599264",
-        "https://siliconangle.com/2024/09/25/hyperscaler-partnerships-netappinsight/",
-        "https://docs.netapp.com/us-en/console-licenses-subscriptions/task-manage-billing-preferences.html",
-        "https://www.sahmcapital.com/news/content/are-netapps-ntap-new-defense-contracts-quietly-redefining-its-cash-generation-story-2026-02-12",
-        "https://windowsforum.com/threads/netapp-2025-microsoft-americas-poy-claim-plausible-but-unconfirmed.389136/",
-        "https://vendorbenchmark.com/vendors/netapp-ontap-pricing",
-        "https://www.gurufocus.com/news/9123348/ntap-downgraded-by-barclays-rating-changed-to-equalweight",
-        "https://www.investing.com/news/analyst-ratings/barclays-downgrades-netapp-stock-rating-on-valuation-concerns-93CH-4948367",
-        "https://finance.yahoo.com/markets/stocks/articles/hpe-dell-ntap-stocks-downgraded-102255493.html",
-        "https://www.investing.com/news/stock-market-news/why-is-netapp-stock-sliding-today-93CH-4949467",
-        "https://finviz.com/stock?t=NTAP",
-        "https://tradersagency.com/blog/barclays-cuts-dell-hpe-and-netapp-to-equal-weight-citing-no-meaningful-ai-inflection-dell-sinks-11percent",
-        "https://stocktwits.com/news-articles/markets/equity/hpe-dell-ntap-stocks-downgraded-barclays-sees-no-meaningful-ai-inflection/cZxfmk2RBp8",
-        "https://invezz.com/news/2026/10/14/why-are-dell-and-hpe-stocks-plunging-today/",
-        "https://de.investing.com/news/analyst-ratings/barclays-stuft-netapp-wegen-bewertungsbedenken-ab-93CH-3702916",
-        "https://www.tipranks.com/news/the-fly/factset-downgraded-to-equal-weight-from-overweight-at-barclays",
-        "https://stockanalysis.com/quote/etr/NTA/",
-        "https://www.marketscreener.com/news/goldman-sachs-raises-netapp-price-target-to-240-from-210-ce785dd9dd8af62c",
-        "https://www.investing.com/news/stock-market-news/why-is-netapp-stock-climbing-today-93CH-4936704",
-        "https://www.tradingview.com/news/tradingview:abf01cba7af74:0-td-cowen-maintains-buy-rating-on-netapp-250-price-target/",
-        "https://www.cnn.com/markets/stocks/NTAP",
-        "https://rallies.ai/news/netapp-inc-td-cowen-raises-target-price-to-250-from-200-b348a7d89e62ee94",
-        "https://stocktwits.com/news-articles/markets/equity/ntap-stock-hits-fresh-record-high-after-evercore-upgrade/cZDvS36RBZ5",
-        "https://intellectia.ai/news/stock/netapp-shares-rise-amid-takeover-speculation",
-        "https://www.benzinga.com/stock/ntap/ratings"
-      ],
-      "searches": 8
+    "news_reused": {
+      "news_from": "2026-10-15T07:28:28Z",
+      "archived": "data/stocks/runs/NTAP/2026-10-15T072828Z.json",
+      "models": {
+        "sources": {
+          "research": "input",
+          "scoring": "input"
+        },
+        "research": "claude-sonnet-5-5",
+        "scoring": "claude-opus-5-5"
+      }
     }
+  },
+  "news_from": "2026-10-15T07:28:28Z",
+  "news_models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
   },
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "NetApp rates Buy on accelerating growth, strong margins and momentum, held back by a rich valuation.",
-    "thesis": "NetApp scores 71, a Buy with high confidence, driven by strong fundamentals and price trend. Growth scores 82, with quarterly revenue up 29.89% year over year versus 12.15% on a trailing basis, an acceleration of 17.42 points. Quality (82) and balance sheet (95) are strong: a 70.63% gross margin, 22.32% free cash flow margin, a slightly shrinking share count (-1.48%) and more cash than debt (cash-to-debt 1.44). Trend scores 96 after a 61.88% 12-1 month gain, with the stock 54.73% above its 200-day average. The main drag is valuation at 28: price-to-sales of 5.905 and price-to-FCF of 26.451 sit near the 98th percentile of the stock's own history, and news risk is a middling 56.",
+    "headline": "NetApp rates Buy on accelerating growth, strong margins and net cash, held back by a stretched valuation.",
+    "thesis": "NetApp scores 71, a Buy with high confidence, driven by strong fundamentals and momentum. Growth scores 82, with quarterly revenue up 29.89% year over year versus 12.15% on a trailing basis, an acceleration of 17.42 points. Quality (82) and balance sheet (95) are strong: gross margin is 70.63%, FCF margin 22.32%, share count fell 1.48%, and the company holds net cash with cash covering debt 1.44 times. Trend scores 96 after a 61.88% 12-1 month gain, with the stock 54.73% above its 200-day average. The main drag is valuation at 28: price-to-FCF of 26.451 and price-to-sales of 5.905 sit at the expensive end of the past five years, cheaper than now in roughly 98% of month-ends.",
     "key_risks": [
-      "Valuation is stretched: price-to-sales and price-to-FCF both at the 98.4 percentile, and FCF yield is 1.429 points below the 10-year Treasury.",
-      "The stock is 54.73% above its 200-day average, so a reversal in momentum could hit the trend score hard.",
-      "Insider selling by four insiders, including the CEO, with two directors' sales not flagged as 10b5-1 plan trades.",
-      "Barclays downgraded the stock, citing the large year-to-date gain and no meaningful AI inflection yet.",
-      "The 29.89% quarterly growth may not last if AI storage demand slows."
+      "Valuation is near five-year highs, so any growth slowdown could hit the shares hard.",
+      "The stock is 54.73% above its 200-day average, leaving room for a sharp pullback.",
+      "Four insiders including the CEO sold shares; two directors' sales were not flagged as 10b5-1 plan sales.",
+      "Barclays downgraded, citing the large gain and no meaningful AI inflection yet.",
+      "The 29.89% quarterly growth rate may not be sustainable against tougher comparisons."
     ],
     "what_would_change": [
-      "A drop of 7 points in the composite score would move the rating to Hold. A pullback in trend or a fade in quarterly growth acceleration could do this.",
-      "A gain of 9 points would reach Strong Buy. This most likely requires a better valuation score, through a lower price or higher earnings and cash flow.",
-      "News risk would improve if the raised FY27 guidance is followed by further upgrades and insider selling stops. More negative analyst actions would weigh on it."
+      "Up to Strong Buy needs 9 more points, most plausibly from a cheaper valuation (price pullback or faster earnings growth) or further positive news.",
+      "Down to Hold would take a drop of 7 points, for example a weakening trend score or a fade in revenue acceleration.",
+      "More unplanned insider selling or negative guidance news would lower the news risk score (now 56).",
+      "Delivery on the raised FY27 guidance would support the growth and quality scores."
     ]
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 4383,
-        "output_tokens": 454,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0266
-      },
-      "research": {
-        "model": "claude-sonnet-5-5",
-        "requests": 1,
-        "input_tokens": 119311,
-        "output_tokens": 4731,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 8,
-        "price": {
-          "input": 2.0,
-          "output": 10.0,
-          "verify": false
-        },
-        "cost_usd": 0.3659
-      },
-      "scoring": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 6719,
-        "output_tokens": 2103,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0689
-      },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2347,
-        "output_tokens": 693,
+        "input_tokens": 2611,
+        "output_tokens": 650,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2611,
+            "output_tokens": 650,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0232
+        "cost_usd": 0.0234,
+        "tiers": [],
+        "tiered_requests": 0
       }
     },
-    "total_usd": 0.4846,
+    "total_usd": 0.0234,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1332,19 +1478,28 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 03:28",
+    "run_et": "2026-10-15 05:19",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38698915338",
+    "run_id": "38711992549",
     "tickers": [
+      "GOOGL",
       "GTLB",
-      "ZS",
+      "INOD",
+      "META",
+      "MSFT",
+      "MSGS",
       "NTAP",
+      "NVDA",
+      "ORCL",
       "PLTR",
-      "INOD"
+      "RBRK",
+      "SHOP",
+      "TIC",
+      "ZS"
     ]
   },
   "chart": [
@@ -8923,6 +9078,28 @@
   ],
   "history": [
     {
+      "timestamp": "2026-10-15T09:19:40Z",
+      "ticker": "NTAP",
+      "rating": "Buy",
+      "score": "71",
+      "confidence": "High",
+      "growth": "82",
+      "quality": "82",
+      "balance_sheet": "95",
+      "valuation": "28",
+      "trend": "96",
+      "news_risk": "56",
+      "price": "222.2",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0234",
+      "overlay": "",
+      "quote_price": "222.2",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:28Z"
+    },
+    {
       "timestamp": "2026-10-15T07:28:28Z",
       "ticker": "NTAP",
       "rating": "Buy",
@@ -8941,7 +9118,8 @@
       "cost_usd": "0.4846",
       "overlay": "",
       "quote_price": "222.2",
-      "quote_as_of": "2026-10-14T20:00:00Z"
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": null
     }
   ]
 }
