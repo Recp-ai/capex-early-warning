@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:19:14Z",
-  "generated_at": "2026-10-15T09:19:15+00:00",
+  "run_id": "2026-10-15T10:09:36Z",
+  "generated_at": "2026-10-15T10:09:37+00:00",
   "ticker": "GTLB",
   "sec_ticker": "GTLB",
   "cik": "0001653482",
@@ -338,13 +338,23 @@
     "capex_intensity_pct": 0.91,
     "sbc_pct_revenue": 21.79,
     "missing_inputs": {},
-    "prepayments": {
-      "increase": -464379000.0,
-      "source": "balance sheet: contract 2025-07-31 to 2026-07-31",
-      "share_of_ocf": -2.0797,
-      "max_share_of_ocf": 0.25,
-      "applies": false
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 20.25,
+      "fcf_margin_year_earlier_pct": 4.18,
+      "median_margin_pct": 17.87,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
     },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 213673000.0,
+    "fcf_scored_margin_pct": 20.25,
     "balance_sheet": {
       "date": "2026-07-31",
       "cash": 226491000.0,
@@ -1000,6 +1010,8 @@
         "negative_points": 0,
         "median_yield_pct": 7.679,
         "percentile": 20.9,
+        "cheaper_points": 11,
+        "dearer_points": 43,
         "min_points": 24,
         "from": "2022-04-29"
       },
@@ -1013,6 +1025,8 @@
         "negative_points": 29,
         "median_yield_pct": -0.002,
         "percentile": 19.1,
+        "cheaper_points": 10,
+        "dearer_points": 44,
         "min_points": 24,
         "from": "2022-04-29"
       },
@@ -1026,8 +1040,29 @@
         "negative_points": 55,
         "median_yield_pct": -2.533,
         "percentile": 4.5,
+        "cheaper_points": 2,
+        "dearer_points": 52,
         "min_points": 24,
         "from": "2022-04-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 43 of the last 55 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "cheap",
+          "phrase": "cheaper than at 44 of the last 55 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "cheap",
+          "phrase": "cheaper than at 52 of the last 55 month-ends",
+          "note": "EBIT is zero or negative now, so there is no EV/EBIT multiple; the comparison ranks the EBIT yield (55 of the 55 month-ends were zero or negative too)"
+        }
       }
     }
   },
@@ -1296,13 +1331,14 @@
         }
       }
     },
-    "reused_from": "2026-10-15T07:28:27Z"
+    "reused_from": "2026-10-15T07:28:27Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:27Z",
-      "archived": "data/stocks/runs/GTLB/2026-10-15T072827Z.json",
+      "archived": "data/stocks/runs/GTLB/2026-10-15T091914Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1326,36 +1362,42 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "GitLab rates Hold at 64, one point below Buy, with strong trend and cash offset by valuation and margins.",
-    "thesis": "GitLab scores 64, just under the Buy line at 65, so the rating sits right on the edge and confidence is Medium. The strongest supports are a net-cash balance sheet (score 100, no debt) and a strong price trend (score 88), with shares 61.46% above their 200-day average and only 5.09% off their 52-week high. Growth is solid at 68, with quarterly revenue up 21.31% year over year, though that is slowing by 1.84 points versus the trailing-twelve-month rate. Quality (49) is held back by a -8.55% operating margin and stock-based compensation at 21.79% of revenue, despite an 85.75% gross margin and a 20.25% free-cash-flow margin. Valuation (46) is a drag, at 8.499 times sales and 41.972 times free cash flow, more expensive than in about 80% of the past 55 month-ends.",
+    "headline": "GitLab rates Hold at 64, one point below Buy, with strong trend and cash offset by losses and valuation.",
+    "thesis": "GitLab scores 64, a Hold that sits just 1 point under the Buy line at 65, so confidence is Medium. The strongest supports are a debt-free, net-cash balance sheet (score 100) and a strong price trend (score 88), with shares 61.46% above their 200-day average and only 5.09% off their 52-week high. Growth is solid but easing (score 68), with quarterly revenue up 21.31% year on year against 22.99% over the trailing twelve months. Quality is middling (score 49): gross margin is 85.75% and FCF margin 20.25%, but the operating margin is -8.55% and stock-based pay equals 21.79% of revenue. Valuation scores 46. In absolute terms the multiples are high, with P/S at 8.499, P/FCF at 41.972 and an FCF yield 2.827 points below the 10-year Treasury, yet the stock is cheap against its own history, cheaper than at 43 of the last 55 month-ends on P/S.",
     "key_risks": [
-      "Revenue growth is decelerating (acceleration of -1.84 points), which could weigh on a richer valuation.",
-      "GAAP operating losses (-8.55% margin) and heavy stock-based pay (21.79% of revenue) dilute shareholders.",
-      "Valuation is high against its own history, and the free-cash-flow yield trails the 10-year Treasury by 2.827 points.",
-      "After a large run-up (61.46% above the 200-day average), the strong trend score could fade quickly in a pullback.",
-      "Insider selling by the CTO and co-founder, with no purchases; derivative lawsuits remain unresolved."
+      "GAAP operating losses continue (operating margin -8.55%), so there is no EV/EBIT multiple.",
+      "Heavy stock-based compensation (21.79% of revenue) and 1.66% yearly share dilution.",
+      "Revenue growth is slowing (acceleration of -1.84 points).",
+      "Insider selling by the CTO and co-founder Sijbrandij, with no insider purchases.",
+      "After a sharp run-up (61.46% above the 200-day average), the price is exposed to a pullback; derivative lawsuits are still pending with unknown status."
     ],
     "what_would_change": [
-      "Up: a gain of just 1 point in the composite, such as a modest valuation improvement or better news, would move it to Buy at 65.",
-      "Up: re-acceleration of revenue growth or a narrower operating loss would lift the growth or quality scores.",
-      "Down: a sharp drop in price momentum, which would cut the 88 trend score, could pull the score lower, though a Sell needs a fall of 20 points to below 45.",
-      "Down: weaker guidance, analyst downgrades or more insider selling would pressure the news-risk score of 52."
+      "A gain of just 1 point in the composite score, for example from improving operating margin or re-accelerating growth, would move the rating to Buy.",
+      "Fresh positive news on guidance or analyst actions could lift the news-risk score (52) enough to cross the Buy edge.",
+      "A drop to Sell would need a 20-point fall to below 45, such as a sharp trend reversal combined with weaker growth or quality."
     ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2686,
-        "output_tokens": 732,
+        "input_tokens": 3063,
+        "output_tokens": 706,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2686,
-            "output_tokens": 732,
+            "input_tokens": 3063,
+            "output_tokens": 706,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1366,12 +1408,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0254,
+        "cost_usd": 0.0264,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0254,
+    "total_usd": 0.0264,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1384,28 +1426,20 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:19",
+    "run_et": "2026-10-15 06:09",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38718161689",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
       "NVDA",
-      "ORCL",
-      "PLTR",
-      "RBRK",
+      "GTLB",
       "SHOP",
-      "TIC",
-      "ZS"
+      "INOD",
+      "ORCL",
+      "PLTR"
     ]
   },
   "chart": [
@@ -8941,6 +8975,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:09:36Z",
+      "ticker": "GTLB",
+      "rating": "Hold",
+      "score": "64",
+      "confidence": "Medium",
+      "growth": "68",
+      "quality": "49",
+      "balance_sheet": "100",
+      "valuation": "46",
+      "trend": "88",
+      "news_risk": "52",
+      "price": "53.16",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0264",
+      "overlay": "",
+      "quote_price": "53.16",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:27Z"
+    },
     {
       "timestamp": "2026-10-15T09:19:14Z",
       "ticker": "GTLB",

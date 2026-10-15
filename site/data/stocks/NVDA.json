@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:19:44Z",
-  "generated_at": "2026-10-15T09:19:45+00:00",
+  "run_id": "2026-10-15T10:09:34Z",
+  "generated_at": "2026-10-15T10:09:35+00:00",
   "ticker": "NVDA",
   "sec_ticker": "NVDA",
   "cik": "0001045810",
@@ -335,10 +335,31 @@
     "prepayments": {
       "increase": 4377000000.0,
       "source": "balance sheet: contract 2025-07-27 to 2026-07-26",
-      "share_of_ocf": 0.0326,
+      "base": 2035000000.0,
+      "base_date": "2025-07-27",
+      "revenue_growth_pct": 83.38,
+      "expected": 1696687316.151993,
+      "excess": 2680312683.848007,
       "max_share_of_ocf": 0.25,
-      "applies": false
+      "applies": false,
+      "share_of_ocf": 0.0199
     },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 41.92,
+      "fcf_margin_year_earlier_pct": 43.59,
+      "median_margin_pct": 43.73,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 127006000000.0,
+    "fcf_scored_margin_pct": 41.92,
     "balance_sheet": {
       "date": "2026-07-26",
       "cash": 22443000000.0,
@@ -1065,6 +1086,8 @@
         "negative_points": 0,
         "median_yield_pct": 3.867,
         "percentile": 16.4,
+        "cheaper_points": 10,
+        "dearer_points": 51,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1078,6 +1101,8 @@
         "negative_points": 0,
         "median_yield_pct": 1.652,
         "percentile": 4.9,
+        "cheaper_points": 2,
+        "dearer_points": 39,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1091,8 +1116,28 @@
         "negative_points": 0,
         "median_yield_pct": 1.992,
         "percentile": 0.0,
+        "cheaper_points": 0,
+        "dearer_points": 61,
         "min_points": 24,
         "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 51 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "cheap",
+          "phrase": "cheaper than at 39 of the last 41 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "cheap",
+          "phrase": "cheaper than at every one of the last 61 month-ends"
+        }
       }
     }
   },
@@ -1356,13 +1401,14 @@
         }
       }
     },
-    "reused_from": "2026-10-15T06:32:01Z"
+    "reused_from": "2026-10-15T06:32:01Z",
+    "caps_reapplied": []
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T06:32:01Z",
-      "archived": "data/stocks/runs/NVDA/2026-10-15T063201Z.json",
+      "archived": "data/stocks/runs/NVDA/2026-10-15T091944Z.json",
       "models": {
         "sources": {
           "research": "config",
@@ -1386,36 +1432,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "NVIDIA rates Buy at 77, with exceptional growth, quality and balance sheet offset by a rich valuation.",
-    "thesis": "NVIDIA scores 77, a Buy with High confidence, sitting 3 points below Strong Buy and 13 points above Hold. The rating is driven by near-perfect fundamentals: growth scores 100 on quarterly revenue up 105.85% year over year and accelerating by 20.62 points, quality scores 97 on a 65.21% operating margin and 41.92% free cash flow margin, and the balance sheet scores 98 with net cash. Valuation holds the score back at 53, because the stock trades at 41.993 times free cash flow, and on EV to EBIT it has not been more expensive than now at any of the last 61 month-ends. Trend (61) and news risk (54) are middling: the price is 9.18% above its 200-day average but slightly below its 50-day, and recent news was neutral apart from positive analyst actions. The AI capex early warning stands at AMBER 6/18, but it did not cap the rating.",
+    "headline": "NVIDIA rates Buy on exceptional growth, margins and balance sheet, with valuation and trend more middling.",
+    "thesis": "NVIDIA scores 77, a Buy with High confidence, driven mainly by growth (100), quality (97) and balance sheet (98). Quarterly revenue rose 105.85% year on year, against 83.38% on a trailing-twelve-month basis, and margins are very strong: 74.67% gross, 65.21% operating and 41.92% free cash flow, with a net cash position. Valuation scores 53. In absolute terms the multiples are high: P/S of 17.604, P/FCF of 41.993 and EV/EBIT of 26.876, and the FCF yield sits 2.829 points below the 10-year Treasury. Against its own history, however, the stock is cheap, for example \"cheaper than at every one of the last 61 month-ends\" on EV/EBIT. Trend (61) and news risk (54) are moderate: the price is 0.86% below its 50-day average, 9.18% above its 200-day average and 7.5% off its 52-week high, and the only non-neutral news topic is mildly positive analyst activity.",
     "key_risks": [
-      "Valuation is high against the stock's own history, with a free cash flow yield 2.829 points below the 10-year Treasury yield.",
-      "AI capex early warning is AMBER (6/18); a slowdown in hyperscaler spending would hit growth.",
-      "Revenue depends heavily on a small group of hyperscale customers.",
-      "Export controls and China antitrust issues remain unresolved background risks, and the Q3 guide assumes no China data center compute revenue.",
-      "Insiders were net sellers in the window, including a director sale of about 1.37 million shares."
+      "AI capex early warning is AMBER (6/18 warning signs), so a slowdown in hyperscaler spending would hit growth.",
+      "High absolute multiples leave little room for disappointment at the report due around November 25.",
+      "Concentration in hyperscale customers remains a known background issue.",
+      "Export-control and China antitrust issues persist, and guidance assumes no China Data Center compute revenue.",
+      "Insiders sold and none bought in the window, and competing open rack designs, such as one backed by AMD, are emerging."
     ],
     "what_would_change": [
-      "A 3-point gain would reach Strong Buy (80), for example through a stronger trend score or a cheaper valuation after a pullback with earnings intact.",
-      "A fall of more than 12 points (to below 65) would drop it to Hold. That would most likely come from growth slowing sharply or valuation and trend weakening together.",
-      "The November 25 report against the $108.0 billion revenue guide could shift the growth and news risk factors in either direction.",
-      "If the AI capex warning moved from AMBER toward a higher alert level, the overlay could cap the rating."
+      "Up: a 3-point gain to 80 would reach Strong Buy, plausibly from stronger trend or news-risk scores, such as a beat on the $108.0 billion guide.",
+      "Down: the score would need to fall 13 points, below 65, to drop to Hold, for example from slowing growth or a sharp price decline hurting trend.",
+      "A move of the AI capex early warning from AMBER toward a worse level could pressure the rating.",
+      "Negative guidance or customer news would lower the news-risk score."
     ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2738,
-        "output_tokens": 732,
+        "input_tokens": 3046,
+        "output_tokens": 737,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2738,
-            "output_tokens": 732,
+            "input_tokens": 3046,
+            "output_tokens": 737,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1426,12 +1479,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0256,
+        "cost_usd": 0.0269,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0256,
+    "total_usd": 0.0269,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1444,28 +1497,20 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:19",
+    "run_et": "2026-10-15 06:09",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38711992549",
+    "run_id": "38718161689",
     "tickers": [
-      "GOOGL",
-      "GTLB",
-      "INOD",
-      "META",
-      "MSFT",
-      "MSGS",
-      "NTAP",
       "NVDA",
-      "ORCL",
-      "PLTR",
-      "RBRK",
+      "GTLB",
       "SHOP",
-      "TIC",
-      "ZS"
+      "INOD",
+      "ORCL",
+      "PLTR"
     ]
   },
   "chart": [
@@ -9043,6 +9088,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:09:34Z",
+      "ticker": "NVDA",
+      "rating": "Buy",
+      "score": "77",
+      "confidence": "High",
+      "growth": "100",
+      "quality": "97",
+      "balance_sheet": "98",
+      "valuation": "53",
+      "trend": "61",
+      "news_risk": "54",
+      "price": "221.3",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0269",
+      "overlay": "note",
+      "quote_price": "221.3",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T06:32:01Z"
+    },
     {
       "timestamp": "2026-10-15T09:19:44Z",
       "ticker": "NVDA",

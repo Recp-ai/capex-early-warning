@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T09:35:31Z",
-  "generated_at": "2026-10-15T09:35:33+00:00",
+  "run_id": "2026-10-15T10:09:34Z",
+  "generated_at": "2026-10-15T10:09:35+00:00",
   "ticker": "INOD",
   "sec_ticker": "INOD",
   "cik": "0000903651",
@@ -51,7 +51,7 @@
   },
   "composite": {
     "score": 65,
-    "raw": 64.8,
+    "raw": 65.25,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -245,7 +245,7 @@
       "missing": null
     },
     "news_risk": {
-      "score": 52,
+      "score": 55,
       "metrics": {
         "guidance": {
           "value": 0,
@@ -272,8 +272,8 @@
           "note": null
         },
         "insider_activity": {
-          "value": -1,
-          "score": 25.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.1,
           "note": null
         },
@@ -1119,6 +1119,8 @@
         "negative_points": 0,
         "median_yield_pct": 21.071,
         "percentile": 54.1,
+        "cheaper_points": 33,
+        "dearer_points": 28,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1132,6 +1134,8 @@
         "negative_points": 36,
         "median_yield_pct": -0.114,
         "percentile": 0.0,
+        "cheaper_points": 0,
+        "dearer_points": 61,
         "min_points": 24,
         "from": "2021-10-29"
       },
@@ -1145,8 +1149,28 @@
         "negative_points": 14,
         "median_yield_pct": -0.883,
         "percentile": 0.0,
+        "cheaper_points": 0,
+        "dearer_points": 25,
         "min_points": 24,
         "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 28, more expensive than at 33)"
+        },
+        "price_to_fcf": {
+          "label": "cheap",
+          "phrase": "cheaper than at every one of the last 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "cheap",
+          "phrase": "cheaper than at every one of the last 25 month-ends"
+        }
       }
     }
   },
@@ -1343,7 +1367,7 @@
         "label": "Customer concentration"
       },
       "insider_activity": {
-        "rating": -1,
+        "rating": 0,
         "summary": "Director Louise Forlenza made two option-exercise-and-sell transactions of 10,000 shares each. There was no insider buying, against heavy selling over the past 12 months.",
         "evidence": [
           {
@@ -1367,7 +1391,9 @@
             "check": "numbers 2/2, names 2/3"
           }
         ],
-        "label": "Insider activity"
+        "label": "Insider activity",
+        "rating_before_cap": -1,
+        "old_evidence_note": "Capped at 0 (was -1): no source that checked out is dated within the last 30 days; of the 2 that did, 2 dated more than 30 days before the run (2026-09-04, 2026-09-14)"
       },
       "product_competitive": {
         "rating": 1,
@@ -1426,13 +1452,21 @@
         }
       }
     },
-    "reused_from": "2026-10-15T07:28:27Z"
+    "reused_from": "2026-10-15T07:28:27Z",
+    "caps_reapplied": [
+      {
+        "topic": "insider_activity",
+        "label": "Insider activity",
+        "was": -1,
+        "now": 0
+      }
+    ]
   },
   "claude": {
     "enabled": true,
     "news_reused": {
       "news_from": "2026-10-15T07:28:27Z",
-      "archived": "data/stocks/runs/INOD/2026-10-15T091917Z.json",
+      "archived": "data/stocks/runs/INOD/2026-10-15T093531Z.json",
       "models": {
         "sources": {
           "research": "input",
@@ -1456,36 +1490,43 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Innodata rates Buy on fast growth and net cash, but sits one point above Hold.",
-    "thesis": "Innodata scores 65, right at the Buy edge, with Medium confidence. Growth is the strongest driver at 91: quarterly revenue rose 57.8% year over year, TTM revenue rose 39.02%, and growth is accelerating by 3.38 points. The balance sheet scores 100 with net cash and no debt, and quality scores 69 on an 18.16% operating margin, a normalised 21.21% FCF margin and a 1.5% fall in share count. Holding the score back is a weak trend score of 20: the stock is 13.18% below its 50-day average, down 33.44% on 12-1 momentum and 56.26% off its 52-week high. Valuation scores a middling 60, and news risk is neutral at 52. Note that a $124.3M FCF quarter with no tagged cause was replaced with normalised FCF, so the reported 9.9x P/FCF flatters the stock versus the 27.165x used in scoring.",
+    "headline": "Innodata rates Buy on fast growth and a net-cash balance sheet, but sits one point above Hold.",
+    "thesis": "INOD scores 65, the bottom edge of the Buy band, with Medium confidence. Growth (91) is the main driver: quarterly revenue rose 57.8% year over year and trailing revenue 39.02%, with growth accelerating by 3.38 points. The balance sheet scores 100 on net cash with no debt, and quality scores 69, with a 42.71% gross margin, an 18.16% operating margin and a slightly shrinking share count. In absolute terms valuation is fairly high, at 5.761x sales, 27.165x normalised FCF and 27.38x EV/EBIT, and the FCF yield is 1.529 points below the 10-year Treasury. Against its own history it is labelled cheap: P/FCF is cheaper than at every one of the last 61 month-ends, and EV/EBIT is cheaper than at every one of the last 25 month-ends. A weak trend score (20) holds the rating back, with the stock 56.26% below its 52-week high and 12-1 momentum at -33.44%.",
     "key_risks": [
       "Customer concentration: the top customer was 37% of Q2 revenue.",
-      "Unexplained FCF spike ($124.3M on $92.1M revenue) may not repeat; scoring uses normalised FCF.",
-      "Weak price trend and a 56.26% drawdown from the 52-week high.",
-      "Insider selling with no insider buying over the past 12 months; securities class action status unclear.",
-      "Competition, including Meta's stake in Scale AI."
+      "Cash flow spike: $124.3M FCF on $92.1M of quarterly revenue, cause not identified. Scoring uses normalised FCF (21.2% margin), not the reported 58.0%.",
+      "Weak price trend: about 13% below both the 50-day and 200-day averages, with heavy insider selling over the past 12 months.",
+      "Competition in AI training data, including Meta's stake in Scale AI.",
+      "An unresolved securities class action, with its status unclear."
     ],
     "what_would_change": [
-      "A drop of just 1 point would move the rating to Hold, for example from further trend weakness or a soft early-November earnings report.",
-      "Reaching Strong Buy needs 15 more points, most plausibly from a recovering trend score (now 20) or confirmed large new customer programs.",
-      "A cut to the 40%+ FY2026 growth guidance would hit the growth score and likely push the stock to Hold.",
-      "An explanation of the FCF spike as recurring could lift the quality and valuation scores, since both now use normalised FCF."
+      "A drop of just 1 point in the composite score would cut the rating to Hold. A further slide in trend, or growth slowing at the early-November earnings, could do it.",
+      "Reaching Strong Buy needs 15 more points, most plausibly from a recovering price trend (now 20) plus continued 40%+ growth.",
+      "Confirmation of large new programs, such as the rumoured Meta win, could lift growth and news scores. Losing or shrinking the top customer would hurt several factors.",
+      "An explanation of the FCF spike would affect confidence and quality. It would matter most if it showed the cash flow is repeatable or one-off."
     ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
   },
   "cost": {
     "steps": {
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 2862,
-        "output_tokens": 683,
+        "input_tokens": 3254,
+        "output_tokens": 783,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 2862,
-            "output_tokens": 683,
+            "input_tokens": 3254,
+            "output_tokens": 783,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1496,12 +1537,12 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0251,
+        "cost_usd": 0.0287,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0251,
+    "total_usd": 0.0287,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -1514,18 +1555,20 @@
     "scored_on": "2026-10-14",
     "latest": "2026-10-14",
     "latest_from": "quote",
-    "run_et": "2026-10-15 05:35",
+    "run_et": "2026-10-15 06:09",
     "note": null,
     "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38713987453",
+    "run_id": "38718161689",
     "tickers": [
-      "ORCL",
+      "NVDA",
+      "GTLB",
+      "SHOP",
       "INOD",
-      "RBRK",
-      "ZS"
+      "ORCL",
+      "PLTR"
     ]
   },
   "chart": [
@@ -9103,6 +9146,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-15T10:09:34Z",
+      "ticker": "INOD",
+      "rating": "Buy",
+      "score": "65",
+      "confidence": "Medium",
+      "growth": "91",
+      "quality": "69",
+      "balance_sheet": "100",
+      "valuation": "60",
+      "trend": "20",
+      "news_risk": "55",
+      "price": "53.14",
+      "price_date": "2026-10-14",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.0287",
+      "overlay": "",
+      "quote_price": "53.14",
+      "quote_as_of": "2026-10-14T20:00:00Z",
+      "news_from": "2026-10-15T07:28:27Z"
+    },
     {
       "timestamp": "2026-10-15T09:35:31Z",
       "ticker": "INOD",
