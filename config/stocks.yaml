@@ -71,8 +71,8 @@ quality:
   operating_margin_pct:         # TTM
     weight: 0.25
     points: [[-10, 0], [0, 20], [15, 55], [30, 85], [45, 100]]
-  fcf_margin_pct:               # TTM free cash flow (operating cash flow minus capex) / revenue
-    weight: 0.25
+  fcf_margin_pct:               # TTM free cash flow (operating cash flow minus capex) / revenue; ex-prepayments
+    weight: 0.25                # when that applies (prepayments, below)
     points: [[-10, 0], [0, 20], [10, 50], [25, 85], [40, 100]]
   sbc_pct_revenue:              # TTM stock-based compensation / revenue; lower is better
     weight: 0.15
@@ -80,8 +80,27 @@ quality:
   dilution_yoy_pct:             # diluted share count vs a year earlier (%); buybacks are negative
     weight: 0.15
     points: [[-3, 100], [0, 75], [2, 50], [5, 20], [10, 0]]
+# Gross profit falls back to revenue minus cost of revenue (CostOfRevenue, CostOfGoodsAndServicesSold,
+# CostOfServices, ...) and operating income to revenue minus CostsAndExpenses, else gross profit minus
+# OperatingExpenses, period by period, when the company doesn't tag them. A margin still missing shows as
+# "missing" in the factor's inputs.
+
+# Customer prepayments: when the TTM increase in contract liabilities / deferred revenue / customer advances
+# (the cash-flow statement's change lines, else the balance sheet's change over the year) exceeds this share
+# of TTM operating cash flow (any increase does when operating cash flow is zero or negative), quality and
+# valuation (P/FCF, FCF yield, and the P/FCF history) are scored on FCF minus that increase ("FCF
+# ex-prepayments"). The page and email show both and flag it; confidence steps down. The balance-sheet
+# factor keeps the reported FCF.
+prepayments:
+  max_share_of_ocf: 0.25
 
 balance_sheet:
+  # A figure is UNKNOWN (balance sheet, EV and EV/EBIT then count as missing, with a note) when a tag of its
+  # group had a non-zero value in the last stopped_tag_quarters quarters and nothing covers the latest
+  # balance-sheet date, or only tags we don't read carry a value. Debt is zero ("no debt") only when no
+  # debt tag had a non-zero value in the last no_debt_quarters quarters. Tag lists: stocks/fundamentals.py.
+  stopped_tag_quarters: 4
+  no_debt_quarters: 8
   # Net debt / TTM FCF in years. Net cash (net debt <= 0) with positive FCF scores 100; positive net debt
   # with FCF <= 0 scores 0; net cash with negative FCF is scored on runway (cash / annual burn, below).
   net_debt_to_fcf:
@@ -108,13 +127,17 @@ valuation:
   fcf_yield_vs_10y_pp:          # FCF yield minus the 10-year Treasury yield (data/fred/DGS10.csv), pct points
     weight: 0.20
     points: [[-4, 0], [-2, 25], [0, 50], [2, 75], [4, 100]]
-  # Each multiple's percentile versus the company's own month-end history (score = 100 - percentile, so
-  # cheaper than usual scores higher). History uses only the filings known on each date.
+  # Each multiple versus the company's own month-end history: the share of month-ends that were cheaper
+  # than now (score = 100 - that share, so cheaper than usual scores higher). Ranked on yields (sales / FCF
+  # / EBIT over market cap or EV), so periods with near-zero or negative FCF or EBIT count as the most
+  # expensive instead of giving huge multiples. History uses only the filings known on each date.
   price_to_sales_percentile: {weight: 0.10}
   price_to_fcf_percentile: {weight: 0.15}
   ev_to_ebit_percentile: {weight: 0.15}
   history_years: 5
   min_history_points: 24        # fewer month-end points than this: percentile left out
+  share_outlier_x: 10           # a diluted share count more than this many times off the median of its
+                                # neighbours (two before and two after, both sides) is dropped, with a note
 
 trend:
   # From split- and dividend-adjusted daily closes.
@@ -173,9 +196,21 @@ ratings:
   - {min: 30, label: "Sell"}
   - {min: 0, label: "Strong Sell"}
 
-confidence:                     # by how many of the six factors had data
-  high_at: 6
-  medium_at: 4                  # fewer -> Low
+# Confidence is data quality: it starts at High and each issue below adds its points; the total sets the
+# level (0 High, medium_at+ Medium, low_at+ Low). Each issue counts once (a missing factor once per factor);
+# the page and email list the reasons under the label.
+confidence:
+  medium_at: 1
+  low_at: 3
+  band_edge_points: 2           # "near a band edge": the composite within this many points of a band's floor
+  points:
+    missing_factor: 1           # per factor with no data (6 of 6 High, 4-5 Medium, 3 or fewer Low, as before)
+    missing_sub_metric: 1       # any input of a scored factor missing (listed)
+    unknown_cash_debt: 1        # cash, investments or debt unknown (a tag stopped reporting)
+    fcf_ex_prepayments: 1       # quality and valuation scored on FCF ex-prepayments
+    short_valuation_history: 1  # fewer than valuation.min_history_points month-ends
+    near_band_edge: 1
+    weak_sources: 1             # any news topic capped for weak sources
 
 # Capex dashboard overlay (site/data/latest.json). Tickers below are capped at "Hold" when the capex
 # level is RED and confirmed; AMBER (or unconfirmed RED) only adds a note.

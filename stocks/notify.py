@@ -78,25 +78,31 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                      for x in g.get("guidance") or [])
     li = lambda xs: "".join(f"<li>{html.escape(x)}</li>" for x in xs or [])  # noqa: E731
     cost = (r.get("cost") or {}).get("total_usd")
+    reasons = [x["text"] for x in (r.get("confidence_detail") or {}).get("reasons") or []]
+    reasons_html = (f"<ul style='margin:0 0 8px;font-size:13px;color:#555'>{li(reasons)}</ul>" if reasons else "")
+    news_from = (f"<p style='font-size:13px;color:#555'>News &amp; risk reused from the run of {html.escape(r['news_from'])} "
+                 "(not refreshed this run).</p>" if r.get("news_from") else "")
     link = f"<p><a href='{html.escape(dashboard_url.rstrip('/') + '/stocks.html#' + r['ticker'])}'>Open on the stocks page</a></p>" if dashboard_url else ""
     errs = r.get("errors") or {}
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">Stock research · {html.escape(r['run_id'])} · {html.escape(r['name'])} ({html.escape(r['ticker'])})</p>
 <h2 style="margin:0 0 4px;color:{RATING_COLOR.get(r['rating'], '#333')}">{html.escape(r['rating'])} — {r['score']} / 100</h2>
 <p style="margin-top:0">{html.escape(headline)} · {html.escape(r['confidence'])} confidence ({len((r.get('composite') or {}).get('available') or [])} of 6 factors had data)</p>
-{f"<p style='font-size:13px;color:#555'><b>Capex overlay:</b> {html.escape(ov['note'])}</p>" if ov.get('note') and ov.get('ai_exposed') else ''}
+{reasons_html}{f"<p style='font-size:13px;color:#555'><b>Capex overlay:</b> {html.escape(ov['note'])}</p>" if ov.get('note') and ov.get('ai_exposed') else ''}
 <p>{html.escape(w.get('thesis') or '')}</p>
 <h3>Factors</h3><table>{''.join(rows)}</table>
 {'<h3>Key risks</h3><ul>' + li(w.get('key_risks')) + '</ul>' if w.get('key_risks') else ''}
 {'<h3>What would change this rating</h3><ul>' + li(w.get('what_would_change')) + '</ul>' if w.get('what_would_change') else ''}
 {'<h3>Guidance in the latest earnings release</h3><ul>' + quotes + '</ul>' if quotes else ''}
-{'<h3>News</h3>' + ''.join(ev) if ev else ''}
+{'<h3>News</h3>' + news_from + ''.join(ev) if ev else news_from}
 <p style="font-size:14px">{'<br>'.join(html.escape(x) for x in close_lines(r))}</p>
 <p style="font-size:13px;color:#555">Cost {'n/a' if cost is None else f'${cost:.2f}'}</p>
 {link}{"<p style='color:#777;font-size:12px'>Data issues: " + html.escape('; '.join(f'{k}: {v}' for k, v in errs.items())[:800]) + "</p>" if errs else ''}
 <p style="color:#777;font-size:12px">{html.escape(publish.DISCLAIMER)}</p></div>"""
     body_text = (f"{r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} confidence)\n{headline}\n"
-                 + "".join(f"{x}\n" for x in close_lines(r)) + "\n"
+                 + "".join(f"  - {x}\n" for x in reasons)
+                 + "".join(f"{x}\n" for x in close_lines(r))
+                 + (f"News & risk reused from the run of {r['news_from']}\n" if r.get("news_from") else "") + "\n"
                  f"{w.get('thesis') or ''}\n\n" + "\n".join(
                      f"{scoring.LABELS[k]}: {((r.get('factors') or {}).get(k) or {}).get('score', 'no data')}" for k in scoring.FACTORS)
                  + (f"\n\nCapex overlay: {ov['note']}" if ov.get("note") and ov.get("ai_exposed") else "")
@@ -143,6 +149,10 @@ def build_batch_email(b: dict, dashboard_url: str | None, prefix: str = "[Stock]
     table = (f"<table style='border-collapse:collapse;font-size:14px'><tr>{th}</tr>{''.join(row(x) for x in done)}</table>"
              if done else "<p>No ticker was rated.</p>")
     window = f"<p style='font-size:13px'>{html.escape(b['close_window'])}.</p>" if b.get("close_window") else ""
+    reused = [x["ticker"] for x in done if x.get("news_from")]
+    if reused:
+        window += (f"<p style='font-size:13px'>Re-scored without new research: news &amp; risk reused from the previous "
+                   f"run for {html.escape(', '.join(reused))}.</p>")
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:760px">
 <p style="font-size:13px;color:#555">Stock research batch · {len(done)} rated, {len(failed)} failed{run_link}</p>
 {table}

@@ -190,6 +190,12 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
 .prog { font-size: 13.5px; margin-top: 10px; }
 .prog li { padding-right: 10px; }
 .closeinfo { margin-top: 10px; font-size: 14px; }
+.reasons { margin: 4px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--ink-2); }
+.reasons li { margin-bottom: 2px; }
+.miss { color: var(--serious); font-weight: 600; }
+.kv b.unk { color: var(--serious); }
+.prog-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.prog-head .ibtn { flex: none; }
 .closeinfo .flag { margin-top: 6px; }
 </style>
 </head>
@@ -327,12 +333,15 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   }
 
   // ---------------------------------------------------------------- charts
+  // Round ticks whose range always covers the data: the first tick <= lo and the last >= hi.
   function niceTicks(lo, hi, n = 4) {
     if (lo === hi) { lo -= 1; hi += 1; }
     const span = hi - lo, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
     const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= step0);
-    const start = Math.floor(lo / step) * step, ticks = [];
-    for (let v = start; v <= hi + step * 0.5; v += step) ticks.push(+v.toFixed(10));
+    const first = Math.floor(lo / step + 1e-9), last = Math.ceil(hi / step - 1e-9), ticks = [];
+    for (let i = first; i <= last; i++) ticks.push(+(i * step).toFixed(10));
+    if (ticks[0] > lo) ticks.unshift(+(ticks[0] - step).toFixed(10));  // float rounding at the edges
+    if (ticks[ticks.length - 1] < hi) ticks.push(+(ticks[ticks.length - 1] + step).toFixed(10));
     ticks.dec = step >= 1 ? 0 : Math.min(3, Math.ceil(-Math.log10(step) - 1e-9));
     return ticks;
   }
@@ -445,9 +454,18 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     return rows.sort((a, b) => by(a, b) || a.order - b.order);
   }
 
+  // A row's batch tag while the batch runs; once its results are on the page (phase "updated") only failed
+  // tickers keep theirs, until the batch summary in the Run panel is dismissed.
   function statusTag(t) {
-    const s = state.batch && state.batch.statuses && state.batch.statuses[t];
-    return s ? `<span class="st ${esc(s.status)}" title="${esc(s.step ? "Failed at: " + s.step : "This run")}">${esc(s.status)}</span>` : "";
+    const B = state.batch, s = B && B.statuses && B.statuses[t];
+    if (!s || (B.phase === "updated" && s.status !== "failed")) return "";
+    return `<span class="st ${esc(s.status)}" title="${esc(s.step ? "Failed at: " + s.step : "This run")}">${esc(s.status)}</span>`;
+  }
+  const batchFailed = B => Object.values((B && B.statuses) || {}).some(x => x && x.status === "failed");
+  function dismissBatch() {
+    state.batch = null;
+    store("stocks-batch", null);
+    renderProgress(); renderLists();
   }
 
   function renderLists() {
@@ -652,7 +670,12 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     return FACTORS.map(([k, label]) => {
       const f = (D.factors || {})[k] || {};
       const has = f.score != null;
-      const subs = Object.entries(f.metrics || {}).map(([mk, mv]) => `<tr><td>${esc((METRIC[mk] || [mk])[0])}</td><td>${esc(fmtMetric(mk, mv.value))}${mv.note ? ` <span class="sub">(${esc(mv.note)})</span>` : ""}</td><td>${mv.score == null ? "—" : Math.round(mv.score)}</td><td>${Math.round((mv.weight || 0) * 100)}%</td></tr>`).join("");
+      const subs = Object.entries(f.metrics || {}).map(([mk, mv]) => {
+        const miss = mv.value == null && mv.score == null && /^missing/.test(mv.note || "");
+        const note = miss ? (mv.note || "").replace(/^missing:?\s*/, "") : mv.note;
+        const val = miss ? '<span class="miss">missing</span>' : esc(fmtMetric(mk, mv.value));
+        return `<tr><td>${esc((METRIC[mk] || [mk])[0])}</td><td class="wrap">${val}${note ? ` <span class="sub">(${esc(note)})</span>` : ""}</td><td>${mv.score == null ? "—" : Math.round(mv.score)}</td><td>${Math.round((mv.weight || 0) * 100)}%</td></tr>`;
+      }).join("");
       return `<div class="factor"><span class="lbl">${esc(label)}</span>
         <div class="track" role="img" aria-label="${esc(label)} ${has ? f.score : "no data"} out of 100">${has ? `<div class="fill" style="width:${Math.max(0, Math.min(100, f.score))}%"></div>` : ""}<span class="mark" style="left:50%"></span></div>
         <span class="val${has ? "" : " none"}">${has ? f.score : "no data"}</span>
@@ -677,33 +700,47 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       bands.down ? `${bands.down.points} point${bands.down.points === 1 ? "" : "s"} of slack before ${bands.down.label}` : ""].filter(Boolean).join(" · ");
     const ov = O.ai_exposed && O.note ? `<div class="flag ${O.capped ? "cap" : O.applies ? "" : "quiet"}">Capex overlay: ${esc(O.note)}</div>` : "";
     const cur = S.currency && S.currency !== "USD" ? ` (${esc(S.currency)})` : "";
-    const kv = (label, v, title) => `<div${title ? ` title="${esc(title)}"` : ""}><span>${esc(label)}</span><b>${v}</b></div>`;
+    const kv = (label, v, title, cls) => `<div${title ? ` title="${esc(title)}"` : ""}><span>${esc(label)}</span><b${cls ? ` class="${cls}"` : ""}>${v}</b></div>`;
+    const tagList = xs => (xs || []).map(x => `${x.tag} ${money(x.val)}`).join(" + ");
+    const unk = bs.unknown && bs.unknown.length ? bs.unknown.join("; ") : "";
+    const invUnknown = bs.short_term_investments == null && unk, debtUnknown = bs.debt == null && unk;
+    const cashTitle = bs.date ? `Balance sheet ${bs.date}. Cash: ${bs.cash_tag || "?"} ${money(bs.cash)}; short-term investments: ` +
+      (invUnknown ? unk : tagList(bs.investment_tags) + (bs.investment_note ? ` (${bs.investment_note})` : "") || "none tagged (zero)") : "";
+    const debtTitle = bs.date ? `Balance sheet ${bs.date}. ` + (debtUnknown ? unk : tagList(bs.debt_parts) || bs.debt_note || "") + " (leases excluded)" : "";
+    const PP = S.prepayments || {};
     const metrics = [
       kv("Revenue, TTM" + cur, money(S.revenue_ttm), `Trailing twelve months to ${S.ttm_end || "?"}`),
       kv("Revenue YoY, latest quarter", signed(S.revenue_yoy_q, 1, "%"), S.latest_quarter_end ? `Quarter ended ${S.latest_quarter_end}` : ""),
       kv("Revenue YoY, TTM", signed(S.revenue_yoy_ttm, 1, "%")),
       kv("Growth acceleration", signed(S.acceleration_pp, 1, " pp"), "Latest quarter's YoY growth minus the previous quarter's"),
-      kv("Gross margin", num(S.gross_margin_pct) + "%"), kv("Operating margin", num(S.operating_margin_pct) + "%"),
-      kv("Free cash flow, TTM" + cur, money(S.fcf_ttm), "Operating cash flow minus capital expenditure"),
+      kv("Gross margin", S.gross_margin_pct == null ? "missing" : num(S.gross_margin_pct) + "%", S.gross_profit_source ? "Gross profit: " + S.gross_profit_source : ((S.missing_inputs || {}).gross_margin_pct || ""), S.gross_margin_pct == null ? "unk" : ""),
+      kv("Operating margin", S.operating_margin_pct == null ? "missing" : num(S.operating_margin_pct) + "%", S.operating_income_source ? "Operating income: " + S.operating_income_source : ((S.missing_inputs || {}).operating_margin_pct || ""), S.operating_margin_pct == null ? "unk" : ""),
+      kv("Free cash flow, TTM" + cur, money(S.fcf_ttm), "Operating cash flow minus capital expenditure, as reported"),
+      ...(PP.applies ? [kv("FCF ex-prepayments" + cur, money(S.fcf_ex_prepayments_ttm), `Free cash flow minus the ${money(PP.increase)} rise in customer prepayments (${PP.source}); quality and valuation are scored on this`)] : []),
       kv("FCF margin", num(S.fcf_margin_pct) + "%"), kv("Capex intensity", num(S.capex_intensity_pct) + "%", "Capex / revenue, TTM"),
       kv("Stock comp. / revenue", num(S.sbc_pct_revenue) + "%"),
-      kv("Cash + short-term inv." + cur, money(bs.cash_and_investments), bs.date ? `Balance sheet ${bs.date}` : ""),
-      kv("Debt" + cur, money(bs.debt), bs.debt_note || (bs.debt_tags || []).join(" + ")),
-      kv("Net debt" + cur, money(bs.net_debt), "Debt minus cash and short-term investments (leases excluded)"),
+      kv("Cash + short-term inv." + cur, invUnknown ? "unknown" : money(bs.cash_and_investments), cashTitle, invUnknown ? "unk" : ""),
+      kv("Debt" + cur, debtUnknown ? "unknown" : money(bs.debt), debtTitle, debtUnknown ? "unk" : ""),
+      kv("Net debt" + cur, unk ? "unknown" : money(bs.net_debt), unk || "Debt minus cash and short-term investments (leases excluded)", unk ? "unk" : ""),
       kv("Diluted shares", shares(S.diluted_shares), S.diluted_shares_end ? `Weighted average, period ended ${S.diluted_shares_end}` : ""),
       kv("Diluted shares YoY", signed(S.dilution_yoy_pct, 1, "%")),
       kv("Market cap", money(V.market_cap), V.shares ? `${shares(V.shares.shares)} shares (${V.shares.source}, ${V.shares.date})` : ""),
-      kv("Enterprise value", money(V.enterprise_value)),
-      kv("FCF yield", V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"),
+      kv("Enterprise value", V.ev_note && V.enterprise_value == null ? "unknown" : money(V.enterprise_value), V.ev_note || "Market cap + debt − cash and short-term investments", V.ev_note && V.enterprise_value == null ? "unk" : ""),
+      kv("FCF yield", V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%", V.fcf_basis === "ex-prepayments" ? `On FCF ex-prepayments; reported ${V.fcf_yield_reported_pct == null ? "—" : num(V.fcf_yield_reported_pct, 2) + "%"}` : ""),
       kv("10-year Treasury", V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%", V.ust10y_date ? `FRED DGS10, ${V.ust10y_date}` : ""),
     ].join("");
+    const flags = [unk ? `<div class="flag">Balance sheet left out: ${esc(unk)}. Hover the figures for the XBRL tags.</div>` : "",
+      PP.applies ? `<div class="flag">Scored on FCF ex-prepayments: customer prepayments rose ${money(PP.increase)} over the year${PP.share_of_ocf != null ? ` (${num(PP.share_of_ocf * 100, 0)}% of operating cash flow, above ${num(PP.max_share_of_ocf * 100, 0)}%)` : " (operating cash flow not positive)"}. Reported FCF ${money(S.fcf_ttm)}, ex-prepayments ${money(S.fcf_ex_prepayments_ttm)}.</div>` : ""].join("");
     const VH = V.vs_history || {};
     const valRows = [["price_to_sales", "P/S"], ["price_to_fcf", "P/FCF"], ["ev_to_ebit", "EV/EBIT"]].map(([k, l]) => {
       const h = VH[k] || {};
-      const neg = k === "price_to_fcf" && V.fcf_negative ? "negative FCF" : k === "ev_to_ebit" && V.ebit_negative ? "negative EBIT" : "";
-      return `<tr><td>${l}</td><td>${h.current == null ? (neg || "—") : num(h.current, 1) + "x"}</td><td>${h.median == null ? "—" : num(h.median, 1) + "x"}</td>` +
-        `<td class="hide-sm">${h.low == null ? "—" : num(h.low, 1) + "x"}</td><td class="hide-sm">${h.high == null ? "—" : num(h.high, 1) + "x"}</td>` +
-        `<td>${h.percentile == null ? (h.points ? `${h.points} pts, too few` : "—") : num(h.percentile, 0)}</td></tr>`;
+      const neg = k === "price_to_fcf" && V.fcf_negative ? "negative FCF" : k === "ev_to_ebit" && V.ev_note && V.enterprise_value == null ? "EV unknown"
+        : k === "ev_to_ebit" && V.ebit_negative ? "negative EBIT" : "";
+      const mult = (v, negative) => v == null ? (negative ? "neg." : "—") : num(v, 1) + "x";
+      const negTitle = h.negative_points ? ` title="${h.negative_points} of ${h.points} month-ends had a zero or negative ${k === "ev_to_ebit" ? "EBIT" : k === "price_to_fcf" ? "FCF" : "figure"}"` : "";
+      return `<tr><td>${l}</td><td>${h.current == null ? (neg || "—") : num(h.current, 1) + "x"}</td><td${negTitle}>${mult(h.median, h.median_yield_pct != null && h.median_yield_pct <= 0)}</td>` +
+        `<td class="hide-sm">${mult(h.low, false)}</td><td class="hide-sm"${negTitle}>${mult(h.high, h.negative_points > 0)}</td>` +
+        `<td>${h.percentile == null ? (h.points && h.points < (h.min_points || 24) ? `${h.points} pts, too few` : "—") : num(h.percentile, 0)}</td></tr>`;
     }).join("");
     const histFrom = (VH.price_to_sales || {}).from;
     const q = (S.quarterly || []).slice().reverse();
@@ -720,7 +757,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     }).join("");
     const cost = D.cost || {}, models = D.models || {};
     const steps = Object.entries(cost.steps || {}).map(([k, u]) => `${esc(k)}: ${esc(short(u.model))}, ${num(u.input_tokens, 0)} in / ${num(u.output_tokens, 0)} out${u.web_searches ? `, ${u.web_searches} searches` : ""} · ${usd(u.cost_usd)}`).join("<br>");
-    const hist = (D.history || []).map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td><td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
+    const hist = (D.history || []).map(h => `<tr><td title="${esc(runTime(h.timestamp))}">${esc(localTime(h.timestamp))}</td><td class="left">${ratingBadge(h.rating)}</td><td>${esc(h.score)}</td><td class="left">${esc(h.confidence)}</td><td title="${h.price_date ? "Close on " + esc(h.price_date) : ""}">${h.price ? num(+h.price, 2) : "—"}</td><td class="left hide-sm">${h.research_model ? esc(short(h.research_model) + " / " + short(h.scoring_model)) : "rule-based only"}${h.news_from ? ` <span class="sub" title="News reused from the run of ${esc(runTime(h.news_from))}">· news ${esc(localTime(h.news_from))}</span>` : ""}</td><td>${h.cost_usd ? usd(+h.cost_usd) : "—"}</td></tr>`).join("");
     const errs = Object.entries(D.errors || {});
     const T2 = (k, label, u) => kv(label, T[k] == null ? "—" : signed(T[k], 1, u));
 
@@ -730,6 +767,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           <div class="rating"><span class="dot" style="background:var(${RATING_DOT[D.rating] || "--muted"})"></span>${esc(D.ticker)} · ${esc(D.rating)}</div>
           <div class="big">${esc(D.score)}<small> / 100</small></div>
           <div class="sub">${esc(D.confidence)} confidence · ${(comp.available || []).length} of 6 factors had data</div>
+          ${((D.confidence_detail || {}).reasons || []).length ? `<ul class="reasons">${D.confidence_detail.reasons.map(x => `<li>${esc(x.text)}</li>`).join("")}</ul>` : ""}
           ${D.rating !== D.rating_before_overlay ? `<div class="sub">Composite band: ${esc(D.rating_before_overlay)}</div>` : ""}
           ${bandText ? `<div class="sub" style="margin-top:6px">${esc(bandText)}</div>` : ""}
           ${ov}
@@ -754,10 +792,11 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           ${T.missing ? `<div class="sub" style="margin-top:6px">${esc(T.missing)}</div>` : ""}</div>
       </section>
       <section class="grid two">
-        <div class="card"><h2>Key metrics <span class="sub">· from SEC XBRL${S.ttm_end ? ", TTM to " + esc(S.ttm_end) : ""}${S.foreign ? " · foreign filer" : ""}</span></h2><div class="kv">${metrics}</div></div>
+        <div class="card"><h2>Key metrics <span class="sub">· from SEC XBRL${S.ttm_end ? ", TTM to " + esc(S.ttm_end) : ""}${S.foreign ? " · foreign filer" : ""}; hover for the tags</span></h2><div class="kv">${metrics}</div>${flags}</div>
         <div class="card"><h2>Valuation vs own history <span class="sub">· month-end${histFrom ? " since " + esc(histFrom.slice(0, 7)) : ""}, filings known at each date</span></h2>
-          ${V.missing ? `<p class="sub">${esc(V.missing)}</p>` : `<div class="scroll"><table><thead><tr><th>Multiple</th><th>Now</th><th>Median</th><th class="hide-sm">Low</th><th class="hide-sm">High</th><th title="Share of month-ends below today's multiple">Percentile</th></tr></thead><tbody>${valRows}</tbody></table></div>
-          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company.</p>`}
+          ${V.missing ? `<p class="sub">${esc(V.missing)}</p>` : `<div class="scroll"><table><thead><tr><th>Multiple</th><th>Now</th><th>Median</th><th class="hide-sm">Low</th><th class="hide-sm">High</th><th title="Share of month-ends that were cheaper than now, ranked on yields (sales, FCF or EBIT over market cap or EV)">Percentile</th></tr></thead><tbody>${valRows}</tbody></table></div>
+          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"}${V.fcf_basis === "ex-prepayments" ? " (ex-prepayments)" : ""} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company. History is ranked on yields, so months with near-zero or negative FCF or EBIT count as the most expensive ("neg." when the median or high had no positive multiple); median, low and high are the multiples those yields imply.${V.fcf_basis === "ex-prepayments" ? ` P/FCF and its history use FCF ex-prepayments (reported P/FCF ${V.price_to_fcf_reported == null ? "negative" : num(V.price_to_fcf_reported, 1) + "x"}).` : ""}</p>
+          ${(V.share_outliers || []).length ? `<p class="sub">Left out ${V.share_outliers.length} diluted share count${V.share_outliers.length === 1 ? "" : "s"} more than 10x off the neighbouring quarters: ${esc(V.share_outliers.map(x => `${x.end} (${num(x.val, 0)})`).join(", "))}.</p>` : ""}`}
           ${qRows ? `<h3>Last ${q.length} quarters</h3><div class="scroll"><table><thead><tr><th>Quarter end</th><th>Revenue</th><th>YoY</th><th>Op. margin</th><th>FCF</th><th>Diluted shares</th></tr></thead><tbody>${qRows}</tbody></table></div>` : ""}
         </div>
       </section>
@@ -771,6 +810,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
           ${phrases.length ? `<table><thead><tr><th>Phrase</th><th>Now</th>${G.previous ? "<th>Previous</th>" : ""}</tr></thead><tbody>${phrases.map(([k, v]) => `<tr><td title="${esc((v.sentences || []).join("\n\n"))}">${esc(k)}</td><td>${v.count}</td>${G.previous ? `<td>${v.previous ?? "—"}</td>` : ""}</tr>`).join("")}</tbody></table>` : '<p class="sub">None of the tracked phrases appear.</p>'}`}
         </div>
         <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources and their tier</span></h2>
+          ${D.news_from ? `<div class="flag quiet" style="margin:0 0 10px">News from ${esc(localTime(D.news_from))} (${esc(age(D.news_from))}): reused, not refreshed this run; the 30 days and source checks are as of then.</div>` : ""}
           ${topicHtml || `<p class="sub">${esc(((D.factors || {}).news_risk || {}).missing || "No news step this run.")}</p>`}</div>
       </section>
       ${hist ? `<section class="card" style="margin-bottom:16px"><h2>History <span class="sub">· every rating of ${esc(D.ticker)}, newest first; times in your timezone (UTC on hover)</span></h2>
@@ -861,6 +901,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     };
     $("#run-add").onclick = add;
     $("#run-ticker").onkeydown = e => { if (e.key === "Enter") add(); };
+    $("#run-progress").onclick = e => { if (e.target.closest("[data-act=dismiss-batch]")) dismissBatch(); };
     $("#run-sel").onclick = e => {
       const b = e.target.closest("button[data-t], button[data-act=clear]");
       if (!b) return;
@@ -883,7 +924,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       : '<span class="sub">Nothing selected yet.</span>';
     const rc = (state.index || {}).recent_cost, est = $("#run-est");
     est.innerHTML = !n ? "" : rc && rc.avg_usd != null
-      ? `Estimated cost: <b>~${usd(n * rc.avg_usd)}</b> <span class="sub">· ${n} × ${usd(rc.avg_usd)}, the average of the last ${rc.runs} stock run${rc.runs === 1 ? "" : "s"}</span>`
+      ? `Estimated cost: <b>~${usd(n * rc.avg_usd)}</b> <span class="sub">· ${n} × ${usd(rc.avg_usd)}, the average of the last ${rc.runs} full stock run${rc.runs === 1 ? "" : "s"}</span>`
       : '<span class="sub">A cost estimate appears after the first stock run.</span>';
     $("#run-btn").textContent = n > 1 ? `Run ${n} tickers` : "Run";
   }
@@ -933,7 +974,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       : B.phase === "deploying" ? `finished${B.conclusion && B.conclusion !== "success" ? ` (${B.conclusion})` : ""} · waiting for the page to redeploy…`
       : B.phase === "lost" ? "no update yet; check GitHub or refresh in a few minutes"
       : B.collect && B.collect !== "success" && count("queued") + count("running") === 0 ? "writing the results…" : "in progress";
-    el.innerHTML = `<div class="prog"><b>${B.tickers.length > 1 ? `Batch of ${B.tickers.length}` : esc(B.tickers[0])}</b> · ${phase}${B.run_url ? ` · ${link(B.run_url, "view on GitHub")}` : ""}
+    el.innerHTML = `<div class="prog"><div class="prog-head"><span><b>${B.tickers.length > 1 ? `Batch of ${B.tickers.length}` : esc(B.tickers[0])}</b> · ${phase}${B.run_url ? ` · ${link(B.run_url, "view on GitHub")}` : ""}</span>
+      <button type="button" class="ibtn" data-act="dismiss-batch" title="Dismiss" aria-label="Dismiss this batch summary${batchFailed(B) ? " and the failed tags in the list" : ""}">×</button></div>
       <div class="sub">${["queued", "running", "done", "failed"].map(k => `${count(k)} ${k}`).join(" · ")}</div>
       <ul class="chips">${list.map(x => {
         const err = (result[x.ticker] && result[x.ticker].error) || (x.status === "failed" ? (x.step ? `failed at: ${x.step}` : x.reason || "") : "");
@@ -957,6 +999,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       }
       if (B.phase === "running") await wait(10000);
     }
+    if (state.batch !== B) { polling = false; return; }  // dismissed while it ran
     if (B.phase === "deploying") {
       // The collect job commits once; Vercel then redeploys (about 1-3 minutes). batch.json names the run.
       for (let i = 0; i < 40 && state.batch === B; i++) {
@@ -972,6 +1015,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       }
       if (B.phase !== "updated") B.phase = "lost";
     } else if (B.phase === "running") B.phase = "lost";
+    if (state.batch !== B) { polling = false; return; }
     save();
     polling = false;
     renderProgress(); renderSelection(); renderLists();
@@ -1016,7 +1060,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     route();
     loadQuotes();
     const B = load("stocks-batch");
-    if (B && Array.isArray(B.tickers) && Date.now() - B.started < 2 * 3600e3) {
+    if (B && Array.isArray(B.tickers) && (Date.now() - B.started < 2 * 3600e3 || batchFailed(B))) {
       state.batch = B;
       renderProgress();
       if (B.phase === "running" || B.phase === "deploying") pollBatch();

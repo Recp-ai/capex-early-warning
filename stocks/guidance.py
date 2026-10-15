@@ -134,8 +134,11 @@ def process(sess, cik: str, ticker: str, name: str, filing: dict, model: str | N
            "guidance": None, "summary": "", "model": None, "extracted_at": util.now_iso(), "version": VERSION}
     if model:
         ex = excerpt(without_boilerplate(text), phrases)
+        before = models.snapshot(usage) if usage is not None else None
         raw = analyst.extract(model, PROMPT.format(name=name, ticker=ticker, filed=filing["filingDate"],
                                                    period=pe.isoformat(), text=ex), SCHEMA, usage)
+        if usage is not None:
+            models.record_request(usage, before)  # one request: tiered prices are per request
         rec.update(guidance=verify(raw.get("guidance") or [], ex), summary=raw.get("summary", ""), model=model)
     return rec
 

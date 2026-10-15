@@ -5,11 +5,18 @@ differencing YTD facts that share a fiscal-year start, as cew/fetch_edgar does; 
 minus the 9-month YTD. Each point keeps the date it was first filed, so the valuation history only
 uses what was public on each date. Foreign filers (20-F / 40-F, IFRS) usually report annual figures
 only: TTM is then the latest fiscal year, and valuation is left out (see `summarize`).
+
+Balance sheet: cash, short-term investments and debt come from the tag lists below. A figure is UNKNOWN
+(None), never zero, when a tag of its group stopped reporting: it had a non-zero value in the last
+`stopped_tag_quarters` quarters (debt: `no_debt_quarters`) but nothing in the group covers the date, or
+only tags we don't read (the latest balance sheet's tag scan) carry a value. Debt is zero ("no debt") only
+when no debt tag had a non-zero value in the last `no_debt_quarters` quarters.
 """
 from __future__ import annotations
 
 import re
 from datetime import date, timedelta
+from statistics import median
 
 from cew import fetch_edgar, util
 
@@ -19,6 +26,9 @@ FACTS_URL = fetch_edgar.FACTS_URL
 PERIODIC_FORMS = ("10-Q", "10-K", "20-F", "40-F")
 FOREIGN_FORMS = ("20-F", "40-F")
 KEEP_YEARS = 8
+# Defaults for config/stocks.yaml balance_sheet.* and valuation.share_outlier_x
+STOPPED_TAG_QUARTERS, NO_DEBT_QUARTERS, SHARE_OUTLIER_X = 4, 8, 10.0
+PREPAYMENT_SHARE = 0.25  # prepayments.max_share_of_ocf
 
 FLOW_TAGS = {
     "revenue": {
@@ -27,11 +37,16 @@ FLOW_TAGS = {
         "ifrs-full": ["Revenue", "RevenueFromContractsWithCustomers"],
     },
     "gross_profit": {"us-gaap": ["GrossProfit"], "ifrs-full": ["GrossProfit"]},
-    "cost_of_revenue": {
-        "us-gaap": ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold"],
+    "cost_of_revenue": {   # gross profit = revenue - cost of revenue when GrossProfit isn't tagged
+        "us-gaap": ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfServices", "CostOfGoodsSold",
+                    "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+                    "CostOfServicesExcludingDepreciationDepletionAndAmortization"],
         "ifrs-full": ["CostOfSales"],
     },
     "operating_income": {"us-gaap": ["OperatingIncomeLoss"], "ifrs-full": ["ProfitLossFromOperatingActivities"]},
+    # operating income = revenue - total costs and expenses, else gross profit - operating expenses
+    "costs_and_expenses": {"us-gaap": ["CostsAndExpenses"], "ifrs-full": []},
+    "operating_expenses": {"us-gaap": ["OperatingExpenses"], "ifrs-full": []},
     "operating_cash_flow": {
         "us-gaap": ["NetCashProvidedByUsedInOperatingActivities",
                     "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"],
@@ -53,30 +68,88 @@ CASH_TAGS = {
                 "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"],
     "ifrs-full": ["CashAndCashEquivalents"],
 }
+# Short-term investments: the first tag with a value on the date (they are alternative names for the same
+# line: face-statement tags first, then the investment note's current available-for-sale / held-to-maturity
+# totals). Without one, cash + short-term investments reported as one line, minus cash.
 INVESTMENT_TAGS = {
-    "us-gaap": ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent"],
+    "us-gaap": ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+                "DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent", "AvailableForSaleSecuritiesCurrent",
+                "HeldToMaturitySecuritiesCurrent", "DebtSecuritiesHeldToMaturityAmortizedCostAfterAllowanceForCreditLossCurrent",
+                "DebtSecuritiesHeldToMaturityExcludingAccruedInterestAfterAllowanceForCreditLossCurrent",
+                "DebtSecuritiesCurrent", "OtherShortTermInvestments"],
     "ifrs-full": ["CurrentFinancialAssetsAtAmortisedCost", "OtherCurrentFinancialAssets"],
 }
-# Debt: the first group whose first tag has a value on the balance-sheet date is summed (leases excluded),
-# plus the first short-term group present.
-DEBT_GROUPS = {
+CASH_AND_INVESTMENT_TAGS = {"us-gaap": ["CashCashEquivalentsAndShortTermInvestments"], "ifrs-full": []}
+# Debt (leases excluded). Each family is one kind of borrowing, read as its total tag on the date, else its
+# non-current tag plus its current tag (first tag with a value in each list). "long" (LongTermDebt and its
+# parts) is the usual total and, when present, is taken to include the other families; otherwise the
+# families present are added up. DebtCurrent (all current debt) replaces the families' current parts and
+# short-term borrowings. "with_leases" only counts when nothing else is tagged; DebtInstrumentCarryingAmount
+# is the last resort.
+DEBT_FAMILIES = {
     "us-gaap": {
-        "long": [["LongTermDebt"], ["LongTermDebtNoncurrent", "LongTermDebtCurrent"],
-                 ["LongTermDebtAndCapitalLeaseObligations", "LongTermDebtAndCapitalLeaseObligationsCurrent"],
-                 ["SeniorLongTermNotes"], ["ConvertibleNotesPayable"], ["ConvertibleDebtNoncurrent", "ConvertibleDebtCurrent"]],
-        "short": [["ShortTermBorrowings"], ["CommercialPaper"]],
+        "long": {"total": ["LongTermDebt"], "noncurrent": ["LongTermDebtNoncurrent"], "current": ["LongTermDebtCurrent"]},
+        "notes": {"total": ["NotesPayable"], "noncurrent": ["LongTermNotesPayable", "SeniorLongTermNotes"],
+                  "current": ["NotesPayableCurrent"]},
+        "convertible": {"total": ["ConvertibleNotesPayable", "ConvertibleDebt"],
+                        "noncurrent": ["ConvertibleLongTermNotesPayable", "ConvertibleDebtNoncurrent",
+                                       "ConvertibleSubordinatedDebtNoncurrent"],
+                        "current": ["ConvertibleNotesPayableCurrent", "ConvertibleDebtCurrent"]},
+        "other": {"total": ["OtherLongTermDebt"], "noncurrent": ["OtherLongTermDebtNoncurrent"],
+                  "current": ["OtherLongTermDebtCurrent"]},
+        "loans": {"total": ["LoansPayable"],
+                  "noncurrent": ["LongTermLoansPayable", "LongTermLineOfCredit", "SecuredLongTermDebt", "UnsecuredLongTermDebt"],
+                  "current": ["LoansPayableCurrent", "LinesOfCreditCurrent", "SecuredDebtCurrent", "UnsecuredDebtCurrent"]},
+        "with_leases": {"total": ["LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities"],
+                        "noncurrent": ["LongTermDebtAndCapitalLeaseObligations"],
+                        "current": ["LongTermDebtAndCapitalLeaseObligationsCurrent"]},
     },
     "ifrs-full": {
-        "long": [["Borrowings"], ["NoncurrentPortionOfNoncurrentBorrowings", "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"],
-                 ["LongtermBorrowings", "ShorttermBorrowings"]],
-        "short": [],
+        "long": {"total": ["Borrowings"], "noncurrent": ["NoncurrentPortionOfNoncurrentBorrowings", "LongtermBorrowings"],
+                 "current": ["CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "ShorttermBorrowings"]},
     },
+}
+DEBT_COMBINED = {"us-gaap": ["DebtLongtermAndShorttermCombinedAmount"], "ifrs-full": []}
+DEBT_ALL_CURRENT = {"us-gaap": ["DebtCurrent"], "ifrs-full": []}
+DEBT_SHORT = {"us-gaap": ["ShortTermBorrowings", "CommercialPaper"], "ifrs-full": []}
+DEBT_LAST_RESORT = {"us-gaap": ["DebtInstrumentCarryingAmount"], "ifrs-full": []}
+DEBT_TAGS = {tax: list(dict.fromkeys([*DEBT_COMBINED[tax], *DEBT_ALL_CURRENT[tax], *DEBT_SHORT[tax], *DEBT_LAST_RESORT[tax],
+                                      *(t for fam in DEBT_FAMILIES[tax].values() for ts in fam.values() for t in ts)]))
+             for tax in ("us-gaap", "ifrs-full")}
+# Customer prepayments: the cash-flow statement's change in contract liabilities / customer advances (added
+# up across these lines), else the year-over-year change of the balance-sheet families below.
+PREPAYMENT_FLOW_TAGS = {
+    "us-gaap": ["IncreaseDecreaseInContractWithCustomerLiability", "IncreaseDecreaseInDeferredRevenue",
+                "IncreaseDecreaseInCustomerAdvances", "IncreaseDecreaseInCustomerAdvancesAndDeposits",
+                "IncreaseDecreaseInDeferredRevenueAndCustomerAdvancesAndDeposits"],
+    "ifrs-full": [],
+}
+PREPAYMENT_FAMILIES = {  # "deferred" only counts when "contract" isn't tagged (two names for the same line)
+    "us-gaap": {
+        "contract": {"total": ["ContractWithCustomerLiability"], "noncurrent": ["ContractWithCustomerLiabilityNoncurrent"],
+                     "current": ["ContractWithCustomerLiabilityCurrent"]},
+        "deferred": {"total": ["DeferredRevenue"], "noncurrent": ["DeferredRevenueNoncurrent"], "current": ["DeferredRevenueCurrent"]},
+        "advances": {"total": [], "noncurrent": ["CustomerAdvancesNoncurrent"], "current": ["CustomerAdvancesCurrent"]},
+        "deposits": {"total": [], "noncurrent": ["CustomerDepositsNoncurrent"], "current": ["CustomerDepositsCurrent"]},
+    },
+    "ifrs-full": {},
 }
 DILUTED_TAGS = {"us-gaap": ["WeightedAverageNumberOfDilutedSharesOutstanding"],
                 "ifrs-full": ["AdjustedWeightedAverageShares", "WeightedAverageShares"]}
-INSTANT_TAGS = {tax: sorted({t for group in (CASH_TAGS, INVESTMENT_TAGS) for t in group[tax]}
-                            | {t for gs in DEBT_GROUPS[tax].values() for g in gs for t in g})
+INSTANT_TAGS = {tax: sorted({t for group in (CASH_TAGS, INVESTMENT_TAGS, CASH_AND_INVESTMENT_TAGS, DEBT_TAGS) for t in group[tax]}
+                            | {t for fam in PREPAYMENT_FAMILIES[tax].values() for ts in fam.values() for t in ts})
                 for tax in ("us-gaap", "ifrs-full")}
+# The tag scan of the latest balance sheet (diagnostics, the page's hover, and the "only tags we don't read"
+# guard): every instant tag on that date whose name matches SCAN_RE.
+SCAN_RE = re.compile(r"Cash|Investments|Securities|Debt|Notes|Borrowing|Loan|LineOfCredit|CommercialPaper"
+                     r"|ContractWithCustomerLiability|CustomerAdvance|CustomerDeposit|DeferredRevenue")
+DEBT_CANDIDATE_RE = re.compile(r"Debt|NotesPayable|Borrowings|LoansPayable|LinesOfCredit|LineOfCredit$|CommercialPaper"
+                               r"|ConvertibleNotes|SeniorNotes|SeniorLongTermNotes")
+DEBT_CANDIDATE_NOT = re.compile(r"Securit|Investment|Receivable|Lease|Interest|Issuance|Discount|Premium|FairValue"
+                                r"|Proceeds|Repayment|Payment|Maturit|Face|Unamortized|Extinguishment|Fee|Covenant"
+                                r"|Capacity|Percentage|Rate|Ratio|Increase|Decrease|Gross|Collateral|Guarantee|Conversion")
+INVESTMENT_CANDIDATE_RE = re.compile(r"(Securit|Investments).*Current$|ShortTermInvestments$")
+INVESTMENT_CANDIDATE_NOT = re.compile(r"Noncurrent|Restricted|Pledged|Unrealized|Gain|Loss(?!Current)|Receivable")
 
 
 def _days(a: str, b: str) -> int:
@@ -234,13 +307,44 @@ def extract(facts: dict, cik: str) -> dict:
                for end, f in dedup(_units(facts, tax, tag).get(currency, []), duration=False).items()}
         if pts:
             out["instants"][tag] = _keep(pts, cutoff)
+    out["prepayment_flows"] = {}
+    for tag in PREPAYMENT_FLOW_TAGS[tax]:
+        q, a = flow_points(_units(facts, tax, tag).get(currency, []))
+        if q or a:
+            out["prepayment_flows"][tag] = {"quarters": _keep(q, cutoff), "annual": _keep(a, cutoff)}
     for tag in DILUTED_TAGS[tax]:
         q, a = share_points(_units(facts, tax, tag).get("shares", []))
         if q or a:
             out["shares"] = {"tag": tag, "diluted_q": _keep(q, cutoff), "diluted_a": _keep(a, cutoff)}
             break
     out["shares"]["outstanding"] = cover_shares(facts)
+    out["scan"] = tag_scan(facts, tax, currency, latest)
     return out
+
+
+FLOW_SCAN_RE = re.compile(r"Cost|Expense|OperatingIncome|GrossProfit|IncreaseDecreaseIn(ContractWithCustomer|DeferredRevenue|Customer)")
+
+
+def tag_scan(facts: dict, tax: str, currency: str, latest_revenue_end: str | None) -> dict:
+    """Which tags the company uses: every instant tag on the latest balance-sheet date matching SCAN_RE, and
+    every duration tag ending on the latest revenue period matching FLOW_SCAN_RE (shortest period's value).
+    Diagnostics for the page's hover and the run log; the balance-sheet guard reads `instants`."""
+    cash_ends = [e["end"] for t in CASH_TAGS[tax] for e in _units(facts, tax, t).get(currency, [])
+                 if _periodic(e) and "start" not in e]
+    bs_date = max(cash_ends, default=None)
+    inst, dur = {}, {}
+    for tag, body in sorted(_tax(facts, tax).items()):
+        rows = (body.get("units") or {}).get(currency) or []
+        if bs_date and SCAN_RE.search(tag):
+            p = dedup(rows, duration=False).get(bs_date)
+            if p:
+                inst[tag] = p["val"]
+        if latest_revenue_end and FLOW_SCAN_RE.search(tag):
+            facts_d = [(k, f) for k, f in dedup(rows, duration=True).items() if k[1] == latest_revenue_end]
+            if facts_d:
+                (start, _), f = min(facts_d, key=lambda x: _days(x[0][0], x[0][1]))
+                dur[tag] = {"val": f["val"], "start": start}
+    return {"balance_sheet_date": bs_date, "instants": inst, "flow_end": latest_revenue_end, "flows": dur}
 
 
 def fetch(sess, cik: str) -> dict:
@@ -301,9 +405,49 @@ def asof(points: dict, day: str) -> tuple[str, dict] | None:
     return best
 
 
+def flow_series(f: dict, metric: str) -> dict:
+    """A flow's quarters and annual figures; gross profit and operating income fall back, period by period,
+    to revenue - cost of revenue and to revenue - costs and expenses (else gross profit - operating
+    expenses) when the company doesn't tag them. Each derived point says how in "source"."""
+    flows = f.get("flows") or {}
+    base = flows.get(metric) or {}
+    if metric not in ("gross_profit", "operating_income"):
+        return base
+    rev = flows.get("revenue") or {}
+    tagged = metric if base.get("tag") else None
+    out = {"tag": base.get("tag"), "quarters": {}, "annual": {}}
+    for kind in ("quarters", "annual"):
+        pts = {e: dict(p, source=base.get("tag")) for e, p in (base.get(kind) or {}).items()} if tagged else {}
+        if metric == "gross_profit":
+            fallbacks = [("cost_of_revenue", rev)]
+        else:
+            fallbacks = [("costs_and_expenses", rev), ("operating_expenses", flow_series(f, "gross_profit"))]
+        for other, minuend in fallbacks:
+            sub = flows.get(other) or {}
+            for end, m in (minuend.get(kind) or {}).items():
+                c = (sub.get(kind) or {}).get(end)
+                if end in pts or c is None:
+                    continue
+                left = "revenue" if minuend is rev else "gross profit"
+                pts[end] = {"val": m["val"] - c["val"], "filed": max(m["filed"], c["filed"]), "derived": True,
+                            "source": f"{left} - {sub.get('tag')}"}
+        out[kind] = dict(sorted(pts.items()))
+    return out
+
+
 def value_at(f: dict, metric: str, end: str) -> float | None:
-    p = ttm_points((f.get("flows") or {}).get(metric) or {}).get(end)
+    p = ttm_points(flow_series(f, metric)).get(end)
     return None if p is None else p["val"]
+
+
+def ttm_sources(f: dict, metric: str, end: str) -> str | None:
+    """How a TTM figure was built: the tag, or e.g. "revenue - CostOfServices" (several joined with "; ")."""
+    s = flow_series(f, metric)
+    q = s.get("quarters") or {}
+    ends = [e for e in q if e <= end][-4:]
+    if end in (s.get("annual") or {}) and (len(ends) < 4 or ends[-1] != end):
+        return (s["annual"][end].get("source") or s.get("tag"))
+    return "; ".join(dict.fromkeys(q[e].get("source") or s.get("tag") or "?" for e in ends)) or None
 
 
 def _at(f: dict, tag: str, end: str) -> float | None:
@@ -311,20 +455,142 @@ def _at(f: dict, tag: str, end: str) -> float | None:
     return None if p is None else p["val"]
 
 
-def balance_sheet_at(f: dict, end: str) -> dict:
-    """Cash, short-term investments and debt on one balance-sheet date."""
+def _first(f: dict, tags: list[str], end: str) -> tuple[str, float] | None:
+    for t in tags:
+        v = _at(f, t, end)
+        if v is not None:
+            return t, v
+    return None
+
+
+def _family(f: dict, fam: dict, end: str) -> dict | None:
+    got = {k: _first(f, fam.get(k) or [], end) for k in ("total", "noncurrent", "current")}
+    return got if any(got.values()) else None
+
+
+def debt_at(f: dict, end: str) -> tuple[float | None, list[tuple[str, float]]]:
+    """(total debt, [(tag, value), ...]) on one date from DEBT_FAMILIES; (None, []) when no debt tag has a
+    value on the date."""
     tax = f.get("taxonomy") or "us-gaap"
-    cash = next((v for t in CASH_TAGS[tax] if (v := _at(f, t, end)) is not None), None)
-    inv = next((v for t in INVESTMENT_TAGS[tax] if (v := _at(f, t, end)) is not None), 0.0)
-    groups = DEBT_GROUPS[tax]
-    long_g = next((g for g in groups["long"] if _at(f, g[0], end) is not None), None)
-    short_g = next((g for g in groups["short"] if _at(f, g[0], end) is not None), None)
-    debt = sum(_at(f, t, end) or 0.0 for g in (long_g, short_g) if g for t in g)
-    note = None if (long_g or short_g) else "no debt tagged in XBRL on this date (counted as zero)"
-    return {"date": end, "cash": cash, "short_term_investments": inv,
-            "cash_and_investments": None if cash is None else cash + inv, "debt": debt,
-            "debt_tags": [t for g in (long_g, short_g) if g for t in g], "debt_note": note,
-            "net_debt": None if cash is None else debt - cash - inv}
+    comb = _first(f, DEBT_COMBINED[tax], end)
+    if comb:
+        return comb[1], [comb]
+    fams = DEBT_FAMILIES[tax]
+    long_ = _family(f, fams["long"], end)
+    if long_ and (long_["total"] or long_["noncurrent"]):
+        kinds = [long_]  # the usual total; taken to include the other families
+    else:  # no LongTermDebt total (at most its current part): add the families up
+        kinds = [k for name, fam in fams.items() if name != "with_leases" if (k := _family(f, fam, end))]
+    if not kinds and "with_leases" in fams and (wl := _family(f, fams["with_leases"], end)):
+        kinds = [wl]
+    all_cur, short = _first(f, DEBT_ALL_CURRENT[tax], end), _first(f, DEBT_SHORT[tax], end)
+    if not kinds and not all_cur and not short:
+        last = _first(f, DEBT_LAST_RESORT[tax], end)
+        return (last[1], [last]) if last else (None, [])
+    parts: list[tuple[str, float]] = []
+    if all_cur and (not kinds or any(k["noncurrent"] for k in kinds)):
+        parts.append(all_cur)  # every current borrowing; the families add only their non-current parts
+        for k in kinds:
+            if k["noncurrent"]:
+                parts.append(k["noncurrent"])
+            elif k["total"]:
+                parts.append((k["total"][0], k["total"][1] - (k["current"][1] if k["current"] else 0.0)))
+    else:
+        for k in kinds:
+            parts += [k["total"]] if k["total"] else [p for p in (k["noncurrent"], k["current"]) if p]
+        if short:
+            parts.append(short)
+    return sum(v for _, v in parts), parts
+
+
+def _quarters_before(end: str, quarters: int) -> str:
+    return (date.fromisoformat(end) - timedelta(days=round(quarters * 91.31) + 10)).isoformat()
+
+
+def stopped_tags(f: dict, tags: list[str], end: str, quarters: int) -> list[dict]:
+    """Tags whose latest value in the `quarters` quarters before `end` is non-zero but which have no value on
+    `end`. A last value of zero reads as repaid / sold, and so does a zero reported by another tag of the
+    group after the stopped tag's last value (e.g. convertible notes at 0 the quarter after they matured)."""
+    lo, out = _quarters_before(end, quarters), []
+    inst = f.get("instants") or {}
+    zeros = sorted(d for t in tags for d, p in (inst.get(t) or {}).items() if lo <= d <= end and p["val"] == 0)
+    for t in tags:
+        pts = inst.get(t) or {}
+        if end in pts:
+            continue
+        ds = [d for d in pts if lo <= d < end]
+        if ds and pts[max(ds)]["val"] and not any(z > max(ds) for z in zeros):
+            out.append({"tag": t, "date": max(ds), "val": pts[max(ds)]["val"]})
+    return out
+
+
+def untracked(scan: dict | None, end: str, include: re.Pattern, exclude: re.Pattern, known: list[str]) -> dict:
+    """Tags on the latest balance sheet's scan that look like the group but aren't in our lists."""
+    if not scan or scan.get("balance_sheet_date") != end:
+        return {}
+    return {t: v for t, v in (scan.get("instants") or {}).items()
+            if v and t not in known and include.search(t) and not exclude.search(t)}
+
+
+def _money(v: float) -> str:
+    a = abs(v)
+    s = f"{a / 1e9:.2f}B" if a >= 1e9 else f"{a / 1e6:.1f}M" if a >= 1e6 else f"{a:,.0f}"
+    return ("-" if v < 0 else "") + "$" + s
+
+
+def _stopped_note(what: str, stopped: list[dict], end: str) -> str:
+    x = max(stopped, key=lambda s: s["date"])
+    more = f" (and {len(stopped) - 1} more)" if len(stopped) > 1 else ""
+    return f"{what} unknown: {x['tag']} was {_money(x['val'])} on {x['date']}{more}, and no {what} tag covers {end}"
+
+
+def balance_sheet_at(f: dict, end: str, cfg: dict | None = None) -> dict:
+    """Cash, short-term investments and debt on one balance-sheet date. A figure is None (unknown) when a tag
+    of its group stopped reporting, or only tags we don't read carry it (see the module docstring); then
+    cash + investments, net debt (and so EV) are None too, and "unknown" says why."""
+    tax = f.get("taxonomy") or "us-gaap"
+    bc = (cfg or {}).get("balance_sheet") or {}
+    q_stop, q_debt = int(bc.get("stopped_tag_quarters", STOPPED_TAG_QUARTERS)), int(bc.get("no_debt_quarters", NO_DEBT_QUARTERS))
+    scan, unknown = f.get("scan"), []
+    cash_t = _first(f, CASH_TAGS[tax], end)
+    cash = cash_t and cash_t[1]
+    inv_t = _first(f, INVESTMENT_TAGS[tax], end)
+    inv_parts, inv_note = [inv_t] if inv_t else [], None
+    inv = inv_t[1] if inv_t else None
+    if inv_t is None:
+        comb = _first(f, CASH_AND_INVESTMENT_TAGS[tax], end)
+        stopped = stopped_tags(f, INVESTMENT_TAGS[tax], end, q_stop)
+        other = untracked(scan, end, INVESTMENT_CANDIDATE_RE, INVESTMENT_CANDIDATE_NOT,
+                          [*INVESTMENT_TAGS[tax], *CASH_AND_INVESTMENT_TAGS[tax]])
+        if comb and cash is not None and comb[1] >= cash:
+            inv, inv_parts = comb[1] - cash, [comb]
+            inv_note = f"{comb[0]} minus cash"
+        elif stopped:
+            unknown.append(_stopped_note("short-term investments", stopped, end))
+        elif other:
+            unknown.append("short-term investments unknown: only tags this screen doesn't read carry a value on "
+                           f"{end} ({', '.join(f'{t} {_money(v)}' for t, v in list(other.items())[:3])})")
+        else:
+            inv = 0.0
+    debt, parts = debt_at(f, end)
+    note = None
+    if debt is None:
+        stopped = stopped_tags(f, DEBT_TAGS[tax], end, q_debt)
+        other = untracked(scan, end, DEBT_CANDIDATE_RE, DEBT_CANDIDATE_NOT, DEBT_TAGS[tax])
+        if stopped:
+            unknown.append(_stopped_note("debt", stopped, end))
+        elif other:
+            unknown.append(f"debt unknown: only tags this screen doesn't read carry a value on {end} "
+                           f"({', '.join(f'{t} {_money(v)}' for t, v in list(other.items())[:3])})")
+        else:
+            debt = 0.0
+            note = f"no debt: no debt tag with a value in the last {q_debt} quarters"
+    cash_inv = None if cash is None or inv is None else cash + inv
+    return {"date": end, "cash": cash, "cash_tag": cash_t and cash_t[0], "short_term_investments": inv,
+            "investment_tags": [{"tag": t, "val": v} for t, v in inv_parts], "investment_note": inv_note,
+            "cash_and_investments": cash_inv, "debt": debt, "debt_tags": [t for t, _ in parts],
+            "debt_parts": [{"tag": t, "val": v} for t, v in parts], "debt_note": note,
+            "net_debt": None if cash_inv is None or debt is None else debt - cash_inv, "unknown": unknown}
 
 
 def balance_sheet_dates(f: dict) -> dict:
@@ -348,8 +614,92 @@ def _ratio(a, b, pct=True):
     return round(a / b * (100 if pct else 1), 2)
 
 
-def summarize(f: dict) -> dict:
+def clean_shares(points: dict, factor: float = SHARE_OUTLIER_X) -> tuple[dict, list[dict]]:
+    """Drop share counts more than `factor` times off the median of their neighbours on BOTH sides (two
+    before, two after; one side at either end), e.g. a filing that gave 29,452 for 29.5 million. A stock
+    split moves every later count by the same factor, so a split's points match one side and are kept."""
+    ends = sorted(points)
+    vals = [points[e]["val"] for e in ends]
+    kept, dropped = {}, []
+
+    def off(v, side):
+        side = [x for x in side if x > 0]
+        if not side:
+            return None
+        m = median(side)
+        return v <= 0 or max(v / m, m / v) > factor
+
+    for i, e in enumerate(ends):
+        before, after = off(vals[i], vals[max(0, i - 2):i]), off(vals[i], vals[i + 1:i + 3])
+        if (before or after) and before is not False and after is not False:
+            dropped.append({"end": e, "val": vals[i]})
+        else:
+            kept[e] = points[e]
+    return kept, dropped
+
+
+def shares_cleaned(f: dict, factor: float = SHARE_OUTLIER_X) -> dict:
+    """{"diluted_q", "diluted_a", "dropped"}: the diluted counts without outliers (see clean_shares)."""
+    sh = f.get("shares") or {}
+    q, dq = clean_shares(sh.get("diluted_q") or {}, factor)
+    a, da = clean_shares(sh.get("diluted_a") or {}, factor)
+    return {"diluted_q": q, "diluted_a": a, "dropped": sorted(dq + da, key=lambda x: x["end"])}
+
+
+def prepayment_points(f: dict) -> dict:
+    """end -> {"val", "filed", "source"}: the TTM increase in customer prepayments (contract liabilities,
+    deferred revenue, customer advances / deposits). From the cash-flow statement's change lines (added up),
+    else the balance-sheet families' change over the year."""
+    tags = f.get("prepayment_flows") or {}
+    merged: dict = {"quarters": {}, "annual": {}}
+    for kind in ("quarters", "annual"):
+        for tag, fl in tags.items():
+            for end, p in (fl.get(kind) or {}).items():
+                cur = merged[kind].setdefault(end, {"val": 0.0, "filed": "", "tags": []})
+                cur["val"] += p["val"]
+                cur["filed"] = max(cur["filed"], p["filed"])
+                cur["tags"].append(tag)
+    out = {e: {"val": p["val"], "filed": p["filed"], "source": "cash flow statement: " + " + ".join(
+        sorted({t for k in ("quarters", "annual") for x in merged[k].values() for t in x["tags"]}))}
+        for e, p in ttm_points(merged).items()}
+    tax = f.get("taxonomy") or "us-gaap"
+    fams = PREPAYMENT_FAMILIES.get(tax) or {}
+    filed = balance_sheet_dates(f)
+    dates = {d: d for d in filed}
+    for end in dates:
+        prev = year_before(dates, end)  # the balance-sheet date closest to a year earlier
+        if end in out or not prev:
+            continue
+        total, used = 0.0, []
+        for name, fam in fams.items():
+            if name == "deferred" and "contract" in used:
+                continue
+            now_v, then_v = _family(f, fam, end), _family(f, fam, prev)
+            if not now_v or not then_v:
+                continue
+            val = lambda g: g["total"][1] if g["total"] else sum(p[1] for p in (g["noncurrent"], g["current"]) if p)  # noqa: E731
+            total += val(now_v) - val(then_v)
+            used.append(name)
+        if used:
+            out[end] = {"val": total, "filed": filed[end], "source": f"balance sheet: {', '.join(used)} {prev} to {end}"}
+    return dict(sorted(out.items()))
+
+
+def prepayments(f: dict, end: str, ocf: float | None, max_share: float = PREPAYMENT_SHARE) -> dict | None:
+    """The TTM increase in prepayments to `end`, and whether it exceeds `max_share` of TTM operating cash
+    flow (any increase does when operating cash flow is zero or negative)."""
+    p = prepayment_points(f).get(end)
+    if p is None:
+        return None
+    inc = p["val"]
+    applies = ocf is not None and inc > 0 and (ocf <= 0 or inc > max_share * ocf)
+    return {"increase": inc, "source": p["source"], "share_of_ocf": round(inc / ocf, 4) if ocf and ocf > 0 else None,
+            "max_share_of_ocf": max_share, "applies": applies}
+
+
+def summarize(f: dict, cfg: dict | None = None) -> dict:
     """Latest fundamentals for scoring and display. Missing inputs give None, never a guess."""
+    cfg = cfg or {}
     flows = f.get("flows") or {}
     rev = flows.get("revenue") or {}
     rq = rev.get("quarters") or {}
@@ -381,45 +731,120 @@ def summarize(f: dict) -> dict:
     s["ttm_end"], s["revenue_ttm"] = end, rttm[end]["val"]
     s["revenue_yoy_ttm"] = _pct(rttm[end]["val"], (year_before(rttm, end) or {}).get("val"))
     gp = value_at(f, "gross_profit", end)
-    if gp is None and value_at(f, "cost_of_revenue", end) is not None:
-        gp = s["revenue_ttm"] - value_at(f, "cost_of_revenue", end)
     ocf, capex = value_at(f, "operating_cash_flow", end), value_at(f, "capex", end)
     s.update(gross_profit_ttm=gp, operating_income_ttm=value_at(f, "operating_income", end),
              operating_cash_flow_ttm=ocf, capex_ttm=capex, sbc_ttm=value_at(f, "sbc", end))
+    s["gross_profit_source"] = ttm_sources(f, "gross_profit", end) if gp is not None else None
+    s["operating_income_source"] = ttm_sources(f, "operating_income", end) if s["operating_income_ttm"] is not None else None
     s["fcf_ttm"] = None if ocf is None or capex is None else ocf - capex
     s["gross_margin_pct"] = _ratio(gp, s["revenue_ttm"])
     s["operating_margin_pct"] = _ratio(s["operating_income_ttm"], s["revenue_ttm"])
     s["fcf_margin_pct"] = _ratio(s["fcf_ttm"], s["revenue_ttm"])
     s["capex_intensity_pct"] = _ratio(capex, s["revenue_ttm"])
     s["sbc_pct_revenue"] = _ratio(s["sbc_ttm"], s["revenue_ttm"])
+    missing = {}
+    if gp is None:
+        missing["gross_margin_pct"] = f"no GrossProfit or cost-of-revenue tag covers the TTM to {end}"
+    if s["operating_income_ttm"] is None:
+        missing["operating_margin_pct"] = (f"no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers "
+                                           f"the TTM to {end}")
+    if s["fcf_ttm"] is None:
+        missing["fcf_margin_pct"] = f"no operating cash flow or capex for the TTM to {end}"
+    s["missing_inputs"] = missing
+    # Customer prepayments: when they are a large share of operating cash flow, quality and valuation are
+    # scored on FCF minus them ("FCF ex-prepayments"); the reported FCF is shown too.
+    pp = prepayments(f, end, ocf, float((cfg.get("prepayments") or {}).get("max_share_of_ocf", PREPAYMENT_SHARE)))
+    s["prepayments"] = pp
+    if pp and pp["applies"] and s["fcf_ttm"] is not None:
+        s["fcf_ex_prepayments_ttm"] = s["fcf_ttm"] - pp["increase"]
+        s["fcf_ex_prepayments_margin_pct"] = _ratio(s["fcf_ex_prepayments_ttm"], s["revenue_ttm"])
     bs_dates = balance_sheet_dates(f)
     if bs_dates:
-        s["balance_sheet"] = balance_sheet_at(f, list(bs_dates)[-1])
+        s["balance_sheet"] = balance_sheet_at(f, list(bs_dates)[-1], cfg)
     sh = f.get("shares") or {}
-    dq, da = sh.get("diluted_q") or {}, sh.get("diluted_a") or {}
+    clean = shares_cleaned(f, float((cfg.get("valuation") or {}).get("share_outlier_x", SHARE_OUTLIER_X)))
+    dq, da = clean["diluted_q"], clean["diluted_a"]
+    s["share_outliers"] = clean["dropped"]
     if dq or da:  # the newest count, quarterly or (10-K, 20-F) annual, compared with the same kind
         e0 = max([*dq, *da])
         pts = dq if e0 in dq else da
         s["diluted_shares"], s["diluted_shares_end"] = pts[e0]["val"], e0
         s["dilution_yoy_pct"] = _pct(pts[e0]["val"], (year_before(pts, e0) or {}).get("val"))
     s["shares_outstanding"] = sh.get("outstanding")
-    s["quarterly"] = quarterly_table(f)
+    s["quarterly"] = quarterly_table(f, shares=dq)
     return s
 
 
-def quarterly_table(f: dict, n: int = 12) -> list[dict]:
+def quarterly_table(f: dict, n: int = 12, shares: dict | None = None) -> list[dict]:
     """Last n quarters: revenue, its YoY, operating margin, FCF and diluted shares (for display)."""
     flows = f.get("flows") or {}
     rq = (flows.get("revenue") or {}).get("quarters") or {}
+    oq = flow_series(f, "operating_income").get("quarters") or {}
+    shares = ((f.get("shares") or {}).get("diluted_q") or {}) if shares is None else shares
     out = []
     for end in list(rq)[-n:]:
         def q(metric):
             p = ((flows.get(metric) or {}).get("quarters") or {}).get(end)
             return None if p is None else p["val"]
         r = rq[end]["val"]
-        ocf, capex, opi = q("operating_cash_flow"), q("capex"), q("operating_income")
-        sh = (((f.get("shares") or {}).get("diluted_q") or {}).get(end) or {}).get("val")
+        ocf, capex, opi = q("operating_cash_flow"), q("capex"), (oq.get(end) or {}).get("val")
+        sh = (shares.get(end) or {}).get("val")
         out.append({"end": end, "revenue": r, "revenue_yoy_pct": _pct(r, (year_before(rq, end) or {}).get("val")),
                     "operating_margin_pct": _ratio(opi, r), "fcf": None if ocf is None or capex is None else ocf - capex,
                     "diluted_shares": sh})
     return out
+
+
+# ---------------------------------------------------------------- python -m stocks.fundamentals tags MSFT ...
+def tag_report(ticker: str, rec: dict, cfg: dict | None = None) -> str:
+    """Which tags a cached record uses on its latest balance sheet, and the margin / prepayment sources."""
+    s = summarize(rec, cfg)
+    bs = s.get("balance_sheet") or {}
+    scan = rec.get("scan") or {}
+    tax = rec.get("taxonomy") or "us-gaap"
+    lines = [f"{ticker}: balance sheet {bs.get('date')} (filed data as of {rec.get('fetched_at')})",
+             f"  cash: {bs.get('cash_tag')} {_money(bs['cash']) if bs.get('cash') is not None else 'n/a'}",
+             "  short-term investments: " + (", ".join(f"{x['tag']} {_money(x['val'])}" for x in bs.get("investment_tags") or [])
+                                            or ("none (zero)" if bs.get("short_term_investments") == 0 else "unknown")),
+             "  debt: " + (" + ".join(f"{x['tag']} {_money(x['val'])}" for x in bs.get("debt_parts") or [])
+                          or (bs.get("debt_note") or "unknown"))]
+    lines += [f"  UNKNOWN: {u}" for u in bs.get("unknown") or []]
+    if scan.get("balance_sheet_date") == bs.get("date"):
+        read = {*INSTANT_TAGS[tax]}
+        other = {t: v for t, v in (scan.get("instants") or {}).items() if t not in read and v and (
+            DEBT_CANDIDATE_RE.search(t) and not DEBT_CANDIDATE_NOT.search(t)
+            or INVESTMENT_CANDIDATE_RE.search(t) and not INVESTMENT_CANDIDATE_NOT.search(t))}
+        lines.append("  other debt / investment tags on this date (not read): "
+                     + (", ".join(f"{t} {_money(v)}" for t, v in other.items()) or "none"))
+    else:
+        lines.append("  (no tag scan in this cache; re-fetch to add one)")
+    lines.append(f"  gross profit: {s.get('gross_profit_source') or 'missing'}; operating income: "
+                 f"{s.get('operating_income_source') or 'missing'}")
+    pp = s.get("prepayments")
+    if pp:
+        share = "n/a" if pp["share_of_ocf"] is None else f"{pp['share_of_ocf']:.0%}"
+        lines.append(f"  prepayments: {_money(pp['increase'])} over the TTM ({pp['source']}); {share} of operating cash flow"
+                     + (" -> FCF ex-prepayments" if pp["applies"] else ""))
+    else:
+        lines.append("  prepayments: none tagged")
+    if s.get("share_outliers"):
+        lines.append("  share counts dropped: " + ", ".join(f"{x['end']} {x['val']:,.0f}" for x in s["share_outliers"]))
+    return "\n".join(lines)
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    p = argparse.ArgumentParser(description="Report the XBRL tags behind a cached stock's balance sheet and margins")
+    p.add_argument("step", choices=["tags"])
+    p.add_argument("tickers", nargs="+")
+    args = p.parse_args(argv)
+    cfg = config.load()
+    for t in args.tickers:
+        t = config.normalize_ticker(t) or t
+        rec = util.read_json(cache_path(t))
+        print(tag_report(t, rec, cfg) if rec else f"{t}: no cached fundamentals")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

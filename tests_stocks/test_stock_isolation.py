@@ -23,8 +23,9 @@ def test_stock_workflow_plans_runs_one_job_per_ticker_and_collects_once():
     wf, on = workflow("stocks.yml")
     assert list(on) == ["workflow_dispatch"] and "schedule" not in on
     inputs = on["workflow_dispatch"]["inputs"]
-    assert set(inputs) == {"tickers", "research_model", "scoring_model", "send_email"} and inputs["tickers"]["required"] is True
-    assert inputs["send_email"]["default"] is False
+    assert set(inputs) == {"tickers", "research_model", "scoring_model", "send_email", "reuse_news"}
+    assert inputs["tickers"]["required"] is True
+    assert inputs["send_email"]["default"] is False and inputs["reuse_news"]["default"] is False
     assert wf["run-name"] == "Stock research ${{ inputs.tickers }}"  # api/stock.js counts tickers from run titles
     assert wf["concurrency"] == {"group": "stocks", "cancel-in-progress": False}
     jobs = wf["jobs"]
@@ -44,6 +45,7 @@ def test_stock_workflow_plans_runs_one_job_per_ticker_and_collects_once():
     env = next(s for s in rate["steps"] if s.get("name") == "Research the stock")["env"]
     assert env["INPUT_TICKER"] == "${{ matrix.ticker }}" and env["STOCK_PRICE_API_KEY"] == "${{ secrets.STOCK_PRICE_API_KEY }}"
     assert env["INPUT_SCORING_MODEL"] == "${{ inputs.scoring_model }}" and "SMTP_PASSWORD" not in env
+    assert env["INPUT_REUSE_NEWS"] == "${{ inputs.reuse_news }}"
     assert not any("git " in s.get("run", "") for s in rate["steps"]), "ticker jobs never commit"
     upload = next(s for s in rate["steps"] if s.get("uses", "").startswith("actions/upload-artifact"))
     assert upload["if"] == "always()" and upload["with"]["name"] == "stock-${{ matrix.ticker }}"
@@ -102,6 +104,54 @@ def test_page_script_and_function_parse(tmp_path):
     js.write_text(re.search(r"<script>(.*)</script>", (ROOT / "site" / "stocks.html").read_text(), re.S).group(1))
     assert subprocess.run([NODE, "--check", str(js)], capture_output=True).returncode == 0
     assert subprocess.run([NODE, "--check", str(ROOT / "site" / "api" / "stock.js")], capture_output=True).returncode == 0
+
+
+def page_function(name):
+    """One top-level function of the stocks page's script, as source."""
+    page = (ROOT / "site" / "stocks.html").read_text()
+    return re.search(rf"\n  function {name}\(.*?\n  }}\n", page, re.S).group(0)
+
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_price_axis_ticks_always_cover_the_data():
+    cases = [[15.2, 118.4], [61.2, 118.4], [0.37, 0.52], [100, 100], [99.5, 150], [2.04, 2.04], [-3.2, 7.9], [1234.5, 4321.9], [50, 100]]
+    script = page_function("niceTicks") + f"console.log(JSON.stringify({json.dumps(cases)}.map(([lo, hi]) => niceTicks(lo, hi))));"
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    for (lo, hi), ticks in zip(cases, json.loads(p.stdout)):
+        assert ticks[0] <= lo and ticks[-1] >= hi, (lo, hi, ticks)
+        assert ticks == sorted(ticks) and len(set(ticks)) == len(ticks) and 3 <= len(ticks) <= 8, (lo, hi, ticks)
+        steps = {round(b - a, 9) for a, b in zip(ticks, ticks[1:])}
+        assert len(steps) == 1, (lo, hi, ticks)  # evenly spaced
+    assert json.loads(p.stdout)[0] == [0, 50, 100, 150]  # INOD 2Y (step 50): the top tick was 100, below the ~118 high
+
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_batch_tags_clear_once_results_are_on_the_page_but_failures_stay_until_dismissed():
+    page = (ROOT / "site" / "stocks.html").read_text()
+    failed = re.search(r"\n  const batchFailed = .*?;\n", page).group(0)
+    script = ("const esc = s => String(s); let state = {};" + failed + page_function("statusTag") + """
+      const st = { MSFT: { ticker: "MSFT", status: "done" }, ZZZZ: { ticker: "ZZZZ", status: "failed", step: "Research the stock" },
+                   NVDA: { ticker: "NVDA", status: "running" } };
+      const out = {};
+      for (const phase of ["running", "deploying", "updated", "lost"]) {
+        state = { batch: { phase, statuses: st } };
+        out[phase] = Object.fromEntries(Object.keys(st).map(t => [t, statusTag(t)]));
+      }
+      state = { batch: null };
+      out.dismissed = statusTag("ZZZZ");
+      out.failed = [batchFailed({ statuses: st }), batchFailed({ statuses: { MSFT: st.MSFT } }), batchFailed(null)];
+      console.log(JSON.stringify(out));""")
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    out = json.loads(p.stdout)
+    assert all(out["running"].values()) and ">done<" in out["running"]["MSFT"]
+    assert out["updated"]["MSFT"] == "" and out["updated"]["NVDA"] == "" and ">failed<" in out["updated"]["ZZZZ"]
+    assert "Failed at: Research the stock" in out["updated"]["ZZZZ"] and all(out["lost"].values())
+    assert out["dismissed"] == "" and out["failed"] == [True, False, False]
+    # the Run panel keeps the summary with a dismiss button; a batch with failures is restored until dismissed
+    assert 'data-act="dismiss-batch"' in page and 'store("stocks-batch", null)' in page
+    assert "Date.now() - B.started < 2 * 3600e3 || batchFailed(B)" in page
 
 
 HARNESS = r"""

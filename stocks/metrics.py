@@ -4,8 +4,12 @@ Market cap = latest close x shares. Shares: the cover-page count when it is with
 diluted weighted-average count, else the diluted count. Valuation history: at each month-end close of the
 last `valuation.history_years`, the multiples use only the TTM figures, balance sheet and share count
 already filed on that date, in today's share units (stock splits come from the price data's split
-factors). Trend: the chart, moving averages and drawdown use split-adjusted closes (what a price chart
-shows); momentum and relative strength use total-return closes (dividends included).
+factors; share counts more than `valuation.share_outlier_x` off their neighbours are dropped). The
+percentile versus history is computed on yields (revenue / FCF / EBIT over market cap or EV), so periods
+with near-zero or negative FCF or EBIT rank as the most expensive instead of producing huge multiples;
+the page still shows the multiples. Trend: the chart, moving averages and drawdown use split-adjusted
+closes (what a price chart shows); momentum and relative strength use total-return closes (dividends
+included).
 """
 from __future__ import annotations
 
@@ -79,19 +83,31 @@ def share_count(s: dict, rows: list[dict]) -> dict | None:
     return {"shares": dil_now, "source": "diluted weighted-average shares", "date": dil_end}
 
 
+MULTIPLES = {"price_to_sales": "sales_yield_pct", "price_to_fcf": "fcf_yield_pct", "ev_to_ebit": "ebit_yield_pct"}
+
+
 def multiples(mcap: float, revenue, fcf, ebit, debt, cash) -> dict:
+    """Multiples (None when the denominator is zero or negative) and the yields behind them (revenue / FCF /
+    EBIT over market cap or EV, in %, negative when the figure is; None when EV is unknown or not positive)."""
     ev = None if debt is None or cash is None else mcap + debt - cash
     return {"market_cap": mcap, "enterprise_value": ev,
             "price_to_sales": mcap / revenue if revenue and revenue > 0 else None,
             "price_to_fcf": mcap / fcf if fcf and fcf > 0 else None,
-            "ev_to_ebit": ev / ebit if ev is not None and ebit and ebit > 0 else None,
+            "ev_to_ebit": ev / ebit if ev is not None and ev > 0 and ebit and ebit > 0 else None,
+            "sales_yield_pct": revenue / mcap * 100 if revenue is not None and mcap else None,
+            "fcf_yield_pct": fcf / mcap * 100 if fcf is not None and mcap else None,
+            "ebit_yield_pct": ebit / ev * 100 if ebit is not None and ev is not None and ev > 0 else None,
             "fcf_negative": fcf is not None and fcf <= 0, "ebit_negative": ebit is not None and ebit <= 0}
 
 
-def history(f: dict, rows: list[dict], years: int, share_ref: float | None) -> list[dict]:
-    """Month-end multiples over the last `years`, from filings already public on each date."""
+def history(f: dict, rows: list[dict], years: int, share_ref: float | None, cfg: dict | None = None,
+            ex_prepayments: bool = False) -> list[dict]:
+    """Month-end multiples and yields over the last `years`, from filings already public on each date.
+    Share counts without outliers (fundamentals.clean_shares); FCF ex-prepayments when the current figure
+    is (so now and history compare alike)."""
     if not rows:
         return []
+    cfg = cfg or {}
     adj = split_adjusted(rows)
     start = (date.fromisoformat(adj[-1][0]) - timedelta(days=round(365.25 * years))).isoformat()
     month_end: dict[str, tuple[str, float]] = {}
@@ -99,10 +115,12 @@ def history(f: dict, rows: list[dict], years: int, share_ref: float | None) -> l
         if d >= start:
             month_end[d[:7]] = (d, c)
     flows = f.get("flows") or {}
-    ttm = {m: fund.ttm_points(flows.get(m) or {}) for m in ("revenue", "operating_cash_flow", "capex", "operating_income")}
+    ttm = {m: fund.ttm_points(flows.get(m) or {}) for m in ("revenue", "operating_cash_flow", "capex")}
+    ttm["operating_income"] = fund.ttm_points(fund.flow_series(f, "operating_income"))
+    prepaid = fund.prepayment_points(f) if ex_prepayments else {}
     bs_dates = fund.balance_sheet_dates(f)
-    sh = f.get("shares") or {}
-    shares = {**(sh.get("diluted_a") or {}), **(sh.get("diluted_q") or {})}
+    clean = fund.shares_cleaned(f, float((cfg.get("valuation") or {}).get("share_outlier_x", fund.SHARE_OUTLIER_X)))
+    shares = {**clean["diluted_a"], **clean["diluted_q"]}
     out = []
     for d, close in month_end.values():
         rev = fund.asof(ttm["revenue"], d)
@@ -113,11 +131,14 @@ def history(f: dict, rows: list[dict], years: int, share_ref: float | None) -> l
         end = rev[0]
         ocf, capex = (ttm[m].get(end, {}).get("val") for m in ("operating_cash_flow", "capex"))
         ebit = ttm["operating_income"].get(end, {}).get("val")
-        b = fund.balance_sheet_at(f, bs[0]) if bs else {}
+        fcf = None if ocf is None or capex is None else ocf - capex
+        pp = prepaid.get(end)
+        if fcf is not None and pp and (pp.get("filed") or "") <= d:
+            fcf -= pp["val"]  # FCF minus the change in prepayments (a drawdown adds back)
+        b = fund.balance_sheet_at(f, bs[0], cfg) if bs else {}
         mcap = close * current_units(sp[1]["val"], sp[0], rows, share_ref)
-        m = multiples(mcap, rev[1]["val"], None if ocf is None or capex is None else ocf - capex, ebit,
-                      b.get("debt"), b.get("cash_and_investments"))
-        out.append({"date": d, **{k: _r(m[k], 3) for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit")}})
+        m = multiples(mcap, rev[1]["val"], fcf, ebit, b.get("debt"), b.get("cash_and_investments"))
+        out.append({"date": d, **{k: _r(m[k], 3) for k in (*MULTIPLES, *MULTIPLES.values())}})
     return out
 
 
@@ -127,6 +148,22 @@ def percentile(cur: float, hist: list[float]) -> float | None:
     below = sum(1 for h in hist if h < cur)
     equal = sum(1 for h in hist if h == cur)
     return round(100 * (below + 0.5 * equal) / len(hist), 1)
+
+
+def cheaper_share(cur_yield: float | None, hist_yields: list[float]) -> float | None:
+    """The share of month-ends that were cheaper than now (a higher yield), ties counted half: the same as a
+    multiple's percentile when every figure is positive, but near-zero and negative FCF / EBIT periods rank
+    as the most expensive instead of exploding or dropping out."""
+    if cur_yield is None or not hist_yields:
+        return None
+    higher = sum(1 for h in hist_yields if h > cur_yield)
+    equal = sum(1 for h in hist_yields if h == cur_yield)
+    return round(100 * (higher + 0.5 * equal) / len(hist_yields), 1)
+
+
+def _implied(y: float | None) -> float | None:
+    """A yield (%) as a multiple; None for zero or negative."""
+    return None if y is None or y <= 0 else _r(100 / y, 3)
 
 
 def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | None, cfg: dict) -> dict:
@@ -146,25 +183,39 @@ def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | Non
     last = price_rows[-1]
     bs = s.get("balance_sheet") or {}
     mcap = last["close"] * sc["shares"]
-    m = multiples(mcap, s.get("revenue_ttm"), s.get("fcf_ttm"), s.get("operating_income_ttm"), bs.get("debt"),
+    # FCF for scoring: ex-prepayments when customer prepayments are a large share of operating cash flow
+    fcf_rep = s.get("fcf_ttm")
+    ex_pp = bool((s.get("prepayments") or {}).get("applies")) and s.get("fcf_ex_prepayments_ttm") is not None
+    fcf = s["fcf_ex_prepayments_ttm"] if ex_pp else fcf_rep
+    m = multiples(mcap, s.get("revenue_ttm"), fcf, s.get("operating_income_ttm"), bs.get("debt"),
                   bs.get("cash_and_investments"))
     out = {"price": last["close"], "price_date": last["date"], "shares": sc, **{k: _r(v, 3) if isinstance(v, float) else v for k, v in m.items()}}
-    fcf = s.get("fcf_ttm")
-    out["fcf_yield_pct"] = _r(fcf / mcap * 100, 3) if fcf is not None and mcap else None
+    out["fcf_basis"] = "ex-prepayments" if ex_pp else "reported"
+    if ex_pp:
+        rep = multiples(mcap, None, fcf_rep, None, None, None)
+        out["price_to_fcf_reported"], out["fcf_yield_reported_pct"] = _r(rep["price_to_fcf"], 3), _r(rep["fcf_yield_pct"], 3)
+    if bs.get("unknown"):
+        out["ev_note"] = "EV unknown: " + "; ".join(bs["unknown"])
+    elif out["enterprise_value"] is not None and out["enterprise_value"] <= 0:
+        out["ev_note"] = "EV is zero or negative (net cash above the market cap): EV/EBIT left out"
     out["ust10y_pct"] = (dgs10 or {}).get("value")
     out["ust10y_date"] = (dgs10 or {}).get("date")
     out["fcf_yield_vs_10y_pp"] = (_r(out["fcf_yield_pct"] - out["ust10y_pct"], 3)
                                   if out["fcf_yield_pct"] is not None and out["ust10y_pct"] is not None else None)
-    hist = history(f, price_rows, int(vc.get("history_years", 5)), sc["shares"])
+    hist = history(f, price_rows, int(vc.get("history_years", 5)), sc["shares"], cfg, ex_pp)
     out["history"] = hist
+    out["share_outliers"] = s.get("share_outliers") or []
     out["vs_history"] = {}
-    for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit"):
-        vals = [h[k] for h in hist if h.get(k) is not None]
-        enough = len(vals) >= int(vc.get("min_history_points", 24))
-        out["vs_history"][k] = {"current": out[k], "points": len(vals),
-                                "median": _r(median(vals), 3) if vals else None,
-                                "low": _r(min(vals), 3) if vals else None, "high": _r(max(vals), 3) if vals else None,
-                                "percentile": percentile(out[k], vals) if enough else None,
+    for k, y in MULTIPLES.items():
+        ys = [h[y] for h in hist if h.get(y) is not None]
+        enough = len(ys) >= int(vc.get("min_history_points", 24))
+        out["vs_history"][k] = {"current": out[k], "current_yield_pct": out[y], "points": len(ys),
+                                "median": _implied(median(ys)) if ys else None,
+                                "low": _implied(max(ys)) if ys else None, "high": _implied(min(ys)) if ys else None,
+                                "negative_points": sum(1 for v in ys if v <= 0),
+                                "median_yield_pct": _r(median(ys), 3) if ys else None,
+                                "percentile": cheaper_share(out[y], ys) if enough else None,
+                                "min_points": int(vc.get("min_history_points", 24)),
                                 "from": hist[0]["date"] if hist else None}
     return out
 

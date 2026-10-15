@@ -47,14 +47,33 @@ def combine(metrics: dict, min_coverage: float, missing: str | None = None) -> d
     return out
 
 
-def generic(name: str, values: dict, cfg: dict) -> dict:
+MISSING = "missing"
+
+
+def generic(name: str, values: dict, cfg: dict, notes: dict | None = None) -> dict:
+    """Each sub-metric's value and score; a missing value is noted as missing (with why, from `notes`)."""
     spec = cfg.get(name) or {}
     out = {}
     for k in SUB[name]:
         s = spec.get(k) or {}
         v = values.get(k)
-        out[k] = _metric(v, None if v is None or "points" not in s else interp(s["points"], v), float(s.get("weight", 0)))
+        note = (notes or {}).get(k)
+        if v is None and not (note or "").startswith(MISSING):
+            note = MISSING + (f": {note}" if note else "")
+        out[k] = _metric(v, None if v is None or "points" not in s else interp(s["points"], v), float(s.get("weight", 0)), note)
     return out
+
+
+def quality_values(s: dict) -> tuple[dict, dict]:
+    """Quality inputs and notes: the FCF margin is ex-prepayments when that applies (the reported one in the
+    note); a margin no tag covers is noted as missing with the reason."""
+    notes = {k: f"{MISSING}: {why}" for k, why in (s.get("missing_inputs") or {}).items()}
+    values = dict(s)
+    if (s.get("prepayments") or {}).get("applies") and s.get("fcf_ex_prepayments_margin_pct") is not None:
+        values["fcf_margin_pct"] = s["fcf_ex_prepayments_margin_pct"]
+        rep = s.get("fcf_margin_pct")
+        notes["fcf_margin_pct"] = ("FCF ex-prepayments" + ("" if rep is None else f"; reported FCF margin {rep:.1f}%"))
+    return values, notes
 
 
 def balance_sheet(s: dict, cfg: dict) -> dict:
@@ -62,6 +81,10 @@ def balance_sheet(s: dict, cfg: dict) -> dict:
     bs = s.get("balance_sheet") or {}
     net, fcf, cash, debt = bs.get("net_debt"), s.get("fcf_ttm"), bs.get("cash_and_investments"), bs.get("debt")
     nd = spec["net_debt_to_fcf"]
+    if bs.get("unknown"):
+        why = f"{MISSING}: " + "; ".join(bs["unknown"])
+        return {"net_debt_to_fcf": _metric(None, None, nd["weight"], why),
+                "cash_to_debt": _metric(None, None, spec["cash_to_debt"]["weight"], why)}
     if net is None or fcf is None:
         lev = _metric(None, None, nd["weight"])
     elif net <= 0 and fcf > 0:
@@ -87,30 +110,50 @@ def balance_sheet(s: dict, cfg: dict) -> dict:
 def valuation(v: dict, cfg: dict) -> dict:
     spec = cfg.get("valuation") or {}
     out = {}
+    ex_pp = v.get("fcf_basis") == "ex-prepayments"
     for k, neg in (("price_to_sales", None), ("price_to_fcf", "fcf_negative"), ("ev_to_ebit", "ebit_negative")):
         s = spec[k]
+        note = None
+        if k == "price_to_fcf" and ex_pp:
+            rep = v.get("price_to_fcf_reported")
+            note = "FCF ex-prepayments" + ("; reported FCF negative" if rep is None else f"; reported P/FCF {rep:.1f}x")
         if v.get(k) is not None:
-            out[k] = _metric(v[k], interp(s["points"], v[k]), float(s["weight"]))
+            out[k] = _metric(v[k], interp(s["points"], v[k]), float(s["weight"]), note)
         elif neg and v.get(neg):
-            out[k] = _metric(None, 0.0, float(s["weight"]), "negative " + ("FCF" if k == "price_to_fcf" else "EBIT"))
+            out[k] = _metric(None, 0.0, float(s["weight"]), "negative " + ("FCF" if k == "price_to_fcf" else "EBIT")
+                             + (" ex-prepayments" if note else ""))
         else:
-            out[k] = _metric(None, None, float(s["weight"]))
+            out[k] = _metric(None, None, float(s["weight"]), f"{MISSING}: {v['ev_note']}" if k == "ev_to_ebit" and v.get("ev_note") else MISSING)
     s = spec["fcf_yield_vs_10y_pp"]
     x = v.get("fcf_yield_vs_10y_pp")
-    out["fcf_yield_vs_10y_pp"] = _metric(x, None if x is None else interp(s["points"], x), float(s["weight"]))
+    out["fcf_yield_vs_10y_pp"] = _metric(x, None if x is None else interp(s["points"], x), float(s["weight"]),
+                                         ("FCF ex-prepayments" if ex_pp else None) if x is not None else MISSING)
+    min_pts = int(spec.get("min_history_points", 24))
     for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit"):
-        p = ((v.get("vs_history") or {}).get(k) or {}).get("percentile")
-        out[f"{k}_percentile"] = _metric(p, None if p is None else 100.0 - p, float(spec[f"{k}_percentile"]["weight"]))
+        h = (v.get("vs_history") or {}).get(k) or {}
+        p = h.get("percentile")
+        if p is not None:
+            note = f"cheaper than now in {p:g}% of {h.get('points')} month-ends (ranked on yields)"
+        elif k == "ev_to_ebit" and v.get("ev_note"):
+            note = f"{MISSING}: {v['ev_note']}"
+        elif h and h.get("points", 0) < min_pts:
+            note = f"{MISSING}: {h.get('points', 0)} month-ends of history (needs {min_pts})"
+        else:
+            note = MISSING
+        out[f"{k}_percentile"] = _metric(p, None if p is None else 100.0 - p, float(spec[f"{k}_percentile"]["weight"]), note)
     return out
 
 
 def factors(summary: dict, val: dict, trend: dict, cfg: dict) -> dict:
     """The five code-scored factors (news & risk is added by `news_risk`)."""
     mc = float((cfg.get("factors") or {}).get("min_coverage", 0.5))
+    bs = summary.get("balance_sheet") or {}
+    qv, qn = quality_values(summary)
     return {
         "growth": combine(generic("growth", summary, cfg), mc, None if summary.get("revenue_ttm") is not None or summary.get("revenue_q") is not None else "no revenue in XBRL"),
-        "quality": combine(generic("quality", summary, cfg), mc, None if summary.get("revenue_ttm") is not None else "no revenue in XBRL"),
-        "balance_sheet": combine(balance_sheet(summary, cfg), mc, None if summary.get("balance_sheet") else "no balance sheet in XBRL"),
+        "quality": combine(generic("quality", qv, cfg, qn), mc, None if summary.get("revenue_ttm") is not None else "no revenue in XBRL"),
+        "balance_sheet": combine(balance_sheet(summary, cfg), mc,
+                                 "; ".join(bs["unknown"]) if bs.get("unknown") else None if bs else "no balance sheet in XBRL"),
         "valuation": combine(valuation(val, cfg), mc, val.get("missing")),
         "trend": combine(generic("trend", trend, cfg), mc, trend.get("missing")),
     }
@@ -215,11 +258,101 @@ def composite(fs: dict, cfg: dict) -> dict:
             "available": list(have), "missing": [k for k in FACTORS if k not in have]}
 
 
-def confidence(n_available: int, cfg: dict) -> str:
+CONFIDENCE_POINTS = {"missing_factor": 1, "missing_sub_metric": 1, "unknown_cash_debt": 1, "fcf_ex_prepayments": 1,
+                     "short_valuation_history": 1, "near_band_edge": 1, "weak_sources": 1}
+SUB_LABELS = {
+    "revenue_yoy_q": "revenue YoY (quarter)", "revenue_yoy_ttm": "revenue YoY (TTM)", "acceleration_pp": "growth acceleration",
+    "gross_margin_pct": "gross margin", "operating_margin_pct": "operating margin", "fcf_margin_pct": "FCF margin",
+    "sbc_pct_revenue": "stock comp. / revenue", "dilution_yoy_pct": "diluted shares YoY",
+    "net_debt_to_fcf": "net debt / FCF", "cash_to_debt": "cash / debt", "price_to_sales": "P/S", "price_to_fcf": "P/FCF",
+    "ev_to_ebit": "EV/EBIT", "fcf_yield_vs_10y_pp": "FCF yield vs 10y", "price_to_sales_percentile": "P/S vs history",
+    "price_to_fcf_percentile": "P/FCF vs history", "ev_to_ebit_percentile": "EV/EBIT vs history",
+    "vs_ma50_pct": "price vs 50-day", "vs_ma200_pct": "price vs 200-day", "momentum_12_1_pct": "momentum 12-1",
+    "rs_spy_pp": "relative strength vs SPY", "rs_qqq_pp": "relative strength vs QQQ", "drawdown_52w_pct": "from 52-week high",
+}
+
+
+def _conf_cfg(cfg: dict) -> dict:
     c = cfg.get("confidence") or {}
-    if n_available >= int(c.get("high_at", 6)):
-        return "High"
-    return "Medium" if n_available >= int(c.get("medium_at", 4)) else "Low"
+    return {"medium_at": float(c.get("medium_at", 1)), "low_at": float(c.get("low_at", 3)),
+            "band_edge_points": float(c.get("band_edge_points", 2)),
+            "points": {**CONFIDENCE_POINTS, **{k: float(v) for k, v in (c.get("points") or {}).items()}}}
+
+
+def confidence_level(points: float, cfg: dict) -> str:
+    c = _conf_cfg(cfg)
+    return "Low" if points >= c["low_at"] else "Medium" if points >= c["medium_at"] else "High"
+
+
+def confidence(n_available: int, cfg: dict) -> str:
+    """The level from the factor count alone (each factor without data costs `points.missing_factor`)."""
+    return confidence_level((len(FACTORS) - n_available) * _conf_cfg(cfg)["points"]["missing_factor"], cfg)
+
+
+def confidence_detail(fs: dict, score: int | None, summary: dict, val: dict, topics: dict | None, cfg: dict) -> dict:
+    """Data quality: starts at High; each issue adds its points (confidence.points) and the total sets the
+    level (confidence.medium_at / low_at). Issues: factors with no data (each), missing inputs of scored
+    factors, cash or debt unknown, FCF ex-prepayments, valuation history shorter than
+    valuation.min_history_points, a composite within confidence.band_edge_points of a band edge, and news
+    topics capped for weak sources. Returns {level, points, reasons: [{issue, points, text}], factors_with_data}."""
+    c = _conf_cfg(cfg)
+    pts = c["points"]
+    val = val or {}
+    reasons: list[dict] = []
+
+    def add(issue, text, n=1):
+        reasons.append({"issue": issue, "points": pts[issue] * n, "text": text})
+
+    have = [k for k in FACTORS if (fs.get(k) or {}).get("score") is not None]
+    gone = [k for k in FACTORS if k not in have]
+    if gone:
+        add("missing_factor", f"{len(gone)} of {len(FACTORS)} factors had no data: {', '.join(LABELS[k] for k in gone)}", len(gone))
+    bs = (summary or {}).get("balance_sheet") or {}
+    min_pts = int((cfg.get("valuation") or {}).get("min_history_points", 24))
+    vh = (val or {}).get("vs_history") or {}
+    short = [k for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit")
+             if k in vh and (vh[k].get("points") or 0) < min_pts and not (k == "ev_to_ebit" and val.get("ev_note"))]
+    subs = []
+    for k in have:
+        for mk, m in ((fs[k].get("metrics") or {}).items()):
+            if m.get("score") is not None or k == "news_risk":
+                continue
+            if mk.endswith("_percentile") and mk[:-len("_percentile")] in short:
+                continue  # counted as short history
+            if mk.startswith("ev_to_ebit") and val.get("ev_note") and bs.get("unknown"):
+                continue  # counted as unknown cash / debt
+            subs.append(SUB_LABELS.get(mk, mk))
+    if subs:
+        add("missing_sub_metric", "missing inputs: " + ", ".join(subs))
+    if bs.get("unknown"):
+        add("unknown_cash_debt", "; ".join(bs["unknown"]))
+    pp = (summary or {}).get("prepayments") or {}
+    if pp.get("applies"):
+        share = f"{pp['share_of_ocf']:.0%} of operating cash flow" if pp.get("share_of_ocf") is not None else "operating cash flow not positive"
+        add("fcf_ex_prepayments", f"FCF scored ex-prepayments: customer prepayments rose {_money(pp['increase'])} "
+                                  f"over the year ({share}; threshold {pp['max_share_of_ocf']:.0%})")
+    if short and (fs.get("valuation") or {}).get("score") is not None:
+        add("short_valuation_history", "valuation history: " + ", ".join(
+            f"{SUB_LABELS[k]} {vh[k].get('points') or 0} month-ends" for k in short) + f" (needs {min_pts})")
+    if score is not None:
+        edges = [b for b in bands(cfg) if float(b["min"]) > 0]
+        near = min(edges, key=lambda b: abs(score - float(b["min"])), default=None)
+        if near is not None and abs(score - float(near["min"])) <= c["band_edge_points"]:
+            add("near_band_edge", f"score {score} is within {c['band_edge_points']:g} points of the {near['label']} "
+                                  f"edge ({near['min']:g})")
+    weak = [t.get("label") or k for k, t in (topics or {}).items() if t.get("weak_sources_note")]
+    if weak:
+        add("weak_sources", "news topics capped for weak sources: " + ", ".join(weak))
+    total = sum(r["points"] for r in reasons)
+    return {"level": confidence_level(total, cfg), "points": total, "reasons": reasons, "factors_with_data": len(have)}
+
+
+def _money(v: float | None) -> str:
+    if v is None:
+        return "n/a"
+    a = abs(v)
+    s = f"{a / 1e9:.2f}B" if a >= 1e9 else f"{a / 1e6:.1f}M" if a >= 1e6 else f"{a:,.0f}"
+    return ("-" if v < 0 else "") + "$" + s
 
 
 def bands(cfg: dict) -> list[dict]:

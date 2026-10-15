@@ -7,7 +7,7 @@ import pytest
 
 import stock_fakes as F
 from cew import util
-from stocks import config, fundamentals as fund, guidance, metrics, prices, resolve
+from stocks import config, fundamentals as fund, guidance, metrics, prices, resolve, scoring
 
 CFG = config.load()
 
@@ -77,12 +77,13 @@ def test_older_periods_fill_in_from_a_previous_revenue_tag():
     assert "2021-12-31" in r["quarters"] and "2026-06-30" in r["quarters"]
 
 
-def test_debt_prefers_the_total_tag_and_counts_missing_debt_as_zero_with_a_note():
+def test_debt_prefers_the_total_tag_and_counts_no_debt_tags_as_zero_with_a_note():
     lt = F.instant(lambda e: 45e9)
     s = fund.summarize(fund.extract(F.companyfacts(LongTermDebt=lt, CommercialPaper=F.instant(lambda e: 2e9)), F.CIK))
     assert s["balance_sheet"]["debt"] == 47e9 and s["balance_sheet"]["debt_tags"] == ["LongTermDebt", "CommercialPaper"]
     s = fund.summarize(fund.extract(F.companyfacts(LongTermDebtNoncurrent=None, LongTermDebtCurrent=None), F.CIK))
-    assert s["balance_sheet"]["debt"] == 0 and "no debt tagged" in s["balance_sheet"]["debt_note"]
+    assert s["balance_sheet"]["debt"] == 0 and s["balance_sheet"]["debt_note"] == "no debt: no debt tag with a value in the last 8 quarters"
+    assert s["balance_sheet"]["unknown"] == [] and s["balance_sheet"]["net_debt"] == -80e9
 
 
 def test_cover_page_share_classes_are_added_up():
@@ -321,3 +322,182 @@ def test_no_earnings_8k_is_an_error_not_a_crash(sandbox):
     g = guidance.run(F.FakeSession({}), F.CIK, "TSM", "TSMC", subs, "m", True, False, {}, CFG)
     assert "no 8-K with Item 2.02" in g["error"]
     assert "offline" in guidance.run(None, F.CIK, "TSM", "TSMC", None, "m", True, True, {}, CFG)["error"]
+
+
+# ---------------------------------------------------------------- balance-sheet tags and the stopped-reporting guard
+def bs_of(**over):
+    return fund.summarize(fund.extract(F.companyfacts(**over), F.CIK), CFG)["balance_sheet"]
+
+
+def upto(rows, end):
+    return [e for e in rows if e["end"] <= end]
+
+
+def since(rows, start):
+    return [e for e in rows if e["end"] >= start]
+
+
+NO_LTD = {"LongTermDebtNoncurrent": None, "LongTermDebtCurrent": None}
+
+
+def test_debt_families_read_notes_convertibles_and_all_current_debt():
+    b = bs_of(**NO_LTD, NotesPayableCurrent=F.instant(lambda e: 7e9), LongTermNotesPayable=F.instant(lambda e: 90e9))
+    assert b["debt"] == 97e9 and b["debt_tags"] == ["LongTermNotesPayable", "NotesPayableCurrent"]  # Oracle-style notes
+    assert b["debt_parts"] == [{"tag": "LongTermNotesPayable", "val": 90e9}, {"tag": "NotesPayableCurrent", "val": 7e9}]
+    # DebtCurrent holds every current borrowing (the commercial paper too); families add their non-current parts
+    b = bs_of(**NO_LTD, DebtCurrent=F.instant(lambda e: 5e9), LongTermNotesPayable=F.instant(lambda e: 90e9),
+              ConvertibleLongTermNotesPayable=F.instant(lambda e: 1e9), CommercialPaper=F.instant(lambda e: 2e9))
+    assert b["debt"] == 96e9 and b["debt_tags"] == ["DebtCurrent", "LongTermNotesPayable", "ConvertibleLongTermNotesPayable"]
+    assert bs_of(DebtLongtermAndShorttermCombinedAmount=F.instant(lambda e: 50e9))["debt"] == 50e9
+    b = bs_of(**NO_LTD, LongTermDebt=F.instant(lambda e: 45e9), DebtCurrent=F.instant(lambda e: 4e9),
+              ShortTermBorrowings=F.instant(lambda e: 1e9))
+    assert b["debt"] == 46e9 and b["debt_tags"] == ["LongTermDebt", "ShortTermBorrowings"]  # LongTermDebt includes current maturities
+    b = bs_of(**NO_LTD, OtherLongTermDebtNoncurrent=F.instant(lambda e: 3e9), OtherLongTermDebtCurrent=F.instant(lambda e: 1e9))
+    assert b["debt"] == 4e9 and b["unknown"] == []
+    # LongTermDebt's current part alone doesn't hide the other families' non-current notes
+    b = bs_of(LongTermDebtNoncurrent=None, LongTermNotesPayable=F.instant(lambda e: 90e9))
+    assert b["debt"] == 93e9 and b["debt_tags"] == ["LongTermDebtCurrent", "LongTermNotesPayable"]
+
+
+def test_a_tag_that_stops_reporting_makes_the_figure_unknown_not_zero():
+    # investments (NVDA: MarketableSecuritiesCurrent stopped two quarters ago)
+    b = bs_of(ShortTermInvestments=None, MarketableSecuritiesCurrent=upto(F.instant(lambda e: 49e9), "2025-12-31"))
+    assert b["short_term_investments"] is None and b["cash_and_investments"] is None and b["net_debt"] is None
+    assert b["unknown"] == ["short-term investments unknown: MarketableSecuritiesCurrent was $49.00B on 2025-12-31, "
+                            "and no short-term investments tag covers 2026-06-30"]
+    assert b["debt"] == 43e9  # debt itself is still known
+    # debt (RBRK, ZS: the old tag stopped 5 quarters ago): unknown within no_debt_quarters (8)
+    b = bs_of(LongTermDebtNoncurrent=upto(F.instant(lambda e: 40e9), "2025-03-31"), LongTermDebtCurrent=None)
+    assert b["debt"] is None and b["net_debt"] is None and b["cash_and_investments"] == 80e9
+    assert b["unknown"][0].startswith("debt unknown: LongTermDebtNoncurrent was $40.00B on 2025-03-31")
+    # ... unless a new tag covers the date (new convertible notes)
+    b = bs_of(LongTermDebtNoncurrent=upto(F.instant(lambda e: 40e9), "2025-03-31"), LongTermDebtCurrent=None,
+              ConvertibleLongTermNotesPayable=since(F.instant(lambda e: 1.1e9), "2025-06-30"))
+    assert b["debt"] == 1.1e9 and b["unknown"] == []
+    # "no debt" only when no debt tag had a value in the last 8 quarters, or the last value was zero (repaid)
+    b = bs_of(LongTermDebtNoncurrent=upto(F.instant(lambda e: 40e9), "2024-03-31"), LongTermDebtCurrent=None)
+    assert b["debt"] == 0 and b["unknown"] == [] and b["debt_note"].startswith("no debt")
+    b = bs_of(**NO_LTD, ConvertibleDebtCurrent=upto(F.instant(lambda e: 0 if e.isoformat() >= "2025-12-31" else 9.2e8), "2025-12-31"))
+    assert b["debt"] == 0 and b["unknown"] == []
+    # Shopify: the notes' total tag stops at $920M, the next quarter's current tag says 0 (matured): no debt
+    b = bs_of(**NO_LTD, ConvertibleNotesPayable=upto(F.instant(lambda e: 9.2e8), "2025-09-30"),
+              ConvertibleDebtCurrent=since(upto(F.instant(lambda e: 0.0), "2025-12-31"), "2025-12-31"))
+    assert b["debt"] == 0 and b["unknown"] == []
+
+
+def test_cash_and_investments_reported_together_and_tags_the_screen_does_not_read():
+    b = bs_of(ShortTermInvestments=None, CashCashEquivalentsAndShortTermInvestments=F.instant(lambda e: 75e9))
+    assert b["short_term_investments"] == 45e9 and b["investment_note"] == "CashCashEquivalentsAndShortTermInvestments minus cash"
+    # only an unlisted tag carries the figure on the latest balance sheet: unknown, named
+    rec = fund.extract(F.companyfacts(**NO_LTD, SubordinatedDebt=F.instant(lambda e: 2e9),
+                                      ShortTermInvestments=None, HeldToMaturitySecuritiesFairValueCurrent=F.instant(lambda e: 9e9)), F.CIK)
+    assert rec["scan"]["balance_sheet_date"] == "2026-06-30" and rec["scan"]["instants"]["SubordinatedDebt"] == 2e9
+    b = fund.summarize(rec, CFG)["balance_sheet"]
+    assert b["debt"] is None and b["short_term_investments"] is None
+    assert "only tags this screen doesn't read carry a value on 2026-06-30 (SubordinatedDebt $2.00B)" in b["unknown"][1]
+    assert "HeldToMaturitySecuritiesFairValueCurrent $9.00B" in b["unknown"][0]
+    assert "SubordinatedDebt $2.00B" in fund.tag_report("X", rec, CFG)
+
+
+def test_unknown_cash_or_debt_leaves_the_balance_sheet_and_ev_out_with_a_note():
+    rec = fund.extract(F.companyfacts(LongTermDebtNoncurrent=upto(F.instant(lambda e: 40e9), "2025-03-31"), LongTermDebtCurrent=None), F.CIK)
+    s = fund.summarize(rec, CFG)
+    raw = rows_of(F.tiingo_rows(300, 0.0004))
+    v = metrics.valuation(s, rec, raw, {"value": 4.5, "date": "x"}, CFG)
+    assert v["enterprise_value"] is None and v["ev_to_ebit"] is None and v["ev_note"].startswith("EV unknown: debt unknown")
+    assert v["price_to_sales"] is not None and v["price_to_fcf"] is not None  # market-cap multiples unaffected
+    fs = scoring.factors(s, v, {"missing": "no price data"}, CFG)
+    assert fs["balance_sheet"]["score"] is None and fs["balance_sheet"]["missing"].startswith("debt unknown")
+    assert fs["valuation"]["metrics"]["ev_to_ebit"]["note"].startswith("missing: EV unknown")
+
+
+# ---------------------------------------------------------------- margins, prepayments, share counts, yields
+def summ(**over):
+    return fund.summarize(fund.extract(F.companyfacts(**over), F.CIK), CFG)
+
+
+def test_margins_fall_back_to_revenue_minus_costs_and_say_when_missing():
+    cost = F.flow(lambda e: round(F.revenue(e) * 0.31, -6))
+    s = summ(GrossProfit=None, CostOfServices=cost)
+    assert s["gross_margin_pct"] == pytest.approx(69, abs=0.01) and s["gross_profit_source"] == "revenue - CostOfServices"
+    s = summ(OperatingIncomeLoss=None, CostsAndExpenses=F.flow(lambda e: round(F.revenue(e) * 0.56, -6)))
+    assert s["operating_margin_pct"] == pytest.approx(44, abs=0.01) and s["operating_income_source"] == "revenue - CostsAndExpenses"
+    s = summ(OperatingIncomeLoss=None, OperatingExpenses=F.flow(lambda e: round(F.revenue(e) * 0.25, -6)))
+    assert s["operating_margin_pct"] == pytest.approx(44, abs=0.01) and s["operating_income_source"] == "gross profit - OperatingExpenses"
+    # INOD: GrossProfit tagged until the 10-K, the 2026 quarters only through a cost tag
+    s = summ(GrossProfit=[e for e in F.flow(lambda e: round(F.revenue(e) * 0.69, -6)) if e["end"] < "2026-01-01"], CostOfServices=cost)
+    assert s["gross_margin_pct"] == pytest.approx(69, abs=0.01) and s["gross_profit_source"] == "GrossProfit; revenue - CostOfServices"
+    assert s["quarterly"][-1]["operating_margin_pct"] == pytest.approx(44, abs=0.01)
+    # neither: missing, and the factor's inputs say so (no silent 90 on FCF alone)
+    s = summ(GrossProfit=None, OperatingIncomeLoss=None)
+    assert s["gross_margin_pct"] is None and set(s["missing_inputs"]) == {"gross_margin_pct", "operating_margin_pct"}
+    q = scoring.factors(s, {"missing": "x"}, {"missing": "x"}, CFG)["quality"]["metrics"]
+    assert q["gross_margin_pct"]["note"] == "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    assert q["operating_margin_pct"]["value"] is None and q["operating_margin_pct"]["note"].startswith("missing: no OperatingIncomeLoss")
+
+
+def test_fcf_ex_prepayments_when_prepayments_are_a_large_share_of_operating_cash_flow(sandbox):
+    # cash-flow line: contract liabilities +20% of revenue a quarter = 44% of operating cash flow (45% of revenue)
+    rec = fund.extract(F.companyfacts(IncreaseDecreaseInContractWithCustomerLiability=F.flow(
+        lambda e: round(F.revenue(e) * 0.20, -6), True)), F.CIK)
+    s = fund.summarize(rec, CFG)
+    pp = s["prepayments"]
+    assert pp["applies"] and pp["share_of_ocf"] == pytest.approx(0.4444, abs=1e-3) and pp["max_share_of_ocf"] == 0.25
+    assert pp["source"] == "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability"
+    assert s["fcf_ex_prepayments_ttm"] == pytest.approx(s["fcf_ttm"] - pp["increase"]) and s["fcf_ex_prepayments_margin_pct"] == pytest.approx(10, abs=0.01)
+    q = scoring.factors(s, {"missing": "x"}, {"missing": "x"}, CFG)["quality"]["metrics"]["fcf_margin_pct"]
+    assert q["value"] == pytest.approx(10, abs=0.01) and q["note"] == "FCF ex-prepayments; reported FCF margin 30.0%"
+    raw = rows_of(F.tiingo_rows(300, 0.0004))
+    v = metrics.valuation(s, rec, raw, {"value": 4.5, "date": "x"}, CFG)
+    assert v["fcf_basis"] == "ex-prepayments" and v["price_to_fcf"] == pytest.approx(v["market_cap"] / s["fcf_ex_prepayments_ttm"], rel=1e-3)
+    assert v["price_to_fcf_reported"] == pytest.approx(v["market_cap"] / s["fcf_ttm"], rel=1e-3)
+    assert v["history"][-1]["fcf_yield_pct"] == pytest.approx(v["history"][-1]["sales_yield_pct"] * 0.10, rel=1e-2)  # history alike
+    m = scoring.valuation(v, CFG)
+    assert m["price_to_fcf"]["note"].startswith("FCF ex-prepayments; reported P/FCF") and m["fcf_yield_vs_10y_pp"]["note"] == "FCF ex-prepayments"
+    assert fs_conf(s, v)["issue"] == "fcf_ex_prepayments"
+    # a small increase (11% of operating cash flow): reported FCF
+    s = summ(IncreaseDecreaseInContractWithCustomerLiability=F.flow(lambda e: round(F.revenue(e) * 0.05, -6), True))
+    assert s["prepayments"]["applies"] is False and "fcf_ex_prepayments_ttm" not in s
+    # no cash-flow line: the balance sheet's change (INOD: customer advances $1.8B -> $67B over the year)
+    s = summ(ContractWithCustomerLiabilityCurrent=F.instant(lambda e: 67e9 if e.isoformat() > "2025-06-30" else 1.8e9))
+    assert s["prepayments"]["increase"] == pytest.approx(65.2e9) and s["prepayments"]["applies"]
+    assert s["prepayments"]["source"] == "balance sheet: contract 2025-06-30 to 2026-06-30"
+
+
+def fs_conf(s, v):
+    fs = scoring.factors(s, v, {"missing": "x"}, CFG)
+    reasons = scoring.confidence_detail(fs, 72, s, v, {}, CFG)["reasons"]
+    return next(r for r in reasons if r["issue"] == "fcf_ex_prepayments")
+
+
+def test_share_counts_off_by_more_than_10x_are_dropped_but_splits_are_kept():
+    pts = lambda vals: {f"20{20 + i // 4}-{3 * (i % 4) + 3:02d}-28": {"val": v} for i, v in enumerate(vals)}  # noqa: E731
+    kept, dropped = fund.clean_shares(pts([25.6e6, 25.7e6, 29452, 26522, 26.9e6, 27e6, 27.2e6]))
+    assert [x["val"] for x in dropped] == [29452, 26522] and len(kept) == 5
+    kept, dropped = fund.clean_shares(pts([1e9, 1e9, 1e9, 20e9, 20e9, 20e9]))   # a 20-for-1 split
+    assert dropped == [] and len(kept) == 6
+    assert [x["val"] for x in fund.clean_shares(pts([30e6, 30e6, 30e6, 30e3]))[1]] == [30e3]  # the newest one wrong
+    # INOD: three filings gave thousands for millions; the valuation history leaves them out
+    facts = F.companyfacts()
+    sh = facts["facts"]["us-gaap"]["WeightedAverageNumberOfDilutedSharesOutstanding"]["units"]["shares"]
+    for e in sh:
+        if e["end"] in ("2023-03-31", "2023-09-30"):
+            e["val"] = e["val"] / 1e6
+    rec = fund.extract(facts, F.CIK)
+    s = fund.summarize(rec, CFG)
+    assert [x["end"] for x in s["share_outliers"]] == ["2023-03-31", "2023-09-30"]
+    v = metrics.valuation(s, rec, rows_of(F.tiingo_rows(300, 0.0004)), None, CFG)
+    assert v["vs_history"]["price_to_sales"]["low"] > 1 and v["share_outliers"] == s["share_outliers"]
+
+
+def test_history_percentiles_rank_yields_so_negative_periods_count_as_expensive():
+    assert metrics.cheaper_share(5.0, [1, 2, 5, 9]) == 37.5 and metrics.cheaper_share(None, [1]) is None
+    assert metrics.cheaper_share(-1.0, [-5, -2, 0.001, 3]) == 50.0
+    # capex above operating cash flow before 2024: negative FCF months rank as dearest, not dropped
+    capex = F.flow(lambda e: round(F.revenue(e) * (0.6 if e.year < 2024 else 0.15), -6), True)
+    rec = fund.extract(F.companyfacts(PaymentsToAcquirePropertyPlantAndEquipment=capex), F.CIK)
+    v = metrics.valuation(fund.summarize(rec, CFG), rec, rows_of(F.tiingo_rows(300, 0.0004)), None, CFG)
+    h = v["vs_history"]["price_to_fcf"]
+    assert h["negative_points"] > 0 and h["points"] == v["vs_history"]["price_to_sales"]["points"]
+    assert h["high"] is None and h["low"] is not None and 0 <= h["percentile"] < 50
+    assert all(x["price_to_fcf"] is None for x in v["history"] if x["fcf_yield_pct"] <= 0)

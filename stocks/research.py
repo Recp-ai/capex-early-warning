@@ -100,7 +100,7 @@ def research(model: str, ticker: str, name: str, sector: str | None, today, wind
     responses = []
     for _ in range(6):
         resp = client.messages.create(model=model, max_tokens=4096, system=RESEARCH_SYSTEM, messages=messages, tools=tools)
-        models.add_usage(usage, resp)
+        models.add_request(usage, resp)  # per request: prices can depend on prompt size
         responses.append(resp)
         if resp.stop_reason != "pause_turn":
             break
@@ -125,7 +125,7 @@ def _call(model: str, system: str, prompt: str, schema: dict, usage: dict, max_t
     resp = analyst._client().messages.create(
         model=model, max_tokens=max_tokens, system=system, messages=[{"role": "user", "content": prompt}],
         output_config={"format": {"type": "json_schema", "schema": schema}})
-    models.add_usage(usage, resp)
+    models.add_request(usage, resp)  # per request: prices can depend on prompt size
     if resp.stop_reason in ("refusal", "max_tokens"):
         raise RuntimeError(f"stopped early ({resp.stop_reason})")
     return json.loads("".join(b.text for b in resp.content if b.type == "text"))

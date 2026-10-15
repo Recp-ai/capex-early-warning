@@ -172,6 +172,7 @@ def collect(out: Path, shared: Path | None, tickers: list[str], email: bool, cfg
                      "scored_on": (r.get("price") or {}).get("date"), "quote": r.get("quote"),
                      "close_note": cn.get("note"), "close_window": cn.get("close_window"),
                      "cost_usd": (r.get("cost") or {}).get("total_usd"), "run_id": r["run_id"],
+                     "news_from": r.get("news_from"),
                      "errors": sorted((r.get("errors") or {}).keys())})
     costs = [x["cost_usd"] for x in rows if x.get("cost_usd") is not None]
     summary = {"run_id": run_id, "run_url": run_url, "started_at": started, "tickers": rows,

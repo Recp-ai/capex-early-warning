@@ -63,7 +63,8 @@ cew/analyst.py      Claude step 1 "research" (web search, loops through pause_tu
 cew/followups.py    previous run's watch_next -> this run's follow-ups (carried up to follow_ups.max_runs)
 cew/sources.py      source tier per URL, event dates (background when old), fetch evidence and follow-up
                     URLs, mark verified/unverified/unreachable, cap thin news scores
-cew/models.py       per-step model choice, prices, token/cost accounting, site/data/models.json
+cew/models.py       per-step model choice, prices, token/cost accounting (plus per-request tiered pricing used by
+                    the stock module), site/data/models.json
 cew/publish.py      data/reports/<date>.json, data/log.csv (one row per day), data/runs/<ts>.json +
                     data/runs.csv (every run), site/data/*.json
 cew/notify.py       SMTP digest email
@@ -170,6 +171,24 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.
   Quotes (`prices.quotes`, Tiingo IEX `tngoLast`) are display only, never a score input: factors use the
   latest official daily close, and the page says which close was scored (`prices.close_note`).
+- **Data quality, not silent zeros.** Balance-sheet tag lists live in `stocks/fundamentals.py` (debt by
+  family; leases excluded). A cash / investment / debt figure is unknown (None), never zero, when a tag of
+  its group stopped reporting (`balance_sheet.stopped_tag_quarters` / `no_debt_quarters`) or only tags we
+  don't read carry a value (the record's `scan` of the latest balance sheet); the balance-sheet factor and
+  EV then count as missing with the reason. Missing margins show as "missing" in the factor inputs (after
+  the revenue-minus-costs fallbacks). FCF ex-prepayments replaces FCF in quality and valuation when
+  prepayments exceed `prepayments.max_share_of_ocf`. Share counts off by more than
+  `valuation.share_outlier_x` from both neighbours are dropped. History percentiles rank yields
+  (`metrics.cheaper_share`), not multiples. Confidence is `scoring.confidence_detail` (points per issue,
+  thresholds in `confidence`), with its reasons shown.
+- **Re-score (`--reuse-news`, stocks.yml input `reuse_news`).** Fetches SEC data and prices, re-scores the
+  code factors, keeps the latest archived run's topics and source checks unchanged (`publish.latest_news`;
+  a reuse passes the original `news_from` on), skips guidance extraction, and calls Claude for the
+  write-up only. `ratings.csv` gets `news_from` (last column; blank = the run's own news);
+  `publish.recent_cost` leaves such rows out.
+- **Cost.** Stock steps log every request (`cew.models.add_request` / `record_request`) and are priced by
+  `cew.models.cost_summary_tiered` (prompt-size `tiers` in `config/models.yaml`, e.g. Haiku 5.5 above
+  100K tokens). The capex pipeline keeps `cost_summary` at base prices; don't change it.
 - **Batches.** `stocks.yml`: plan (`python -m stocks.batch plan`: validate, de-duplicate, max `batch.max_batch`,
   fetch SPY/QQQ once as an artifact) -> one `rate <TICKER>` matrix job per ticker
   (`python -m stocks.run --batch-out out --shared shared`; never commits, never fetches other tickers'
@@ -197,12 +216,15 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
 stocks/run.py          one run: resolve -> companyfacts -> prices -> 8-K -> factors -> Claude news + source checks
                        -> composite / rating / overlay -> write-up -> email -> publish
 stocks/resolve.py      ticker -> CIK (SEC company_tickers.json); TickerNotFound stops the run (exit 2, nothing written)
-stocks/fundamentals.py companyfacts -> quarterly/annual flows (YTD differencing, first-filed dates), balance sheet,
-                       share counts; IFRS / 20-F handled; cache data/stocks/fundamentals/<TICKER>.json
+stocks/fundamentals.py companyfacts -> quarterly/annual flows (YTD differencing, first-filed dates), margin
+                       fallbacks, prepayments, balance sheet (tag families, unknown guard, tag scan), share
+                       counts (outliers dropped); IFRS / 20-F handled; cache data/stocks/fundamentals/<TICKER>.json;
+                       `python -m stocks.fundamentals tags <TICKER>` prints the tags used
 stocks/prices.py       Tiingo EOD (ticker, SPY, QQQ, 5 years) -> data/stocks/prices/<TICKER>.csv; failures recorded;
                        quotes() one IEX request for all tickers; close_note() which close was scored
 stocks/guidance.py     latest earnings 8-K Exhibit 99.1: verbatim-checked guidance, phrase counts vs previous release
-stocks/metrics.py      valuation (now and point-in-time month-end history), trend, DGS10, capex context, chart
+stocks/metrics.py      valuation (now and point-in-time month-end history, percentiles on yields), trend, DGS10,
+                       capex context, chart
 stocks/scoring.py      sub-metric points, factors, news & risk, composite, confidence, bands, overlay
 stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up
 stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json (full history) and index.json
@@ -214,6 +236,8 @@ scripts/evaluate_stocks.py  forward 1/3/6-month returns by rating band and vs SP
 ```bash
 python -m pytest -q tests_stocks
 python -m stocks.run MSFT --offline --no-llm    # re-score cached data (writes data/stocks/, site/data/stocks/)
+python -m stocks.run MSFT --reuse-news          # new SEC data / prices, the latest run's news, a new write-up
+python -m stocks.fundamentals tags MSFT         # the XBRL tags behind the cached balance sheet and margins
 node --check site/api/stock.js
 ```
 

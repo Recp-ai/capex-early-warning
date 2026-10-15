@@ -25,6 +25,10 @@ on:
         description: "Email the result (one summary email for the batch)"
         type: boolean
         default: false
+      reuse_news:
+        description: "Re-score only: new SEC data and prices, the latest run's news ratings and source checks, a new write-up (no research)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -108,6 +112,7 @@ jobs:
           INPUT_TICKER: ${{ matrix.ticker }}
           INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
           INPUT_SCORING_MODEL: ${{ inputs.scoring_model }}
+          INPUT_REUSE_NEWS: ${{ inputs.reuse_news }}
         run: python -m stocks.run --batch-out out --shared shared
 
       - name: Hand the result to the collect job

@@ -107,6 +107,92 @@ def cost_summary(usage_by_step: dict, prices: dict) -> dict:
             "web_search_per_1k": prices["web_search_per_1k"]}
 
 
+# ---------------------------------------------------------------- tiered prices (used by the stock module)
+# Some models price a request by its prompt size: config/models.yaml `tiers: [{above_input_tokens, input,
+# output}]` replace the base input / output price for a request whose prompt (input + cache write + cache
+# read tokens) is above the threshold. That needs each request's tokens, so callers record them with
+# `add_request` (or `record_request` around a call that adds usage itself). The functions above, which the
+# capex pipeline uses, are unchanged and price at the base rate.
+TOKEN_KEYS = ("input_tokens", "output_tokens", "cache_write_tokens", "cache_read_tokens", "web_searches")
+
+
+def tiers_of(prices: dict, model: str) -> list[dict]:
+    """The model's prompt-size tiers, lowest threshold first ([] when it has none)."""
+    out = []
+    for t in (prices["models"].get(model) or {}).get("tiers") or []:
+        try:
+            out.append({"above_input_tokens": int(t["above_input_tokens"]), "input": float(t["input"]),
+                        "output": float(t["output"])})
+        except (KeyError, TypeError, ValueError):
+            continue
+    return sorted(out, key=lambda t: t["above_input_tokens"])
+
+
+def snapshot(usage: dict) -> dict:
+    return {k: usage.get(k, 0) for k in TOKEN_KEYS}
+
+
+def record_request(usage: dict, before: dict) -> None:
+    """Log the tokens added to `usage` since `before` (one request) in usage["per_request"]."""
+    usage.setdefault("per_request", []).append({k: usage.get(k, 0) - before.get(k, 0) for k in TOKEN_KEYS})
+
+
+def add_request(usage: dict, resp: Any) -> None:
+    """`add_usage` plus a per-request record, for tiered prices."""
+    before = snapshot(usage)
+    add_usage(usage, resp)
+    record_request(usage, before)
+
+
+def _rate(base: dict, tiers: list[dict], prompt_tokens: float) -> dict:
+    rate = {"input": base["input"], "output": base["output"], "tier": None}
+    for t in tiers:
+        if prompt_tokens > t["above_input_tokens"]:
+            rate = {"input": t["input"], "output": t["output"], "tier": t["above_input_tokens"]}
+    return rate
+
+
+def _tokens_cost(u: dict, rate: dict) -> float:
+    input_equiv = (u["input_tokens"] + u["cache_write_tokens"] * CACHE_WRITE_X + u["cache_read_tokens"] * CACHE_READ_X)
+    return (input_equiv * rate["input"] + u["output_tokens"] * rate["output"]) / 1e6
+
+
+def step_cost_tiered(usage: dict, prices: dict) -> tuple[float | None, int]:
+    """(estimated USD, requests priced at a higher tier). Each request in usage["per_request"] is priced by
+    its own prompt size; tokens not logged per request (if any) at the average prompt size of the rest."""
+    p = price_of(prices, usage["model"])
+    if p is None:
+        return None, 0
+    tiers = tiers_of(prices, usage["model"])
+    reqs = usage.get("per_request") or []
+    if not tiers or not reqs:
+        return step_cost(usage, prices), 0
+    total, high = 0.0, 0
+    for r in reqs:
+        rate = _rate(p, tiers, r["input_tokens"] + r["cache_write_tokens"] + r["cache_read_tokens"])
+        high += rate["tier"] is not None
+        total += _tokens_cost(r, rate)
+    rest = {k: usage[k] - sum(r[k] for r in reqs) for k in TOKEN_KEYS}
+    n_rest = usage["requests"] - len(reqs)
+    if n_rest > 0 and any(rest[k] for k in TOKEN_KEYS[:4]):
+        rate = _rate(p, tiers, (rest["input_tokens"] + rest["cache_write_tokens"] + rest["cache_read_tokens"]) / n_rest)
+        high += n_rest if rate["tier"] is not None else 0
+        total += _tokens_cost(rest, rate)
+    return round(total + usage["web_searches"] * prices["web_search_per_1k"] / 1000, 4), high
+
+
+def cost_summary_tiered(usage_by_step: dict, prices: dict) -> dict:
+    """`cost_summary` with prompt-size tiers: each step also gets "tiers" and "tiered_requests"."""
+    out = cost_summary(usage_by_step, prices)
+    total = 0.0
+    for step, u in usage_by_step.items():
+        c, high = step_cost_tiered(u, prices)
+        out["steps"][step].update(cost_usd=c, tiers=tiers_of(prices, u["model"]), tiered_requests=high)
+        total += c or 0.0
+    out["total_usd"] = round(total, 4)
+    return out
+
+
 # ---------------------------------------------------------------- model list for the dashboard
 def _client():
     import anthropic  # lazy, as in analyst

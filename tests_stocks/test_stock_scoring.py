@@ -228,3 +228,49 @@ def test_overlay(ticker, rating, ctx, out):
 def test_overlay_mentions_stale_capex_data():
     ov = scoring.overlay("MSFT", "Buy", {**CTX, "level": "AMBER", "age_days": 30}, CFG)
     assert "(capex data 30 days old)" in ov["note"]
+
+
+def conf(score=72, fs=None, summary=None, val=None, topics=None, cfg=CFG):
+    fs = fs or {k: {"score": 70, "metrics": {"m": {"score": 50}}} for k in scoring.FACTORS}
+    val = val if val is not None else {"vs_history": {k: {"points": 60} for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit")}}
+    return scoring.confidence_detail(fs, score, summary or {}, val, topics or {}, cfg)
+
+
+def test_confidence_is_data_quality_and_steps_down_per_issue():
+    c = conf()
+    assert (c["level"], c["points"], c["reasons"], c["factors_with_data"]) == ("High", 0, [], 6)
+    weak = {"analyst_actions": {"label": "Analyst actions", "weak_sources_note": "Capped at +1"}}
+    c = conf(topics=weak)
+    assert c["level"] == "Medium" and c["reasons"] == [{"issue": "weak_sources", "points": 1.0,
+                                                        "text": "news topics capped for weak sources: Analyst actions"}]
+    assert conf(63)["reasons"][0]["text"] == "score 63 is within 2 points of the Buy edge (65)"
+    assert conf(67)["level"] == "Medium" and conf(68)["level"] == "High" and conf(46)["level"] == "Medium"
+    summary = {"balance_sheet": {"unknown": ["debt unknown: LongTermDebt was $1.15B on 2025-04-30, and no debt tag covers 2026-07-31"]},
+               "prepayments": {"applies": True, "increase": 65.2e6, "share_of_ocf": 0.62, "max_share_of_ocf": 0.25}}
+    fs = {k: {"score": 70, "metrics": {}} for k in scoring.FACTORS}
+    fs["balance_sheet"] = {"score": None}
+    fs["quality"]["metrics"] = {"gross_margin_pct": {"score": None}, "operating_margin_pct": {"score": None}}
+    val = {"vs_history": {"price_to_sales": {"points": 61}, "price_to_fcf": {"points": 61}, "ev_to_ebit": {"points": 10}}}
+    c = conf(63, fs, summary, val, weak)
+    assert c["level"] == "Low" and c["points"] == 7
+    assert [r["issue"] for r in c["reasons"]] == ["missing_factor", "missing_sub_metric", "unknown_cash_debt", "fcf_ex_prepayments",
+                                                  "short_valuation_history", "near_band_edge", "weak_sources"]
+    texts = [r["text"] for r in c["reasons"]]
+    assert texts[0] == "1 of 6 factors had no data: Balance sheet" and texts[1] == "missing inputs: gross margin, operating margin"
+    assert texts[3] == ("FCF scored ex-prepayments: customer prepayments rose $65.2M over the year (62% of operating cash flow; "
+                        "threshold 25%)")
+    assert texts[4] == "valuation history: EV/EBIT 10 month-ends (needs 24)"
+
+
+def test_confidence_thresholds_and_points_come_from_config():
+    assert CFG["confidence"]["medium_at"] == 1 and CFG["confidence"]["low_at"] == 3 and CFG["confidence"]["band_edge_points"] == 2
+    cfg = copy.deepcopy(CFG)
+    cfg["confidence"].update(medium_at=2, band_edge_points=0)
+    cfg["confidence"]["points"]["weak_sources"] = 3
+    assert conf(63, cfg=cfg)["level"] == "High"                       # 2 points from the edge no longer counts
+    assert conf(topics={"g": {"weak_sources_note": "x"}}, cfg=cfg)["level"] == "Low"
+    # a percentile missing for a short history is counted once, as the short history
+    fs = {k: {"score": 70, "metrics": {}} for k in scoring.FACTORS}
+    fs["valuation"]["metrics"] = {"ev_to_ebit_percentile": {"score": None}}
+    c = conf(fs=fs, val={"vs_history": {"ev_to_ebit": {"points": 5}}})
+    assert [r["issue"] for r in c["reasons"]] == ["short_valuation_history"]

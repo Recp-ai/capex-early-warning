@@ -166,25 +166,66 @@ shows each ticker as queued / running / done / failed from the jobs, then reload
 data is deployed; a failed ticker shows its error (from `site/data/stocks/batch.json`) and never blocks
 the others. Limits (`config/stocks.yaml` `batch`, enforced by `site/api/stock.js`): 15 tickers per run
 and 30 tickers in any 24 hours, counted across stocks.yml runs. Stock runs share the concurrency group
-`stocks`, so two batches never overlap; the capex workflow is unaffected.
+`stocks`, so two batches never overlap; the capex workflow is unaffected. Once the results are on the
+page, the rows' done tags go away; failed tickers keep theirs, and the Run panel keeps the batch summary,
+until you dismiss it (×).
+
+**Re-score without new research.** Run workflow with **reuse_news** ticked (or
+`python -m stocks.run MSFT --reuse-news`): SEC data and prices are fetched again and every code factor is
+re-scored, but the news topic ratings and source checks are the latest run's, as they were (labelled
+"news from <time>" on the page and in the email), and the only Claude call is the write-up. The row is
+appended as usual with `news_from` set to the run whose news was used (blank for a run's own news), and
+such re-scores are left out of the page's cost-per-run estimate.
 
 **Six factors, each 0–100.** Five are computed by code; Claude never sets a number or the rating.
 
 | Factor | Default weight | From |
 |---|---|---|
 | Growth | 20% | Revenue YoY for the latest quarter and the trailing twelve months (TTM), and acceleration (latest quarter's YoY minus the previous quarter's) |
-| Quality | 20% | TTM gross, operating and free-cash-flow margins, stock-based comp as % of revenue, diluted share count YoY |
+| Quality | 20% | TTM gross, operating and free-cash-flow margins (FCF ex-prepayments when that applies, below), stock-based comp as % of revenue, diluted share count YoY |
 | Balance sheet | 10% | Net debt / TTM FCF (net cash scores 100; cash runway if FCF is negative), cash + short-term investments / debt |
-| Valuation | 20% | P/S, P/FCF, EV/EBIT, FCF yield minus the 10-year Treasury (FRED `DGS10`), and each multiple's percentile versus the company's own month-end history over 5 years |
+| Valuation | 20% | P/S, P/FCF, EV/EBIT, FCF yield minus the 10-year Treasury (FRED `DGS10`), and where each stands versus the company's own month-end history over 5 years (ranked on yields, below) |
 | Trend | 15% | Price vs 50/200-day averages, 12-1 month momentum, 6-month relative strength vs SPY and QQQ, distance from the 52-week high |
 | News & risk | 15% | Claude's research of the last 30 days (max 8 web searches): guidance changes, analyst actions, litigation/regulation, customer concentration, insider activity, product/competitive news |
 
 Fundamentals come from SEC XBRL companyfacts. 10-Q cash-flow figures are year-to-date, so quarters are
 derived by differencing as the capex pipeline does, and Q4 is the 10-K year minus nine months. Each
 figure keeps the date it was first filed, so the valuation history only uses what was public at each
-month end. Historical share counts are put in today's units using the split factors in the price data.
-Foreign filers (20-F / 40-F, IFRS) report annually: growth, quality and balance sheet use the annual
-figures, and valuation is marked missing (reporting currency and ADR ratios aren't reconciled).
+month end. Historical share counts are put in today's units using the split factors in the price data;
+a count more than 10x off the median of its neighbours on both sides (a filing that gave 29,452 for
+29.5 million) is dropped, with a note (`valuation.share_outlier_x`). Foreign filers (20-F / 40-F, IFRS)
+report annually: growth, quality and balance sheet use the annual figures, and valuation is marked
+missing (reporting currency and ADR ratios aren't reconciled).
+
+**Balance sheet tags.** Cash, short-term investments (face-statement tags, then the current
+available-for-sale / held-to-maturity totals, then cash-and-investments reported as one line) and debt
+come from tag lists in `stocks/fundamentals.py`. Debt is read by family: `LongTermDebt` and its parts,
+notes (`LongTermNotesPayable`, `NotesPayableCurrent`), convertibles, other long-term debt and loans,
+`DebtCurrent` for all current borrowings, `DebtLongtermAndShorttermCombinedAmount` when given; leases are
+excluded. A figure is **unknown**, never zero, when a tag of its group stopped reporting (a non-zero value
+in the last 4 quarters, 8 for debt, and nothing covering the latest date) or when only tags the screen
+doesn't read carry a value on the latest balance sheet. Then the balance-sheet factor and EV/EBIT count
+as missing, with the reason on the page. "No debt" means no debt tag had a value in the last 8 quarters.
+Key metrics shows the tags behind each figure on hover; `python -m stocks.fundamentals tags NVDA ORCL`
+prints them from the cache, with any debt or investment tags on the latest balance sheet that the
+screen doesn't read.
+
+**Margins and prepayments.** Without a `GrossProfit` tag, gross profit is revenue minus cost of revenue
+(`CostOfRevenue`, `CostOfGoodsAndServicesSold`, `CostOfServices`, ...); without `OperatingIncomeLoss`,
+operating income is revenue minus `CostsAndExpenses`, else gross profit minus `OperatingExpenses`, period
+by period. A margin still missing shows as **missing** in the factor's inputs. When customer prepayments
+(the TTM increase in contract liabilities, deferred revenue or customer advances, from the cash-flow
+statement, else the balance sheet) exceed 25% of TTM operating cash flow (`prepayments.max_share_of_ocf`),
+quality and valuation use **FCF ex-prepayments** (FCF minus that increase; the P/FCF history too), and the
+page shows both figures and flags it. This also applies to subscription businesses whose deferred revenue
+grows fast; raise the share to exempt them.
+
+**Valuation history on yields.** Each multiple's place in its own history is computed on the yield
+behind it (sales, FCF or EBIT over market cap or EV): the share of month-ends that were cheaper than now.
+That equals the multiple's percentile when everything is positive, but months with near-zero or negative
+FCF or EBIT rank as the most expensive instead of producing multiples like 36,569x, and a negative figure
+today ranks too. The page still shows today's multiples; median, low and high are the multiples the
+yields imply ("neg." when there is none).
 
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
@@ -193,8 +234,12 @@ size, the number of its sources that were verified or unreachable. Code turns th
 50 + Σ weight × rating × 25.
 
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
-missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** is High with all 6 factors,
-Medium with 4–5, Low with fewer. **Rating:** ≥80 Strong Buy, 65–79 Buy, 45–64 Hold, 30–44 Sell, <30 Strong Sell.
+missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data
+quality: it starts at High and each issue adds a point (`confidence` in the config): each factor with no
+data, missing inputs of a scored factor, unknown cash or debt, FCF ex-prepayments, a valuation history
+under 24 month-ends, a score within 2 points of a band edge, news topics capped for weak sources. 1–2
+points is Medium, 3+ Low (so 4–5 factors alone still read Medium and 3 Low, as before). The reasons are
+listed under the label on the page and in the email. **Rating:** ≥80 Strong Buy, 65–79 Buy, 45–64 Hold, 30–44 Sell, <30 Strong Sell.
 **Capex overlay:** tickers in `overlay.ai_exposed` (NVDA, AMD, AVGO, MRVL, MU, TSM, MSFT, GOOGL, AMZN, META,
 ORCL, CRDO, ALAB, ANET, VRT, SMCI, DELL, CRWV) are capped at Hold while the capex dashboard is RED
 (confirmed). AMBER, or an unconfirmed RED, only adds a note. The page and email show the overlay
@@ -208,7 +253,7 @@ has set the rating, and is told the points to the next band.
 
 **Output.** Every run is kept: `data/stocks/runs/<TICKER>/<UTC timestamp>.json` (never overwritten) and
 a row in `data/stocks/ratings.csv` (timestamp, ticker, rating, score, confidence, each factor, price at
-rating time, models, cost, overlay, then `quote_price` and `quote_as_of`; append-only).
+rating time, models, cost, overlay, then `quote_price`, `quote_as_of` and `news_from`; append-only).
 `site/data/stocks/index.json` lists the latest rating and latest price per ticker, the page settings and
 the recent average cost; `site/data/stocks/<TICKER>.json` holds the latest detail and the full history;
 `site/data/stocks/batch.json` the last batch's per-ticker status. The email is optional per run and uses
@@ -235,7 +280,11 @@ its stored close until the next refresh.
 **Cost.** A run makes four Claude calls: research (Sonnet, up to 8 searches), topic ratings, the
 write-up, and guidance extraction (Opus; once per earnings release, then cached). The first live run
 (MSFT) cost $0.45 at list prices, $0.36 of it research: 8 searches and the ~118K tokens of search results
-they pulled in. The page estimates a run as the number of tickers × the average cost of the last 10 stock runs.
+they pulled in. The page estimates a run as the number of tickers × the average cost of the last 10 full stock
+runs. A `--reuse-news` re-score makes only the write-up call. Haiku 5.5 is priced by tier: a request whose
+prompt (input + cache write + cache read tokens) is over 100,000 tokens pays $0.50 / $2.50 per MTok instead
+of $0.10 / $0.50 (`tiers` in `config/models.yaml`); stock runs log every request's tokens and price each by
+its tier. The capex pipeline's estimate still uses the base price.
 
 ### Price data: Tiingo
 
@@ -281,6 +330,8 @@ python -m stocks.run MSFT              # full run, no email
 python -m stocks.run MSFT --email      # and email it
 python -m stocks.run MSFT --no-llm     # code factors only
 python -m stocks.run MSFT --offline --no-llm   # re-score cached data
+python -m stocks.run MSFT --reuse-news # new SEC data and prices, the latest news, a new write-up
+python -m stocks.fundamentals tags MSFT NVDA   # which XBRL tags the cached balance sheet and margins use
 INPUT_TICKERS=MSFT,NVDA python -m stocks.batch plan --shared shared   # what the plan job does
 python scripts/evaluate_stocks.py --refresh    # forward returns by rating band
 ```
@@ -289,8 +340,9 @@ Tickers must be SEC-registered (resolved through SEC's `company_tickers.json`; `
 both work). An unknown ticker stops the run with a clear message and writes nothing.
 
 **Limits.** Ratings are a screen, not advice: thresholds are starting points (see `scripts/evaluate_stocks.py`
-once there is history). XBRL tags vary by company: missing tags drop out, and debt that isn't tagged with the
-usual debt elements counts as zero (the page says so). Leases are excluded from debt. Banks and insurers
+once there is history). XBRL tags vary by company: a figure no listed tag covers is left out as unknown rather
+than counted as zero (the page says which tag stopped), and a company using only tags outside the lists shows
+as unknown until they are added. Leases are excluded from debt. Banks and insurers
 fit the factors poorly. Guidance in press releases is rare (most companies give it on the call).
 
 ## Models and cost

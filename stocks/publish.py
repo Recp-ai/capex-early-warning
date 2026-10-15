@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from datetime import datetime
 
 from cew import publish as cew_publish
@@ -20,7 +21,7 @@ from . import config, prices, scoring
 
 # New columns go on the end only (append_rating extends the header and leaves earlier rows alone).
 RATING_FIELDS = ["timestamp", "ticker", "rating", "score", "confidence", *scoring.FACTORS, "price", "price_date",
-                 "research_model", "scoring_model", "cost_usd", "overlay", "quote_price", "quote_as_of"]
+                 "research_model", "scoring_model", "cost_usd", "overlay", "quote_price", "quote_as_of", "news_from"]
 DISCLAIMER = "Automated research screen from public data and Claude's news reading. Not investment advice."
 
 
@@ -41,6 +42,29 @@ def runs_dir(ticker: str):
 
 def ratings_csv():
     return config.data_dir() / "ratings.csv"
+
+
+def run_files(ticker: str) -> list:
+    """data/stocks/runs/<TICKER>/*.json, oldest first ("<stamp>-2.json" after "<stamp>.json")."""
+    def key(p):
+        m = re.fullmatch(r"(.+?)(?:-(\d+))?", p.stem)
+        return m.group(1), int(m.group(2) or 1)
+    d = runs_dir(ticker)
+    return sorted(d.glob("*.json"), key=key) if d.exists() else []
+
+
+def latest_news(ticker: str) -> dict | None:
+    """The news of the latest archived run with topic ratings, for --reuse-news: its topics and source checks
+    as they were, when that news was researched (a reused run passes its own "news_from" on), and the models
+    that produced it."""
+    for p in reversed(run_files(ticker)):
+        r = util.read_json(p) or {}
+        news = r.get("news") or {}
+        if news.get("topics"):
+            return {"topics": news["topics"], "source_check": news.get("source_check"),
+                    "news_from": r.get("news_from") or r.get("run_id"), "models": r.get("news_models") or r.get("models") or {},
+                    "archived": f"data/stocks/runs/{ticker}/{p.name}"}
+    return None
 
 
 def archive_run(report: dict) -> str:
@@ -64,15 +88,17 @@ def rating_row(report: dict) -> dict:
     cost = (report.get("cost") or {}).get("total_usd")
     ov = report.get("overlay") or {}
     quote = report.get("quote") or {}
+    news_sel = report.get("news_models") or sel  # with reused news, the model that researched it
     return {"timestamp": report["run_id"], "ticker": report["ticker"], "rating": report["rating"],
             "score": report["score"], "confidence": report["confidence"],
             **{k: "" if (fs.get(k) or {}).get("score") is None else fs[k]["score"] for k in scoring.FACTORS},
             "price": "" if price.get("close") is None else price["close"], "price_date": price.get("date") or "",
-            "research_model": sel.get("research", "") if report.get("llm") else "",
+            "research_model": news_sel.get("research", "") if report.get("llm") or report.get("news_from") else "",
             "scoring_model": sel.get("scoring", "") if report.get("llm") else "",
             "cost_usd": "" if cost is None else cost,
             "overlay": f"capped from {ov['rating_before']}" if ov.get("capped") else ("note" if ov.get("applies") else ""),
-            "quote_price": "" if quote.get("price") is None else quote["price"], "quote_as_of": quote.get("as_of") or ""}
+            "quote_price": "" if quote.get("price") is None else quote["price"], "quote_as_of": quote.get("as_of") or "",
+            "news_from": report.get("news_from") or ""}
 
 
 def append_rating(row: dict) -> None:
@@ -122,8 +148,9 @@ def _latest_price(*candidates) -> dict:
 
 
 def recent_cost(rows: list[dict], n: int = 10) -> dict | None:
-    """Average cost of the last n runs that recorded one (the page's batch estimate: count x this)."""
-    costs = [c for c in (util.to_float(r.get("cost_usd")) for r in rows) if c is not None][-n:]
+    """Average cost of the last n full runs that recorded one (the page's batch estimate: count x this).
+    Re-scores with reused news (a "news_from" value) cost only the write-up and are left out."""
+    costs = [c for c in (util.to_float(r.get("cost_usd")) for r in rows if not r.get("news_from")) if c is not None][-n:]
     return {"avg_usd": round(sum(costs) / len(costs), 4), "runs": len(costs)} if costs else None
 
 

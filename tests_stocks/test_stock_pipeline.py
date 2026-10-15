@@ -360,3 +360,78 @@ def test_evaluate_script_prints_a_table(sandbox, capsys):
     evaluate_stocks.main([])
     out = capsys.readouterr().out
     assert "Strong Buy" in out and "Not investment advice" in out
+
+
+# ---------------------------------------------------------------- tiered prices (Haiku 5.5 above 100K prompt tokens)
+def test_tiered_prices_charge_each_request_by_its_prompt_size():
+    from types import SimpleNamespace as NS
+    from cew import models
+    prices = models.load_prices()
+    assert models.tiers_of(prices, "claude-haiku-5-5") == [{"above_input_tokens": 100000, "input": 0.5, "output": 2.5}]
+    assert models.tiers_of(prices, "claude-opus-5-5") == []
+    u = models.new_usage("claude-haiku-5-5")
+    models.add_request(u, NS(usage=F._usage(150_000, 1000)))   # above 100K: $0.50 / $2.50
+    models.add_request(u, NS(usage=F._usage(20_000, 1000)))    # base: $0.10 / $0.50
+    cost, high = models.step_cost_tiered(u, prices)
+    assert high == 1 and cost == round((150_000 * 0.5 + 1000 * 2.5 + 20_000 * 0.1 + 1000 * 0.5) / 1e6, 4)
+    assert models.step_cost(u, prices) == round((170_000 * 0.1 + 2000 * 0.5) / 1e6, 4)  # the capex estimate: unchanged
+    # cache reads count toward the prompt size (and are billed at 0.1x the tier's input price)
+    u2 = models.new_usage("claude-haiku-5-5")
+    models.add_request(u2, NS(usage=NS(input_tokens=10_000, output_tokens=0, cache_creation_input_tokens=0,
+                                       cache_read_input_tokens=95_000, server_tool_use=None)))
+    assert models.step_cost_tiered(u2, prices) == (round((10_000 + 95_000 * 0.1) * 0.5 / 1e6, 4), 1)
+    s = models.cost_summary_tiered({"research": u, "writeup": u2}, prices)
+    assert s["steps"]["research"]["tiered_requests"] == 1 and s["total_usd"] == round(cost + s["steps"]["writeup"]["cost_usd"], 4)
+    # a model without tiers costs the same either way
+    o = models.new_usage("claude-opus-5-5")
+    models.add_request(o, NS(usage=F._usage(150_000, 1000)))
+    assert models.step_cost_tiered(o, prices) == (models.step_cost(o, prices), 0)
+
+
+def test_stock_runs_record_every_request_for_tiered_prices(sandbox, monkeypatch):
+    setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    steps = latest_run()["cost"]["steps"]
+    assert {k: len(v["per_request"]) for k, v in steps.items()} == {"guidance": 1, "research": 1, "scoring": 1, "writeup": 1}
+    assert all(v["tiered_requests"] == 0 for v in steps.values())
+
+
+# ---------------------------------------------------------------- --reuse-news
+def test_reuse_news_rescores_with_the_latest_news_and_only_a_new_write_up(sandbox, monkeypatch):
+    setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    first = latest_run()
+
+    def no_check(*a, **k):
+        raise AssertionError("reused news is not checked again")
+    monkeypatch.setattr(sources, "check_evidence", no_check)
+    fake = F.fake_claude(monkeypatch, [F.writeup_reply()])  # the write-up only: no research, topics or guidance
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    r = latest_run()
+    assert len(fake.calls) == 1 and r["writeup"]["headline"] and set(r["cost"]["steps"]) == {"writeup"}
+    assert r["news"]["topics"] == first["news"]["topics"] and r["news"]["source_check"] == first["news"]["source_check"]
+    assert r["news_from"] == first["run_id"] and r["factors"]["news_risk"]["score"] == first["factors"]["news_risk"]["score"]
+    assert f"reused from the run of {first['run_id']}" in fake.calls[0]["messages"][0]["content"]
+    assert r["guidance"]["guidance"] == first["guidance"]["guidance"]  # the cached release, no new extraction
+    rows = util.read_csv(publish.ratings_csv())
+    assert [x["news_from"] for x in rows] == ["", first["run_id"]] and rows[1]["research_model"] == "claude-sonnet-5-5"
+    index = util.read_json(util.SITE_DATA / "stocks" / "index.json")
+    assert index["recent_cost"] == {"avg_usd": first["cost"]["total_usd"], "runs": 1}  # a re-score isn't a run-cost sample
+    assert list(rows[0])[-1] == "news_from"
+    # a reuse of a reuse still points at the original research (here via the workflow's env input)
+    monkeypatch.setenv("INPUT_REUSE_NEWS", "true")
+    F.fake_claude(monkeypatch, [F.writeup_reply()])
+    assert run.main(["MSFT"]) == 0 and latest_run()["news_from"] == first["run_id"]
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["news_from"] == first["run_id"] and detail["history"][0]["news_from"] == first["run_id"]
+    _, body_html, text = notify.build_email(latest_run(), None)
+    assert f"News &amp; risk reused from the run of {first['run_id']}" in body_html and "News & risk reused" in text
+
+
+def test_reuse_news_without_an_earlier_run_rates_without_news(sandbox, monkeypatch):
+    _, fake = setup(monkeypatch, sandbox, claude=[F.writeup_reply()])
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    r = latest_run()
+    assert r["factors"]["news_risk"]["missing"] == "--reuse-news: no earlier run of this ticker with news topics"
+    assert r["news_from"] is None and len(fake.calls) == 1  # no guidance extraction either: only the write-up
+    assert "1 of 6 factors had no data: News & risk" in [x["text"] for x in r["confidence_detail"]["reasons"]]

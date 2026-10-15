@@ -187,7 +187,7 @@ def test_collect_writes_once_with_one_quote_request_and_one_email(sandbox, monke
     data = publish.ratings_csv().read_bytes()
     assert data.startswith(before)
     rows = util.read_csv(publish.ratings_csv())
-    assert [r["ticker"] for r in rows] == ["AAPL", "MSFT", "MSFT", "NVDA"] and list(rows[0])[-2:] == ["quote_price", "quote_as_of"]
+    assert [r["ticker"] for r in rows] == ["AAPL", "MSFT", "MSFT", "NVDA"] and list(rows[0])[-3:] == ["quote_price", "quote_as_of", "news_from"]
     assert rows[2]["quote_price"] == "310.5" and rows[3]["quote_as_of"] == "2026-10-14T20:00:00Z" and rows[3]["rating"] == "Hold"
     for t in ("MSFT", "NVDA"):
         files = list((util.DATA / "stocks" / "runs" / t).glob("*.json"))
@@ -353,6 +353,6 @@ def test_quote_columns_extend_an_old_ratings_header_without_touching_rows(sandbo
     publish.append_rating({"timestamp": "2026-10-02T00:00:00Z", "ticker": "MSFT", "rating": "Buy", "quote_price": 1.5,
                            "quote_as_of": "2026-10-02T20:00:00Z"})
     head, rest = path.read_bytes().split(b"\n", 1)
-    assert head.decode().endswith(",overlay,quote_price,quote_as_of") and rest.startswith(body)
+    assert head.decode().endswith(",overlay,quote_price,quote_as_of,news_from") and rest.startswith(body)
     rows = list(csv.DictReader(path.open()))
     assert rows[0]["quote_price"] in ("", None) and rows[1]["quote_price"] == "1.5"

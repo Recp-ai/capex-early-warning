@@ -6,8 +6,13 @@ Usage:
   python -m stocks.run MSFT --email         # also email the result
   python -m stocks.run MSFT --no-llm        # rule-based factors only (no news & risk, no write-up)
   python -m stocks.run MSFT --offline       # re-score cached data in data/stocks/ (no network)
+  python -m stocks.run MSFT --reuse-news    # new SEC data and prices, the latest run's news; new write-up only
   python -m stocks.run MSFT --batch-out out --shared shared   # one ticker of a batch (stocks/batch.py)
-The ticker may also come from INPUT_TICKER.
+The ticker may also come from INPUT_TICKER, and --reuse-news from INPUT_REUSE_NEWS=true (stocks.yml).
+
+--reuse-news re-fetches SEC data and prices and re-scores every code factor, but keeps the latest archived
+run's news topic ratings and source checks as they were (no research, no topic rating, no source check, no
+guidance extraction; labelled "news from <time>"). The only Claude call is the write-up.
 
 A batch's ticker job (--batch-out) rates the ticker with the benchmark prices the plan job fetched once
 (--shared), then writes its result and cache files under the --batch-out folder and nothing else: no quote,
@@ -71,8 +76,10 @@ def writeup_brief(r: dict) -> dict:
         "rating": r["rating"], "score": r["score"], "confidence": r["confidence"],
         "band_distance": r["bands"], "rating_before_overlay": r["rating_before_overlay"],
         "capex_overlay_note": (r.get("overlay") or {}).get("note"),
+        "confidence_reasons": [x["text"] for x in (r.get("confidence_detail") or {}).get("reasons") or []],
         "factors": {k: {"score": fs[k].get("score"), "missing": fs[k].get("missing"),
-                        "inputs": {m: v.get("value") for m, v in (fs[k].get("metrics") or {}).items()}}
+                        "inputs": {m: v.get("value") for m, v in (fs[k].get("metrics") or {}).items()},
+                        "notes": {m: v["note"] for m, v in (fs[k].get("metrics") or {}).items() if v.get("note")}}
                     for k in scoring.FACTORS},
         "factor_weights_used": r["composite"].get("weights_used"),
         "news_topics": {k: {"rating": t.get("rating"), "summary": t.get("summary"),
@@ -80,6 +87,8 @@ def writeup_brief(r: dict) -> dict:
                         for k, t in ((r.get("news") or {}).get("topics") or {}).items()},
         "earnings_release": {k: (r.get("guidance") or {}).get(k) for k in ("filing_date", "summary")},
         "price": r.get("price"),
+        **({"news_from": f"the news ratings are reused from the run of {r['news_from']} (not refreshed this run)"}
+           if r.get("news_from") else {}),
     }
 
 
@@ -89,7 +98,8 @@ class RunError(Exception):
         self.code = code
 
 
-def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = False, shared=None) -> tuple[dict, list]:
+def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = False, shared=None,
+                 reuse_news: bool = False) -> tuple[dict, list]:
     """Rate one ticker: everything up to (not including) the quote, email and publish steps.
     Returns (report, price chart); raises RunError when there is nothing to rate."""
     started = util.now_utc()
@@ -102,7 +112,8 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     sec = util.session(sec_ua)
     errors: dict = {}
     print(f"Stock run {run_id}: {ticker}. Models: research={selection['research']} ({selection['sources']['research']}), "
-          f"scoring={selection['scoring']} ({selection['sources']['scoring']}); Claude {'on' if llm_on else 'off'}", flush=True)
+          f"scoring={selection['scoring']} ({selection['sources']['scoring']}); Claude {'on' if llm_on else 'off'}"
+          f"{'; reusing the latest news' if reuse_news else ''}", flush=True)
 
     # 1. ticker -> CIK
     if offline:
@@ -133,7 +144,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     f = fundamentals.run(sec, ticker, cik, offline)
     if f.get("error"):
         errors["sec:companyfacts"] = f["error"]
-    s = fundamentals.summarize(f) if not f.get("error") else {}
+    s = fundamentals.summarize(f, cfg) if not f.get("error") else {}
     if not f.get("error") and not f.get("taxonomy"):
         errors["sec:companyfacts"] = "no revenue in us-gaap or ifrs-full XBRL facts"
     print("Fetching prices ...", flush=True)
@@ -143,7 +154,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     rows = px["series"].get(ticker)
     usage_by_step: dict = {}
     print("Reading the latest earnings release ...", flush=True)
-    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on, offline, usage_by_step, cfg)
+    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on and not reuse_news, offline, usage_by_step, cfg)
     if g.get("error"):
         errors["guidance"] = g["error"]
     dgs10, ctx = metrics.ust10y(), metrics.capex_context(today=today)
@@ -151,11 +162,20 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     tr = metrics.trend(rows, px["series"], cfg)
     fs = scoring.factors(s, val, tr, cfg)
 
-    # 3. Claude news, checked by code
+    # 3. Claude news, checked by code (or, with --reuse-news, the latest run's as it was)
     claude: dict = {"enabled": llm_on}
-    topics = None
+    topics, source_check, news_from, news_models, news_missing = None, None, None, None, None
     tcfg = tiers_config(cfg, website)
-    if llm_on:
+    if reuse_news:
+        prev = publish.latest_news(ticker)
+        if prev:
+            topics, source_check, news_from, news_models = prev["topics"], prev["source_check"], prev["news_from"], prev["models"]
+            claude["news_reused"] = {"news_from": news_from, "archived": prev["archived"], "models": news_models}
+            print(f"Reusing the news topics of {news_from} ({prev['archived']})", flush=True)
+        else:
+            news_missing = "--reuse-news: no earlier run of this ticker with news topics"
+            errors["news"] = news_missing
+    elif llm_on:
         print("Claude research and topic ratings ...", flush=True)
         res = research.run_news(cfg, selection, ticker, name, sector, topic_brief(ticker, name, sector, s, val, tr, fs, g, ctx),
                                 tcfg, usage_by_step)
@@ -165,8 +185,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         if res.get("error"):
             errors["claude"] = res["error"]
         topics = res.get("topics")
-    source_check = None
-    if topics:
+    if topics and not reuse_news:
         labels = {k: v.get("label", k) for k, v in ((cfg.get("news_risk") or {}).get("topics") or {}).items()}
         for k, t in topics.items():
             t["label"] = labels.get(k, k)
@@ -181,7 +200,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         for t in topics.values():
             scoring.cap_topic(t)
             scoring.cap_weak_sources(t, cfg)
-    fs["news_risk"] = scoring.news_risk(topics, cfg, None if llm_on else "Claude step off (no ANTHROPIC_API_KEY or --no-llm)")
+    fs["news_risk"] = scoring.news_risk(topics, cfg, news_missing or (None if llm_on else "Claude step off (no ANTHROPIC_API_KEY or --no-llm)"))
 
     # 4. composite, rating, overlay
     comp = scoring.composite(fs, cfg)
@@ -189,16 +208,18 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         raise RunError("No factor had data; nothing to rate. " + json.dumps(errors, default=str))
     band = scoring.band(comp["score"], cfg)
     ov = scoring.overlay(ticker, band, ctx, cfg)
+    conf = scoring.confidence_detail(fs, comp["score"], s, val, topics, cfg)
     report = {
         "run_id": run_id, "generated_at": util.now_iso(), "ticker": ticker, "sec_ticker": ent["sec_ticker"],
         "cik": cik, "name": name, "sector": sector, "website": website,
         "models": selection, "llm": llm_on,
         "rating": ov.get("rating", band), "rating_before_overlay": band, "score": comp["score"],
-        "confidence": scoring.confidence(len(comp["available"]), cfg), "bands": scoring.distance(comp["score"], cfg),
+        "confidence": conf["level"], "confidence_detail": conf, "bands": scoring.distance(comp["score"], cfg),
         "composite": comp, "factors": fs, "overlay": ov, "capex_context": ctx,
         "price": {"close": rows[-1]["close"], "date": rows[-1]["date"]} if rows else {},
         "fundamentals": s, "valuation": val, "trend": tr, "ust10y": dgs10, "guidance": g,
-        "news": {"topics": topics or {}, "source_check": source_check}, "claude": claude,
+        "news": {"topics": topics or {}, "source_check": source_check, "reused_from": news_from}, "claude": claude,
+        "news_from": news_from, "news_models": news_models,
         "subject_prefix": (cfg.get("email") or {}).get("subject_prefix", "[Stock]"),
         "disclaimer": publish.DISCLAIMER, "errors": errors,
     }
@@ -212,7 +233,7 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
         except Exception as e:
             errors["claude:writeup"] = f"{type(e).__name__}: {str(e)[:300]}"
     used = {k: u for k, u in usage_by_step.items() if u["requests"]}
-    report["cost"] = models.cost_summary(used, models.load_prices()) if used else None
+    report["cost"] = models.cost_summary_tiered(used, models.load_prices()) if used else None
     return report, metrics.chart(rows)
 
 
@@ -222,7 +243,10 @@ def summary(report: dict, archived: str | None = None) -> dict:
     return {"run_id": report["run_id"], "ticker": report["ticker"],
             **({"archived": f"data/stocks/runs/{report['ticker']}/{archived}"} if archived else {}),
             "rating": report["rating"], "rating_before_overlay": report.get("rating_before_overlay"), "score": report["score"],
-            "confidence": report["confidence"], "factors": {k: (fs.get(k) or {}).get("score") for k in scoring.FACTORS},
+            "confidence": report["confidence"],
+            "confidence_reasons": [x["text"] for x in (report.get("confidence_detail") or {}).get("reasons") or []],
+            "news_from": report.get("news_from"),
+            "factors": {k: (fs.get(k) or {}).get("score") for k in scoring.FACTORS},
             "overlay": (report.get("overlay") or {}).get("note"), "cost_usd": (report.get("cost") or {}).get("total_usd"),
             "scored_on": (report.get("price") or {}).get("date"), "quote": report.get("quote"),
             "close_note": cn.get("note"), "close_window": cn.get("close_window"),
@@ -236,6 +260,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--offline", action="store_true")
     p.add_argument("--no-llm", action="store_true")
     p.add_argument("--email", action="store_true")
+    p.add_argument("--reuse-news", action="store_true",
+                   help="keep the latest run's news ratings and source checks; new SEC data, prices and write-up")
     p.add_argument("--batch-out", help="one ticker of a batch: write the result here, publish nothing")
     p.add_argument("--shared", help="benchmark price CSVs fetched once by the batch's plan job")
     args = p.parse_args(argv)
@@ -250,7 +276,8 @@ def main(argv: list[str] | None = None) -> int:
             batch.write_result(Path(args.batch_out), str(raw or "")[:12], {"status": "failed", "error": msg})
         return 2
     try:
-        report, chart = research_one(ticker, cfg, args.offline, args.no_llm, args.shared)
+        reuse = args.reuse_news or util.env("INPUT_REUSE_NEWS") == "true"
+        report, chart = research_one(ticker, cfg, args.offline, args.no_llm, args.shared, reuse)
     except RunError as e:
         print(str(e), file=sys.stderr)
         if args.batch_out:
