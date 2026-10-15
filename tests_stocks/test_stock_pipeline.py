@@ -106,7 +106,7 @@ def test_full_run(sandbox, monkeypatch, capsys):
     index = util.read_json(util.SITE_DATA / "stocks" / "index.json")
     assert [e["ticker"] for e in index["tickers"]] == ["MSFT"]
     assert index["tickers"][0]["change_pct"] == round((310.5 / r["price"]["close"] - 1) * 100, 2)
-    assert index["settings"] == {"stale_after_days": 14, "max_batch": 15, "max_tickers_per_day": 30}
+    assert index["settings"] == {"stale_after_days": 14, "max_batch": 15, "max_tickers_per_day": 30, "max_rescore_tickers_per_day": 30}
     assert index["recent_cost"] == {"avg_usd": r["cost"]["total_usd"], "runs": 1}
     assert "Not investment advice" in index["disclaimer"] and index["last_run"]["steps"]["research"]["web_searches"] == 3
     assert r["email"] == "skipped (email off)"
@@ -417,6 +417,7 @@ def test_reuse_news_rescores_with_the_latest_news_and_only_a_new_write_up(sandbo
     assert [x["news_from"] for x in rows] == ["", first["run_id"]] and rows[1]["research_model"] == "claude-sonnet-5-5"
     index = util.read_json(util.SITE_DATA / "stocks" / "index.json")
     assert index["recent_cost"] == {"avg_usd": first["cost"]["total_usd"], "runs": 1}  # a re-score isn't a run-cost sample
+    assert index["recent_rescore_cost"] == {"avg_usd": r["cost"]["total_usd"], "runs": 1}  # it has its own
     assert list(rows[0])[-1] == "news_from"
     # a reuse of a reuse still points at the original research (here via the workflow's env input)
     monkeypatch.setenv("INPUT_REUSE_NEWS", "true")

@@ -101,10 +101,10 @@ def multiples(mcap: float, revenue, fcf, ebit, debt, cash) -> dict:
 
 
 def history(f: dict, rows: list[dict], years: int, share_ref: float | None, cfg: dict | None = None,
-            ex_prepayments: bool = False) -> list[dict]:
+            fcf_basis: str = "reported") -> list[dict]:
     """Month-end multiples and yields over the last `years`, from filings already public on each date.
-    Share counts without outliers (fundamentals.clean_shares); FCF ex-prepayments when the current figure
-    is (so now and history compare alike)."""
+    Share counts without outliers (fundamentals.clean_shares); FCF on the same basis as the current figure
+    (reported, ex excess prepayments, or normalised), so now and history compare alike."""
     if not rows:
         return []
     cfg = cfg or {}
@@ -117,7 +117,8 @@ def history(f: dict, rows: list[dict], years: int, share_ref: float | None, cfg:
     flows = f.get("flows") or {}
     ttm = {m: fund.ttm_points(flows.get(m) or {}) for m in ("revenue", "operating_cash_flow", "capex")}
     ttm["operating_income"] = fund.ttm_points(fund.flow_series(f, "operating_income"))
-    prepaid = fund.prepayment_points(f) if ex_prepayments else {}
+    excess = fund.excess_points(f) if fcf_basis == "ex-prepayments" else {}
+    normalised = fund.normalised_points(f, cfg) if fcf_basis == "normalised" else {}
     bs_dates = fund.balance_sheet_dates(f)
     clean = fund.shares_cleaned(f, float((cfg.get("valuation") or {}).get("share_outlier_x", fund.SHARE_OUTLIER_X)))
     shares = {**clean["diluted_a"], **clean["diluted_q"]}
@@ -132,9 +133,11 @@ def history(f: dict, rows: list[dict], years: int, share_ref: float | None, cfg:
         ocf, capex = (ttm[m].get(end, {}).get("val") for m in ("operating_cash_flow", "capex"))
         ebit = ttm["operating_income"].get(end, {}).get("val")
         fcf = None if ocf is None or capex is None else ocf - capex
-        pp = prepaid.get(end)
-        if fcf is not None and pp and (pp.get("filed") or "") <= d:
-            fcf -= pp["val"]  # FCF minus the change in prepayments (a drawdown adds back)
+        x = excess.get(end)
+        if fcf is not None and x and x["val"] > 0 and (x.get("filed") or "") <= d:
+            fcf -= x["val"]  # FCF minus the excess prepayments
+        if fcf_basis == "normalised":
+            fcf = (normalised.get(end) or {}).get("val")
         b = fund.balance_sheet_at(f, bs[0], cfg) if bs else {}
         mcap = close * current_units(sp[1]["val"], sp[0], rows, share_ref)
         m = multiples(mcap, rev[1]["val"], fcf, ebit, b.get("debt"), b.get("cash_and_investments"))
@@ -183,15 +186,17 @@ def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | Non
     last = price_rows[-1]
     bs = s.get("balance_sheet") or {}
     mcap = last["close"] * sc["shares"]
-    # FCF for scoring: ex-prepayments when customer prepayments are a large share of operating cash flow
+    # FCF for scoring: ex excess prepayments, or normalised after a spike (fundamentals.summarize's fcf_basis)
     fcf_rep = s.get("fcf_ttm")
-    ex_pp = bool((s.get("prepayments") or {}).get("applies")) and s.get("fcf_ex_prepayments_ttm") is not None
-    fcf = s["fcf_ex_prepayments_ttm"] if ex_pp else fcf_rep
+    basis = s.get("fcf_basis") or "reported"
+    if s.get("fcf_scored_ttm") is None:
+        basis = "reported"
+    fcf = fcf_rep if basis == "reported" else s["fcf_scored_ttm"]
     m = multiples(mcap, s.get("revenue_ttm"), fcf, s.get("operating_income_ttm"), bs.get("debt"),
                   bs.get("cash_and_investments"))
     out = {"price": last["close"], "price_date": last["date"], "shares": sc, **{k: _r(v, 3) if isinstance(v, float) else v for k, v in m.items()}}
-    out["fcf_basis"] = "ex-prepayments" if ex_pp else "reported"
-    if ex_pp:
+    out["fcf_basis"] = basis
+    if basis != "reported":
         rep = multiples(mcap, None, fcf_rep, None, None, None)
         out["price_to_fcf_reported"], out["fcf_yield_reported_pct"] = _r(rep["price_to_fcf"], 3), _r(rep["fcf_yield_pct"], 3)
     if bs.get("unknown"):
@@ -202,7 +207,7 @@ def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | Non
     out["ust10y_date"] = (dgs10 or {}).get("date")
     out["fcf_yield_vs_10y_pp"] = (_r(out["fcf_yield_pct"] - out["ust10y_pct"], 3)
                                   if out["fcf_yield_pct"] is not None and out["ust10y_pct"] is not None else None)
-    hist = history(f, price_rows, int(vc.get("history_years", 5)), sc["shares"], cfg, ex_pp)
+    hist = history(f, price_rows, int(vc.get("history_years", 5)), sc["shares"], cfg, basis)
     out["history"] = hist
     out["share_outliers"] = s.get("share_outliers") or []
     out["vs_history"] = {}

@@ -663,10 +663,36 @@ def shares_cleaned(f: dict, factor: float = SHARE_OUTLIER_X) -> dict:
     return {"diluted_q": q, "diluted_a": a, "dropped": sorted(dq + da, key=lambda x: x["end"])}
 
 
+def _family_level(g: dict | None) -> float | None:
+    """A balance-sheet family's level: its total, else current + non-current (either alone if that's all)."""
+    if not g:
+        return None
+    if g["total"]:
+        return g["total"][1]
+    parts = [p[1] for p in (g["noncurrent"], g["current"]) if p]
+    return sum(parts) if parts else None
+
+
+def contract_liabilities_at(f: dict, end: str) -> dict | None:
+    """Customer prepayments on the balance sheet on one date: contract liabilities (else deferred revenue,
+    the same line under an older name) plus customer advances and deposits. {"val", "families"} or None."""
+    fams = PREPAYMENT_FAMILIES.get(f.get("taxonomy") or "us-gaap") or {}
+    total, used = 0.0, []
+    for name, fam in fams.items():
+        if name == "deferred" and "contract" in used:
+            continue
+        v = _family_level(_family(f, fam, end))
+        if v is not None:
+            total += v
+            used.append(name)
+    return {"val": total, "families": used} if used else None
+
+
 def prepayment_points(f: dict) -> dict:
-    """end -> {"val", "filed", "source"}: the TTM increase in customer prepayments (contract liabilities,
-    deferred revenue, customer advances / deposits). From the cash-flow statement's change lines (added up),
-    else the balance-sheet families' change over the year."""
+    """end -> {"val", "filed", "source", "base", "base_date"}: the TTM increase in customer prepayments
+    (contract liabilities, deferred revenue, customer advances / deposits) and their level a year earlier
+    ("base", None when not tagged). The increase is the cash-flow statement's change lines (added up), else
+    the balance-sheet families' change over the year, on the same basis on both dates."""
     tags = f.get("prepayment_flows") or {}
     merged: dict = {"quarters": {}, "annual": {}}
     for kind in ("quarters", "annual"):
@@ -707,19 +733,118 @@ def prepayment_points(f: dict) -> dict:
             used.append(name)
         if used:
             out[end] = {"val": total, "filed": filed[end], "source": f"balance sheet: {', '.join(used)} {prev} to {end}"}
+    for end, p in out.items():
+        prev = year_before(dates, end)
+        base = contract_liabilities_at(f, prev) if prev else None
+        p["base"], p["base_date"] = (base or {}).get("val"), prev if base else None
     return dict(sorted(out.items()))
 
 
+def excess_points(f: dict) -> dict:
+    """end -> {"val", "filed", ...}: excess prepayments, i.e. the TTM increase minus what growing with revenue
+    explains (the level a year earlier x TTM revenue growth). Only ends with a known level a year earlier."""
+    rev = ttm_points((f.get("flows") or {}).get("revenue") or {})
+    out = {}
+    for end, p in prepayment_points(f).items():
+        r, r0 = rev.get(end), year_before(rev, end)
+        if p["base"] is None or not r or not r0 or not r0["val"]:
+            continue
+        growth = r["val"] / r0["val"] - 1
+        expected = p["base"] * growth
+        out[end] = {**p, "increase": p["val"], "val": p["val"] - expected, "expected": expected, "revenue_growth": growth}
+    return out
+
+
 def prepayments(f: dict, end: str, ocf: float | None, max_share: float = PREPAYMENT_SHARE) -> dict | None:
-    """The TTM increase in prepayments to `end`, and whether it exceeds `max_share` of TTM operating cash
-    flow (any increase does when operating cash flow is zero or negative)."""
+    """Customer prepayments over the TTM to `end`: the increase, the level a year earlier, TTM revenue growth,
+    the increase that growth explains, and the excess. FCF ex-prepayments applies when the excess is above
+    `max_share` of TTM operating cash flow (any positive excess when that is zero or negative); only the
+    excess is subtracted, so deferred revenue growing with sales doesn't count."""
     p = prepayment_points(f).get(end)
     if p is None:
         return None
-    inc = p["val"]
-    applies = ocf is not None and inc > 0 and (ocf <= 0 or inc > max_share * ocf)
-    return {"increase": inc, "source": p["source"], "share_of_ocf": round(inc / ocf, 4) if ocf and ocf > 0 else None,
-            "max_share_of_ocf": max_share, "applies": applies}
+    x = excess_points(f).get(end)
+    out = {"increase": p["val"], "source": p["source"], "base": p["base"], "base_date": p["base_date"],
+           "revenue_growth_pct": None if x is None else round(x["revenue_growth"] * 100, 2),
+           "expected": None if x is None else x["expected"], "excess": None if x is None else x["val"],
+           "max_share_of_ocf": max_share, "applies": False,
+           "share_of_ocf": round(x["val"] / ocf, 4) if x is not None and ocf and ocf > 0 else None}
+    if x is None:
+        out["note"] = "no contract-liability balance a year earlier: the excess over revenue growth can't be measured"
+    else:
+        out["applies"] = ocf is not None and x["val"] > 0 and (ocf <= 0 or x["val"] > max_share * ocf)
+    return out
+
+
+def quarterly_fcf(f: dict) -> dict:
+    """end -> {"fcf", "revenue", "margin", "filed"}: each quarter's free cash flow (operating cash flow minus
+    capex) and revenue, where all three are known."""
+    flows = f.get("flows") or {}
+    q = lambda m: (flows.get(m) or {}).get("quarters") or {}  # noqa: E731
+    rq, oq, cq = q("revenue"), q("operating_cash_flow"), q("capex")
+    out = {}
+    for end, r in rq.items():
+        if end in oq and end in cq and r["val"] > 0:
+            fcf = oq[end]["val"] - cq[end]["val"]
+            out[end] = {"fcf": fcf, "revenue": r["val"], "margin": fcf / r["val"],
+                        "filed": max(r["filed"], oq[end]["filed"], cq[end]["filed"])}
+    return out
+
+
+def _spike_cfg(cfg: dict | None) -> dict:
+    c = (cfg or {}).get("fcf_spike") or {}
+    return {"quarter_fcf_to_revenue": float(c.get("quarter_fcf_to_revenue", 1.0)),
+            "margin_jump_x": float(c.get("margin_jump_x", 2.0)), "margin_jump_min_pct": float(c.get("margin_jump_min_pct", 30)),
+            "median_quarters": int(c.get("median_quarters", 8)), "min_quarters": int(c.get("min_quarters", 4))}
+
+
+def normalised_margin(qf: dict, end: str, n: int, min_q: int, day: str | None = None) -> tuple[float | None, int]:
+    """The median FCF margin of the last `n` quarters to `end` (filed by `day` if given), and how many."""
+    ends = [e for e in qf if e <= end and (day is None or qf[e]["filed"] <= day)][-n:]
+    if len(ends) < min_q:
+        return None, len(ends)
+    return median(qf[e]["margin"] for e in ends), len(ends)
+
+
+def fcf_spike(f: dict, end: str, s: dict, cfg: dict | None = None) -> dict:
+    """The FCF spike guard (no tag needed): a quarter of the last four with FCF above its revenue, or a TTM
+    FCF margin more than `margin_jump_x` times the one a year earlier and above `margin_jump_min_pct`.
+    Then the normalised FCF is the median quarterly FCF margin of the last `median_quarters` x TTM revenue."""
+    c = _spike_cfg(cfg)
+    qf = quarterly_fcf(f)
+    last4 = [e for e in qf if e <= end][-4:]
+    reasons = [f"FCF {_money(qf[e]['fcf'])} in the quarter to {e} on revenue of {_money(qf[e]['revenue'])}"
+               for e in last4 if qf[e]["fcf"] > c["quarter_fcf_to_revenue"] * qf[e]["revenue"]]
+    rev = ttm_points((f.get("flows") or {}).get("revenue") or {})
+    margin, prev_margin = s.get("fcf_margin_pct"), None
+    e0 = year_before({e: e for e in rev}, end)  # the TTM end closest to a year earlier
+    if e0 and rev[e0]["val"]:
+        o0, c0 = value_at(f, "operating_cash_flow", e0), value_at(f, "capex", e0)
+        if o0 is not None and c0 is not None:
+            prev_margin = round((o0 - c0) / rev[e0]["val"] * 100, 2)
+    if (margin is not None and prev_margin is not None and margin > c["margin_jump_min_pct"]
+            and margin > c["margin_jump_x"] * prev_margin):
+        reasons.append(f"TTM FCF margin {margin:.1f}% vs {prev_margin:.1f}% a year earlier")
+    med, n = normalised_margin(qf, end, c["median_quarters"], c["min_quarters"])
+    out = {"triggered": bool(reasons), "reasons": reasons, "fcf_margin_pct": margin, "fcf_margin_year_earlier_pct": prev_margin,
+           "median_margin_pct": None if med is None else round(med * 100, 2), "quarters": n, **c}
+    if reasons and med is not None and s.get("revenue_ttm"):
+        out["normalised_fcf"] = med * s["revenue_ttm"]
+    elif reasons:
+        out["note"] = f"only {n} quarters with FCF and revenue (needs {c['min_quarters']}): FCF not normalised"
+    return out
+
+
+def normalised_points(f: dict, cfg: dict | None = None) -> dict:
+    """end -> normalised FCF (median quarterly FCF margin of the last quarters x TTM revenue), for history."""
+    c = _spike_cfg(cfg)
+    qf = quarterly_fcf(f)
+    out = {}
+    for end, r in ttm_points((f.get("flows") or {}).get("revenue") or {}).items():
+        med, _ = normalised_margin(qf, end, c["median_quarters"], c["min_quarters"])
+        if med is not None:
+            out[end] = {"val": med * r["val"], "filed": r["filed"]}
+    return out
 
 
 def summarize(f: dict, cfg: dict | None = None) -> dict:
@@ -776,13 +901,27 @@ def summarize(f: dict, cfg: dict | None = None) -> dict:
     if s["fcf_ttm"] is None:
         missing["fcf_margin_pct"] = f"no operating cash flow or capex for the TTM to {end}"
     s["missing_inputs"] = missing
-    # Customer prepayments: when they are a large share of operating cash flow, quality and valuation are
-    # scored on FCF minus them ("FCF ex-prepayments"); the reported FCF is shown too.
+    # Which FCF quality and valuation are scored on ("fcf_basis"), the reported one always shown too:
+    # - "ex-prepayments": FCF minus the excess prepayments (the rise in contract liabilities beyond what revenue
+    #   growth explains) when that excess is above prepayments.max_share_of_ocf of operating cash flow;
+    # - "normalised": the FCF spike guard (fcf_spike) fired: the median quarterly FCF margin x TTM revenue;
+    # - both apply: the lower of the two.
     pp = prepayments(f, end, ocf, float((cfg.get("prepayments") or {}).get("max_share_of_ocf", PREPAYMENT_SHARE)))
     s["prepayments"] = pp
+    s["fcf_spike"] = fcf_spike(f, end, s, cfg) if s["fcf_ttm"] is not None else None
+    s["fcf_basis"], s["fcf_scored_ttm"] = "reported", s["fcf_ttm"]
+    options = []
     if pp and pp["applies"] and s["fcf_ttm"] is not None:
-        s["fcf_ex_prepayments_ttm"] = s["fcf_ttm"] - pp["increase"]
+        s["fcf_ex_prepayments_ttm"] = s["fcf_ttm"] - pp["excess"]
         s["fcf_ex_prepayments_margin_pct"] = _ratio(s["fcf_ex_prepayments_ttm"], s["revenue_ttm"])
+        options.append(("ex-prepayments", s["fcf_ex_prepayments_ttm"]))
+    if (s["fcf_spike"] or {}).get("normalised_fcf") is not None:
+        s["fcf_normalised_ttm"] = s["fcf_spike"]["normalised_fcf"]
+        s["fcf_normalised_margin_pct"] = s["fcf_spike"]["median_margin_pct"]
+        options.append(("normalised", s["fcf_normalised_ttm"]))
+    if options:
+        s["fcf_basis"], s["fcf_scored_ttm"] = min(options, key=lambda o: o[1])
+    s["fcf_scored_margin_pct"] = _ratio(s["fcf_scored_ttm"], s["revenue_ttm"])
     bs_dates = balance_sheet_dates(f)
     if bs_dates:
         s["balance_sheet"] = balance_sheet_at(f, list(bs_dates)[-1], cfg)

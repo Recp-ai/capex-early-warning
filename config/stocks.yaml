@@ -33,6 +33,7 @@ page:
 batch:
   max_batch: 15                 # tickers per run (the plan job and site/api/stock.js both enforce it)
   max_tickers_per_day: 30       # tickers across stocks.yml runs in any 24 hours (site/api/stock.js counts them)
+  max_rescore_tickers_per_day: 30   # reuse_news re-scores (write-up only, ~$0.03 a ticker), counted apart from the above
   max_parallel: 5               # ticker jobs at once (matrix max-parallel)
 # Lists live in the STOCK_LISTS repo Actions variable ({version, lists: [{id, name, tickers}]}), saved
 # whole by site/api/stock.js, which enforces these limits (GitHub's limit for one variable is 48 KB).
@@ -72,7 +73,7 @@ quality:
     weight: 0.25
     points: [[-10, 0], [0, 20], [15, 55], [30, 85], [45, 100]]
   fcf_margin_pct:               # TTM free cash flow (operating cash flow minus capex) / revenue; ex-prepayments
-    weight: 0.25                # when that applies (prepayments, below)
+    weight: 0.25                # or normalised when that applies (prepayments, fcf_spike, below)
     points: [[-10, 0], [0, 20], [10, 50], [25, 85], [40, 100]]
   sbc_pct_revenue:              # TTM stock-based compensation / revenue; lower is better
     weight: 0.15
@@ -85,14 +86,29 @@ quality:
 # OperatingExpenses, period by period, when the company doesn't tag them. A margin still missing shows as
 # "missing" in the factor's inputs.
 
-# Customer prepayments: when the TTM increase in contract liabilities / deferred revenue / customer advances
-# (the cash-flow statement's change lines, else the balance sheet's change over the year) exceeds this share
-# of TTM operating cash flow (any increase does when operating cash flow is zero or negative), quality and
-# valuation (P/FCF, FCF yield, and the P/FCF history) are scored on FCF minus that increase ("FCF
-# ex-prepayments"). The page and email show both and flag it; confidence steps down. The balance-sheet
-# factor keeps the reported FCF.
+# Which FCF quality and valuation (P/FCF, FCF yield and the P/FCF history) are scored on. The reported FCF
+# is always shown too, and either adjustment flags it and steps confidence down; when both apply, the lower
+# FCF is scored. The balance-sheet factor keeps the reported FCF.
+#
+# Excess prepayments: excess = the TTM increase in contract liabilities / deferred revenue / customer
+# advances (the cash-flow statement's change lines, else the balance sheet's change over the year) minus
+# (their balance a year earlier x TTM revenue growth), so deferred revenue growing with sales doesn't count.
+# When the excess exceeds max_share_of_ocf of TTM operating cash flow (any positive excess when that is zero
+# or negative), FCF minus the excess is scored ("FCF ex-prepayments"). No balance a year earlier: not applied.
 prepayments:
   max_share_of_ocf: 0.25
+
+# FCF spike guard (needs no tag): when any of the last 4 quarters has FCF above quarter_fcf_to_revenue x that
+# quarter's revenue, or the TTM FCF margin is more than margin_jump_x times the TTM margin a year earlier and
+# above margin_jump_min_pct, FCF is scored as the median quarterly FCF margin of the last median_quarters
+# quarters x TTM revenue ("normalised FCF"; needs min_quarters of them), flagged "FCF spike (cause not in
+# tagged data)".
+fcf_spike:
+  quarter_fcf_to_revenue: 1.0
+  margin_jump_x: 2.0
+  margin_jump_min_pct: 30
+  median_quarters: 8
+  min_quarters: 4
 
 balance_sheet:
   # A figure is UNKNOWN (balance sheet, EV and EV/EBIT then count as missing, with a note) when a tag of its
@@ -208,6 +224,7 @@ confidence:
     missing_sub_metric: 1       # any input of a scored factor missing (listed)
     unknown_cash_debt: 1        # cash, investments or debt unknown (a tag stopped reporting)
     fcf_ex_prepayments: 1       # quality and valuation scored on FCF ex-prepayments
+    fcf_spike: 1                # the FCF spike guard fired (normalised FCF)
     short_valuation_history: 1  # fewer than valuation.min_history_points month-ends
     near_band_edge: 1
     weak_sources: 1             # any news topic capped for weak sources

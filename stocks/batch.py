@@ -205,7 +205,8 @@ def collect(out: Path, shared: Path | None, tickers: list[str], email: bool, cfg
 def commit_message(summary: dict) -> str:
     done = [x["ticker"] for x in summary["tickers"] if x["status"] == "done"]
     failed = [x["ticker"] for x in summary["tickers"] if x["status"] == "failed"]
-    msg = f"Stock research {', '.join(done) or 'batch'} {util.today().isoformat()}"
+    rescore = any(x.get("news_from") for x in summary["tickers"] if x["status"] == "done")
+    msg = f"Stock research {'(rescore) ' if rescore else ''}{', '.join(done) or 'batch'} {util.today().isoformat()}"
     return msg + (f" ({len(failed)} failed: {', '.join(failed)})" if failed else "")
 
 

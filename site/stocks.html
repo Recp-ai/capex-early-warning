@@ -413,7 +413,10 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const clone = x => JSON.parse(JSON.stringify(x));
   const MAX_LISTS = 30, MAX_PER_LIST = 100; // config/stocks.yaml lists.* (api/stock.js enforces them)
   const RANK = { "Strong Buy": 5, "Buy": 4, "Hold": 3, "Sell": 2, "Strong Sell": 1 };
-  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 15, max_tickers_per_day: 30 }, (state.index || {}).settings || {});
+  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 15, max_tickers_per_day: 30, max_rescore_tickers_per_day: 30 }, (state.index || {}).settings || {});
+  const rescoring = () => { const c = $("#run-rescore"); return Boolean(c && c.checked); };
+  // Cost per ticker for the estimate: the recent average of full runs, or of re-scores (write-up only).
+  const costPer = () => (state.index || {})[rescoring() ? "recent_rescore_cost" : "recent_cost"];
   const rated = () => (state.index && state.index.tickers) || [];
   const entry = t => rated().find(e => e.ticker === t);
   const savedLists = () => (state.lists && state.lists.lists) || [];
@@ -707,7 +710,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const cashTitle = bs.date ? `Balance sheet ${bs.date}. Cash: ${bs.cash_tag || "?"} ${money(bs.cash)}; short-term investments: ` +
       (invUnknown ? unk : tagList(bs.investment_tags) + (bs.investment_note ? ` (${bs.investment_note})` : "") || "none tagged (zero)") : "";
     const debtTitle = bs.date ? `Balance sheet ${bs.date}. ` + (debtUnknown ? unk : tagList(bs.debt_parts) || bs.debt_note || "") + " (leases excluded)" : "";
-    const PP = S.prepayments || {};
+    const PP = S.prepayments || {}, SP = S.fcf_spike || {}, basis = S.fcf_basis || "reported";
+    const scoredOn = basis === "normalised" ? "normalised FCF" : basis === "ex-prepayments" ? "FCF ex-prepayments" : "";
     const metrics = [
       kv("Revenue, TTM" + cur, money(S.revenue_ttm), `Trailing twelve months to ${S.ttm_end || "?"}`),
       kv("Revenue YoY, latest quarter", signed(S.revenue_yoy_q, 1, "%"), S.latest_quarter_end ? `Quarter ended ${S.latest_quarter_end}` : ""),
@@ -716,7 +720,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       kv("Gross margin", S.gross_margin_pct == null ? "missing" : num(S.gross_margin_pct) + "%", S.gross_profit_source ? "Gross profit: " + S.gross_profit_source : ((S.missing_inputs || {}).gross_margin_pct || ""), S.gross_margin_pct == null ? "unk" : ""),
       kv("Operating margin", S.operating_margin_pct == null ? "missing" : num(S.operating_margin_pct) + "%", S.operating_income_source ? "Operating income: " + S.operating_income_source : ((S.missing_inputs || {}).operating_margin_pct || ""), S.operating_margin_pct == null ? "unk" : ""),
       kv("Free cash flow, TTM" + cur, money(S.fcf_ttm), "Operating cash flow minus capital expenditure, as reported"),
-      ...(PP.applies ? [kv("FCF ex-prepayments" + cur, money(S.fcf_ex_prepayments_ttm), `Free cash flow minus the ${money(PP.increase)} rise in customer prepayments (${PP.source}); quality and valuation are scored on this`)] : []),
+      ...(PP.applies ? [kv("FCF ex-prepayments" + cur, money(S.fcf_ex_prepayments_ttm), `Free cash flow minus the ${money(PP.excess)} of excess prepayments (${PP.source})${basis === "ex-prepayments" ? "; quality and valuation are scored on this" : ""}`)] : []),
+      ...(S.fcf_normalised_ttm != null ? [kv("Normalised FCF" + cur, money(S.fcf_normalised_ttm), `Median quarterly FCF margin ${num(SP.median_margin_pct)}% of the last ${SP.quarters} quarters x TTM revenue${basis === "normalised" ? "; quality and valuation are scored on this" : ""}`)] : []),
       kv("FCF margin", num(S.fcf_margin_pct) + "%"), kv("Capex intensity", num(S.capex_intensity_pct) + "%", "Capex / revenue, TTM"),
       kv("Stock comp. / revenue", num(S.sbc_pct_revenue) + "%"),
       kv("Cash + short-term inv." + cur, invUnknown ? "unknown" : money(bs.cash_and_investments), cashTitle, invUnknown ? "unk" : ""),
@@ -726,11 +731,13 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       kv("Diluted shares YoY", signed(S.dilution_yoy_pct, 1, "%")),
       kv("Market cap", money(V.market_cap), V.shares ? `${shares(V.shares.shares)} shares (${V.shares.source}, ${V.shares.date})` : ""),
       kv("Enterprise value", V.ev_note && V.enterprise_value == null ? "unknown" : money(V.enterprise_value), V.ev_note || "Market cap + debt − cash and short-term investments", V.ev_note && V.enterprise_value == null ? "unk" : ""),
-      kv("FCF yield", V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%", V.fcf_basis === "ex-prepayments" ? `On FCF ex-prepayments; reported ${V.fcf_yield_reported_pct == null ? "—" : num(V.fcf_yield_reported_pct, 2) + "%"}` : ""),
+      kv("FCF yield", V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%", V.fcf_basis && V.fcf_basis !== "reported" ? `On ${V.fcf_basis === "normalised" ? "normalised FCF" : "FCF ex-prepayments"}; reported ${V.fcf_yield_reported_pct == null ? "—" : num(V.fcf_yield_reported_pct, 2) + "%"}` : ""),
       kv("10-year Treasury", V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%", V.ust10y_date ? `FRED DGS10, ${V.ust10y_date}` : ""),
     ].join("");
     const flags = [unk ? `<div class="flag">Balance sheet left out: ${esc(unk)}. Hover the figures for the XBRL tags.</div>` : "",
-      PP.applies ? `<div class="flag">Scored on FCF ex-prepayments: customer prepayments rose ${money(PP.increase)} over the year${PP.share_of_ocf != null ? ` (${num(PP.share_of_ocf * 100, 0)}% of operating cash flow, above ${num(PP.max_share_of_ocf * 100, 0)}%)` : " (operating cash flow not positive)"}. Reported FCF ${money(S.fcf_ttm)}, ex-prepayments ${money(S.fcf_ex_prepayments_ttm)}.</div>` : ""].join("");
+      PP.applies ? `<div class="flag">Excess prepayments: contract liabilities rose ${money(PP.increase)} over the year, ${money(PP.excess)} more than revenue growth of ${num(PP.revenue_growth_pct)}% explains${PP.share_of_ocf != null ? ` (${num(PP.share_of_ocf * 100, 0)}% of operating cash flow, above ${num(PP.max_share_of_ocf * 100, 0)}%)` : " (operating cash flow not positive)"}. Reported FCF ${money(S.fcf_ttm)}, ex-prepayments ${money(S.fcf_ex_prepayments_ttm)}.</div>` : "",
+      SP.triggered ? `<div class="flag">FCF spike (cause not in tagged data): ${esc((SP.reasons || []).join("; "))}. ${S.fcf_normalised_ttm != null ? `Normalised FCF ${money(S.fcf_normalised_ttm)} (median quarterly margin ${num(SP.median_margin_pct)}% of the last ${SP.quarters} quarters x TTM revenue) vs reported ${money(S.fcf_ttm)}.` : esc(SP.note || "")}</div>` : "",
+      scoredOn ? `<div class="sub" style="margin-top:6px">Quality and valuation are scored on ${scoredOn}.</div>` : ""].join("");
     const VH = V.vs_history || {};
     const valRows = [["price_to_sales", "P/S"], ["price_to_fcf", "P/FCF"], ["ev_to_ebit", "EV/EBIT"]].map(([k, l]) => {
       const h = VH[k] || {};
@@ -795,7 +802,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
         <div class="card"><h2>Key metrics <span class="sub">· from SEC XBRL${S.ttm_end ? ", TTM to " + esc(S.ttm_end) : ""}${S.foreign ? " · foreign filer" : ""}; hover for the tags</span></h2><div class="kv">${metrics}</div>${flags}</div>
         <div class="card"><h2>Valuation vs own history <span class="sub">· month-end${histFrom ? " since " + esc(histFrom.slice(0, 7)) : ""}, filings known at each date</span></h2>
           ${V.missing ? `<p class="sub">${esc(V.missing)}</p>` : `<div class="scroll"><table><thead><tr><th>Multiple</th><th>Now</th><th>Median</th><th class="hide-sm">Low</th><th class="hide-sm">High</th><th title="Share of month-ends that were cheaper than now, ranked on yields (sales, FCF or EBIT over market cap or EV)">Percentile</th></tr></thead><tbody>${valRows}</tbody></table></div>
-          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"}${V.fcf_basis === "ex-prepayments" ? " (ex-prepayments)" : ""} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company. History is ranked on yields, so months with near-zero or negative FCF or EBIT count as the most expensive ("neg." when the median or high had no positive multiple); median, low and high are the multiples those yields imply.${V.fcf_basis === "ex-prepayments" ? ` P/FCF and its history use FCF ex-prepayments (reported P/FCF ${V.price_to_fcf_reported == null ? "negative" : num(V.price_to_fcf_reported, 1) + "x"}).` : ""}</p>
+          <p class="sub">FCF yield ${V.fcf_yield_pct == null ? "—" : num(V.fcf_yield_pct, 2) + "%"}${V.fcf_basis && V.fcf_basis !== "reported" ? ` (${V.fcf_basis})` : ""} vs 10-year Treasury ${V.ust10y_pct == null ? "—" : num(V.ust10y_pct, 2) + "%"}: ${signed(V.fcf_yield_vs_10y_pp, 2, " pp")}. A low percentile means cheaper than usual for this company. History is ranked on yields, so months with near-zero or negative FCF or EBIT count as the most expensive ("neg." when the median or high had no positive multiple); median, low and high are the multiples those yields imply.${V.fcf_basis && V.fcf_basis !== "reported" ? ` P/FCF and its history use ${V.fcf_basis === "normalised" ? "normalised FCF" : "FCF ex-prepayments"} (reported P/FCF ${V.price_to_fcf_reported == null ? "negative" : num(V.price_to_fcf_reported, 1) + "x"}).` : ""}</p>
           ${(V.share_outliers || []).length ? `<p class="sub">Left out ${V.share_outliers.length} diluted share count${V.share_outliers.length === 1 ? "" : "s"} more than 10x off the neighbouring quarters: ${esc(V.share_outliers.map(x => `${x.end} (${num(x.val, 0)})`).join(", "))}.</p>` : ""}`}
           ${qRows ? `<h3>Last ${q.length} quarters</h3><div class="scroll"><table><thead><tr><th>Quarter end</th><th>Revenue</th><th>YoY</th><th>Op. margin</th><th>FCF</th><th>Diluted shares</th></tr></thead><tbody>${qRows}</tbody></table></div>` : ""}
         </div>
@@ -876,7 +883,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const S = settings();
     $("#run").innerHTML = `
       <h2 style="margin:0">Research stocks</h2>
-      <div class="sub">Tick tickers in the list above (or add one here), then Run. Starts the Stock research workflow on GitHub: one job per ticker, results written once at the end (a few minutes). At most ${S.max_batch} tickers per run and ${S.max_tickers_per_day} tickers per 24 hours.</div>
+      <div class="sub">Tick tickers in the list above (or add one here), then Run. Starts the Stock research workflow on GitHub: one job per ticker, results written once at the end (a few minutes). At most ${S.max_batch} tickers per run and ${S.max_tickers_per_day} tickers per 24 hours; re-scores have their own ${S.max_rescore_tickers_per_day} a day.</div>
       <div id="run-sel" style="margin-top:10px"></div>
       <div class="run-grid">
         <div class="field"><span>Add a ticker <small>· SEC-registered, e.g. MSFT</small></span><span style="display:flex;gap:6px"><input type="text" id="run-ticker" class="inp" maxlength="10" autocomplete="off" spellcheck="false" placeholder="MSFT" aria-label="Ticker to add to the selection"><button type="button" class="sbtn" id="run-add">Add</button></span></div>
@@ -884,7 +891,8 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
         <label class="field"><span>Scoring &amp; write-up</span><select id="run-scoring"></select></label>
       </div>
       <div class="run-est" id="run-est"></div>
-      <div class="run-checks"><label><input type="checkbox" id="run-email"> Send email <span class="sub">(one summary email for the batch)</span></label></div>
+      <div class="run-checks"><label><input type="checkbox" id="run-email"> Send email <span class="sub">(one summary email for the batch)</span></label>
+        <label title="New SEC data and prices and every code factor re-scored; each ticker's latest news ratings and source checks kept as they were; only the write-up is new"><input type="checkbox" id="run-rescore"> Re-score only <span class="sub">(reuse the latest news; write-up only)</span></label></div>
       <div class="run-go">
         <input type="password" id="run-pass" placeholder="Passcode" autocomplete="off" aria-label="Passcode">
         <button type="button" class="btn" id="run-btn">Run</button>
@@ -892,6 +900,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       <div class="sub run-msg" id="run-msg" role="status" aria-live="polite"></div>
       <div id="run-progress"></div>`;
     $("#run-btn").onclick = startRun;
+    $("#run-rescore").onchange = renderSelection;
     $("#run-pass").onkeydown = e => { if (e.key === "Enter") startRun(); };
     const add = () => {
       const inp = $("#run-ticker"), t = inp.value.trim().toUpperCase();
@@ -922,11 +931,11 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     el.innerHTML = n ? `<b>Selected (${n})</b>${n > S.max_batch ? ` <span class="tag">over the ${S.max_batch}-ticker limit</span>` : ""} <button type="button" class="sbtn" data-act="clear">Clear</button>
       <ul class="chips">${sel.map(t => `<li>${esc(t)}<button type="button" data-t="${esc(t)}" aria-label="Remove ${esc(t)} from the selection">✕</button></li>`).join("")}</ul>`
       : '<span class="sub">Nothing selected yet.</span>';
-    const rc = (state.index || {}).recent_cost, est = $("#run-est");
+    const rc = costPer(), est = $("#run-est"), kind = rescoring() ? "re-score" : "full stock run";
     est.innerHTML = !n ? "" : rc && rc.avg_usd != null
-      ? `Estimated cost: <b>~${usd(n * rc.avg_usd)}</b> <span class="sub">· ${n} × ${usd(rc.avg_usd)}, the average of the last ${rc.runs} full stock run${rc.runs === 1 ? "" : "s"}</span>`
-      : '<span class="sub">A cost estimate appears after the first stock run.</span>';
-    $("#run-btn").textContent = n > 1 ? `Run ${n} tickers` : "Run";
+      ? `Estimated cost: <b>~${usd(n * rc.avg_usd)}</b> <span class="sub">· ${n} × ${usd(rc.avg_usd)}, the average of the last ${rc.runs} ${kind}${rc.runs === 1 ? "" : "s"}</span>`
+      : `<span class="sub">A cost estimate appears after the first ${kind}.</span>`;
+    $("#run-btn").textContent = (rescoring() ? "Re-score" : "Run") + (n > 1 ? ` ${n} tickers` : "");
   }
 
   async function startRun() {
@@ -938,16 +947,16 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     if (!tickers.length) { msg.textContent = "Tick tickers in the list above, or add one here."; return; }
     if (tickers.length > S.max_batch) { msg.textContent = `At most ${S.max_batch} tickers per run; you selected ${tickers.length}.`; return; }
     if (!pass.value) { msg.textContent = "Enter the passcode."; pass.focus(); return; }
-    const rc = (state.index || {}).recent_cost;
+    const rc = costPer(), rescore = rescoring();
     const cost = rc && rc.avg_usd != null ? `\nEstimated cost: ~${usd(tickers.length * rc.avg_usd)} (${tickers.length} × ${usd(rc.avg_usd)}).` : "";
-    if (!confirm(`Run ${tickers.length} ticker${tickers.length === 1 ? "" : "s"}: ${tickers.join(", ")}?${cost}\nCounts ${tickers.length} of the ${S.max_tickers_per_day} tickers allowed per 24 hours.${$("#run-email").checked ? "\nOne summary email when it finishes." : ""}`)) return;
+    if (!confirm(`${rescore ? "Re-score (latest news kept, write-up only)" : "Run"} ${tickers.length} ticker${tickers.length === 1 ? "" : "s"}: ${tickers.join(", ")}?${cost}\nCounts ${tickers.length} of the ${rescore ? S.max_rescore_tickers_per_day + " rescored" : S.max_tickers_per_day} tickers allowed per 24 hours.${$("#run-email").checked ? "\nOne summary email when it finishes." : ""}`)) return;
     btn.disabled = true;
     msg.textContent = "Starting…";
     let res = null, data = {};
     try {
       res = await fetch("api/stock", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passcode: pass.value, tickers, research_model: $("#run-research").value, scoring_model: $("#run-scoring").value, send_email: $("#run-email").checked }),
+        body: JSON.stringify({ passcode: pass.value, tickers, research_model: $("#run-research").value, scoring_model: $("#run-scoring").value, send_email: $("#run-email").checked, reuse_news: rescore }),
       });
       data = await res.json().catch(() => ({}));
     } catch (e) { /* network error */ }

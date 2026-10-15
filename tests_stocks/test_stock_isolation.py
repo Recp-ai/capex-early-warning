@@ -26,7 +26,8 @@ def test_stock_workflow_plans_runs_one_job_per_ticker_and_collects_once():
     assert set(inputs) == {"tickers", "research_model", "scoring_model", "send_email", "reuse_news"}
     assert inputs["tickers"]["required"] is True
     assert inputs["send_email"]["default"] is False and inputs["reuse_news"]["default"] is False
-    assert wf["run-name"] == "Stock research ${{ inputs.tickers }}"  # api/stock.js counts tickers from run titles
+    # api/stock.js counts tickers from run titles, re-scores ("(rescore)") against their own cap
+    assert wf["run-name"] == "Stock research ${{ inputs.reuse_news && '(rescore) ' || '' }}${{ inputs.tickers }}"
     assert wf["concurrency"] == {"group": "stocks", "cancel-in-progress": False}
     jobs = wf["jobs"]
     assert list(jobs) == ["plan", "rate", "collect"]
@@ -65,6 +66,7 @@ def test_function_limits_match_the_config():
     const = lambda name: int(re.search(rf"const {name} = +(\d+);", js).group(1))  # noqa: E731
     assert const("MAX_BATCH") == cfg["batch"]["max_batch"] == 15
     assert const("MAX_TICKERS_PER_DAY") == cfg["batch"]["max_tickers_per_day"] == 30
+    assert const("MAX_RESCORE_TICKERS_PER_DAY") == cfg["batch"]["max_rescore_tickers_per_day"] == 30
     assert const("MAX_LISTS") == cfg["lists"]["max_lists"] == 30
     assert const("MAX_PER_LIST") == cfg["lists"]["max_tickers_per_list"] == 100
     assert const("MAX_LIST_BYTES") == cfg["lists"]["max_bytes"] and cfg["lists"]["max_bytes"] <= 45000  # GitHub's limit: 48 KB
@@ -273,6 +275,35 @@ def test_function_caps_tickers_per_day_and_refuses_a_second_waiting_batch(tmp_pa
     r = run_function(tmp_path, [["fail", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT"}]], dispatch="fail")
     err = r["out"]["fail"]["body"]["error"]
     assert r["out"]["fail"]["status"] == 502 and "GitHub returned 403" in err and "***" in err
+
+
+@node
+def test_function_counts_rescores_apart_from_full_runs(tmp_path):
+    full = ",".join(f"F{i}" for i in range(30))
+    runs = [{"title": f"Stock research {full}"},                                    # the full-run cap is used up
+            {"title": "Stock research (rescore) " + ",".join(f"R{i}" for i in range(26))}]
+    r = run_function(tmp_path, [
+        ["full", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT"}],
+        ["rescore", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["ORCL", "INOD", "RBRK", "ZS"], "reuse_news": True}],
+        ["rescore_over", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["A", "B", "C", "D", "E"], "reuse_news": True}],
+        ["bad_flag", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "reuse_news": "yes"}],
+        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(16)], "reuse_news": True}]],
+        runs=runs)
+    out = r["out"]
+    assert out["full"]["status"] == 429 and out["full"]["body"]["error"] == "Limit: 30 of 30 tickers used in the last 24 hours; this batch has 1"
+    assert out["rescore"]["status"] == 200 and out["rescore"]["body"]["rescore"] is True
+    assert (out["rescore"]["body"]["used_24h"], out["rescore"]["body"]["max_24h"]) == (30, 30)
+    assert out["rescore_over"]["status"] == 429
+    assert out["rescore_over"]["body"]["error"] == "Limit: 26 of 30 rescored tickers used in the last 24 hours; this batch has 5"
+    assert out["bad_flag"]["status"] == 400 and out["too_many"]["status"] == 400 and "at most 15" in out["too_many"]["body"]["error"]
+    dispatches = [c["body"] for c in r["calls"] if c["url"].endswith("/dispatches")]
+    assert dispatches == [{"ref": "main", "inputs": {"tickers": "ORCL,INOD,RBRK,ZS", "send_email": "false", "reuse_news": "true"}}]
+    # a re-score's status: tickers read past the marker
+    r = run_function(tmp_path, [["run", "GET", "/api/stock?run=77", None]],
+                     run={"display_title": "Stock research (rescore) ORCL,INOD", "status": "completed", "conclusion": "success"},
+                     jobs=[{"name": "rate ORCL", "status": "completed", "conclusion": "success"}])
+    body = r["out"]["run"]["body"]
+    assert body["rescore"] is True and [t["ticker"] for t in body["tickers"]] == ["ORCL", "INOD"]
 
 
 @node

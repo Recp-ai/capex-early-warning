@@ -1,5 +1,7 @@
 name: Stock research
-run-name: Stock research ${{ inputs.tickers }}
+# "Stock research <tickers>", or "Stock research (rescore) <tickers>" for a reuse_news re-score: site/api/stock.js
+# counts tickers per 24 h from these titles, re-scores against their own cap.
+run-name: Stock research ${{ inputs.reuse_news && '(rescore) ' || '' }}${{ inputs.tickers }}
 
 # On demand only (the stocks page's Run panel, or Run workflow here). No schedule.
 # plan (validate, fetch SPY/QQQ once) -> one job per ticker (matrix; no commits) -> collect (quotes in one

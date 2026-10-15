@@ -147,17 +147,19 @@ def _latest_price(*candidates) -> dict:
     return best
 
 
-def recent_cost(rows: list[dict], n: int = 10) -> dict | None:
+def recent_cost(rows: list[dict], n: int = 10, rescore: bool = False) -> dict | None:
     """Average cost of the last n full runs that recorded one (the page's batch estimate: count x this).
-    Re-scores with reused news (a "news_from" value) cost only the write-up and are left out."""
-    costs = [c for c in (util.to_float(r.get("cost_usd")) for r in rows if not r.get("news_from")) if c is not None][-n:]
+    Re-scores with reused news (a "news_from" value) cost only the write-up: they are left out, or with
+    rescore=True averaged on their own."""
+    costs = [c for c in (util.to_float(r.get("cost_usd")) for r in rows if bool(r.get("news_from")) == rescore) if c is not None][-n:]
     return {"avg_usd": round(sum(costs) / len(costs), 4), "runs": len(costs)} if costs else None
 
 
 def settings(cfg: dict) -> dict:
     b = cfg.get("batch") or {}
     return {"stale_after_days": int((cfg.get("page") or {}).get("stale_after_days", 14)),
-            "max_batch": int(b.get("max_batch", 15)), "max_tickers_per_day": int(b.get("max_tickers_per_day", 30))}
+            "max_batch": int(b.get("max_batch", 15)), "max_tickers_per_day": int(b.get("max_tickers_per_day", 30)),
+            "max_rescore_tickers_per_day": int(b.get("max_rescore_tickers_per_day", 30))}
 
 
 def update_index(report: dict, quotes: dict | None = None, cfg: dict | None = None) -> dict:
@@ -194,7 +196,7 @@ def update_index(report: dict, quotes: dict | None = None, cfg: dict | None = No
     out.sort(key=lambda e: e["timestamp"], reverse=True)
     steps = (report.get("cost") or {}).get("steps") or {}
     index = {"generated_at": util.now_iso(), "disclaimer": DISCLAIMER, "settings": settings(cfg),
-             "recent_cost": recent_cost(rows), "tickers": out,
+             "recent_cost": recent_cost(rows), "recent_rescore_cost": recent_cost(rows, rescore=True), "tickers": out,
              "last_run": {"ticker": report["ticker"], "timestamp": report["run_id"],
                           "cost_usd": (report.get("cost") or {}).get("total_usd"),
                           "steps": {k: {x: v.get(x) for x in ("model", "input_tokens", "output_tokens", "cache_write_tokens",

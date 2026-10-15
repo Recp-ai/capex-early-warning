@@ -64,15 +64,19 @@ def generic(name: str, values: dict, cfg: dict, notes: dict | None = None) -> di
     return out
 
 
+FCF_BASIS = {"ex-prepayments": "FCF ex-prepayments", "normalised": "normalised FCF"}
+
+
 def quality_values(s: dict) -> tuple[dict, dict]:
-    """Quality inputs and notes: the FCF margin is ex-prepayments when that applies (the reported one in the
-    note); a margin no tag covers is noted as missing with the reason."""
+    """Quality inputs and notes: the FCF margin on the scored basis (ex-prepayments or normalised, the
+    reported one in the note); a margin no tag covers is noted as missing with the reason."""
     notes = {k: f"{MISSING}: {why}" for k, why in (s.get("missing_inputs") or {}).items()}
     values = dict(s)
-    if (s.get("prepayments") or {}).get("applies") and s.get("fcf_ex_prepayments_margin_pct") is not None:
-        values["fcf_margin_pct"] = s["fcf_ex_prepayments_margin_pct"]
+    basis = s.get("fcf_basis") or "reported"
+    if basis != "reported" and s.get("fcf_scored_margin_pct") is not None:
+        values["fcf_margin_pct"] = s["fcf_scored_margin_pct"]
         rep = s.get("fcf_margin_pct")
-        notes["fcf_margin_pct"] = ("FCF ex-prepayments" + ("" if rep is None else f"; reported FCF margin {rep:.1f}%"))
+        notes["fcf_margin_pct"] = FCF_BASIS[basis] + ("" if rep is None else f"; reported FCF margin {rep:.1f}%")
     return values, notes
 
 
@@ -110,24 +114,23 @@ def balance_sheet(s: dict, cfg: dict) -> dict:
 def valuation(v: dict, cfg: dict) -> dict:
     spec = cfg.get("valuation") or {}
     out = {}
-    ex_pp = v.get("fcf_basis") == "ex-prepayments"
+    basis = FCF_BASIS.get(v.get("fcf_basis"))
     for k, neg in (("price_to_sales", None), ("price_to_fcf", "fcf_negative"), ("ev_to_ebit", "ebit_negative")):
         s = spec[k]
         note = None
-        if k == "price_to_fcf" and ex_pp:
+        if k == "price_to_fcf" and basis:
             rep = v.get("price_to_fcf_reported")
-            note = "FCF ex-prepayments" + ("; reported FCF negative" if rep is None else f"; reported P/FCF {rep:.1f}x")
+            note = basis + ("; reported FCF negative" if rep is None else f"; reported P/FCF {rep:.1f}x")
         if v.get(k) is not None:
             out[k] = _metric(v[k], interp(s["points"], v[k]), float(s["weight"]), note)
         elif neg and v.get(neg):
-            out[k] = _metric(None, 0.0, float(s["weight"]), "negative " + ("FCF" if k == "price_to_fcf" else "EBIT")
-                             + (" ex-prepayments" if note else ""))
+            out[k] = _metric(None, 0.0, float(s["weight"]), "negative " + ("EBIT" if k == "ev_to_ebit" else basis or "FCF"))
         else:
             out[k] = _metric(None, None, float(s["weight"]), f"{MISSING}: {v['ev_note']}" if k == "ev_to_ebit" and v.get("ev_note") else MISSING)
     s = spec["fcf_yield_vs_10y_pp"]
     x = v.get("fcf_yield_vs_10y_pp")
     out["fcf_yield_vs_10y_pp"] = _metric(x, None if x is None else interp(s["points"], x), float(s["weight"]),
-                                         ("FCF ex-prepayments" if ex_pp else None) if x is not None else MISSING)
+                                         basis if x is not None else MISSING)
     min_pts = int(spec.get("min_history_points", 24))
     for k in ("price_to_sales", "price_to_fcf", "ev_to_ebit"):
         h = (v.get("vs_history") or {}).get(k) or {}
@@ -258,7 +261,7 @@ def composite(fs: dict, cfg: dict) -> dict:
             "available": list(have), "missing": [k for k in FACTORS if k not in have]}
 
 
-CONFIDENCE_POINTS = {"missing_factor": 1, "missing_sub_metric": 1, "unknown_cash_debt": 1, "fcf_ex_prepayments": 1,
+CONFIDENCE_POINTS = {"missing_factor": 1, "missing_sub_metric": 1, "unknown_cash_debt": 1, "fcf_ex_prepayments": 1, "fcf_spike": 1,
                      "short_valuation_history": 1, "near_band_edge": 1, "weak_sources": 1}
 SUB_LABELS = {
     "revenue_yoy_q": "revenue YoY (quarter)", "revenue_yoy_ttm": "revenue YoY (TTM)", "acceleration_pp": "growth acceleration",
@@ -329,8 +332,17 @@ def confidence_detail(fs: dict, score: int | None, summary: dict, val: dict, top
     pp = (summary or {}).get("prepayments") or {}
     if pp.get("applies"):
         share = f"{pp['share_of_ocf']:.0%} of operating cash flow" if pp.get("share_of_ocf") is not None else "operating cash flow not positive"
-        add("fcf_ex_prepayments", f"FCF scored ex-prepayments: customer prepayments rose {_money(pp['increase'])} "
-                                  f"over the year ({share}; threshold {pp['max_share_of_ocf']:.0%})")
+        add("fcf_ex_prepayments", f"excess prepayments: contract liabilities rose {_money(pp['increase'])} over the year, "
+                                  f"{_money(pp['excess'])} more than revenue growth of {pp['revenue_growth_pct']:.1f}% explains "
+                                  f"({share}; threshold {pp['max_share_of_ocf']:.0%})"
+                                  + ("" if (summary or {}).get("fcf_basis") == "ex-prepayments" else "; the lower normalised FCF is scored"))
+    spike = (summary or {}).get("fcf_spike") or {}
+    if spike.get("triggered"):
+        add("fcf_spike", "FCF spike (cause not in tagged data): " + "; ".join(spike["reasons"])
+            + (f"; scored on normalised FCF (median quarterly margin {spike['median_margin_pct']:.1f}% of the last "
+               f"{spike['quarters']} quarters x TTM revenue)" if spike.get("normalised_fcf") is not None else f"; {spike.get('note', '')}")
+            + ("" if (summary or {}).get("fcf_basis") in ("normalised", None) or spike.get("normalised_fcf") is None
+               else "; the lower FCF ex-prepayments is scored"))
     if short and (fs.get("valuation") or {}).get("score") is not None:
         add("short_valuation_history", "valuation history: " + ", ".join(
             f"{SUB_LABELS[k]} {vh[k].get('points') or 0} month-ends" for k in short) + f" (needs {min_pts})")

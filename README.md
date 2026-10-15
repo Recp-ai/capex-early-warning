@@ -165,24 +165,27 @@ and sends one summary email if email is on; a batch of one gets the full single-
 shows each ticker as queued / running / done / failed from the jobs, then reloads the list when the
 data is deployed; a failed ticker shows its error (from `site/data/stocks/batch.json`) and never blocks
 the others. Limits (`config/stocks.yaml` `batch`, enforced by `site/api/stock.js`): 15 tickers per run
-and 30 tickers in any 24 hours, counted across stocks.yml runs. Stock runs share the concurrency group
+and 30 tickers in any 24 hours, counted across full stocks.yml runs; re-scores (below) have their own 30
+tickers in any 24 hours. Stock runs share the concurrency group
 `stocks`, so two batches never overlap; the capex workflow is unaffected. Once the results are on the
 page, the rows' done tags go away; failed tickers keep theirs, and the Run panel keeps the batch summary,
 until you dismiss it (×).
 
-**Re-score without new research.** Run workflow with **reuse_news** ticked (or
-`python -m stocks.run MSFT --reuse-news`): SEC data and prices are fetched again and every code factor is
+**Re-score without new research.** Tick **Re-score only** in the Run panel, or Run workflow with
+**reuse_news** ticked (or `python -m stocks.run MSFT --reuse-news`): SEC data and prices are fetched again and every code factor is
 re-scored, but the news topic ratings and source checks are the latest run's, as they were (labelled
 "news from <time>" on the page and in the email), and the only Claude call is the write-up. The row is
-appended as usual with `news_from` set to the run whose news was used (blank for a run's own news), and
-such re-scores are left out of the page's cost-per-run estimate.
+appended as usual with `news_from` set to the run whose news was used (blank for a run's own news). A
+re-score costs about $0.03 a ticker (the write-up), so it is titled "Stock research (rescore) <tickers>"
+and counted against its own cap of 30 tickers a day (`batch.max_rescore_tickers_per_day`), not the full
+runs' 30; the page estimates it from recent re-scores and leaves it out of the full-run estimate.
 
 **Six factors, each 0–100.** Five are computed by code; Claude never sets a number or the rating.
 
 | Factor | Default weight | From |
 |---|---|---|
 | Growth | 20% | Revenue YoY for the latest quarter and the trailing twelve months (TTM), and acceleration (latest quarter's YoY minus the previous quarter's) |
-| Quality | 20% | TTM gross, operating and free-cash-flow margins (FCF ex-prepayments when that applies, below), stock-based comp as % of revenue, diluted share count YoY |
+| Quality | 20% | TTM gross, operating and free-cash-flow margins (FCF ex-prepayments or normalised FCF when that applies, below), stock-based comp as % of revenue, diluted share count YoY |
 | Balance sheet | 10% | Net debt / TTM FCF (net cash scores 100; cash runway if FCF is negative), cash + short-term investments / debt |
 | Valuation | 20% | P/S, P/FCF, EV/EBIT, FCF yield minus the 10-year Treasury (FRED `DGS10`), and where each stands versus the company's own month-end history over 5 years (ranked on yields, below) |
 | Trend | 15% | Price vs 50/200-day averages, 12-1 month momentum, 6-month relative strength vs SPY and QQQ, distance from the 52-week high |
@@ -214,12 +217,22 @@ screen doesn't read.
 **Margins and prepayments.** Without a `GrossProfit` tag, gross profit is revenue minus cost of revenue
 (`CostOfRevenue`, `CostOfGoodsAndServicesSold`, `CostOfServices`, ...); without `OperatingIncomeLoss`,
 operating income is revenue minus `CostsAndExpenses`, else gross profit minus `OperatingExpenses`, period
-by period. A margin still missing shows as **missing** in the factor's inputs. When customer prepayments
-(the TTM increase in contract liabilities, deferred revenue or customer advances, from the cash-flow
-statement, else the balance sheet) exceed 25% of TTM operating cash flow (`prepayments.max_share_of_ocf`),
-quality and valuation use **FCF ex-prepayments** (FCF minus that increase; the P/FCF history too), and the
-page shows both figures and flags it. This also applies to subscription businesses whose deferred revenue
-grows fast; raise the share to exempt them.
+by period. A margin still missing shows as **missing** in the factor's inputs.
+
+Two adjustments decide which FCF quality and valuation are scored on (the P/FCF history uses the same
+basis; the reported FCF is always shown, the page and email flag the adjustment, and confidence steps
+down; if both apply, the lower FCF is scored):
+- **Excess prepayments.** Excess = the TTM increase in contract liabilities, deferred revenue or customer
+  advances (from the cash-flow statement, else the balance sheet) minus their balance a year earlier ×
+  TTM revenue growth. Deferred revenue that grows with sales (Rubrik, Zscaler) leaves no excess; a jump
+  in advances (Oracle) does. When the excess is above 25% of TTM operating cash flow
+  (`prepayments.max_share_of_ocf`), **FCF ex-prepayments** = FCF minus the excess. Without a balance a
+  year earlier the excess can't be measured and nothing is subtracted.
+- **FCF spike guard** (needs no tag). When any of the last 4 quarters has FCF above that quarter's revenue,
+  or the TTM FCF margin is more than 2× the one a year earlier and above 30%, FCF is **normalised**: the
+  median quarterly FCF margin of the last 8 quarters × TTM revenue, flagged "FCF spike (cause not in tagged
+  data)". Innodata (Q2 2026 FCF $124M on $92M of revenue, from customer advances under its own tag)
+  triggers it. Thresholds in `fcf_spike`.
 
 **Valuation history on yields.** Each multiple's place in its own history is computed on the yield
 behind it (sales, FCF or EBIT over market cap or EV): the share of month-ends that were cheaper than now.
@@ -237,7 +250,7 @@ size, the number of its sources that were verified or unreachable. Code turns th
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
 missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data
 quality: it starts at High and each issue adds a point (`confidence` in the config): each factor with no
-data, missing inputs of a scored factor, unknown cash or debt, FCF ex-prepayments, a valuation history
+data, missing inputs of a scored factor, unknown cash or debt, FCF ex-prepayments, an FCF spike, a valuation history
 under 24 month-ends, a score within 2 points of a band edge, news topics capped for weak sources. 1–2
 points is Medium, 3+ Low (so 4–5 factors alone still read Medium and 3 Low, as before). The reasons are
 listed under the label on the page and in the email. **Rating:** ≥80 Strong Buy, 65–79 Buy, 45–64 Hold, 30–44 Sell, <30 Strong Sell.
@@ -317,7 +330,7 @@ and the run still completes; a failed quote only leaves the latest price at the 
    its own function, [`site/api/stock.js`](site/api/stock.js). The token's **Actions: Read and write**
    permission covers `stocks.yml`; its **Variables: Read and write** permission covers the
    `STOCK_LISTS` variable (lists). Runs are capped at 15 tickers each and 30 tickers per 24 hours,
-   counted on `stocks.yml` only.
+   counted on `stocks.yml` only; re-scores at 30 tickers per 24 hours of their own.
 4. For live prices on the page, also add the Tiingo token in Vercel (Settings → Environment Variables)
    as `STOCK_PRICE_API_KEY`, then redeploy. Without it the page shows the stored latest close.
 

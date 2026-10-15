@@ -177,8 +177,11 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   don't read carry a value, or one unread tag is larger than all we read (the record's `scan` of the latest
   balance sheet); the balance-sheet factor and
   EV then count as missing with the reason. Missing margins show as "missing" in the factor inputs (after
-  the revenue-minus-costs fallbacks). FCF ex-prepayments replaces FCF in quality and valuation when
-  prepayments exceed `prepayments.max_share_of_ocf`. Share counts off by more than
+  the revenue-minus-costs fallbacks). Quality and valuation score FCF on `summary["fcf_basis"]`: reported;
+  "ex-prepayments" (FCF minus the excess prepayments, i.e. the increase beyond balance a year earlier x
+  revenue growth, when that excess exceeds `prepayments.max_share_of_ocf` of operating cash flow); or
+  "normalised" (the `fcf_spike` guard: a quarter's FCF above its revenue, or a TTM margin jump; median
+  quarterly margin x TTM revenue); the lower when both apply. Share counts off by more than
   `valuation.share_outlier_x` from both neighbours are dropped. History percentiles rank yields
   (`metrics.cheaper_share`), not multiples. Confidence is `scoring.confidence_detail` (points per issue,
   thresholds in `confidence`), with its reasons shown.
@@ -186,7 +189,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   code factors, keeps the latest archived run's topics and source checks unchanged (`publish.latest_news`;
   a reuse passes the original `news_from` on), skips guidance extraction, and calls Claude for the
   write-up only. `ratings.csv` gets `news_from` (last column; blank = the run's own news);
-  `publish.recent_cost` leaves such rows out.
+  `publish.recent_cost` averages full runs and re-scores apart. A re-score run is titled
+  "Stock research (rescore) <tickers>" and `api/stock.js` counts it against `batch.max_rescore_tickers_per_day`,
+  never the full-run cap (and full runs never against the re-score cap).
 - **Cost.** Stock steps log every request (`cew.models.add_request` / `record_request`) and are priced by
   `cew.models.cost_summary_tiered` (prompt-size `tiers` in `config/models.yaml`, e.g. Haiku 5.5 above
   100K tokens). The capex pipeline keeps `cost_summary` at base prices; don't change it.
@@ -194,8 +199,8 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   fetch SPY/QQQ once as an artifact) -> one `rate <TICKER>` matrix job per ticker
   (`python -m stocks.run --batch-out out --shared shared`; never commits, never fetches other tickers'
   prices) -> collect (`python -m stocks.batch collect`: one quote request, the append-only files, one
-  email, one commit). Keep the job names, the run-name `Stock research <tickers>` (api/stock.js counts
-  tickers per 24 h from run titles and reads per-ticker status from job names) and the limits in
+  email, one commit). Keep the job names, the run-name `Stock research <tickers>` / `Stock research (rescore)
+  <tickers>` (api/stock.js counts tickers per 24 h from run titles and reads per-ticker status from job names) and the limits in
   `api/stock.js` equal to `config/stocks.yaml` (a test checks).
 - **Tiingo budget** (free tier ~50 requests/hour, shared): a batch of n costs n + 3; quotes are always ONE
   request for any number of tickers (`iex/?tickers=`, else the all-tickers endpoint), never one per ticker.
@@ -210,7 +215,7 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   the Tiingo Authorization header, never a URL or an error message. `api/stock.js` uses the same
   `RUN_PASSCODE` (timingSafeEqual) and `GITHUB_TOKEN` as `api/run.js`, validates every ticker
   (`^[A-Z][A-Z0-9.\-]{0,9}$` after uppercasing) and models, caps runs at 15 tickers and 30 tickers per 24 h
-  counted on `stocks.yml`, saves lists only with the passcode (validated: 30 lists, 100 tickers each,
+  counted on `stocks.yml` (re-scores: their own 30 per 24 h), saves lists only with the passcode (validated: 30 lists, 100 tickers each,
   40,000 bytes), and scrubs all three secrets from every response.
 
 ```

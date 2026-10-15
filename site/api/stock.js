@@ -1,6 +1,8 @@
 // Vercel function behind the stocks page. Node, no dependencies. Separate from api/run.js.
-//   POST /api/stock {passcode, tickers: [...] | ticker, research_model, scoring_model, send_email}
-//                   -> dispatches .github/workflows/stocks.yml on main (one batch: a job per ticker)
+//   POST /api/stock {passcode, tickers: [...] | ticker, research_model, scoring_model, send_email, reuse_news}
+//                   -> dispatches .github/workflows/stocks.yml on main (one batch: a job per ticker). reuse_news: true
+//                   re-scores with each ticker's latest news (write-up only); such runs are titled
+//                   "Stock research (rescore) ..." and counted against their own 24-hour cap.
 //   GET  /api/stock [?run=<id>] -> {status, conclusion, title, run_url, run_id, tickers: [{ticker, status}]}
 //                   for that (or the latest) stocks.yml run; each ticker queued / running / done / failed
 //   GET  /api/stock?lists -> the lists document from the STOCK_LISTS repo variable ({lists: []} if unset)
@@ -27,7 +29,8 @@ const WORKFLOW = "stocks.yml";
 const REF = "main";
 // The same limits as config/stocks.yaml (a test checks they match).
 const MAX_BATCH = 15;            // batch.max_batch
-const MAX_TICKERS_PER_DAY = 30;  // batch.max_tickers_per_day, counted across stocks.yml runs
+const MAX_TICKERS_PER_DAY = 30;  // batch.max_tickers_per_day, counted across stocks.yml runs (re-scores excluded)
+const MAX_RESCORE_TICKERS_PER_DAY = 30; // batch.max_rescore_tickers_per_day, counted across re-score runs only
 const MAX_LISTS = 30;            // lists.max_lists
 const MAX_PER_LIST = 100;        // lists.max_tickers_per_list
 const MAX_LIST_BYTES = 40000;    // lists.max_bytes (GitHub's variable limit is 48 KB)
@@ -111,9 +114,12 @@ function ghFail(what, r) {
 
 const runsPath = params => `/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?${new URLSearchParams(params)}`;
 
-// The run name is "Stock research <tickers>" (stocks.yml run-name), so the tickers of a run come from its title.
+// The run name is "Stock research <tickers>", or "Stock research (rescore) <tickers>" for a reuse_news re-score
+// (stocks.yml run-name), so the tickers of a run, and its kind, come from its title.
+const RESCORE_RE = /^Stock research \(rescore\)\s*/i;
+const isRescore = title => RESCORE_RE.test(String(title || ""));
 function tickersInTitle(title) {
-  const rest = String(title || "").replace(/^Stock research\s*/i, "");
+  const rest = String(title || "").replace(RESCORE_RE, "").replace(/^Stock research\s*/i, "");
   return rest.split(/[\s,]+/).filter(Boolean).map(t => t.toUpperCase()).filter(t => t.length <= 12);
 }
 
@@ -382,6 +388,7 @@ async function handleStatus(req, res) {
   const state = job => (job ? (job.status === "completed" ? job.conclusion : job.status) : null);
   return send(res, 200, {
     status: run.status, conclusion: run.conclusion, title: String(run.display_title || "").slice(0, 200),
+    rescore: isRescore(run.display_title),
     created_at: run.created_at, run_url: run.html_url, run_id: run.id, tickers,
     plan: state(named("plan")), collect: state(named("collect")),
   }, "public, s-maxage=5");
@@ -409,6 +416,9 @@ async function handleRun(req, res) {
   }
   if (tickers.length > MAX_BATCH) throw new Fail(400, `${tickers.length} tickers; a batch takes at most ${MAX_BATCH}`);
 
+  if (body.reuse_news !== undefined && typeof body.reuse_news !== "boolean") throw new Fail(400, "reuse_news must be true or false");
+  const rescore = body.reuse_news === true;
+
   const chosen = {};
   for (const field of STEPS) {
     const v = body[field];
@@ -424,23 +434,26 @@ async function handleRun(req, res) {
     }
   }
 
+  // Full runs and re-scores (write-up only) have separate caps; each counts only its own kind of run.
   const now = Date.now();
   const runs = await recentRuns(now - 24 * 3600 * 1000);
-  const used = runs.reduce((n, x) => n + tickersInTitle(x.display_title).length, 0);
-  if (used + tickers.length > MAX_TICKERS_PER_DAY) {
-    throw new Fail(429, `Limit: ${used} of ${MAX_TICKERS_PER_DAY} tickers used in the last 24 hours; this batch has ${tickers.length}`);
+  const cap = rescore ? MAX_RESCORE_TICKERS_PER_DAY : MAX_TICKERS_PER_DAY;
+  const used = runs.filter(x => isRescore(x.display_title) === rescore).reduce((n, x) => n + tickersInTitle(x.display_title).length, 0);
+  if (used + tickers.length > cap) {
+    throw new Fail(429, `Limit: ${used} of ${cap} ${rescore ? "rescored " : ""}tickers used in the last 24 hours; this batch has ${tickers.length}`);
   }
   // GitHub keeps one running and one waiting run per concurrency group and cancels an older waiting one.
   if (runs.some(x => ACTIVE.includes(x.status))) {
     throw new Fail(409, "A stock batch is already waiting to start; run this one when it has started");
   }
 
-  const inputs = { tickers: tickers.join(","), send_email: body.send_email === true ? "true" : "false", ...chosen };
+  const inputs = { tickers: tickers.join(","), send_email: body.send_email === true ? "true" : "false", ...chosen,
+    ...(rescore ? { reuse_news: "true" } : {}) };
   const r = await gh("POST", `/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { ref: REF, inputs });
   if (!r.ok) throw ghFail("starting the stock workflow", r);
   const run = (r.data && r.data.html_url) ? r.data : await findRun(now);
   return send(res, 200, {
-    ok: true, ticker: tickers[0], tickers, used_24h: used + tickers.length, max_24h: MAX_TICKERS_PER_DAY,
+    ok: true, ticker: tickers[0], tickers, rescore, used_24h: used + tickers.length, max_24h: cap,
     run_url: (run && run.html_url) || `https://github.com/${REPO}/actions/workflows/${WORKFLOW}`,
     run_id: (run && run.id) || null, run_found: Boolean(run && run.html_url),
   });

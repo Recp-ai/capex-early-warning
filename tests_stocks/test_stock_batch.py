@@ -356,3 +356,8 @@ def test_quote_columns_extend_an_old_ratings_header_without_touching_rows(sandbo
     assert head.decode().endswith(",overlay,quote_price,quote_as_of,news_from") and rest.startswith(body)
     rows = list(csv.DictReader(path.open()))
     assert rows[0]["quote_price"] in ("", None) and rows[1]["quote_price"] == "1.5"
+
+
+def test_a_rescore_batch_says_so_in_its_commit_message():
+    rows = [{"ticker": "ORCL", "status": "done", "news_from": "2026-10-15T07:18:37Z"}, {"ticker": "ZZZZ", "status": "failed"}]
+    assert batch.commit_message({"tickers": rows}) == f"Stock research (rescore) ORCL {util.today().isoformat()} (1 failed: ZZZZ)"

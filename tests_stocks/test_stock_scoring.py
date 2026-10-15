@@ -246,7 +246,8 @@ def test_confidence_is_data_quality_and_steps_down_per_issue():
     assert conf(63)["reasons"][0]["text"] == "score 63 is within 2 points of the Buy edge (65)"
     assert conf(67)["level"] == "Medium" and conf(68)["level"] == "High" and conf(46)["level"] == "Medium"
     summary = {"balance_sheet": {"unknown": ["debt unknown: LongTermDebt was $1.15B on 2025-04-30, and no debt tag covers 2026-07-31"]},
-               "prepayments": {"applies": True, "increase": 65.2e6, "share_of_ocf": 0.62, "max_share_of_ocf": 0.25}}
+               "prepayments": {"applies": True, "increase": 65.2e6, "excess": 60.1e6, "revenue_growth_pct": 57.0,
+                               "share_of_ocf": 0.62, "max_share_of_ocf": 0.25}, "fcf_basis": "ex-prepayments"}
     fs = {k: {"score": 70, "metrics": {}} for k in scoring.FACTORS}
     fs["balance_sheet"] = {"score": None}
     fs["quality"]["metrics"] = {"gross_margin_pct": {"score": None}, "operating_margin_pct": {"score": None}}
@@ -257,8 +258,8 @@ def test_confidence_is_data_quality_and_steps_down_per_issue():
                                                   "short_valuation_history", "near_band_edge", "weak_sources"]
     texts = [r["text"] for r in c["reasons"]]
     assert texts[0] == "1 of 6 factors had no data: Balance sheet" and texts[1] == "missing inputs: gross margin, operating margin"
-    assert texts[3] == ("FCF scored ex-prepayments: customer prepayments rose $65.2M over the year (62% of operating cash flow; "
-                        "threshold 25%)")
+    assert texts[3] == ("excess prepayments: contract liabilities rose $65.2M over the year, $60.1M more than revenue growth "
+                        "of 57.0% explains (62% of operating cash flow; threshold 25%)")
     assert texts[4] == "valuation history: EV/EBIT 10 month-ends (needs 24)"
 
 

@@ -1,5 +1,6 @@
 """Stock data layer: ticker resolution, SEC fundamentals, prices, the earnings release, price-based metrics.
 All HTTP and Claude calls are mocked."""
+import copy
 import json
 from datetime import date
 
@@ -448,42 +449,92 @@ def test_margins_fall_back_to_revenue_minus_costs_and_say_when_missing():
     assert q["operating_margin_pct"]["value"] is None and q["operating_margin_pct"]["note"].startswith("missing: no OperatingIncomeLoss")
 
 
-def test_fcf_ex_prepayments_when_prepayments_are_a_large_share_of_operating_cash_flow(sandbox):
-    # cash-flow line: contract liabilities +20% of revenue a quarter = 44% of operating cash flow (45% of revenue)
-    rec = fund.extract(F.companyfacts(IncreaseDecreaseInContractWithCustomerLiability=F.flow(
-        lambda e: round(F.revenue(e) * 0.20, -6), True)), F.CIK)
+def ttm_rev(e):
+    """The synthetic filer's TTM revenue to quarter end `e` (unrounded)."""
+    return sum(50e9 * 1.035 ** (F.qindex(e) - k) for k in range(4))
+
+
+def test_prepayments_count_only_the_excess_over_revenue_growth(sandbox):
+    # subscription: deferred revenue at 1.4x TTM revenue grows with sales -> no excess, reported FCF (RBRK, ZS)
+    s = summ(ContractWithCustomerLiability=F.instant(lambda e: 1.4 * ttm_rev(e)))
+    pp = s["prepayments"]
+    assert pp["increase"] == pytest.approx(pp["base"] * pp["revenue_growth_pct"] / 100, rel=1e-3) and pp["revenue_growth_pct"] > 10
+    assert abs(pp["excess"]) < 1e-3 * pp["increase"] and pp["applies"] is False and s["fcf_basis"] == "reported"
+    # the same growth from the cash-flow line: the old rule (44% of operating cash flow) would have applied
+    s = summ(ContractWithCustomerLiability=F.instant(lambda e: 1.4 * ttm_rev(e)),
+             IncreaseDecreaseInContractWithCustomerLiability=F.flow(lambda e: round(F.revenue(e) * 0.20, -6), True))
+    pp = s["prepayments"]
+    assert pp["source"] == "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability"
+    assert pp["increase"] / s["operating_cash_flow_ttm"] > 0.4 and pp["share_of_ocf"] < 0.25 and not pp["applies"]
+    # a jump (ORCL, INOD): $100B of advances on top -> the excess applies, and only the excess is subtracted
+    jump = lambda e: 0.1 * ttm_rev(e) + (100e9 if e.isoformat() > "2025-06-30" else 0)  # noqa: E731
+    rec = fund.extract(F.companyfacts(ContractWithCustomerLiabilityCurrent=F.instant(jump)), F.CIK)
     s = fund.summarize(rec, CFG)
     pp = s["prepayments"]
-    assert pp["applies"] and pp["share_of_ocf"] == pytest.approx(0.4444, abs=1e-3) and pp["max_share_of_ocf"] == 0.25
-    assert pp["source"] == "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability"
-    assert s["fcf_ex_prepayments_ttm"] == pytest.approx(s["fcf_ttm"] - pp["increase"]) and s["fcf_ex_prepayments_margin_pct"] == pytest.approx(10, abs=0.01)
+    assert pp["source"] == "balance sheet: contract 2025-06-30 to 2026-06-30" and pp["base_date"] == "2025-06-30"
+    assert pp["expected"] == pytest.approx(pp["base"] * pp["revenue_growth_pct"] / 100, rel=1e-3)
+    assert pp["excess"] == pytest.approx(100e9, rel=1e-3) and pp["applies"]
+    assert pp["share_of_ocf"] == pytest.approx(pp["excess"] / s["operating_cash_flow_ttm"], abs=1e-4)
+    assert s["fcf_basis"] == "ex-prepayments" and s["fcf_scored_ttm"] == pytest.approx(s["fcf_ttm"] - pp["excess"])
     q = scoring.factors(s, {"missing": "x"}, {"missing": "x"}, CFG)["quality"]["metrics"]["fcf_margin_pct"]
-    assert q["value"] == pytest.approx(10, abs=0.01) and q["note"] == "FCF ex-prepayments; reported FCF margin 30.0%"
+    assert q["value"] == s["fcf_ex_prepayments_margin_pct"] and q["note"] == f"FCF ex-prepayments; reported FCF margin {s['fcf_margin_pct']:.1f}%"
     raw = rows_of(F.tiingo_rows(300, 0.0004))
     v = metrics.valuation(s, rec, raw, {"value": 4.5, "date": "x"}, CFG)
-    assert v["fcf_basis"] == "ex-prepayments" and v["price_to_fcf"] == pytest.approx(v["market_cap"] / s["fcf_ex_prepayments_ttm"], rel=1e-3)
+    assert v["fcf_basis"] == "ex-prepayments" and v["price_to_fcf"] == pytest.approx(v["market_cap"] / s["fcf_scored_ttm"], rel=1e-3)
     assert v["price_to_fcf_reported"] == pytest.approx(v["market_cap"] / s["fcf_ttm"], rel=1e-3)
-    assert v["history"][-1]["fcf_yield_pct"] == pytest.approx(v["history"][-1]["sales_yield_pct"] * 0.10, rel=1e-2)  # history alike
     m = scoring.valuation(v, CFG)
     assert m["price_to_fcf"]["note"].startswith("FCF ex-prepayments; reported P/FCF") and m["fcf_yield_vs_10y_pp"]["note"] == "FCF ex-prepayments"
-    assert fs_conf(s, v)["issue"] == "fcf_ex_prepayments"
-    # a small increase (11% of operating cash flow): reported FCF
-    s = summ(IncreaseDecreaseInContractWithCustomerLiability=F.flow(lambda e: round(F.revenue(e) * 0.05, -6), True))
-    assert s["prepayments"]["applies"] is False and "fcf_ex_prepayments_ttm" not in s
-    # no cash-flow line: the balance sheet's change (INOD: customer advances $1.8B -> $67B over the year)
-    s = summ(ContractWithCustomerLiabilityCurrent=F.instant(lambda e: 67e9 if e.isoformat() > "2025-06-30" else 1.8e9))
-    assert s["prepayments"]["increase"] == pytest.approx(65.2e9) and s["prepayments"]["applies"]
-    assert s["prepayments"]["source"] == "balance sheet: contract 2025-06-30 to 2026-06-30"
-    # the same basis on both dates: a total a year ago vs only the current part now is no "decrease"
-    s = summ(ContractWithCustomerLiability=upto(F.instant(lambda e: 50e9), "2025-06-30"),
-             ContractWithCustomerLiabilityCurrent=F.instant(lambda e: 30e9 if e.isoformat() > "2025-06-30" else 28e9))
-    assert s["prepayments"]["increase"] == pytest.approx(2e9)
+    assert fs_conf(s, v, "fcf_ex_prepayments")["text"].startswith("excess prepayments: contract liabilities rose $")
+    # no balance a year earlier: the excess can't be measured, so nothing is subtracted
+    s = summ(IncreaseDecreaseInContractWithCustomerLiability=F.flow(lambda e: round(F.revenue(e) * 0.20, -6), True))
+    assert s["prepayments"]["excess"] is None and not s["prepayments"]["applies"] and "can't be measured" in s["prepayments"]["note"]
 
 
-def fs_conf(s, v):
+def ocf_with(fn):
+    return F.flow(lambda e: round(F.revenue(e) * fn(e), -6), True)
+
+
+def test_fcf_spike_guard_scores_normalised_fcf_without_any_tag(sandbox):
+    assert summ()["fcf_spike"]["triggered"] is False  # steady FCF: reported
+    # a quarter with FCF above its revenue (INOD Q2 2026: $124M on $92M): median margin of 8 quarters x TTM revenue
+    rec = fund.extract(F.companyfacts(NetCashProvidedByUsedInOperatingActivities=ocf_with(
+        lambda e: 1.4 if e == date(2026, 6, 30) else 0.45)), F.CIK)
+    s = fund.summarize(rec, CFG)
+    sp = s["fcf_spike"]
+    assert sp["triggered"] and sp["reasons"][0].startswith("FCF $") and "in the quarter to 2026-06-30 on revenue of $" in sp["reasons"][0]
+    assert sp["median_margin_pct"] == pytest.approx(30, abs=0.01) and sp["quarters"] == 8
+    assert s["fcf_basis"] == "normalised" and s["fcf_scored_ttm"] == pytest.approx(0.30 * s["revenue_ttm"], rel=1e-3)
+    assert s["fcf_margin_pct"] > 50 and s["fcf_scored_margin_pct"] == pytest.approx(30, abs=0.01)  # both kept
+    q = scoring.factors(s, {"missing": "x"}, {"missing": "x"}, CFG)["quality"]["metrics"]["fcf_margin_pct"]
+    assert q["value"] == pytest.approx(30, abs=0.01) and q["note"].startswith("normalised FCF; reported FCF margin")
+    v = metrics.valuation(s, rec, rows_of(F.tiingo_rows(300, 0.0004)), {"value": 4.5, "date": "x"}, CFG)
+    assert v["fcf_basis"] == "normalised" and v["price_to_fcf"] == pytest.approx(v["market_cap"] / s["fcf_scored_ttm"], rel=1e-3)
+    assert v["history"][-1]["fcf_yield_pct"] == pytest.approx(v["history"][-1]["sales_yield_pct"] * 0.30, rel=1e-2)
+    r = fs_conf(s, v, "fcf_spike")
+    assert r["points"] == 1 and r["text"].startswith("FCF spike (cause not in tagged data): FCF $")
+    assert "scored on normalised FCF (median quarterly margin 30.0% of the last 8 quarters x TTM revenue)" in r["text"]
+    # a jump in the TTM margin: more than 2x a year earlier and above 30%
+    s = summ(NetCashProvidedByUsedInOperatingActivities=ocf_with(lambda e: 0.2 if e <= date(2025, 6, 30) else 0.75))
+    sp = s["fcf_spike"]
+    assert sp["triggered"] and sp["reasons"] == [f"TTM FCF margin {sp['fcf_margin_pct']:.1f}% vs {sp['fcf_margin_year_earlier_pct']:.1f}% a year earlier"]
+    assert sp["median_margin_pct"] == pytest.approx(32.5, abs=0.01)
+    # thresholds come from the config
+    cfg = copy.deepcopy(CFG)
+    cfg["fcf_spike"].update(quarter_fcf_to_revenue=2.0)
+    assert fund.summarize(rec, cfg)["fcf_spike"]["triggered"] is False
+    # spike and excess prepayments together: the lower FCF is scored
+    rec = fund.extract(F.companyfacts(NetCashProvidedByUsedInOperatingActivities=ocf_with(lambda e: 1.4 if e == date(2026, 6, 30) else 0.45),
+                                      ContractWithCustomerLiabilityCurrent=F.instant(
+                                          lambda e: 0.1 * ttm_rev(e) + (300e9 if e.isoformat() > "2025-06-30" else 0))), F.CIK)
+    s = fund.summarize(rec, CFG)
+    assert s["prepayments"]["applies"] and s["fcf_spike"]["triggered"]
+    assert s["fcf_scored_ttm"] == min(s["fcf_ex_prepayments_ttm"], s["fcf_normalised_ttm"]) and s["fcf_basis"] == "ex-prepayments"
+
+
+def fs_conf(s, v, issue):
     fs = scoring.factors(s, v, {"missing": "x"}, CFG)
     reasons = scoring.confidence_detail(fs, 72, s, v, {}, CFG)["reasons"]
-    return next(r for r in reasons if r["issue"] == "fcf_ex_prepayments")
+    return next(r for r in reasons if r["issue"] == issue)
 
 
 def test_share_counts_off_by_more_than_10x_are_dropped_but_splits_are_kept():
