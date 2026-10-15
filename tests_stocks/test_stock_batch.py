@@ -3,7 +3,7 @@ HTTP, SMTP and Claude are mocked."""
 import csv
 import email
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.header import decode_header, make_header
 
 import pytest
@@ -14,7 +14,8 @@ from stocks import batch, config, notify, prices, publish, run
 
 CFG = config.load()
 PAGES = {"https://www.reuters.com/a": "Microsoft guided revenue to $122 billion."}
-EVIDENCE = {"guidance": [{"claim": "Microsoft guided revenue to $122 billion", "url": "https://www.reuters.com/a", "event_date": None}]}
+EVIDENCE = {"guidance": [{"claim": "Microsoft guided revenue to $122 billion", "url": "https://www.reuters.com/a",
+                          "event_date": (util.today() - timedelta(days=3)).isoformat()}]}
 
 
 def claude_run():

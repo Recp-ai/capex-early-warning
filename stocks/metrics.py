@@ -7,9 +7,9 @@ already filed on that date, in today's share units (stock splits come from the p
 factors; share counts more than `valuation.share_outlier_x` off their neighbours are dropped). The
 percentile versus history is computed on yields (revenue / FCF / EBIT over market cap or EV), so periods
 with near-zero or negative FCF or EBIT rank as the most expensive instead of producing huge multiples;
-the page still shows the multiples. Trend: the chart, moving averages and drawdown use split-adjusted
-closes (what a price chart shows); momentum and relative strength use total-return closes (dividends
-included).
+the page still shows the multiples. The write-up gets that comparison only in words (stocks/wording.py).
+Trend: the chart, moving averages and drawdown use split-adjusted closes (what a price chart shows);
+momentum and relative strength use total-return closes (dividends included).
 """
 from __future__ import annotations
 
@@ -20,6 +20,7 @@ from statistics import median
 from cew import util
 
 from . import fundamentals as fund
+from . import wording
 
 SHARE_BAND = (0.8, 1.25)
 
@@ -213,15 +214,19 @@ def valuation(s: dict, f: dict, price_rows: list[dict] | None, dgs10: dict | Non
     out["vs_history"] = {}
     for k, y in MULTIPLES.items():
         ys = [h[y] for h in hist if h.get(y) is not None]
-        enough = len(ys) >= int(vc.get("min_history_points", 24))
+        enough = len(ys) >= int(vc.get("min_history_points", 24)) and out[y] is not None
         out["vs_history"][k] = {"current": out[k], "current_yield_pct": out[y], "points": len(ys),
                                 "median": _implied(median(ys)) if ys else None,
                                 "low": _implied(max(ys)) if ys else None, "high": _implied(min(ys)) if ys else None,
                                 "negative_points": sum(1 for v in ys if v <= 0),
                                 "median_yield_pct": _r(median(ys), 3) if ys else None,
                                 "percentile": cheaper_share(out[y], ys) if enough else None,
+                                # month-ends cheaper than now (a higher yield) and dearer (a lower one)
+                                "cheaper_points": sum(1 for v in ys if v > out[y]) if enough else None,
+                                "dearer_points": sum(1 for v in ys if v < out[y]) if enough else None,
                                 "min_points": int(vc.get("min_history_points", 24)),
                                 "from": hist[0]["date"] if hist else None}
+    out["vs_own_history"] = wording.history_view(out, cfg)
     return out
 
 

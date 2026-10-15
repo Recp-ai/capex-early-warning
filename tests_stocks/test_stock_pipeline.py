@@ -1,10 +1,11 @@
 """Stock pipeline end to end: Claude steps, source checks, publishing (append-only), email, evaluation.
 HTTP and Claude are mocked."""
+import copy
 import csv
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
@@ -18,10 +19,11 @@ ROOT = util.ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 import evaluate_stocks  # noqa: E402
 
+RECENT = (util.today() - timedelta(days=3)).isoformat()  # inside the 30-day window whenever the tests run
 EVIDENCE = {
-    "guidance": [{"claim": "Microsoft guided revenue to $122 billion", "url": "https://www.reuters.com/a", "event_date": None},
+    "guidance": [{"claim": "Microsoft guided revenue to $122 billion", "url": "https://www.reuters.com/a", "event_date": RECENT},
                  {"claim": "Microsoft guided revenue to $122 billion", "url": "https://blog.example/b", "event_date": "2026-10-01"}],
-    "analyst_actions": [{"claim": "Mizuho cut Microsoft to Neutral", "url": "https://www.cnbc.com/c", "event_date": "2026-10-02"}],
+    "analyst_actions": [{"claim": "Mizuho cut Microsoft to Neutral", "url": "https://www.cnbc.com/c", "event_date": RECENT}],
 }
 PAGES = {"https://www.reuters.com/a": "Microsoft guided revenue to $122 billion.",
          "https://blog.example/b": "Something else entirely.",
@@ -116,7 +118,7 @@ def test_full_run(sandbox, monkeypatch, capsys):
 
 
 def test_weak_sources_cap_topics_and_show_on_page_data_and_email(sandbox, monkeypatch):
-    ev = {"product_competitive": [{"claim": "Microsoft launched Copilot Max at $99", "url": "https://blog.example/p", "event_date": None},
+    ev = {"product_competitive": [{"claim": "Microsoft launched Copilot Max at $99", "url": "https://blog.example/p", "event_date": RECENT},
                                   {"claim": "Microsoft launched Copilot Max at $99", "url": "https://forum.example/q", "event_date": None}],
           "insider_activity": [{"claim": "Satya Nadella sold 10,000 shares", "url": "https://gone.example/x", "event_date": None}],
           "guidance": EVIDENCE["guidance"][:1]}
@@ -147,6 +149,130 @@ def test_weak_sources_cap_topics_and_show_on_page_data_and_email(sandbox, monkey
     assert body_html.count(scoring.WEAK_SOURCES) == 2 and "only other-tier sources, none verified" in body_html
     assert "Product and competitive news: +1, capped: weak sources (Capped at +1 (was +2)" in text
     assert "Insider activity: +0, capped: weak sources" in text and "Guidance changes: +1, capped" not in text
+
+
+def test_only_older_evidence_caps_a_topic_at_zero_and_shows_on_page_data_and_email(sandbox, monkeypatch):
+    d41, d45 = ((util.today() - timedelta(days=n)).isoformat() for n in (41, 45))
+    ev = {"insider_activity": [{"claim": "Satya Nadella sold 10,000 shares", "url": "https://www.sec.gov/f4a", "event_date": d41},
+                               {"claim": "Satya Nadella sold 10,000 shares", "url": "https://www.sec.gov/f4b", "event_date": d45}],
+          "product_competitive": [{"claim": "Microsoft launched Copilot Max at $99", "url": "https://www.reuters.com/p", "event_date": None}],
+          "guidance": EVIDENCE["guidance"][:1]}
+    pages = {**PAGES, "https://www.sec.gov/f4a": "Satya Nadella sold 10,000 shares.", "https://www.sec.gov/f4b": "Satya Nadella sold 10,000 shares.",
+             "https://www.reuters.com/p": "Microsoft launched Copilot Max at $99 a month."}
+    _, fake = setup(monkeypatch, sandbox, claude=[
+        F.guidance_reply(), F.research_reply("n"),
+        F.topics_reply({"insider_activity": -1, "product_competitive": 1, "guidance": 1}, ev), F.writeup_reply()])
+    monkeypatch.setattr(sources, "make_fetcher", lambda *a, **k: lambda u: (pages[u], None) if u in pages else (None, "HTTP 404"))
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    ia, pc, g = (r["news"]["topics"][k] for k in ("insider_activity", "product_competitive", "guidance"))
+    assert [(e["status"], e["tier"], e["background"]) for e in ia["evidence"]] == [("verified", "primary", True)] * 2
+    assert ia["rating"] == 0 and ia["rating_before_cap"] == -1 and "cap_note" not in ia and "weak_sources_note" not in ia
+    assert ia["old_evidence_note"] == ("Capped at 0 (was -1): no source that checked out is dated within the last 30 days; "
+                                       f"of the 2 that did, 2 dated more than 30 days before the run ({d45}, {d41})")
+    assert pc["rating"] == 0 and pc["old_evidence_note"].endswith("of the 1 that did, 1 undated")
+    assert g["rating"] == 1 and "old_evidence_note" not in g  # dated inside the window
+    assert r["factors"]["news_risk"]["score"] == round(50 + 0.25 * 25)
+    # Claude is told the rule; the write-up sees the cap
+    assert "dated within the last 30 days; undated" in fake.calls[2]["system"] and "{window}" not in fake.calls[2]["system"]
+    assert "no source that checked out is dated within the last 30 days" in fake.calls[3]["messages"][0]["content"]
+    # the page reads it from the site JSON; the email shows it like the weak-sources cap
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["news"]["topics"]["insider_activity"]["old_evidence_note"] == ia["old_evidence_note"]
+    _, body_html, text = notify.build_email(r, None)
+    assert body_html.count(scoring.OLD_EVIDENCE) == 2 and f"before the run ({d45}, {d41})" in body_html
+    assert "Insider activity: +0, capped: only older evidence (Capped at 0 (was -1)" in text
+    assert "Product and competitive news: +0, capped: only older evidence" in text and "Guidance changes: +1, capped" not in text
+
+
+def cheap_below(monkeypatch, share):
+    """config.load() with valuation.history_label.cheap_below = share (the synthetic MSFT sits at ~40%)."""
+    cfg = copy.deepcopy(CFG)
+    cfg["valuation"]["history_label"]["cheap_below"] = share
+    monkeypatch.setattr(config, "load", lambda: cfg)
+
+
+def note(headline="Microsoft rates on code factors", thesis="Growth is steady.", risks=("AI capex digestion",)):
+    return F.reply({"headline": headline, "thesis": thesis, "key_risks": list(risks), "what_would_change": ["Faster growth"]})
+
+
+BAD = "Valuation is stretched against its own history, more expensive than at most of the last 61 month-ends."
+GOOD = "P/FCF is cheaper than at 37 of the last 61 month-ends."
+
+
+def brief_of(call):
+    text = call["messages"][0]["content"]
+    return json.loads(text[text.index("```json\n") + 8:text.rindex("\n```")])
+
+
+def test_write_up_gets_valuation_history_in_words_and_a_conflict_is_regenerated_once(sandbox, monkeypatch):
+    cheap_below(monkeypatch, 45)
+    _, fake = setup(monkeypatch, sandbox, claude=[
+        F.guidance_reply(), F.research_reply("n"), F.topics_reply(), note(thesis=f"Growth is steady. {BAD}"),
+        note(thesis=f"Growth is steady. {GOOD}")])
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    hv = r["valuation"]["vs_own_history"]
+    assert hv["label"] == "cheap" and hv["multiples"]["price_to_fcf"] == {"label": "cheap", "phrase": GOOD[9:-1]}
+    assert [r["valuation"]["vs_history"]["price_to_fcf"][k] for k in ("points", "cheaper_points", "dearer_points")] == [61, 24, 37]
+    # the write-up input: the phrases and label, no percentile anywhere; the absolute inputs labelled absolute
+    v = brief_of(fake.calls[3])["factors"]["valuation"]
+    assert set(v["inputs"]) == {"price_to_sales", "price_to_fcf", "ev_to_ebit", "fcf_yield_vs_10y_pp"}
+    assert "percentile" not in json.dumps(v) and v["inputs_are"].startswith("absolute levels today")
+    assert v["vs_own_history"]["label"] == "cheap" and v["vs_own_history"]["overall"] == "cheap against its own history"
+    assert v["vs_own_history"]["multiples"]["P/FCF"] == {"label": "cheap", "phrase": GOOD[9:-1]}
+    assert "word for word as given" in fake.calls[3]["system"] and "Never restate it as a percentile" in fake.calls[3]["system"]
+    # one regeneration, naming the conflict, with the first draft as the assistant turn
+    assert len(fake.calls) == 5
+    msgs = fake.calls[4]["messages"]
+    assert [m["role"] for m in msgs] == ["user", "assistant", "user"] and BAD in msgs[1]["content"]
+    assert f'"{BAD}" calls valuation expensive against its own history, but code labels it cheap' in msgs[2]["content"]
+    assert r["writeup"]["thesis"] == f"Growth is steady. {GOOD}"
+    c = r["writeup_check"]
+    assert c["history_label"] == "cheap" and c["regenerated"] and c["dropped"] == [] and c["conflicts"][0]["sentence"] == BAD
+    assert c["note"] == ("Write-up check: 1 sentence of the first draft called valuation expensive against its own history, "
+                         "but code labels it cheap; regenerated once and the new draft passed.")
+    assert len(r["cost"]["steps"]["writeup"]["per_request"]) == 2  # both drafts are paid for
+
+
+def test_a_conflict_left_after_the_rewrite_is_dropped_and_noted_in_run_details(sandbox, monkeypatch):
+    cheap_below(monkeypatch, 45)
+    rich = "Shares look rich versus their five-year history."
+    setup(monkeypatch, sandbox, claude=[
+        F.guidance_reply(), F.research_reply("n"), F.topics_reply(), note(thesis=BAD),
+        note(headline="Microsoft looks expensive against its own history", thesis=f"Growth is steady. {BAD}",
+             risks=("AI capex digestion", rich))])
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    w, c = r["writeup"], r["writeup_check"]
+    assert w["headline"] == "" and w["thesis"] == "Growth is steady." and w["key_risks"] == ["AI capex digestion"]
+    assert c["regenerated"] and [x["field"] for x in c["dropped"]] == ["headline", "thesis", "key_risks"]
+    assert c["note"].endswith(f'regenerated once; 3 sentences still in conflict were dropped: "Microsoft looks expensive '
+                              f'against its own history" / "{BAD}" / "{rich}".')
+    detail = util.read_json(util.SITE_DATA / "stocks" / "MSFT.json")
+    assert detail["writeup_check"]["note"] == c["note"]  # the page's Run details
+    subject, body_html, text = notify.build_email(r, None)
+    assert subject.endswith("— MICROSOFT CORP rated " + r["rating"]) and c["note"] in text
+    assert "3 sentences still in conflict were dropped" in body_html
+
+
+def test_a_failed_rewrite_drops_the_conflicting_sentences_of_the_first_draft(sandbox, monkeypatch):
+    cheap_below(monkeypatch, 45)
+    setup(monkeypatch, sandbox, claude=[F.guidance_reply(), F.research_reply("n"), F.topics_reply(),
+                                        note(thesis=f"{BAD} Growth is steady."), RuntimeError("overloaded")])
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    assert r["writeup"]["thesis"] == "Growth is steady." and not r["writeup_check"]["regenerated"]
+    assert "regenerating failed (RuntimeError: overloaded); 1 sentence still in conflict was dropped" in r["writeup_check"]["note"]
+    assert "claude:writeup" not in r["errors"]
+
+
+def test_a_middle_label_is_not_checked(sandbox, monkeypatch):
+    _, fake = setup(monkeypatch, sandbox, claude=[F.guidance_reply(), F.research_reply("n"), F.topics_reply(), note(thesis=BAD)])
+    assert run.main(["MSFT"]) == 0
+    r = latest_run()
+    assert r["valuation"]["vs_own_history"]["label"] == "middle" and len(fake.calls) == 4
+    assert r["writeup"]["thesis"] == BAD and r["writeup_check"]["note"] is None
 
 
 def test_overlay_caps_ai_exposed_ticker_when_capex_is_red_confirmed(sandbox, monkeypatch):
@@ -427,6 +553,39 @@ def test_reuse_news_rescores_with_the_latest_news_and_only_a_new_write_up(sandbo
     assert detail["news_from"] == first["run_id"] and detail["history"][0]["news_from"] == first["run_id"]
     _, body_html, text = notify.build_email(latest_run(), None)
     assert f"News &amp; risk reused from the run of {first['run_id']}" in body_html and "News & risk reused" in text
+
+
+def test_reuse_news_applies_the_code_caps_again_to_claudes_archived_ratings(sandbox, monkeypatch):
+    setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    # an archive written before the date cap: Claude's insider -1 on two old Form 4s, left uncapped
+    old = latest_run()
+    d40, d44 = ((util.today() - timedelta(days=n)).isoformat() for n in (40, 44))
+    old["news"]["topics"]["insider_activity"].update(rating=-1, evidence=[
+        {"claim": "Satya Nadella sold 10,000 shares", "url": f"https://www.sec.gov/{n}", "event_date": d, "status": "verified",
+         "tier": "primary"} for n, d in (("a", d40), ("b", d44))])
+    publish.archive_run(old)
+    before = {p.name: p.read_bytes() for p in archived()}
+    monkeypatch.setattr(sources, "check_evidence", lambda *a, **k: pytest.fail("reused news is not checked again"))
+    fake = F.fake_claude(monkeypatch, [F.writeup_reply()])
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    r = latest_run()
+    ia, g = r["news"]["topics"]["insider_activity"], r["news"]["topics"]["guidance"]
+    assert ia["rating"] == 0 and ia["rating_before_cap"] == -1 and ia["old_evidence_note"].startswith("Capped at 0 (was -1)")
+    assert [e["background"] for e in ia["evidence"]] == [True, True] and [e["age_days"] for e in ia["evidence"]] == [40, 44]
+    assert g == old["news"]["topics"]["guidance"]  # Claude's +2, capped to +1 by the count rule exactly as before
+    assert r["news"]["caps_reapplied"] == [{"topic": "insider_activity", "label": "Insider activity", "was": -1, "now": 0}]
+    assert r["factors"]["news_risk"]["score"] == round(50 + 0.25 * 25 - 0.15 * 25)
+    assert r["news"]["source_check"] == old["news"]["source_check"] and len(fake.calls) == 1
+    assert {p.name: p.read_bytes() for p in archived()[:-1]} == before  # earlier runs untouched
+    _, body_html, text = notify.build_email(r, None)
+    assert "Code caps applied again to the reused ratings: Insider activity -1 → 0" in body_html
+    assert "Insider activity: +0, capped: only older evidence" in text
+    # re-scoring the re-score: Claude's rating is still -1 underneath, the same caps give the same result
+    F.fake_claude(monkeypatch, [F.writeup_reply()])
+    assert run.main(["MSFT", "--reuse-news"]) == 0
+    again = latest_run()
+    assert again["news"]["topics"] == r["news"]["topics"] and again["news"]["caps_reapplied"] == []
 
 
 def test_reuse_news_without_an_earlier_run_rates_without_news(sandbox, monkeypatch):

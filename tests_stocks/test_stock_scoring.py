@@ -191,6 +191,52 @@ def test_weak_sources_thresholds_come_from_config():
     assert scoring.source_quality_rule(CFG).endswith("is capped at ±1, and at 0 if none of its sources verify.")
 
 
+def dated(rating, sources):
+    """`sources`: (status, event_date, background) triples, every one major-tier. All three caps."""
+    t = {"rating": rating, "evidence": [{"tier": "major", "status": s, "event_date": d, "background": b} for s, d, b in sources]}
+    scoring.cap_all(t, CFG)
+    return t
+
+
+def test_only_evidence_dated_inside_the_window_supports_a_rating():
+    assert CFG["evidence_dates"]["background_after_days"] == CFG["news_window_days"] == 30
+    # INOD's insider -1 on two Form 4s from Sep 4 and Sep 14 (the run on Oct 15): capped at 0
+    t = dated(-1, [("verified", "2026-09-04", True), ("verified", "2026-09-14", True)])
+    assert t["rating"] == 0 and t["rating_before_cap"] == -1 and "cap_note" not in t and "weak_sources_note" not in t
+    assert t["old_evidence_note"] == ("Capped at 0 (was -1): no source that checked out is dated within the last 30 days; "
+                                      "of the 2 that did, 2 dated more than 30 days before the run (2026-09-04, 2026-09-14)")
+    assert scoring.OLD_EVIDENCE == "capped: only older evidence"
+    # undated items support nothing either
+    t = dated(1, [("verified", None, False), ("unreachable", "2026-09-01", True)])
+    assert t["rating"] == 0 and t["old_evidence_note"].endswith(
+        "of the 2 that did, 1 dated more than 30 days before the run (2026-09-01) and 1 undated")
+    # one checked item inside the window is enough (verified or unreachable), even beside older ones
+    for src in ([("verified", "2026-10-10", False), ("verified", "2026-09-01", True)], [("unreachable", "2026-10-10", False)]):
+        t = dated(1, src)
+        assert t["rating"] == 1 and "old_evidence_note" not in t
+    # a recent item that didn't check out doesn't count: the older verified one alone can't hold the rating
+    t = dated(-1, [("unverified", "2026-10-10", False), ("verified", "2026-09-01", True)])
+    assert t["rating"] == 0 and "of the 1 that did, 1 dated more than 30 days" in t["old_evidence_note"]
+    # nothing checkable at all: the count cap's job (already 0), no date note
+    t = dated(1, [("unverified", "2026-10-10", False)])
+    assert t["rating"] == 0 and "cap_note" in t and "old_evidence_note" not in t
+    t = dated(0, [("verified", "2026-09-01", True)])
+    assert t["rating"] == 0 and "old_evidence_note" not in t and "rating_before_cap" not in t
+
+
+def test_date_cap_comes_after_the_other_caps_and_uncap_restores_claudes_rating():
+    t = {"rating": 2, "evidence": [{"tier": "other", "status": "verified", "event_date": "2026-09-10", "background": True},
+                                   {"tier": "other", "status": "verified", "event_date": "2026-09-10", "background": True}]}
+    scoring.cap_all(t, CFG)  # ORCL's product +1: two Sep 10 items (weak sources first, then the dates)
+    assert t["rating"] == 0 and t["rating_before_cap"] == 2
+    assert t["weak_sources_note"].startswith("Capped at +1 (was +2)") and t["old_evidence_note"].startswith("Capped at 0 (was +2)")
+    capped_once = copy.deepcopy(t)
+    scoring.uncap(t)
+    assert t["rating"] == 2 and not set(scoring.CAP_NOTES) & set(t) and "rating_before_cap" not in t
+    scoring.cap_all(t, CFG)
+    assert t == capped_once  # re-applying the caps gives the same result
+
+
 def test_composite_renormalises_weights_and_sets_confidence():
     fs = {k: {"score": 80} for k in scoring.FACTORS}
     fs["valuation"] = {"score": 20}

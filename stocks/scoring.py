@@ -2,7 +2,7 @@
 
 Every threshold and weight comes from config/stocks.yaml. Claude never sets a score: the news & risk
 factor is computed here from the per-topic ratings (-2..+2) after the source check has capped them (by the
-number of checkable sources, then by their tier).
+number of checkable sources, then by their tier, then by their dates).
 """
 from __future__ import annotations
 
@@ -232,6 +232,49 @@ def cap_weak_sources(topic: dict, cfg: dict) -> None:
     if abs(r) > limit:
         topic["rating_before_cap"] = orig
         topic["rating"] = sign * limit
+
+
+OLD_EVIDENCE = "capped: only older evidence"
+CAP_NOTES = ("cap_note", "weak_sources_note", "old_evidence_note")
+
+
+def cap_old_evidence(topic: dict, cfg: dict) -> None:
+    """Evidence dates, after `cap_topic` and `cap_weak_sources`: a non-zero rating needs at least one source
+    that checked out (verified or unreachable) and is dated inside the window: an event_date, not background
+    (sources.tag_dates; evidence_dates.background_after_days). Undated and older items support nothing. With
+    none, the rating is capped at 0 and "old_evidence_note" set ("capped: only older evidence" on the page
+    and in the email). In place."""
+    r = int(topic.get("rating") or 0)
+    if not r:
+        return
+    ok = [e for e in topic.get("evidence") or [] if e.get("status") in ("verified", "unreachable")]
+    if any(e.get("event_date") and not e.get("background") for e in ok):
+        return
+    days = int((cfg.get("evidence_dates") or {}).get("background_after_days", 30))
+    older = sorted(e["event_date"] for e in ok if e.get("event_date"))
+    undated = sum(1 for e in ok if not e.get("event_date"))
+    parts = ([f"{len(older)} dated more than {days} days before the run ({', '.join(older)})"] if older else []) + \
+        ([f"{undated} undated"] if undated else [])
+    orig = int(topic.get("rating_before_cap", r) or 0)
+    topic["rating_before_cap"] = orig
+    topic["rating"] = 0
+    topic["old_evidence_note"] = (f"Capped at 0 (was {orig:+d}): no source that checked out is dated within the last {days} days"
+                                  + (f"; of the {len(ok)} that did, " + " and ".join(parts) if parts else ""))
+
+
+def cap_all(topic: dict, cfg: dict) -> None:
+    """The three code caps in order: checkable sources, source quality, evidence dates. In place."""
+    cap_topic(topic)
+    cap_weak_sources(topic, cfg)
+    cap_old_evidence(topic, cfg)
+
+
+def uncap(topic: dict) -> None:
+    """Back to Claude's rating, the code caps' notes removed (for --reuse-news, which re-applies them). In place."""
+    if "rating_before_cap" in topic:
+        topic["rating"] = topic.pop("rating_before_cap")
+    for k in CAP_NOTES:
+        topic.pop(k, None)
 
 
 def news_risk(topics: dict | None, cfg: dict, missing: str | None = None) -> dict:

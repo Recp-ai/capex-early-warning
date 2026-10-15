@@ -150,6 +150,14 @@ valuation:
   price_to_sales_percentile: {weight: 0.10}
   price_to_fcf_percentile: {weight: 0.15}
   ev_to_ebit_percentile: {weight: 0.15}
+  # The write-up gets this comparison in words, never as a percentile (stocks/wording.py): a multiple is
+  # "cheap" vs its own history when fewer than cheap_below % of the month-ends were cheaper than now
+  # ("cheaper than at 58 of the last 61 month-ends"), "expensive" when more than expensive_above % were
+  # ("more expensive than at 57 of the last 61 month-ends"), else "near the middle". The overall label
+  # (cheap / middle / expensive) uses the average of the three shares, weighted as above.
+  history_label:
+    cheap_below: 33
+    expensive_above: 67
   history_years: 5
   min_history_points: 24        # fewer month-end points than this: percentile left out
   share_outlier_x: 10           # a diluted share count more than this many times off the median of its
@@ -187,7 +195,11 @@ trend:
 # After the source check a topic's rating can't exceed (in size) the number of its sources that were
 # verified or unreachable: no checkable source -> 0, one -> at most +-1. Then source quality (below; tiers
 # from source_tiers): the topic keeps the lower of the two caps, and the stocks page and email show
-# "capped: weak sources" when the quality rule lowered it.
+# "capped: weak sources" when the quality rule lowered it. Then evidence dates: a non-zero rating needs at
+# least one of those verified-or-unreachable sources dated inside the window (an event date no more than
+# evidence_dates.background_after_days before the run; undated or older items don't count). With none,
+# the rating is capped at 0, shown as "capped: only older evidence". --reuse-news re-applies all three caps
+# to the archived ratings (as of the news run's date).
 news_risk:
   points_per_step: 25
   source_quality:
@@ -254,7 +266,8 @@ guidance:
 source_check:
   timeout_seconds: 10
 evidence_dates:
-  background_after_days: 30     # older than the news window: labelled background
+  background_after_days: 30     # older than the news window (keep equal to news_window_days): labelled
+                                # background, and no support for a non-zero topic rating
 source_tiers:
   # the company's own website (from its SEC submissions record) is added to primary on each run
   primary:

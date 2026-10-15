@@ -163,9 +163,18 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   source check caps each rating at its number of verified-or-unreachable sources, then by source quality
   (`news_risk.source_quality`: ±2 needs a verified primary- or major-tier source, else ±1; only other-tier
   sources cap at ±1, or 0 if none verified; `scoring.cap_weak_sources` sets `weak_sources_note`, shown as
-  "capped: weak sources" on the page and in the email); code turns the ratings into the news & risk score.
-  Claude then writes the thesis, risks and "what would change" after the rating is set, and never sets a
-  rating, score or number. Guidance sentences from the 8-K count only
+  "capped: weak sources" on the page and in the email), then by date (`scoring.cap_old_evidence`: a non-zero
+  rating needs a verified-or-unreachable source dated inside the window, i.e. an `event_date` that is not
+  `background`; undated or older items support nothing; with none, 0 and `old_evidence_note`, shown as
+  "capped: only older evidence"); `scoring.cap_all` runs the three in that order. Code turns the ratings
+  into the news & risk score. Claude then writes the thesis, risks and "what would change" after the rating
+  is set, and never sets a rating, score or number. Valuation versus own history reaches the write-up only
+  as words built by `stocks/wording.py` from the month-end counts ("cheaper than at 58 of the last 61
+  month-ends"; overall label cheap / middle / expensive, thresholds `valuation.history_label`), never the
+  bare percentile; the absolute multiples are labelled absolute. `run.checked_writeup` post-checks the
+  note (`wording.conflicts`: a clause about its own history calling valuation expensive while the label is
+  cheap, or the reverse), regenerates once naming the conflict, then drops any sentence still in conflict
+  (`writeup_check.note`, shown in Run details). Guidance sentences from the 8-K count only
   when `edgar_text.found_in` finds them verbatim (as in `cew/calls.py`); they are display and context,
   not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.
@@ -186,9 +195,11 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   (`metrics.cheaper_share`), not multiples. Confidence is `scoring.confidence_detail` (points per issue,
   thresholds in `confidence`), with its reasons shown.
 - **Re-score (`--reuse-news`, stocks.yml input `reuse_news`).** Fetches SEC data and prices, re-scores the
-  code factors, keeps the latest archived run's topics and source checks unchanged (`publish.latest_news`;
-  a reuse passes the original `news_from` on), skips guidance extraction, and calls Claude for the
-  write-up only. `ratings.csv` gets `news_from` (last column; blank = the run's own news);
+  code factors, keeps the latest archived run's topics and source checks (`publish.latest_news`; a reuse
+  passes the original `news_from` on), skips guidance extraction, and calls Claude for the write-up only.
+  The ratings stay Claude's but the caps are code: `run.recap` restores each topic's Claude rating
+  (`scoring.uncap`), re-dates the evidence as of the news run's date and runs `scoring.cap_all` again
+  (`news.caps_reapplied` lists the ratings that changed). `ratings.csv` gets `news_from` (last column; blank = the run's own news);
   `publish.recent_cost` averages full runs and re-scores apart. A re-score run is titled
   "Stock research (rescore) <tickers>" and `api/stock.js` counts it against `batch.max_rescore_tickers_per_day`,
   never the full-run cap (and full runs never against the re-score cap).
@@ -231,8 +242,11 @@ stocks/prices.py       Tiingo EOD (ticker, SPY, QQQ, 5 years) -> data/stocks/pri
 stocks/guidance.py     latest earnings 8-K Exhibit 99.1: verbatim-checked guidance, phrase counts vs previous release
 stocks/metrics.py      valuation (now and point-in-time month-end history, percentiles on yields), trend, DGS10,
                        capex context, chart
-stocks/scoring.py      sub-metric points, factors, news & risk, composite, confidence, bands, overlay
-stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up
+stocks/scoring.py      sub-metric points, factors, news & risk (caps: sources, quality, dates), composite,
+                       confidence, bands, overlay
+stocks/wording.py      valuation vs own history in words (phrases, cheap/middle/expensive label) and the
+                       write-up post-check (conflicts, one rewrite, sentences dropped)
+stocks/research.py     Claude research (8 searches, 30 days), topic ratings, write-up (and its one rewrite)
 stocks/publish.py      archive, ratings.csv, site/data/stocks/<TICKER>.json (full history) and index.json
 stocks/batch.py        batch plan (validate, benchmarks once) and collect (quotes, publish, one email, batch.json)
 stocks/notify.py       optional email (same SMTP secrets); one summary email per batch

@@ -174,7 +174,10 @@ until you dismiss it (×).
 **Re-score without new research.** Tick **Re-score only** in the Run panel, or Run workflow with
 **reuse_news** ticked (or `python -m stocks.run MSFT --reuse-news`): SEC data and prices are fetched again and every code factor is
 re-scored, but the news topic ratings and source checks are the latest run's, as they were (labelled
-"news from <time>" on the page and in the email), and the only Claude call is the write-up. The row is
+"news from <time>" on the page and in the email), and the only Claude call is the write-up. The ratings
+stay Claude's, but the caps are code, so they are applied again (with the evidence dated as of the news
+run): a cap added since, like the date rule below, lowers a reused rating, and the page and email say
+which ones changed. The row is
 appended as usual with `news_from` set to the run whose news was used (blank for a run's own news). A
 re-score costs about $0.03 a ticker (the write-up), so it is titled "Stock research (rescore) <tickers>"
 and counted against its own cap of 30 tickers a day (`batch.max_rescore_tickers_per_day`), not the full
@@ -241,11 +244,30 @@ FCF or EBIT rank as the most expensive instead of producing multiples like 36,56
 today ranks too. The page still shows today's multiples; median, low and high are the multiples the
 yields imply ("neg." when there is none).
 
+**Valuation history in words.** The write-up never sees that percentile (given "cheaper than now in 0% of
+61 month-ends", it wrote that NVIDIA "has not been more expensive than now at any of the last 61
+month-ends"). Code turns the month-end counts into a phrase per multiple, "cheaper than at 58 of the last
+61 month-ends", "more expensive than at 57 of the last 61 month-ends" or "near the middle of the last 61
+month-ends (...)", and an overall label, **cheap / middle / expensive** against its own history: cheap
+when fewer than 33% of month-ends were cheaper than now, expensive above 67% (`valuation.history_label`),
+the overall label from the three shares weighted like their sub-scores. The page shows the label under
+the history table. The absolute measures (the multiples, FCF yield vs the 10-year) go to the write-up
+labelled absolute, and the prompt says to use the history phrases as given. A post-check then reads the
+note: a clause about the company's own history (history, month-ends, five-year, its usual range) that
+calls valuation expensive, rich, stretched or high while the label is cheap, or cheap while it is
+expensive, gets the write-up regenerated once with the conflict named; a sentence still in conflict is
+dropped, and Run details on the page (and the email) say so.
+
 News & risk is scored on a fixed rubric. Claude rates each topic −2…+2 (±2 = clear, material news from
 two credible sources; ±1 = modest or single-source; 0 = nothing material). Every cited URL is dated,
 tiered (primary / major / other) and fetched as in the capex pipeline. A topic's rating can't exceed, in
-size, the number of its sources that were verified or unreachable. Code turns the ratings into
-50 + Σ weight × rating × 25.
+size, the number of its sources that were verified or unreachable; ±2 needs a verified primary or major
+source ("capped: weak sources" otherwise). And only evidence dated inside the 30-day window supports a
+rating: a non-zero rating needs at least one verified-or-unreachable source whose event date is no more
+than `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
+insider sales of Sep 4 and 14, Oracle's Sep 10 results, Palantir's Aug 3 guidance, in an Oct 15 run)
+support nothing; with none, the rating is capped at 0 and shown as **capped: only older evidence**. Code
+turns the ratings into 50 + Σ weight × rating × 25.
 
 The **composite** is the weighted average of the factors that had data, with weights re-normalised when one is
 missing. A factor needs at least half of its inputs (by weight) to count. **Confidence** measures data
@@ -295,7 +317,8 @@ its stored close until the next refresh.
 write-up, and guidance extraction (Opus; once per earnings release, then cached). The first live run
 (MSFT) cost $0.45 at list prices, $0.36 of it research: 8 searches and the ~118K tokens of search results
 they pulled in. The page estimates a run as the number of tickers × the average cost of the last 10 full stock
-runs. A `--reuse-news` re-score makes only the write-up call. Haiku 5.5 is priced by tier: a request whose
+runs. A `--reuse-news` re-score makes only the write-up call (two when the post-check asks for a rewrite,
+as can a full run). Haiku 5.5 is priced by tier: a request whose
 prompt (input + cache write + cache read tokens) is over 100,000 tokens pays $0.50 / $2.50 per MTok instead
 of $0.10 / $0.50 (`tiers` in `config/models.yaml`); stock runs log every request's tokens and price each by
 its tier. The capex pipeline's estimate still uses the base price.

@@ -2,10 +2,12 @@
 
 1. research: the research model searches the last `news_window_days` of news (at most `max_web_searches`).
 2. topics: the scoring model rates six topics -2..+2 with cited evidence (structured output). The evidence
-   is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable sources and
-   their tiers, and code turns the ratings into the news & risk score (stocks/scoring.py).
+   is then dated, tiered and fetched by cew/sources.py, each rating is capped by its checkable sources,
+   their tiers and their dates, and code turns the ratings into the news & risk score (stocks/scoring.py).
 3. write-up: once code has set every score and the rating, the scoring model writes the headline, thesis,
-   key risks and what would change the rating. It is given the rating; it never sets it or any number.
+   key risks and what would change the rating. It is given the rating; it never sets it or any number, and
+   gets valuation versus the company's own history only as code-built phrases (stocks/wording.py, which
+   also checks the note and asks for one rewrite when it contradicts them).
 """
 from __future__ import annotations
 
@@ -54,6 +56,8 @@ Default to 0 unless the notes give specific, sourced news. Rules:
 - Every evidence URL is fetched after you answer and checked for the claim's numbers and names, so write
   each claim with the figures and names exactly as the cited page states them. A rating's size is capped
   at the number of its sources that check out (or cannot be reached), and by their tier: {quality_rule}
+  A non-zero rating also needs at least one of those sources dated within the last {window} days; undated
+  or older items are background and support nothing (the rating is then capped at 0).
 - event_date for every evidence item: when it happened, YYYY-MM-DD, not when it was published; null when
   the notes don't establish it. Never guess.
 - Prefer primary and major-tier sources; the tier of each site in the notes is listed.
@@ -69,7 +73,14 @@ the data, exactly as given, and never give a price target. Plain English, no hyp
 - thesis: 3-5 sentences on why the stock rates where it does, citing the factors that drive it.
 - key_risks: 3-5 short items.
 - what_would_change: 2-4 short items naming what would move the rating up or down (e.g. which factor would
-  have to change, using the band distances given)."""
+  have to change, using the band distances given).
+- Valuation comes in two separate parts. factors.valuation.inputs are absolute levels today (P/S, P/FCF,
+  EV/EBIT, FCF yield minus the 10-year Treasury yield): call them high or low only in absolute terms, and
+  say so. factors.valuation.vs_own_history compares the multiples with the company's own month-end history:
+  describe that only with its label and phrases, word for word as given (e.g. "cheaper than at 58 of the
+  last 61 month-ends"). Never restate it as a percentile or a percentage, never reverse it, and never call
+  valuation expensive, rich, stretched or high against its own history when the label is cheap, or cheap
+  when it is expensive."""
 
 TOPIC_KEYS = ["guidance", "analyst_actions", "litigation_regulation", "customer_concentration",
               "insider_activity", "product_competitive"]
@@ -121,9 +132,11 @@ def research(model: str, ticker: str, name: str, sector: str | None, today, wind
     return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
 
 
-def _call(model: str, system: str, prompt: str, schema: dict, usage: dict, max_tokens: int = 6000) -> dict:
+def _call(model: str, system: str, prompt: str | list, schema: dict, usage: dict, max_tokens: int = 6000) -> dict:
+    """One structured-output request; `prompt` is the user message, or the whole message list."""
+    messages = prompt if isinstance(prompt, list) else [{"role": "user", "content": prompt}]
     resp = analyst._client().messages.create(
-        model=model, max_tokens=max_tokens, system=system, messages=[{"role": "user", "content": prompt}],
+        model=model, max_tokens=max_tokens, system=system, messages=messages,
         output_config={"format": {"type": "json_schema", "schema": schema}})
     models.add_request(usage, resp)  # per request: prices can depend on prompt size
     if resp.stop_reason in ("refusal", "max_tokens"):
@@ -137,17 +150,26 @@ def topics(model: str, today, brief: dict, notes: str, tiers: dict, usage: dict,
               f"## News research notes\n{notes or '(no research notes available)'}\n\n"
               f"## Source tier of each site in the notes (from its domain)\n{analyst._tiers(tiers)}\n\n"
               "Return the topic ratings as JSON matching the schema.")
-    system = TOPICS_SYSTEM.replace("{quality_rule}", scoring.source_quality_rule(cfg or {}))
+    window = int(((cfg or {}).get("evidence_dates") or {}).get("background_after_days", 30))
+    system = TOPICS_SYSTEM.replace("{quality_rule}", scoring.source_quality_rule(cfg or {})).replace("{window}", str(window))
     out = _call(model, system, prompt, TOPICS_SCHEMA, usage)["topics"]
     for t in out.values():  # belt and braces
         t["rating"] = max(-2, min(2, int(t.get("rating") or 0)))
     return out
 
 
-def writeup(model: str, today, brief: dict, usage: dict) -> dict:
+def writeup(model: str, today, brief: dict, usage: dict, previous: dict | None = None,
+            correction: str | None = None) -> dict:
+    """The note. With `previous` and `correction` (stocks/wording.py's post-check), the one regeneration: the
+    first draft goes back as the assistant turn and the correction names the conflicting sentences."""
     prompt = (f"Today is {today.isoformat()}.\n\n## Rating, scores and data (computed by code)\n"
               f"```json\n{json.dumps(brief, indent=1, default=str)}\n```\n\nReturn the note as JSON matching the schema.")
-    return _call(model, WRITEUP_SYSTEM, prompt, WRITEUP_SCHEMA, usage, 3000)
+    messages: str | list = prompt
+    if previous is not None and correction:
+        messages = [{"role": "user", "content": prompt},
+                    {"role": "assistant", "content": json.dumps(previous, ensure_ascii=False)},
+                    {"role": "user", "content": correction + "\n\nReturn the whole note again as JSON matching the schema."}]
+    return _call(model, WRITEUP_SYSTEM, messages, WRITEUP_SCHEMA, usage, 3000)
 
 
 def run_news(cfg: dict, selection: dict, ticker: str, name: str, sector: str | None, brief: dict,

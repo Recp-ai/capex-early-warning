@@ -67,9 +67,10 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
     for k, t in ((r.get("news") or {}).get("topics") or {}).items():
         items = "".join(f"<li>{cew_notify.when_html(e, year)} {html.escape(e.get('claim') or '')}{cew_notify._link(e)}</li>"
                         for e in t.get("evidence") or [])
-        weak = (f" <span style='background:#fdecc8;border-radius:4px;padding:0 5px;font-size:12px'>{scoring.WEAK_SOURCES}</span>"
-                if t.get("weak_sources_note") else "")
-        notes = "; ".join(html.escape(t[n]) for n in ("cap_note", "weak_sources_note") if t.get(n))
+        weak = "".join(f" <span style='background:#fdecc8;border-radius:4px;padding:0 5px;font-size:12px'>{tag}</span>"
+                       for tag, n in ((scoring.WEAK_SOURCES, "weak_sources_note"), (scoring.OLD_EVIDENCE, "old_evidence_note"))
+                       if t.get(n))
+        notes = "; ".join(html.escape(t[n]) for n in scoring.CAP_NOTES if t.get(n))
         ev.append(f"<p style='margin:10px 0 0;font-weight:600'>{html.escape(t.get('label') or k)}: {t.get('rating', 0):+d}{weak}"
                   f"{' (' + notes + ')' if notes else ''}</p>"
                   f"<p style='margin:2px 0'>{html.escape(t.get('summary') or '')}</p>" + (f"<ul>{items}</ul>" if items else ""))
@@ -84,6 +85,12 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                  "(not refreshed this run).</p>" if r.get("news_from") else "")
     link = f"<p><a href='{html.escape(dashboard_url.rstrip('/') + '/stocks.html#' + r['ticker'])}'>Open on the stocks page</a></p>" if dashboard_url else ""
     errs = r.get("errors") or {}
+    check = (r.get("writeup_check") or {}).get("note")
+    recap = (r.get("news") or {}).get("caps_reapplied") or []
+    step = lambda v: f"{v:+d}" if v else "0"  # noqa: E731
+    if recap:
+        news_from += ("<p style='font-size:13px;color:#555'>Code caps applied again to the reused ratings: "
+                      + html.escape("; ".join(f"{c['label']} {step(c['was'])} → {step(c['now'])}" for c in recap)) + ".</p>")
     body_html = f"""<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px">
 <p style="font-size:13px;color:#555">Stock research · {html.escape(r['run_id'])} · {html.escape(r['name'])} ({html.escape(r['ticker'])})</p>
 <h2 style="margin:0 0 4px;color:{RATING_COLOR.get(r['rating'], '#333')}">{html.escape(r['rating'])} — {r['score']} / 100</h2>
@@ -97,6 +104,7 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
 {'<h3>News</h3>' + news_from + ''.join(ev) if ev else news_from}
 <p style="font-size:14px">{'<br>'.join(html.escape(x) for x in close_lines(r))}</p>
 <p style="font-size:13px;color:#555">Cost {'n/a' if cost is None else f'${cost:.2f}'}</p>
+{f"<p style='color:#777;font-size:12px'>{html.escape(check)}</p>" if check else ''}
 {link}{"<p style='color:#777;font-size:12px'>Data issues: " + html.escape('; '.join(f'{k}: {v}' for k, v in errs.items())[:800]) + "</p>" if errs else ''}
 <p style="color:#777;font-size:12px">{html.escape(publish.DISCLAIMER)}</p></div>"""
     body_text = (f"{r['ticker']} {r['rating']} {r['score']}/100 ({r['confidence']} confidence)\n{headline}\n"
@@ -106,8 +114,13 @@ def build_email(r: dict, dashboard_url: str | None) -> tuple[str, str, str]:
                  f"{w.get('thesis') or ''}\n\n" + "\n".join(
                      f"{scoring.LABELS[k]}: {((r.get('factors') or {}).get(k) or {}).get('score', 'no data')}" for k in scoring.FACTORS)
                  + (f"\n\nCapex overlay: {ov['note']}" if ov.get("note") and ov.get("ai_exposed") else "")
-                 + "".join(f"\n{t.get('label') or k}: {t.get('rating', 0):+d}, {scoring.WEAK_SOURCES} ({t['weak_sources_note']})"
-                           for k, t in ((r.get("news") or {}).get("topics") or {}).items() if t.get("weak_sources_note"))
+                 + "".join(f"\n{t.get('label') or k}: {t.get('rating', 0):+d}, {tag} ({t[n]})"
+                           for k, t in ((r.get("news") or {}).get("topics") or {}).items()
+                           for tag, n in ((scoring.WEAK_SOURCES, "weak_sources_note"), (scoring.OLD_EVIDENCE, "old_evidence_note"))
+                           if t.get(n))
+                 + "".join(f"\nCode caps applied again to the reused ratings: {c['label']} {step(c['was'])} -> {step(c['now'])}"
+                           for c in recap)
+                 + (f"\n\n{check}" if check else "")
                  + f"\n\n{publish.DISCLAIMER}")
     return subject, body_html, body_text
 
