@@ -567,6 +567,15 @@ def test_research_continues_through_pause_turn(monkeypatch):
         assert topic in prompt
 
 
+def test_insider_items_are_dated_by_their_form_4_transaction_date(sandbox, monkeypatch):
+    _, fake = setup(monkeypatch, sandbox)
+    assert run.main(["MSFT"]) == 0
+    research_prompt, topics_system = fake.calls[1]["messages"][0]["content"], fake.calls[2]["system"]
+    assert "For SEC Form 4 and other insider\nitems, the event date is the transaction date" in research_prompt
+    assert "never leave an insider item undated" in research_prompt
+    assert "For a Form 4 or other insider item it is the transaction date" in topics_system and "not the filing date" in topics_system
+
+
 def test_claude_output_schemas_hold_no_rating_or_score():
     topics = research.TOPICS_SCHEMA["properties"]["topics"]["properties"]
     assert list(topics) == research.TOPIC_KEYS

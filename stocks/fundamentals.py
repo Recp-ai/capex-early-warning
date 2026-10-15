@@ -355,6 +355,12 @@ def cache_path(ticker: str):
     return config.data_dir() / "fundamentals" / f"{ticker}.json"
 
 
+def quarter_ends(f: dict) -> list[str]:
+    """Every fiscal quarter end in the companyfacts record's quarterly flows, oldest first (exact dates, so
+    52/53-week quarters ending Jul 26 stay Jul 26)."""
+    return sorted({end for m in (f.get("flows") or {}).values() for end in (m.get("quarters") or {})})
+
+
 def run(sess, ticker: str, cik: str, offline: bool = False) -> dict:
     """Fetch and cache, or read the cache when offline. Returns the record, or one with "error"."""
     path = cache_path(ticker)

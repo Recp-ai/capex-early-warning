@@ -190,10 +190,19 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   is cheap, or the reverse, or calling a not-comparable multiple either), regenerates once naming the conflict, then drops any sentence still in conflict
   (`writeup_check.note`, shown in Run details). Guidance sentences from the 8-K count only
   when `edgar_text.found_in` finds them verbatim (as in `cew/calls.py`); they are display and context,
-  not score inputs. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
+  not score inputs. A release's period end (`guidance.release_period`, applied to cached records too by
+  `checked_period`): `edgar_text.period_end` (its first date) only when 20-120 days before the filing and no
+  companyfacts quarter end (`fundamentals.quarter_ends`) falls between; else the latest companyfacts
+  quarter end before the filing (unless companyfacts lacks that quarter yet); else
+  `edgar_text.period_before`. The phrase comparison is the latest earlier release covering an earlier
+  period (`guidance._previous`). Research and topic prompts date Form 4 / insider items by transaction date. The capex overlay (cap at Hold for `overlay.ai_exposed` tickers when
   `site/data/latest.json` is RED and confirmed; AMBER only a note) reads the capex result, never writes it.
   Quotes (`prices.quotes`, Tiingo IEX `tngoLast`) are display only, never a score input: factors use the
-  latest official daily close, and the page says which close was scored (`prices.close_note`). The page
+  latest official daily close, and the page says which close was scored (`prices.close_note`: "today's
+  close not yet published" only when a newer close existed at run time, i.e. the latest completed session,
+  `prices.latest_weekday` = the most recent weekday whose 4:00 pm ET has passed, or the session a quote
+  stamped at or after 4:00 pm ET proves closed, `quote_close_date`, is after the scored close; a pre-market
+  or regular-session quote proves nothing; the page's `closeNote` mirrors it, a test checks). The page
   labels a quote timestamped outside 9:30 am-4:00 pm ET on a weekday "pre-market" or "after hours"
   (`quoteSession`, by the quote's own timestamp).
 - **Data quality, not silent zeros.** Balance-sheet tag lists live in `stocks/fundamentals.py` (debt by

@@ -245,12 +245,28 @@ def quote_date(quote: dict | None) -> str | None:
         return None
 
 
+CLOSE_HOUR = 16  # the regular session closes at 4:00 pm ET
+
+
 def latest_weekday(moment: datetime) -> str:
-    """The US Eastern date of `moment`, moved back to Friday on a weekend (holidays not known)."""
-    d = et(moment).date()
+    """The latest completed session at `moment`: the most recent weekday (US Eastern) whose 4:00 pm ET close
+    has passed. Before 4:00 pm on a weekday that is the weekday before; on a weekend, Friday (holidays not
+    known)."""
+    t = et(moment)
+    d = t.date() if t.weekday() < 5 and t.hour >= CLOSE_HOUR else t.date() - timedelta(days=1)
     while d.weekday() >= 5:
         d -= timedelta(days=1)
     return d.isoformat()
+
+
+def quote_close_date(quote: dict | None) -> str | None:
+    """The session whose close a quote proves: its US Eastern date when it is timestamped at or after 4:00 pm
+    ET on a weekday, else None (a pre-market or regular-session trade proves no new close)."""
+    try:
+        t = et(datetime.fromisoformat(str((quote or {})["as_of"]).replace("Z", "+00:00")))
+    except (KeyError, TypeError, ValueError):
+        return None
+    return t.date().isoformat() if t.weekday() < 5 and t.hour >= CLOSE_HOUR else None
 
 
 def clock_et(moment: datetime) -> str:
@@ -259,13 +275,15 @@ def clock_et(moment: datetime) -> str:
 
 
 def close_note(price_date: str | None, quote: dict | None, run_at: datetime) -> dict:
-    """Which official close the run was scored on, and whether a newer one existed then: the quote's date
-    (or, without a quote, the latest weekday at run time) after the scoring date means today's close was
-    not yet published. Also flags runs between 16:00 and 18:00 ET (after the close, before Tiingo's daily
-    update). Display only."""
-    newer = quote_date(quote) or latest_weekday(run_at)
+    """Which official close the run was scored on, and whether a newer one existed then: the session a quote
+    proves closed (`quote_close_date`: stamped at or after 4:00 pm ET), else the latest completed session at
+    run time (`latest_weekday`); after the scoring date means today's close was not yet published. A
+    pre-market or regular-session quote proves nothing. Also flags runs between 16:00 and 18:00 ET (after
+    the close, before Tiingo's daily update). Display only."""
+    proven = quote_close_date(quote)
+    newer = proven or latest_weekday(run_at)
     t = et(run_at)
-    out = {"scored_on": price_date, "latest": newer, "latest_from": "quote" if quote_date(quote) else "weekday",
+    out = {"scored_on": price_date, "latest": newer, "latest_from": "quote" if proven else "weekday",
            "run_et": t.strftime("%Y-%m-%d %H:%M"), "note": None, "close_window": None}
     if price_date and newer > price_date:
         out["note"] = f"today's close not yet published; scored on {price_date}"

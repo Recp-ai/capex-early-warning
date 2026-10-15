@@ -6,11 +6,16 @@ counts are regex counts (config guidance.cautious_phrases) with the forward-look
 left out, also taken from the previous release for comparison (no Claude call for that one). Each release
 is cached as data/stocks/calls/<TICKER>/<accession>.json, so a re-run reads the same 8-K only once.
 Guidance is shown on the page and given to Claude as context; it is not a score input.
+
+The period a release covers (`release_period`): cew.edgar_text.period_end takes the release's first
+"quarter ended ..." date, which can be a prior period quoted first (Rubrik's Aug 27 release gave Jan 31). It
+counts only when it is 20-120 days before the filing and companyfacts has no later quarter end before the
+filing; else the latest companyfacts quarter end before the filing; else the fiscal calendar's.
 """
 from __future__ import annotations
 
 import re
-from datetime import date
+from datetime import date, timedelta
 
 from cew import analyst, calls, edgar_text, models, util
 
@@ -56,6 +61,40 @@ BOILERPLATE = re.compile(r"(?i)forward-looking statements?|private securities li
 SAFE_HARBOR = re.compile(r"(?i)^\W*(?:cautionary (?:note|statements?) (?:regarding|about|concerning) )?"
                          r"(?:safe harbor(?: statement)?|forward[- ]looking (?:statements?|information))\W*$")
 VERSION = 2  # of the phrase counting; cached releases from an older version are recounted (guidance kept)
+PERIOD_DAYS = (20, 120)  # a release's own period end counts only this many days before the filing date
+SLACK_DAYS = 7           # 52/53-week fiscal quarters end a few days off the month end (NVIDIA's Jul 26)
+
+
+def release_period(found: date | None, filed: date, quarter_ends: list[str] | None, months: set[int]) -> tuple[date, str]:
+    """The period end a release covers, and where it came from: "release" (`found`, the date read from its
+    text) when it is PERIOD_DAYS before the filing and no companyfacts quarter end falls more than SLACK_DAYS
+    after it and before the filing (a prior period quoted first: Zscaler's May 26 release gave Jan 31,
+    115 days back); else "companyfacts", the latest quarter end before the filing, unless companyfacts
+    doesn't have that quarter yet (its 10-Q not filed: more than 120 days back, or before the fiscal
+    calendar's last quarter end); else "fiscal calendar" (cew.edgar_text.period_before)."""
+    qs = sorted(q for q in (date.fromisoformat(x) for x in quarter_ends or []) if q < filed)
+    slack = timedelta(days=SLACK_DAYS)
+    if found and PERIOD_DAYS[0] <= (filed - found).days <= PERIOD_DAYS[1] and not any(q > found + slack for q in qs):
+        return found, "release"
+    calendar = edgar_text.period_before(filed, months)
+    if qs and (filed - qs[-1]).days <= PERIOD_DAYS[1] and qs[-1] >= calendar - slack:
+        return qs[-1], "companyfacts"
+    return calendar, "fiscal calendar"
+
+
+def checked_period(rec: dict | None, quarter_ends: list[str] | None, months: set[int]) -> dict | None:
+    """A cached release with its period end put through `release_period` (records from before the check may
+    hold a prior period's date); saved when it changes. In place."""
+    if rec is None:
+        return None
+    pe, src = release_period(date.fromisoformat(rec["period_end"]), date.fromisoformat(rec["filing_date"]),
+                             quarter_ends, months)
+    if pe.isoformat() != rec["period_end"]:
+        rec["period_rejected"] = rec["period_end"]
+        rec.update(period_end=pe.isoformat(), period_source=src)
+        _save(rec)
+    rec.setdefault("period_source", src)
+    return rec
 
 
 def excerpt(text: str, phrases: dict[str, str], limit: int = 40000) -> str:
@@ -124,13 +163,16 @@ def _release_text(sess, cik: str, filing: dict) -> tuple[str, str]:
 
 
 def process(sess, cik: str, ticker: str, name: str, filing: dict, model: str | None, usage: dict | None,
-            cfg: dict, months: set[int] | None = None) -> dict:
+            cfg: dict, months: set[int] | None = None, quarter_ends: list[str] | None = None) -> dict:
     """Read one release. model=None counts phrases only (no Claude call; guidance stays None)."""
     phrases = (cfg.get("guidance") or {}).get("cautious_phrases") or {}
     url, text = _release_text(sess, cik, filing)
-    pe = edgar_text.period_end(text) or edgar_text.period_before(date.fromisoformat(filing["filingDate"]), months or set())
+    found = edgar_text.period_end(text)
+    pe, src = release_period(found, date.fromisoformat(filing["filingDate"]), quarter_ends, months or set())
     rec = {"ticker": ticker, "accession": filing["accessionNumber"], "filing_date": filing["filingDate"],
-           "period_end": pe.isoformat(), "url": url, "phrases": calls.count_phrases(without_boilerplate(text), phrases),
+           "period_end": pe.isoformat(), "period_source": src,
+           **({"period_rejected": found.isoformat()} if found and found != pe else {}),
+           "url": url, "phrases": calls.count_phrases(without_boilerplate(text), phrases),
            "guidance": None, "summary": "", "model": None, "extracted_at": util.now_iso(), "version": VERSION}
     if model:
         ex = excerpt(without_boilerplate(text), phrases)
@@ -168,46 +210,60 @@ def summarize(cur: dict, prev: dict | None, note: str | None = None) -> dict:
                    "sentences": v.get("sentences", [])} for k, v in (cur.get("phrases") or {}).items()}
     g = cur.get("guidance")
     return {"accession": cur["accession"], "filing_date": cur["filing_date"], "period_end": cur["period_end"],
+            "period_source": cur.get("period_source"), "period_rejected": cur.get("period_rejected"),
             "url": cur["url"], "summary": cur.get("summary", ""), "read": g is not None,
             "guidance": [x for x in (g or []) if x["verified"]],
             "dropped": sum(1 for x in (g or []) if not x["verified"]),
             "phrases": phrases, "previous": prev and {"accession": prev["accession"], "filing_date": prev["filing_date"],
-                                                      "url": prev["url"]},
+                                                      "period_end": prev["period_end"], "url": prev["url"]},
             "note": note}
 
 
+def _previous(cur: dict, recs) -> dict | None:
+    """The release the phrase counts compare with: the first of `recs` (newest first; None for one that
+    couldn't be read) covering an earlier period than `cur` (a second release for the same quarter is skipped)."""
+    for r in recs:
+        if r is not None and r["period_end"] < cur["period_end"]:
+            return r
+    return None
+
+
 def run(sess, cik: str, ticker: str, name: str, subs: dict | None, model: str, llm_on: bool, offline: bool,
-        usage_by_step: dict, cfg: dict) -> dict:
-    """The latest earnings release (guidance + phrase counts vs the previous one), or {"error": ...}."""
+        usage_by_step: dict, cfg: dict, quarter_ends: list[str] | None = None) -> dict:
+    """The latest earnings release (guidance + phrase counts vs the previous one), or {"error": ...}.
+    `quarter_ends`: companyfacts quarter ends (`release_period`)."""
     try:
         if offline:
             recs = sorted((util.read_json(p) for p in calls_dir(ticker).glob("*.json")), key=lambda r: r["filing_date"]) \
                 if calls_dir(ticker).exists() else []
             if not recs:
                 return {"error": "offline and no cached earnings release"}
-            return summarize(recs[-1], recs[-2] if len(recs) > 1 else None)
+            recs = [checked_period(r, quarter_ends, set()) for r in recs]
+            return summarize(recs[-1], _previous(recs[-1], recs[-2::-1]))
         filings = edgar_text.recent_filings(subs or {})
-        eightks = edgar_text.earnings_8ks(filings, 2)
+        eightks = edgar_text.earnings_8ks(filings, 3)
         if not eightks:
             return {"error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"}
         months = edgar_text.quarter_end_months(filings)
-        cur = _cached(ticker, eightks[0]["accessionNumber"], sess, cfg)
+        cur = checked_period(_cached(ticker, eightks[0]["accessionNumber"], sess, cfg), quarter_ends, months)
         note = None
         if cur is None or (cur.get("guidance") is None and llm_on):
             usage = usage_by_step.setdefault("guidance", models.new_usage(model)) if llm_on else None
-            cur = process(sess, cik, ticker, name, eightks[0], model if llm_on else None, usage, cfg, months)
+            cur = process(sess, cik, ticker, name, eightks[0], model if llm_on else None, usage, cfg, months, quarter_ends)
             _save(cur)
         if cur.get("guidance") is None:
             note = "guidance not read (Claude step off); phrase counts only"
-        prev = None
-        if len(eightks) > 1:
-            prev = _cached(ticker, eightks[1]["accessionNumber"], sess, cfg)
-            if prev is None:
-                try:  # comparison only; the latest release stands without it
-                    prev = process(sess, cik, ticker, name, eightks[1], None, None, cfg, months)
-                    _save(prev)
+
+        def earlier(filing):  # comparison only; the latest release stands without it
+            rec = checked_period(_cached(ticker, filing["accessionNumber"], sess, cfg), quarter_ends, months)
+            if rec is None:
+                try:
+                    rec = process(sess, cik, ticker, name, filing, None, None, cfg, months, quarter_ends)
+                    _save(rec)
                 except Exception:
-                    prev = None
+                    return None
+            return rec
+        prev = _previous(cur, (earlier(f) for f in eightks[1:]))
         return summarize(cur, prev, note)
     except Exception as e:
         return {"error": f"{type(e).__name__}: {str(e)[:300]}"}

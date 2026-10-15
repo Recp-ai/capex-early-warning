@@ -335,11 +335,51 @@ def test_close_note_flags_a_close_not_yet_published_and_the_after_close_window()
     no_quote = prices.close_note("2026-10-13", None, at("2026-10-14T21:00:57Z"))
     assert no_quote["note"] == n["note"] and no_quote["latest"] == "2026-10-14" and no_quote["latest_from"] == "weekday"
     assert prices.close_note("2026-10-14", q, at("2026-10-15T01:00:00Z"))["note"] is None  # 9 pm ET: close in
-    sun = prices.close_note("2026-10-16", None, at("2026-10-18T15:00:00Z"))
-    assert sun["note"] is None and sun["latest"] == "2026-10-16" and sun["close_window"] is None
-    morning = prices.close_note("2026-10-14", None, at("2026-10-15T13:00:00Z"))  # 9 am ET: today's close can't exist yet
-    assert morning["note"] == "today's close not yet published; scored on 2026-10-14" and morning["close_window"] is None
     assert prices.close_note(None, None, at("2026-10-14T21:00:00Z"))["note"] is None
+
+
+@pytest.mark.parametrize("run_at, latest", [
+    ("2026-10-15T12:49:00Z", "2026-10-14"),   # Thu 8:49 am ET (pre-market): Wednesday's close is the latest
+    ("2026-10-15T13:29:59Z", "2026-10-14"),
+    ("2026-10-15T17:00:00Z", "2026-10-14"),   # 1:00 pm ET, regular session
+    ("2026-10-15T19:59:59Z", "2026-10-14"),   # 3:59:59 pm ET
+    ("2026-10-15T20:00:00Z", "2026-10-15"),   # 4:00 pm ET: today's session has closed
+    ("2026-10-16T02:00:00Z", "2026-10-15"),   # 10:00 pm ET Thursday (Friday in UTC)
+    ("2026-10-17T15:00:00Z", "2026-10-16"),   # Saturday: Friday
+    ("2026-10-18T23:00:00Z", "2026-10-16"),   # Sunday 7:00 pm ET: Friday
+    ("2026-10-19T13:00:00Z", "2026-10-16"),   # Monday 9:00 am ET: Friday
+    ("2026-12-14T20:59:00Z", "2026-12-11"),   # Monday 3:59 pm EST (winter time): Friday
+    ("2026-12-14T21:00:00Z", "2026-12-14"),   # Monday 4:00 pm EST
+])
+def test_latest_completed_session_is_the_last_weekday_whose_4pm_close_has_passed(run_at, latest):
+    assert prices.latest_weekday(at(run_at)) == latest
+
+
+def test_a_pre_market_or_regular_session_quote_proves_no_newer_close():
+    # ORCL ran Thu 2026-10-15 at 8:49 am ET, scored on Wednesday's close, with a pre-market quote from 8:05 am
+    pre = {"price": 131.2, "as_of": "2026-10-15T12:05:00Z"}
+    n = prices.close_note("2026-10-14", pre, at("2026-10-15T12:49:11Z"))
+    assert n["note"] is None and n["latest"] == "2026-10-14" and n["latest_from"] == "weekday" and n["close_window"] is None
+    assert prices.quote_close_date(pre) is None
+    # a regular-session quote: no newer close either
+    mid = {"price": 131.2, "as_of": "2026-10-15T18:30:00Z"}
+    assert prices.close_note("2026-10-14", mid, at("2026-10-15T18:31:00Z"))["note"] is None
+    # stamped at or after 4:00 pm ET it proves that day's close; the run then scored the day before: note
+    for ts in ("2026-10-15T20:00:00Z", "2026-10-15T23:12:00Z"):
+        assert prices.quote_close_date({"as_of": ts}) == "2026-10-15"
+        n = prices.close_note("2026-10-14", {"price": 1.0, "as_of": ts}, at("2026-10-16T00:30:00Z"))
+        assert n["note"] == "today's close not yet published; scored on 2026-10-14" and n["latest_from"] == "quote"
+    # a quote proving a close beats the weekday rule (a holiday Monday after 4 pm: the quote is Friday's close)
+    fri = {"price": 1.0, "as_of": "2026-10-16T20:00:00Z"}
+    assert prices.close_note("2026-10-16", fri, at("2026-10-19T21:30:00Z"))["note"] is None
+    # weekend runs scored on Friday: no note; a weekend timestamp proves nothing
+    assert prices.close_note("2026-10-16", None, at("2026-10-17T15:00:00Z"))["note"] is None
+    assert prices.quote_close_date({"as_of": "2026-10-17T21:00:00Z"}) is None and prices.quote_close_date(None) is None
+    # after 4 pm with no newer daily close yet: the note, and the 16:00-18:00 flag
+    n = prices.close_note("2026-10-14", None, at("2026-10-15T20:30:00Z"))
+    assert n["note"] == "today's close not yet published; scored on 2026-10-14" and n["close_window"]
+    # a Monday-morning run scored on Friday's close: no note (Friday is the latest completed session)
+    assert prices.close_note("2026-10-16", {"price": 1.0, "as_of": "2026-10-19T12:00:00Z"}, at("2026-10-19T13:00:00Z"))["note"] is None
 
 
 def test_single_email_says_which_close_was_scored():

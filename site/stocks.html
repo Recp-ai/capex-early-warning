@@ -315,9 +315,21 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const etClock = ms => { const p = etParts(ms); return `${p.hour % 12 || 12}:${pad(p.minute)} ${p.hour < 12 ? "am" : "pm"} ET`; };
   const shortDay = d => d ? `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8, 10)}` : "—";
   const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
-  function latestWeekdayET(ms) { // the US Eastern date, moved back to Friday on a weekend (holidays not known)
+  // The latest completed session at ms: the most recent weekday (US Eastern) whose 4:00 pm close has passed
+  // (holidays not known). stocks/prices.py latest_weekday.
+  function latestWeekdayET(ms) {
+    const p = etParts(ms), weekend = d => [0, 6].includes(new Date(d + "T12:00:00Z").getUTCDay());
+    let d = weekend(p.date) || p.hour < 16 ? addDays(p.date, -1) : p.date;
+    while (weekend(d)) d = addDays(d, -1);
+    return d;
+  }
+  // The session a quote proves closed: its US Eastern date when stamped at or after 4:00 pm ET on a weekday,
+  // else null (a pre-market or regular-session trade proves no new close). stocks/prices.py quote_close_date.
+  function quoteCloseET(asOf) {
+    const ms = Date.parse(asOf);
+    if (isNaN(ms)) return null;
     const p = etParts(ms);
-    return p.weekday === "Sat" ? addDays(p.date, -1) : p.weekday === "Sun" ? addDays(p.date, -2) : p.date;
+    return p.weekday !== "Sat" && p.weekday !== "Sun" && p.hour >= 16 ? p.date : null;
   }
   function marketOpen(ms = Date.now()) { // Mon-Fri 9:30 am to 4:15 pm ET (the close prints a few minutes after 4)
     const p = etParts(ms), m = p.hour * 60 + p.minute;
@@ -344,13 +356,13 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     return d >= 1 ? `${d} d ago` : h >= 1 ? `${h} h ago` : m >= 1 ? `${m} min ago` : "just now";
   }
   const ageDays = ts => (Date.now() - Date.parse(ts)) / 864e5;
-  // Which close a run was scored on; whether a newer close existed then (the run's quote date, or without one
-  // the latest weekday at run time); and whether it ran between 16:00 and 18:00 ET. Display only.
+  // Which close a run was scored on; whether a newer close existed then (the session the run's quote proves
+  // closed, else the latest completed session at run time); and whether it ran between 16:00 and 18:00 ET.
+  // Display only; the same rule as stocks/prices.py close_note.
   function closeNote(D) {
     const P = D.price || {}, runMs = Date.parse(D.run_id);
     if (!P.date || isNaN(runMs)) return {};
-    const q = D.quote && Date.parse(D.quote.as_of);
-    const newer = q && !isNaN(q) ? etParts(q).date : latestWeekdayET(runMs);
+    const newer = (D.quote && quoteCloseET(D.quote.as_of)) || latestWeekdayET(runMs);
     const p = etParts(runMs), wd = p.weekday !== "Sat" && p.weekday !== "Sun";
     return { stale: newer > P.date, window: (D.close_note && D.close_note.close_window) ||
       (wd && p.hour >= 16 && p.hour < 18 ? `Run at ${etClock(runMs)}, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet` : "") };
@@ -854,10 +866,10 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
       <section class="grid two">
         <div class="card prose"><h2>Latest earnings release <span class="sub">· 8-K Exhibit 99.1</span></h2>
           ${G.error ? `<p class="sub">${esc(G.error)}</p>` : `
-          <p class="sub">${link(G.url, "Filed " + shortDate(G.filing_date))} for the period ended ${esc(G.period_end || "?")}. ${G.note ? esc(G.note) + "." : ""}</p>
+          <p class="sub">${link(G.url, "Filed " + shortDate(G.filing_date))} for the period ended <span${G.period_rejected ? ` title="${esc(`From ${G.period_source === "companyfacts" ? "the SEC companyfacts quarter ends" : "the fiscal calendar"}: the release's first date, ${G.period_rejected}, is not the quarter it reports`)}"` : ""}>${esc(G.period_end || "?")}</span>. ${G.note ? esc(G.note) + "." : ""}</p>
           ${quotes || (G.read ? '<p class="sub">No guidance in the release (many companies give it only on the call).</p>' : "")}
           ${G.dropped ? `<p class="sub">${G.dropped} guidance item${G.dropped === 1 ? "" : "s"} left out: not found verbatim in the release.</p>` : ""}
-          <h3>Cautious phrases <span class="sub">· regex counts${G.previous ? ", vs the previous release" : ""}</span></h3>
+          <h3>Cautious phrases <span class="sub">· regex counts${G.previous ? `, vs the previous release${G.previous.period_end ? ` (period ended ${esc(G.previous.period_end)})` : ""}` : ""}</span></h3>
           ${phrases.length ? `<table><thead><tr><th>Phrase</th><th>Now</th>${G.previous ? "<th>Previous</th>" : ""}</tr></thead><tbody>${phrases.map(([k, v]) => `<tr><td title="${esc((v.sentences || []).join("\n\n"))}">${esc(k)}</td><td>${v.count}</td>${G.previous ? `<td>${v.previous ?? "—"}</td>` : ""}</tr>`).join("")}</tbody></table>` : '<p class="sub">None of the tracked phrases appear.</p>'}`}
         </div>
         <div class="card"><h2>News &amp; risk <span class="sub">· last 30 days; rated −2…+2 per topic, capped by checked sources, their tier, date and direction</span></h2>

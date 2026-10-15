@@ -288,7 +288,8 @@ tiered (primary / major / other) and fetched as in the capex pipeline. Only in-w
 the caps: a source that was verified or unreachable and whose event date is no more than
 `evidence_dates.background_after_days` (30) before the run. Undated items and older ones (Innodata's
 insider sales of Sep 4 and 14, Oracle's Sep 10 results, Palantir's Aug 3 guidance, in an Oct 15 run)
-support nothing. Claude also labels each evidence item's **direction**, positive, negative or neutral
+support nothing (both prompts tell Claude to date a Form 4 or other insider item by its transaction date,
+which the form always gives, so those aren't left undated). Claude also labels each evidence item's **direction**, positive, negative or neutral
 (what that item alone says for the company: a downgrade or a reiterated Sell is negative, a delay is
 negative, guidance reiterated unchanged is neutral), a label like the event date, never a score. An item
 supports a rating only if it is in-window **and** points the rating's way (positive for +1/+2, negative for
@@ -314,9 +315,14 @@ ORCL, CRDO, ALAB, ANET, VRT, SMCI, DELL, CRWV) are capped at Hold while the cape
 whenever it applies. Everything is in [`config/stocks.yaml`](config/stocks.yaml).
 
 **Also on the page:** the latest earnings release (8-K Item 2.02, Exhibit 99.1). Guidance sentences
-count only if found word for word in the release, as with the capex press releases. The page also
-shows cautious-phrase counts versus the previous release (regex counts, with the forward-looking-statements
-section left out). Claude writes a short thesis, the key risks and "what would change this rating" only after code
+count only if found word for word in the release, as with the capex press releases. The period it covers
+is the release's first "quarter ended ..." date only when that is 20–120 days before the filing and no
+companyfacts quarter end falls in between (Rubrik's Aug 27 release opens with Jan 31, TIC's Aug 6 one with
+Dec 31, 2025, Zscaler's May 26 one with Jan 31); otherwise the latest companyfacts quarter end before the
+filing (Jul 31, Jun 30, Apr 30), unless companyfacts doesn't have that quarter yet, and else the fiscal
+calendar's last quarter end. Cached releases are corrected the same way. The page also shows
+cautious-phrase counts versus the previous release (the latest earlier release covering an earlier
+period; regex counts, with the forward-looking-statements section left out). Claude writes a short thesis, the key risks and "what would change this rating" only after code
 has set the rating, and is told the points to the next band.
 
 **Output.** Every run is kept: `data/stocks/runs/<TICKER>/<UTC timestamp>.json` (never overwritten) and
@@ -331,8 +337,11 @@ returns by rating band, and versus SPY, from `ratings.csv`.
 **Near-live prices (display only).** Scores always use the latest official daily close. Tiingo
 publishes a day's close some time after 4 pm ET, so a run at 5 pm can still score on the previous
 day's close. The page therefore says **Scored on the close of <date>**, adds "today's close not yet
-published; scored on <date>" when the run's quote (or, without one, the latest weekday) is newer, and a
-run between 16:00 and 18:00 ET says so in its summary and email. The latest price comes from Tiingo's
+published; scored on <date>" only when a newer close existed at run time: the latest completed session
+(the most recent weekday whose 4:00 pm ET close had passed; holidays not known), or the session a quote
+proves closed when it is stamped at or after 4:00 pm ET, is after the scored close. A pre-market or
+regular-session quote proves no new close, so Oracle's 8:49 am ET run, scored on the previous day's close,
+has no note. A run between 16:00 and 18:00 ET says so in its summary and email. The latest price comes from Tiingo's
 IEX endpoint: `tngoLast` (the official close once it prints; `last` needs an IEX entitlement and is
 ignored), `prevClose` and the timestamp, all tickers in **one request** (`iex/?tickers=a,b,c`; the
 all-tickers endpoint, filtered in code, only if that form fails). Each run stores

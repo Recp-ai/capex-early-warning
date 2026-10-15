@@ -325,6 +325,103 @@ def test_no_earnings_8k_is_an_error_not_a_crash(sandbox):
     assert "offline" in guidance.run(None, F.CIK, "TSM", "TSMC", None, "m", True, True, {}, CFG)["error"]
 
 
+
+def D(s):
+    return date.fromisoformat(s)
+
+
+RBRK_Q = ["2025-07-31", "2025-10-31", "2026-01-31", "2026-04-30", "2026-07-31"]
+TIC_Q = ["2025-06-30", "2025-09-30", "2025-12-31", "2026-03-31", "2026-06-30"]
+
+
+@pytest.mark.parametrize("found, filed, quarters, months, out", [
+    # Rubrik's Aug 27 release: its first date is the fiscal year end, Jan 31 (208 days back)
+    ("2026-01-31", "2026-08-27", RBRK_Q, {1, 4, 7, 10}, ("2026-07-31", "companyfacts")),
+    # TIC's Aug 6 release: its first date is Dec 31, 2025
+    ("2025-12-31", "2026-08-06", TIC_Q, {3, 6, 9, 12}, ("2026-06-30", "companyfacts")),
+    # Zscaler's May 26 release gave Jan 31, only 115 days back, but companyfacts has Apr 30 between them
+    ("2026-01-31", "2026-05-26", ["2025-10-31", "2026-01-31", "2026-04-30", "2026-07-31"], {1, 4, 7, 10},
+     ("2026-04-30", "companyfacts")),
+    ("2026-06-30", "2026-07-29", TIC_Q, {3, 6, 9, 12}, ("2026-06-30", "release")),         # a good date stands
+    ("2026-07-26", "2026-08-26", ["2026-04-26", "2026-07-26"], {1, 4, 7, 10}, ("2026-07-26", "release")),  # NVIDIA, 52/53 weeks
+    ("2026-08-31", "2026-09-10", ["2026-05-31", "2026-08-31"], {2, 5, 8, 11}, ("2026-08-31", "companyfacts")),  # Oracle: 10 days
+    # run between the 8-K and the 10-Q: companyfacts' latest quarter (Apr 30, 119 days back) is a quarter behind
+    ("2026-01-31", "2026-08-27", RBRK_Q[:-1], {1, 4, 7, 10}, ("2026-07-31", "fiscal calendar")),
+    ("2026-08-31", "2026-09-10", ["2026-05-31"], {2, 5, 8, 11}, ("2026-08-31", "fiscal calendar")),
+    (None, "2026-08-06", [], set(), ("2026-06-30", "fiscal calendar")),                     # nothing at all
+])
+def test_release_period_accepts_its_own_date_only_when_it_is_the_quarter_just_reported(found, filed, quarters, months, out):
+    pe, src = guidance.release_period(found and D(found), D(filed), quarters, months)
+    assert (pe.isoformat(), src) == out
+    assert guidance.PERIOD_DAYS == (20, 120)
+
+
+RBRK_RELEASE = """<html><body><p>Rubrik Reports Second Quarter Fiscal Year 2027 Financial Results</p>
+<p>Rubrik raised its outlook for the fiscal year ending January 31, 2027 after the second quarter.</p>
+<p>Revenue for the three months ended July 31, 2026 was $427.3 million, with headwinds in the public sector.</p>
+</body></html>"""
+RBRK_PREV = """<html><body><p>Results for the fiscal year ended January 31, 2026 and the quarter ended April 30, 2026.</p>
+<p>No headwinds noted; macro uncertainty persists.</p></body></html>"""
+
+
+def test_a_release_quoting_another_period_first_gets_the_quarter_it_reports(sandbox, monkeypatch):
+    # Rubrik's Aug 27 release: its first date is Jan 31, 2027 (the fiscal year it guides, after the filing)
+    base = "https://www.sec.gov/Archives/edgar/data/789019"
+    subs = F.submissions([
+        {"accessionNumber": "0000950170-26-000101", "filingDate": "2026-08-27", "reportDate": "2026-08-27",
+         "form": "8-K", "primaryDocument": "x8k.htm", "items": "2.02,9.01"},
+        {"accessionNumber": "0000950170-26-000050", "filingDate": "2026-06-04", "reportDate": "2026-06-04",
+         "form": "8-K", "primaryDocument": "y8k.htm", "items": "2.02,9.01"},
+        {"accessionNumber": "0000950170-26-000040", "filingDate": "2026-06-10", "reportDate": "2026-04-30",
+         "form": "10-Q", "primaryDocument": "q.htm", "items": ""}])
+    routes = F.sec_routes(subs=subs)
+    routes.update({f"{base}/000095017026000101/ex991.htm": F.FakeResponse(200, RBRK_RELEASE),
+                   f"{base}/000095017026000050/ex991.htm": F.FakeResponse(200, RBRK_PREV)})
+    sentence = "Revenue for the three months ended July 31, 2026 was $427.3 million, with headwinds in the public sector."
+    fake = F.fake_claude(monkeypatch, [F.guidance_reply(sentence=sentence, amount="$427.3 million")])
+    g = guidance.run(F.FakeSession(routes), F.CIK, "RBRK", "Rubrik", subs, "m", True, False, {}, CFG, quarter_ends=RBRK_Q)
+    assert g["period_end"] == "2026-07-31" and g["period_source"] == "companyfacts" and g["period_rejected"] == "2027-01-31"
+    assert "for the\nperiod ended 2026-07-31" in fake.calls[0]["messages"][0]["content"]  # Claude gets the right period
+    # the previous release (Jun 4) said Jan 31 too (124 days back): corrected to Apr 30, and its counts compare
+    assert g["previous"]["accession"] == "0000950170-26-000050" and g["previous"]["period_end"] == "2026-04-30"
+    assert util.read_json(guidance.calls_dir("RBRK") / "0000950170-26-000050.json")["period_end"] == "2026-04-30"
+    assert g["phrases"]["headwind"]["count"] == 1 and g["phrases"]["headwind"]["previous"] == 1
+    assert g["phrases"]["uncertain"]["previous"] == 1
+
+
+def test_the_previous_release_is_the_first_one_for_an_earlier_period():
+    cur = {"period_end": "2026-07-31"}
+    same, older, oldest = {"period_end": "2026-07-31"}, {"period_end": "2026-04-30"}, {"period_end": "2026-01-31"}
+    assert guidance._previous(cur, [same, None, older, oldest]) is older  # a second release for the quarter is skipped
+    assert guidance._previous(cur, [same]) is None and guidance._previous(cur, []) is None
+
+
+def test_a_cached_release_with_a_prior_periods_date_is_corrected_and_saved(sandbox, monkeypatch):
+    # TIC's cached Aug 6 release says 2025-12-31 (written before the check): corrected on read, no new fetch
+    subs = F.submissions([{"accessionNumber": "0000950170-26-000101", "filingDate": "2026-08-06", "reportDate": "2026-08-06",
+                           "form": "8-K", "primaryDocument": "x8k.htm", "items": "2.02,9.01"}])
+    acc, url = "0000950170-26-000101", "https://www.sec.gov/Archives/edgar/data/789019/000095017026000101/ex991.htm"
+    util.write_json(guidance.calls_dir("TIC") / f"{acc}.json", {
+        "ticker": "TIC", "accession": acc, "filing_date": "2026-08-06", "period_end": "2025-12-31", "url": url,
+        "phrases": {}, "guidance": [], "summary": "", "model": "m", "version": guidance.VERSION})
+    sess = F.FakeSession({})
+    g = guidance.run(sess, F.CIK, "TIC", "TIC Solutions", subs, "m", True, False, {}, CFG, quarter_ends=TIC_Q)
+    assert g["period_end"] == "2026-06-30" and g["period_rejected"] == "2025-12-31" and not sess.calls
+    saved = util.read_json(guidance.calls_dir("TIC") / f"{acc}.json")
+    assert saved["period_end"] == "2026-06-30" and saved["period_source"] == "companyfacts"
+    # offline re-scores read the same correction
+    assert guidance.run(None, F.CIK, "TIC", "TIC", None, "m", True, True, {}, CFG, quarter_ends=TIC_Q)["period_end"] == "2026-06-30"
+    # a cached good date is left alone
+    good = util.read_json(guidance.calls_dir("TIC") / f"{acc}.json")
+    assert guidance.checked_period(dict(good), TIC_Q, set())["period_end"] == "2026-06-30"
+
+
+def test_companyfacts_quarter_ends_cover_every_flow():
+    f = {"flows": {"revenue": {"quarters": {"2026-04-30": {}, "2026-07-31": {}}},
+                   "capex": {"quarters": {"2026-01-31": {}}}, "sbc": {}}}
+    assert fund.quarter_ends(f) == ["2026-01-31", "2026-04-30", "2026-07-31"] and fund.quarter_ends({}) == []
+
+
 # ---------------------------------------------------------------- balance-sheet tags and the stopped-reporting guard
 def bs_of(**over):
     return fund.summarize(fund.extract(F.companyfacts(**over), F.CIK), CFG)["balance_sheet"]

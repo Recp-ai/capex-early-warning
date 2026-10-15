@@ -262,7 +262,8 @@ def research_one(ticker: str, cfg: dict, offline: bool = False, no_llm: bool = F
     rows = px["series"].get(ticker)
     usage_by_step: dict = {}
     print("Reading the latest earnings release ...", flush=True)
-    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on and not reuse_news, offline, usage_by_step, cfg)
+    g = guidance.run(sec, cik, ticker, name, subs, selection["scoring"], llm_on and not reuse_news, offline, usage_by_step, cfg,
+                     quarter_ends=fundamentals.quarter_ends(f))
     if g.get("error"):
         errors["guidance"] = g["error"]
     dgs10, ctx = metrics.ust10y(), metrics.capex_context(today=today)

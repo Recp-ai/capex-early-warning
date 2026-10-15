@@ -41,7 +41,9 @@ every claim.
 
 Format: a section per topic with bullet points "claim — event date — URL". The event date is when it
 happened (guidance given, rating changed, suit filed, shares sold), as YYYY-MM-DD, not when the article was
-published or updated; write "date unknown" if the source doesn't say. If sources give different figures
+published or updated; write "date unknown" if the source doesn't say. For SEC Form 4 and other insider
+items, the event date is the transaction date (Form 4 table column "Transaction Date"; the earliest one if
+it lists several), not the filing date; it is always on the form, so never leave an insider item undated. If sources give different figures
 for the same thing, list each figure with its own URL. Keep it under 700 words."""
 
 TOPICS_SYSTEM = """You rate the last month's news about one company for a private investor's stock screen.
@@ -61,7 +63,8 @@ Default to 0 unless the notes give specific, sourced news. Rules:
   background and support nothing. A rating's size is capped at the number of those sources (none: 0), and
   by their tier: {quality_rule}
 - event_date for every evidence item: when it happened, YYYY-MM-DD, not when it was published; null when
-  the notes don't establish it. Never guess.
+  the notes don't establish it. Never guess. For a Form 4 or other insider item it is the transaction date
+  given in the notes (the form always states it), not the filing date.
 - direction for every evidence item: which way that item on its own points for the company on this topic:
   positive, negative or neutral (no change, or neither good nor bad). Label each item by what it says, not
   by the topic's rating: a downgrade, a cut target or a Sell rating (new or reiterated) is negative; a delay

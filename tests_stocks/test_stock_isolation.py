@@ -219,6 +219,31 @@ def test_history_table_has_a_column_per_factor_and_scrolls_on_narrow_screens():
     assert "historyTable(D.history)" in page
 
 
+
+@pytest.mark.skipif(not NODE, reason="node not installed")
+def test_page_close_note_follows_the_same_rule_as_the_run():
+    from datetime import datetime
+    from stocks import prices
+    quotes = [None, {"price": 1, "as_of": "2026-10-15T12:05:00Z"}, {"price": 1, "as_of": "2026-10-15T18:30:00Z"},
+              {"price": 1, "as_of": "2026-10-15T20:00:00Z"}, {"price": 1, "as_of": "2026-10-14T23:12:00Z"},
+              {"price": 1, "as_of": "2026-10-16T20:00:00Z"}]
+    runs = ["2026-10-15T12:49:11Z", "2026-10-15T17:00:00Z", "2026-10-15T20:30:00Z", "2026-10-16T00:30:00Z",
+            "2026-10-17T15:00:00Z", "2026-10-19T13:00:00Z", "2026-10-19T21:30:00Z", "2026-12-14T21:00:00Z"]
+    cases = [{"run_id": r, "price": {"date": d, "close": 1}, "quote": q}
+             for r in runs for q in quotes for d in ("2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16")]
+    script = (page_function("etParts") + page_const("ET_FMT") + page_const("pad") + page_const("etClock")
+              + page_const("addDays") + page_function("latestWeekdayET") + page_function("quoteCloseET")
+              + page_function("closeNote") + f"console.log(JSON.stringify({json.dumps(cases)}.map(D => closeNote(D).stale)));")
+    p = subprocess.run([NODE, "-e", script], capture_output=True, text=True, timeout=30)
+    assert p.returncode == 0, p.stderr
+    stale = json.loads(p.stdout)
+    want = [prices.close_note(c["price"]["date"], c["quote"], datetime.fromisoformat(c["run_id"].replace("Z", "+00:00")))["note"]
+            is not None for c in cases]
+    assert stale == want
+    orcl = cases.index({"run_id": "2026-10-15T12:49:11Z", "price": {"date": "2026-10-14", "close": 1}, "quote": quotes[1]})
+    assert stale[orcl] is False  # ORCL's pre-market run: no "today's close not yet published"
+
+
 HARNESS = r"""
 const world = JSON.parse(process.argv[3]);
 process.env.GITHUB_TOKEN = "ghp_TOKEN_SECRET"; process.env.RUN_PASSCODE = "pass-SECRET"; process.env.GITHUB_REPO = "o/r";
