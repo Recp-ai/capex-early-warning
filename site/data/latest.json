@@ -1,9 +1,20 @@
 {
-  "date": "2026-10-13",
-  "run_id": "2026-10-13T20:12:21Z",
-  "generated_at": "2026-10-13T20:14:46+00:00",
-  "trigger": "manual",
-  "events": [],
+  "date": "2026-10-15",
+  "run_id": "2026-10-15T01:43:15Z",
+  "generated_at": "2026-10-15T01:45:58+00:00",
+  "trigger": "event:CPI",
+  "events": [
+    {
+      "date": "2026-10-14",
+      "name": "CPI",
+      "type": "cpi",
+      "title": "CPI for September 2026",
+      "time_et": "08:30",
+      "verified": true,
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "note": "Also on https://www.bls.gov/cpi/ and the BLS October 2026 release calendar (seen in search results; pages not opened)."
+    }
+  ],
   "categories": [
     [
       "credit",
@@ -34,9 +45,9 @@
     "credit": {
       "score": 2,
       "reasons": [
-        "High-yield spread 3.11% (+0.40 pts over 4 weeks)",
+        "High-yield spread 3.16% (+0.40 pts over 4 weeks)",
         "Investment-grade spread 0.83% (+0.03 pts over 4 weeks)",
-        "News adjustment +1: AI-specific credit stress is building beyond the spread data. Oracle's 5-year CDS closed at a record 261bp on Oct 8. The ~$18B Project Jupiter construction loan is hard to syndicate and quoted at 89-91 cents. US investment-grade AI bond issuance stopped completely in September. This is partly offset by the $60B Anthropic chip financing and Morgan Stanley's view that it is a pause."
+        "News adjustment +1: Bloomberg reports CoreWeave bonds at distress-signalling levels. A hotter-than-expected CPI pushed the 10-year yield up 10bp to 5.323%, with Fed-hike odds above 95% (CNBC). SoftBank paid a record 9.75% coupon to fund OpenAI. Together these suggest junk-spread pressure tied to AI borrowers is building beyond what the 4-week spread change shows."
       ],
       "data_ok": true
     },
@@ -61,37 +72,66 @@
       "data_ok": true
     },
     "ai_lab_financing": {
-      "score": 1,
+      "score": 2,
       "reasons": [
-        "One weak signal: an FT report that OpenAI's annualized revenue is nearing $50B, not the $70B reported earlier, hit tech stocks on Oct 8. Funding appetite looks intact: OpenAI is in early talks to raise at least $30B, and a $60B chip-financing package for Anthropic is being assembled. No delayed rounds or cancelled compute contracts were found."
+        "Neocloud financing stress sharpened this week. Bloomberg reported CoreWeave bonds at levels that typically signal distress. CoreWeave shares fell more than 15% on CPI day. Its 2032 bond yield neared 15%, per an other-tier report citing the FT. CoreWeave is seeking insurer capital and investment-grade ratings on more chip-backed debt, though it says nearly all 2027 capacity is sold. Broadcom arranging $42B of debt for Anthropic shows suppliers are now financing customers. That keeps demand alive but deepens the circular financing risk."
       ],
       "evidence": [
         {
-          "claim": "OpenAI's annualized revenue is nearing $50B, not the $70B reported earlier, per the FT; the report hit tech stocks on Oct 8.",
-          "url": "https://www.cnn.com/2026/10/08/investing/openai-nasdaq-stocks",
-          "tier": "other",
-          "status": "verified",
-          "check": "numbers 3/3, names 2/2"
-        },
-        {
-          "claim": "Bloomberg reported OpenAI is targeting at least $30B at about a $1.4T valuation, in early-stage talks.",
-          "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
-          "tier": "other",
-          "status": "verified",
-          "check": "numbers 2/2, names 2/2"
-        },
-        {
-          "claim": "Broadcom's syndicate is gathering $60B to fund chips for Anthropic.",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-02/broadcom-starts-amassing-60-billion-to-fund-chips-for-anthropic",
+          "claim": "CoreWeave bonds hit levels that typically signal distress, and its chief called the market \"irrational\"",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-13/stock-market-today-dow-s-p-live-updates",
+          "event_date": "2026-10-14",
           "tier": "major",
+          "age_days": 1,
+          "background": false,
           "status": "unreachable",
           "check": "HTTP 403"
+        },
+        {
+          "claim": "The S&P 500 fell 1.11% and the Nasdaq 1.88%; CoreWeave fell more than 15% and Oracle almost 9%",
+          "url": "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+          "event_date": "2026-10-14",
+          "tier": "major",
+          "age_days": 1,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 5/5, names 4/4"
+        },
+        {
+          "claim": "CoreWeave's 2032 bond yield neared 15%, up about 1.5 points in a week",
+          "url": "https://www.gurufocus.com/news/9123389/coreweave-nebius-iren-stocks-fall-as-ai-debt-fears-spread",
+          "event_date": "2026-10-14",
+          "tier": "other",
+          "age_days": 1,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
+        },
+        {
+          "claim": "CoreWeave is seeking insurer capital and investment-grade ratings on more chip-backed debt; co-founder McBee said nearly all 2027 capacity is sold",
+          "url": "https://www.tipranks.com/news/why-are-nebius-and-coreweave-stocks-falling-in-premarket-today-october-14",
+          "event_date": "2026-10-14",
+          "tier": "other",
+          "age_days": 1,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
+        },
+        {
+          "claim": "Broadcom is arranging $42B of senior debt for Anthropic and is in talks on up to $50B for OpenAI chip purchases",
+          "url": "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+          "event_date": null,
+          "tier": "other",
+          "age_days": null,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 2/2, names 3/3"
         }
       ],
       "data_ok": true,
       "samples": [
-        1,
-        1
+        2,
+        2
       ],
       "spread": 0,
       "unstable": false
@@ -99,22 +139,38 @@
     "supplier_signals": {
       "score": 1,
       "reasons": [
-        "A sharp memory-chip selloff, driven partly by China's CXMT competing in memory and partly by doubts about AI spending, plus Broadcom CEO Hock Tan's warning about AI investors. Both are sentiment signals, not order cuts. TSMC's September revenue was up 54.6% y/y, Q3 hit a record above guidance, and Taiwan AI-server revenue is still growing strongly."
+        "The signals are mixed. Broadcom's and Intel's CEOs warned that capital, not chips, may become the bottleneck. Memory stocks sold off on CXMT competition fears (other-tier source). But ASML said some customers want to place orders for 2029 and 2030, and Hock Tan said demand exceeds supply. No 'pacing' or 'digestion' language was found."
       ],
       "evidence": [
         {
-          "claim": "The Kospi fell 7.4% and SK Hynix fell 8.8% amid China's CXMT competing in memory and doubts about AI spending; Micron fell 3.9%.",
-          "url": "https://www.nbcnews.com/world/asia/south-korea-kospi-index-sinks-semiconductor-share-sell-ai-boom-worries-rcna603143",
-          "tier": "other",
+          "claim": "Broadcom's CEO said capital may be the biggest constraint, and Intel's CEO cited the cost of capital and ROI",
+          "url": "https://www.cnbc.com/2026/10/12/intel-broadcom-ceos-warn-capital-crunch-could-become-ai-bottleneck.html",
+          "event_date": "2026-10-12",
+          "tier": "major",
+          "age_days": 3,
+          "background": false,
           "status": "verified",
-          "check": "numbers 3/3, names 7/7"
+          "check": "numbers 0/0, names 3/3"
         },
         {
-          "claim": "TSMC September revenue was NT$511.86B, down 0.6% m/m and up 54.6% y/y.",
-          "url": "https://pr.tsmc.com/english/news/3343",
-          "tier": "primary",
+          "claim": "ASML said some customers want to place orders for 2029 and 2030",
+          "url": "https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html",
+          "event_date": "2026-10-14",
+          "tier": "major",
+          "age_days": 1,
+          "background": false,
           "status": "verified",
-          "check": "numbers 3/3, names 2/2"
+          "check": "numbers 2/2, names 1/1"
+        },
+        {
+          "claim": "SK Hynix closed down 10%, Samsung fell 7.4% and Micron fell 3.62% after CXMT's architecture claim",
+          "url": "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+          "event_date": "2026-10-13",
+          "tier": "other",
+          "age_days": 2,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 3/3, names 5/5"
         }
       ],
       "data_ok": true,
@@ -128,42 +184,31 @@
     "physical_buildout": {
       "score": 1,
       "reasons": [
-        "Power and permitting constraints are tightening: Texas halted data-center permits pending an ERCOT audit, and FERC suspended PJM's backstop procurement plan. These are supply bottlenecks rather than demand cuts. GPU rental prices are firm and CoreWeave announced new capacity."
+        "There is one sourced signal: PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, which is 42% of forecast growth. It is a single source and from before this week. Official lease data still show strong commitments."
       ],
       "evidence": [
         {
-          "claim": "Texas Governor Abbott ordered all data-center permits halted until ERCOT completes its waitlist audit.",
-          "url": "https://www.cnbc.com/2026/09/21/texas-governor-abbott-ai-data-center-permits.html",
-          "tier": "major",
-          "status": "verified",
-          "check": "numbers 0/0, names 3/4"
-        },
-        {
-          "claim": "FERC accepted but suspended PJM's backstop procurement plan until Feb 28, 2027.",
-          "url": "https://sustainableinnovationcouncil.org/news/ferc-pjm-data-center-power",
+          "claim": "PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, 42% of forecast growth",
+          "url": "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-",
+          "event_date": "2026-09-21",
           "tier": "other",
-          "status": "verified",
-          "check": "numbers 2/2, names 2/2"
-        },
-        {
-          "claim": "The Silicon Data H100 index was $2.82/hr on Oct 10, versus $2.37 at its May launch.",
-          "url": "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
-          "tier": "other",
-          "status": "verified",
-          "check": "numbers 4/4, names 3/3"
+          "age_days": 24,
+          "background": true,
+          "status": "unreachable",
+          "check": "HTTP 403"
         }
       ],
       "data_ok": true,
       "samples": [
         1,
-        2
+        1
       ],
-      "spread": 1,
+      "spread": 0,
       "unstable": false
     }
   },
   "composite": {
-    "total": 5.0,
+    "total": 6.0,
     "max": 18.0,
     "level": "AMBER",
     "alert": true,
@@ -181,7 +226,7 @@
     "red_confirmed": false,
     "jumps": {},
     "previous_run": {
-      "timestamp": "2026-10-13T19:20:32Z",
+      "timestamp": "2026-10-13T20:12:21Z",
       "level": "AMBER"
     }
   },
@@ -189,7 +234,7 @@
     "changes_4w": {
       "hy": 0.4,
       "ig": 0.03,
-      "baa": -0.03
+      "baa": -0.02
     },
     "widening": [
       "hy"
@@ -200,95 +245,161 @@
     "label": "Junk only: contained",
     "ten_year": {
       "direction": "rising",
-      "chg_4w": 0.27,
+      "chg_4w": 0.21,
       "label": "10y rising (rate pressure)"
     },
     "line": "Junk only: contained · 10y rising (rate pressure)"
   },
   "follow_ups": [
     {
-      "item": "Meta Q3 earnings Oct 21: does the $130-145B 2026 capex range hold or rise, and what is the first 2027 commentary?",
+      "item": "Whether US investment-grade AI bond issuance resumes in Q4 as Morgan Stanley expects",
       "runs": 1,
-      "listed": "2026-10-13T19:20:32Z",
+      "listed": "2026-10-13T20:12:21Z",
       "status": "no_news",
-      "note": "Meta has not yet reported; its last capex guidance was $130–145B, narrowed on July 29.",
-      "url": "https://finance.yahoo.com/quote/META/earnings/META-Q2-2026-earnings_call-657318.html",
+      "note": "No new US investment-grade AI bond deals were found in this week's research.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Syndication progress and pricing of Oracle's Project Jupiter construction loan",
+      "runs": 1,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "no_news",
+      "note": "No update on the Project Jupiter loan syndication was found.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Further memory-chip weakness (SK Hynix, Micron) tied to CXMT competition or AI-demand doubts",
+      "runs": 1,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "still_open",
+      "note": "An other-tier report says SK Hynix closed down 10%, Samsung fell 7.4% and Micron fell 3.62% after CXMT's architecture claim; these figures are unconfirmed by a major source.",
+      "url": "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+      "event_date": "2026-10-13",
       "source": {
-        "url": "https://finance.yahoo.com/quote/META/earnings/META-Q2-2026-earnings_call-657318.html",
-        "claim": "Meta has not yet reported; its last capex guidance was $130–145B, narrowed on July 29.",
+        "url": "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+        "claim": "An other-tier report says SK Hynix closed down 10%, Samsung fell 7.4% and Micron fell 3.62% after CXMT's architecture claim; these figures are unconfirmed by a major source.",
         "tier": "other",
         "status": "verified",
-        "check": "numbers 3/3, names 1/1"
-      }
+        "check": "numbers 3/3, names 5/5"
+      },
+      "age_days": 2,
+      "background": false
+    },
+    {
+      "item": "Rate pressure from the 10-year Treasury at 5.22% and Brent near $125 feeding into junk spreads",
+      "runs": 1,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "worsened",
+      "note": "After the CPI report the 10-year yield rose 10bp to 5.323%, and Fed-hike odds are now above 95% for at least one hike by year-end.",
+      "url": "https://www.cnbc.com/amp/2026/10/14/us-treasury-yields-cpi-inflation-report.html",
+      "event_date": "2026-10-14",
+      "source": {
+        "url": "https://www.cnbc.com/amp/2026/10/14/us-treasury-yields-cpi-inflation-report.html",
+        "claim": "After the CPI report the 10-year yield rose 10bp to 5.323%, and Fed-hike odds are now above 95% for at least one hike by year-end.",
+        "tier": "major",
+        "status": "unverified",
+        "check": "numbers 1/3, names 0/2 · missing: 5.323, 95, CPI, Fed-hike"
+      },
+      "age_days": 1,
+      "background": false
+    },
+    {
+      "item": "Meta Q3 earnings Oct 21: does the $130-145B 2026 capex range hold or rise, and what is the first 2027 commentary?",
+      "runs": 2,
+      "listed": "2026-10-13T19:20:32Z",
+      "status": "no_news",
+      "note": "Meta has not yet reported; earnings are due Oct 21.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
     },
     {
       "item": "Microsoft and Alphabet earnings Oct 28 and Amazon Oct 29: capex guidance, free cash flow and any 'pacing'/'digestion' language",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-13T19:20:32Z",
       "status": "no_news",
-      "note": "Microsoft, Alphabet and Amazon have not yet reported and no relevant news was found.",
+      "note": "These companies have not yet reported.",
       "url": "",
-      "source": null
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
     },
     {
       "item": "Oracle 5-year CDS and bond prices; any pulled or downsized hyperscaler or data-center debt deals",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-13T19:20:32Z",
-      "status": "worsened",
-      "note": "Oracle's 5-year CDS closed at a record 261bp on Oct 8, though no hyperscaler deal was confirmed pulled.",
-      "url": "https://tradingkey.com/analysis/stocks/us-stocks/262209649-oracle-stock-forecast-ai-data-center-delays-debt-pressure-orcl-tradingkey",
+      "status": "still_open",
+      "note": "Oracle shares fell almost 9% on CPI day, while the Oracle CDS levels in the notes (roughly 126-203bp) come only from other-tier sources and are unconfirmed.",
+      "url": "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+      "event_date": "2026-10-14",
       "source": {
-        "url": "https://tradingkey.com/analysis/stocks/us-stocks/262209649-oracle-stock-forecast-ai-data-center-delays-debt-pressure-orcl-tradingkey",
-        "claim": "Oracle's 5-year CDS closed at a record 261bp on Oct 8, though no hyperscaler deal was confirmed pulled.",
-        "tier": "other",
-        "status": "verified",
-        "check": "numbers 3/3, names 2/2"
-      }
+        "url": "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+        "claim": "Oracle shares fell almost 9% on CPI day, while the Oracle CDS levels in the notes (roughly 126-203bp) come only from other-tier sources and are unconfirmed.",
+        "tier": "major",
+        "status": "unverified",
+        "check": "numbers 1/3, names 2/3 · missing: 126, 203, CDS"
+      },
+      "age_days": 1,
+      "background": false
     },
     {
       "item": "Taiwan October monthly revenue (around Nov 10), the first month of the deceleration check",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-13T19:20:32Z",
       "status": "no_news",
-      "note": "October figures are not yet out; TSMC's September revenue of NT$511.86B was down 0.6% m/m and up 54.6% y/y.",
-      "url": "https://pr.tsmc.com/english/news/3343",
-      "source": {
-        "url": "https://pr.tsmc.com/english/news/3343",
-        "claim": "October figures are not yet out; TSMC's September revenue of NT$511.86B was down 0.6% m/m and up 54.6% y/y.",
-        "tier": "primary",
-        "status": "verified",
-        "check": "numbers 3/3, names 2/2"
-      }
+      "note": "October Taiwan revenue is not yet published.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
     },
     {
       "item": "PJM cancellation updates and how long the Texas approval pause lasts",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-13T19:20:32Z",
       "status": "still_open",
-      "note": "TCEQ must update the governor by Oct 19, which is not a restart date, and ERCOT's report is expected by Dec 10.",
-      "url": "https://encinoenviron.com/texas-data-center-permit-pause/",
+      "note": "PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, 42% of forecast growth; no Texas update was found.",
+      "url": "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-",
+      "event_date": "2026-09-21",
       "source": {
-        "url": "https://encinoenviron.com/texas-data-center-permit-pause/",
-        "claim": "TCEQ must update the governor by Oct 19, which is not a restart date, and ERCOT's report is expected by Dec 10.",
+        "url": "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-",
+        "claim": "PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, 42% of forecast growth; no Texas update was found.",
         "tier": "other",
-        "status": "verified",
-        "check": "numbers 2/2, names 2/2"
-      }
+        "status": "unreachable",
+        "check": "HTTP 403"
+      },
+      "age_days": 24,
+      "background": true
     },
     {
       "item": "OpenAI funding round terms (size, valuation) and any compute contract revisions",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-13T19:20:32Z",
       "status": "still_open",
-      "note": "Bloomberg reported OpenAI is targeting at least $30B at about a $1.4T valuation, in early-stage talks.",
-      "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+      "note": "Broadcom is reported to be in talks on up to $50B for OpenAI chip purchases, but no round terms were found.",
+      "url": "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+      "event_date": null,
       "source": {
-        "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
-        "claim": "Bloomberg reported OpenAI is targeting at least $30B at about a $1.4T valuation, in early-stage talks.",
+        "url": "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+        "claim": "Broadcom is reported to be in talks on up to $50B for OpenAI chip purchases, but no round terms were found.",
         "tier": "other",
         "status": "verified",
-        "check": "numbers 2/2, names 2/2"
-      }
+        "check": "numbers 1/1, names 2/2"
+      },
+      "age_days": null,
+      "background": false
     }
   ],
   "claude": {
@@ -298,216 +409,259 @@
       "assessment": "claude-opus-5-5"
     },
     "model_sources": {
-      "research": "input",
-      "assessment": "input"
+      "research": "config",
+      "assessment": "config"
     },
     "research": {
       "urls": [
+        "https://investinglive.com/stocks/tsmc-set-for-sixth-straight-record-profit-as-ai-demand-lifts-q3-earnings/",
+        "https://www.tradingview.com/news/zacks:6f0bdb68b094b:0-tsmc-q3-earnings-strong-ai-demand-sets-the-bar-high-for-growth/",
+        "https://finance.yahoo.com/technology/ai/articles/tsm-earnings-tomorrow-strong-ai-180000620.html",
+        "https://finance.yahoo.com/technology/ai/articles/tsmc-raised-2026-revenue-guidance-143624251.html",
+        "https://admiralmarkets.com/analytics/traders-blog/tsmc-earnings-q3-2026-preview",
+        "https://ksevradio.com/tsmc-expected-to-report-sixth-straight-quarter-of-record-profit-thanks-to-ai-boom-2/",
+        "https://startupfortune.com/tsmc-is-set-to-post-a-sixth-straight-record-quarter-on-ai-chip-demand/",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262213491-tsmc-q3-earnings-preview-profits-hit-record-high-sixth-straight-quarter-tradingkey",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262205755-tsmc-q3-revenue-ai-demand-record-tradingkey",
+        "https://tickeron.com/earnings/TSM/",
         "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
         "https://sacra.com/c/openai/",
+        "https://pinggy.io/blog/openai_anthropic_funding_history/",
         "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+        "https://news.ycombinator.com/item?id=47592755",
         "https://tech-insider.org/openai-122-billion-funding-round-852-billion-valuation-2026/",
-        "https://tech-insider.org/openai-ipo-850-billion-valuation-2026/",
         "https://tech-insider.org/openai-110-billion-funding-round-2026/",
         "https://chatai.guide/news/openai-funding-round/",
         "https://www.revenuememo.com/p/openai-funding",
         "https://valueaddvc.com/blog/openai-valuation-2026-852-billion-after-the-122b-raise",
-        "https://www.benzinga.com/news/24/10/41149788/openai-valuation-soars-to-157b-in-latest-funding-round",
-        "https://pinggy.io/blog/openai_anthropic_funding_history/",
-        "https://www.allocations.com/insights/how-to-invest-in-anthropic-pre-ipo-a-complete-guide-for-accredited-investors-(2026)",
-        "https://forgeglobal.com/insights/anthropic-upcoming-ipo-news/",
-        "https://tracxn.com/d/companies/mistral-ai/__SLZq7rzxLYqqA97jtPwO09jLDeb76RVJVb306OhciWU/funding-and-investors",
-        "https://brief.bismarckanalysis.com/p/ai-2026-mistral-will-rise-as-compute",
-        "https://newmarketpitch.com/blogs/news/frontier-ai-labs-funding-news",
-        "https://techcrunch.com/2026/09/08/mistral-raises-e3b-as-sovereign-ai-becomes-big-business/",
-        "https://aithinkerlab.com/anthropic-30b-funding-round-2026-future-of-ai/",
-        "https://valueaddvc.com/blog/the-ai-lab-funding-wars-whos-raised-the-most-and-where-the-money-is-going",
-        "https://finance.yahoo.com/technology/ai/articles/coreweave-nebius-gain-report-links-132711335.html",
-        "https://www.theglobeandmail.com/investing/markets/stocks/NVDA/pressreleases/4417173/should-coreweave-and-nebius-group-investors-be-worried-about-circular-financing-heres-what-the-numbers-say/",
-        "https://news.ycombinator.com/item?id=48873836",
-        "https://www.fool.com/investing/2026/08/04/better-neocloud-stock-nebius-vs-coreweave/",
-        "https://io-fund.com/ai-stocks/nvidia-coreweave-nebius-circular-financing-gpu-boom",
-        "https://startupfundraising.com/ai-neocloud-ai-factory-gpu-backed-project-finance-fundraising",
-        "https://davefriedman.substack.com/p/neoclouds-hold-more-than-20-billion",
-        "https://www.marktechpost.com/2026/08/23/best-gpu-neoclouds-2026/",
-        "https://www.useluminix.com/reports/industry-analysis/deep-dive-on-the-neocloud-gpu-rental-industry-coreweave-lambda-crusoe",
-        "https://marketwise.com/investing/neocloud-stocks-funding-coreweave-nebius-iren-terawulf/",
-        "https://bondblox.com/news/oracles-cds-spread-widens-further-amid-cash-burn-capex-concerns",
-        "https://bondblox.com/news/oracles-bonds-tick-lower-cds-spreads-rise-to-its-highest-levels-since-october-2023",
-        "https://bondblox.com/news/oracles-5y-cds-spread-hits-all-time-highs",
-        "https://www.investing.com/news/stock-market-news/oracle-stock-analysis-cds-blowout-ai-debt-load-and-the-junk-downgrade-risk-93CH-4812103",
-        "https://startupfortune.com/banks-are-now-trying-to-offload-the-ai-data-center-debt-they-just-underwrote/",
-        "https://tomtunguz.com/is-your-ai-funded-by-junk-bonds/",
-        "https://www.tradingview.com/news/seekingalpha:62ed2825e094b:0-hyperscaler-cds-spreads-widen-with-oracle-hitting-record-high/",
-        "https://www.roic.ai/news/oracles-5-year-cds-surges-to-139-bps-signaling-heightened-credit-risk-perception-amid-strong-fundamentals-12-11-2025",
-        "https://www.itiger.com/news/1192138168",
-        "https://www.morganstanley.com/content/dam/msdotcom/en/assets/pdfs/Research_Bridging-Data-Center-Gap.pdf",
-        "https://www.quinnemanuel.com/media/4dzkfccz/client-alert-ai-data-center-financing-and-litigation-risks.pdf",
-        "https://icapital.com/insights/investment-market-strategy/icapital-market-pulse-data-center-infrastructure-moving-from-cash-to-debt/",
-        "https://www.datacenterdynamics.com/en/news/?tag=securitization-financing",
-        "https://percepture.com/data-centers-insights/data-center-financing-structures-comparison/",
-        "https://www.quinnemanuel.com/the-firm/publications/client-alert-emerging-litigation-risks-in-financing-ai-data-centers-boom/",
-        "https://disruptionbanking.com/2026/10/13/carlyle-private-credit-ai-lending",
-        "https://investing.com/news/stock-market-news/tech-companies-ai-debt-issuance-drops-sharply-in-september-93CH-4943650",
-        "https://conorwitt.substack.com/p/data-tapes-edition-27",
-        "https://www.cnbc.com/2026/01/15/chip-stocks-nvidia-amd-pop-after-tsmcs-earnings-beat-lifts-confidence.html",
-        "https://stocktwits.com/news-articles/markets/equity/intc-amd-nvda-mu-chip-stocks-open-mixed-premarket-after-worst-week-in-a-month/cZxIPDQRBFq",
-        "https://finance.yahoo.com/technology/articles/3-semiconductor-stocks-buy-heading-110101367.html",
-        "https://www.nbcnews.com/world/asia/south-korea-kospi-index-sinks-semiconductor-share-sell-ai-boom-worries-rcna603143",
-        "https://stocktwits.com/news-articles/markets/equity/why-are-nasdaq-dow-futures-falling-premarket-mu-tsm-apld-ionq-hood-bull-sls-in-focus/cZDUfTgRBNT",
-        "https://247wallst.com/investing/2026/08/03/the-market-is-missing-a-huge-opportunity-in-nvidia-micron-and-broadcom/",
-        "https://businesstoday.in/markets/stocks/story/kospi-selloff-reflects-shift-in-investor-sentiment-tcs-hcl-tech-infosys-top-gainers-561168-2026-10-13",
-        "https://stocksdownunder.com/asml-ai-boom-nvidia-micron-tsmc/",
-        "https://finance.yahoo.com/news/chip-stocks-rise-tsmcs-rosy-133923357.html",
-        "https://www.cnbc.com/2026/09/21/texas-governor-abbott-ai-data-center-permits.html",
-        "https://nameplatereport.substack.com/p/weekly-texas-halts-approvals-loudoun",
-        "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
-        "https://www.eenews.net/articles/texas-data-center-approval-halt-scrambles-grid-plans/",
-        "https://cryptobriefing.com/pjm-suspends-new-data-center-power-auction-amid-regulatory-review/",
-        "https://cryptobriefing.com/texas-pauses-new-data-center-approvals-amid-grid-capacity-concerns/",
-        "https://www.houstonpublicmedia.org/articles/news/energy-environment/2026/08/27/560536/gov-abbott-has-ordered-a-pause-on-data-center-approvals-heres-what-that-means/",
-        "https://www.energyconnects.com/news/utilities/2026/september/biggest-us-grid-s-data-center-plan-accepted-with-5-month-pause/",
-        "https://encinoenviron.com/texas-data-center-permit-pause/",
-        "https://sustainableinnovationcouncil.org/news/ferc-pjm-data-center-power",
-        "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/microsoft-and-meta-earnings-previews",
-        "https://finance.yahoo.com/quote/META/earnings/META-Q2-2026-earnings_call-657318.html",
-        "https://finance.yahoo.com/markets/stocks/articles/meta-just-bumped-2026-capex-232250811.html",
-        "https://fortune.com/2026/04/29/meta-zuckerberg-145-billion-ai-spending-roi/",
-        "https://www.ebc.com/forex/meta-earnings-preview-how-capex-will-move-meta-stock",
-        "https://www.tradingkey.com/analysis/stocks/us-stocks/262058399-meta-q2-earnings-preview-revenue-poised-top-60b-tradingkey",
-        "https://valueaddvc.com/blog/meta-145b-ai-capex-2026-why-zuckerberg-raised-guidance-twice",
-        "https://valueaddvc.com/pulse/meta-q2-2026-revenue-beat-eps-miss-2026",
-        "https://finance.yahoo.com/news/watch-metas-earnings-2026-capex-152600614.html",
-        "https://www.babypips.com/news/headline-chip-stocks-october-2026-broadcom-casino-comment-cxmt-dram",
-        "https://www.tradingview.com/news/stocktwits:e34cfbd84094b:0-dow-s-p-500-nasdaq-futures-climb-after-openai-s-tepid-revenue-sparks-tech-selloff-nbis-spcx-t-vz-stocks-in-focus/",
-        "https://www.cnn.com/2026/10/08/investing/openai-nasdaq-stocks",
-        "https://stocktwits.com/news-articles/markets/equity/dow-s-and-p-500-nasdaq-futures-climb-after-open-ai-s-tepid-revenue-sparks-tech-selloff-nbis-spcx-t-vz-stocks-in-focus/cZD6atGRBVW",
-        "https://www.briefs.co/news/south-korea-s-chip-rout-deepens-as-china-competition-ai-jitt/",
-        "https://finance.biggo.com/news/fe4fb088-266f-45df-8c2d-3eb1d215190f",
-        "https://www.mexc.com/news/117324",
-        "https://www.mexc.com/news/117271",
-        "https://www.mexc.com/it-IT/news/117271",
-        "https://pr.tsmc.com/english/news/3343",
-        "https://www.sec.gov/Archives/edgar/data/0001046179/000104617926000680/tsm-revenue20261008.htm",
-        "https://pr.tsmc.com/system/files/newspdf/attachment/d3441876215790dc60f360229f7fa2416c82f4ea/September%202026%20(E)_final_wmn.pdf",
-        "https://www.tribuneindia.com/news/business/tsmc-september-revenue-surges-54-6-yoy-to-usd-16-07-billion-slips-marginally-month-on-month/",
-        "https://www.sec.gov/Archives/edgar/data/0001046179/000104617926000658/tsm-revenue20260910.htm",
-        "https://www.digitimes.com/news/a20261008VL218/tsmc-revenue-2026-2025-digitimes.html",
-        "https://www.taiwannews.com.tw/news/6454456",
-        "https://www.sec.gov/Archives/edgar/data/0001046179/000104617926000274/tsm-boardx20260512.htm",
-        "https://semiwiki.com/forum/threads/26009",
-        "https://www.sec.gov/Archives/edgar/data/0001046179/000104617926000451/a2q26presentatione.htm",
-        "https://kucoin.com/news/flash/ai-debt-issuance-drops-80-to-23b-oracle-loans-trade-below-par",
-        "https://news.sbs.co.kr/english/article.do?news_id=N1008793251",
-        "https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply",
-        "https://ca.investing.com/news/stock-market-news/tech-companies-ai-debt-issuance-drops-sharply-in-september-93CH-4875532",
-        "https://tradersunion.com/news/financial-news/show/3752660-ai-debt-issuance-slowdown/",
-        "https://alpha-maven.com/story/private-equity/ai-debt-issuance-slows-as-investors-reassess-financing-risks",
-        "https://finance.biggo.com/news/8b3d7239-8221-484b-9201-7fcdb7b06488",
-        "https://coinpaper.com/37113/ai-debt-issuance-falls-from-113b-to-23b-while-oracle-loans-trade-below-par",
-        "https://finance.biggo.com/news/77f934e4-5eaa-4815-aafc-04e038e0a2a2",
-        "https://www.krwg.org/krwg-news/2026-09-25/oracle-cites-force-majeure-on-project-jupiter-seeking-protection-from-loan-debt",
-        "https://www.roic.ai/news/oracle-invokes-force-majeure-on-project-jupiter-as-ai-data-center-financing-stumbles-09-24-2026",
-        "https://thedarksideoftheboom.substack.com/p/project-jupiter-hits-force-majeure",
-        "https://x.com/HedgieMarkets/status/2103144295205147020",
-        "https://elenaanalysis.substack.com/p/the-first-crack-in-the-ai-money-chain",
-        "https://www.globaldatacenterhub.com/p/oracles-jupiter-force-majeure-stacks",
-        "https://247wallst.com/investing/2026/09/24/oracle-declares-force-majeure-on-165-billion-project-jupiter-data-center/",
-        "https://capacityglobal.com/news/165bn-project-jupiter-what-oracles-force-majeure-notice-means-for-ai-data-centre-risk/",
-        "https://www.tradingkey.com/analysis/stocks/us-stocks/262185282-oracle-orcl-stock-drop-project-jupiter-force-majeure-delay-tradingkey",
-        "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
-        "https://getdeploying.com/gpus/nvidia-h100",
-        "https://getdeploying.com/gpus/nvidia-b200",
-        "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
-        "https://getdeploying.com/gpu-price-trends",
-        "https://uvik.net/blog/gpu-price-index/",
-        "https://lambda.ai/pricing",
-        "https://packet.ai/blog/what-can-an-h100-or-b200-earn-per-month-the-utilization-math",
-        "https://www.economize.cloud/resources/gpu/pricing/",
-        "https://gpurentalprices.com/",
-        "https://www.bloomberg.com/news/articles/2026-10-02/broadcom-starts-amassing-60-billion-to-fund-chips-for-anthropic",
-        "https://qz.com/broadcom-60-billion-debt-financing-anthropic-ai-chips-100226",
-        "https://www.advisorperspectives.com/articles/2026/10/02/banks-amass-60-billion-broadcoms-ai-chip",
-        "https://americanbazaaronline.com/2026/10/02/broadcom-lines-up-60b-financing-package-to-fund-ai-chips-489265/",
-        "https://cryptobriefing.com/wall-street-60-billion-anthropic-broadcom-deal/",
-        "https://dataconomy.com/2026/10/02/broadcom-anthropic-60-billion-usd-ai-chip-debt/",
-        "https://www.konsulteer.com/article/broadcom-and-anthropic-expand-ai-financing-package-toward-60-billion",
-        "https://news.ssbcrack.com/banks-rally-60-billion-behind-broadcom-chip-deals-for-anthropic/",
-        "https://www.techtimes.com/articles/328625/20261006/broadcom-anthropics-chip-supplier-lender-debt-guarantor-60-billion-syndication-begins.htm",
-        "https://seekingalpha.com/news/4646794-oracle-credit-default-swaps-hit-new-record-high-as-ai-debt-worries-mount",
-        "https://startupfortune.com/banks-are-now-trying-to-offload-the-ai-data-center-debt-they-just-underwrote",
-        "https://finance.yahoo.com/markets/stocks/articles/oracle-stock-drops-2-3-185300368.html",
-        "https://www.tipranks.com/news/oracles-credit-default-swap-prices-near-record-high-levels",
-        "https://tradingkey.com/analysis/stocks/us-stocks/262209649-oracle-stock-forecast-ai-data-center-delays-debt-pressure-orcl-tradingkey",
-        "https://techflowpost.com/en-US/newsletter/139471",
-        "https://finance.yahoo.com/markets/stocks/articles/oracle-hits-troubling-level-not-200553163.html",
-        "https://techflowpost.com/en-US/article/34474",
+        "https://www.cnbc.com/2026/02/02/oracles-credit-default-swaps-are-plummeting-after-financing-plans.html",
+        "https://cryptobriefing.com/oracle-18b-data-centre-debt-strain-pushback/",
+        "https://thenextweb.com/news/oracle-data-centre-16-billion-financing-stargate",
         "https://startupfortune.com/bond-investors-are-starting-to-say-no-to-the-ai-debt-binge/",
-        "https://tradingkey.com/news/market-movers/262212366-market-movers-orcl-20261012",
-        "https://www.cnbc.com/quotes/CRWV",
-        "https://www.cnn.com/markets/stocks/CRWV",
-        "https://www.tradingview.com/news/gurufocus:563c2079e094b:0-cathie-wood-just-bought-27-8-million-of-this-tumbling-ai-stock/",
-        "https://247wallst.com/investing/2026/10/13/prediction-coreweave-could-be-one-of-the-most-explosive-ai-stocks-of-the-decade/",
-        "https://admiralmarkets.com/analytics/traders-blog/openai-revenue-ai-selloff-october-2026",
-        "https://www.benzinga.com/trading-ideas/movers/26/10/62270172/coreweaves-busy-week-a-240-mw-india-entry-a-sell-off-tied-to-openais-revenue-disclosure",
-        "https://finance.yahoo.com/technology/ai/articles/coreweave-crwv-104b-backlog-balance-123602262.html",
-        "https://en.wikipedia.org/wiki/Core_Scientific",
-        "https://en.wikipedia.org/wiki/CoreWeave"
+        "https://daily.dev/posts/banks-are-now-trying-to-offload-the-ai-data-center-debt-they-just-underwrote-mqog6m2g6",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262209649-oracle-stock-forecast-ai-data-center-delays-debt-pressure-orcl-tradingkey",
+        "https://www.itiger.com/news/1192138168",
+        "https://lex.substack.com/p/ai-oracles-credit-default-swaps-and",
+        "https://www.itiger.com/news/1118477526",
+        "https://finance.yahoo.com/news/oracle-credit-default-swaps-surge-133318853.html",
+        "https://www.gurufocus.com/news/9123389/coreweave-nebius-iren-stocks-fall-as-ai-debt-fears-spread",
+        "https://www.investing.com/news/stock-market-news/coreweave-and-nebius-shares-rise-on-nvidiaopenai-financing-talks-93CH-4813567",
+        "https://www.tradingview.com/news/gurufocus:6cd9565ef094b:0-coreweave-and-nebius-stocks-sink-as-wall-street-questions-ai-spending-boom/",
+        "https://finance.yahoo.com/technology/ai/articles/coreweave-nebius-gain-report-links-132711335.html",
+        "https://io-fund.com/ai-stocks/nvidia-coreweave-nebius-circular-financing-gpu-boom",
+        "https://www.tipranks.com/news/company-announcements/coreweave-vs-nebius-which-stock-has-more-upside-after-todays-selloff-according-to-wall-street",
+        "https://www.tipranks.com/news/why-are-nebius-and-coreweave-stocks-falling-in-premarket-today-october-14",
+        "https://www.gurufocus.com/news/9123238/coreweave-and-nebius-stocks-sink-as-wall-street-questions-ai-spending-boom",
+        "https://leafyecfa.substack.com/p/why-corewave-and-nebius-plunged-today",
+        "https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751/",
+        "https://robaltenburg.substack.com/p/schrodingers-load-and-pjm",
+        "https://cryptobriefing.com/pjm-suspends-new-data-center-power-auction-amid-regulatory-review/",
+        "https://www.bloomberg.com/news/articles/2026-09-30/biggest-us-grid-suspends-plan-for-new-data-center-power-auction",
+        "https://en.wikipedia.org/wiki/Opposition_to_AI_data_centers",
+        "https://sustainableinnovationcouncil.org/news/ferc-pjm-data-center-power",
+        "https://www.yahoo.com/news/us/articles/regulators-reject-proposed-rules-data-224933913.html",
+        "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-or-canceled/",
+        "https://www.latitudemedia.com/news/ferc-rejected-pjms-data-center-curtailment-plan-whats-next-for-byoc/",
+        "https://finance.yahoo.com/markets/stocks/articles/micron-sk-hynix-stocks-slip-070149660.html",
+        "https://www.tradingview.com/news/stocktwits:4e3306f53094b:0-micron-sk-hynix-stocks-slip-overnight-china-s-cxmt-advances-next-gen-dram-technology/",
+        "https://finance.yahoo.com/markets/stocks/articles/memory-stocks-slide-china-cxmt-144141619.html",
+        "https://en.wikipedia.org/wiki/ChangXin_Memory_Technologies",
+        "https://invezz.com/news/2026/10/13/micron-sk-hynix-stocks-continue-fall-on-cxmt-threat-cathie-wood-musk-weigh-in/",
+        "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+        "https://www.ibtimes.com.au/micron-sk-hynix-shares-fall-cxmt-denser-dram-1876576",
+        "https://stockstotrade.com/news/sk-hynix-inc-skhy-news-2026_10_14-2/",
+        "https://www.timothysykes.com/news/sk-hynix-inc-skhy-news-2026_10_14-2/",
+        "https://qz.com/september-cpi-inflation-treasury-yields-101426",
+        "https://www.cnbc.com/amp/2026/10/14/us-treasury-yields-cpi-inflation-report.html",
+        "https://finance.yahoo.com/economy/live/cpi-inflation-live-updates-prices-rose-37-in-september-142456444.html",
+        "https://finance.yahoo.com/economy/policy/articles/september-cpi-report-inflation-data-153418947.html",
+        "https://www.cnbc.com/2026/10/14/cpi-inflation-breakdown-september-2026.html",
+        "https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html",
+        "https://www.wealthiertoday.com/news/us-inflation-september-2026-cpi-37-percent/",
+        "https://www.tipranks.com/news/stock-market-news-today-9-11-25-u-s-stock-futures-rise-ahead-of-key-august-cpi-report",
+        "https://www.tipranks.com/news/futures-trend-higher-as-corporate-earnings-driven-rally",
+        "https://benzinga.com/z/35223366",
+        "https://www.tikr.com/blog/tsmcs-q3-earnings-preview-65-profit-growth-but-net-margin-seen-slipping-to-50",
+        "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-10/6860312f04fd291d0f26b46c1234f84e6332717e/TSMC%203Q25%20Transcript.pdf",
+        "https://www.manilatimes.net/2026/10/13/business/foreign-business/tsmc-to-get-6th-straight-record-profit-quarter/2443996",
+        "https://www.tradingview.com/news/tradingview:b9aeff60d735d:0-key-facts-tsmc-2330-q3-revenue-nt-1-49t-record-2026-capex-60-64b/",
+        "https://za.investing.com/news/stock-market-news/tsmc-expected-to-report-sixth-straight-quarter-of-record-profit-thanks-to-ai-boom-4505287",
+        "https://rallies.ai/news/tsmc-expected-to-report-sixth-straight-quarter-of-record-profit-thanks-to-ai-boom-7d4c0767d7cc368c",
+        "https://finance.biggo.com/news/5784aaf1-fcbc-4f76-8856-491b9e7175f6",
+        "https://fourweekmba.com/ai-oracle-project-jupiter-debt-syndication-site-tied-financing/",
+        "https://www.remio.ai/post/oracle-project-jupiter-debt-slides-as-construction-risk-reaches-wall-street",
+        "https://thedarksideoftheboom.substack.com/p/oracles-project-jupiter-loans-fall",
+        "https://financefeeds.com/oracle-debt-project-jupiter-loans-90-cents-bonds-85/",
+        "https://aiweekly.co/alerts/oracles-18b-project-jupiter-loans-trade-at-89-91-cents",
+        "https://l0g.fr/en/analysis/when-credit-starts-sorting-ai/",
+        "https://finance.biggo.com/news/aa2b00f9-d885-40e0-92db-6fd9f55ffe63",
+        "https://www.sec.gov/Archives/edgar/data/1274173/000110465926008735/tm2534023d8_ex99-biii.htm",
+        "https://www.strattonjournal.com/material-changes/report-says-financing-pressure-and-permitting-setback-affect-oracle-linked-proje",
+        "https://qz.com/intel-broadcom-ceos-capital-constraint-ai-growth-101226",
+        "https://www.benzinga.com/markets/tech/26/10/62295019/forget-chip-shortages-intel-broadcom-ceos-warn-ais-next-big-crisis-could-be-cash",
+        "https://www.cnbc.com/2026/10/12/intel-broadcom-ceos-warn-capital-crunch-could-become-ai-bottleneck.html",
+        "https://www.benzinga.com/markets/tech/26/10/62293941/broadcom-intel-ceos-flag-capital-crunch-roi-as-bigger-ai-bottlenecks-than-chip-shortages-the-biggest-constraint",
+        "https://oodaloop.com/briefs/technology/not-ai-talent-not-ai-chips-shortage-nor-ai-demand-intel-and-broadcom-ceos-says-capital-crunch-could-become-ais-biggest-bottleneck/",
+        "https://www.briefs.co/news/intel-and-broadcom-ceos-say-cash-not-chips-could-be-ai-s-big/",
+        "https://cryptobriefing.com/broadcom-intel-ceos-capital-ai-bottleneck/",
+        "https://www.sec.gov/Archives/edgar/data/0001730168/000173016826000080/avgo-20260802.htm",
+        "https://www.inc.com/moses-jeanfrancois/intel-and-broadcom-ceos-warn-ais-next-big-bottleneck-wont-be-chips/91418152",
+        "https://www.investmentnews.com/alternatives/imf-warns-bond-yields-face-disorderly-spike-on-debt-and-ai-risks/268570",
+        "https://www.ai-cio.com/news/how-ai-debt-issuance-is-reshaping-the-corporate-bond-market/",
+        "https://www.tokenpost.com/news/technology/30829",
+        "https://am.jpmorgan.com/ch/en/asset-management/per/insights/market-insights/market-updates/on-the-minds-of-investors/hyperscaler-debt-issuance-ai-buildout/",
+        "https://www.sageadvisory.com/article/hyperscaler-debt-deluge-the-new-driver-of-ig-spread-pressure",
+        "https://cryptobriefing.com/sunak-tech-firms-outborrow-us-government-2027/",
+        "https://finance.biggo.com/news/f27c1986-9c78-41b7-87b3-1793dca5cc74",
+        "https://nai500.com/blog/2026/09/ai-hyperscalers-turn-to-debt-as-bond-spreads-widen/",
+        "https://mlq.ai/news/hyperscaler-bond-issuance-reaches-about-220-billion-as-ai-financing-costs-rise/",
+        "https://www.cnbc.com/2026/10/09/junk-bonds-are-flashing-yellow-watch-these-warning-signs.html",
+        "https://www.macrotrends.net/3229/us-high-yield-bond-spread",
+        "https://www.macroradar.io/high-yield-spread",
+        "https://markettrendsforfriends.substack.com/p/mid-week-market-report-a23",
+        "https://www.bnnbloomberg.ca/markets/2026/10/08/higher-oil-prices-pull-the-us-stock-market-further-from-its-record/",
+        "https://fred.stlouisfed.org/series/BAMLH0A0HYM2",
+        "https://www.nuveen.com/global/insights/fixed-income/fixed-income-weekly-commentary",
+        "https://fred.stlouisfed.org/series/BAMLH0A1HYBB",
+        "https://fortune.com/2015/03/09/give-junk-a-chance",
+        "https://www.business-standard.com/article/international/distress-signals-us-junk-bond-spreads-top-500-bps-a-first-since-2020-122061800058_1.html",
+        "https://www.bdlaw.com/publications/texas-pauses-all-environmental-permitting-for-data-centers/",
+        "https://williamdavid.substack.com/p/the-power-clock-part-1-the-queue",
+        "https://www.bakerbotts.com/thought-leadership/publications/2026/august/texas-large-load-interconnection-update---ercot-batch-zero-pause-and-verification-process",
+        "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "https://www.gtlaw.com/en/insights/2026/9/texas-governor-directs-a-halt-on-data-center-permitting-with-state-agency-audits",
+        "https://www.troutman.com/insights/texas-hits-pause-on-data-center-grid-connections-amid-growing-oversight-push/",
+        "https://www.tokenpost.com/news/regulation/28698",
+        "https://www.architectureandgovernance.com/data/texas-pauses-certain-data-center-approvals-amid-grid-water-and-community-concerns/",
+        "https://businessmodelanalyst.com/phantom-data-centers-collateral-refundable-deposit/",
+        "https://www.kucoin.com/news/flash/asml-raises-2026-sales-outlook-amid-ai-driven-demand-surge",
+        "https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html",
+        "https://www.benzinga.com/markets/tech/26/10/62345340/asml-beats-q3-estimates-raises-2026-outlook-as-ai-boom-drives-capacity-expansion-talks-beyond-2028",
+        "https://finance.yahoo.com/markets/stocks/articles/asml-raises-sales-forecast-third-061145434.html",
+        "https://investing.com/news/earnings/asml-raises-capacity-plans-as-ai-demand-drives-record-q3-sales-4948020",
+        "https://startupfortune.com/asml-raises-2026-sales-outlook-for-a-third-time-as-ai-demand-outruns-supply/",
+        "https://invezz.com/news/2026/10/14/asml-earnings-hit-record-e5b-as-ai-demand-exceeds-supply-why-is-stock-14-down/",
+        "https://www.zetik.com/news/article/story_id-p008-223891",
+        "https://www.euronews.com/business/2024/11/14/asml-remains-bullish-for-2030-outlook-as-ai-demand-stays-high",
+        "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+        "https://www.galvnews.com/news_reuters/business/s-p-500-dow-futures-rise-ahead-of-big-bank-results-cpi-data/article_cc093bcc-0078-5426-929a-1fea19020864.html",
+        "https://finance.yahoo.com/markets/live/stock-market-today-hot-inflation-report-drops-tech-drives-sp-500-nasdaq-down-152206632.html",
+        "https://finance.yahoo.com/markets/world-indices/articles/asian-markets-mixed-tech-firms-025619455.html",
+        "https://www.bloomberg.com/news/articles/2026-10-13/stock-market-today-dow-s-p-live-updates",
+        "https://www.detroitnews.com/story/business/2026/10/14/wall-street-slides-as-hot-cpi-data-fuels-rate-hike-bets/92248454007/",
+        "https://finance.yahoo.com/markets/stocks/articles/u-stock-futures-muted-chip-012425121.html",
+        "https://invezz.com/news/2026/10/14/nasdaq-closes-1-8-lower-as-as-hotter-cpi-fuels-fed-rate-hike-fears/",
+        "https://www.itiger.com/hant/news/1110613193",
+        "https://www.itiger.com/news/1110613193",
+        "https://www.digitimes.com/news/a20261008VL204/broadcom-openai-financing-chips-anthropic.html",
+        "https://www.networkworld.com/article/4176194/xai-anthropic-deal-signals-the-rise-of-ai-compute-as-a-standalone-business.html",
+        "https://aiweekly.co/alerts/openai-and-anthropic-take-43-of-h1-2026-venture-funding",
+        "https://www.aljazeera.com/economy/2026/5/6/spacex-backs-anthropic-with-data-centre-deal-amidst-musks-openai-lawsuit",
+        "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+        "https://medium.com/@ritukampani/anthropic-signed-a-billion-dollar-compute-deal-with-xai-heres-why-that-changes-everything-for-f9ebbef22d5b",
+        "https://finance.yahoo.com/sectors/technology/articles/anthropic-pay-xai-1-25-212922221.html",
+        "https://finance.biggo.com/news/70cebd33-1033-4ef5-850d-9e9801e2f3f5",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262169974-openai-1-2-trillion-funding-anthropic-calls-slowdown-ai-development-tradingkey"
       ],
       "searches": 16
     },
     "assessment": {
       "news_scores": {
         "ai_lab_financing": {
-          "score": 1,
-          "summary": "One weak signal: an FT report that OpenAI's annualized revenue is nearing $50B, not the $70B reported earlier, hit tech stocks on Oct 8. Funding appetite looks intact: OpenAI is in early talks to raise at least $30B, and a $60B chip-financing package for Anthropic is being assembled. No delayed rounds or cancelled compute contracts were found.",
+          "score": 2,
+          "summary": "Neocloud financing stress sharpened this week. Bloomberg reported CoreWeave bonds at levels that typically signal distress. CoreWeave shares fell more than 15% on CPI day. Its 2032 bond yield neared 15%, per an other-tier report citing the FT. CoreWeave is seeking insurer capital and investment-grade ratings on more chip-backed debt, though it says nearly all 2027 capacity is sold. Broadcom arranging $42B of debt for Anthropic shows suppliers are now financing customers. That keeps demand alive but deepens the circular financing risk.",
           "evidence": [
             {
-              "claim": "OpenAI's annualized revenue is nearing $50B, not the $70B reported earlier, per the FT; the report hit tech stocks on Oct 8.",
-              "url": "https://www.cnn.com/2026/10/08/investing/openai-nasdaq-stocks",
-              "tier": "other",
-              "status": "verified",
-              "check": "numbers 3/3, names 2/2"
-            },
-            {
-              "claim": "Bloomberg reported OpenAI is targeting at least $30B at about a $1.4T valuation, in early-stage talks.",
-              "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
-              "tier": "other",
-              "status": "verified",
-              "check": "numbers 2/2, names 2/2"
-            },
-            {
-              "claim": "Broadcom's syndicate is gathering $60B to fund chips for Anthropic.",
-              "url": "https://www.bloomberg.com/news/articles/2026-10-02/broadcom-starts-amassing-60-billion-to-fund-chips-for-anthropic",
+              "claim": "CoreWeave bonds hit levels that typically signal distress, and its chief called the market \"irrational\"",
+              "url": "https://www.bloomberg.com/news/articles/2026-10-13/stock-market-today-dow-s-p-live-updates",
+              "event_date": "2026-10-14",
               "tier": "major",
+              "age_days": 1,
+              "background": false,
               "status": "unreachable",
               "check": "HTTP 403"
+            },
+            {
+              "claim": "The S&P 500 fell 1.11% and the Nasdaq 1.88%; CoreWeave fell more than 15% and Oracle almost 9%",
+              "url": "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+              "event_date": "2026-10-14",
+              "tier": "major",
+              "age_days": 1,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 5/5, names 4/4"
+            },
+            {
+              "claim": "CoreWeave's 2032 bond yield neared 15%, up about 1.5 points in a week",
+              "url": "https://www.gurufocus.com/news/9123389/coreweave-nebius-iren-stocks-fall-as-ai-debt-fears-spread",
+              "event_date": "2026-10-14",
+              "tier": "other",
+              "age_days": 1,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            },
+            {
+              "claim": "CoreWeave is seeking insurer capital and investment-grade ratings on more chip-backed debt; co-founder McBee said nearly all 2027 capacity is sold",
+              "url": "https://www.tipranks.com/news/why-are-nebius-and-coreweave-stocks-falling-in-premarket-today-october-14",
+              "event_date": "2026-10-14",
+              "tier": "other",
+              "age_days": 1,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            },
+            {
+              "claim": "Broadcom is arranging $42B of senior debt for Anthropic and is in talks on up to $50B for OpenAI chip purchases",
+              "url": "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+              "event_date": null,
+              "tier": "other",
+              "age_days": null,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 2/2, names 3/3"
             }
           ],
           "samples": [
-            1,
-            1
+            2,
+            2
           ],
           "spread": 0,
           "unstable": false
         },
         "supplier_signals": {
           "score": 1,
-          "summary": "A sharp memory-chip selloff, driven partly by China's CXMT competing in memory and partly by doubts about AI spending, plus Broadcom CEO Hock Tan's warning about AI investors. Both are sentiment signals, not order cuts. TSMC's September revenue was up 54.6% y/y, Q3 hit a record above guidance, and Taiwan AI-server revenue is still growing strongly.",
+          "summary": "The signals are mixed. Broadcom's and Intel's CEOs warned that capital, not chips, may become the bottleneck. Memory stocks sold off on CXMT competition fears (other-tier source). But ASML said some customers want to place orders for 2029 and 2030, and Hock Tan said demand exceeds supply. No 'pacing' or 'digestion' language was found.",
           "evidence": [
             {
-              "claim": "The Kospi fell 7.4% and SK Hynix fell 8.8% amid China's CXMT competing in memory and doubts about AI spending; Micron fell 3.9%.",
-              "url": "https://www.nbcnews.com/world/asia/south-korea-kospi-index-sinks-semiconductor-share-sell-ai-boom-worries-rcna603143",
-              "tier": "other",
+              "claim": "Broadcom's CEO said capital may be the biggest constraint, and Intel's CEO cited the cost of capital and ROI",
+              "url": "https://www.cnbc.com/2026/10/12/intel-broadcom-ceos-warn-capital-crunch-could-become-ai-bottleneck.html",
+              "event_date": "2026-10-12",
+              "tier": "major",
+              "age_days": 3,
+              "background": false,
               "status": "verified",
-              "check": "numbers 3/3, names 7/7"
+              "check": "numbers 0/0, names 3/3"
             },
             {
-              "claim": "TSMC September revenue was NT$511.86B, down 0.6% m/m and up 54.6% y/y.",
-              "url": "https://pr.tsmc.com/english/news/3343",
-              "tier": "primary",
+              "claim": "ASML said some customers want to place orders for 2029 and 2030",
+              "url": "https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html",
+              "event_date": "2026-10-14",
+              "tier": "major",
+              "age_days": 1,
+              "background": false,
               "status": "verified",
-              "check": "numbers 3/3, names 2/2"
+              "check": "numbers 2/2, names 1/1"
+            },
+            {
+              "claim": "SK Hynix closed down 10%, Samsung fell 7.4% and Micron fell 3.62% after CXMT's architecture claim",
+              "url": "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+              "event_date": "2026-10-13",
+              "tier": "other",
+              "age_days": 2,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 3/3, names 5/5"
             }
           ],
           "samples": [
@@ -519,95 +673,118 @@
         },
         "physical_buildout": {
           "score": 1,
-          "summary": "Power and permitting constraints are tightening: Texas halted data-center permits pending an ERCOT audit, and FERC suspended PJM's backstop procurement plan. These are supply bottlenecks rather than demand cuts. GPU rental prices are firm and CoreWeave announced new capacity.",
+          "summary": "There is one sourced signal: PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, which is 42% of forecast growth. It is a single source and from before this week. Official lease data still show strong commitments.",
           "evidence": [
             {
-              "claim": "Texas Governor Abbott ordered all data-center permits halted until ERCOT completes its waitlist audit.",
-              "url": "https://www.cnbc.com/2026/09/21/texas-governor-abbott-ai-data-center-permits.html",
-              "tier": "major",
-              "status": "verified",
-              "check": "numbers 0/0, names 3/4"
-            },
-            {
-              "claim": "FERC accepted but suspended PJM's backstop procurement plan until Feb 28, 2027.",
-              "url": "https://sustainableinnovationcouncil.org/news/ferc-pjm-data-center-power",
+              "claim": "PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, 42% of forecast growth",
+              "url": "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-",
+              "event_date": "2026-09-21",
               "tier": "other",
-              "status": "verified",
-              "check": "numbers 2/2, names 2/2"
-            },
-            {
-              "claim": "The Silicon Data H100 index was $2.82/hr on Oct 10, versus $2.37 at its May launch.",
-              "url": "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
-              "tier": "other",
-              "status": "verified",
-              "check": "numbers 4/4, names 3/3"
+              "age_days": 24,
+              "background": true,
+              "status": "unreachable",
+              "check": "HTTP 403"
             }
           ],
           "samples": [
             1,
-            2
+            1
           ],
-          "spread": 1,
+          "spread": 0,
           "unstable": false
         }
       },
       "credit_news_adjustment": {
         "delta": 1,
-        "reason": "AI-specific credit stress is building beyond the spread data. Oracle's 5-year CDS closed at a record 261bp on Oct 8. The ~$18B Project Jupiter construction loan is hard to syndicate and quoted at 89-91 cents. US investment-grade AI bond issuance stopped completely in September. This is partly offset by the $60B Anthropic chip financing and Morgan Stanley's view that it is a pause."
+        "reason": "Bloomberg reports CoreWeave bonds at distress-signalling levels. A hotter-than-expected CPI pushed the 10-year yield up 10bp to 5.323%, with Fed-hike odds above 95% (CNBC). SoftBank paid a record 9.75% coupon to fund OpenAI. Together these suggest junk-spread pressure tied to AI borrowers is building beyond what the 4-week spread change shows."
       },
-      "headline": "AI build-out still accelerating, but Oracle credit stress and an OpenAI revenue reset add early cracks.",
-      "digest_markdown": "**What changed this week**\n\nThe hard numbers still say the AI build-out is accelerating:\n\n- Big-tech capital spending rose about 22% quarter-on-quarter in Q2.\n- Signed-but-not-started data-center leases jumped nearly 48%.\n- Taiwan's AI-server suppliers grew September revenue by a median of about 77% year-on-year, and TSMC posted a record quarter.\n\nThe cracks are appearing in **financing**, not in orders:\n\n- **Oracle**, the most debt-reliant AI builder, saw its credit-default swap price hit a record 261bp. Credit-default swaps are a market price for insurance against a company defaulting.\n- Banks are struggling to sell on Oracle's ~$18B Project Jupiter construction loan, quoted at 89-91 cents on the dollar.\n- US investment-grade AI bond issuance dried up entirely in September.\n- Junk-bond spreads widened 0.40 points in four weeks. That is still contained, but it is moving the wrong way.\n\n**Sentiment wobbles**\n\n- An FT report that OpenAI's revenue run-rate is nearer $50B than $70B knocked tech stocks on Oct 8. Even so, OpenAI is still seeking at least $30B at about a $1.4T valuation.\n- Memory stocks sold off hard: SK Hynix fell 8.8% and Korea's Kospi 7.4%, partly on Chinese competition.\n\n**Physical limits**\n\n- Texas froze data-center permits pending a grid audit.\n- Federal regulators put PJM's power backstop plan on hold until February 2027.\n\nThese slow the build-out for power reasons rather than because demand is fading.\n\n**Why it matters**\n\nAI spending increasingly depends on borrowed money. If lenders keep balking, capex plans for 2027 could shrink even while today's orders look strong. Rising 10-year yields (5.22%) and Brent oil above $125 add pressure.\n\n**What to watch**\n\n- Whether AI bond issuance restarts in Q4.\n- Big-tech earnings later this month for capex guidance.\n\n*Not investment advice.*",
+      "headline": "Hot CPI lifts yields and hike odds; CoreWeave bonds near distress as AI financing strain spreads.",
+      "digest_markdown": "**What changed this week**\n\nSeptember inflation came in hotter than expected: CPI rose 3.7% y/y versus 3.6% expected. The 10-year Treasury yield jumped to about 5.32%, and markets now price more than a 95% chance of a Fed hike by year-end.\n\nThe AI trade took the hit:\n\n- The Nasdaq fell 1.88% on CPI day.\n- CoreWeave dropped more than 15% and Oracle almost 9%.\n- Bloomberg reported that CoreWeave's bonds are trading at levels that usually signal distress.\n\n**Why it matters**\n\nThe AI build-out increasingly runs on borrowed money. CoreWeave is chasing insurer capital and chip-backed debt. SoftBank paid a record 9.75% coupon to keep funding OpenAI. Broadcom is arranging debt for Anthropic. Broadcom's and Intel's CEOs both said capital, not chips, could become the bottleneck. Higher rates make that money more expensive.\n\n**The other side**\n\nReal demand still looks strong:\n\n- ASML says some customers want to order for 2029-2030.\n- Taiwan AI-server revenue grew a median 76.7% y/y in September.\n- Hyperscaler capex and signed-but-not-started leases kept climbing in Q2.\n\nWeak spots remain. PJM reports 42% of forecast data-center load growth delayed or canceled, and memory stocks sold off on Chinese competition fears.\n\n**Bottom line**\n\nNo sign yet that the big spenders are pulling back. The stress is in financing for the weaker, more leveraged players, and it is worsening as rates rise.\n\n**Watch next**\n\n- TSMC's Q3 results and guidance.\n- CoreWeave bond yields.\n- Meta (Oct 21) and Microsoft, Alphabet and Amazon earnings (Oct 28-29) for capex guidance.\n\n*Not investment advice.*",
       "follow_ups": [
+        {
+          "item": "Whether US investment-grade AI bond issuance resumes in Q4 as Morgan Stanley expects",
+          "status": "no_news",
+          "note": "No new US investment-grade AI bond deals were found in this week's research.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Syndication progress and pricing of Oracle's Project Jupiter construction loan",
+          "status": "no_news",
+          "note": "No update on the Project Jupiter loan syndication was found.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Further memory-chip weakness (SK Hynix, Micron) tied to CXMT competition or AI-demand doubts",
+          "status": "still_open",
+          "note": "An other-tier report says SK Hynix closed down 10%, Samsung fell 7.4% and Micron fell 3.62% after CXMT's architecture claim; these figures are unconfirmed by a major source.",
+          "url": "https://ua.news/en/money/aktsiyi-micron-sk-hynix-i-samsung-vpali-pislia-zaiavi-kitaiskoyi-cxmt-cnbc",
+          "event_date": "2026-10-13"
+        },
+        {
+          "item": "Rate pressure from the 10-year Treasury at 5.22% and Brent near $125 feeding into junk spreads",
+          "status": "worsened",
+          "note": "After the CPI report the 10-year yield rose 10bp to 5.323%, and Fed-hike odds are now above 95% for at least one hike by year-end.",
+          "url": "https://www.cnbc.com/amp/2026/10/14/us-treasury-yields-cpi-inflation-report.html",
+          "event_date": "2026-10-14"
+        },
         {
           "item": "Meta Q3 earnings Oct 21: does the $130-145B 2026 capex range hold or rise, and what is the first 2027 commentary?",
           "status": "no_news",
-          "note": "Meta has not yet reported; its last capex guidance was $130–145B, narrowed on July 29.",
-          "url": "https://finance.yahoo.com/quote/META/earnings/META-Q2-2026-earnings_call-657318.html"
+          "note": "Meta has not yet reported; earnings are due Oct 21.",
+          "url": "",
+          "event_date": null
         },
         {
           "item": "Microsoft and Alphabet earnings Oct 28 and Amazon Oct 29: capex guidance, free cash flow and any 'pacing'/'digestion' language",
           "status": "no_news",
-          "note": "Microsoft, Alphabet and Amazon have not yet reported and no relevant news was found.",
-          "url": ""
+          "note": "These companies have not yet reported.",
+          "url": "",
+          "event_date": null
         },
         {
           "item": "Oracle 5-year CDS and bond prices; any pulled or downsized hyperscaler or data-center debt deals",
-          "status": "worsened",
-          "note": "Oracle's 5-year CDS closed at a record 261bp on Oct 8, though no hyperscaler deal was confirmed pulled.",
-          "url": "https://tradingkey.com/analysis/stocks/us-stocks/262209649-oracle-stock-forecast-ai-data-center-delays-debt-pressure-orcl-tradingkey"
+          "status": "still_open",
+          "note": "Oracle shares fell almost 9% on CPI day, while the Oracle CDS levels in the notes (roughly 126-203bp) come only from other-tier sources and are unconfirmed.",
+          "url": "https://www.cnbc.com/2026/10/13/stock-market-today-live-updates-.html",
+          "event_date": "2026-10-14"
         },
         {
           "item": "Taiwan October monthly revenue (around Nov 10), the first month of the deceleration check",
           "status": "no_news",
-          "note": "October figures are not yet out; TSMC's September revenue of NT$511.86B was down 0.6% m/m and up 54.6% y/y.",
-          "url": "https://pr.tsmc.com/english/news/3343"
+          "note": "October Taiwan revenue is not yet published.",
+          "url": "",
+          "event_date": null
         },
         {
           "item": "PJM cancellation updates and how long the Texas approval pause lasts",
           "status": "still_open",
-          "note": "TCEQ must update the governor by Oct 19, which is not a restart date, and ERCOT's report is expected by Dec 10.",
-          "url": "https://encinoenviron.com/texas-data-center-permit-pause/"
+          "note": "PJM's market monitor says 4,016.9 MW of data-center load was canceled or delayed as of Sept. 21, 42% of forecast growth; no Texas update was found.",
+          "url": "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-",
+          "event_date": "2026-09-21"
         },
         {
           "item": "OpenAI funding round terms (size, valuation) and any compute contract revisions",
           "status": "still_open",
-          "note": "Bloomberg reported OpenAI is targeting at least $30B at about a $1.4T valuation, in early-stage talks.",
-          "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html"
+          "note": "Broadcom is reported to be in talks on up to $50B for OpenAI chip purchases, but no round terms were found.",
+          "url": "https://fool.com/investing/2026/10/13/broadcom-is-backing-anthropic-and-openai-with-92-b",
+          "event_date": null
         }
       ],
       "watch_next": [
-        "Whether US investment-grade AI bond issuance resumes in Q4 as Morgan Stanley expects",
-        "Syndication progress and pricing of Oracle's Project Jupiter construction loan",
-        "Further memory-chip weakness (SK Hynix, Micron) tied to CXMT competition or AI-demand doubts",
-        "Rate pressure from the 10-year Treasury at 5.22% and Brent near $125 feeding into junk spreads"
+        "TSMC Q3 results and Q4/2027 guidance (due Oct 15)",
+        "CoreWeave bond yields and progress on insurer-backed or investment-grade chip-backed debt",
+        "Terms of Broadcom's $42B Anthropic debt package and any OpenAI financing",
+        "Fed hike pricing ahead of the next FOMC and its effect on junk spreads"
       ],
       "samples": {
         "n": 2,
         "used": 0,
         "scores": {
           "ai_lab_financing": [
-            1,
-            1
+            2,
+            2
           ],
           "supplier_signals": [
             1,
@@ -615,13 +792,13 @@
           ],
           "physical_buildout": [
             1,
-            2
+            1
           ]
         },
         "spread": {
           "ai_lab_financing": 0,
           "supplier_signals": 0,
-          "physical_buildout": 1
+          "physical_buildout": 0
         },
         "credit_deltas": [
           1,
@@ -636,8 +813,8 @@
       "research": {
         "model": "claude-sonnet-5-5",
         "requests": 1,
-        "input_tokens": 325306,
-        "output_tokens": 5556,
+        "input_tokens": 322928,
+        "output_tokens": 5423,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 16,
@@ -646,40 +823,25 @@
           "output": 10.0,
           "verify": false
         },
-        "cost_usd": 0.8662
+        "cost_usd": 0.8601
       },
       "assessment": {
         "model": "claude-opus-5-5",
         "requests": 2,
         "input_tokens": 8,
-        "output_tokens": 8258,
-        "cache_write_tokens": 11515,
-        "cache_read_tokens": 11515,
+        "output_tokens": 11728,
+        "cache_write_tokens": 12327,
+        "cache_read_tokens": 12327,
         "web_searches": 0,
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.2274
-      },
-      "leases": {
-        "model": "claude-opus-5-5",
-        "requests": 4,
-        "input_tokens": 4080,
-        "output_tokens": 886,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.034
+        "cost_usd": 0.3012
       }
     },
-    "total_usd": 1.1276,
+    "total_usd": 1.1613,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
@@ -688,17 +850,17 @@
       "ai_lab_financing": {
         "verified": 2,
         "unverified": 0,
-        "unreachable": 1
+        "unreachable": 3
       },
       "supplier_signals": {
-        "verified": 2,
+        "verified": 3,
         "unverified": 0,
         "unreachable": 0
       },
       "physical_buildout": {
-        "verified": 3,
+        "verified": 0,
         "unverified": 0,
-        "unreachable": 0
+        "unreachable": 1
       }
     },
     "capped": []
@@ -828,27 +990,27 @@
     "fred": {
       "CPIAUCSL": {
         "label": "CPI (headline index)",
-        "latest": 334.131,
-        "latest_date": "2026-08-01",
-        "chg_4w": 1.318,
-        "prev_4w": 332.813,
-        "chg_13w": 0.152,
-        "prev_13w": 333.979,
-        "chg_52w": 10.84,
-        "prev_52w": 323.291,
-        "yoy_pct": 3.35
+        "latest": 336.298,
+        "latest_date": "2026-09-01",
+        "chg_4w": 2.167,
+        "prev_4w": 334.131,
+        "chg_13w": 3.73,
+        "prev_13w": 332.568,
+        "chg_52w": 12.053,
+        "prev_52w": 324.245,
+        "yoy_pct": 3.72
       },
       "CPILFESL": {
         "label": "Core CPI index",
-        "latest": 337.765,
-        "latest_date": "2026-08-01",
-        "chg_4w": 0.976,
-        "prev_4w": 336.789,
-        "chg_13w": 1.644,
-        "prev_13w": 336.121,
-        "chg_52w": 8.065,
-        "prev_52w": 329.7,
-        "yoy_pct": 2.45
+        "latest": 338.896,
+        "latest_date": "2026-09-01",
+        "chg_4w": 1.131,
+        "prev_4w": 337.765,
+        "chg_13w": 2.831,
+        "prev_13w": 336.065,
+        "chg_52w": 8.478,
+        "prev_52w": 330.418,
+        "yoy_pct": 2.57
       },
       "PCEPILFE": {
         "label": "Core PCE index",
@@ -865,46 +1027,46 @@
       "DFF": {
         "label": "Fed funds effective rate (%)",
         "latest": 3.88,
-        "latest_date": "2026-10-08",
+        "latest_date": "2026-10-13",
         "chg_4w": 0.25,
         "prev_4w": 3.63,
-        "chg_13w": 0.26,
-        "prev_13w": 3.62,
+        "chg_13w": 0.25,
+        "prev_13w": 3.63,
         "chg_52w": -0.22,
         "prev_52w": 4.1
       },
       "DGS2": {
         "label": "2-yr Treasury yield (%)",
-        "latest": 4.75,
-        "latest_date": "2026-10-08",
-        "chg_4w": 0.19,
-        "prev_4w": 4.56,
-        "chg_13w": 0.59,
-        "prev_13w": 4.16,
-        "chg_52w": 1.17,
-        "prev_52w": 3.58
+        "latest": 4.79,
+        "latest_date": "2026-10-13",
+        "chg_4w": 0.12,
+        "prev_4w": 4.67,
+        "chg_13w": 0.61,
+        "prev_13w": 4.18,
+        "chg_52w": 1.27,
+        "prev_52w": 3.52
       },
       "DGS10": {
         "label": "10-yr Treasury yield (%)",
-        "latest": 5.22,
-        "latest_date": "2026-10-08",
-        "chg_4w": 0.27,
-        "prev_4w": 4.95,
-        "chg_13w": 0.68,
-        "prev_13w": 4.54,
-        "chg_52w": 1.09,
-        "prev_52w": 4.13
+        "latest": 5.21,
+        "latest_date": "2026-10-13",
+        "chg_4w": 0.21,
+        "prev_4w": 5.0,
+        "chg_13w": 0.63,
+        "prev_13w": 4.58,
+        "chg_52w": 1.16,
+        "prev_52w": 4.05
       },
       "T10Y2Y": {
         "label": "10y minus 2y spread (%)",
-        "latest": 0.44,
-        "latest_date": "2026-10-09",
-        "chg_4w": 0.11,
-        "prev_4w": 0.33,
-        "chg_13w": 0.09,
-        "prev_13w": 0.35,
-        "chg_52w": -0.1,
-        "prev_52w": 0.54
+        "latest": 0.37,
+        "latest_date": "2026-10-14",
+        "chg_4w": 0.1,
+        "prev_4w": 0.27,
+        "chg_13w": -0.05,
+        "prev_13w": 0.42,
+        "chg_52w": -0.18,
+        "prev_52w": 0.55
       },
       "DCOILBRENTEU": {
         "label": "Brent crude ($/bbl)",
@@ -919,69 +1081,69 @@
       },
       "VIXCLS": {
         "label": "VIX",
-        "latest": 15.21,
-        "latest_date": "2026-10-12",
-        "chg_4w": -1.89,
-        "prev_4w": 17.1,
-        "chg_13w": -1.95,
-        "prev_13w": 17.16,
-        "chg_52w": -6.45,
-        "prev_52w": 21.66
+        "latest": 15.27,
+        "latest_date": "2026-10-13",
+        "chg_4w": -1.93,
+        "prev_4w": 17.2,
+        "chg_13w": -1.23,
+        "prev_13w": 16.5,
+        "chg_52w": -3.76,
+        "prev_52w": 19.03
       },
       "BAMLH0A0HYM2": {
         "label": "High-yield credit spread (%)",
-        "latest": 3.11,
-        "latest_date": "2026-10-12",
+        "latest": 3.16,
+        "latest_date": "2026-10-13",
         "chg_4w": 0.4,
-        "prev_4w": 2.71,
-        "chg_13w": 0.42,
-        "prev_13w": 2.69,
-        "chg_52w": -0.07,
+        "prev_4w": 2.76,
+        "chg_13w": 0.44,
+        "prev_13w": 2.72,
+        "chg_52w": -0.02,
         "prev_52w": 3.18
       },
       "BAMLC0A0CM": {
         "label": "Investment-grade credit spread (%)",
         "latest": 0.83,
-        "latest_date": "2026-10-12",
+        "latest_date": "2026-10-13",
         "chg_4w": 0.03,
         "prev_4w": 0.8,
-        "chg_13w": 0.05,
-        "prev_13w": 0.78,
+        "chg_13w": 0.04,
+        "prev_13w": 0.79,
         "chg_52w": 0.02,
         "prev_52w": 0.81
       },
       "BAA10Y": {
         "label": "Baa corporate minus 10-yr Treasury spread (%)",
-        "latest": 1.48,
-        "latest_date": "2026-10-08",
-        "chg_4w": -0.03,
-        "prev_4w": 1.51,
-        "chg_13w": -0.08,
-        "prev_13w": 1.56,
-        "chg_52w": -0.2,
-        "prev_52w": 1.68
+        "latest": 1.46,
+        "latest_date": "2026-10-13",
+        "chg_4w": -0.02,
+        "prev_4w": 1.48,
+        "chg_13w": -0.14,
+        "prev_13w": 1.6,
+        "chg_52w": -0.26,
+        "prev_52w": 1.72
       },
       "SP500": {
         "label": "S&P 500 index",
-        "latest": 7807.24,
-        "latest_date": "2026-10-12",
-        "chg_4w": 187.26,
-        "prev_4w": 7619.98,
-        "chg_13w": 291.9,
-        "prev_13w": 7515.34,
-        "chg_52w": 1254.73,
-        "prev_52w": 6552.51
+        "latest": 7718.94,
+        "latest_date": "2026-10-14",
+        "chg_4w": 167.13,
+        "prev_4w": 7551.81,
+        "chg_13w": 146.54,
+        "prev_13w": 7572.4,
+        "chg_52w": 1074.63,
+        "prev_52w": 6644.31
       },
       "NASDAQ100": {
         "label": "Nasdaq-100 index",
-        "latest": 30664.7,
-        "latest_date": "2026-10-12",
-        "chg_4w": 1537.54,
-        "prev_4w": 29127.16,
-        "chg_13w": 1400.6,
-        "prev_13w": 29264.1,
-        "chg_52w": 6442.95,
-        "prev_52w": 24221.75
+        "latest": 30569.48,
+        "latest_date": "2026-10-13",
+        "chg_4w": 1631.64,
+        "prev_4w": 28937.84,
+        "chg_13w": 983.19,
+        "prev_13w": 29586.29,
+        "chg_52w": 5819.23,
+        "prev_52w": 24750.25
       }
     },
     "edgar": {
@@ -2346,7 +2508,7 @@
           "mom_pct": 25.697108169499106,
           "yoy_pct": 38.41573533086287,
           "ytd_yoy_pct": 39.52740587343551,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2358,7 +2520,7 @@
           "mom_pct": -0.5726315925897248,
           "yoy_pct": 54.64861207105231,
           "ytd_yoy_pct": 41.106694993093484,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2370,7 +2532,7 @@
           "mom_pct": -1.1595788670776797,
           "yoy_pct": 66.12554142816796,
           "ytd_yoy_pct": 62.44981435880206,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2382,7 +2544,7 @@
           "mom_pct": 33.118593152595075,
           "yoy_pct": 125.4495058048851,
           "ytd_yoy_pct": 63.1715973040828,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2394,7 +2556,7 @@
           "mom_pct": -23.27315755694308,
           "yoy_pct": 76.68901002964485,
           "ytd_yoy_pct": 99.41108069855139,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2406,7 +2568,7 @@
           "mom_pct": -17.227757848676287,
           "yoy_pct": 87.1863428539576,
           "ytd_yoy_pct": 97.24836000846553,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         },
         {
           "period": "2026-09",
@@ -2418,7 +2580,7 @@
           "mom_pct": 19.616235422675878,
           "yoy_pct": 99.98511294484359,
           "ytd_yoy_pct": 50.29530615079897,
-          "fetched": "2026-10-13"
+          "fetched": "2026-10-15"
         }
       ],
       "median_yoy_by_period": {
@@ -2429,5 +2591,5 @@
   },
   "errors": {},
   "email_reason": null,
-  "email": "sent to 1 recipient(s)"
+  "email": "skipped (event run: no level change and no category moved 2+ points)"
 }
