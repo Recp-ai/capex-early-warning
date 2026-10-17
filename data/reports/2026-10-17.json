@@ -1,0 +1,2512 @@
+{
+  "date": "2026-10-17",
+  "run_id": "2026-10-17T05:35:55Z",
+  "generated_at": "2026-10-17T05:38:48+00:00",
+  "trigger": "schedule",
+  "events": [],
+  "categories": [
+    [
+      "credit",
+      "Credit markets"
+    ],
+    [
+      "ai_lab_financing",
+      "AI-lab financing"
+    ],
+    [
+      "taiwan_supply_chain",
+      "Taiwan supply chain"
+    ],
+    [
+      "hyperscaler_filings",
+      "Hyperscaler filings"
+    ],
+    [
+      "supplier_signals",
+      "Supplier signals"
+    ],
+    [
+      "physical_buildout",
+      "Physical build-out"
+    ]
+  ],
+  "scores": {
+    "credit": {
+      "score": 3,
+      "reasons": [
+        "High-yield spread 3.23% (+0.53 pts over 4 weeks)",
+        "Investment-grade spread 0.84% (+0.06 pts over 4 weeks)",
+        "News adjustment +1: CNBC (major tier) confirms AI-specific credit distress: CoreWeave CDS near 1,038 bp after peaking above 1,140 bp, and its 9.75% 2031 bond yielding 15.78%. This lines up with the 0.53-point widening in junk spreads over four weeks."
+      ],
+      "data_ok": true
+    },
+    "taiwan_supply_chain": {
+      "score": 0,
+      "reasons": [
+        "Median YoY revenue growth for 2026-09: +76.7% across the AI-server group",
+        "Deceleration check needs 3 months of history (builds up automatically)"
+      ],
+      "data_ok": true
+    },
+    "hyperscaler_filings": {
+      "score": 0,
+      "reasons": [
+        "Aggregate capex 2026Q2: +22.4% QoQ (5 companies)",
+        "Alphabet free cash flow negative ($-5.9B, quarter ending 2026-06-30)",
+        "Amazon free cash flow negative ($-8.8B, quarter ending 2026-06-30)",
+        "Oracle free cash flow negative ($-5.4B, quarter ending 2026-08-31)",
+        "New lease assets (data-center leases starting) 2026Q2: +26.6% QoQ",
+        "Leases signed but not yet commenced 2026Q2: +47.9% QoQ (4 companies)"
+      ],
+      "data_ok": true
+    },
+    "ai_lab_financing": {
+      "score": 2,
+      "reasons": [
+        "Financing stress is concentrated in the neoclouds that rent GPUs to AI labs. CNBC reports CoreWeave's credit default swaps at distress levels, and Bloomberg reports that Nscale's flagship Norway data center is running six months late ahead of its IPO plans. On the other side, OpenAI is reportedly seeking at least $30B at about a $1.4T valuation, although that report reaches us only through an aggregator."
+      ],
+      "evidence": [
+        {
+          "claim": "CoreWeave 5-year credit default swaps peaked above 1,140 basis points and last stood near 1,038 bp as investors sour on AI debt.",
+          "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+          "event_date": "2026-10-15",
+          "tier": "major",
+          "age_days": 2,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 3/3, names 2/2"
+        },
+        {
+          "claim": "Nscale's flagship Norway data center is six months behind schedule, muddying its IPO plans.",
+          "url": "https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays",
+          "event_date": null,
+          "tier": "major",
+          "age_days": null,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
+        },
+        {
+          "claim": "CoreWeave fell as much as 16%, and a Gartner forecast that over 80% of independent neoclouds will lose stand-alone status by 2030 added to the sell-off.",
+          "url": "https://finance.biggo.com/news/4d10090a-6224-4104-a545-abfc12f63942",
+          "event_date": "2026-10-14",
+          "tier": "other",
+          "age_days": 3,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 3/3, names 2/2"
+        },
+        {
+          "claim": "OpenAI is targeting at least $30 billion in funding at about a $1.4 trillion valuation.",
+          "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+          "event_date": null,
+          "tier": "other",
+          "age_days": null,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 2/2, names 1/1"
+        }
+      ],
+      "data_ok": true,
+      "samples": [
+        2,
+        2
+      ],
+      "spread": 0,
+      "unstable": false
+    },
+    "supplier_signals": {
+      "score": 0,
+      "reasons": [
+        "There is no sourced sign of a supplier pullback. September revenue across Taiwan's AI-server makers rose a median 76.7% year on year. TSMC's caution about consumer segments going into 2027 appears in the notes without a source link, so it is not scored."
+      ],
+      "evidence": [],
+      "data_ok": true,
+      "samples": [
+        0,
+        0
+      ],
+      "spread": 0,
+      "unstable": false
+    },
+    "physical_buildout": {
+      "score": 1,
+      "reasons": [
+        "There is one isolated, well-sourced delay: Bloomberg reports that Nscale's Norway site is six months behind schedule. No cancellations were reported, and hyperscaler leases signed but not yet started kept climbing in Q2."
+      ],
+      "evidence": [
+        {
+          "claim": "Nscale's flagship Norway data center is six months behind schedule.",
+          "url": "https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays",
+          "event_date": null,
+          "tier": "major",
+          "age_days": null,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
+        }
+      ],
+      "data_ok": true,
+      "samples": [
+        1,
+        1
+      ],
+      "spread": 0,
+      "unstable": false
+    }
+  },
+  "composite": {
+    "total": 6.0,
+    "max": 18.0,
+    "level": "AMBER",
+    "alert": true,
+    "hot_categories": [
+      "credit"
+    ],
+    "raw_level": "AMBER",
+    "confirmation": {
+      "met": true,
+      "categories": [
+        "credit",
+        "ai_lab_financing"
+      ],
+      "runs": 2,
+      "min_score": 2,
+      "min_categories": 2
+    },
+    "red_confirmed": false,
+    "jumps": {},
+    "previous_run": {
+      "timestamp": "2026-10-16T01:35:45Z",
+      "level": "AMBER"
+    }
+  },
+  "credit_stage": {
+    "changes_4w": {
+      "hy": 0.53,
+      "ig": 0.06,
+      "baa": 0.0
+    },
+    "widening": [
+      "hy"
+    ],
+    "narrowing": [],
+    "missing": [],
+    "stage": "junk_only",
+    "label": "Junk only: contained",
+    "ten_year": {
+      "direction": "rising",
+      "chg_4w": 0.16,
+      "label": "10y rising (rate pressure)"
+    },
+    "line": "Junk only: contained · 10y rising (rate pressure)"
+  },
+  "follow_ups": [
+    {
+      "item": "Whether the KOSPI and Asian memory stocks stabilize after the circuit-breaker sell-off",
+      "runs": 1,
+      "listed": "2026-10-16T01:35:45Z",
+      "status": "no_news",
+      "note": "No news found this week on the KOSPI or Asian memory stocks.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Any major-outlet confirmation of CoreWeave and Oracle CDS levels",
+      "runs": 1,
+      "listed": "2026-10-16T01:35:45Z",
+      "status": "worsened",
+      "note": "CNBC reports CoreWeave 5-year CDS peaked above 1,140 bp and last stood near 1,038 bp; Oracle's record 288 bp still comes only from a secondary source and is unconfirmed.",
+      "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+      "event_date": "2026-10-15",
+      "source": {
+        "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+        "claim": "CNBC reports CoreWeave 5-year CDS peaked above 1,140 bp and last stood near 1,038 bp; Oracle's record 288 bp still comes only from a secondary source and is unconfirmed.",
+        "tier": "major",
+        "status": "unverified",
+        "check": "numbers 3/4, names 4/4 · missing: 288"
+      },
+      "age_days": 2,
+      "background": false
+    },
+    {
+      "item": "Progress of Anthropic's IPO and its $518B of infrastructure commitments",
+      "runs": 1,
+      "listed": "2026-10-16T01:35:45Z",
+      "status": "no_news",
+      "note": "No news found this week on Anthropic's IPO or its infrastructure commitments.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "TSMC's 2027 planning caution spreading to consumer-facing chip suppliers",
+      "runs": 1,
+      "listed": "2026-10-16T01:35:45Z",
+      "status": "no_news",
+      "note": "No sourced reports this week of other suppliers echoing TSMC's caution.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "CoreWeave bond yields and progress on insurer-backed or investment-grade chip-backed debt",
+      "runs": 2,
+      "listed": "2026-10-15T01:43:15Z",
+      "status": "worsened",
+      "note": "CNBC reports CoreWeave's 9.75% 2031 bond yielded 15.78%, with no news on insurer-backed or investment-grade chip-backed debt.",
+      "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+      "event_date": "2026-10-15",
+      "source": {
+        "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+        "claim": "CNBC reports CoreWeave's 9.75% 2031 bond yielded 15.78%, with no news on insurer-backed or investment-grade chip-backed debt.",
+        "tier": "major",
+        "status": "verified",
+        "check": "numbers 3/3, names 2/2"
+      },
+      "age_days": 2,
+      "background": false
+    },
+    {
+      "item": "Terms of Broadcom's $42B Anthropic debt package and any OpenAI financing",
+      "runs": 2,
+      "listed": "2026-10-15T01:43:15Z",
+      "status": "still_open",
+      "note": "OpenAI is reportedly targeting at least $30 billion at about a $1.4 trillion valuation in early-stage talks, a report not yet confirmed by a primary or major source; no news on Broadcom's terms.",
+      "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+      "event_date": null,
+      "source": {
+        "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+        "claim": "OpenAI is reportedly targeting at least $30 billion at about a $1.4 trillion valuation in early-stage talks, a report not yet confirmed by a primary or major source; no news on Broadcom's terms.",
+        "tier": "other",
+        "status": "verified",
+        "check": "numbers 2/2, names 1/2"
+      },
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Fed hike pricing ahead of the next FOMC and its effect on junk spreads",
+      "runs": 2,
+      "listed": "2026-10-15T01:43:15Z",
+      "status": "no_news",
+      "note": "No news found this week on Fed hike pricing.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Whether US investment-grade AI bond issuance resumes in Q4 as Morgan Stanley expects",
+      "runs": 3,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "still_open",
+      "note": "The only source is a secondary account of Morgan Stanley's view that September's AI debt was a pause, not a retreat; no confirmed Q4 investment-grade AI deals.",
+      "url": "https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply",
+      "event_date": null,
+      "source": {
+        "url": "https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply",
+        "claim": "The only source is a secondary account of Morgan Stanley's view that September's AI debt was a pause, not a retreat; no confirmed Q4 investment-grade AI deals.",
+        "tier": "other",
+        "status": "unreachable",
+        "check": "HTTP 403"
+      },
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Syndication progress and pricing of Oracle's Project Jupiter construction loan",
+      "runs": 3,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "no_news",
+      "note": "No news found this week on the Project Jupiter loan.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Further memory-chip weakness (SK Hynix, Micron) tied to CXMT competition or AI-demand doubts",
+      "runs": 3,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "no_news",
+      "note": "No news found this week on SK Hynix, Micron or CXMT.",
+      "url": "",
+      "event_date": null,
+      "source": null,
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Rate pressure from the 10-year Treasury at 5.22% and Brent near $125 feeding into junk spreads",
+      "runs": 3,
+      "listed": "2026-10-13T20:12:21Z",
+      "status": "still_open",
+      "note": "Official data show the 10-year yield at 5.10% and the high-yield spread at 3.23%, up 0.53 points over four weeks, with Brent at $126.55.",
+      "url": "",
+      "event_date": "2026-10-15",
+      "source": null,
+      "age_days": 2,
+      "background": false
+    }
+  ],
+  "claude": {
+    "enabled": true,
+    "models": {
+      "research": "claude-sonnet-5-5",
+      "assessment": "claude-opus-5-5"
+    },
+    "model_sources": {
+      "research": "config",
+      "assessment": "config"
+    },
+    "research": {
+      "notes": "**1. AI-lab financing**\n- \nOpenAI is reportedly targeting at least $30B at about a $1.4T valuation (Bloomberg, early-stage talks)\n — 2026-09-29 — https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html\n- \nAltman said OpenAI is stepping back from a public offering this year.\n — 2026-09-29 — same URL\n- \nCoreWeave fell as much as 16% on Oct 14. A Gartner forecast that over 80% of independent neoclouds will lose stand-alone status by 2030 added to the sell-off.\n — 2026-10-14 — https://finance.biggo.com/news/4d10090a-6224-4104-a545-abfc12f63942\n- \nNscale's flagship Norway data center is six months behind schedule, ahead of its IPO plans.\n — 2026-10-15 — https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays\n- Nothing found on xAI, Mistral, Lambda or Crusoe rounds.\n\n**2. Credit**\n- \nCoreWeave 5-year CDS peaked above 1,140 bp and last stood near 1,038 bp.\n — 2026-10-15 — https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html\n- \nA separate account citing Bloomberg has CoreWeave CDS at 368 bp on Oct 6 and 643 bp by that Friday.\n — 2026-10-09 — https://startupfortune.com/coreweave-bond-yields-near-15-percent-as-stock-sinks-on-ai-debt-fears/\n- \nCoreWeave's 9.75% 2031 bond yielded 15.78%.\n — 2026-10-15 — CNBC URL above\n- \nOracle 5-year CDS closed at a record 288 bp, up from 260 bp a week earlier.\n \nSoftBank CDS was 424 bp.\n — 2026-10-15 — https://www.securitasglobal.com/risk-perspectives/oracle-cds-record-288-basis-points-ai-debt/ (secondary source)\n- \nMorgan Stanley: no AI-related US IG deal in September.\n \nIt calls the ~$23B of AI debt that month \"a pause, not a retreat\".\n — 2026-09-30 — https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply (secondary)\n- \nRBC's Skiba says high-yield data-center and chip deals are \"pretty much impossible\" now.\n — 2026-10-16 — https://cnttrading.substack.com/p/daily-market-2026-10-16 (secondary)\n\n**3. Suppliers**\n- \nTSMC: consumer and price-sensitive segments are challenged by rising component prices and macro uncertainty, so it is \"prudent\" going into 2027.",
+      "urls": [
+        "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+        "https://www.cnbc.com/2026/05/28/anthropic-open-ai-startup-value.html",
+        "https://thehill.com/policy/technology/5900111-anthropic-valuation-openai-race/",
+        "https://augment.market/pulse/anthropics-reported-965b-tops-openai",
+        "https://www.forbes.com/sites/siladityaray/2026/09/16/openai-is-reportedly-weighing-new-funding-round-at-15-trillion-valuation/",
+        "https://techcrunch.com/?p=3092578",
+        "https://finance.yahoo.com/news/anthropic-raises-another-30b-series-201837143.html",
+        "https://finance.yahoo.com/news/anthropic-talks-raise-funding-60-185938318.html",
+        "https://news.crunchbase.com/ai/anthropic-funding-lightspeed-xai-openai",
+        "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/10/62399089/coreweave-bonds-15-yield-bank-of-america-140-price-target",
+        "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+        "https://startupfortune.com/coreweave-bond-yields-near-15-percent-as-stock-sinks-on-ai-debt-fears/",
+        "https://finance.biggo.com/news/4d10090a-6224-4104-a545-abfc12f63942",
+        "https://valueaddvc.com/pulse/coreweave-debt-crisis-bond-yields-15-percent-2026",
+        "https://www.forbes.com/sites/jimosman/2026/10/14/coreweave-bonds-are-warning-of-a-bigger-problem-for-ai-stocks/",
+        "https://www.forbes.com/sites/jimosman/2026/10/15/coreweave-debt-says-the-market-may-not-be-irrational/",
+        "https://www.techi.com/coreweave-shares-ai-debt-buildout/",
+        "https://www.tipranks.com/news/the-fly/coreweave-in-talks-for-1-5b-debt-raise-bloomberg-reports",
+        "https://x.com/KobeissiLetter/status/2038023871690100765",
+        "https://x.com/KobeissiLetter/status/2080638100204568914?lang=en",
+        "https://x.com/GlobalMktObserv/status/2082110078031634558",
+        "https://www.gurufocus.com/news/9124975/credit-default-swaps-surge-for-us-tech-firms-amid-ai-sector-strain-oracle-orcl-spreads-hit-record-high",
+        "https://www.investing.com/analysis/oracle-and-coreweave-credit-default-swap-spreads-widening-omen-or-jitters-200670506",
+        "https://www.kucoin.com/news/flash/oracle-s-5-year-cds-hits-record-high-sparking-investor-concern",
+        "https://www.tipranks.com/news/oracles-credit-default-swap-prices-near-record-high-levels",
+        "https://finance.yahoo.com/markets/stocks/articles/oracle-stock-drops-2-3-185300368.html",
+        "https://www.securitasglobal.com/risk-perspectives/oracle-cds-record-288-basis-points-ai-debt/",
+        "https://finance.yahoo.com/news/oracle-credit-default-swaps-surge-133318853.html",
+        "https://fourweekmba.com/ai-oracle-project-jupiter-debt-syndication-site-tied-financing/",
+        "https://thedarksideoftheboom.substack.com/p/oracles-project-jupiter-loans-fall",
+        "https://www.roic.ai/news/oracle-invokes-force-majeure-on-project-jupiter-as-ai-data-center-financing-stumbles-09-24-2026",
+        "https://cryptobriefing.com/oracle-project-jupiter-data-center-mothballed/",
+        "https://finance.biggo.com/news/aa2b00f9-d885-40e0-92db-6fd9f55ffe63",
+        "https://www.useluminix.com/reports/company-overviews/oracle-ai-debt-openai-contract",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262176714-oracle-stock-forecast-18b-data-center-loan-trades-tradingkey",
+        "https://constructionreviewonline.com/how-is-oracles-165b-project-jupiter-on-track-or-derailed/",
+        "https://www.mexc.com/it-IT/news/76058",
+        "https://finance.yahoo.com/markets/stocks/articles/samsung-sk-hynix-shares-drop-053408695.html",
+        "https://www.tradingview.com/symbols/KRX-000660/",
+        "https://www.koreatimes.co.kr/economy/20261016/samsung-sk-hynix-sell-off-excessive-as-memory-outlook-stays-strong-analysts",
+        "https://finance.biggo.com/news/a6f66293-ab06-430b-85e7-b24810425ea6",
+        "https://pomegra.io/news/sk-hynix-samsung-tumble-in-ai-stocks-rout-kospi-reels",
+        "https://www.tradingkey.com/analysis/stocks/more/262219917-japan-south-korea-stocks-kospi-nikkei-softbank-sk-hynix-samsung-kioxia-tradingkey",
+        "https://www.tradingkey.com/analysis/stocks/more/262220492-japan-south-korea-stocks-kospi-nikkei-softbank-sk-hynix-samsung-kioxia-tradingkey",
+        "https://tradingeconomics.com/south-korea/stock-market/news/525182",
+        "https://simplywall.st/news/kr/electric-utilities/page/1",
+        "https://www.itiger.com/news/2567510875",
+        "https://www.arise.tv/tsmc-signals-caution-over-2027-outlook-despite-record-ai-driven-profits/",
+        "https://www.theglobeandmail.com/investing/article-tsmc-results-outlook-for-2027/",
+        "https://www.businessday.co.za/world/international-companies/2026-10-15-tsmc-sees-record-profit-but-warns-of-2027-caution/",
+        "https://www.ksl.com/article/51636529/tsmc-expected-to-report-sixth-straight-quarter-of-record-profit-thanks-to-ai-boom",
+        "https://www.trendforce.com/news/2026/07/17/news-tsmc-after-earnings-call-foreign-brokerages-see-euv-driven-capex-surge-and-2027-price-hikes/",
+        "https://finance.yahoo.com/technology/articles/tsmc-rises-2027-capex-forecast-192841498.html",
+        "https://www.centraloregondaily.com/news/consumer/tsmc-forecasts-increase-in-q4-revenue-after-posting-sixth-straight-quarter-of-record-profit/article_0c40933f-61a1-588f-bddd-d32c0ca5a9d9.html",
+        "https://www.gurutrade.com/news/tsmc-prudent-for-2027-after-6th-record-profit-quarter-1792059040.html",
+        "https://finance.biggo.com/news/1756ff87-eb33-4265-99f8-ee0c732eaf3c",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262218385-tsmc-stock-forecast-q3-earnings-2nm-ai-october-2026-tradingkey",
+        "https://www.butlereagle.com/20261016/forward-township-planning-commission-meeting-on-proposed-data-center-delayed/",
+        "https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays",
+        "https://qz.com/data-center-projects-canceled-local-opposition-260-billion-101526",
+        "https://tech-insider.org/us-ai-data-center-delays-cancellations-7gw-capacity-crisis-2026/",
+        "https://programs.com/resources/data-center-project-tracker/",
+        "https://suedatacenters.org/data-centers/cancelled",
+        "https://www.forbes.com/sites/daraabasiita/2026/10/12/pjm-market-monitor-says-42-of-forecast-data-center-growth-is-delayed-or-canceled/",
+        "https://www.techradar.com/pro/if-one-piece-of-your-supply-chain-is-delayed-then-your-whole-project-cant-deliver-nearly-half-of-us-data-centers-planned-for-2026-canceled-or-delayed-and-things-could-soon-get-much-worse",
+        "https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/012926-data-center-opposition-gains-momentum-as-power-demand-spikes",
+        "https://defirate.com/odds/fed-decision/",
+        "https://www.cnbc.com/2026/10/07/treasury-yields-auction-fomc-minutes.html",
+        "https://fxstreet.com/analysis/eur-usd-weekly-forecast-us-dollar-future-in-the-hands-of-kevin-warsh-202610161526",
+        "https://cnttrading.substack.com/p/daily-market-2026-10-16",
+        "https://fxstreet.com/news/gold-stumbles-as-us-yields-eclipse-fading-october-fed-hike-bets-202610161921",
+        "https://finance.biggo.com/news/961d81c5-9e02-4e1e-87be-290a606e3164",
+        "https://au.investing.com/news/commodities-news/gold-steadies-near-4160-as-stock-selloff-drives-bond-rally-treasury-yields-fall-4693996",
+        "https://predictionmarketspicks.com/tools/fed-rate-tracker",
+        "https://easternherald.com/2026/09/25/us-treasury-yield-19-year-high-fed-october-hike-warsh/",
+        "https://finance.yahoo.com/technology/ai/articles/broadcom-42-billion-loan-anthropic-073843155.html",
+        "https://pulse2.com/broadcom-to-lend-anthropic-up-to-42-billion-to-finance-ai-infrastructure/",
+        "https://finance.yahoo.com/technology/ai/articles/broadcom-42-billion-loan-anthropic-134515606.html",
+        "https://www.thedailystar.net/news/technology/news/broadcom-lend-anthropic-42-billion-lease-its-chips-filing-says-4287821",
+        "https://www.cnbc.com/2026/10/01/broadcom-lending-anthropic-42-billion-chips-reuters.html",
+        "https://finance.yahoo.com/technology/ai/articles/broadcom-ceo-flags-capital-ai-074152257.html",
+        "https://semiwiki.com/forum/threads/broadcom-has-agreed-to-lend-anthropic-up-to-42-billion-to-finance-computing-infrastructure.25975/",
+        "https://cryptobriefing.com/broadcom-debt-ai-infrastructure-financing/",
+        "https://startupfortune.com/anthropic-offers-blackstone-a-double-digit-yield-to-fund-its-chip-habit",
+        "https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply",
+        "https://am.jpmorgan.com/fr/en/asset-management/liq/insights/market-insights/market-updates/on-the-minds-of-investors/hyperscaler-debt-issuance-ai-buildout/",
+        "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-forecasts-ai-debt-135325015.html",
+        "https://cryptobriefing.com/goldman-morgan-stanley-ai-debt-binge/",
+        "https://startupfortune.com/bond-investors-are-starting-to-say-no-to-the-ai-debt-binge/",
+        "https://finance.biggo.com/news/8b3d7239-8221-484b-9201-7fcdb7b06488",
+        "https://energynow.com/2026/02/the-3-trillion-ai-data-center-build-out-becomes-all-consuming-for-debt-markets/",
+        "https://mlq.ai/news/hyperscaler-bond-issuance-reaches-about-220-billion-as-ai-financing-costs-rise/",
+        "https://www.forbes.com/sites/robertszczerba/2026/07/17/bond-investors-push-back-as-ai-debt-heads-toward-570-billion/",
+        "https://leverageshares.com/us/anthropic-ipo-tracker/",
+        "https://www.gradually.ai/en/anthropic-ipo/",
+        "https://www.startuphub.ai/ai-news/ipo-watch/2026/anthropic-ipo-roadshow-begins-2026-07-16",
+        "https://www.startuphub.ai/ai-news/ipo-watch/2026/anthropic-ipo-roadshow-investor-meetings-2026-07-21",
+        "https://www.investing.com/analysis/anthropic-ipo-everything-you-need-to-know-about-anthropic-200682606",
+        "https://www.ig.com/uk/trading-strategies/anthropic-how-to-buy-shares-260612",
+        "https://www.techstackipo.com/ipo/anthropic",
+        "https://www.digitalapplied.com/blog/anthropic-ipo-filing-2026-claude-stack-analysis",
+        "https://www.sec.gov/Archives/edgar/data/1846091/000110465921039202/tm216425-2_s1.htm",
+        "https://www.cnbc.com/2026/10/09/junk-bonds-are-flashing-yellow-watch-these-warning-signs.html",
+        "https://news.google.com/read/CBMimAFBVV95cUxPTER4UFlPaFkwY0FSY0Z0RVFXSzljSjlOM3hWR0RYSVNoMVROZUlnQU9KRFA1WG5aNU1lWW5hUU42WmRYQkRJS1ZLcU9GUmJMMXdDMzdrUm5vSWxiS0dvTDdFc3hoSmlOTlU2TFN3a0tiSHo0ZW1BSVB3NUhrLU04RjNfdkxVNU1hWDFwMTR6Z25lbFRYX1BvctIBngFBVV95cUxQU2ZNQ2RaaDZZY05NREpqSUFac1lCRUVxc3ZjdXluaTg4bWpZbU1qR3R0MXdvbDdMS0pRdjZ5a1ItWXJ4d1dTX3JoeGloNU1kZUZDVkVQSkNZUnZ1Yy1CaTdJU3hWenowOWpfanJfeEdtVlZXWS05Sy1zNEZ2UHl6U1F5WlV2ZzdTMkY2cnpQRFNVYUg4clhzTERDWVdMZw?hl=en-US&gl=US&ceid=US%3Aen",
+        "https://www.janushenderson.com/en-us/investor/article/high-yield-bonds-can-tight-credit-spreads-persist/",
+        "https://sigroresearch.substack.com/p/whats-building-the-junk-bond-cracks",
+        "https://katusaresearch.com/high-yield-spread/",
+        "https://www.macroradar.io/high-yield-spread",
+        "https://www.macrotrends.net/3229/us-high-yield-bond-spread",
+        "https://seekingalpha.com/article/4683519-short-junk",
+        "https://tr.tradingview.com/chart/SJNK/BU4X8F6Y-Junk-bonds-high-risk-as-economy-deteriorates-and-spreads-widen/",
+        "https://finance.yahoo.com/technology/articles/nvidia-micron-sandisk-leads-chip-160327936.html",
+        "https://finance.yahoo.com/markets/stocks/article/nvidia-stock-sinks-as-chip-sell-off-deepens-on-hot-inflation-data-203235137.html",
+        "https://www.tradingview.com/news/gurufocus:f5794b342094b:0-nvidia-micron-and-sandisk-leads-chip-sell-off-as-rising-yields-rattle-ai-investors/",
+        "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html",
+        "https://www.cnbc.com/2026/10/13/sk-hynix-softbank-samsung-electronics-shares-tech-stocks-fall.html",
+        "https://coinpaper.com/37354/ai-chip-stocks-lose-164-trillion-in-six-sessions-as-nvidia-amd-and-micron-face-renewed-selling-pressure",
+        "https://journalarta.com/en/2026/10/16/micron-stock-memory-selloff-china-oversupply/",
+        "https://benzinga.com/z/40608138",
+        "https://www.fool.com/investing/2022/08/09/why-micron-applied-materials-and-skyworks-solution/",
+        "https://www.cloudzero.com/blog/h100-gpu-cost/",
+        "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
+        "https://data.ornn.com/",
+        "https://dev.to/viswaretas_kotra/gpu-cloud-pricing-october-2026-what-an-h100-h200-b200-or-b300-costs-per-hour-5a25",
+        "https://getdeploying.com/gpu-price-trends",
+        "https://getdeploying.com/gpus",
+        "https://uvik.net/blog/gpu-price-index/",
+        "https://packet.ai/blog/what-can-an-h100-or-b200-earn-per-month-the-utilization-math",
+        "https://www.economize.cloud/resources/gpu/pricing/",
+        "https://www.datacenterdynamics.com/en/news/nebius-plans-second-us-gigawatt-scale-data-center-campus-in-pennsylvania/",
+        "https://www.sec.gov/Archives/edgar/data/1526125/000110465920096714/a20-28773_1ex99d1.htm",
+        "https://sg.finance.yahoo.com/news/enerflex-jumps-5-1gw-data-132551889.html",
+        "https://finance.yahoo.com/energy/articles/enerflex-shares-rise-5-securing-132729898.html",
+        "https://www.panabee.com/news/enerflex-backlog-exceeds-1-75-gigawatts-following-data-center-project-award",
+        "https://kalkinemedia.com/ca/stocks/oil-gas/enerflex-ltd-tsxefx-secures-gigawatt-scale-data-center-power-contract-expanding-behind-the-meter-backlog",
+        "https://www.investing.com/news/company-news/enerflex-secures-1gigawatt-power-generation-contract-93CH-4945983",
+        "https://www.sec.gov/Archives/edgar/data/1013871/000101387125000004/ex991-q42024.htm",
+        "https://datacenterprojecttracker.com/news/enerflex-lands-over-1-gw-data-center-power-order-lifting",
+        "https://finance.yahoo.com/markets/stocks/articles/coreweave-falls-10-bond-yield-133340821.html",
+        "https://www.kucoin.com/news/flash/insurance-funds-fuel-ai-infrastructure-expansion-as-coreweave-and-others-seek-financing",
+        "https://io-fund.com/ai-stocks/nvidia-coreweave-nebius-circular-financing-gpu-boom",
+        "https://startupfortune.com/coreweave-wants-insurers-to-help-bankroll-its-ai-data-center-boom/",
+        "https://runtimewire.com/article/coreweave-insurers-gpu-backed-ai-debt",
+        "https://finance.biggo.com/news/71d8240e-3c2b-4766-ad5b-3ea09cf21023",
+        "https://www.techtimes.com/articles/320239/20260712/nvidia-circular-financing-249b-coreweave-debt-puts-pension-funds-risk.htm",
+        "https://www.siliconreport.com/neocloud-buildout-crusoe-coreweave-vantage-financing-ca9cf460",
+        "https://www.aol.com/articles/coreweave-surges-8-nebius-gains-144823938.html"
+      ],
+      "searches": 16
+    },
+    "assessment": {
+      "news_scores": {
+        "ai_lab_financing": {
+          "score": 2,
+          "summary": "Financing stress is concentrated in the neoclouds that rent GPUs to AI labs. CNBC reports CoreWeave's credit default swaps at distress levels, and Bloomberg reports that Nscale's flagship Norway data center is running six months late ahead of its IPO plans. On the other side, OpenAI is reportedly seeking at least $30B at about a $1.4T valuation, although that report reaches us only through an aggregator.",
+          "evidence": [
+            {
+              "claim": "CoreWeave 5-year credit default swaps peaked above 1,140 basis points and last stood near 1,038 bp as investors sour on AI debt.",
+              "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+              "event_date": "2026-10-15",
+              "tier": "major",
+              "age_days": 2,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 3/3, names 2/2"
+            },
+            {
+              "claim": "Nscale's flagship Norway data center is six months behind schedule, muddying its IPO plans.",
+              "url": "https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays",
+              "event_date": null,
+              "tier": "major",
+              "age_days": null,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            },
+            {
+              "claim": "CoreWeave fell as much as 16%, and a Gartner forecast that over 80% of independent neoclouds will lose stand-alone status by 2030 added to the sell-off.",
+              "url": "https://finance.biggo.com/news/4d10090a-6224-4104-a545-abfc12f63942",
+              "event_date": "2026-10-14",
+              "tier": "other",
+              "age_days": 3,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 3/3, names 2/2"
+            },
+            {
+              "claim": "OpenAI is targeting at least $30 billion in funding at about a $1.4 trillion valuation.",
+              "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+              "event_date": null,
+              "tier": "other",
+              "age_days": null,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 2/2, names 1/1"
+            }
+          ],
+          "samples": [
+            2,
+            2
+          ],
+          "spread": 0,
+          "unstable": false
+        },
+        "supplier_signals": {
+          "score": 0,
+          "summary": "There is no sourced sign of a supplier pullback. September revenue across Taiwan's AI-server makers rose a median 76.7% year on year. TSMC's caution about consumer segments going into 2027 appears in the notes without a source link, so it is not scored.",
+          "evidence": [],
+          "samples": [
+            0,
+            0
+          ],
+          "spread": 0,
+          "unstable": false
+        },
+        "physical_buildout": {
+          "score": 1,
+          "summary": "There is one isolated, well-sourced delay: Bloomberg reports that Nscale's Norway site is six months behind schedule. No cancellations were reported, and hyperscaler leases signed but not yet started kept climbing in Q2.",
+          "evidence": [
+            {
+              "claim": "Nscale's flagship Norway data center is six months behind schedule.",
+              "url": "https://www.bloomberg.com/news/features/2026-10-15/nscale-s-35-billion-ipo-plans-muddied-by-ai-data-center-delays",
+              "event_date": null,
+              "tier": "major",
+              "age_days": null,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            }
+          ],
+          "samples": [
+            1,
+            1
+          ],
+          "spread": 0,
+          "unstable": false
+        }
+      },
+      "credit_news_adjustment": {
+        "delta": 1,
+        "reason": "CNBC (major tier) confirms AI-specific credit distress: CoreWeave CDS near 1,038 bp after peaking above 1,140 bp, and its 9.75% 2031 bond yielding 15.78%. This lines up with the 0.53-point widening in junk spreads over four weeks."
+      },
+      "headline": "CNBC confirms CoreWeave credit at distress levels as Nscale delays add to neocloud financing strain.",
+      "digest_markdown": "**What changed this week**\n\n- **CoreWeave credit distress now has major-outlet confirmation.** CoreWeave is a GPU cloud provider that is heavily debt-funded. CNBC reports its 5-year credit default swaps peaked above 1,140 bp and last stood near 1,038 bp. That is up from 368 bp on Oct 6 and 643 bp on Oct 9 in an earlier account, so the cost of insuring its debt roughly tripled in under two weeks. Its 9.75% 2031 bond now yields 15.78%.\n- **Oracle's CDS is reported at a record 288 bp**, but only by a secondary source, so treat it as unconfirmed.\n- **Nscale delays.** Bloomberg reports that its flagship Norway data center is six months behind schedule, which clouds its IPO plans.\n- **OpenAI is reportedly seeking at least $30B** at about a $1.4T valuation while stepping back from an IPO this year.\n\n**Why it matters**\n\nThe big spenders are not pulling back. Hyperscaler capex rose 22% quarter on quarter, and Taiwan AI-server revenue is up a median 77% year on year. The strain sits with leveraged middlemen like CoreWeave and Nscale that finance GPUs with debt. Junk-bond spreads widened 0.53 points in four weeks, and the 10-year Treasury yield is at 5.10%. If these neoclouds cannot refinance, some of the capacity they ordered could be cut or delayed. That would show up later at chip and server suppliers.\n\n**What to watch next**\n\n- Hyperscaler Q3 earnings and capex guidance in late October.\n- Whether CoreWeave or other neoclouds raise new debt, and on what terms.\n- Whether Oracle's CDS level is confirmed by a major outlet.\n\n*Not investment advice.*",
+      "follow_ups": [
+        {
+          "item": "Whether the KOSPI and Asian memory stocks stabilize after the circuit-breaker sell-off",
+          "status": "no_news",
+          "note": "No news found this week on the KOSPI or Asian memory stocks.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Any major-outlet confirmation of CoreWeave and Oracle CDS levels",
+          "status": "worsened",
+          "note": "CNBC reports CoreWeave 5-year CDS peaked above 1,140 bp and last stood near 1,038 bp; Oracle's record 288 bp still comes only from a secondary source and is unconfirmed.",
+          "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+          "event_date": "2026-10-15"
+        },
+        {
+          "item": "Progress of Anthropic's IPO and its $518B of infrastructure commitments",
+          "status": "no_news",
+          "note": "No news found this week on Anthropic's IPO or its infrastructure commitments.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "TSMC's 2027 planning caution spreading to consumer-facing chip suppliers",
+          "status": "no_news",
+          "note": "No sourced reports this week of other suppliers echoing TSMC's caution.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "CoreWeave bond yields and progress on insurer-backed or investment-grade chip-backed debt",
+          "status": "worsened",
+          "note": "CNBC reports CoreWeave's 9.75% 2031 bond yielded 15.78%, with no news on insurer-backed or investment-grade chip-backed debt.",
+          "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+          "event_date": "2026-10-15"
+        },
+        {
+          "item": "Terms of Broadcom's $42B Anthropic debt package and any OpenAI financing",
+          "status": "still_open",
+          "note": "OpenAI is reportedly targeting at least $30 billion at about a $1.4 trillion valuation in early-stage talks, a report not yet confirmed by a primary or major source; no news on Broadcom's terms.",
+          "url": "https://finance.yahoo.com/technology/ai/articles/openai-targets-30-billion-funding-185008998.html",
+          "event_date": null
+        },
+        {
+          "item": "Fed hike pricing ahead of the next FOMC and its effect on junk spreads",
+          "status": "no_news",
+          "note": "No news found this week on Fed hike pricing.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Whether US investment-grade AI bond issuance resumes in Q4 as Morgan Stanley expects",
+          "status": "still_open",
+          "note": "The only source is a secondary account of Morgan Stanley's view that September's AI debt was a pause, not a retreat; no confirmed Q4 investment-grade AI deals.",
+          "url": "https://exencialrp.substack.com/p/morgan-stanley-sees-ai-bond-supply",
+          "event_date": null
+        },
+        {
+          "item": "Syndication progress and pricing of Oracle's Project Jupiter construction loan",
+          "status": "no_news",
+          "note": "No news found this week on the Project Jupiter loan.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Further memory-chip weakness (SK Hynix, Micron) tied to CXMT competition or AI-demand doubts",
+          "status": "no_news",
+          "note": "No news found this week on SK Hynix, Micron or CXMT.",
+          "url": "",
+          "event_date": null
+        },
+        {
+          "item": "Rate pressure from the 10-year Treasury at 5.22% and Brent near $125 feeding into junk spreads",
+          "status": "still_open",
+          "note": "Official data show the 10-year yield at 5.10% and the high-yield spread at 3.23%, up 0.53 points over four weeks, with Brent at $126.55.",
+          "url": "",
+          "event_date": "2026-10-15"
+        }
+      ],
+      "watch_next": [
+        "Hyperscaler Q3 earnings and 2027 capex guidance in late October",
+        "New debt raises or refinancing terms at CoreWeave, Nscale and other neoclouds",
+        "October Taiwan AI-server revenue as the 3-month deceleration check comes online"
+      ],
+      "samples": {
+        "n": 2,
+        "used": 0,
+        "scores": {
+          "ai_lab_financing": [
+            2,
+            2
+          ],
+          "supplier_signals": [
+            0,
+            0
+          ],
+          "physical_buildout": [
+            1,
+            1
+          ]
+        },
+        "spread": {
+          "ai_lab_financing": 0,
+          "supplier_signals": 0,
+          "physical_buildout": 0
+        },
+        "credit_deltas": [
+          1,
+          1
+        ],
+        "unstable": []
+      }
+    }
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 225350,
+        "output_tokens": 5552,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 16,
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.6662
+      },
+      "assessment": {
+        "model": "claude-opus-5-5",
+        "requests": 2,
+        "input_tokens": 8,
+        "output_tokens": 10353,
+        "cache_write_tokens": 11344,
+        "cache_read_tokens": 11344,
+        "web_searches": 0,
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.2683
+      }
+    },
+    "total_usd": 0.9345,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "source_check": {
+    "counts": {
+      "ai_lab_financing": {
+        "verified": 3,
+        "unverified": 0,
+        "unreachable": 1
+      },
+      "physical_buildout": {
+        "verified": 0,
+        "unverified": 0,
+        "unreachable": 1
+      }
+    },
+    "capped": []
+  },
+  "filing_text": {
+    "leases": {
+      "companies": {
+        "MSFT": {
+          "name": "Microsoft",
+          "quarter": "2026Q2",
+          "period_end": "2026-06-30",
+          "form": "10-K",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "total_usd": 329100000000.0,
+          "previous_quarter": "2026Q1",
+          "previous_total_usd": 196600000000.0,
+          "qoq_pct": 67.4,
+          "amounts": [
+            {
+              "amount_text": "$ 329.1 billion",
+              "kind": "total",
+              "sentence": "As of June 30, 2026, we had additional leases, primarily for datacenters, that had not yet commenced of $ 329.1 billion, with some arrangements subject to certain contractual conditions being met."
+            }
+          ]
+        },
+        "GOOGL": {
+          "name": "Alphabet",
+          "quarter": "2026Q2",
+          "period_end": "2026-06-30",
+          "form": "10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+          "total_usd": 85200000000.0,
+          "previous_quarter": "2026Q1",
+          "previous_total_usd": 75600000000.0,
+          "qoq_pct": 12.7,
+          "amounts": [
+            {
+              "amount_text": "$ 85.2 billion",
+              "kind": "total",
+              "sentence": "As of June 30, 2026, we have entered into leases, primarily related to data centers, that have not yet commenced with future lease payments of $ 85.2 billion that are not yet recorded."
+            }
+          ]
+        },
+        "AMZN": {
+          "name": "Amazon",
+          "quarter": "2026Q2",
+          "period_end": "2026-06-30",
+          "form": "10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "total_usd": 137214000000.0,
+          "previous_quarter": "2026Q1",
+          "previous_total_usd": 106347000000.0,
+          "qoq_pct": 29.02,
+          "amounts": [
+            {
+              "amount_text": "137,214",
+              "kind": "total",
+              "sentence": "Leases not yet commenced 4,018 11,732 9,278 9,483 9,227 93,476 137,214"
+            }
+          ]
+        },
+        "META": {
+          "name": "Meta",
+          "quarter": "2026Q2",
+          "period_end": "2026-06-30",
+          "form": "10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm",
+          "total_usd": 278990000000.0,
+          "previous_quarter": "2026Q1",
+          "previous_total_usd": 182880000000.0,
+          "qoq_pct": 52.55,
+          "amounts": [
+            {
+              "amount_text": "$278.99 billion",
+              "kind": "total",
+              "sentence": "These lease obligations were approximately $278.99 billion, consisting of data centers, colocations, and certain network infrastructure, which will commence during the remainder of 2026 through 2036 with lease terms ranging from greater than one year to 30 years."
+            },
+            {
+              "amount_text": "$68 billion",
+              "kind": "other",
+              "sentence": "In July 2026, we entered into additional data center leases with lease obligations of approximately $68 billion, which are expected to commence in 2027 and 2028, with lease terms of 18 to 20 years."
+            }
+          ]
+        },
+        "ORCL": {
+          "name": "Oracle",
+          "quarter": "2026Q3",
+          "period_end": "2026-08-31",
+          "form": "10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm",
+          "total_usd": 288000000000.0,
+          "previous_quarter": "2026Q2",
+          "previous_total_usd": 260000000000.0,
+          "qoq_pct": 10.77,
+          "amounts": [
+            {
+              "amount_text": "$ 288 billion",
+              "kind": "total",
+              "sentence": "As of August 31, 2026 , we had $ 288 billion of additional lease commitments, substantially all related to data center arrangements, that are generally expected to commence between the second quarter of fiscal 2027 a nd fiscal 2029 and for terms of fifteen to nineteen years that were not reflected on our condensed consolidated balance sheets as of August 31, 2026 or in the maturities table above."
+            }
+          ]
+        }
+      },
+      "by_quarter": {
+        "2026Q1": {
+          "MSFT": 196600000000.0,
+          "GOOGL": 75600000000.0,
+          "AMZN": 106347000000.0,
+          "META": 182880000000.0
+        },
+        "2026Q2": {
+          "MSFT": 329100000000.0,
+          "GOOGL": 85200000000.0,
+          "AMZN": 137214000000.0,
+          "META": 278990000000.0,
+          "ORCL": 260000000000.0
+        },
+        "2026Q3": {
+          "ORCL": 288000000000.0
+        }
+      },
+      "errors": {}
+    },
+    "earnings": null
+  },
+  "data": {
+    "fred": {
+      "CPIAUCSL": {
+        "label": "CPI (headline index)",
+        "latest": 336.298,
+        "latest_date": "2026-09-01",
+        "chg_4w": 2.167,
+        "prev_4w": 334.131,
+        "chg_13w": 3.73,
+        "prev_13w": 332.568,
+        "chg_52w": 12.053,
+        "prev_52w": 324.245,
+        "yoy_pct": 3.72
+      },
+      "CPILFESL": {
+        "label": "Core CPI index",
+        "latest": 338.896,
+        "latest_date": "2026-09-01",
+        "chg_4w": 1.131,
+        "prev_4w": 337.765,
+        "chg_13w": 2.831,
+        "prev_13w": 336.065,
+        "chg_52w": 8.478,
+        "prev_52w": 330.418,
+        "yoy_pct": 2.57
+      },
+      "PCEPILFE": {
+        "label": "Core PCE index",
+        "latest": 130.455,
+        "latest_date": "2026-08-01",
+        "chg_4w": 0.322,
+        "prev_4w": 130.133,
+        "chg_13w": 0.659,
+        "prev_13w": 129.796,
+        "chg_52w": 3.809,
+        "prev_52w": 126.646,
+        "yoy_pct": 3.01
+      },
+      "DFF": {
+        "label": "Fed funds effective rate (%)",
+        "latest": 3.88,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.0,
+        "prev_4w": 3.88,
+        "chg_13w": 0.25,
+        "prev_13w": 3.63,
+        "chg_52w": -0.22,
+        "prev_52w": 4.1
+      },
+      "DGS2": {
+        "label": "2-yr Treasury yield (%)",
+        "latest": 4.77,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.1,
+        "prev_4w": 4.67,
+        "chg_13w": 0.61,
+        "prev_13w": 4.16,
+        "chg_52w": 1.27,
+        "prev_52w": 3.5
+      },
+      "DGS10": {
+        "label": "10-yr Treasury yield (%)",
+        "latest": 5.1,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.16,
+        "prev_4w": 4.94,
+        "chg_13w": 0.53,
+        "prev_13w": 4.57,
+        "chg_52w": 1.05,
+        "prev_52w": 4.05
+      },
+      "T10Y2Y": {
+        "label": "10y minus 2y spread (%)",
+        "latest": 0.35,
+        "latest_date": "2026-10-16",
+        "chg_4w": 0.1,
+        "prev_4w": 0.25,
+        "chg_13w": -0.02,
+        "prev_13w": 0.37,
+        "chg_52w": -0.23,
+        "prev_52w": 0.58
+      },
+      "DCOILBRENTEU": {
+        "label": "Brent crude ($/bbl)",
+        "latest": 126.55,
+        "latest_date": "2026-10-14",
+        "chg_4w": -1.29,
+        "prev_4w": 127.84,
+        "chg_13w": 43.47,
+        "prev_13w": 83.08,
+        "chg_52w": 63.55,
+        "prev_52w": 63.0
+      },
+      "VIXCLS": {
+        "label": "VIX",
+        "latest": 16.46,
+        "latest_date": "2026-10-15",
+        "chg_4w": 1.02,
+        "prev_4w": 15.44,
+        "chg_13w": -0.27,
+        "prev_13w": 16.73,
+        "chg_52w": -4.18,
+        "prev_52w": 20.64
+      },
+      "BAMLH0A0HYM2": {
+        "label": "High-yield credit spread (%)",
+        "latest": 3.23,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.53,
+        "prev_4w": 2.7,
+        "chg_13w": 0.52,
+        "prev_13w": 2.71,
+        "chg_52w": 0.28,
+        "prev_52w": 2.95
+      },
+      "BAMLC0A0CM": {
+        "label": "Investment-grade credit spread (%)",
+        "latest": 0.84,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.06,
+        "prev_4w": 0.78,
+        "chg_13w": 0.06,
+        "prev_13w": 0.78,
+        "chg_52w": 0.06,
+        "prev_52w": 0.78
+      },
+      "BAA10Y": {
+        "label": "Baa corporate minus 10-yr Treasury spread (%)",
+        "latest": 1.44,
+        "latest_date": "2026-10-15",
+        "chg_4w": 0.0,
+        "prev_4w": 1.44,
+        "chg_13w": -0.15,
+        "prev_13w": 1.59,
+        "chg_52w": -0.24,
+        "prev_52w": 1.68
+      },
+      "SP500": {
+        "label": "S&P 500 index",
+        "latest": 7659.44,
+        "latest_date": "2026-10-16",
+        "chg_4w": 8.94,
+        "prev_4w": 7650.5,
+        "chg_13w": 201.75,
+        "prev_13w": 7457.69,
+        "chg_52w": 1030.37,
+        "prev_52w": 6629.07
+      },
+      "NASDAQ100": {
+        "label": "Nasdaq-100 index",
+        "latest": 29935.59,
+        "latest_date": "2026-10-15",
+        "chg_4w": 488.61,
+        "prev_4w": 29446.98,
+        "chg_13w": 909.82,
+        "prev_13w": 29025.77,
+        "chg_52w": 5190.23,
+        "prev_52w": 24745.36
+      }
+    },
+    "edgar": {
+      "MSFT": {
+        "name": "Microsoft",
+        "tags": {
+          "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+          "new_operating_lease_assets": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+          "new_finance_lease_assets": "RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
+          "debt_issued": null
+        },
+        "capex": {
+          "quarter_end": "2026-06-30",
+          "value": 35802000000.0,
+          "qoq_pct": 15.95,
+          "yoy_pct": 109.63,
+          "history": [
+            [
+              "2023-09-30",
+              9917000000.0
+            ],
+            [
+              "2023-12-31",
+              9735000000.0
+            ],
+            [
+              "2024-03-31",
+              10952000000.0
+            ],
+            [
+              "2024-06-30",
+              13873000000.0
+            ],
+            [
+              "2024-09-30",
+              14923000000.0
+            ],
+            [
+              "2024-12-31",
+              15804000000.0
+            ],
+            [
+              "2025-03-31",
+              16745000000.0
+            ],
+            [
+              "2025-06-30",
+              17079000000.0
+            ],
+            [
+              "2025-09-30",
+              19394000000.0
+            ],
+            [
+              "2025-12-31",
+              29876000000.0
+            ],
+            [
+              "2026-03-31",
+              30876000000.0
+            ],
+            [
+              "2026-06-30",
+              35802000000.0
+            ]
+          ]
+        },
+        "operating_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 55441000000.0,
+          "qoq_pct": 18.77,
+          "yoy_pct": 30.0,
+          "history": [
+            [
+              "2023-09-30",
+              30583000000.0
+            ],
+            [
+              "2023-12-31",
+              18853000000.0
+            ],
+            [
+              "2024-03-31",
+              31917000000.0
+            ],
+            [
+              "2024-06-30",
+              37195000000.0
+            ],
+            [
+              "2024-09-30",
+              34180000000.0
+            ],
+            [
+              "2024-12-31",
+              22291000000.0
+            ],
+            [
+              "2025-03-31",
+              37044000000.0
+            ],
+            [
+              "2025-06-30",
+              42647000000.0
+            ],
+            [
+              "2025-09-30",
+              45057000000.0
+            ],
+            [
+              "2025-12-31",
+              35758000000.0
+            ],
+            [
+              "2026-03-31",
+              46679000000.0
+            ],
+            [
+              "2026-06-30",
+              55441000000.0
+            ]
+          ]
+        },
+        "new_operating_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 869000000.0,
+          "qoq_pct": 9.72,
+          "yoy_pct": -5.23,
+          "history": [
+            [
+              "2023-09-30",
+              1804000000.0
+            ],
+            [
+              "2023-12-31",
+              847000000.0
+            ],
+            [
+              "2024-03-31",
+              1831000000.0
+            ],
+            [
+              "2024-06-30",
+              2221000000.0
+            ],
+            [
+              "2024-09-30",
+              1892000000.0
+            ],
+            [
+              "2024-12-31",
+              3098000000.0
+            ],
+            [
+              "2025-03-31",
+              1918000000.0
+            ],
+            [
+              "2025-06-30",
+              917000000.0
+            ],
+            [
+              "2025-09-30",
+              1417000000.0
+            ],
+            [
+              "2025-12-31",
+              1477000000.0
+            ],
+            [
+              "2026-03-31",
+              792000000.0
+            ],
+            [
+              "2026-06-30",
+              869000000.0
+            ]
+          ]
+        },
+        "new_finance_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 5122000000.0,
+          "qoq_pct": 27.76,
+          "yoy_pct": -21.24,
+          "history": [
+            [
+              "2023-09-30",
+              1704000000.0
+            ],
+            [
+              "2023-12-31",
+              1796000000.0
+            ],
+            [
+              "2024-03-31",
+              3421000000.0
+            ],
+            [
+              "2024-06-30",
+              4712000000.0
+            ],
+            [
+              "2024-09-30",
+              4332000000.0
+            ],
+            [
+              "2024-12-31",
+              6435000000.0
+            ],
+            [
+              "2025-03-31",
+              3241000000.0
+            ],
+            [
+              "2025-06-30",
+              6503000000.0
+            ],
+            [
+              "2025-09-30",
+              9147000000.0
+            ],
+            [
+              "2025-12-31",
+              6330000000.0
+            ],
+            [
+              "2026-03-31",
+              4009000000.0
+            ],
+            [
+              "2026-06-30",
+              5122000000.0
+            ]
+          ]
+        },
+        "debt_issued": null,
+        "free_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 19639000000.0
+        }
+      },
+      "GOOGL": {
+        "name": "Alphabet",
+        "tags": {
+          "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+          "new_operating_lease_assets": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+          "new_finance_lease_assets": "RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
+          "debt_issued": "ProceedsFromDebtNetOfIssuanceCosts"
+        },
+        "capex": {
+          "quarter_end": "2026-06-30",
+          "value": 44924000000.0,
+          "qoq_pct": 25.93,
+          "yoy_pct": 100.14,
+          "history": [
+            [
+              "2023-09-30",
+              8055000000.0
+            ],
+            [
+              "2023-12-31",
+              11019000000.0
+            ],
+            [
+              "2024-03-31",
+              12012000000.0
+            ],
+            [
+              "2024-06-30",
+              13186000000.0
+            ],
+            [
+              "2024-09-30",
+              13061000000.0
+            ],
+            [
+              "2024-12-31",
+              14276000000.0
+            ],
+            [
+              "2025-03-31",
+              17197000000.0
+            ],
+            [
+              "2025-06-30",
+              22446000000.0
+            ],
+            [
+              "2025-09-30",
+              23953000000.0
+            ],
+            [
+              "2025-12-31",
+              27851000000.0
+            ],
+            [
+              "2026-03-31",
+              35674000000.0
+            ],
+            [
+              "2026-06-30",
+              44924000000.0
+            ]
+          ]
+        },
+        "operating_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 39069000000.0,
+          "qoq_pct": -14.68,
+          "yoy_pct": 40.8,
+          "history": [
+            [
+              "2023-09-30",
+              30656000000.0
+            ],
+            [
+              "2023-12-31",
+              18915000000.0
+            ],
+            [
+              "2024-03-31",
+              28848000000.0
+            ],
+            [
+              "2024-06-30",
+              26640000000.0
+            ],
+            [
+              "2024-09-30",
+              30698000000.0
+            ],
+            [
+              "2024-12-31",
+              39113000000.0
+            ],
+            [
+              "2025-03-31",
+              36150000000.0
+            ],
+            [
+              "2025-06-30",
+              27747000000.0
+            ],
+            [
+              "2025-09-30",
+              48414000000.0
+            ],
+            [
+              "2025-12-31",
+              52402000000.0
+            ],
+            [
+              "2026-03-31",
+              45790000000.0
+            ],
+            [
+              "2026-06-30",
+              39069000000.0
+            ]
+          ]
+        },
+        "new_operating_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 2664000000.0,
+          "qoq_pct": 147.81,
+          "yoy_pct": 220.58,
+          "history": [
+            [
+              "2020-09-30",
+              711000000.0
+            ],
+            [
+              "2020-12-31",
+              613000000.0
+            ],
+            [
+              "2024-03-31",
+              404000000.0
+            ],
+            [
+              "2024-06-30",
+              493000000.0
+            ],
+            [
+              "2024-09-30",
+              683000000.0
+            ],
+            [
+              "2024-12-31",
+              930000000.0
+            ],
+            [
+              "2025-03-31",
+              697000000.0
+            ],
+            [
+              "2025-06-30",
+              831000000.0
+            ],
+            [
+              "2025-09-30",
+              1061000000.0
+            ],
+            [
+              "2025-12-31",
+              1481000000.0
+            ],
+            [
+              "2026-03-31",
+              1075000000.0
+            ],
+            [
+              "2026-06-30",
+              2664000000.0
+            ]
+          ]
+        },
+        "new_finance_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 691000000.0,
+          "qoq_pct": 227.49,
+          "yoy_pct": 732.53,
+          "history": [
+            [
+              "2024-03-31",
+              19000000.0
+            ],
+            [
+              "2024-06-30",
+              146000000.0
+            ],
+            [
+              "2024-09-30",
+              78000000.0
+            ],
+            [
+              "2024-12-31",
+              70000000.0
+            ],
+            [
+              "2025-03-31",
+              523000000.0
+            ],
+            [
+              "2025-06-30",
+              83000000.0
+            ],
+            [
+              "2025-09-30",
+              383000000.0
+            ],
+            [
+              "2025-12-31",
+              617000000.0
+            ],
+            [
+              "2026-03-31",
+              211000000.0
+            ],
+            [
+              "2026-06-30",
+              691000000.0
+            ]
+          ]
+        },
+        "debt_issued": {
+          "quarter_end": "2026-06-30",
+          "value": 24847000000.0,
+          "qoq_pct": -20.82,
+          "yoy_pct": -7.45,
+          "history": [
+            [
+              "2023-09-30",
+              1248000000.0
+            ],
+            [
+              "2023-12-31",
+              1492000000.0
+            ],
+            [
+              "2024-03-31",
+              1982000000.0
+            ],
+            [
+              "2024-06-30",
+              2893000000.0
+            ],
+            [
+              "2024-09-30",
+              3819000000.0
+            ],
+            [
+              "2024-12-31",
+              4895000000.0
+            ],
+            [
+              "2025-03-31",
+              4532000000.0
+            ],
+            [
+              "2025-06-30",
+              26846000000.0
+            ],
+            [
+              "2025-09-30",
+              6624000000.0
+            ],
+            [
+              "2025-12-31",
+              26562000000.0
+            ],
+            [
+              "2026-03-31",
+              31379000000.0
+            ],
+            [
+              "2026-06-30",
+              24847000000.0
+            ]
+          ]
+        },
+        "free_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": -5855000000.0
+        }
+      },
+      "AMZN": {
+        "name": "Amazon",
+        "tags": {
+          "capex": "PaymentsToAcquireProductiveAssets",
+          "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+          "new_operating_lease_assets": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+          "new_finance_lease_assets": "RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
+          "debt_issued": "ProceedsFromIssuanceOfLongTermDebt"
+        },
+        "capex": {
+          "quarter_end": "2026-06-30",
+          "value": 54208000000.0,
+          "qoq_pct": 22.63,
+          "yoy_pct": 68.44,
+          "history": [
+            [
+              "2023-09-30",
+              12479000000.0
+            ],
+            [
+              "2023-12-31",
+              14588000000.0
+            ],
+            [
+              "2024-03-31",
+              14925000000.0
+            ],
+            [
+              "2024-06-30",
+              17620000000.0
+            ],
+            [
+              "2024-09-30",
+              22620000000.0
+            ],
+            [
+              "2024-12-31",
+              27834000000.0
+            ],
+            [
+              "2025-03-31",
+              25019000000.0
+            ],
+            [
+              "2025-06-30",
+              32183000000.0
+            ],
+            [
+              "2025-09-30",
+              35095000000.0
+            ],
+            [
+              "2025-12-31",
+              39522000000.0
+            ],
+            [
+              "2026-03-31",
+              44203000000.0
+            ],
+            [
+              "2026-06-30",
+              54208000000.0
+            ]
+          ]
+        },
+        "operating_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 45387000000.0,
+          "qoq_pct": 74.35,
+          "yoy_pct": 39.59,
+          "history": [
+            [
+              "2023-09-30",
+              21217000000.0
+            ],
+            [
+              "2023-12-31",
+              42465000000.0
+            ],
+            [
+              "2024-03-31",
+              18989000000.0
+            ],
+            [
+              "2024-06-30",
+              25281000000.0
+            ],
+            [
+              "2024-09-30",
+              25971000000.0
+            ],
+            [
+              "2024-12-31",
+              45636000000.0
+            ],
+            [
+              "2025-03-31",
+              17015000000.0
+            ],
+            [
+              "2025-06-30",
+              32515000000.0
+            ],
+            [
+              "2025-09-30",
+              35525000000.0
+            ],
+            [
+              "2025-12-31",
+              54459000000.0
+            ],
+            [
+              "2026-03-31",
+              26032000000.0
+            ],
+            [
+              "2026-06-30",
+              45387000000.0
+            ]
+          ]
+        },
+        "new_operating_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 7670000000.0,
+          "qoq_pct": 22.94,
+          "yoy_pct": 65.98,
+          "history": [
+            [
+              "2023-09-30",
+              3345000000.0
+            ],
+            [
+              "2023-12-31",
+              2977000000.0
+            ],
+            [
+              "2024-03-31",
+              3753000000.0
+            ],
+            [
+              "2024-06-30",
+              3911000000.0
+            ],
+            [
+              "2024-09-30",
+              3571000000.0
+            ],
+            [
+              "2024-12-31",
+              4189000000.0
+            ],
+            [
+              "2025-03-31",
+              4321000000.0
+            ],
+            [
+              "2025-06-30",
+              4621000000.0
+            ],
+            [
+              "2025-09-30",
+              5057000000.0
+            ],
+            [
+              "2025-12-31",
+              5931000000.0
+            ],
+            [
+              "2026-03-31",
+              6239000000.0
+            ],
+            [
+              "2026-06-30",
+              7670000000.0
+            ]
+          ]
+        },
+        "new_finance_lease_assets": {
+          "quarter_end": "2026-06-30",
+          "value": 563000000.0,
+          "qoq_pct": -64.03,
+          "yoy_pct": -39.91,
+          "history": [
+            [
+              "2023-09-30",
+              183000000.0
+            ],
+            [
+              "2023-12-31",
+              211000000.0
+            ],
+            [
+              "2024-03-31",
+              42000000.0
+            ],
+            [
+              "2024-06-30",
+              181000000.0
+            ],
+            [
+              "2024-09-30",
+              186000000.0
+            ],
+            [
+              "2024-12-31",
+              445000000.0
+            ],
+            [
+              "2025-03-31",
+              54000000.0
+            ],
+            [
+              "2025-06-30",
+              937000000.0
+            ],
+            [
+              "2025-09-30",
+              977000000.0
+            ],
+            [
+              "2025-12-31",
+              943000000.0
+            ],
+            [
+              "2026-03-31",
+              1565000000.0
+            ],
+            [
+              "2026-06-30",
+              563000000.0
+            ]
+          ]
+        },
+        "debt_issued": {
+          "quarter_end": "2026-06-30",
+          "value": 13557000000.0,
+          "qoq_pct": -74.63,
+          "yoy_pct": null,
+          "history": [
+            [
+              "2023-09-30",
+              0.0
+            ],
+            [
+              "2023-12-31",
+              0.0
+            ],
+            [
+              "2024-03-31",
+              0.0
+            ],
+            [
+              "2024-06-30",
+              0.0
+            ],
+            [
+              "2024-09-30",
+              0.0
+            ],
+            [
+              "2024-12-31",
+              0.0
+            ],
+            [
+              "2025-03-31",
+              746000000.0
+            ],
+            [
+              "2025-06-30",
+              0.0
+            ],
+            [
+              "2025-09-30",
+              0.0
+            ],
+            [
+              "2025-12-31",
+              14927000000.0
+            ],
+            [
+              "2026-03-31",
+              53441000000.0
+            ],
+            [
+              "2026-06-30",
+              13557000000.0
+            ]
+          ]
+        },
+        "free_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": -8821000000.0
+        }
+      },
+      "META": {
+        "name": "Meta",
+        "tags": {
+          "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+          "new_operating_lease_assets": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+          "new_finance_lease_assets": "RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
+          "debt_issued": "ProceedsFromIssuanceOfLongTermDebt"
+        },
+        "capex": {
+          "quarter_end": "2026-06-30",
+          "value": 30116000000.0,
+          "qoq_pct": 58.53,
+          "yoy_pct": 82.1,
+          "history": [
+            [
+              "2023-09-30",
+              6496000000.0
+            ],
+            [
+              "2023-12-31",
+              7592000000.0
+            ],
+            [
+              "2024-03-31",
+              6400000000.0
+            ],
+            [
+              "2024-06-30",
+              8173000000.0
+            ],
+            [
+              "2024-09-30",
+              8258000000.0
+            ],
+            [
+              "2024-12-31",
+              14425000000.0
+            ],
+            [
+              "2025-03-31",
+              12941000000.0
+            ],
+            [
+              "2025-06-30",
+              16538000000.0
+            ],
+            [
+              "2025-09-30",
+              18829000000.0
+            ],
+            [
+              "2025-12-31",
+              21383000000.0
+            ],
+            [
+              "2026-03-31",
+              18997000000.0
+            ],
+            [
+              "2026-06-30",
+              30116000000.0
+            ]
+          ]
+        },
+        "operating_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 31862000000.0,
+          "qoq_pct": -1.13,
+          "yoy_pct": 24.65,
+          "history": [
+            [
+              "2023-09-30",
+              20402000000.0
+            ],
+            [
+              "2023-12-31",
+              19404000000.0
+            ],
+            [
+              "2024-03-31",
+              19246000000.0
+            ],
+            [
+              "2024-06-30",
+              19370000000.0
+            ],
+            [
+              "2024-09-30",
+              24724000000.0
+            ],
+            [
+              "2024-12-31",
+              27988000000.0
+            ],
+            [
+              "2025-03-31",
+              24026000000.0
+            ],
+            [
+              "2025-06-30",
+              25561000000.0
+            ],
+            [
+              "2025-09-30",
+              29999000000.0
+            ],
+            [
+              "2025-12-31",
+              36214000000.0
+            ],
+            [
+              "2026-03-31",
+              32226000000.0
+            ],
+            [
+              "2026-06-30",
+              31862000000.0
+            ]
+          ]
+        },
+        "new_operating_lease_assets": {
+          "quarter_end": "2024-12-31",
+          "value": 884000000.0,
+          "qoq_pct": -19.85,
+          "yoy_pct": -33.43,
+          "history": [
+            [
+              "2022-03-31",
+              539000000.0
+            ],
+            [
+              "2022-06-30",
+              2534000000.0
+            ],
+            [
+              "2022-09-30",
+              492000000.0
+            ],
+            [
+              "2022-12-31",
+              801000000.0
+            ],
+            [
+              "2023-03-31",
+              1282000000.0
+            ],
+            [
+              "2023-06-30",
+              586000000.0
+            ],
+            [
+              "2023-09-30",
+              1174000000.0
+            ],
+            [
+              "2023-12-31",
+              1328000000.0
+            ],
+            [
+              "2024-03-31",
+              908000000.0
+            ],
+            [
+              "2024-06-30",
+              889000000.0
+            ],
+            [
+              "2024-09-30",
+              1103000000.0
+            ],
+            [
+              "2024-12-31",
+              884000000.0
+            ]
+          ]
+        },
+        "new_finance_lease_assets": {
+          "quarter_end": "2023-12-31",
+          "value": 128000000.0,
+          "qoq_pct": 4.92,
+          "yoy_pct": 17.43,
+          "history": [
+            [
+              "2021-03-31",
+              24000000.0
+            ],
+            [
+              "2021-06-30",
+              46000000.0
+            ],
+            [
+              "2021-09-30",
+              54000000.0
+            ],
+            [
+              "2021-12-31",
+              36000000.0
+            ],
+            [
+              "2022-03-31",
+              52000000.0
+            ],
+            [
+              "2022-06-30",
+              51000000.0
+            ],
+            [
+              "2022-09-30",
+              11000000.0
+            ],
+            [
+              "2022-12-31",
+              109000000.0
+            ],
+            [
+              "2023-03-31",
+              70000000.0
+            ],
+            [
+              "2023-06-30",
+              268000000.0
+            ],
+            [
+              "2023-09-30",
+              122000000.0
+            ],
+            [
+              "2023-12-31",
+              128000000.0
+            ]
+          ]
+        },
+        "debt_issued": {
+          "quarter_end": "2025-12-31",
+          "value": 29906000000.0,
+          "qoq_pct": null,
+          "yoy_pct": null,
+          "history": [
+            [
+              "2021-12-31",
+              0.0
+            ],
+            [
+              "2022-09-30",
+              9921000000.0
+            ],
+            [
+              "2022-12-31",
+              0.0
+            ],
+            [
+              "2023-09-30",
+              0.0
+            ],
+            [
+              "2023-12-31",
+              0.0
+            ],
+            [
+              "2024-09-30",
+              10432000000.0
+            ],
+            [
+              "2024-12-31",
+              0.0
+            ],
+            [
+              "2025-09-30",
+              0.0
+            ],
+            [
+              "2025-12-31",
+              29906000000.0
+            ]
+          ]
+        },
+        "free_cash_flow": {
+          "quarter_end": "2026-06-30",
+          "value": 1746000000.0
+        }
+      },
+      "ORCL": {
+        "name": "Oracle",
+        "tags": {
+          "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+          "new_operating_lease_assets": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+          "new_finance_lease_assets": "RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability",
+          "debt_issued": "ProceedsFromIssuanceOfSeniorLongTermDebt"
+        },
+        "capex": {
+          "quarter_end": "2026-08-31",
+          "value": 28499000000.0,
+          "qoq_pct": 72.79,
+          "yoy_pct": 235.2,
+          "history": [
+            [
+              "2023-11-30",
+              1080000000.0
+            ],
+            [
+              "2024-02-29",
+              1674000000.0
+            ],
+            [
+              "2024-05-31",
+              2798000000.0
+            ],
+            [
+              "2024-08-31",
+              2303000000.0
+            ],
+            [
+              "2024-11-30",
+              3970000000.0
+            ],
+            [
+              "2025-02-28",
+              5862000000.0
+            ],
+            [
+              "2025-05-31",
+              9080000000.0
+            ],
+            [
+              "2025-08-31",
+              8502000000.0
+            ],
+            [
+              "2025-11-30",
+              12033000000.0
+            ],
+            [
+              "2026-02-28",
+              18635000000.0
+            ],
+            [
+              "2026-05-31",
+              16493000000.0
+            ],
+            [
+              "2026-08-31",
+              28499000000.0
+            ]
+          ]
+        },
+        "operating_cash_flow": {
+          "quarter_end": "2026-08-31",
+          "value": 23103000000.0,
+          "qoq_pct": 58.02,
+          "yoy_pct": 183.82,
+          "history": [
+            [
+              "2023-11-30",
+              143000000.0
+            ],
+            [
+              "2024-02-29",
+              5475000000.0
+            ],
+            [
+              "2024-05-31",
+              6081000000.0
+            ],
+            [
+              "2024-08-31",
+              7427000000.0
+            ],
+            [
+              "2024-11-30",
+              1304000000.0
+            ],
+            [
+              "2025-02-28",
+              5933000000.0
+            ],
+            [
+              "2025-05-31",
+              6157000000.0
+            ],
+            [
+              "2025-08-31",
+              8140000000.0
+            ],
+            [
+              "2025-11-30",
+              2066000000.0
+            ],
+            [
+              "2026-02-28",
+              7151000000.0
+            ],
+            [
+              "2026-05-31",
+              14620000000.0
+            ],
+            [
+              "2026-08-31",
+              23103000000.0
+            ]
+          ]
+        },
+        "new_operating_lease_assets": {
+          "quarter_end": "2026-08-31",
+          "value": 4903000000.0,
+          "qoq_pct": -47.89,
+          "yoy_pct": 54.13,
+          "history": [
+            [
+              "2019-08-31",
+              2200000000.0
+            ],
+            [
+              "2019-11-30",
+              0.0
+            ],
+            [
+              "2020-02-29",
+              100000000.0
+            ],
+            [
+              "2020-05-31",
+              500000000.0
+            ],
+            [
+              "2025-05-31",
+              1566000000.0
+            ],
+            [
+              "2025-08-31",
+              3181000000.0
+            ],
+            [
+              "2026-05-31",
+              9409000000.0
+            ],
+            [
+              "2026-08-31",
+              4903000000.0
+            ]
+          ]
+        },
+        "new_finance_lease_assets": {
+          "quarter_end": "2026-08-31",
+          "value": 1539000000.0,
+          "qoq_pct": 0.79,
+          "yoy_pct": 37.17,
+          "history": [
+            [
+              "2025-05-31",
+              2019000000.0
+            ],
+            [
+              "2025-08-31",
+              1122000000.0
+            ],
+            [
+              "2026-05-31",
+              1527000000.0
+            ],
+            [
+              "2026-08-31",
+              1539000000.0
+            ]
+          ]
+        },
+        "debt_issued": {
+          "quarter_end": "2026-05-31",
+          "value": 1549000000.0,
+          "qoq_pct": -94.19,
+          "yoy_pct": null,
+          "history": [
+            [
+              "2022-08-31",
+              20046000000.0
+            ],
+            [
+              "2022-11-30",
+              8234000000.0
+            ],
+            [
+              "2023-02-28",
+              5214000000.0
+            ],
+            [
+              "2023-05-31",
+              0.0
+            ],
+            [
+              "2023-08-31",
+              0.0
+            ],
+            [
+              "2023-11-30",
+              0.0
+            ],
+            [
+              "2024-02-29",
+              0.0
+            ],
+            [
+              "2024-05-31",
+              0.0
+            ],
+            [
+              "2025-02-28",
+              7711000000.0
+            ],
+            [
+              "2025-05-31",
+              0.0
+            ],
+            [
+              "2026-02-28",
+              26664000000.0
+            ],
+            [
+              "2026-05-31",
+              1549000000.0
+            ]
+          ]
+        },
+        "free_cash_flow": {
+          "quarter_end": "2026-08-31",
+          "value": -5396000000.0
+        }
+      }
+    },
+    "taiwan": {
+      "latest_period": "2026-09",
+      "latest": [
+        {
+          "period": "2026-09",
+          "code": "2317",
+          "name": "Hon Hai (Foxconn)",
+          "revenue": 1158633235.0,
+          "revenue_prev_month": 921766023.0,
+          "revenue_last_year": 837067572.0,
+          "mom_pct": 25.697108169499106,
+          "yoy_pct": 38.41573533086287,
+          "ytd_yoy_pct": 39.52740587343551,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "2330",
+          "name": "TSMC",
+          "revenue": 511857399.0,
+          "revenue_prev_month": 514805337.0,
+          "revenue_last_year": 330980920.0,
+          "mom_pct": -0.5726315925897248,
+          "yoy_pct": 54.64861207105231,
+          "ytd_yoy_pct": 41.106694993093484,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "2345",
+          "name": "Accton",
+          "revenue": 40398562.0,
+          "revenue_prev_month": 40872511.0,
+          "revenue_last_year": 24318092.0,
+          "mom_pct": -1.1595788670776797,
+          "yoy_pct": 66.12554142816796,
+          "ytd_yoy_pct": 62.44981435880206,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "2376",
+          "name": "Gigabyte",
+          "revenue": 63099342.0,
+          "revenue_prev_month": 47400848.0,
+          "revenue_last_year": 27988237.0,
+          "mom_pct": 33.118593152595075,
+          "yoy_pct": 125.4495058048851,
+          "ytd_yoy_pct": 63.1715973040828,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "2382",
+          "name": "Quanta",
+          "revenue": 325299509.0,
+          "revenue_prev_month": 423970932.0,
+          "revenue_last_year": 184108513.0,
+          "mom_pct": -23.27315755694308,
+          "yoy_pct": 76.68901002964485,
+          "ytd_yoy_pct": 99.41108069855139,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "3231",
+          "name": "Wistron",
+          "revenue": 380806168.0,
+          "revenue_prev_month": 460065063.0,
+          "revenue_last_year": 203436940.0,
+          "mom_pct": -17.227757848676287,
+          "yoy_pct": 87.1863428539576,
+          "ytd_yoy_pct": 97.24836000846553,
+          "fetched": "2026-10-17"
+        },
+        {
+          "period": "2026-09",
+          "code": "6669",
+          "name": "Wiwynn",
+          "revenue": 172620352.0,
+          "revenue_prev_month": 144311808.0,
+          "revenue_last_year": 86316601.0,
+          "mom_pct": 19.616235422675878,
+          "yoy_pct": 99.98511294484359,
+          "ytd_yoy_pct": 50.29530615079897,
+          "fetched": "2026-10-17"
+        }
+      ],
+      "median_yoy_by_period": {
+        "2026-09": 76.69
+      },
+      "errors": {}
+    }
+  },
+  "errors": {},
+  "email_reason": null,
+  "email": "sent to 1 recipient(s)"
+}
