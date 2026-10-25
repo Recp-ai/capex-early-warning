@@ -1,0 +1,28 @@
+name: Research data fetch
+# Runs only on pushes to the research branch; never on main. Commits the fetched CSV back to this branch.
+on:
+  push:
+    branches: [research/sr-backtest]
+    paths: [research/fetch_ohlc.py, .github/workflows/research-fetch.yml]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Fetch SPY history
+        env:
+          STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
+        run: python research/fetch_ohlc.py SPY research/data/SPY.csv
+      - name: Commit data to the research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/data
+          git commit -m "Research data: SPY daily OHLC" || exit 0
+          git push origin HEAD:research/sr-backtest
