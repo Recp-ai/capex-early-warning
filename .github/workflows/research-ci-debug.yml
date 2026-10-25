@@ -1,0 +1,46 @@
+name: Research CI debug
+# Branch-only: reproduce the capex unit-test failure on the current runner image and save the output here.
+on:
+  push:
+    branches: [research/sr-backtest]
+    paths: [.github/workflows/research-ci-debug.yml]
+permissions:
+  contents: write
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pytest
+      - name: Run tests and capture output
+        env:
+          OS_LABEL: ${{ matrix.os }}
+        run: |
+          mkdir -p /tmp/out
+          { echo "runner: $OS_LABEL"; cat /etc/os-release | head -3; python --version; pip freeze; date -u; ls /usr/share/zoneinfo | head -3; python -m pytest -q tests -rf 2>&1 | tail -150; } > "/tmp/out/ci_tests_${OS_LABEL}.txt" 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: out-${{ matrix.os }}
+          path: /tmp/out
+  save:
+    needs: tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: /tmp/in
+      - run: |
+          mkdir -p research/ci_debug && cp /tmp/in/*/*.txt research/ci_debug/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/ci_debug && git commit -m "Research: CI test output" && git push origin HEAD:research/sr-backtest
