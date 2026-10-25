@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         with:
           path: /tmp/in
       - run: |
-          mkdir -p research/ci_debug && cp /tmp/in/*/*.txt research/ci_debug/
+          mkdir -p research/ci_debug && rm -f research/ci_debug/*.txt && cp /tmp/in/*/*.txt research/ci_debug/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/ci_debug && git commit -m "Research: CI test output" && git push origin HEAD:research/sr-backtest
