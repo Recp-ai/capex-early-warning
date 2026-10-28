@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-28T20:19:37Z",
-  "generated_at": "2026-10-28T20:20:47+00:00",
+  "run_id": "2026-10-28T20:45:41Z",
+  "generated_at": "2026-10-28T20:46:59+00:00",
   "ticker": "GOOGL",
   "sec_ticker": "GOOGL",
   "cik": "0001652044",
@@ -18,7 +18,7 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 59,
+  "score": 58,
   "confidence": "High",
   "confidence_detail": {
     "level": "High",
@@ -30,17 +30,17 @@
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 6
+      "points": 7
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 15
+      "points": 14
     }
   },
   "composite": {
-    "score": 59,
-    "raw": 58.5,
+    "score": 58,
+    "raw": 57.6,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -211,14 +211,14 @@
           "note": null
         },
         "rs_spy_pp": {
-          "value": -16.92,
-          "score": 19.6,
+          "value": -17.29,
+          "score": 19.1,
           "weight": 0.125,
           "note": null
         },
         "rs_qqq_pp": {
-          "value": -18.15,
-          "score": 17.8,
+          "value": -18.81,
+          "score": 16.8,
           "weight": 0.125,
           "note": null
         },
@@ -230,33 +230,33 @@
         }
       },
       "coverage": 1.0,
-      "score": 43,
+      "score": 42,
       "missing": null
     },
     "news_risk": {
-      "score": 55,
+      "score": 50,
       "metrics": {
         "guidance": {
-          "value": -1,
-          "score": 25.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.25,
           "note": null
         },
         "analyst_actions": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.15,
           "note": null
         },
         "litigation_regulation": {
-          "value": 0,
-          "score": 50.0,
+          "value": -1,
+          "score": 25.0,
           "weight": 0.2,
           "note": null
         },
         "customer_concentration": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.1,
           "note": null
         },
@@ -1160,10 +1160,10 @@
     "drawdown_52w_pct": -20.38,
     "return_rs_pct": -8.23,
     "rs_days": 126,
-    "spy_return_pct": 8.69,
-    "rs_spy_pp": -16.92,
-    "qqq_return_pct": 9.92,
-    "rs_qqq_pp": -18.15
+    "spy_return_pct": 9.06,
+    "rs_spy_pp": -17.29,
+    "qqq_return_pct": 10.58,
+    "rs_qqq_pp": -18.81
   },
   "ust10y": {
     "value": 4.96,
@@ -1238,11 +1238,22 @@
   "news": {
     "topics": {
       "guidance": {
-        "rating": -1,
-        "summary": "Q3 revenue grew strongly but missed consensus, and operating income and EPS came in well below estimates, per TheStreet. No guidance update was found; the latest is July's raised 2026 capex range.",
+        "rating": 0,
+        "summary": "Q3 results out today showed strong revenue growth (+25%, Cloud +103%), but EPS fell year over year and sources disagree on whether results beat or missed estimates. No Q3 guidance change was found in the sources retrieved.",
         "evidence": [
           {
-            "claim": "Alphabet Q3 revenue of $127.57B missed a $128.2B Reuters estimate; adjusted EPS of $2.12 compared with $3.02 expected, and operating income was more than $2.5B below estimates.",
+            "claim": "Q3 2026 revenue was $127.6B, up 25%, with Google Cloud at $30.7B, up 103%.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 6/6, names 2/2"
+          },
+          {
+            "claim": "TheStreet shows revenue of $127.57B against a $128.2B estimate and adjusted EPS of $2.12 against $3.02, with free cash flow of -$9.07B on capex of $51.36B.",
             "url": "https://www.thestreet.com/latest-news/alphabet-inc-q3-2026-earnings-call-stock-forecast",
             "event_date": "2026-10-28",
             "direction": "negative",
@@ -1253,69 +1264,36 @@
             "check": "HTTP 403"
           },
           {
-            "claim": "Q3 capex was $51.4B against a FactSet estimate of $55.2B.",
-            "url": "https://cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
+            "claim": "TheWrap says revenue was in line with consensus and puts EPS excluding one-time items at $2.67 after a 55-cent equity-loss write-off.",
+            "url": "https://www.thewrap.com/industry-news/business/alphabet-earnings-q3-2026/",
             "event_date": "2026-10-28",
             "direction": "neutral",
-            "tier": "major",
-            "age_days": 0,
-            "background": false,
-            "status": "unverified",
-            "check": "numbers 1/3, names 1/1 · missing: 51.4, 55.2"
-          },
-          {
-            "claim": "Q3 revenue was $127.6B, up 25% year on year, with Cloud revenue of $30.71B, up 103%.",
-            "url": "https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/",
-            "event_date": "2026-10-28",
-            "direction": "positive",
             "tier": "other",
             "age_days": 0,
             "background": false,
             "status": "verified",
-            "check": "numbers 5/5, names 1/1"
+            "check": "numbers 2/2, names 1/2"
           }
         ],
         "label": "Guidance changes"
       },
       "analyst_actions": {
-        "rating": 1,
-        "summary": "Most analysts maintained Buy-equivalent ratings with several target raises (Wells Fargo, BMO, JPMorgan) and a new Buy initiation. KeyBanc and Citizens cut targets, and there were no upgrades or downgrades.",
+        "rating": 0,
+        "summary": "Pre-earnings actions were mixed. Several small target raises (BMO, JPMorgan, UBS, Wells Fargo) were offset by larger cuts from Citizens and KeyBanc, and no post-earnings revisions were found.",
         "evidence": [
           {
-            "claim": "Wells Fargo maintained Overweight and raised its target from $411 to $417.",
+            "claim": "Citizens cut its GOOGL price target to $450 from $515 with a Market Outperform rating.",
             "url": "https://www.benzinga.com/quote/GOOGL/price-targets",
-            "event_date": "2026-10-06",
-            "direction": "positive",
+            "event_date": "2026-10-22",
+            "direction": "negative",
             "tier": "other",
-            "age_days": 22,
+            "age_days": 6,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
           },
           {
-            "claim": "BMO maintained Outperform and raised its target to $480.",
-            "url": "https://www.benzinga.com/quote/GOOGL/price-targets",
-            "event_date": "2026-10-20",
-            "direction": "positive",
-            "tier": "other",
-            "age_days": 8,
-            "background": false,
-            "status": "unreachable",
-            "check": "HTTP 403"
-          },
-          {
-            "claim": "Yorkville Ives initiated coverage at Buy with a $400 target.",
-            "url": "https://beinsure.com/news/alphabet-stock-price-forecast-analysts-see-upside/",
-            "event_date": "2026-10-07",
-            "direction": "positive",
-            "tier": "other",
-            "age_days": 21,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 1/1, names 3/3"
-          },
-          {
-            "claim": "KeyBanc maintained Overweight but cut its target from $435 to $410.",
+            "claim": "KeyBanc cut its price target to $410 from $435, rating Overweight.",
             "url": "https://www.benzinga.com/quote/GOOGL/price-targets",
             "event_date": "2026-10-19",
             "direction": "negative",
@@ -1326,12 +1304,23 @@
             "check": "HTTP 403"
           },
           {
-            "claim": "Citizens maintained Market Outperform but cut its target from $515 to $450.",
+            "claim": "BMO raised its price target to $480 from $465, rating Outperform.",
             "url": "https://www.benzinga.com/quote/GOOGL/price-targets",
-            "event_date": "2026-10-22",
-            "direction": "negative",
+            "event_date": "2026-10-20",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 6,
+            "age_days": 8,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "JPMorgan raised its price target to $425 from $420, rating Overweight.",
+            "url": "https://www.benzinga.com/quote/GOOGL/price-targets",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 13,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
@@ -1340,14 +1329,25 @@
         "label": "Analyst actions"
       },
       "litigation_regulation": {
-        "rating": 0,
-        "summary": "The search antitrust appeals remain pending, and no ad tech final judgment was found. The EU is assessing Google's DMA compliance after the July fine, so nothing materially new happened this month.",
+        "rating": -1,
+        "summary": "Antitrust pressure continues on several fronts. Google is appealing the US search remedies, the EU is pursuing DMA compliance talks after earlier fines, South Korea's top court will hear the Play Store case, and a securities class action is pending.",
         "evidence": [
           {
-            "claim": "The European Commission is in talks with Google and assessing its DMA compliance steps following the €890M fine.",
-            "url": "https://eutoday.net/google-eu-dma-fines-compliance-review-october-2026/",
+            "claim": "Google urged the D.C. Circuit to overturn the search data-sharing and syndication remedies.",
+            "url": "https://www.pymnts.com/cpi-posts/google-challenges-us-order-to-share-search-data-with-competitors/",
+            "event_date": "2026-10-26",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/0, names 1/3 · missing: D.C, Circuit"
+          },
+          {
+            "claim": "The European Commission said it is in dialogue with Google over DMA compliance following €890M in fines.",
+            "url": "https://thenextweb.com/news/eu-google-dma-fine-talks",
             "event_date": "2026-10-14",
-            "direction": "neutral",
+            "direction": "negative",
             "tier": "other",
             "age_days": 14,
             "background": false,
@@ -1355,51 +1355,64 @@
             "check": "numbers 1/1, names 4/4"
           },
           {
-            "claim": "Google told the D.C. Circuit that the data-sharing and syndication remedies in the search case go beyond what is needed; the appeals are pending.",
+            "claim": "South Korea's top court will hear the Play Store antitrust case.",
             "url": "https://www.pymnts.com/cpi-posts/google-challenges-us-order-to-share-search-data-with-competitors/",
-            "event_date": null,
-            "direction": "neutral",
+            "event_date": "2026-10-26",
+            "direction": "negative",
             "tier": "other",
-            "age_days": null,
+            "age_days": 2,
             "background": false,
-            "status": "unverified",
-            "check": "numbers 0/0, names 1/3 · missing: D.C, Circuit"
+            "status": "verified",
+            "check": "numbers 0/0, names 2/4"
           }
         ],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
-        "rating": 1,
-        "summary": "Oracle will offer Google TPUs on OCI, which broadens the TPU customer base beyond a limited number of large buyers such as Anthropic. A reported OpenAI purchase is unconfirmed.",
+        "rating": 0,
+        "summary": "Reports point to large committed TPU/cloud demand from Anthropic and new channels such as Oracle and a possible OpenAI deal, which broaden the customer base. Anthropic remains a large single counterparty, and all sources are secondary.",
         "evidence": [
           {
-            "claim": "Oracle will offer Google TPUs on Oracle Cloud Infrastructure, launching in 2027.",
-            "url": "https://www.kucoin.com/news/flash/oracle-to-offer-google-tpu-on-oracle-cloud-infrastructure",
-            "event_date": "2026-10-27",
+            "claim": "OpenAI plans to buy TPUs from Google, per CNBC.",
+            "url": "https://www.kucoin.com/news/flash/google-expands-cloud-ai-chip-sales-via-partnerships",
+            "event_date": null,
             "direction": "positive",
             "tier": "other",
-            "age_days": 1,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 1/1, names 5/5"
-          },
-          {
-            "claim": "OpenAI reportedly plans to buy Google TPUs, per The Information, but neither company has confirmed it.",
-            "url": "https://explainx.ai/blog/openai-google-tpu-purchase-the-information-claimed-vs-verified-2026",
-            "event_date": "2026-10-27",
-            "direction": "neutral",
-            "tier": "other",
-            "age_days": 1,
+            "age_days": null,
             "background": false,
             "status": "verified",
             "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "Google is selling TPUs through Oracle; Anthropic is described as Google's largest TPU customer.",
+            "url": "https://ozarab.media/google-expands-tpu-sales-through-oracle-cloud/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Broadcom disclosed a $63B facility to buy TPUs and lease them to Anthropic for five years.",
+            "url": "https://www.kucoin.com/news/flash/google-expands-cloud-ai-chip-sales-via-partnerships",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
           }
         ],
-        "label": "Customer concentration"
+        "label": "Customer concentration",
+        "rating_before_cap": 1,
+        "old_evidence_note": "Capped at 0 (was +1): no source that checked out is dated within the last 30 days; of the 3 that did, 3 undated"
       },
       "insider_activity": {
         "rating": 0,
-        "summary": "The only items were a tiny scheduled 10b5-1 sale by a director and a gift transfer, so there is no meaningful signal.",
+        "summary": "Only routine insider activity: a tiny 10b5-1 sale by a director and gifts by another, with no open-market purchases.",
         "evidence": [
           {
             "claim": "Director Frances Arnold sold 83 Class C shares at $340.45 under a 10b5-1 plan.",
@@ -1414,7 +1427,7 @@
             "form4_check": 2
           },
           {
-            "claim": "Director Ram Shriram transferred Class A and Class C shares from irrevocable trusts by gift.",
+            "claim": "Director Ram Shriram made gifts of Class A shares from two trusts.",
             "url": "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526423187/ownership.xml",
             "event_date": "2026-10-13",
             "direction": "neutral",
@@ -1430,29 +1443,29 @@
       },
       "product_competitive": {
         "rating": 1,
-        "summary": "Cloud revenue roughly doubled year on year in Q3, and Google's TPUs are gaining third-party distribution through Oracle.",
+        "summary": "Google Cloud revenue roughly doubled in Q3. TPU chips are gaining traction as an external product through Oracle and potential OpenAI purchases, strengthening Google's AI infrastructure position.",
         "evidence": [
           {
-            "claim": "Cloud revenue was $30.71B, up 103% year on year.",
-            "url": "https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/",
+            "claim": "Google Cloud revenue was $30.7B, up 103%.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm",
             "event_date": "2026-10-28",
             "direction": "positive",
-            "tier": "other",
+            "tier": "primary",
             "age_days": 0,
             "background": false,
             "status": "verified",
-            "check": "numbers 2/2, names 1/1"
+            "check": "numbers 2/2, names 2/2"
           },
           {
-            "claim": "Oracle will offer Google TPUs on OCI, the first hyperscale cloud outside Google to do so.",
-            "url": "https://www.kucoin.com/news/flash/oracle-to-offer-google-tpu-on-oracle-cloud-infrastructure",
-            "event_date": "2026-10-27",
+            "claim": "Google is selling TPUs through Oracle; TD Cowen estimates TPU revenue of $62.5B in 2027 and Wells Fargo about $99B.",
+            "url": "https://ozarab.media/google-expands-tpu-sales-through-oracle-cloud/",
+            "event_date": null,
             "direction": "positive",
             "tier": "other",
-            "age_days": 1,
+            "age_days": null,
             "background": false,
             "status": "verified",
-            "check": "numbers 0/0, names 4/4"
+            "check": "numbers 3/3, names 8/8"
           }
         ],
         "label": "Product and competitive news"
@@ -1461,22 +1474,22 @@
     "source_check": {
       "counts": {
         "guidance": {
-          "verified": 1,
-          "unverified": 1,
+          "verified": 2,
+          "unverified": 0,
           "unreachable": 1
         },
         "analyst_actions": {
-          "verified": 1,
+          "verified": 0,
           "unverified": 0,
           "unreachable": 4
         },
         "litigation_regulation": {
-          "verified": 1,
+          "verified": 2,
           "unverified": 1,
           "unreachable": 0
         },
         "customer_concentration": {
-          "verified": 2,
+          "verified": 3,
           "unverified": 0,
           "unreachable": 0
         },
@@ -1498,79 +1511,78 @@
     "enabled": true,
     "research": {
       "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526251733/d160205dfwp.htm",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526257724/d83560dex991.htm",
         "https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/",
+        "https://www.marketscreener.com/news/alphabet-2026-q3-earnings-press-release-ce785cd3d981f42c",
         "https://www.thestreet.com/latest-news/alphabet-inc-q3-2026-earnings-call-stock-forecast",
-        "https://public.com/stocks/goog/earnings",
-        "https://public.com/stocks/googl/earnings",
-        "https://startupfortune.com/alphabet-posts-its-first-ever-100-billion-quarter-as-ai-bets-pay-off/",
+        "https://www.thewrap.com/industry-news/business/alphabet-earnings-q3-2026/",
         "https://beinsure.com/news/alphabet-stock-price-forecast-analysts-see-upside/",
         "https://www.benzinga.com/quote/GOOGL/price-targets",
         "https://stockanalysis.com/stocks/goog/forecast/",
-        "https://stockanalysis.com/stocks/googl/forecast/",
+        "https://stockanalysis.com/stocks/googl/",
         "https://www.investing.com/equities/google-inc-consensus-estimates",
-        "https://simplywall.st/stocks/us/media/nasdaq-googl/alphabet",
-        "https://tickeron.com/blogs/alphabet-googl-price-targets-point-to-25-upside-toward-430-17574/",
+        "https://stockanalysis.com/stocks/googl/forecast/",
+        "https://www.cnn.com/markets/stocks/GOOG",
+        "https://www.tipranks.com/stocks/googl/forecast",
         "https://tickernerd.com/stock/googl-forecast/",
         "https://www.marketbeat.com/instant-alerts/research-analysts-offer-predictions-for-alphabet-q1-earnings-2025-10-29/",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm",
         "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000130817926000344/goog014907-ars.pdf",
         "https://www.pymnts.com/cpi-posts/google-challenges-us-order-to-share-search-data-with-competitors/",
+        "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+        "https://www.adexchanger.com/platforms/the-court-just-unsealed-judge-brinkemas-remedies-decision-in-the-google-ad-tech-antitrust-case-heres-your-tldr/",
         "https://www.itechguides.com/us-v-google-search-antitrust-trial-august-2026-updates/",
         "https://www.sneeze.it/blog/two-courts-found-google-broke-antitrust-law",
-        "https://www.adexchanger.com/platforms/the-court-just-unsealed-judge-brinkemas-remedies-decision-in-the-google-ad-tech-antitrust-case-heres-your-tldr/",
-        "https://tech-insider.org/google-antitrust-appeal-doj-search-monopoly-2026/",
         "https://www.globallawwire.com/articles/us-files-appeal-in-google-search-antitrust-case-112f7685",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526292904/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526114850/ownership.xml",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526114859/ownership.xml",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526423187/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526412669/ownership.xml",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526326284/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526412669/ownership.xml",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526377149/ownership.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526408009/ownership.xml",
         "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526290710/ownership.xml",
-        "https://www.marketbeat.com/stocks/NASDAQ/GOOG/sec-filings/",
-        "https://www.cnbc.com/2026/10/28/google-alters-cloud-playbook-turning-to-partners-to-sell-more-ai-chips.html",
-        "https://www.gurufocus.com/news/9146861/google-partners-with-oracle-to-offer-tpu-chips-challenging-nvidias-ai-dominance",
-        "https://betanews.com/article/openai-plans-to-buy-google-tpu-chips/",
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526408009/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000119312526408007/ownership.xml",
+        "https://lightsource.ai/blog/google-sold-anthropic-a-million-tpus",
+        "https://www.kucoin.com/news/flash/google-expands-cloud-ai-chip-sales-via-partnerships",
+        "https://dev.to/976905690/anthropic-locks-in-up-to-one-million-google-tpu-3kb8",
+        "https://www.cnbc.com/2025/10/23/anthropic-google-cloud-deal-tpu.html",
+        "https://www.siliconrepublic.com/machines/anthropic-google-broadcom-announce-3-5gw-tpu-deal",
+        "https://github.com/inkeep/tech-ipos-kb-example/blob/main/external-sources/anthropic-google-tpu-deal.md",
         "https://ozarab.media/google-expands-tpu-sales-through-oracle-cloud/",
-        "https://www.kucoin.com/news/flash/oracle-to-offer-google-tpu-on-oracle-cloud-infrastructure",
-        "https://pasqualepillitteri.it/en/news/27795/openai-google-tpu-purchase-compiler-role",
-        "https://explainx.ai/blog/openai-google-tpu-purchase-the-information-claimed-vs-verified-2026",
-        "https://financefeeds.com/google-stock-prediction-316-83-bull-360-67-bear-256-83/",
-        "https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html",
-        "https://abc.xyz/investor/events/event-details/2026/2026-Q1-Earnings-Call-2026-nW8kCrBAKS/default.aspx",
+        "https://decodethefuture.org/en/anthropic-google-tpu-deal/",
+        "https://jingletree.com/google-alters-its-cloud-playbook-enlisting-partners-to-sell-more-ai-chips-296856.html",
+        "https://www.googlecloudpresscorner.com/2026-10-20-Google-Public-Sector-Launches-Gemini-for-Government-Services",
+        "https://en.wikipedia.org/wiki/Google_One",
+        "https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/",
+        "https://emergent.sh/news/google-gemini-4-release-date",
+        "https://tech-insider.org/google-gemini-agent-launch-workplace-ai-2026/",
+        "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+        "https://tech-insider.org/google-cuts-free-gemini-1-model-oct-9-2026/",
+        "https://hellogrowth.ai/en/blog/google-ai-news-october-2026",
+        "https://projedefteri.com/en/blog/gemini-4-carbon-release-date/",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-beats-q2-2026-estimates-shares-fall-on-capex-surge-93CH-4807140",
+        "https://finance.yahoo.com/quote/GOOG/earnings/GOOG-Q2-2026-earnings_call-657320.html",
+        "https://abc.xyz/investor/events/event-details/2026/2026-Q2-Earnings-Call-2026-GgTAq7Is0z/default.aspx",
         "https://www.fool.com/investing/2026/10/26/will-alphabet-stock-surge-after-oct-28/",
-        "https://www.cnbc.com/2026/04/29/alphabet-googl-q1-2026-earnings.html",
-        "https://fool.com/investing/2026/10/26/warren-buffetts-successor-greg-abel-has-69-of",
-        "https://cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-        "https://blog.google/alphabet/investor-presentation-june-2026/",
-        "https://www.tradingkey.com/analysis/stocks/us-stocks/262008961-alphabet-googl-stock-price-forecast-2026-google-cloud-tradingkey",
-        "https://valueaddvc.com/blog/alphabet-205b-ai-capex-guidance-2026-what-googles-q2-earnings-raise-actually-buys",
+        "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
+        "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/goog-20261028.htm",
+        "https://admiralmarkets.com/education/articles/shares/alphabet-stock-q3-2026-earnings-preview",
+        "https://finance.biggo.com/news/9924a517-770c-4c73-a7a4-f02a8a6ed73a",
         "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/ip_26_1670/IP_26_1670_EN.pdf",
+        "https://www.concurrences.com/en/bulletin/news-issues/october-2026-iii/the-eu-commission-fines-a-big-tech-firm-eur890m-under-the-digital-markets-act",
         "https://ec.europa.eu/commission/presscorner/detail/en/mex_26_1675",
-        "https://guptadeepak.com/tech-fines/violation/google-eu-dma-selfpreferencing-2026/",
-        "https://www.techpolicy.press/the-high-stakes-behind-the-eus-890m-google-dma-fine/",
         "https://thenextweb.com/news/eu-google-dma-fine-talks",
-        "https://euperspectives.eu/2026/07/google-fine-890bn-eu-dma-self-preferencing-anti-steering/",
         "https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1670",
         "https://eutoday.net/google-eu-dma-fines-compliance-review-october-2026/",
         "https://securityonline.info/google-dma-compliance/",
-        "https://x.com/i/trending/2102953611198431437",
-        "https://www.benzinga.com/markets/tech/26/09/61966780/googles-gemini-4-could-launch-much-earlier-than-year-end-says-deepmind-exec-as-ai-battle-with-openai-anthropic-meta-heats-up",
-        "https://www.tradingview.com/news/reuters.com,2026:newsml_L6N46E16L:0-google-launches-gemini-4-carbon-ai-model-with-cybersecurity-focus/",
-        "https://www.investing.com/news/stock-market-news/google-launches-gemini-4-carbon-ai-model-with-cybersecurity-focus-4980426",
-        "https://www.axios.com/2026/09/30/google-gemini-4",
-        "https://www.cnbc.com/2026/10/02/tech-download-google-argon-frontier-openai-anthropic.html",
-        "https://www.trendingtopics.eu/gemini-4-rumors-google/",
-        "https://nokiapoweruser.com/google-nears-gemini-4-ai-model-release/",
-        "https://www.933thedrive.com/2026/10/28/google-launches-gemini-4-carbon-ai-model-with-cybersecurity-focus/",
-        "https://www.barchart.com/story/news/22531423/google-launches-gemini-upping-the-stakes-in-the-global-ai-race"
+        "https://techcrunch.com/2024/03/25/dma-first-formal-probes"
       ],
       "searches": 8
     }
@@ -1581,20 +1593,19 @@
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Alphabet rates Hold: strong growth, quality and net cash offset by high valuation and weak trend.",
-    "thesis": "Alphabet scores 59, a Hold, 6 points short of the Buy band. Growth (74) is solid, with TTM revenue growth of 20.1%, latest-quarter revenue growth of 24.2% year on year, and growth sped up by 2.4 pp from the previous quarter. Quality (71) and the balance sheet (100) also support the score: the operating margin is 33.1% and the company holds net cash, with cash at 2.42 times debt. Valuation is the main drag at 24. In absolute terms the multiples are high (P/S 8.8x, P/FCF 74.1x, EV/EBIT 25.8x, FCF yield 3.6 pp below the 10-year Treasury yield), and the stock is expensive against its own history, with P/FCF more expensive than at 57 of the last 61 month-ends. A weak trend score (43), with the price 20.4% below its 52-week high and shares 16.9 pp behind SPY over the last 126 trading days, plus a middling news score (55) hold the rating back.",
+    "headline": "Alphabet rates Hold: strong growth and a net-cash balance sheet offset by a high valuation and weak trend.",
+    "thesis": "Alphabet scores 58, a Hold, 7 points short of Buy. The business side is strong: TTM revenue growth of 20.1%, latest-quarter revenue growth of 24.2% year on year, and growth sped up by 2.4 pp from the previous quarter. Quality is solid, with a 33.1% operating margin, and the balance sheet scores 100 thanks to net cash and cash at 2.42 times debt. Valuation holds the score back at 24: in absolute terms P/S of 8.8x and P/FCF of 74.1x are high, with the FCF yield 3.6 pp below the 10-year Treasury yield. Against its own history the stock is rated expensive overall, with P/FCF more expensive than at 57 of the last 61 month-ends. The trend score of 42 is also a drag, with the price 20.4% below its 52-week high and shares 17.3 pp behind SPY over the last 126 trading days.",
     "key_risks": [
-      "Q3 operating income and EPS came in well below estimates despite strong revenue growth.",
-      "Heavy AI capex weighs on free cash flow: the FCF margin is 11.9% against a 33.1% operating margin.",
-      "High absolute valuation, with P/FCF at 74.1x, leaves little room for disappointment.",
-      "Search antitrust appeals and EU DMA compliance review remain unresolved.",
-      "Weak price trend: price 6.0% below its 200-day average and lagging SPY and QQQ."
+      "High absolute valuation, with P/FCF of 74.1x and a free cash flow margin of only 11.9% as heavy AI spending absorbs cash",
+      "Ongoing antitrust and regulatory pressure in the US, EU and South Korea, plus a pending securities class action",
+      "Weak price trend: price 6.0% below its 200-day average and lagging both SPY and QQQ",
+      "Reliance on large AI cloud counterparties such as Anthropic",
+      "Mixed reception of Q3 results, with EPS down year over year and analyst target changes split"
     ],
     "what_would_change": [
-      "A 6-point gain in the composite score would reach Buy, for example through a recovering price trend or better news flow on earnings and guidance.",
-      "Free cash flow growing faster than the share price would lower P/FCF and lift the valuation score from 24.",
-      "A drop of more than 15 points would mean Sell, which would likely take a growth slowdown together with weaker quality or worsening news such as adverse antitrust rulings.",
-      "Further Cloud and TPU momentum showing up in profits, not just revenue, would support growth and quality."
+      "A 7-point score gain would reach Buy, for example from a recovering price trend or a better valuation score after a pullback or stronger free cash flow",
+      "Positive post-earnings guidance or analyst upgrades lifting the news risk score above its current 50",
+      "A 14-point drop would mean Sell, which would likely need slowing growth together with a further fall in the trend score or adverse regulatory rulings"
     ]
   },
   "writeup_check": {
@@ -1606,44 +1617,18 @@
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 1568,
-        "output_tokens": 16,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "per_request": [
-          {
-            "input_tokens": 1568,
-            "output_tokens": 16,
-            "cache_write_tokens": 0,
-            "cache_read_tokens": 0,
-            "web_searches": 0
-          }
-        ],
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.0066,
-        "tiers": [],
-        "tiered_requests": 0
-      },
       "research": {
         "model": "claude-sonnet-5-5",
         "requests": 1,
-        "input_tokens": 117014,
-        "output_tokens": 4830,
+        "input_tokens": 119233,
+        "output_tokens": 4695,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 8,
         "per_request": [
           {
-            "input_tokens": 117014,
-            "output_tokens": 4830,
+            "input_tokens": 119233,
+            "output_tokens": 4695,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 8
@@ -1654,22 +1639,22 @@
           "output": 10.0,
           "verify": false
         },
-        "cost_usd": 0.3623,
+        "cost_usd": 0.3654,
         "tiers": [],
         "tiered_requests": 0
       },
       "scoring": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 7619,
-        "output_tokens": 2755,
+        "input_tokens": 7409,
+        "output_tokens": 3134,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 7619,
-            "output_tokens": 2755,
+            "input_tokens": 7409,
+            "output_tokens": 3134,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1680,22 +1665,22 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0856,
+        "cost_usd": 0.0923,
         "tiers": [],
         "tiered_requests": 0
       },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3640,
-        "output_tokens": 739,
+        "input_tokens": 3738,
+        "output_tokens": 684,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3640,
-            "output_tokens": 739,
+            "input_tokens": 3738,
+            "output_tokens": 684,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1706,33 +1691,57 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0293,
+        "cost_usd": 0.0286,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.4838,
+    "total_usd": 0.4863,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 297.79,
-    "as_of": "2026-10-28T20:21:09Z",
+    "price": 296.0,
+    "as_of": "2026-10-28T20:53:32Z",
     "prev_close": 320.58
   },
   "close_note": {
     "scored_on": "2026-10-27",
     "latest": "2026-10-28",
     "latest_from": "quote",
-    "run_et": "2026-10-28 16:19",
+    "run_et": "2026-10-28 16:45",
     "note": "today's close not yet published; scored on 2026-10-27",
-    "close_window": "Run at 4:19 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
+    "close_window": "Run at 4:45 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "40762150023",
+    "run_id": "40766001137",
     "tickers": [
-      "GOOGL"
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
     ]
   },
   "chart": [
@@ -9310,6 +9319,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-28T20:45:41Z",
+      "ticker": "GOOGL",
+      "rating": "Hold",
+      "score": "58",
+      "confidence": "High",
+      "growth": "74",
+      "quality": "71",
+      "balance_sheet": "100",
+      "valuation": "24",
+      "trend": "42",
+      "news_risk": "50",
+      "price": "320.58",
+      "price_date": "2026-10-27",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4863",
+      "overlay": "",
+      "quote_price": "296.0",
+      "quote_as_of": "2026-10-28T20:53:32Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-28T20:19:37Z",
       "ticker": "GOOGL",

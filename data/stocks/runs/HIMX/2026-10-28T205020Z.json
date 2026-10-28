@@ -1,0 +1,832 @@
+{
+  "run_id": "2026-10-28T20:50:20Z",
+  "generated_at": "2026-10-28T20:51:08+00:00",
+  "ticker": "HIMX",
+  "sec_ticker": "HIMX",
+  "cik": "0001342338",
+  "name": "Himax Technologies, Inc.",
+  "sector": "Semiconductors & Related Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 40,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter)"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 5
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 11
+    }
+  },
+  "composite": {
+    "score": 40,
+    "raw": 39.75,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": -14.67,
+          "score": 0.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -30.73,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 0,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 24.38,
+          "score": 24.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 1.19,
+          "score": 22.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -1.52,
+          "score": 17.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 0.16,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 0.05,
+          "score": 74.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 41,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash, negative FCF: 14.3 years of cash at the current burn"
+        },
+        "cash_to_debt": {
+          "value": 1.01,
+          "score": 80.3,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 92,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -11.34,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -6.07,
+          "score": 34.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 52.74,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 1.87,
+          "score": 53.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 0.35,
+          "score": 50.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -50.64,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 45,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 51,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 2.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-25T21:12:14Z",
+      "age_days": 3
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 2.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-25T21:12:14Z",
+    "age_days": 3
+  },
+  "price": {
+    "close": 11.94,
+    "date": "2026-10-27"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "SalesRevenueNet",
+    "revenue_yoy_q": null,
+    "acceleration_pp": -30.73,
+    "ttm_end": "2017-12-31",
+    "revenue_ttm": 685167000.0,
+    "revenue_yoy_ttm": -14.67,
+    "gross_profit_ttm": 167025000.0,
+    "operating_income_ttm": 8150000.0,
+    "operating_cash_flow_ttm": 29393000.0,
+    "capex_ttm": 39818000.0,
+    "sbc_ttm": 1098000.0,
+    "gross_profit_source": "revenue - CostOfGoodsAndServicesSold",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -10425000.0,
+    "gross_margin_pct": 24.38,
+    "operating_margin_pct": 1.19,
+    "fcf_margin_pct": -1.52,
+    "capex_intensity_pct": 5.81,
+    "sbc_pct_revenue": 0.16,
+    "missing_inputs": {},
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -1.52,
+      "fcf_margin_year_earlier_pct": 9.56,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -10425000.0,
+    "fcf_scored_margin_pct": -1.52,
+    "balance_sheet": {
+      "date": "2017-12-31",
+      "cash": 138023000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 10879000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesCurrent",
+          "val": 10879000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 148902000.0,
+      "debt": 147000000.0,
+      "debt_tags": [
+        "ShortTermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ShortTermBorrowings",
+          "val": 147000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -1902000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 344903000.0,
+    "diluted_shares_end": "2017-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.05,
+    "shares_outstanding": {
+      "val": 348851828.0,
+      "end": "2025-12-31",
+      "filed": "2026-03-27",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 11.94,
+    "date": "2026-10-27",
+    "ma50": 13.47,
+    "ma200": 12.71,
+    "vs_ma50_pct": -11.34,
+    "vs_ma200_pct": -6.07,
+    "momentum_12_1_pct": 52.74,
+    "high_52w": 24.19,
+    "drawdown_52w_pct": -50.64,
+    "return_rs_pct": 10.93,
+    "rs_days": 126,
+    "spy_return_pct": 9.06,
+    "rs_spy_pp": 1.87,
+    "qqq_return_pct": 10.58,
+    "rs_qqq_pp": 0.35
+  },
+  "ust10y": {
+    "value": 4.96,
+    "date": "2026-10-22"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window. Q3 guidance (revenue up 7–11% QoQ, gross margin around 34%) dates from August, and Q3 results are due Nov 5.",
+        "evidence": [
+          {
+            "claim": "Himax set the Q3 2026 results call for November 5, 2026.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/himax-sets-november-5-results-date-for-himax-technologies-stock/70423317",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 2/3, names 1/1 · missing: 3"
+          },
+          {
+            "claim": "Q3 2026 guidance: revenue up 7% to 11% sequentially, gross margin around 34%, EPS of 8.0 to 10.0 cents per diluted ADS.",
+            "url": "https://www.globenewswire.com/news-release/2026/08/06/3339987/0/en/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third-quarter-2026-guidance.html",
+            "event_date": "2026-08-06",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 83,
+            "background": true,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": -1,
+        "summary": "Wall Street Zen cut the stock from buy to hold. No sell-side broker acted in the window, and consensus figures conflict and rest on stale broker actions.",
+        "evidence": [
+          {
+            "claim": "Wall Street Zen downgraded Himax Technologies from buy to hold.",
+            "url": "https://www.defenseworld.net/2026/10/24/himax-technologies-nasdaqhimx-stock-moved-down-to-hold-by-wall-street-zen.html",
+            "event_date": "2026-10-24",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 4,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Danelfin put a $12.27 target on Himax Technologies stock.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/danelfin-puts-a-usd-12-27-target-on-himax-technologies-stock/70348405",
+            "event_date": "2026-10-16",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 12,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No Himax-specific lawsuits, investigations or regulatory actions found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new concentration disclosures or contract losses in the window. Automotive remains over half of revenue, and the Alibaba design win slightly diversifies the customer base.",
+        "evidence": [
+          {
+            "claim": "Alibaba selected Himax WiseEye ultralow-power AI processor for its Qwen Glasses N1.",
+            "url": "https://www.stocktitan.net/overview/HIMX/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/7"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Only routine RSU vestings for the CEO and CFO; no open-market buys or sells.",
+        "evidence": [
+          {
+            "claim": "CFO Pan Ming-Feng acquired 3,916 shares on RSU vesting, holding 129,372 shares afterward.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001342338/000117184326006301/ownership.xml",
+            "event_date": "2026-09-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "CEO Jordan Wu acquired 13,612 shares from RSU vesting, holding 540,253 shares afterward.",
+            "url": "https://www.stocktitan.net/sec-filings/HIMX/form-4-himax-technologies-inc-insider-trading-activity-1311c4a04f1d.html",
+            "event_date": "2026-09-30",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Alibaba picked Himax's WiseEye AI processor for its Qwen Glasses N1, a modest single-source design win in the window.",
+        "evidence": [
+          {
+            "claim": "Alibaba selected Himax WiseEye ultralow-power AI processor for its new Qwen Glasses N1.",
+            "url": "https://www.stocktitan.net/overview/HIMX/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/7"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Himax (HIMX), news 2026-09-28 to 2026-10-28**\n\n**1. Guidance**\n- No guidance change, pre-announcement or withdrawal found in the window. The Q3 guidance dates from before it: revenue up 7–11% QoQ, gross margin around 34%, and EPS of 8.0–10.0 cents per diluted ADS — 2026-08-06 — https://www.globenewswire.com/news-release/2026/08/06/3339987/0/en/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third-quarter-2026-guidance.html\n- Himax said Q2 revenue, gross margin and EPS all beat its guidance — 2026-08-06 — https://www.globenewswire.com/news-release/2026/08/06/3339987/0/en/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third-quarter-2026-guidance.html\n- Himax set the Q3 results call for Nov 5, 2026 at 8:00 AM EST. The announcement came on 2026-10-05, and Q3 results are the next catalyst — https://www.ad-hoc-news.de/boerse/news/corporate-news/himax-sets-november-5-results-date-for-himax-technologies-stock/70423317\n- Q3 guidance includes about $11.8M of employee bonus expense, versus about $0.2M in each of the prior three quarters — 2026-08-06 — https://scanx.trade/stock-market-news/companies/himax-technologies-schedules-q3-2026-earnings-call-nov-5/52722472\n\n**2. Analyst actions**\n- Wall Street Zen cut HIMX from \"buy\" to \"hold\" — 2026-10-24 — https://www.defenseworld.net/2026/10/24/himax-technologies-nasdaqhimx-stock-moved-down-to-hold-by-wall-street-zen.html\n- Danelfin, a quant AI model, set a 3-month target of $12.27 — 2026-10-16 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/danelfin-puts-a-usd-12-27-target-on-himax-technologies-stock/70348405\n- I found no upgrade, downgrade, initiation or target change from a sell-side broker in the window.\n- Consensus figures conflict:\n  - MarketBeat shows three Holds with an $8.00 average target — 2026-10-24 — https://www.ad-hoc-news.de/boerse/news/corporate-news/robeco-adds-882-739-shares-himax-technologies-stock-sits-54-88-percent-below-its-high/70406339\n  - Financhill shows a $30.20 consensus target, with two Buys and one Hold — 2026-10-20 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/financhill-cites-usd-30-20-target-for-himax-technologies-stock/70376990\n  - Investing.com lists Baird at Buy with a $30 target (2026-05-08) and Morgan Stanley at Hold (2026-02-04) — https://www.investing.com/equities/himax-tech-consensus-estimates\n  - Both consensus figures appear to rest on stale broker actions. The $8.00 consensus appears to reflect an older Morgan Stanley target.\n\n**3. Litigation and regulation**\n- Nothing material found for Himax: no lawsuits, investigations, fines or Himax-specific export-control actions. The tariff and export-control results I found were general macro items, not Himax-specific.\n\n**4. Customer concentration**\n- Alibaba chose Himax's WiseEye ultralow-power AI processor for its new Qwen Glasses N1 — 2026-10-14 — https://www.stocktitan.net/overview/HIMX/\n- I found no new disclosure of customer concentration, contract losses or contract changes in the window.\n- Automotive was over 50% of Q2 revenue, per the Q2 call on 2026-08-06 (before the window) — https://www.benzinga.com/news/26/09/61838393/himax-techs-q2-2026-earnings-call-transcript\n\n**5. Insider activity**\nAll items are RSU vestings. I found no open-market buys or sells, no 10b5-1 sales and no clustered selling.\n- CEO Jordan Wu: 6,806 RSUs vested, giving 13,612 shares acquired. He held 540,253 shares afterward — 2026-09-30 — https://www.stocktitan.net/sec-filings/HIMX/form-4-himax-technologies-inc-insider-trading-activity-1311c4a04f1d.html\n- CFO Pan Ming-Feng: acquired 3,916 shares on RSU vesting and held 129,372 shares afterward — 2026-09-30 — https://www.sec.gov/Archives/edgar/data/0001342338/000117184326006301/ownership.xml\n- Wu was also granted 4,797 RSUs on 2026-09-24, just before the window opened — https://www.stocktitan.net/sec-filings/HIMX/form-4-himax-technologies-inc-insider-trading-activity-8fd926f2382d.html\n\n**6. Product and competitive news**\n- The Alibaba Qwen Glasses N1 design win (see section 4) is the main product item in the window — 2026-10-14 — https://www.stocktitan.net/overview/HIMX/\n- Himax launched the HX83196/HX83197 eDP TDDI chips for automotive displays on 2026-09-08, before the window. It also showed automotive display and 3D sensing at the SID symposium on Sept 15–16 — https://briefglance.com/companies/himax-technologies-inc\n- On co-packaged optics (CPO), management said on 2026-08-06 that Gen 1 and Gen 2 products began engineering production ramps in Q3, with more meaningful volume from 2027 — https://www.quiverquant.com/news/Himax+Technologies+Reports+Q2+2026+Results+Above+Guidance;+Raises+Q3+Outlook+on+Automotive+and+Emerging+Growth+Momentum\n- On the Q2 call, the CEO said competitors use traditional molded-glass optics, whereas Himax uses wafer-level optics — 2026-08-06 — https://gloom.sh/stocks/himx/transcripts/q2-2026\n- Industry-wide foundry, packaging and testing capacity constraints are raising Himax's costs and lead times — 2026-08-06 — https://www.quiverquant.com/news/Himax+Technologies+Reports+Q2+2026+Results+Above+Guidance;+Raises+Q3+Outlook+on+Automotive+and+Emerging+Growth+Momentum\n\n**Price context:** HIMX fell 17.3% over 2026-09-25 to 2026-10-27 and closed at $11.94 on 2026-10-27 — https://www.stocktitan.net/overview/HIMX/",
+      "urls": [
+        "https://www.manilatimes.net/2026/08/06/tmt-newswire/globenewswire/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third-quarter-2026-guidance/2399756",
+        "https://www.marketbeat.com/instant-alerts/himax-technologies-nasdaqhimx-updates-q3-2026-earnings-guidance-2026-08-06/",
+        "https://www.nasdaq.com/press-release/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third",
+        "https://www.himax.com.tw/wp-content/uploads/2026/08/2Q26-Earnings-PR-Final.pdf",
+        "https://simplywall.st/stocks/us/semiconductors/nasdaq-himx/himax-technologies/news/why-himax-technologies-himx-is-up-130-after-strong-q2-result/amp",
+        "https://www.globenewswire.com/news-release/2026/08/06/3339987/0/en/himax-technologies-inc-reports-second-quarter-2026-financial-results-provides-third-quarter-2026-guidance.html",
+        "https://www.quiverquant.com/news/Himax+Technologies+Reports+Q2+2026+Results+Above+Guidance;+Raises+Q3+Outlook+on+Automotive+and+Emerging+Growth+Momentum",
+        "https://www.stocktitan.net/news/HIMX/himax-technologies-inc-reports-second-quarter-2026-financial-results-zeny2rhb189t.html",
+        "https://scanx.trade/stock-market-news/companies/himax-technologies-schedules-q3-2026-earnings-call-nov-5/52722472",
+        "https://simplywall.st/stocks/us/semiconductors/nasdaq-himx/himax-technologies",
+        "https://www.marketscreener.com/quote/stock/HIMAX-TECHNOLOGIES-INC-16677/consensus/",
+        "https://www.benzinga.com/quote/HIMX/price-targets",
+        "https://www.investing.com/equities/himax-tech-consensus-estimates",
+        "https://stockanalysis.com/stocks/himx/",
+        "https://fintel.io/sfo/us/himx",
+        "https://www.pricetargets.com/NASDAQ/HIMX/",
+        "https://www.benzinga.com/article/4638858",
+        "https://www.benzinga.com/quote/HIMX/analyst-ratings",
+        "https://www.rvia.org/news-insights/latest-tariff-developments",
+        "https://www.cit.uscourts.gov/sites/cit/files/26-123.pdf",
+        "https://en.wikipedia.org/wiki/Busan_Summit",
+        "https://en.wikipedia.org/wiki/United_States_New_Export_Controls_on_Advanced_Computing_and_Semiconductors_to_China",
+        "https://substack.steptoe.com/p/sanctions-update-october-26-2026",
+        "https://en.wikipedia.org/wiki/Canada%E2%80%93China_trade_war",
+        "https://www.congress.gov/crs-product/LSB11409",
+        "https://hetianparts.com/mexico-auto-parts-import-compliance-a-supplier-checklist-after-the-2026-tariff-exemption-decree",
+        "https://www.pillsburylaw.com/en/news-and-insights/china-suspends-export-controls-certain-critical-minerals-related-items.html",
+        "https://www.streetinsider.com/Corporate+News/Himax+confirms+ongoing+CPO+partnership+with+FOCI+unchanged/25800245.html",
+        "https://finance.yahoo.com/news/himax-soars-20-analyst-predicts-165922253.html",
+        "https://www.benzinga.com/news/26/09/61838393/himax-techs-q2-2026-earnings-call-transcript",
+        "https://www.himax.com.tw/wp-content/uploads/2026/01/PR-Himax-Confirm-CPO-Collaboration-and-Strategic-Partnership-with-FOCI-Remain-Ongoing-and-Unchanged.pdf",
+        "https://www.himax.com.tw/wp-content/uploads/2026/08/2Q26-HIMX-Investor-Presentation-0806.pdf",
+        "https://www.fool.com/earnings/call-transcripts/2026/08/13/himax-himx-q2-2026-earnings-call-transcript/",
+        "https://stocktwits.com/news-articles/markets/equity/himax-stock-jumps-on-potential-nvidia-tsmc-supply-chain-partnerships/cJa9Of0R0C",
+        "https://cwnewsroom.substack.com/p/inside-the-tsmc-patent-how-himax-quietly-became-a-key-link-in-the-cpo-supply-chain",
+        "https://www.stocktitan.net/overview/HIMX/",
+        "https://www.itiger.com/hans/news/1141964238",
+        "https://www.nasdaq.com/symbol/himx/insider-trades",
+        "https://www.sec.gov/Archives/edgar/data/0001342338/000117184326006301/ownership.xml",
+        "https://finance.yahoo.com/quote/HIMX/insider-transactions/",
+        "https://www.sec.gov/Archives/edgar/data/0001342338/000119312506058741/df1a.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001342338/000104746913006863/a2215014z424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001342338/000104746913005189/a2214754zf-3.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001342338/000104746913006700/a2215326zf-3.htm",
+        "https://www.sec.gov/Archives/edgar/data/1342338/000141057822000463/tmb-20211231x20f.htm",
+        "https://www.sec.gov/Archives/edgar/data/1342338/000110465920037959/tm206809-1_20f.htm",
+        "https://finance.yahoo.com/technology/ai/articles/himax-strengthens-3d-sensing-portfolio-060000325.html",
+        "https://finance.yahoo.com/markets/stocks/articles/himax-technologies-himx-launches-auto-051405042.html",
+        "https://finance.yahoo.com/technology/ai/articles/himax-himx-launches-series-itof-121049021.html",
+        "https://www.quiverquant.com/news/Himax+Technologies+Launches+HE+Series+iToF+Depth+Decoder+ICs+for+Robotics+and+AI+Vision+Applications",
+        "https://www.globenewswire.com/news-release/2026/06/30/3319398/8267/en/Himax-Strengthens-3D-Sensing-Portfolio-with-Launch-of-New-iToF-Depth-Decoder-ICs-for-Robotics-and-Intelligent-Vision-Applications.html",
+        "https://finance.yahoo.com/technology/ai/articles/himax-technologies-himx-turn-3d-032949571.html",
+        "https://www.stocktitan.net/news/HIMX/himax-strengthens-3d-sensing-portfolio-with-launch-of-new-i-to-f-lgm6blxn3w9x.html",
+        "https://briefglance.com/companies/himax-technologies-inc",
+        "https://www.sahmcapital.com/news/content/how-himaxs-new-itof-edge-ai-platform-launch-at-himax-technologies-himx-has-changed-its-investment-story-2026-07-09",
+        "https://www.gurufocus.com/news/9116516/himax-technologies-inc-himx-shares-fall-59-gf-value-says-still-overvalued",
+        "https://simplywall.st/stocks/us/semiconductors/nasdaq-himx/himax-technologies/news/is-himax-technologies-himx-undervalued-after-its-alibaba-qwe",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/himax-sets-november-5-results-date-for-himax-technologies-stock/70423317",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/himax-technologies-stock-falls-2-64-percent-before-q3-date-casey-no/70236039",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/danelfin-puts-a-usd-12-27-target-on-himax-technologies-stock/70348405",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/robeco-adds-882-739-shares-himax-technologies-stock-sits-54-88-percent-below-its-high/70406339",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/financhill-cites-usd-30-20-target-for-himax-technologies-stock/70376990",
+        "https://www.defenseworld.net/2026/10/24/himax-technologies-nasdaqhimx-stock-moved-down-to-hold-by-wall-street-zen.html",
+        "https://www.gurufocus.com/insider/286336/jordan-wu",
+        "https://www.himax.com.tw/wp-content/uploads/2026/02/4Q25-and-Full-Year-EC-Transcript-Himax.pdf",
+        "https://www.himax.com.tw/wp-content/uploads/2026/08/2Q26-EC-Transcript-Himax-Final.pdf",
+        "https://www.comparably.com/companies/himax-technologies/executive-team",
+        "https://www.crunchbase.com/person/jordan-wu",
+        "https://en.wikipedia.org/wiki/Himax",
+        "https://gloom.sh/stocks/himx/transcripts/q2-2026",
+        "https://www.stocktitan.net/sec-filings/HIMX/form-4-himax-technologies-inc-insider-trading-activity-8fd926f2382d.html",
+        "https://www.stocktitan.net/sec-filings/HIMX/form-4-himax-technologies-inc-insider-trading-activity-1311c4a04f1d.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Himax rates Sell as a steep revenue decline and thin margins outweigh a strong net cash position.",
+    "thesis": "Himax scores 40, a Sell, driven mostly by a growth score of 0: the company shows a TTM revenue decline of 14.7%, and growth slowed by 30.7 pp from the previous quarter. Quality is middling at 41, with a gross margin of 24.4%, an operating margin of just 1.2% and a free cash flow margin of -1.5%, though stock-based pay is tiny at 0.2% of revenue and the diluted share count is up 0.1% year on year. The balance sheet is the clear strength at 92, with cash slightly exceeding debt (cash-to-debt of 1.01) and about 14.3 years of cash at the current burn. Trend (45) and news (51) are roughly neutral: the shares are 11.3% below their 50-day average and 50.6% below their 52-week high, while news is balanced between an Alibaba design win for WiseEye and a Wall Street Zen downgrade to hold. Valuation could not be scored, so the rating rests on the other five factors.",
+    "key_risks": [
+      "Revenue is shrinking, with a TTM revenue decline of 14.7% and sharply slowing growth.",
+      "Operating margin of 1.2% and negative free cash flow leave little cushion if sales weaken further.",
+      "Automotive is over half of revenue, tying results to the auto display cycle.",
+      "Shares are 50.6% below their 52-week high and trading below both their 50-day and 200-day averages.",
+      "Q3 results on Nov 5 could disappoint against August guidance for revenue up 7–11% quarter on quarter and gross margin around 34%."
+    ],
+    "what_would_change": [
+      "A rise of 5 points to 45 would lift the rating to Hold, most plausibly from a revenue recovery that lifts the growth score off 0.",
+      "Q3 results meeting guidance, especially a gross margin near 34%, would help the quality score.",
+      "A drop of 11 points to below 30 would mean Strong Sell, for example if revenue keeps falling, margins slip or the price trend weakens further.",
+      "Further design wins or analyst upgrades would support the news score; more downgrades would weigh on it."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 117556,
+        "output_tokens": 3755,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 117556,
+            "output_tokens": 3755,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3527,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6672,
+        "output_tokens": 1378,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6672,
+            "output_tokens": 1378,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0542,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3471,
+        "output_tokens": 737,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3471,
+            "output_tokens": 737,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0286,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4355,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 12.005,
+    "as_of": "2026-10-28T20:52:26Z",
+    "prev_close": 11.94
+  },
+  "close_note": {
+    "scored_on": "2026-10-27",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-28 16:50",
+    "note": "today's close not yet published; scored on 2026-10-27",
+    "close_window": "Run at 4:50 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40766001137",
+    "tickers": [
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
+    ]
+  }
+}

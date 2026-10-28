@@ -1,0 +1,3847 @@
+{
+  "run_id": "2026-10-28T20:51:36Z",
+  "generated_at": "2026-10-28T20:52:36+00:00",
+  "ticker": "SNDK",
+  "sec_ticker": "SNDK",
+  "cik": "0002023554",
+  "name": "Sandisk Corp",
+  "sector": "Computer Storage Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 66,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "fcf_spike",
+        "points": 1.0,
+        "text": "FCF spike (cause not in tagged data): TTM FCF margin 56.8% vs -1.6% a year earlier; scored on normalised FCF (median quarterly margin 10.8% of the last 8 quarters x TTM revenue)"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 15 month-ends, P/FCF 12 month-ends, EV/EBIT 15 month-ends (needs 24)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 66 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 14
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 2
+    }
+  },
+  "composite": {
+    "score": 66,
+    "raw": 66.35,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 371.59,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 175.3,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 120.56,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 71.47,
+          "score": 94.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 61.19,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 10.78,
+          "score": 51.8,
+          "weight": 0.25,
+          "note": "normalised FCF; reported FCF margin 56.8%"
+        },
+        "sbc_pct_revenue": {
+          "value": 1.15,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 6.9,
+          "score": 12.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 74,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -0.41,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt"
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 10.158,
+          "score": 32.7,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 94.254,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "normalised FCF; reported P/FCF 17.9x"
+        },
+        "ev_to_ebit": {
+          "value": 16.218,
+          "score": 67.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -3.899,
+          "score": 1.3,
+          "weight": 0.2,
+          "note": "normalised FCF"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 15 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 12 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 15 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 23,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -10.62,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 12.32,
+          "score": 80.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 880.09,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 22.92,
+          "score": 89.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 22.09,
+          "score": 88.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -39.84,
+          "score": 0.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 63,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 2.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-25T21:12:14Z",
+      "age_days": 3
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 2.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-25T21:12:14Z",
+    "age_days": 3
+  },
+  "price": {
+    "close": 1404.77,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-07-03",
+    "revenue_q": 8965000000.0,
+    "revenue_yoy_q": 371.59,
+    "revenue_yoy_q_prev": 251.03,
+    "acceleration_pp": 120.56,
+    "ttm_end": "2026-07-03",
+    "revenue_ttm": 20248000000.0,
+    "revenue_yoy_ttm": 175.3,
+    "gross_profit_ttm": 14472000000.0,
+    "operating_income_ttm": 12389000000.0,
+    "operating_cash_flow_ttm": 11671000000.0,
+    "capex_ttm": 177000000.0,
+    "sbc_ttm": 232000000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 11494000000.0,
+    "gross_margin_pct": 71.47,
+    "operating_margin_pct": 61.19,
+    "fcf_margin_pct": 56.77,
+    "capex_intensity_pct": 0.87,
+    "sbc_pct_revenue": 1.15,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 1217000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 25000000.0,
+      "base_date": "2025-06-27",
+      "revenue_growth_pct": 175.3,
+      "expected": 43823929.29979606,
+      "excess": 1173176070.700204,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.1005
+    },
+    "fcf_spike": {
+      "triggered": true,
+      "reasons": [
+        "TTM FCF margin 56.8% vs -1.6% a year earlier"
+      ],
+      "fcf_margin_pct": 56.77,
+      "fcf_margin_year_earlier_pct": -1.63,
+      "median_margin_pct": 10.78,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4,
+      "normalised_fcf": 2182234316.1539536
+    },
+    "fcf_basis": "normalised",
+    "fcf_scored_ttm": 2182234316.1539536,
+    "fcf_normalised_ttm": 2182234316.1539536,
+    "fcf_normalised_margin_pct": 10.78,
+    "fcf_scored_margin_pct": 10.78,
+    "balance_sheet": {
+      "date": "2026-07-03",
+      "cash": 4762000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 4762000000.0,
+      "debt": 0.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 0.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -4762000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 155000000.0,
+    "diluted_shares_end": "2026-07-03",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 6.9,
+    "shares_outstanding": {
+      "val": 146419001.0,
+      "end": "2026-08-07",
+      "filed": "2026-08-17",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-12-29",
+        "revenue": 1665000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -14.71,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-29",
+        "revenue": 1705000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 3.81,
+        "fcf": -41000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2024-06-28",
+        "revenue": 1760000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 11.31,
+        "fcf": -168000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-27",
+        "revenue": 1883000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 15.45,
+        "fcf": -198000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2024-12-27",
+        "revenue": 1876000000.0,
+        "revenue_yoy_pct": 12.67,
+        "operating_margin_pct": 10.39,
+        "fcf": 47000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2025-03-28",
+        "revenue": 1695000000.0,
+        "revenue_yoy_pct": -0.59,
+        "operating_margin_pct": -110.97,
+        "fcf": -18000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2025-06-27",
+        "revenue": 1901000000.0,
+        "revenue_yoy_pct": 8.01,
+        "operating_margin_pct": 0.95,
+        "fcf": 49000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-10-03",
+        "revenue": 2308000000.0,
+        "revenue_yoy_pct": 22.57,
+        "operating_margin_pct": 7.63,
+        "fcf": 438000000.0,
+        "diluted_shares": 149000000.0
+      },
+      {
+        "end": "2026-01-02",
+        "revenue": 3025000000.0,
+        "revenue_yoy_pct": 61.25,
+        "operating_margin_pct": 35.21,
+        "fcf": 980000000.0,
+        "diluted_shares": 156000000.0
+      },
+      {
+        "end": "2026-04-03",
+        "revenue": 5950000000.0,
+        "revenue_yoy_pct": 251.03,
+        "operating_margin_pct": 69.09,
+        "fcf": 2993000000.0,
+        "diluted_shares": 157000000.0
+      },
+      {
+        "end": "2026-07-03",
+        "revenue": 8965000000.0,
+        "revenue_yoy_pct": 371.59,
+        "operating_margin_pct": 78.49,
+        "fcf": 7083000000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 1404.77,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 146419001.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-07"
+    },
+    "market_cap": 205685020034.77,
+    "enterprise_value": 200923020034.77,
+    "price_to_sales": 10.158,
+    "price_to_fcf": 94.254,
+    "ev_to_ebit": 16.218,
+    "sales_yield_pct": 9.844,
+    "fcf_yield_pct": 1.061,
+    "ebit_yield_pct": 6.166,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "normalised",
+    "price_to_fcf_reported": 17.895,
+    "fcf_yield_reported_pct": 5.588,
+    "ust10y_pct": 4.96,
+    "ust10y_date": "2026-10-22",
+    "fcf_yield_vs_10y_pp": -3.899,
+    "history": [
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 1.142,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 87.577,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -5.867
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 2.442,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.955,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.813
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 4.338,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.053,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -1.599
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 4.276,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.385,
+        "fcf_yield_pct": -0.248,
+        "ebit_yield_pct": -4.497
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 4.546,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.996,
+        "fcf_yield_pct": -0.234,
+        "ebit_yield_pct": -4.229
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 10.068,
+        "price_to_fcf": 1395.022,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.933,
+        "fcf_yield_pct": 0.072,
+        "ebit_yield_pct": -0.699
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 11.1,
+        "price_to_fcf": 1538.119,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.009,
+        "fcf_yield_pct": 0.065,
+        "ebit_yield_pct": -0.634
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 11.1,
+        "price_to_fcf": 1538.07,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.009,
+        "fcf_yield_pct": 0.065,
+        "ebit_yield_pct": -0.634
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 19.157,
+        "price_to_fcf": 2654.499,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.22,
+        "fcf_yield_pct": 0.038,
+        "ebit_yield_pct": -0.366
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 20.184,
+        "price_to_fcf": 794.207,
+        "ev_to_ebit": 48.86,
+        "sales_yield_pct": 4.954,
+        "fcf_yield_pct": 0.126,
+        "ebit_yield_pct": 2.047
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 27.076,
+        "price_to_fcf": 1065.388,
+        "ev_to_ebit": 65.78,
+        "sales_yield_pct": 3.693,
+        "fcf_yield_pct": 0.094,
+        "ebit_yield_pct": 1.52
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 14.467,
+        "price_to_fcf": 569.226,
+        "ev_to_ebit": 34.822,
+        "sales_yield_pct": 6.912,
+        "fcf_yield_pct": 0.176,
+        "ebit_yield_pct": 2.872
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 11.993,
+        "price_to_fcf": 111.28,
+        "ev_to_ebit": 19.217,
+        "sales_yield_pct": 8.338,
+        "fcf_yield_pct": 0.899,
+        "ebit_yield_pct": 5.204
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 13.319,
+        "price_to_fcf": 123.581,
+        "ev_to_ebit": 21.384,
+        "sales_yield_pct": 7.508,
+        "fcf_yield_pct": 0.809,
+        "ebit_yield_pct": 4.676
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 10.754,
+        "price_to_fcf": 99.778,
+        "ev_to_ebit": 17.191,
+        "sales_yield_pct": 9.299,
+        "fcf_yield_pct": 1.002,
+        "ebit_yield_pct": 5.817
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 10.158,
+        "current_yield_pct": 9.844,
+        "points": 15,
+        "median": 11.1,
+        "low": 1.142,
+        "high": 27.078,
+        "negative_points": 0,
+        "median_yield_pct": 9.009,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2025-08-29"
+      },
+      "price_to_fcf": {
+        "current": 94.254,
+        "current_yield_pct": 1.061,
+        "points": 12,
+        "median": 1204.819,
+        "low": 99.8,
+        "high": null,
+        "negative_points": 2,
+        "median_yield_pct": 0.083,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-08-29"
+      },
+      "ev_to_ebit": {
+        "current": 16.218,
+        "current_yield_pct": 6.166,
+        "points": 15,
+        "median": null,
+        "low": 17.191,
+        "high": null,
+        "negative_points": 9,
+        "median_yield_pct": -0.634,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-08-29"
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "15 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "12 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "15 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 1404.77,
+    "date": "2026-10-28",
+    "ma50": 1571.68,
+    "ma200": 1250.65,
+    "vs_ma50_pct": -10.62,
+    "vs_ma200_pct": 12.32,
+    "momentum_12_1_pct": 880.09,
+    "high_52w": 2335.0,
+    "drawdown_52w_pct": -39.84,
+    "return_rs_pct": 32.0,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 22.92,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 22.09
+  },
+  "ust10y": {
+    "value": 4.96,
+    "date": "2026-10-22"
+  },
+  "guidance": {
+    "accession": "0001628280-26-053346",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-07-03",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm",
+    "summary": "Sandisk expects fiscal first quarter 2027 revenue of $10.30 billion to $10.80 billion and Non-GAAP diluted EPS of $44.00 to $46.00.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q1 FY2027",
+        "amount_text": "$10.30 billion to $10.80 billion",
+        "stated_change": "not stated",
+        "sentence": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "Q1 FY2027",
+        "amount_text": "$44.00 to $46.00",
+        "stated_change": "not stated",
+        "sentence": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-028879",
+      "filing_date": "2026-04-30",
+      "period_end": "2026-04-03",
+      "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026028879/sndkq3-26ex991xpressrelease.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; the operative Q1 FY27 outlook of $10.30–10.80B revenue and $44–46 non-GAAP EPS dates from August, and results are due Oct 29.",
+        "evidence": [
+          {
+            "claim": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+            "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm",
+            "event_date": "2026-08-05",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 84,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions were mixed. Mizuho raised its target to $2,050 and Zacks upgraded to Strong-Buy, while Cantor cut its target to $2,200 from $2,900 and Weiss downgraded to Hold.",
+        "evidence": [
+          {
+            "claim": "Mizuho raised its price target on Sandisk to $2,050 from $1,875 and kept a Buy rating.",
+            "url": "https://www.thestreet.com/investing/stocks/sndk-sandisk-stock-price-target-mizuho-october-2026",
+            "event_date": "2026-10-05",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Cantor Fitzgerald maintained Overweight and cut its price target to $2,200 from $2,900.",
+            "url": "https://finance.yahoo.com/quote/SNDK/",
+            "event_date": "2026-10-26",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Zacks Research upgraded Sandisk from Hold to Strong-Buy.",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Weiss Ratings downgraded Sandisk from Buy (B-) to Hold (C+).",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+            "event_date": "2026-10-14",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "A single secondary source reports Sandisk was named Meta's exclusive storage partner for its VR glasses. That is a consumer-accessory deal and not material to concentration, and no customer losses were found.",
+        "evidence": [
+          {
+            "claim": "Sandisk was named exclusive storage partner for Meta VR Glasses, with microSD Express cards and USB-C drives planned around a spring 2027 launch.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": "2026-10-14",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only Form 4 sale found inside the window is the Chief Legal Officer's routine monthly 600-share sale under a 10b5-1 plan, which is not material. Larger executive sales came just before the window, and no purchases were found.",
+        "evidence": [
+          {
+            "claim": "Chief Legal Officer Bernard Shek sold 600 shares at $1,734.94 under a Rule 10b5-1 plan, leaving 25,588 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000045/edgardoc.xml",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 27,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 6/6, names 6/6 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Product news was minor: the Guardian Series memory cards and the High Bandwidth Flash specs announced with SK hynix, all from a single low-tier source. Competitors also launched enterprise SSDs.",
+        "evidence": [
+          {
+            "claim": "Sandisk launched the Guardian Series high-endurance memory cards starting at $28.99 for 32GB.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "SK hynix and Sandisk announced the first High Bandwidth Flash standard specs at FMS 2026.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828026004121/sndkq2fy26ex991-pressrelea.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026028879/sndkq3-26ex991xpressrelease.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/sandisk-earnings-preview-expect-123010342.html",
+        "https://finance.yahoo.com/markets/stocks/articles/prediction-sandisk-stock-soar-oct-153601931.html",
+        "https://www.investing.com/equities/sandisk-corp-earnings",
+        "https://www.tipranks.com/stocks/sndk/earnings",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026029401/sndk-20260403.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312526057313/d70029d424b7.htm",
+        "https://finance.yahoo.com/quote/SNDK/",
+        "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+        "https://www.marketbeat.com/instant-alerts/price-sandisk-nasdaq-sndk-shares-gap-up-still-a-buy-2026-10-28/",
+        "https://www.thestreet.com/investing/stocks/sndk-sandisk-stock-price-target-mizuho-october-2026",
+        "https://simplywall.st/stocks/us/tech/nasdaq-sndk/sandisk/future",
+        "https://stockanalysis.com/stocks/sndk/",
+        "https://stockanalysis.com/stocks/sndk/forecast/",
+        "https://www.chartmill.com/stock/quote/SNDK/analyst-ratings",
+        "https://www.forbes.com/sites/investor-hub/article/sandisk-stock-over-574-where-its-heading-2026/",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000011/form_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000014/form_10ka.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407017171/f32384e10vq.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407019966/f33805e8vk.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407023196/f34387e10vq.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000038/form_10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018015000051/sndkq31510-q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000089161808000397/f42698e10vq.htm",
+        "https://www.tomshardware.com/news/wd-faces-class-action-lawsuit-over-sandisk-extreme-pro-ssd-failures",
+        "https://topclassactions.com/lawsuit-settlements/consumer-products/electronics/sandisk-memory-card-class-action-dismissed/",
+        "https://finance.yahoo.com/news/sandisk-rides-nand-shortage-ai-131034446.html",
+        "https://seekingalpha.com/article/4907596-sandisk-ai-pivot-changes-the-nand-narrative",
+        "https://finance.yahoo.com/technology/ai/articles/sandisk-sndk-secures-meta-nand-171417598.html",
+        "https://finance.yahoo.com/news/sandisk-sndk-19-5-locking-042447310.html",
+        "https://renstocks.substack.com/p/sandisk-the-company-that-stores-the",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018016000094/sndk2016-q110xq.htm",
+        "https://x.com/TheValueist/status/2085131426467319824",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018015000013/sndk201410-k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018015000027/sndkq11510-q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018016000068/sndk201510-k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000041/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000032/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000028/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000074/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000033/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000058/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000056/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000045/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000029/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000027/edgardoc.xml",
+        "https://finance.yahoo.com/markets/stocks/articles/sandisk-sndk-stock-risk-nand-171245584.html",
+        "https://www.trendforce.com/news/2026/01/29/news-second-tier-no-more-kioxia-and-sandisk-balance-alliance-and-rivalry-in-ai-nand-race/",
+        "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+        "https://tech-insider.org/sandisk-xbox-expansion-card-launch-2026/",
+        "https://tech-insider.org/sandisk-nas-600-nas-800-ssd-launch-2026/",
+        "https://simplywall.st/stocks/us/tech/nasdaq-sndk/sandisk/news/what-does-sandisk-sndk-need-to-watch-after-a-memory-rivals-b",
+        "https://www.tomshardware.com/pc-components/ssds/sandisk-to-double-price-of-3d-nand-for-enterprise-ssds-in-q1-2026-hyperscalers-to-pay-top-dollar-for-storage-as-ai-continues-to-roll",
+        "https://www.sandisk.com/company/newsroom?p=1&page-type=Press+Release",
+        "https://www.techtimes.com/articles/323859/20260810/sandisk-launches-xbox-expansion-card-19999-third-licensed-competitor-arrives-before-gta-vi.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026057406/sndk-20260703.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000130817926000425/sndk015568-ars.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000130817926000423/sndk_courtesy-pdf.pdf",
+        "https://www.stocktitan.net/sec-filings/SNDK/form-4-sandisk-corp-insider-trading-activity-33d8514b16ff.html",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312526122705/d136592d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828026029401/sndk-20260403.htm",
+        "https://investor.sandisk.com/static-files/47c2209d-7ef3-488d-b9f4-62d371ad8740",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828025044483/sndk014126-arsa.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000119312526224694/d157363d8k.htm"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Sandisk rates Buy on explosive growth and net cash, held back by high absolute valuation.",
+    "thesis": "Sandisk scores 66, just 2 points above the Hold line, so the Buy rating is a narrow one. Growth scores 100, with latest-quarter revenue growth of 371.6% year on year, TTM revenue growth of 175.3%, and growth sped up by 120.6 pp from the previous quarter. Quality (74) and the balance sheet (100) also support the rating: the gross margin is 71.5%, the operating margin is 61.2%, and the company holds net cash with no debt. Against that, valuation scores only 23. On absolute levels the stock looks high, at 10.2x sales and 94.3x normalised FCF, with an FCF yield 3.9 pp below the 10-year Treasury yield. There is no comparison with its own history. The trend score of 63 reflects a mixed picture: the shares are up 880.1% from 12 months ago to 1 month ago, but the price is 39.8% below its 52-week high and 10.6% below its 50-day average.",
+    "key_risks": [
+      "Memory pricing is cyclical, so today's very high growth and margins could reverse sharply.",
+      "Valuation is high in absolute terms, with P/FCF of 94.3x on normalised FCF, leaving little room for disappointment.",
+      "The share price is 39.8% below its 52-week high and 10.6% below its 50-day average, showing recent volatility and weakening momentum.",
+      "Results are due Oct 29 against an outlook of $10.30–10.80B revenue and $44–46 non-GAAP EPS, which raises the odds of a sharp move either way.",
+      "The diluted share count is up 6.9% year on year, diluting existing holders."
+    ],
+    "what_would_change": [
+      "A drop of just 2 points in the score, for example from a weak earnings reaction hurting trend or news risk, would move the rating to Hold.",
+      "Reaching Strong Buy needs 14 more points, most plausibly from a better valuation score through a lower price or sustained higher free cash flow.",
+      "Negative guidance or analyst actions after the Oct 29 results would pull down the news risk score from its neutral 50.",
+      "Further price weakness that pushes the stock below its 200-day average would lower the trend score."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3667,
+        "output_tokens": 334,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3667,
+            "output_tokens": 334,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0213,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 116907,
+        "output_tokens": 4921,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 116907,
+            "output_tokens": 4921,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.363,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7420,
+        "output_tokens": 1519,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7420,
+            "output_tokens": 1519,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0601,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3769,
+        "output_tokens": 752,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3769,
+            "output_tokens": 752,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0301,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4745,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 1361.39,
+    "as_of": "2026-10-28T20:51:13Z",
+    "prev_close": 1304.84
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-28 16:51",
+    "note": null,
+    "close_window": "Run at 4:51 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40766001137",
+    "tickers": [
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
+    ]
+  },
+  "chart": [
+    [
+      "2025-02-24",
+      48.6,
+      null,
+      null
+    ],
+    [
+      "2025-02-25",
+      48.16,
+      null,
+      null
+    ],
+    [
+      "2025-02-26",
+      46.58,
+      null,
+      null
+    ],
+    [
+      "2025-02-27",
+      45.16,
+      null,
+      null
+    ],
+    [
+      "2025-02-28",
+      46.85,
+      null,
+      null
+    ],
+    [
+      "2025-03-03",
+      50.31,
+      null,
+      null
+    ],
+    [
+      "2025-03-04",
+      48.69,
+      null,
+      null
+    ],
+    [
+      "2025-03-05",
+      48.47,
+      null,
+      null
+    ],
+    [
+      "2025-03-06",
+      46.5,
+      null,
+      null
+    ],
+    [
+      "2025-03-07",
+      51.0,
+      null,
+      null
+    ],
+    [
+      "2025-03-10",
+      53.0,
+      null,
+      null
+    ],
+    [
+      "2025-03-11",
+      52.16,
+      null,
+      null
+    ],
+    [
+      "2025-03-12",
+      50.44,
+      null,
+      null
+    ],
+    [
+      "2025-03-13",
+      48.44,
+      null,
+      null
+    ],
+    [
+      "2025-03-14",
+      54.82,
+      null,
+      null
+    ],
+    [
+      "2025-03-17",
+      55.65,
+      null,
+      null
+    ],
+    [
+      "2025-03-18",
+      56.42,
+      null,
+      null
+    ],
+    [
+      "2025-03-19",
+      56.33,
+      null,
+      null
+    ],
+    [
+      "2025-03-20",
+      56.21,
+      null,
+      null
+    ],
+    [
+      "2025-03-21",
+      53.96,
+      null,
+      null
+    ],
+    [
+      "2025-03-24",
+      52.99,
+      null,
+      null
+    ],
+    [
+      "2025-03-25",
+      52.2,
+      null,
+      null
+    ],
+    [
+      "2025-03-26",
+      52.62,
+      null,
+      null
+    ],
+    [
+      "2025-03-27",
+      52.88,
+      null,
+      null
+    ],
+    [
+      "2025-03-28",
+      48.97,
+      null,
+      null
+    ],
+    [
+      "2025-03-31",
+      47.61,
+      null,
+      null
+    ],
+    [
+      "2025-04-01",
+      48.11,
+      null,
+      null
+    ],
+    [
+      "2025-04-02",
+      47.67,
+      null,
+      null
+    ],
+    [
+      "2025-04-03",
+      38.26,
+      null,
+      null
+    ],
+    [
+      "2025-04-04",
+      30.11,
+      null,
+      null
+    ],
+    [
+      "2025-04-07",
+      31.48,
+      null,
+      null
+    ],
+    [
+      "2025-04-08",
+      32.35,
+      null,
+      null
+    ],
+    [
+      "2025-04-09",
+      36.58,
+      null,
+      null
+    ],
+    [
+      "2025-04-10",
+      31.07,
+      null,
+      null
+    ],
+    [
+      "2025-04-11",
+      31.97,
+      null,
+      null
+    ],
+    [
+      "2025-04-14",
+      33.55,
+      null,
+      null
+    ],
+    [
+      "2025-04-15",
+      33.23,
+      null,
+      null
+    ],
+    [
+      "2025-04-16",
+      32.03,
+      null,
+      null
+    ],
+    [
+      "2025-04-17",
+      31.29,
+      null,
+      null
+    ],
+    [
+      "2025-04-21",
+      29.81,
+      null,
+      null
+    ],
+    [
+      "2025-04-22",
+      29.62,
+      null,
+      null
+    ],
+    [
+      "2025-04-23",
+      30.36,
+      null,
+      null
+    ],
+    [
+      "2025-04-24",
+      32.29,
+      null,
+      null
+    ],
+    [
+      "2025-04-25",
+      32.85,
+      null,
+      null
+    ],
+    [
+      "2025-04-28",
+      32.27,
+      null,
+      null
+    ],
+    [
+      "2025-04-29",
+      32.94,
+      null,
+      null
+    ],
+    [
+      "2025-04-30",
+      32.11,
+      null,
+      null
+    ],
+    [
+      "2025-05-01",
+      32.59,
+      null,
+      null
+    ],
+    [
+      "2025-05-02",
+      34.4,
+      null,
+      null
+    ],
+    [
+      "2025-05-05",
+      34.61,
+      42.73,
+      null
+    ],
+    [
+      "2025-05-06",
+      33.83,
+      42.44,
+      null
+    ],
+    [
+      "2025-05-07",
+      34.97,
+      42.17,
+      null
+    ],
+    [
+      "2025-05-08",
+      36.66,
+      41.97,
+      null
+    ],
+    [
+      "2025-05-09",
+      37.74,
+      41.83,
+      null
+    ],
+    [
+      "2025-05-12",
+      41.27,
+      41.71,
+      null
+    ],
+    [
+      "2025-05-13",
+      42.0,
+      41.55,
+      null
+    ],
+    [
+      "2025-05-14",
+      41.93,
+      41.41,
+      null
+    ],
+    [
+      "2025-05-15",
+      40.54,
+      41.25,
+      null
+    ],
+    [
+      "2025-05-16",
+      40.44,
+      41.13,
+      null
+    ],
+    [
+      "2025-05-19",
+      38.78,
+      40.89,
+      null
+    ],
+    [
+      "2025-05-20",
+      40.18,
+      40.63,
+      null
+    ],
+    [
+      "2025-05-21",
+      38.6,
+      40.36,
+      null
+    ],
+    [
+      "2025-05-22",
+      37.84,
+      40.11,
+      null
+    ],
+    [
+      "2025-05-23",
+      37.28,
+      39.89,
+      null
+    ],
+    [
+      "2025-05-27",
+      38.18,
+      39.55,
+      null
+    ],
+    [
+      "2025-05-28",
+      38.58,
+      39.21,
+      null
+    ],
+    [
+      "2025-05-29",
+      38.6,
+      38.85,
+      null
+    ],
+    [
+      "2025-05-30",
+      37.69,
+      38.48,
+      null
+    ],
+    [
+      "2025-06-02",
+      37.33,
+      38.1,
+      null
+    ],
+    [
+      "2025-06-03",
+      38.64,
+      37.8,
+      null
+    ],
+    [
+      "2025-06-04",
+      39.82,
+      37.53,
+      null
+    ],
+    [
+      "2025-06-05",
+      39.12,
+      37.27,
+      null
+    ],
+    [
+      "2025-06-06",
+      39.15,
+      37.0,
+      null
+    ],
+    [
+      "2025-06-09",
+      41.82,
+      36.78,
+      null
+    ],
+    [
+      "2025-06-10",
+      41.59,
+      36.63,
+      null
+    ],
+    [
+      "2025-06-11",
+      40.23,
+      36.49,
+      null
+    ],
+    [
+      "2025-06-12",
+      41.3,
+      36.35,
+      null
+    ],
+    [
+      "2025-06-13",
+      42.5,
+      36.25,
+      null
+    ],
+    [
+      "2025-06-16",
+      44.21,
+      36.37,
+      null
+    ],
+    [
+      "2025-06-17",
+      44.09,
+      36.65,
+      null
+    ],
+    [
+      "2025-06-18",
+      46.62,
+      36.95,
+      null
+    ],
+    [
+      "2025-06-20",
+      46.58,
+      37.23,
+      null
+    ],
+    [
+      "2025-06-23",
+      46.95,
+      37.44,
+      null
+    ],
+    [
+      "2025-06-24",
+      47.34,
+      37.77,
+      null
+    ],
+    [
+      "2025-06-25",
+      47.25,
+      38.07,
+      null
+    ],
+    [
+      "2025-06-26",
+      47.44,
+      38.35,
+      null
+    ],
+    [
+      "2025-06-27",
+      47.15,
+      38.63,
+      null
+    ],
+    [
+      "2025-06-30",
+      45.35,
+      38.89,
+      null
+    ],
+    [
+      "2025-07-01",
+      44.96,
+      39.17,
+      null
+    ],
+    [
+      "2025-07-02",
+      46.21,
+      39.5,
+      null
+    ],
+    [
+      "2025-07-03",
+      46.41,
+      39.83,
+      null
+    ],
+    [
+      "2025-07-07",
+      45.22,
+      40.13,
+      null
+    ],
+    [
+      "2025-07-08",
+      46.17,
+      40.41,
+      null
+    ],
+    [
+      "2025-07-09",
+      46.2,
+      40.67,
+      null
+    ],
+    [
+      "2025-07-10",
+      46.95,
+      40.97,
+      null
+    ],
+    [
+      "2025-07-11",
+      46.09,
+      41.23,
+      null
+    ],
+    [
+      "2025-07-14",
+      42.48,
+      41.44,
+      null
+    ],
+    [
+      "2025-07-15",
+      42.72,
+      41.64,
+      null
+    ],
+    [
+      "2025-07-16",
+      41.36,
+      41.78,
+      null
+    ],
+    [
+      "2025-07-17",
+      41.52,
+      41.92,
+      null
+    ],
+    [
+      "2025-07-18",
+      42.19,
+      42.08,
+      null
+    ],
+    [
+      "2025-07-21",
+      41.61,
+      42.22,
+      null
+    ],
+    [
+      "2025-07-22",
+      41.36,
+      42.31,
+      null
+    ],
+    [
+      "2025-07-23",
+      43.0,
+      42.42,
+      null
+    ],
+    [
+      "2025-07-24",
+      42.06,
+      42.43,
+      null
+    ],
+    [
+      "2025-07-25",
+      42.48,
+      42.44,
+      null
+    ],
+    [
+      "2025-07-28",
+      41.89,
+      42.44,
+      null
+    ],
+    [
+      "2025-07-29",
+      42.93,
+      42.49,
+      null
+    ],
+    [
+      "2025-07-30",
+      43.39,
+      42.55,
+      null
+    ],
+    [
+      "2025-07-31",
+      42.92,
+      42.63,
+      null
+    ],
+    [
+      "2025-08-01",
+      41.33,
+      42.65,
+      null
+    ],
+    [
+      "2025-08-04",
+      42.51,
+      42.73,
+      null
+    ],
+    [
+      "2025-08-05",
+      41.93,
+      42.81,
+      null
+    ],
+    [
+      "2025-08-06",
+      42.1,
+      42.91,
+      null
+    ],
+    [
+      "2025-08-07",
+      40.69,
+      42.96,
+      null
+    ],
+    [
+      "2025-08-08",
+      44.34,
+      43.08,
+      null
+    ],
+    [
+      "2025-08-11",
+      43.37,
+      43.17,
+      null
+    ],
+    [
+      "2025-08-12",
+      46.83,
+      43.35,
+      null
+    ],
+    [
+      "2025-08-13",
+      47.01,
+      43.55,
+      null
+    ],
+    [
+      "2025-08-14",
+      46.68,
+      43.71,
+      null
+    ],
+    [
+      "2025-08-15",
+      44.54,
+      43.8,
+      null
+    ],
+    [
+      "2025-08-18",
+      45.52,
+      43.93,
+      null
+    ],
+    [
+      "2025-08-19",
+      44.58,
+      44.04,
+      null
+    ],
+    [
+      "2025-08-20",
+      44.4,
+      44.09,
+      null
+    ],
+    [
+      "2025-08-21",
+      45.5,
+      44.17,
+      null
+    ],
+    [
+      "2025-08-22",
+      46.37,
+      44.29,
+      null
+    ],
+    [
+      "2025-08-25",
+      46.78,
+      44.4,
+      null
+    ],
+    [
+      "2025-08-26",
+      47.35,
+      44.5,
+      null
+    ],
+    [
+      "2025-08-27",
+      48.44,
+      44.58,
+      null
+    ],
+    [
+      "2025-08-28",
+      50.87,
+      44.72,
+      null
+    ],
+    [
+      "2025-08-29",
+      52.47,
+      44.84,
+      null
+    ],
+    [
+      "2025-09-02",
+      51.07,
+      44.93,
+      null
+    ],
+    [
+      "2025-09-03",
+      53.01,
+      45.05,
+      null
+    ],
+    [
+      "2025-09-04",
+      62.5,
+      45.35,
+      null
+    ],
+    [
+      "2025-09-05",
+      68.55,
+      45.78,
+      null
+    ],
+    [
+      "2025-09-08",
+      70.5,
+      46.24,
+      null
+    ],
+    [
+      "2025-09-09",
+      70.51,
+      46.7,
+      null
+    ],
+    [
+      "2025-09-10",
+      73.92,
+      47.28,
+      null
+    ],
+    [
+      "2025-09-11",
+      84.3,
+      48.06,
+      null
+    ],
+    [
+      "2025-09-12",
+      86.13,
+      48.86,
+      null
+    ],
+    [
+      "2025-09-15",
+      90.09,
+      49.73,
+      null
+    ],
+    [
+      "2025-09-16",
+      91.55,
+      50.66,
+      null
+    ],
+    [
+      "2025-09-17",
+      93.97,
+      51.62,
+      null
+    ],
+    [
+      "2025-09-18",
+      98.87,
+      52.67,
+      null
+    ],
+    [
+      "2025-09-19",
+      102.21,
+      53.78,
+      null
+    ],
+    [
+      "2025-09-22",
+      102.92,
+      54.91,
+      null
+    ],
+    [
+      "2025-09-23",
+      106.4,
+      56.19,
+      null
+    ],
+    [
+      "2025-09-24",
+      99.83,
+      57.33,
+      null
+    ],
+    [
+      "2025-09-25",
+      94.29,
+      58.39,
+      null
+    ],
+    [
+      "2025-09-26",
+      97.12,
+      59.5,
+      null
+    ],
+    [
+      "2025-09-29",
+      113.5,
+      60.93,
+      null
+    ],
+    [
+      "2025-09-30",
+      112.2,
+      62.34,
+      null
+    ],
+    [
+      "2025-10-01",
+      121.12,
+      63.94,
+      null
+    ],
+    [
+      "2025-10-02",
+      124.14,
+      65.56,
+      null
+    ],
+    [
+      "2025-10-03",
+      128.41,
+      67.29,
+      null
+    ],
+    [
+      "2025-10-06",
+      121.17,
+      68.86,
+      null
+    ],
+    [
+      "2025-10-07",
+      120.95,
+      70.44,
+      null
+    ],
+    [
+      "2025-10-08",
+      131.88,
+      72.22,
+      null
+    ],
+    [
+      "2025-10-09",
+      129.68,
+      73.95,
+      null
+    ],
+    [
+      "2025-10-10",
+      116.91,
+      75.43,
+      null
+    ],
+    [
+      "2025-10-13",
+      134.61,
+      77.29,
+      null
+    ],
+    [
+      "2025-10-14",
+      127.29,
+      78.99,
+      null
+    ],
+    [
+      "2025-10-15",
+      144.3,
+      81.03,
+      null
+    ],
+    [
+      "2025-10-16",
+      144.27,
+      83.08,
+      null
+    ],
+    [
+      "2025-10-17",
+      140.16,
+      85.07,
+      null
+    ],
+    [
+      "2025-10-20",
+      148.04,
+      87.14,
+      null
+    ],
+    [
+      "2025-10-21",
+      149.29,
+      89.26,
+      null
+    ],
+    [
+      "2025-10-22",
+      146.95,
+      91.26,
+      null
+    ],
+    [
+      "2025-10-23",
+      167.05,
+      93.66,
+      null
+    ],
+    [
+      "2025-10-24",
+      186.16,
+      96.45,
+      null
+    ],
+    [
+      "2025-10-27",
+      176.49,
+      99.09,
+      null
+    ],
+    [
+      "2025-10-28",
+      175.53,
+      101.69,
+      null
+    ],
+    [
+      "2025-10-29",
+      204.36,
+      104.89,
+      null
+    ],
+    [
+      "2025-10-30",
+      195.82,
+      107.92,
+      null
+    ],
+    [
+      "2025-10-31",
+      199.33,
+      110.99,
+      null
+    ],
+    [
+      "2025-11-03",
+      207.01,
+      114.21,
+      null
+    ],
+    [
+      "2025-11-04",
+      194.57,
+      117.16,
+      null
+    ],
+    [
+      "2025-11-05",
+      216.5,
+      120.54,
+      null
+    ],
+    [
+      "2025-11-06",
+      207.69,
+      123.73,
+      null
+    ],
+    [
+      "2025-11-07",
+      239.48,
+      127.5,
+      null
+    ],
+    [
+      "2025-11-10",
+      267.95,
+      131.81,
+      null
+    ],
+    [
+      "2025-11-11",
+      271.58,
+      136.22,
+      null
+    ],
+    [
+      "2025-11-12",
+      283.1,
+      140.82,
+      null
+    ],
+    [
+      "2025-11-13",
+      243.57,
+      144.44,
+      null
+    ],
+    [
+      "2025-11-14",
+      254.16,
+      148.16,
+      null
+    ],
+    [
+      "2025-11-17",
+      265.88,
+      152.06,
+      null
+    ],
+    [
+      "2025-11-18",
+      244.93,
+      155.55,
+      null
+    ],
+    [
+      "2025-11-19",
+      245.96,
+      158.99,
+      null
+    ],
+    [
+      "2025-11-20",
+      195.96,
+      161.23,
+      null
+    ],
+    [
+      "2025-11-21",
+      200.27,
+      163.51,
+      null
+    ],
+    [
+      "2025-11-24",
+      226.96,
+      166.25,
+      null
+    ],
+    [
+      "2025-11-25",
+      220.5,
+      168.83,
+      null
+    ],
+    [
+      "2025-11-26",
+      215.04,
+      171.25,
+      null
+    ],
+    [
+      "2025-11-28",
+      223.28,
+      173.74,
+      null
+    ],
+    [
+      "2025-12-01",
+      210.17,
+      175.89,
+      null
+    ],
+    [
+      "2025-12-02",
+      205.35,
+      177.94,
+      null
+    ],
+    [
+      "2025-12-03",
+      194.38,
+      179.7,
+      null
+    ],
+    [
+      "2025-12-04",
+      213.31,
+      181.97,
+      null
+    ],
+    [
+      "2025-12-05",
+      228.47,
+      184.66,
+      null
+    ],
+    [
+      "2025-12-08",
+      225.47,
+      187.22,
+      82.84
+    ],
+    [
+      "2025-12-09",
+      219.46,
+      189.34,
+      83.7
+    ],
+    [
+      "2025-12-10",
+      232.86,
+      191.76,
+      84.62
+    ],
+    [
+      "2025-12-11",
+      241.61,
+      194.17,
+      85.6
+    ],
+    [
+      "2025-12-12",
+      206.18,
+      195.81,
+      86.4
+    ],
+    [
+      "2025-12-15",
+      201.87,
+      197.28,
+      87.18
+    ],
+    [
+      "2025-12-16",
+      209.31,
+      199.04,
+      87.97
+    ],
+    [
+      "2025-12-17",
+      206.83,
+      200.76,
+      88.76
+    ],
+    [
+      "2025-12-18",
+      219.46,
+      202.51,
+      89.62
+    ],
+    [
+      "2025-12-19",
+      237.61,
+      204.67,
+      90.57
+    ],
+    [
+      "2025-12-22",
+      241.05,
+      207.15,
+      91.52
+    ],
+    [
+      "2025-12-23",
+      244.9,
+      209.35,
+      92.48
+    ],
+    [
+      "2025-12-24",
+      250.08,
+      211.81,
+      93.47
+    ],
+    [
+      "2025-12-26",
+      250.05,
+      213.93,
+      94.47
+    ],
+    [
+      "2025-12-29",
+      244.25,
+      215.92,
+      95.45
+    ],
+    [
+      "2025-12-30",
+      240.22,
+      217.93,
+      96.38
+    ],
+    [
+      "2025-12-31",
+      237.38,
+      219.71,
+      97.29
+    ],
+    [
+      "2026-01-02",
+      275.24,
+      222.23,
+      98.38
+    ],
+    [
+      "2026-01-05",
+      274.08,
+      224.77,
+      99.47
+    ],
+    [
+      "2026-01-06",
+      349.63,
+      228.43,
+      100.94
+    ],
+    [
+      "2026-01-07",
+      353.56,
+      231.77,
+      102.43
+    ],
+    [
+      "2026-01-08",
+      334.54,
+      234.93,
+      103.84
+    ],
+    [
+      "2026-01-09",
+      377.41,
+      238.97,
+      105.47
+    ],
+    [
+      "2026-01-12",
+      389.27,
+      242.67,
+      107.15
+    ],
+    [
+      "2026-01-13",
+      389.81,
+      246.55,
+      108.84
+    ],
+    [
+      "2026-01-14",
+      387.81,
+      250.32,
+      110.53
+    ],
+    [
+      "2026-01-15",
+      409.24,
+      254.36,
+      112.34
+    ],
+    [
+      "2026-01-16",
+      413.62,
+      258.75,
+      114.16
+    ],
+    [
+      "2026-01-20",
+      453.12,
+      263.48,
+      116.19
+    ],
+    [
+      "2026-01-21",
+      501.29,
+      269.35,
+      118.51
+    ],
+    [
+      "2026-01-22",
+      503.44,
+      274.63,
+      120.87
+    ],
+    [
+      "2026-01-23",
+      473.83,
+      278.75,
+      123.09
+    ],
+    [
+      "2026-01-26",
+      470.8,
+      282.73,
+      125.28
+    ],
+    [
+      "2026-01-27",
+      481.43,
+      286.7,
+      127.5
+    ],
+    [
+      "2026-01-28",
+      527.63,
+      292.38,
+      129.98
+    ],
+    [
+      "2026-01-29",
+      539.3,
+      298.08,
+      132.52
+    ],
+    [
+      "2026-01-30",
+      576.25,
+      304.29,
+      135.24
+    ],
+    [
+      "2026-02-02",
+      665.24,
+      312.7,
+      138.4
+    ],
+    [
+      "2026-02-03",
+      695.51,
+      321.69,
+      141.71
+    ],
+    [
+      "2026-02-04",
+      584.55,
+      329.46,
+      144.48
+    ],
+    [
+      "2026-02-05",
+      576.2,
+      336.98,
+      147.21
+    ],
+    [
+      "2026-02-06",
+      597.95,
+      344.4,
+      150.05
+    ],
+    [
+      "2026-02-09",
+      583.4,
+      351.65,
+      152.82
+    ],
+    [
+      "2026-02-10",
+      541.64,
+      358.19,
+      155.36
+    ],
+    [
+      "2026-02-11",
+      599.34,
+      365.71,
+      158.2
+    ],
+    [
+      "2026-02-12",
+      630.29,
+      374.11,
+      161.19
+    ],
+    [
+      "2026-02-13",
+      626.56,
+      382.53,
+      164.16
+    ],
+    [
+      "2026-02-17",
+      590.59,
+      390.46,
+      166.95
+    ],
+    [
+      "2026-02-18",
+      600.4,
+      398.2,
+      169.79
+    ],
+    [
+      "2026-02-19",
+      621.09,
+      406.05,
+      172.72
+    ],
+    [
+      "2026-02-20",
+      649.97,
+      414.54,
+      175.8
+    ],
+    [
+      "2026-02-23",
+      666.49,
+      423.48,
+      178.96
+    ],
+    [
+      "2026-02-24",
+      638.52,
+      431.6,
+      181.98
+    ],
+    [
+      "2026-02-25",
+      632.38,
+      439.41,
+      184.96
+    ],
+    [
+      "2026-02-26",
+      651.9,
+      448.33,
+      188.03
+    ],
+    [
+      "2026-02-27",
+      635.36,
+      457.0,
+      191.0
+    ],
+    [
+      "2026-03-02",
+      619.08,
+      465.19,
+      193.88
+    ],
+    [
+      "2026-03-03",
+      565.41,
+      472.36,
+      196.5
+    ],
+    [
+      "2026-03-04",
+      599.06,
+      479.96,
+      199.29
+    ],
+    [
+      "2026-03-05",
+      565.59,
+      486.51,
+      201.92
+    ],
+    [
+      "2026-03-06",
+      527.33,
+      492.24,
+      204.36
+    ],
+    [
+      "2026-03-09",
+      588.73,
+      499.12,
+      207.1
+    ],
+    [
+      "2026-03-10",
+      618.89,
+      506.49,
+      210.01
+    ],
+    [
+      "2026-03-11",
+      655.43,
+      514.6,
+      213.09
+    ],
+    [
+      "2026-03-12",
+      618.82,
+      522.09,
+      216.0
+    ],
+    [
+      "2026-03-13",
+      661.62,
+      530.52,
+      219.12
+    ],
+    [
+      "2026-03-16",
+      703.63,
+      539.85,
+      222.44
+    ],
+    [
+      "2026-03-17",
+      720.17,
+      548.74,
+      225.85
+    ],
+    [
+      "2026-03-18",
+      753.69,
+      558.34,
+      229.43
+    ],
+    [
+      "2026-03-19",
+      772.09,
+      566.79,
+      233.11
+    ],
+    [
+      "2026-03-20",
+      709.71,
+      573.91,
+      236.46
+    ],
+    [
+      "2026-03-23",
+      702.49,
+      581.27,
+      239.77
+    ],
+    [
+      "2026-03-24",
+      702.48,
+      587.77,
+      243.09
+    ],
+    [
+      "2026-03-25",
+      677.86,
+      593.54,
+      246.28
+    ],
+    [
+      "2026-03-26",
+      603.17,
+      597.81,
+      249.09
+    ],
+    [
+      "2026-03-27",
+      615.83,
+      602.37,
+      251.96
+    ],
+    [
+      "2026-03-30",
+      572.5,
+      605.63,
+      254.62
+    ],
+    [
+      "2026-03-31",
+      635.34,
+      610.07,
+      257.59
+    ],
+    [
+      "2026-04-01",
+      692.73,
+      614.86,
+      260.85
+    ],
+    [
+      "2026-04-02",
+      701.59,
+      618.87,
+      264.13
+    ],
+    [
+      "2026-04-06",
+      724.63,
+      623.29,
+      267.53
+    ],
+    [
+      "2026-04-07",
+      710.8,
+      628.03,
+      270.86
+    ],
+    [
+      "2026-04-08",
+      780.9,
+      634.23,
+      274.53
+    ],
+    [
+      "2026-04-09",
+      851.57,
+      641.63,
+      278.55
+    ],
+    [
+      "2026-04-10",
+      851.77,
+      648.12,
+      282.57
+    ],
+    [
+      "2026-04-13",
+      952.5,
+      656.38,
+      287.1
+    ],
+    [
+      "2026-04-14",
+      944.46,
+      663.74,
+      291.58
+    ],
+    [
+      "2026-04-15",
+      891.72,
+      668.27,
+      295.81
+    ],
+    [
+      "2026-04-16",
+      919.47,
+      672.75,
+      300.18
+    ],
+    [
+      "2026-04-17",
+      920.99,
+      679.48,
+      304.56
+    ],
+    [
+      "2026-04-20",
+      913.02,
+      686.22,
+      308.89
+    ],
+    [
+      "2026-04-21",
+      903.49,
+      692.33,
+      313.18
+    ],
+    [
+      "2026-04-22",
+      979.07,
+      700.24,
+      317.85
+    ],
+    [
+      "2026-04-23",
+      932.43,
+      708.06,
+      322.28
+    ],
+    [
+      "2026-04-24",
+      989.9,
+      715.87,
+      327.0
+    ],
+    [
+      "2026-04-27",
+      1070.2,
+      724.67,
+      332.11
+    ],
+    [
+      "2026-04-28",
+      1002.35,
+      732.18,
+      336.89
+    ],
+    [
+      "2026-04-29",
+      1064.21,
+      741.66,
+      342.0
+    ],
+    [
+      "2026-04-30",
+      1096.51,
+      751.58,
+      347.27
+    ],
+    [
+      "2026-05-01",
+      1187.0,
+      762.9,
+      353.0
+    ],
+    [
+      "2026-05-04",
+      1255.86,
+      775.01,
+      359.07
+    ],
+    [
+      "2026-05-05",
+      1406.32,
+      789.81,
+      365.89
+    ],
+    [
+      "2026-05-06",
+      1409.98,
+      805.24,
+      372.73
+    ],
+    [
+      "2026-05-07",
+      1339.96,
+      819.39,
+      379.23
+    ],
+    [
+      "2026-05-08",
+      1562.34,
+      837.6,
+      386.82
+    ],
+    [
+      "2026-05-11",
+      1547.56,
+      855.85,
+      394.35
+    ],
+    [
+      "2026-05-12",
+      1452.02,
+      872.5,
+      401.4
+    ],
+    [
+      "2026-05-13",
+      1447.23,
+      890.14,
+      408.43
+    ],
+    [
+      "2026-05-14",
+      1382.72,
+      905.81,
+      415.12
+    ],
+    [
+      "2026-05-15",
+      1407.61,
+      922.65,
+      421.95
+    ],
+    [
+      "2026-05-18",
+      1333.01,
+      938.77,
+      428.4
+    ],
+    [
+      "2026-05-19",
+      1383.29,
+      954.66,
+      435.11
+    ],
+    [
+      "2026-05-20",
+      1392.56,
+      970.13,
+      441.86
+    ],
+    [
+      "2026-05-21",
+      1542.24,
+      987.87,
+      449.36
+    ],
+    [
+      "2026-05-22",
+      1478.69,
+      1005.07,
+      456.54
+    ],
+    [
+      "2026-05-26",
+      1589.55,
+      1023.62,
+      464.28
+    ],
+    [
+      "2026-05-27",
+      1589.94,
+      1041.35,
+      472.01
+    ],
+    [
+      "2026-05-28",
+      1641.64,
+      1059.78,
+      480.0
+    ],
+    [
+      "2026-05-29",
+      1694.98,
+      1078.61,
+      488.24
+    ],
+    [
+      "2026-06-01",
+      1761.43,
+      1098.39,
+      496.82
+    ],
+    [
+      "2026-06-02",
+      1716.36,
+      1118.53,
+      505.17
+    ],
+    [
+      "2026-06-03",
+      1831.5,
+      1141.11,
+      514.1
+    ],
+    [
+      "2026-06-04",
+      1759.68,
+      1162.25,
+      522.67
+    ],
+    [
+      "2026-06-05",
+      1559.32,
+      1179.88,
+      530.24
+    ],
+    [
+      "2026-06-08",
+      1642.0,
+      1200.66,
+      538.23
+    ],
+    [
+      "2026-06-09",
+      1646.54,
+      1221.27,
+      546.24
+    ],
+    [
+      "2026-06-10",
+      1643.23,
+      1242.68,
+      554.22
+    ],
+    [
+      "2026-06-11",
+      1881.51,
+      1267.61,
+      563.4
+    ],
+    [
+      "2026-06-12",
+      1980.1,
+      1293.36,
+      573.06
+    ],
+    [
+      "2026-06-15",
+      2107.86,
+      1321.48,
+      583.36
+    ],
+    [
+      "2026-06-16",
+      1991.55,
+      1346.82,
+      593.06
+    ],
+    [
+      "2026-06-17",
+      1958.8,
+      1371.78,
+      602.59
+    ],
+    [
+      "2026-06-18",
+      2184.75,
+      1399.86,
+      613.26
+    ],
+    [
+      "2026-06-22",
+      2273.73,
+      1428.3,
+      624.36
+    ],
+    [
+      "2026-06-23",
+      1963.6,
+      1450.54,
+      633.87
+    ],
+    [
+      "2026-06-24",
+      1914.46,
+      1469.77,
+      643.1
+    ],
+    [
+      "2026-06-25",
+      2335.0,
+      1497.59,
+      654.42
+    ],
+    [
+      "2026-06-26",
+      2090.71,
+      1521.57,
+      664.52
+    ],
+    [
+      "2026-06-29",
+      2050.39,
+      1544.18,
+      674.4
+    ],
+    [
+      "2026-06-30",
+      2273.73,
+      1571.24,
+      685.35
+    ],
+    [
+      "2026-07-01",
+      2032.22,
+      1593.62,
+      695.08
+    ],
+    [
+      "2026-07-02",
+      1745.0,
+      1610.45,
+      703.36
+    ],
+    [
+      "2026-07-06",
+      1744.43,
+      1625.76,
+      711.62
+    ],
+    [
+      "2026-07-07",
+      1617.7,
+      1639.47,
+      719.24
+    ],
+    [
+      "2026-07-08",
+      1727.18,
+      1654.21,
+      727.38
+    ],
+    [
+      "2026-07-09",
+      1858.27,
+      1669.97,
+      736.16
+    ],
+    [
+      "2026-07-10",
+      1915.92,
+      1688.24,
+      745.23
+    ],
+    [
+      "2026-07-13",
+      1673.97,
+      1700.44,
+      753.06
+    ],
+    [
+      "2026-07-14",
+      1757.82,
+      1713.67,
+      761.35
+    ],
+    [
+      "2026-07-15",
+      1615.0,
+      1722.23,
+      768.96
+    ],
+    [
+      "2026-07-16",
+      1411.08,
+      1725.33,
+      775.53
+    ],
+    [
+      "2026-07-17",
+      1354.82,
+      1724.3,
+      781.73
+    ],
+    [
+      "2026-07-20",
+      1390.95,
+      1723.92,
+      788.13
+    ],
+    [
+      "2026-07-21",
+      1589.4,
+      1728.91,
+      795.47
+    ],
+    [
+      "2026-07-22",
+      1599.27,
+      1729.65,
+      802.85
+    ],
+    [
+      "2026-07-23",
+      1610.33,
+      1730.9,
+      810.25
+    ],
+    [
+      "2026-07-24",
+      1436.56,
+      1730.59,
+      816.83
+    ],
+    [
+      "2026-07-27",
+      1278.23,
+      1727.21,
+      822.62
+    ],
+    [
+      "2026-07-28",
+      1096.1,
+      1721.48,
+      827.44
+    ],
+    [
+      "2026-07-29",
+      1015.89,
+      1713.65,
+      831.87
+    ],
+    [
+      "2026-07-30",
+      1279.96,
+      1712.58,
+      837.69
+    ],
+    [
+      "2026-07-31",
+      1214.83,
+      1709.22,
+      843.09
+    ],
+    [
+      "2026-08-03",
+      1288.03,
+      1707.13,
+      848.89
+    ],
+    [
+      "2026-08-04",
+      1427.62,
+      1704.83,
+      855.31
+    ],
+    [
+      "2026-08-05",
+      1350.5,
+      1702.27,
+      861.34
+    ],
+    [
+      "2026-08-06",
+      1258.58,
+      1695.65,
+      866.93
+    ],
+    [
+      "2026-08-07",
+      1212.21,
+      1688.09,
+      872.25
+    ],
+    [
+      "2026-08-10",
+      1237.92,
+      1680.02,
+      877.69
+    ],
+    [
+      "2026-08-11",
+      1271.05,
+      1671.54,
+      883.31
+    ],
+    [
+      "2026-08-12",
+      1344.29,
+      1663.2,
+      889.2
+    ],
+    [
+      "2026-08-13",
+      1528.11,
+      1659.43,
+      895.91
+    ],
+    [
+      "2026-08-14",
+      1641.11,
+      1655.63,
+      903.23
+    ],
+    [
+      "2026-08-17",
+      1786.85,
+      1656.17,
+      911.29
+    ],
+    [
+      "2026-08-18",
+      1625.78,
+      1657.5,
+      918.4
+    ],
+    [
+      "2026-08-19",
+      1568.87,
+      1656.04,
+      925.26
+    ],
+    [
+      "2026-08-20",
+      1600.62,
+      1655.12,
+      932.27
+    ],
+    [
+      "2026-08-21",
+      1596.08,
+      1654.17,
+      939.21
+    ],
+    [
+      "2026-08-24",
+      1493.12,
+      1646.41,
+      945.71
+    ],
+    [
+      "2026-08-25",
+      1480.77,
+      1636.42,
+      952.03
+    ],
+    [
+      "2026-08-26",
+      1499.37,
+      1624.25,
+      958.49
+    ],
+    [
+      "2026-08-27",
+      1484.95,
+      1614.12,
+      964.71
+    ],
+    [
+      "2026-08-28",
+      1484.98,
+      1604.64,
+      970.8
+    ],
+    [
+      "2026-08-31",
+      1566.7,
+      1592.28,
+      977.27
+    ],
+    [
+      "2026-09-01",
+      1536.87,
+      1577.54,
+      983.54
+    ],
+    [
+      "2026-09-02",
+      1553.4,
+      1569.34,
+      990.09
+    ],
+    [
+      "2026-09-03",
+      1554.99,
+      1562.15,
+      996.6
+    ],
+    [
+      "2026-09-04",
+      1740.0,
+      1550.25,
+      1003.97
+    ],
+    [
+      "2026-09-08",
+      1737.99,
+      1543.2,
+      1011.43
+    ],
+    [
+      "2026-09-09",
+      1764.17,
+      1537.47,
+      1019.02
+    ],
+    [
+      "2026-09-10",
+      1692.59,
+      1525.85,
+      1026.51
+    ],
+    [
+      "2026-09-11",
+      1633.35,
+      1517.87,
+      1033.67
+    ],
+    [
+      "2026-09-14",
+      1551.99,
+      1514.01,
+      1040.3
+    ],
+    [
+      "2026-09-15",
+      1530.89,
+      1509.74,
+      1046.85
+    ],
+    [
+      "2026-09-16",
+      1519.97,
+      1507.79,
+      1053.37
+    ],
+    [
+      "2026-09-17",
+      1614.39,
+      1505.53,
+      1060.33
+    ],
+    [
+      "2026-09-18",
+      1791.82,
+      1504.2,
+      1068.24
+    ],
+    [
+      "2026-09-21",
+      1766.64,
+      1501.22,
+      1076.04
+    ],
+    [
+      "2026-09-22",
+      1887.04,
+      1505.48,
+      1084.51
+    ],
+    [
+      "2026-09-23",
+      1816.57,
+      1506.65,
+      1092.52
+    ],
+    [
+      "2026-09-24",
+      1753.62,
+      1509.42,
+      1100.15
+    ],
+    [
+      "2026-09-25",
+      1777.8,
+      1516.76,
+      1107.91
+    ],
+    [
+      "2026-09-28",
+      1712.89,
+      1523.92,
+      1115.38
+    ],
+    [
+      "2026-09-29",
+      1729.76,
+      1530.7,
+      1122.86
+    ],
+    [
+      "2026-09-30",
+      1739.89,
+      1533.71,
+      1130.35
+    ],
+    [
+      "2026-10-01",
+      1787.69,
+      1537.47,
+      1138.26
+    ],
+    [
+      "2026-10-02",
+      1719.99,
+      1539.67,
+      1145.85
+    ],
+    [
+      "2026-10-05",
+      1704.16,
+      1545.02,
+      1153.33
+    ],
+    [
+      "2026-10-06",
+      1660.46,
+      1552.66,
+      1160.6
+    ],
+    [
+      "2026-10-07",
+      1692.42,
+      1564.59,
+      1167.96
+    ],
+    [
+      "2026-10-08",
+      1609.46,
+      1576.46,
+      1174.82
+    ],
+    [
+      "2026-10-09",
+      1581.82,
+      1582.5,
+      1181.52
+    ],
+    [
+      "2026-10-12",
+      1487.33,
+      1587.95,
+      1187.74
+    ],
+    [
+      "2026-10-13",
+      1482.33,
+      1591.84,
+      1193.9
+    ],
+    [
+      "2026-10-14",
+      1403.34,
+      1591.35,
+      1199.66
+    ],
+    [
+      "2026-10-15",
+      1394.83,
+      1592.24,
+      1205.42
+    ],
+    [
+      "2026-10-16",
+      1299.3,
+      1593.05,
+      1210.71
+    ],
+    [
+      "2026-10-19",
+      1371.12,
+      1596.23,
+      1216.38
+    ],
+    [
+      "2026-10-20",
+      1365.38,
+      1598.78,
+      1221.83
+    ],
+    [
+      "2026-10-21",
+      1378.22,
+      1600.92,
+      1227.35
+    ],
+    [
+      "2026-10-22",
+      1260.93,
+      1599.25,
+      1231.91
+    ],
+    [
+      "2026-10-23",
+      1238.03,
+      1593.45,
+      1236.33
+    ],
+    [
+      "2026-10-26",
+      1255.58,
+      1585.74,
+      1240.94
+    ],
+    [
+      "2026-10-27",
+      1304.84,
+      1576.1,
+      1245.57
+    ],
+    [
+      "2026-10-28",
+      1404.77,
+      1571.68,
+      1250.65
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-28T20:51:36Z",
+      "ticker": "SNDK",
+      "rating": "Buy",
+      "score": "66",
+      "confidence": "Low",
+      "growth": "100",
+      "quality": "74",
+      "balance_sheet": "100",
+      "valuation": "23",
+      "trend": "63",
+      "news_risk": "50",
+      "price": "1404.77",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4745",
+      "overlay": "",
+      "quote_price": "1361.39",
+      "quote_as_of": "2026-10-28T20:51:13Z",
+      "news_from": ""
+    }
+  ]
+}

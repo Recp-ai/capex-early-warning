@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T14:09:07Z",
-  "generated_at": "2026-10-15T14:09:08+00:00",
+  "run_id": "2026-10-28T20:48:04Z",
+  "generated_at": "2026-10-28T20:48:50+00:00",
   "ticker": "INOD",
   "sec_ticker": "INOD",
   "cik": "0000903651",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "config",
-      "scoring": "config"
+      "research": "input",
+      "scoring": "input"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -18,16 +18,21 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 62,
+  "score": 63,
   "confidence": "Medium",
   "confidence_detail": {
     "level": "Medium",
-    "points": 1.0,
+    "points": 2.0,
     "reasons": [
       {
         "issue": "fcf_spike",
         "points": 1.0,
         "text": "FCF spike (cause not in tagged data): FCF $124.3M in the quarter to 2026-06-30 on revenue of $92.1M; TTM FCF margin 58.0% vs 15.7% a year earlier; scored on normalised FCF (median quarterly margin 21.2% of the last 8 quarters x TTM revenue)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 63 is within 2 points of the Buy edge (65)"
       }
     ],
     "factors_with_data": 6
@@ -36,17 +41,17 @@
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 3
+      "points": 2
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 18
+      "points": 19
     }
   },
   "composite": {
-    "score": 62,
-    "raw": 61.85,
+    "score": 63,
+    "raw": 62.65,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -150,34 +155,34 @@
     "valuation": {
       "metrics": {
         "price_to_sales": {
-          "value": 5.761,
-          "score": 52.0,
+          "value": 4.85,
+          "score": 59.6,
           "weight": 0.1,
           "note": null
         },
         "price_to_fcf": {
-          "value": 27.165,
-          "score": 55.7,
+          "value": 22.871,
+          "score": 64.3,
           "weight": 0.15,
-          "note": "normalised FCF; reported P/FCF 9.9x"
+          "note": "normalised FCF; reported P/FCF 8.4x"
         },
         "ev_to_ebit": {
-          "value": 27.38,
-          "score": 40.2,
+          "value": 22.365,
+          "score": 51.6,
           "weight": 0.15,
           "note": null
         },
         "fcf_yield_vs_10y_pp": {
-          "value": -1.529,
-          "score": 30.9,
+          "value": -0.588,
+          "score": 42.6,
           "weight": 0.2,
           "note": "normalised FCF"
         },
         "price_to_sales_percentile": {
-          "value": 54.1,
-          "score": 45.9,
+          "value": 50.8,
+          "score": 49.2,
           "weight": 0.1,
-          "note": "cheaper than now in 54.1% of 61 month-ends (ranked on yields)"
+          "note": "cheaper than now in 50.8% of 61 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
           "value": null,
@@ -193,54 +198,54 @@
         }
       },
       "coverage": 1.0,
-      "score": 43,
+      "score": 53,
       "missing": null
     },
     "trend": {
       "metrics": {
         "vs_ma50_pct": {
-          "value": -13.18,
+          "value": -25.16,
           "score": 0.0,
           "weight": 0.15,
           "note": null
         },
         "vs_ma200_pct": {
-          "value": -13.97,
-          "score": 15.1,
+          "value": -27.42,
+          "score": 0.0,
           "weight": 0.2,
           "note": null
         },
         "momentum_12_1_pct": {
-          "value": -33.44,
-          "score": 0.0,
+          "value": -12.86,
+          "score": 21.4,
           "weight": 0.25,
           "note": null
         },
         "rs_spy_pp": {
-          "value": 10.7,
-          "score": 71.0,
+          "value": -2.23,
+          "score": 45.5,
           "weight": 0.125,
           "note": null
         },
         "rs_qqq_pp": {
-          "value": 6.6,
-          "score": 63.2,
+          "value": -3.75,
+          "score": 42.5,
           "weight": 0.125,
           "note": null
         },
         "drawdown_52w_pct": {
-          "value": -56.26,
+          "value": -63.18,
           "score": 0.0,
           "weight": 0.15,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 20,
+      "score": 16,
       "missing": null
     },
     "news_risk": {
-      "score": 55,
+      "score": 51,
       "metrics": {
         "guidance": {
           "value": 0,
@@ -249,8 +254,8 @@
           "note": null
         },
         "analyst_actions": {
-          "value": 0,
-          "score": 50.0,
+          "value": 1,
+          "score": 75.0,
           "weight": 0.15,
           "note": null
         },
@@ -261,8 +266,8 @@
           "note": null
         },
         "customer_concentration": {
-          "value": 0,
-          "score": 50.0,
+          "value": -1,
+          "score": 25.0,
           "weight": 0.1,
           "note": null
         },
@@ -273,8 +278,8 @@
           "note": null
         },
         "product_competitive": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.2,
           "note": null
         }
@@ -290,25 +295,25 @@
     "rating_before": "Hold",
     "note": null,
     "capex": {
-      "level": "AMBER",
-      "total": 6.0,
+      "level": "GREEN",
+      "total": 2.0,
       "max": 18.0,
       "red_confirmed": false,
-      "run_id": "2026-10-15T01:43:15Z",
-      "age_days": 0
+      "run_id": "2026-10-25T21:12:14Z",
+      "age_days": 3
     }
   },
   "capex_context": {
-    "level": "AMBER",
-    "total": 6.0,
+    "level": "GREEN",
+    "total": 2.0,
     "max": 18.0,
     "red_confirmed": false,
-    "run_id": "2026-10-15T01:43:15Z",
-    "age_days": 0
+    "run_id": "2026-10-25T21:12:14Z",
+    "age_days": 3
   },
   "price": {
-    "close": 53.14,
-    "date": "2026-10-14"
+    "close": 44.74,
+    "date": "2026-10-27"
   },
   "fundamentals": {
     "currency": "USD",
@@ -516,29 +521,29 @@
     ]
   },
   "valuation": {
-    "price": 53.14,
-    "price_date": "2026-10-14",
+    "price": 44.74,
+    "price_date": "2026-10-27",
     "shares": {
       "shares": 34382651.0,
       "source": "cover page shares outstanding",
       "date": "2026-07-31"
     },
-    "market_cap": 1827094074.14,
-    "enterprise_value": 1576723074.14,
-    "price_to_sales": 5.761,
-    "price_to_fcf": 27.165,
-    "ev_to_ebit": 27.38,
-    "sales_yield_pct": 17.359,
-    "fcf_yield_pct": 3.681,
-    "ebit_yield_pct": 3.652,
+    "market_cap": 1538279805.74,
+    "enterprise_value": 1287908805.74,
+    "price_to_sales": 4.85,
+    "price_to_fcf": 22.871,
+    "ev_to_ebit": 22.365,
+    "sales_yield_pct": 20.618,
+    "fcf_yield_pct": 4.372,
+    "ebit_yield_pct": 4.471,
     "fcf_negative": false,
     "ebit_negative": false,
     "fcf_basis": "normalised",
-    "price_to_fcf_reported": 9.938,
-    "fcf_yield_reported_pct": 10.062,
-    "ust10y_pct": 5.21,
-    "ust10y_date": "2026-10-13",
-    "fcf_yield_vs_10y_pp": -1.529,
+    "price_to_fcf_reported": 8.367,
+    "fcf_yield_reported_pct": 11.952,
+    "ust10y_pct": 4.96,
+    "ust10y_date": "2026-10-22",
+    "fcf_yield_vs_10y_pp": -0.588,
     "history": [
       {
         "date": "2021-10-29",
@@ -1081,13 +1086,13 @@
         "ebit_yield_pct": 2.828
       },
       {
-        "date": "2026-10-14",
-        "price_to_sales": 5.826,
-        "price_to_fcf": 27.471,
-        "ev_to_ebit": 27.738,
-        "sales_yield_pct": 17.165,
-        "fcf_yield_pct": 3.64,
-        "ebit_yield_pct": 3.605
+        "date": "2026-10-27",
+        "price_to_sales": 4.905,
+        "price_to_fcf": 23.129,
+        "ev_to_ebit": 22.666,
+        "sales_yield_pct": 20.388,
+        "fcf_yield_pct": 4.324,
+        "ebit_yield_pct": 4.412
       }
     ],
     "share_outliers": [
@@ -1106,28 +1111,28 @@
     ],
     "vs_history": {
       "price_to_sales": {
-        "current": 5.761,
-        "current_yield_pct": 17.359,
+        "current": 4.85,
+        "current_yield_pct": 20.618,
         "points": 61,
         "median": 4.746,
         "low": 1.027,
         "high": 19.55,
         "negative_points": 0,
         "median_yield_pct": 21.071,
-        "percentile": 54.1,
-        "cheaper_points": 33,
-        "dearer_points": 28,
+        "percentile": 50.8,
+        "cheaper_points": 31,
+        "dearer_points": 30,
         "not_comparable": null,
         "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
       "price_to_fcf": {
-        "current": 27.165,
-        "current_yield_pct": 3.681,
+        "current": 22.871,
+        "current_yield_pct": 4.372,
         "points": 61,
         "median": null,
-        "low": 27.473,
+        "low": 23.127,
         "high": null,
         "negative_points": 36,
         "median_yield_pct": -0.114,
@@ -1140,11 +1145,11 @@
         "from": "2021-10-29"
       },
       "ev_to_ebit": {
-        "current": 27.38,
-        "current_yield_pct": 3.652,
+        "current": 22.365,
+        "current_yield_pct": 4.471,
         "points": 25,
         "median": null,
-        "low": 27.739,
+        "low": 22.665,
         "high": null,
         "negative_points": 14,
         "median_yield_pct": -0.883,
@@ -1163,7 +1168,7 @@
       "multiples": {
         "price_to_sales": {
           "label": "middle",
-          "phrase": "near the middle of the last 61 month-ends (cheaper than at 28, more expensive than at 33)"
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 30, more expensive than at 31)"
         },
         "price_to_fcf": {
           "label": null,
@@ -1179,25 +1184,25 @@
     }
   },
   "trend": {
-    "close": 53.14,
-    "date": "2026-10-14",
-    "ma50": 61.21,
-    "ma200": 61.77,
-    "vs_ma50_pct": -13.18,
-    "vs_ma200_pct": -13.97,
-    "momentum_12_1_pct": -33.44,
+    "close": 44.74,
+    "date": "2026-10-27",
+    "ma50": 59.78,
+    "ma200": 61.65,
+    "vs_ma50_pct": -25.16,
+    "vs_ma200_pct": -27.42,
+    "momentum_12_1_pct": -12.86,
     "high_52w": 121.5,
-    "drawdown_52w_pct": -56.26,
-    "return_rs_pct": 21.21,
+    "drawdown_52w_pct": -63.18,
+    "return_rs_pct": 6.83,
     "rs_days": 126,
-    "spy_return_pct": 10.51,
-    "rs_spy_pp": 10.7,
-    "qqq_return_pct": 14.61,
-    "rs_qqq_pp": 6.6
+    "spy_return_pct": 9.06,
+    "rs_spy_pp": -2.23,
+    "qqq_return_pct": 10.58,
+    "rs_qqq_pp": -3.75
   },
   "ust10y": {
-    "value": 5.21,
-    "date": "2026-10-13"
+    "value": 4.96,
+    "date": "2026-10-22"
   },
   "guidance": {
     "accession": "0001104659-26-092010",
@@ -1288,14 +1293,26 @@
     "topics": {
       "guidance": {
         "rating": 0,
-        "summary": "No new guidance in the window; the latest stance is the August reiteration of 40%+ FY2026 revenue growth. Next earnings are expected around early November.",
+        "summary": "No guidance change in the window; the FY2026 40%+ revenue growth guidance was last reiterated in August, and Q3 results are due November 5. Reported layoffs raise questions, but there has been no company update.",
         "evidence": [
+          {
+            "claim": "Innodata will report third quarter 2026 results after the close on November 5, 2026.",
+            "url": "https://www.financialcontent.com/article/accwirecq-2026-10-15-innodata-to-report-third-quarter-2026-results",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          },
           {
             "claim": "We are reiterating our full-year 2026 revenue growth guidance of 40% or more year-over-year.",
             "url": "https://www.sec.gov/Archives/edgar/data/903651/000110465926092010/tm2621499d1_ex99-1.htm",
             "event_date": "2026-08-06",
+            "direction": "neutral",
             "tier": "primary",
-            "age_days": 70,
+            "age_days": 83,
             "background": true,
             "status": "verified",
             "check": "numbers 2/2, names 0/0"
@@ -1304,68 +1321,63 @@
         "label": "Guidance changes"
       },
       "analyst_actions": {
-        "rating": 0,
-        "summary": "In-window actions were reiterations: BWS kept its Top Pick rating with a $140 target, and Craig-Hallum reiterated Buy. These are offset by undated downgrades to Hold from Weiss and Zacks.",
+        "rating": 1,
+        "summary": "Yorkville Ives & Co initiated coverage at Buy with a $90 target. No analyst changes were found after the October 27 drop.",
         "evidence": [
           {
-            "claim": "Craig-Hallum reiterated Buy rating on INOD",
-            "url": "https://www.cnbc.com/quotes/INOD",
-            "event_date": "2026-09-18",
-            "tier": "major",
-            "age_days": 27,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 3/3"
-          },
-          {
-            "claim": "BWS Financial maintained Top Pick rating and $140 price target",
-            "url": "https://finance.yahoo.com/quote/INOD/",
-            "event_date": "2026-09-18",
+            "claim": "Yorkville Ives & Co initiated Innodata at Buy with a $90 price target.",
+            "url": "https://stockanalysis.com/stocks/inod/forecast/",
+            "event_date": "2026-10-07",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 27,
+            "age_days": 21,
             "background": false,
             "status": "verified",
             "check": "numbers 1/1, names 4/4"
-          },
-          {
-            "claim": "Weiss Ratings and Zacks Research downgraded Innodata to Hold",
-            "url": "https://www.marketbeat.com/instant-alerts/price-innodata-nasdaq-inod-stock-price-down-54-heres-why-2026-10-05/",
-            "event_date": null,
-            "tier": "other",
-            "age_days": null,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 6/6"
           }
         ],
         "label": "Analyst actions"
       },
       "litigation_regulation": {
         "rating": 0,
-        "summary": "Nothing new in the window; the securities class action status is unclear, and the law-firm notices are solicitations only.",
-        "evidence": [],
+        "summary": "Only a promotional law-firm 'investigation' notice appeared, not a filed suit. The older AI-washing class action remains pending in the background.",
+        "evidence": [
+          {
+            "claim": "SueWallSt announced a pending investigation into Innodata (INOD) on behalf of investors.",
+            "url": "https://www.prnewswire.com/news-releases/innodata-investigation-notice-suewallst-notifies-investors-of-pending-investigation-into-innodata-inod-302921358.html",
+            "event_date": "2026-10-27",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
-        "rating": 0,
-        "summary": "Concentration remains high, with the top customer at 37% of Q2 revenue. Speculation from Hunterbrook, which is long the stock, about a Meta/Muse win is unconfirmed by either company.",
+        "rating": -1,
+        "summary": "Reports of about 550 layoffs in India, which termination emails tied to the wind-down of a customer assignment, point to a possible lost or reduced contract at a highly concentrated customer base. Innodata has not confirmed the reports, and the sources are lower-tier.",
         "evidence": [
           {
-            "claim": "Hunterbrook report suggested Meta is likely Innodata's largest customer and Muse could be a big win; stock rose 14.6% to $69.97",
-            "url": "https://parameter.io/innodata-inod-stock-surges-15-on-speculation-of-meta-muse-partnership/",
-            "event_date": "2026-09-22",
+            "claim": "Innodata stock falls as report flags layoffs in India and the Philippines, about 550 employees in India.",
+            "url": "https://seekingalpha.com/news/4657885-innodata-stock-falls-as-report-flags-layoffs-in-india-philippines",
+            "event_date": "2026-10-26",
+            "direction": "negative",
             "tier": "other",
-            "age_days": 23,
+            "age_days": 2,
             "background": false,
-            "status": "unverified",
-            "check": "numbers 1/2, names 4/4 · missing: 14.6"
+            "status": "unreachable",
+            "check": "HTTP 403"
           },
           {
-            "claim": "Innodata's top customer generated 37% of revenue",
-            "url": "https://www.fool.com/coverage/better-buy/2026/09/28/innodata-vs-soundhound-ai-which-technology-stock-is-a-better-buy-in-2026/",
-            "event_date": null,
+            "claim": "Innodata crashes 25% on job cuts and a lost contract; termination emails cited the wind-down of a customer assignment.",
+            "url": "https://protos.com/ai-stock-innodata-crashes-25-on-job-cuts-lost-contract/",
+            "event_date": "2026-10-26",
+            "direction": "negative",
             "tier": "other",
-            "age_days": null,
+            "age_days": 2,
             "background": false,
             "status": "verified",
             "check": "numbers 1/1, names 1/1"
@@ -1375,53 +1387,34 @@
       },
       "insider_activity": {
         "rating": 0,
-        "summary": "Director Louise Forlenza made two option-exercise-and-sell transactions of 10,000 shares each. There was no insider buying, against heavy selling over the past 12 months.",
+        "summary": "No insider buys or sales were dated within the window; the only in-window item was a routine director RSU grant.",
         "evidence": [
           {
-            "claim": "Director Louise Forlenza sold 10,000 shares at about $55.01 after option exercise",
-            "url": "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926105529/tm2624878-1_4seq1.xml",
-            "event_date": "2026-09-04",
+            "claim": "Director Michael Rogers received 2,159 restricted stock units.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926115510/tm2627444-1_4seq1.xml",
+            "event_date": "2026-10-08",
+            "direction": "neutral",
             "tier": "primary",
-            "age_days": 41,
-            "background": true,
-            "status": "verified",
-            "check": "numbers 2/2, names 2/3"
-          },
-          {
-            "claim": "Director Louise Forlenza sold 10,000 shares at about $53.54 after option exercise",
-            "url": "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926107933/tm2625408-2_4seq1.xml",
-            "event_date": "2026-09-14",
-            "tier": "primary",
-            "age_days": 31,
-            "background": true,
-            "status": "verified",
-            "check": "numbers 2/2, names 2/3"
-          }
-        ],
-        "label": "Insider activity",
-        "rating_before_cap": -1,
-        "old_evidence_note": "Capped at 0 (was -1): no source that checked out is dated within the last 30 days; of the 2 that did, 2 dated more than 30 days before the run (2026-09-04, 2026-09-14)"
-      },
-      "product_competitive": {
-        "rating": 1,
-        "summary": "Innodata opened a motion-capture AI lab with Vicon to produce humanoid and robotics training data, and added former NSA director Admiral Michael Rogers to its board. Meta's stake in Scale AI is a competitive risk.",
-        "evidence": [
-          {
-            "claim": "Innodata opened a motion-capture AI lab in New Jersey, built with Vicon, for humanoid and robot training data",
-            "url": "https://investor.innodata.com/news/news-details/2026/Innodata-Opens-Motion-Capture-AI-Lab-to-Help-Humanoids-Move-Like-Humans/default.aspx",
-            "event_date": "2026-09-30",
-            "tier": "other",
-            "age_days": 15,
+            "age_days": 20,
             "background": false,
             "status": "verified",
-            "check": "numbers 0/0, names 4/4"
-          },
+            "check": "numbers 1/1, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Innodata opened a motion-capture AI lab for humanoid robotics, but no material competitive developments were reported in the window.",
+        "evidence": [
           {
-            "claim": "Meta holds a big stake in Scale AI and could do more data work in-house",
-            "url": "https://www.fool.com/coverage/better-buy/2026/09/28/innodata-vs-soundhound-ai-which-technology-stock-is-a-better-buy-in-2026/",
-            "event_date": null,
+            "claim": "Innodata opened a motion-capture AI lab for humanoid robotics using Vicon cameras.",
+            "url": "https://stockanalysis.com/stocks/inod/",
+            "event_date": "2026-09-30",
+            "direction": "positive",
             "tier": "other",
-            "age_days": null,
+            "age_days": 28,
             "background": false,
             "status": "verified",
             "check": "numbers 0/0, names 3/3"
@@ -1433,84 +1426,142 @@
     "source_check": {
       "counts": {
         "guidance": {
-          "verified": 1,
+          "verified": 2,
           "unverified": 0,
           "unreachable": 0
         },
         "analyst_actions": {
-          "verified": 3,
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
           "unverified": 0,
           "unreachable": 0
         },
         "customer_concentration": {
           "verified": 1,
-          "unverified": 1,
-          "unreachable": 0
+          "unverified": 0,
+          "unreachable": 1
         },
         "insider_activity": {
-          "verified": 2,
+          "verified": 1,
           "unverified": 0,
           "unreachable": 0
         },
         "product_competitive": {
-          "verified": 2,
+          "verified": 1,
           "unverified": 0,
           "unreachable": 0
         }
       }
     },
-    "reused_from": "2026-10-15T07:28:27Z",
-    "caps_reapplied": [],
-    "direction_unchecked": [
-      {
-        "topic": "product_competitive",
-        "label": "Product and competitive news",
-        "rating": 1
-      }
-    ],
-    "rechecked": []
+    "reused_from": null
   },
   "claude": {
     "enabled": true,
-    "news_reused": {
-      "news_from": "2026-10-15T07:28:27Z",
-      "archived": "data/stocks/runs/INOD/2026-10-15T134851Z.json",
-      "models": {
-        "sources": {
-          "research": "input",
-          "scoring": "input"
-        },
-        "research": "claude-sonnet-5-5",
-        "scoring": "claude-opus-5-5"
-      }
+    "research": {
+      "urls": [
+        "https://finance.yahoo.com/technology/ai/articles/innodata-report-third-quarter-2026-120500956.html",
+        "https://www.gurufocus.com/news/9144639/innodata-inod-shares-drop-16-premarket-amid-major-layoffs",
+        "https://seekingalpha.com/news/4657885-innodata-stock-falls-as-report-flags-layoffs-in-india-philippines",
+        "https://stockanalysis.com/stocks/inod/",
+        "https://www.local3news.com/online_features/press_releases/innodata-investigation-notice-suewallst-notifies-investors-of-pending-investigation-into-innodata-inod/article_7824f9e5-ffe8-59e8-af5a-3ae737bbbe8b.html",
+        "https://www.prnewswire.com/news-releases/innodata-investigation-notice-suewallst-notifies-investors-of-pending-investigation-into-innodata-inod-302921358.html",
+        "https://invezz.com/pk/news/2026/10/27/is-it-worth-buying-the-dip-in-innodata-stock-today/",
+        "https://www.benzinga.com/trading-ideas/movers/26/10/62634005/why-is-innodata-stock-sinking-tuesday",
+        "https://www.financialcontent.com/article/accwirecq-2026-10-15-innodata-to-report-third-quarter-2026-results",
+        "https://www.tipranks.com/stocks/inod/earnings",
+        "https://stockanalysis.com/stocks/inod/forecast/",
+        "https://www.marketscreener.com/quote/stock/INNODATA-INC-9692/consensus/",
+        "https://www.etoro.com/markets/inod",
+        "https://www.investing.com/equities/innodata-isogen-consensus-estimates",
+        "https://public.com/stocks/inod/forecast-price-target",
+        "https://www.msn.com/en-us/news/other/innodata-consensus-price-target-raised-by-1122-to-10971/ar-AA2g2sVF",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/inod/stock-forecast",
+        "https://benzinga.com/quote/INOD/analyst-ratings",
+        "https://www.benzinga.com/stock/INOD/ratings",
+        "https://www.marketscreener.com/news/innodata-insider-sold-shares-worth-2-082-436-according-to-a-recent-sec-filing-ce7f5dd9dc89f223",
+        "https://www.fool.com/coverage/filings/2026/06/03/director-sells-inod-18000-shares-for-17-million/",
+        "https://www.fool.com/coverage/filings/2026/06/04/ceo-sells-38-000-innodata-shares-for-usd3-8-million/",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926107933/tm2625408-2_4seq1.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926105529/tm2624878-1_4seq1.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926115510/tm2627444-1_4seq1.xml",
+        "https://www.fool.com/coverage/filings/2026/05/24/innodata-ceo-and-founder-sells-company-shares-worth-usd23-7-million-here-s-what-that-means-for-investors/",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000090365101500016/palmen.txt",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000090365101500010/bruce.txt",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000090365100500005/0001.txt",
+        "https://www.bracewell.com/resources/innodata-suit-highlights-ai-washing-liability-risk-cos/",
+        "https://briefings.brownrudnick.com/post/102j3wi/artificial-intelligence-or-artificial-claims-exploring-the-innodata-securities-l",
+        "https://www.kron4.com/business/press-releases/accesswire/855161/class-action-filed-against-innodata-inc-inod-seeking-recovery-for-investors-contact-levi-korsinsky/",
+        "https://www.prnewswire.com/news-releases/innodata-inc-sued-for-securities-law-violations---contact-levi--korsinsky-before-april-22-2024-to-discuss-your-rights--inod-302115752.html",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926048209/tm261509d4_ars.pdf",
+        "https://www.dandodiary.com/2024/02/articles/securities-litigation/first-ai-related-securities-suit-filed/",
+        "https://cand.uscourts.gov/cases-e-filing/cases/326-cv-02026/innodata-inc-v-x-corp-inc",
+        "https://www.globenewswire.com/news-release/2024/03/13/2845921/32716/en/Investors-Sue-Innodata-Inc-INOD-After-Short-Seller-Accuses-Company-of-AI-Washing-Hagens-Berman.html",
+        "https://protos.com/ai-stock-innodata-crashes-25-on-job-cuts-lost-contract/",
+        "https://www.gurufocus.com/news/2747140/innodata-inc-inod-launches-generative-ai-test-evaluation-platform",
+        "https://aibusiness.com/verticals/innodata-launches-contract-data-extraction-and-analytics-platform",
+        "https://investor.innodata.com/news/news-details/2024/Innodata-Launches-AI-Powered-Media-Intelligence-Feature-Intelligent-InsightsTM-03-26-2024/default.aspx",
+        "https://innodata.com/innodata-launches-ai-powered-media-intelligence-feature-intelligent-insights/",
+        "https://innodata.com/innodata-launches-generative-ai-solution-for-pr-professionals/",
+        "https://www.nasdaq.com/press-release/innodata-launches-ai-powered-media-intelligence-feature-intelligent-insightstm-2024",
+        "https://innodata.com/introducing-innodatas-new-ai-data-marketplace/",
+        "https://innodata.com/newsroom/",
+        "https://finance.yahoo.com/markets/stocks/articles/innodata-big-tech-win-ai-231132619.html",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465924115337/tm2426973d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465924026596/tm245623d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000114420414045484/v384978_ex99-2.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465924087302/tm2420199d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465922117226/tm2230020d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465924058055/tm2412945d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000114420415011574/v402657_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465922089447/tm2222500d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465922059587/tm2214105d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926092010/tm2621499d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926057150/tm2612771d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/903651/000110465926020514/tm265812d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000903651/000110465926075184/tm2617967d1_ex99-1.htm",
+        "https://investor.innodata.com/news/news-details/2026/Innodata-Reports-Record-Second-Quarter-2026-Results/default.aspx",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-innodata-beats-q2-2026-estimates-shares-jump-after-hours-93CH-4844694",
+        "https://quartr.com/events/innodata-inc-inod-q2-2026_ofOxE1nV",
+        "https://finance.yahoo.com/quote/INOD/earnings/INOD-Q2-2026-earnings_call-662777.html",
+        "https://finance.yahoo.com/technology/ai/articles/does-innodata-record-q2-ai-121043049.html",
+        "https://finance.yahoo.com/quote/ID6.SG/earnings/ID6.SG-Q2-2026-earnings_call-662777.html",
+        "https://gaetanoresearch.substack.com/p/inod-up-20-today-what-happened",
+        "https://app.dealroom.co/news/feed/innodata-stock-surges-15-after-hunterbrook-links-firm-to-meta-s-muse-reveals-long-position",
+        "https://www.tradingview.com/news/seekingalpha:9b4ddddf0094b:0-innodata-surges-after-report-suggests-meta-s-muse-could-be-a-big-win/",
+        "https://x.com/Sam_Badawi/status/2102469127462121823",
+        "https://www.inkl.com/news/innodata-may-be-helping-power-metas-muse-what-that-means-for-inod-stock",
+        "https://hntrbrk.com/breaking-news/innodata-muse",
+        "https://stocktwits.com/news-articles/markets/equity/inod-stock-rallies-after-hunterbrook-ties-firm-to-meta-s-muse-reveals-long-position/cZM5PgxRB7j",
+        "https://finance.biggo.com/news/d2003ea9-b87f-484f-9ab4-3d8cf626dcc4",
+        "https://coincentral.com/innodata-inod-stock-jumps-15-as-meta-muse-link-fuels-ai-optimism/",
+        "https://www.gate.com/en-us/news/detail/innodata-stock-jumps-15-after-hunterbrook-links-firm-to-metas-muse-17879100"
+      ],
+      "searches": 8
     }
   },
-  "news_from": "2026-10-15T07:28:27Z",
-  "news_models": {
-    "sources": {
-      "research": "input",
-      "scoring": "input"
-    },
-    "research": "claude-sonnet-5-5",
-    "scoring": "claude-opus-5-5"
-  },
+  "news_from": null,
+  "news_models": null,
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Innodata rates Hold: fast growth and a debt-free balance sheet, offset by a weak share-price trend.",
-    "thesis": "INNODATA scores 62, a Hold, just 3 points short of the Buy band. Growth is the standout at 91, with revenue up 57.8% year on year in the latest quarter and growth that sped up by 3.4 pp from the previous quarter. The balance sheet scores 100 with net cash and no debt, and quality scores 69 on a 42.7% gross margin, an 18.2% operating margin and a normalised FCF margin of 21.2%. Holding the score back is the trend factor at 20: the stock is 56.3% below its 52-week high and 14.0% below its 200-day average, though it is 10.7 pp ahead of SPY over the last 126 trading days. Valuation scores 43. In absolute terms, multiples of 5.8x sales and 27.4x EV/EBIT are fairly high, and the normalised FCF yield is 1.5 pp below the 10-year Treasury yield. P/S is near the middle of the last 61 month-ends.",
+    "headline": "Innodata rates Hold: strong growth and net cash offset by a broken share-price trend and customer worries.",
+    "thesis": "Innodata scores 63, a Hold just 2 points below the Buy line, held up by its fundamentals and pulled down by its chart. Growth scores 91 on TTM revenue growth of 39.0% and latest-quarter revenue growth of 57.8% year on year, and growth sped up by 3.4 pp from the previous quarter. The balance sheet scores 100 with net cash and no debt. Quality scores 69, with a 42.7% gross margin, an 18.2% operating margin and diluted share count down 1.5% year on year. Valuation is middling at 53: P/S of 4.8x, normalised P/FCF of 22.9x and EV/EBIT of 22.4x are moderate-to-high in absolute terms, with FCF yield 0.6 pp below the 10-year Treasury yield, and P/S sits near the middle of the last 61 month-ends. Trend scores just 16, with the price 63.2% below its 52-week high and 27.4% below its 200-day average, while news is neutral at 51 as a Buy initiation offsets reports of layoffs tied to a customer wind-down.",
     "key_risks": [
-      "High customer concentration, with the top customer at 37% of Q2 revenue",
-      "Reported FCF of $124.3M in the June quarter far exceeded revenue of $92.1M, and the cause is not in the tagged data, so it may not repeat",
-      "Competition in AI training data, including Meta's stake in Scale AI",
-      "Weak price momentum: down 33.4% from 12 months ago to 1 month ago, with heavy insider selling over the past 12 months",
-      "Upcoming early-November earnings must support the 40%+ FY2026 revenue growth guidance"
+      "Unconfirmed reports of about 550 layoffs in India tied to a customer assignment wind-down could signal a lost or reduced contract at a highly concentrated customer base.",
+      "Q3 results on November 5 could challenge the 40%+ FY2026 revenue growth guidance.",
+      "Weak price trend: shares down 12.9% from 12 months ago to 1 month ago and 25.2% below the 50-day average.",
+      "Recent free cash flow was boosted by an unusual spike (reported FCF margin 58.0%), so normal cash generation is closer to the 21.2% normalised margin.",
+      "An older AI-washing class action remains pending."
     ],
     "what_would_change": [
-      "A 3-point gain in the score, for example from a recovering share-price trend or confirmed large new programs, would move it to Buy",
-      "A miss or cut to the 40%+ growth guidance would weaken the growth score and could pull the rating lower",
-      "A drop of 18 points to below 45, such as from sharp growth deceleration plus negative news, would be needed for Sell"
+      "A gain of 2 points would lift the rating to Buy, for example from a recovering price trend (trend scores 16) or clearer news on the customer situation.",
+      "Q3 results that confirm the 40%+ growth guidance and dispel the contract-loss reports could improve the news and trend scores.",
+      "A confirmed major customer loss or a guidance cut would hit growth and news scores, though a fall to Sell would need a drop of 19 points."
     ]
   },
   "writeup_check": {
@@ -1522,18 +1573,44 @@
   },
   "cost": {
     "steps": {
-      "writeup": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 117206,
+        "output_tokens": 3852,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 117206,
+            "output_tokens": 3852,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3529,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3839,
-        "output_tokens": 685,
+        "input_tokens": 7151,
+        "output_tokens": 1320,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3839,
-            "output_tokens": 685,
+            "input_tokens": 7151,
+            "output_tokens": 1320,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1544,103 +1621,86 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0291,
+        "cost_usd": 0.055,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3900,
+        "output_tokens": 780,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3900,
+            "output_tokens": 780,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0312,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0291,
+    "total_usd": 0.4391,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 52.29,
-    "as_of": "2026-10-15T14:09:10Z",
-    "prev_close": 53.14
+    "price": 46.63,
+    "as_of": "2026-10-28T20:36:38Z",
+    "prev_close": 44.74
   },
   "close_note": {
-    "scored_on": "2026-10-14",
-    "latest": "2026-10-14",
-    "latest_from": "weekday",
-    "run_et": "2026-10-15 10:09",
-    "note": null,
-    "close_window": null
+    "scored_on": "2026-10-27",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-28 16:48",
+    "note": "today's close not yet published; scored on 2026-10-27",
+    "close_window": "Run at 4:48 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38748587437",
+    "run_id": "40766001137",
     "tickers": [
-      "RBRK",
+      "NVDA",
       "ORCL",
-      "MSFT",
       "GOOGL",
       "META",
-      "MSGS",
-      "NTAP",
       "SHOP",
-      "TIC",
-      "ZS",
+      "RBRK",
       "GTLB",
+      "ZS",
+      "NTAP",
       "PLTR",
       "INOD",
-      "NVDA"
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
     ]
   },
   "chart": [
-    [
-      "2021-10-05",
-      10.16,
-      null,
-      null
-    ],
-    [
-      "2021-10-06",
-      10.04,
-      null,
-      null
-    ],
-    [
-      "2021-10-07",
-      9.97,
-      null,
-      null
-    ],
-    [
-      "2021-10-08",
-      9.83,
-      null,
-      null
-    ],
-    [
-      "2021-10-11",
-      9.81,
-      null,
-      null
-    ],
-    [
-      "2021-10-12",
-      9.94,
-      null,
-      null
-    ],
-    [
-      "2021-10-13",
-      10.3,
-      null,
-      null
-    ],
-    [
-      "2021-10-14",
-      10.01,
-      null,
-      null
-    ],
-    [
-      "2021-10-15",
-      10.25,
-      null,
-      null
-    ],
     [
       "2021-10-18",
       10.11,
@@ -1884,55 +1944,55 @@
     [
       "2021-12-14",
       6.29,
-      8.63,
+      null,
       null
     ],
     [
       "2021-12-15",
       6.03,
-      8.55,
+      null,
       null
     ],
     [
       "2021-12-16",
       5.83,
-      8.46,
+      null,
       null
     ],
     [
       "2021-12-17",
       5.76,
-      8.38,
+      null,
       null
     ],
     [
       "2021-12-20",
       5.49,
-      8.29,
+      null,
       null
     ],
     [
       "2021-12-21",
       5.84,
-      8.21,
+      null,
       null
     ],
     [
       "2021-12-22",
       5.63,
-      8.13,
+      null,
       null
     ],
     [
       "2021-12-23",
       5.75,
-      8.04,
+      null,
       null
     ],
     [
       "2021-12-27",
       5.77,
-      7.95,
+      null,
       null
     ],
     [
@@ -2058,7 +2118,7 @@
     [
       "2022-01-26",
       5.71,
-      6.32,
+      6.31,
       null
     ],
     [
@@ -2466,7 +2526,7 @@
     [
       "2022-05-04",
       8.9,
-      6.64,
+      6.63,
       null
     ],
     [
@@ -2785,55 +2845,55 @@
       "2022-07-21",
       5.15,
       5.46,
-      6.66
+      null
     ],
     [
       "2022-07-22",
       5.06,
       5.41,
-      6.63
+      null
     ],
     [
       "2022-07-25",
       5.0,
       5.37,
-      6.61
+      null
     ],
     [
       "2022-07-26",
       5.08,
       5.34,
-      6.58
+      null
     ],
     [
       "2022-07-27",
       5.36,
       5.29,
-      6.56
+      null
     ],
     [
       "2022-07-28",
       5.6,
       5.26,
-      6.54
+      null
     ],
     [
       "2022-07-29",
       5.71,
       5.23,
-      6.52
+      null
     ],
     [
       "2022-08-01",
       6.15,
       5.23,
-      6.5
+      null
     ],
     [
       "2022-08-02",
       6.39,
       5.23,
-      6.48
+      null
     ],
     [
       "2022-08-03",
@@ -2970,7 +3030,7 @@
     [
       "2022-09-02",
       3.34,
-      4.87,
+      4.86,
       5.91
     ],
     [
@@ -3132,7 +3192,7 @@
     [
       "2022-10-12",
       3.51,
-      3.9,
+      3.89,
       5.46
     ],
     [
@@ -3966,7 +4026,7 @@
     [
       "2023-05-03",
       6.49,
-      7.33,
+      7.32,
       4.73
     ],
     [
@@ -4128,7 +4188,7 @@
     [
       "2023-06-12",
       10.27,
-      8.69,
+      8.68,
       5.3
     ],
     [
@@ -4362,7 +4422,7 @@
     [
       "2023-08-08",
       11.11,
-      11.46,
+      11.45,
       6.93
     ],
     [
@@ -9158,9 +9218,85 @@
       53.14,
       61.21,
       61.77
+    ],
+    [
+      "2026-10-15",
+      56.57,
+      60.95,
+      61.79
+    ],
+    [
+      "2026-10-16",
+      52.82,
+      60.7,
+      61.8
+    ],
+    [
+      "2026-10-19",
+      54.0,
+      60.53,
+      61.81
+    ],
+    [
+      "2026-10-20",
+      55.05,
+      60.39,
+      61.82
+    ],
+    [
+      "2026-10-21",
+      60.56,
+      60.34,
+      61.82
+    ],
+    [
+      "2026-10-22",
+      59.69,
+      60.31,
+      61.79
+    ],
+    [
+      "2026-10-23",
+      59.39,
+      60.25,
+      61.77
+    ],
+    [
+      "2026-10-26",
+      59.91,
+      60.17,
+      61.75
+    ],
+    [
+      "2026-10-27",
+      44.74,
+      59.78,
+      61.65
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-28T20:48:04Z",
+      "ticker": "INOD",
+      "rating": "Hold",
+      "score": "63",
+      "confidence": "Medium",
+      "growth": "91",
+      "quality": "69",
+      "balance_sheet": "100",
+      "valuation": "53",
+      "trend": "16",
+      "news_risk": "51",
+      "price": "44.74",
+      "price_date": "2026-10-27",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4391",
+      "overlay": "",
+      "quote_price": "46.63",
+      "quote_as_of": "2026-10-28T20:36:38Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-15T14:09:07Z",
       "ticker": "INOD",

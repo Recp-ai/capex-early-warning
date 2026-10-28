@@ -1,0 +1,1726 @@
+{
+  "run_id": "2026-10-28T20:51:26Z",
+  "generated_at": "2026-10-28T20:52:39+00:00",
+  "ticker": "AAOI",
+  "sec_ticker": "AAOI",
+  "cik": "0001158114",
+  "name": "APPLIED OPTOELECTRONICS, INC.",
+  "sector": "Semiconductors & Related Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 51,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: FCF margin"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 14
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 7
+    }
+  },
+  "composite": {
+    "score": 51,
+    "raw": 51.36,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 86.42,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 61.85,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 35.06,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 28.92,
+          "score": 31.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -11.31,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 2.56,
+          "score": 96.3,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 43.68,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 28,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 8.48,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 11.667,
+          "score": 26.4,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 90.2,
+          "score": 9.8,
+          "weight": 0.1,
+          "note": "cheaper than now in 90.2% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 61 of 61 month-ends)"
+        }
+      },
+      "coverage": 0.412,
+      "score": null,
+      "missing": "only 41% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -18.45,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -27.74,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 170.47,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -55.28,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -56.11,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -63.15,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 25,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 44,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 2.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-25T21:12:14Z",
+      "age_days": 3
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 2.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-25T21:12:14Z",
+    "age_days": 3
+  },
+  "price": {
+    "close": 82.22,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 191922000.0,
+    "revenue_yoy_q": 86.42,
+    "revenue_yoy_q_prev": 51.36,
+    "acceleration_pp": 35.06,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 595970000.0,
+    "revenue_yoy_ttm": 61.85,
+    "gross_profit_ttm": 172330000.0,
+    "operating_income_ttm": -67406000.0,
+    "operating_cash_flow_ttm": -131820000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 15238000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 28.92,
+    "operating_margin_pct": -11.31,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 2.56,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 499737000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 499737000.0,
+      "debt": 58915000.0,
+      "debt_tags": [
+        "LongTermDebtNoncurrent",
+        "LongTermDebtCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 1657000.0
+        },
+        {
+          "tag": "LongTermDebtCurrent",
+          "val": 57258000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -440822000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 81568000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 43.68,
+    "shares_outstanding": {
+      "val": 84569237.0,
+      "end": "2026-08-03",
+      "filed": "2026-08-06",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 62547000.0,
+        "revenue_yoy_pct": 10.33,
+        "operating_margin_pct": -10.69,
+        "fcf": -16802000.0,
+        "diluted_shares": 32774148.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 60453000.0,
+        "revenue_yoy_pct": -1.84,
+        "operating_margin_pct": -7.5,
+        "fcf": -4614000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 40673000.0,
+        "revenue_yoy_pct": -23.3,
+        "operating_margin_pct": -53.22,
+        "fcf": -34242000.0,
+        "diluted_shares": 38362000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 43270000.0,
+        "revenue_yoy_pct": 3.98,
+        "operating_margin_pct": -60.65,
+        "fcf": -4967000.0,
+        "diluted_shares": 39365000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 65151000.0,
+        "revenue_yoy_pct": 4.16,
+        "operating_margin_pct": -25.4,
+        "fcf": -20728000.0,
+        "diluted_shares": 42312000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 100271000.0,
+        "revenue_yoy_pct": 65.87,
+        "operating_margin_pct": -6.45,
+        "fcf": -52995000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 99859000.0,
+        "revenue_yoy_pct": 145.52,
+        "operating_margin_pct": -8.95,
+        "fcf": -79304000.0,
+        "diluted_shares": 50041000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 102952000.0,
+        "revenue_yoy_pct": 137.93,
+        "operating_margin_pct": -15.52,
+        "fcf": -90953000.0,
+        "diluted_shares": 56772000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 118630000.0,
+        "revenue_yoy_pct": 82.08,
+        "operating_margin_pct": -15.33,
+        "fcf": -78707000.0,
+        "diluted_shares": 63329000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 134274000.0,
+        "revenue_yoy_pct": 33.91,
+        "operating_margin_pct": -8.57,
+        "fcf": -104612000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 151144000.0,
+        "revenue_yoy_pct": 51.36,
+        "operating_margin_pct": -8.6,
+        "fcf": -143578000.0,
+        "diluted_shares": 75980000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 191922000.0,
+        "revenue_yoy_pct": 86.42,
+        "operating_margin_pct": -12.88,
+        "fcf": null,
+        "diluted_shares": 81568000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 82.22,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 84569237.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-03"
+    },
+    "market_cap": 6953282666.14,
+    "enterprise_value": 6512460666.14,
+    "price_to_sales": 11.667,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 8.571,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": -1.035,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.96,
+    "ust10y_date": "2026-10-22",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 0.882,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 113.35,
+        "fcf_yield_pct": -23.242,
+        "ebit_yield_pct": -21.393
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 0.764,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 130.808,
+        "fcf_yield_pct": -21.671,
+        "ebit_yield_pct": -31.784
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 0.665,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 150.404,
+        "fcf_yield_pct": -24.917,
+        "ebit_yield_pct": -36.028
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 0.53,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 188.555,
+        "fcf_yield_pct": -31.238,
+        "ebit_yield_pct": -43.954
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.462,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 216.565,
+        "fcf_yield_pct": -20.089,
+        "ebit_yield_pct": -48.219
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.464,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 215.379,
+        "fcf_yield_pct": -19.979,
+        "ebit_yield_pct": -47.999
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.327,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 305.888,
+        "fcf_yield_pct": -28.375,
+        "ebit_yield_pct": -63.64
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.304,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 328.948,
+        "fcf_yield_pct": -10.484,
+        "ebit_yield_pct": -63.168
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.199,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 502.972,
+        "fcf_yield_pct": -16.031,
+        "ebit_yield_pct": -84.192
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.221,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 453.26,
+        "fcf_yield_pct": -14.446,
+        "ebit_yield_pct": -78.757
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.314,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 318.903,
+        "fcf_yield_pct": -6.281,
+        "ebit_yield_pct": -65.032
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.354,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 282.557,
+        "fcf_yield_pct": -5.566,
+        "ebit_yield_pct": -59.173
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.358,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 279.475,
+        "fcf_yield_pct": -5.505,
+        "ebit_yield_pct": -58.661
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.284,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 352.09,
+        "fcf_yield_pct": -25.595,
+        "ebit_yield_pct": -62.847
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.244,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 409.84,
+        "fcf_yield_pct": -29.793,
+        "ebit_yield_pct": -69.827
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.309,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 324.099,
+        "fcf_yield_pct": -23.56,
+        "ebit_yield_pct": -59.219
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.351,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 284.759,
+        "fcf_yield_pct": -22.022,
+        "ebit_yield_pct": -53.325
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.276,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 362.069,
+        "fcf_yield_pct": -28.001,
+        "ebit_yield_pct": -62.81
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.242,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 412.46,
+        "fcf_yield_pct": -31.898,
+        "ebit_yield_pct": -68.275
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.287,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 348.865,
+        "fcf_yield_pct": -35.216,
+        "ebit_yield_pct": -59.572
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.77,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 129.946,
+        "fcf_yield_pct": -13.117,
+        "ebit_yield_pct": -28.481
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.872,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 114.738,
+        "fcf_yield_pct": -11.582,
+        "ebit_yield_pct": -25.653
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 1.907,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 52.437,
+        "fcf_yield_pct": -2.415,
+        "ebit_yield_pct": -14.698
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 1.519,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 65.821,
+        "fcf_yield_pct": -3.031,
+        "ebit_yield_pct": -18.276
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 1.029,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 97.181,
+        "fcf_yield_pct": -4.475,
+        "ebit_yield_pct": -26.402
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 1.985,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 50.38,
+        "fcf_yield_pct": -3.831,
+        "ebit_yield_pct": -12.438
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 2.894,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 34.551,
+        "fcf_yield_pct": -2.627,
+        "ebit_yield_pct": -8.587
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 2.356,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 42.437,
+        "fcf_yield_pct": -3.227,
+        "ebit_yield_pct": -10.512
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 2.345,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 42.636,
+        "fcf_yield_pct": -3.332,
+        "ebit_yield_pct": -8.468
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 2.034,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 49.158,
+        "fcf_yield_pct": -3.841,
+        "ebit_yield_pct": -9.832
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 1.446,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 69.17,
+        "fcf_yield_pct": -5.405,
+        "ebit_yield_pct": -14.138
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 1.96,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 51.014,
+        "fcf_yield_pct": -10.259,
+        "ebit_yield_pct": -11.678
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 1.549,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 64.552,
+        "fcf_yield_pct": -12.982,
+        "ebit_yield_pct": -14.632
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 1.785,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 56.035,
+        "fcf_yield_pct": -11.269,
+        "ebit_yield_pct": -12.781
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 2.159,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 46.317,
+        "fcf_yield_pct": -13.569,
+        "ebit_yield_pct": -12.888
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 2.722,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 36.737,
+        "fcf_yield_pct": -10.762,
+        "ebit_yield_pct": -10.277
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 2.971,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 33.656,
+        "fcf_yield_pct": -9.86,
+        "ebit_yield_pct": -9.431
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 8.323,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.015,
+        "fcf_yield_pct": -3.701,
+        "ebit_yield_pct": -3.965
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 7.443,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.436,
+        "fcf_yield_pct": -4.139,
+        "ebit_yield_pct": -4.435
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 5.638,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.738,
+        "fcf_yield_pct": -5.464,
+        "ebit_yield_pct": -5.861
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 3.641,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 27.462,
+        "fcf_yield_pct": -12.437,
+        "ebit_yield_pct": -8.176
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 2.557,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 39.109,
+        "fcf_yield_pct": -17.712,
+        "ebit_yield_pct": -11.88
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 2.131,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 46.937,
+        "fcf_yield_pct": -21.257,
+        "ebit_yield_pct": -14.456
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 2.501,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 39.987,
+        "fcf_yield_pct": -20.475,
+        "ebit_yield_pct": -7.837
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 4.166,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.001,
+        "fcf_yield_pct": -12.29,
+        "ebit_yield_pct": -4.632
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 3.709,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.961,
+        "fcf_yield_pct": -13.805,
+        "ebit_yield_pct": -5.218
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 3.731,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.802,
+        "fcf_yield_pct": -17.758,
+        "ebit_yield_pct": -3.6
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 3.998,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.014,
+        "fcf_yield_pct": -16.574,
+        "ebit_yield_pct": -3.353
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 5.482,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.24,
+        "fcf_yield_pct": -12.085,
+        "ebit_yield_pct": -2.425
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 4.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.866,
+        "fcf_yield_pct": -17.805,
+        "ebit_yield_pct": -3.124
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 5.235,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 19.102,
+        "fcf_yield_pct": -13.678,
+        "ebit_yield_pct": -2.362
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 6.549,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.27,
+        "fcf_yield_pct": -10.934,
+        "ebit_yield_pct": -1.869
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 11.124,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.99,
+        "fcf_yield_pct": -6.975,
+        "ebit_yield_pct": -1.115
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 11.171,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.951,
+        "fcf_yield_pct": -6.945,
+        "ebit_yield_pct": -1.11
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 21.706,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.607,
+        "fcf_yield_pct": -3.574,
+        "ebit_yield_pct": -0.562
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 23.74,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.212,
+        "fcf_yield_pct": -3.472,
+        "ebit_yield_pct": -0.504
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 22.204,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.504,
+        "fcf_yield_pct": -3.712,
+        "ebit_yield_pct": -0.54
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 14.135,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.075,
+        "fcf_yield_pct": -5.831,
+        "ebit_yield_pct": -0.867
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 14.739,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.785,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.808
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 13.585,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.361,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.88
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 11.253,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.886,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -1.076
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 11.667,
+        "current_yield_pct": 8.571,
+        "points": 61,
+        "median": 2.034,
+        "low": 0.199,
+        "high": 23.742,
+        "negative_points": 0,
+        "median_yield_pct": 49.158,
+        "percentile": 90.2,
+        "cheaper_points": 55,
+        "dearer_points": 6,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 58,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 58,
+        "median_yield_pct": -12.188,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -1.035,
+        "points": 61,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 61,
+        "median_yield_pct": -12.438,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 61 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 55 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "58 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 61 of 61 month-ends)",
+          "not_comparable": "negative now and in 61 of 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 82.22,
+    "date": "2026-10-28",
+    "ma50": 100.82,
+    "ma200": 113.78,
+    "vs_ma50_pct": -18.45,
+    "vs_ma200_pct": -27.74,
+    "momentum_12_1_pct": 170.47,
+    "high_52w": 223.1,
+    "drawdown_52w_pct": -63.15,
+    "return_rs_pct": -46.2,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -55.28,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -56.11
+  },
+  "ust10y": {
+    "value": 4.96,
+    "date": "2026-10-22"
+  },
+  "guidance": {
+    "accession": "0001683168-26-006055",
+    "filing_date": "2026-08-06",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006055/aaoi_ex9901.htm",
+    "summary": "AOI expects Q3 2026 revenue of $255 million to $290 million, non-GAAP gross margin of 29% to 30.5%, non-GAAP net income of $10.1 million to $24.0 million and non-GAAP EPS of $0.11 to $0.26, and continues to anticipate steady sequential revenue growth this year.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q3 2026",
+        "amount_text": "$255 million to $290 million",
+        "stated_change": "not stated",
+        "sentence": "Revenue in the range of $255 million to $290 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "gross_margin",
+        "period": "Q3 2026",
+        "amount_text": "29% to 30.5%",
+        "stated_change": "not stated",
+        "sentence": "Non-GAAP gross margin in the range of 29% to 30.5%.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "$10.1 million to $24.0 million",
+        "stated_change": "not stated",
+        "sentence": "Non-GAAP net income in the range of $10.1 million to $24.0 million, and non-GAAP income per share in the range of $0.11 to $0.26 using approximately 92.8 million shares.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "Q3 2026",
+        "amount_text": "$0.11 to $0.26",
+        "stated_change": "not stated",
+        "sentence": "Non-GAAP net income in the range of $10.1 million to $24.0 million, and non-GAAP income per share in the range of $0.11 to $0.26 using approximately 92.8 million shares.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "We’re working hard to expand our capacity, and we continue to anticipate steady sequential revenue growth this year.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001683168-26-003562",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826003562/aaoi_ex9901.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No outlook change in the window; the August Q3 guide of $255M–$290M revenue stands, and Q3 results come Nov 5.",
+        "evidence": [
+          {
+            "claim": "Revenue in the range of $255 million to $290 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006055/aaoi_ex9901.htm",
+            "event_date": "2026-08-06",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 83,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          },
+          {
+            "claim": "AOI completed its $600M at-the-market equity offering, raising about $588M net.",
+            "url": "https://www.investing.com/news/stock-market-news/why-is-applied-optoelectronics-stock-sliding-today-93CH-4939267",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": -1,
+        "summary": "Needham and B. Riley both cut price targets while keeping their ratings, and Weiss kept a Sell rating. The sources are non-major, so the rating is capped at -1.",
+        "evidence": [
+          {
+            "claim": "Needham cut its price target on AAOI to $170 from $190 and maintained a Buy rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-applied-optoelectronics-nasdaq-aaoi-stock-price-target-lowered-at-needham-company-llc-2026-10-27/",
+            "event_date": "2026-10-27",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "B. Riley lowered its price target on AAOI to $92 from $109 and maintained Neutral.",
+            "url": "https://www.gurufocus.com/news/9125650/aaoi-maintains-by-b-riley-securities-price-target-lowered-to-92",
+            "event_date": "2026-10-15",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Needham cut its price target to $170.00; consensus rating is Hold.",
+            "url": "https://www.defenseworld.net/2026/10/28/applied-optoelectronics-nasdaqaaoi-price-target-cut-to-170-00-by-analysts-at-needham-company-llc.html",
+            "event_date": "2026-10-27",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No material legal or regulatory news in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new customer wins or losses. Concentration stays very high, with the top 10 customers at 99% of Q2 revenue, but that is background rather than new news.",
+        "evidence": [
+          {
+            "claim": "Top 10 customers accounted for 99% of revenue in Q2.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-stock-fell-12-110114111.html",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 1/1"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": -1,
+        "summary": "Two executives, including the CFO, made modest pre-planned 10b5-1 sales in October, and no insider purchases were found.",
+        "evidence": [
+          {
+            "claim": "Shu-Hua (Joshua) Yeh sold 6,000 shares at a weighted average price of $120.03 under a Rule 10b5-1 plan.",
+            "url": "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-20ed18799f05.html",
+            "event_date": "2026-10-05",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 4/4"
+          },
+          {
+            "claim": "CFO Stefan Murry sold 4,000 shares at $102.87 under a Rule 10b5-1 plan.",
+            "url": "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-00f35807e3a9.html",
+            "event_date": "2026-10-12",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "No product launches or delays in the window. October's stock drops tracked sector and macro news rather than anything specific to AOI.",
+        "evidence": [
+          {
+            "claim": "Applied Optoelectronics stock fell 23.6% for the week after Broadcom CEO Hock Tan warned funding constraints could slow AI build-outs.",
+            "url": "https://www.fool.com/coverage/market-movers/2026/10/16/why-applied-optoelectronics-stock-plummeted-this-week/",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          },
+          {
+            "claim": "AAOI dropped in a broad optics and tech selloff with no company-specific setback.",
+            "url": "https://www.quiverquant.com/news/Why+Applied+Optoelectronics+(AAOI)+Stock+Is+Down+Today",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Coverage note:** I found little company-specific news dated inside 2026-09-28 to 2026-10-28. Most of the stock's October moves tracked sector news, not AOI news.\n\n## 1. Guidance\n- No outlook change in the window. As of mid-October the company had not updated its outlook since August, when it guided Q3 revenue to $255M–$290M. — 2026-08-06 — https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-stock-fell-12-110114111.html\n- Q2 results (before the window): record revenue for a fifth straight quarter and a return to non-GAAP profitability. — 2026-08-06 — https://www.sec.gov/Archives/edgar/data/0001158114/000168316826006055/aaoi_ex9901.htm\n- Q2 EPS was $0.06 against a $0.0151 consensus. — 2026-08-06 — https://www.marketbeat.com/earnings/reports/2026-11-5-applied-optoelectronics-inc-stock/\n- AOI will report Q3 results on Nov 5, after the close. The call will cover the Q4 outlook. — announced 2026-10-15 — https://investors.ao-inc.com/news-events/press-releases\n- MarketBeat's Q3 consensus is EPS of about $0.14 on revenue of $268.11M. — date unknown — https://www.marketbeat.com/earnings/reports/2026-11-5-applied-optoelectronics-inc-stock/\n- AOI completed its $600M at-the-market equity offering on Oct 5, raising about $588M net. The shares were sold into the market gradually. — 2026-10-05 — https://www.investing.com/news/stock-market-news/why-is-applied-optoelectronics-stock-sliding-today-93CH-4939267\n\n## 2. Analyst actions\n- Needham cut its target to $170 from $190 and kept Buy. — 2026-10-27 — https://www.marketbeat.com/instant-alerts/analyst-applied-optoelectronics-nasdaq-aaoi-stock-price-target-lowered-at-needham-company-llc-2026-10-27/\n- B. Riley (David Kang) cut its target to $92 from $109 and kept Neutral. — 2026-10-15 — https://www.gurufocus.com/news/9125650/aaoi-maintains-by-b-riley-securities-price-target-lowered-to-92\n- Weiss Ratings moved AAOI from \"sell (e+)\" to \"sell (d-)\". — 2026-10-21 — https://www.marketbeat.com/instant-alerts/analyst-applied-optoelectronics-nasdaq-aaoi-stock-price-target-lowered-at-needham-company-llc-2026-10-27/\n- Consensus is Hold, with 3 Buy, 2 Hold and 1 Sell. MarketBeat's average target is $143 after the Needham cut. It was $147 before. — 2026-10-28 — https://www.defenseworld.net/2026/10/28/applied-optoelectronics-nasdaqaaoi-price-target-cut-to-170-00-by-analysts-at-needham-company-llc.html\n- Earlier actions fall outside the window. Rosenblatt kept Buy with a $220 target and Raymond James kept Outperform with a $178 target. — 2026-08-07 and 2026-08-11 — https://www.marketbeat.com/instant-alerts/analyst-applied-optoelectronics-nasdaq-aaoi-stock-price-target-lowered-at-needham-company-llc-2026-10-27/\n\n## 3. Litigation and regulation\n- Nothing material found in the window. The legal results I found were old: patent suits and 2017–2018 class actions.\n\n## 4. Customer concentration\n- No new customer wins or losses in the window.\n- Top-10 customers made up 99% of Q2 revenue. — quarter ended 2026-06-30 — https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-stock-fell-12-110114111.html\n- Amazon holds a warrant for up to 7.945M shares. It vests as Amazon makes discretionary purchases of up to $4B. This dates from the March 2025 agreement. — 2025-03 — https://www.trefis.com/data/companies/AAOI\n- 24/7 Wall St. notes that a delay from a single customer could weigh heavily on results. — date unknown — https://247wallst.com/investing/2026/10/22/optics-stocks-tumble-as-tech-selloff-deepens-ahead-of-earnings-coherent-tumbles-12-applied-optoelectronics-drops-10-lumentum-falls-9/\n\n## 5. Insider activity (all Rule 10b5-1 sales)\n- SVP and Asia GM Shu-Hua (Joshua) Yeh sold 6,000 shares at a $120.03 weighted average, about $720K. The plan was adopted 2026-03-19. — 2026-10-05 — https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-20ed18799f05.html\n- CFO Stefan Murry sold 4,000 shares at $102.87 under a plan adopted 2025-08-12. — 2026-10-12 — https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-00f35807e3a9.html\n- Murry's holdings after the sale were reported as 363,168 shares. — 2026-10-12 — https://www.tikr.com/blog/applied-optoelectronics-stock-fell-12-on-hot-inflation-opportunity-or-falling-knife\n- GuruFocus counts 7 insiders who trimmed positions in the last quarter. That is a count, not a dated transaction. — date unknown — https://www.gurufocus.com/news/9125650/aaoi-maintains-by-b-riley-securities-price-target-lowered-to-92\n- MarketBeat says insiders sold $42.2M of shares \"during the quarter\". The period it refers to is unclear. — date unknown — https://www.marketbeat.com/instant-alerts/price-applied-optoelectronics-nasdaq-aaoi-stock-price-down-57-whats-next-2026-09-03/\n- I found no insider purchases.\n\n## 6. Product, competitive and stock-move news\n- No new product launches or delays found in the window.\n- AAOI fell 23.6% over the week ending Oct 15 to $83.73. The Motley Fool ties the fall to Broadcom CEO Hock Tan's warning that funding constraints could slow AI build-outs. The selloff hit AAOI harder than Lumentum and Coherent. — 2026-10-15 — https://www.fool.com/coverage/market-movers/2026/10/16/why-applied-optoelectronics-stock-plummeted-this-week/\n- On Oct 14 the stock fell 11.82% to $86.22 after a hot CPI print. The company released no news that day. — 2026-10-14 — https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-stock-fell-12-110114111.html\n- On Oct 22 AAOI dropped about 10–11% in a broad optics and tech selloff. Quiver Quantitative saw no company-specific setback. — 2026-10-22 — https://www.quiverquant.com/news/Why+Applied+Optoelectronics+(AAOI)+Stock+Is+Down+Today\n- Management said demand exceeds capacity through mid-2027. The company is building out Texas capacity. — 2026-08-06 — https://finance.yahoo.com/markets/stocks/articles/aaoi-bets-800g-ramp-1-164900346.html",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826006055/aaoi_ex9901.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826003562/aaoi_ex9901.htm",
+        "https://www.sec.gov/Archives/edgar/data/1158114/000168316826001315/aaoi_ex9901.htm",
+        "https://seekingalpha.com/article/4926642-aoi-expects-record-level-q2-revenue-with-positive-outlook-for-fy2026",
+        "https://www.barchart.com/story/news/3675338/applied-optoelectronics-returns-with-guidance-that-could-redefine-its-ai-infrastructure-credibility",
+        "https://www.marketbeat.com/instant-alerts/price-applied-optoelectronics-nasdaq-aaoi-shares-climb-7-time-to-buy-2026-10-26/",
+        "https://www.marketbeat.com/stocks/NASDAQ/AAOI/forecast/",
+        "https://simplywall.st/stocks/us/tech/nasdaq-aaoi/applied-optoelectronics/future",
+        "https://www.marketbeat.com/instant-alerts/price-applied-optoelectronics-nasdaq-aaoi-stock-price-down-57-whats-next-2026-09-03/",
+        "https://simplywall.st/stocks/us/tech/nasdaq-aaoi/applied-optoelectronics",
+        "https://www.gurufocus.com/news/9125650/aaoi-maintains-by-b-riley-securities-price-target-lowered-to-92",
+        "https://www.benzinga.com/quote/AAOI/price-targets",
+        "https://www.gurufocus.com/news/9144256/aaoi-maintained-by-needham-price-target-lowered-to-170",
+        "https://www.zacks.com/stock/research/AAOI/price-target-stock-forecast",
+        "https://stockanalysis.com/stocks/aaoi/",
+        "https://www.marketbeat.com/instant-alerts/analyst-applied-optoelectronics-nasdaq-aaoi-stock-price-target-lowered-at-needham-company-llc-2026-10-27/",
+        "https://www.defenseworld.net/2026/10/17/applied-optoelectronics-nasdaqaaoi-shares-down-9-7-on-analyst-downgrade.html",
+        "https://tickernerd.com/stock/aaoi-forecast/",
+        "https://www.defenseworld.net/2026/10/28/applied-optoelectronics-nasdaqaaoi-price-target-cut-to-170-00-by-analysts-at-needham-company-llc.html",
+        "https://www.thestockobserver.com/2026/10/26/applied-optoelectronics-nasdaqaaoi-shares-climb-7-time-to-buy.html",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000155837017006285/aaoi-20170630x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000155837018006752/aaoi-20180630x10q.htm",
+        "https://investors.ao-inc.com/news-releases/news-release-details/applied-optoelectronics-filed-patent-infringement-lawsuit-0",
+        "https://www.sec.gov/Archives/edgar/data/1158114/000168316821004141/applied_ex9901.htm",
+        "https://www.nasdaq.com/articles/applied-optoelectronics-inc-files-patent-infringement-lawsuit-against-accelight",
+        "https://www.newswire.com/news/update-lawsuit-for-investors-in-applied-optoelectronics-inc-nasdaq-aaoi-shares",
+        "https://www.marketscreener.com/quote/stock/APPLIED-OPTOELECTRONICS-I-40449762/news/Applied-Optoelectronics-Amends-Patent-Infringement-Lawsuit-44963079/",
+        "https://www.ktmc.com/new-cases/applied-optoelectronics-inc/",
+        "https://bgandg.com/aaoi/",
+        "https://www.globenewswire.com/news-release/2024/12/17/2998629/9986/en/Applied-Optoelectronics-Filed-a-Patent-Infringement-Lawsuit-Against-Accelight-Technologies-Inc-ATI.html",
+        "https://www.investing.com/news/company-news/applied-optoelectronics-ships-first-volume-order-to-major-datacenter-customer-93CH-4091886",
+        "https://unemployedvaluedegen.substack.com/p/status-update-applied-optoelectronics",
+        "https://bmfreports.medium.com/applied-optoelectronics-aaoi-an-optical-illusion-ready-to-shatter-ce6c2e53d447",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000155837017001556/aaoi-20161231x10k.htm",
+        "https://killuacapital.substack.com/p/my-full-thesis-on-aaoi-the-light",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000155837017001556/Financial_Report.xlsx",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000101968716005442/Financial_Report.xlsx",
+        "https://www.moomoo.com/community/feed/applied-optoelectronics-aaoi-us-i-simply-don-t-understand-why-117012522532869",
+        "https://en.wikipedia.org/wiki/Applied_Optoelectronics",
+        "https://www.trefis.com/data/companies/AAOI",
+        "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826007059/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-07bfbbacc887.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-5ad4e0a241a9.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-2a971821cf92.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-45d4d32ca45c.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-00f35807e3a9.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-3aea6f12f863.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-22e5e54b40ec.html",
+        "https://www.stocktitan.net/sec-filings/AAOI/form-4-applied-optoelectronics-inc-insider-trading-activity-20ed18799f05.html",
+        "https://www.investing.com/news/company-news/applied-optoelectronics-receives-200m-order-for-16t-transceivers-93CH-4549354",
+        "https://www.investing.com/news/company-news/applied-optoelectronics-secures-53m-order-for-800g-transceivers-93CH-4577918",
+        "https://newsroom.ao-inc.com/",
+        "https://finance.yahoo.com/news/aaoi-bets-800g-ramp-1-164900346.html",
+        "https://investors.ao-inc.com/news-releases/news-release-details/aoi-receives-new-order-800g-data-center-transceivers-major",
+        "https://finance.yahoo.com/markets/stocks/articles/800g-transceivers-drive-aaois-revenue-143600096.html",
+        "https://ao-inc.com/products/optical-transceivers/",
+        "https://thedatacenterengineer.com/news/aoi-starts-pearland-expansion-to-scale-800g-and-1-6t-transceiver-output/",
+        "https://www.stocktitan.net/news/AAOI/aoi-receives-new-upsized-order-for-800g-data-center-transceivers-chfxeg1gjkoq.html",
+        "https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-stock-fell-12-110114111.html",
+        "https://www.tikr.com/blog/applied-optoelectronics-stock-fell-12-on-hot-inflation-opportunity-or-falling-knife",
+        "https://www.fool.com/coverage/market-movers/2026/10/16/why-applied-optoelectronics-stock-plummeted-this-week/",
+        "https://finance.yahoo.com/markets/stocks/articles/why-applied-optoelectronics-stock-plummeted-175610782.html",
+        "https://247wallst.com/investing/2026/10/15/optical-stocks-extend-slide-as-money-rotates-into-defensives-applied-optoelectronics-falls-6-coherent-drops-7-lumentum-slips-5/",
+        "https://www.investing.com/news/stock-market-news/why-is-applied-optoelectronics-stock-sliding-today-93CH-4939267",
+        "https://247wallst.com/investing/2026/10/14/applied-optoelectronics-dives-9-as-ai-funding-fears-hit-optical-stocks-coherent-slides-7-lumentum-drops-7/",
+        "https://www.quiverquant.com/news/Why+Applied+Optoelectronics+(AAOI)+Stock+Is+Down+Today",
+        "https://247wallst.com/investing/2026/10/22/optics-stocks-tumble-as-tech-selloff-deepens-ahead-of-earnings-coherent-tumbles-12-applied-optoelectronics-drops-10-lumentum-falls-9/",
+        "https://www.fool.com/investing/2017/11/10/how-applied-optoelectronics-inc-stock-fell-37-in-o.aspx",
+        "https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-announces-date-third-201000032.html",
+        "https://investors.ao-inc.com/news-events/press-releases",
+        "https://www.tradingview.com/news/prnewswire:0a001e72f0789:0-applied-optoelectronics-announces-date-of-third-quarter-2026-financial-results-conference-call/",
+        "https://pluang.com/en/news-feed/applied-optoelectronics-umumkan-tanggal-pengumuman-hasil-keuangan-kuartal-iii",
+        "https://www.sec.gov/Archives/edgar/data/1158114/000168316823007799/aaoi_ex9901.htm",
+        "https://www.marketbeat.com/earnings/reports/2026-11-5-applied-optoelectronics-inc-stock/",
+        "https://news.futunn.com/en/post/1001299994/applied-optoelectronics-announces-date-of-third-quarter-2026-financial-results",
+        "https://lifestyle.middletownlifemagazine.com/story/762688/applied-optoelectronics-announces-date-of-third-quarter-2026-financial-results-conference-call/",
+        "https://rallies.ai/news/applied-optoelectronics-schedules-third-quarter-2026-results-conference-call-de16f64278f1db12",
+        "https://www.lelezard.com/en/news-applied-optoelectronics-announces-date-of-third-quarter-2026-financial-results-conference-call-22404585.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Applied Optoelectronics rates Hold as very strong revenue growth is offset by losses, dilution and a weak share-price trend.",
+    "thesis": "AAOI scores 51, a Hold, sitting 14 points below the Buy band and 7 points above Sell. Growth scores a perfect 100, with latest-quarter revenue growth of 86.4% year on year, TTM revenue growth of 61.9%, and growth sped up by 35.1 pp from the previous quarter. That is pulled down by weak quality (28): gross margin is 28.9%, operating margin is -11.3%, and the diluted share count is up 43.7% year on year. The trend score of 25 reflects a price 63.1% below its 52-week high and 27.7% below its 200-day average, even though shares are up 170.5% from 12 months ago to 1 month ago. News risk scores 44 after price-target cuts from Needham and B. Riley and modest pre-planned insider sales; balance sheet and valuation were not scored, though P/S of 11.7x is high in absolute terms and more expensive than at 55 of the last 61 month-ends.",
+    "key_risks": [
+      "Extreme customer concentration, with the top 10 customers at 99% of Q2 revenue.",
+      "Continued operating losses (operating margin of -11.3%) despite rapid sales growth.",
+      "Heavy dilution, with the diluted share count up 43.7% year on year.",
+      "Weak price trend: price 63.1% below its 52-week high and shares 55.3 pp behind SPY over the last 126 trading days.",
+      "Q3 results on Nov 5 could disappoint against the $255M–$290M revenue guide."
+    ],
+    "what_would_change": [
+      "A move into profitability and better margins would lift the quality score and could close the 14-point gap to Buy.",
+      "A recovery in the share price toward its 50-day and 200-day averages would raise the trend score.",
+      "A Q3 miss, a guidance cut or slowing growth from the 61.9% TTM pace would push the score toward the Sell band, only 7 points away.",
+      "Further negative analyst actions or insider selling would weigh on the news-risk score."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2564,
+        "output_tokens": 934,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2564,
+            "output_tokens": 934,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0289,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 127451,
+        "output_tokens": 3918,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 127451,
+            "output_tokens": 3918,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3741,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7714,
+        "output_tokens": 1602,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7714,
+            "output_tokens": 1602,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0629,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3681,
+        "output_tokens": 702,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3681,
+            "output_tokens": 702,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0288,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4947,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 79.31,
+    "as_of": "2026-10-28T20:51:55Z",
+    "prev_close": 76.95
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-28 16:51",
+    "note": null,
+    "close_window": "Run at 4:51 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40766001137",
+    "tickers": [
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
+    ]
+  }
+}

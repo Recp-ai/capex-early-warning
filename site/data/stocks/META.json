@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-15T14:08:07Z",
-  "generated_at": "2026-10-15T14:08:08+00:00",
+  "run_id": "2026-10-28T20:45:30Z",
+  "generated_at": "2026-10-28T20:46:50+00:00",
   "ticker": "META",
   "sec_ticker": "META",
   "cik": "0001326801",
@@ -9,8 +9,8 @@
   "website": "",
   "models": {
     "sources": {
-      "research": "config",
-      "scoring": "config"
+      "research": "input",
+      "scoring": "input"
     },
     "research": "claude-sonnet-5-5",
     "scoring": "claude-opus-5-5"
@@ -18,16 +18,16 @@
   "llm": true,
   "rating": "Hold",
   "rating_before_overlay": "Hold",
-  "score": 64,
+  "score": 57,
   "confidence": "Medium",
   "confidence_detail": {
     "level": "Medium",
     "points": 1.0,
     "reasons": [
       {
-        "issue": "near_band_edge",
+        "issue": "weak_sources",
         "points": 1.0,
-        "text": "score 64 is within 2 points of the Buy edge (65)"
+        "text": "news topics capped for weak sources: Analyst actions"
       }
     ],
     "factors_with_data": 6
@@ -36,17 +36,17 @@
     "up": {
       "label": "Buy",
       "at": 65,
-      "points": 1
+      "points": 8
     },
     "down": {
       "label": "Sell",
       "below": 45,
-      "points": 20
+      "points": 13
     }
   },
   "composite": {
-    "score": 64,
-    "raw": 63.5,
+    "score": 57,
+    "raw": 57.4,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -69,115 +69,115 @@
     "growth": {
       "metrics": {
         "revenue_yoy_q": {
-          "value": 27.96,
-          "score": 85.6,
+          "value": 26.07,
+          "score": 83.1,
           "weight": 0.45,
           "note": null
         },
         "revenue_yoy_ttm": {
-          "value": 27.65,
-          "score": 85.2,
+          "value": 27.53,
+          "score": 85.0,
           "weight": 0.3,
           "note": null
         },
         "acceleration_pp": {
-          "value": -5.12,
-          "score": 24.4,
+          "value": -1.89,
+          "score": 40.6,
           "weight": 0.25,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 70,
+      "score": 73,
       "missing": null
     },
     "quality": {
       "metrics": {
         "gross_margin_pct": {
-          "value": 81.75,
+          "value": 81.03,
           "score": 100.0,
           "weight": 0.2,
           "note": null
         },
         "operating_margin_pct": {
-          "value": 38.08,
-          "score": 93.1,
+          "value": 32.86,
+          "score": 87.9,
           "weight": 0.25,
           "note": null
         },
         "fcf_margin_pct": {
-          "value": 17.95,
-          "score": 68.5,
+          "value": 11.86,
+          "score": 54.3,
           "weight": 0.25,
           "note": null
         },
         "sbc_pct_revenue": {
-          "value": 11.01,
-          "score": 46.5,
+          "value": 11.15,
+          "score": 46.0,
           "weight": 0.15,
           "note": null
         },
         "dilution_yoy_pct": {
-          "value": -0.16,
-          "score": 76.3,
+          "value": 0.04,
+          "score": 74.5,
           "weight": 0.15,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 79,
+      "score": 74,
       "missing": null
     },
     "balance_sheet": {
       "metrics": {
         "net_debt_to_fcf": {
-          "value": -0.16,
-          "score": 100.0,
+          "value": 0.04,
+          "score": 99.4,
           "weight": 0.6,
-          "note": "net cash"
+          "note": null
         },
         "cash_to_debt": {
-          "value": 1.08,
-          "score": 81.6,
+          "value": 0.99,
+          "score": 79.1,
           "weight": 0.4,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 93,
+      "score": 91,
       "missing": null
     },
     "valuation": {
       "metrics": {
         "price_to_sales": {
-          "value": 8.292,
-          "score": 40.5,
+          "value": 6.605,
+          "score": 47.5,
           "weight": 0.1,
           "note": null
         },
         "price_to_fcf": {
-          "value": 46.186,
-          "score": 26.6,
+          "value": 55.7,
+          "score": 15.2,
           "weight": 0.15,
           "note": null
         },
         "ev_to_ebit": {
-          "value": 21.696,
-          "score": 53.3,
+          "value": 20.118,
+          "score": 57.2,
           "weight": 0.15,
           "note": null
         },
         "fcf_yield_vs_10y_pp": {
-          "value": -3.045,
-          "score": 11.9,
+          "value": -3.165,
+          "score": 10.4,
           "weight": 0.2,
           "note": null
         },
         "price_to_sales_percentile": {
-          "value": 58.2,
-          "score": 41.8,
+          "value": 36.9,
+          "score": 63.1,
           "weight": 0.1,
-          "note": "cheaper than now in 58.2% of 61 month-ends (ranked on yields)"
+          "note": "cheaper than now in 36.9% of 61 month-ends (ranked on yields)"
         },
         "price_to_fcf_percentile": {
           "value": 99.2,
@@ -186,77 +186,77 @@
           "note": "cheaper than now in 99.2% of 61 month-ends (ranked on yields)"
         },
         "ev_to_ebit_percentile": {
-          "value": 56.6,
-          "score": 43.4,
+          "value": 43.4,
+          "score": 56.6,
           "weight": 0.15,
-          "note": "cheaper than now in 56.6% of 61 month-ends (ranked on yields)"
+          "note": "cheaper than now in 43.4% of 61 month-ends (ranked on yields)"
         }
       },
       "coverage": 1.0,
-      "score": 29,
+      "score": 33,
       "missing": null
     },
     "trend": {
       "metrics": {
         "vs_ma50_pct": {
-          "value": 13.49,
-          "score": 100.0,
+          "value": -6.83,
+          "score": 15.8,
           "weight": 0.15,
           "note": null
         },
         "vs_ma200_pct": {
-          "value": 16.82,
-          "score": 92.0,
+          "value": -1.91,
+          "score": 45.2,
           "weight": 0.2,
           "note": null
         },
         "momentum_12_1_pct": {
-          "value": -6.11,
-          "score": 32.8,
+          "value": -2.77,
+          "score": 39.5,
           "weight": 0.25,
           "note": null
         },
         "rs_spy_pp": {
-          "value": -0.51,
-          "score": 49.0,
+          "value": -16.53,
+          "score": 20.2,
           "weight": 0.125,
           "note": null
         },
         "rs_qqq_pp": {
-          "value": -4.61,
-          "score": 40.8,
+          "value": -18.05,
+          "score": 17.9,
           "weight": 0.125,
           "note": null
         },
         "drawdown_52w_pct": {
-          "value": -5.15,
-          "score": 80.8,
+          "value": -20.24,
+          "score": 36.1,
           "weight": 0.15,
           "note": null
         }
       },
       "coverage": 1.0,
-      "score": 65,
+      "score": 31,
       "missing": null
     },
     "news_risk": {
-      "score": 59,
+      "score": 51,
       "metrics": {
         "guidance": {
-          "value": 0,
-          "score": 50.0,
+          "value": 1,
+          "score": 75.0,
           "weight": 0.25,
           "note": null
         },
         "analyst_actions": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.15,
           "note": null
         },
         "litigation_regulation": {
-          "value": 0,
-          "score": 50.0,
+          "value": -1,
+          "score": 25.0,
           "weight": 0.2,
           "note": null
         },
@@ -273,8 +273,8 @@
           "note": null
         },
         "product_competitive": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.2,
           "note": null
         }
@@ -285,30 +285,30 @@
   },
   "overlay": {
     "ai_exposed": true,
-    "applies": true,
+    "applies": false,
     "capped": false,
     "rating_before": "Hold",
-    "note": "AI-exposed; capex early warning AMBER 6/18: warning signs for AI capex, rating not capped",
+    "note": "AI-exposed; capex early warning GREEN 2/18: no overlay",
     "capex": {
-      "level": "AMBER",
-      "total": 6.0,
+      "level": "GREEN",
+      "total": 2.0,
       "max": 18.0,
       "red_confirmed": false,
-      "run_id": "2026-10-15T01:43:15Z",
-      "age_days": 0
+      "run_id": "2026-10-25T21:12:14Z",
+      "age_days": 3
     }
   },
   "capex_context": {
-    "level": "AMBER",
-    "total": 6.0,
+    "level": "GREEN",
+    "total": 2.0,
     "max": 18.0,
     "red_confirmed": false,
-    "run_id": "2026-10-15T01:43:15Z",
-    "age_days": 0
+    "run_id": "2026-10-25T21:12:14Z",
+    "age_days": 3
   },
   "price": {
-    "close": 737.54,
-    "date": "2026-10-14"
+    "close": 620.19,
+    "date": "2026-10-27"
   },
   "fundamentals": {
     "currency": "USD",
@@ -316,46 +316,46 @@
     "foreign": false,
     "annual_only": false,
     "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
-    "latest_quarter_end": "2026-06-30",
-    "revenue_q": 60801000000.0,
-    "revenue_yoy_q": 27.96,
-    "revenue_yoy_q_prev": 33.08,
-    "acceleration_pp": -5.12,
-    "ttm_end": "2026-06-30",
-    "revenue_ttm": 228247000000.0,
-    "revenue_yoy_ttm": 27.65,
-    "gross_profit_ttm": 186587000000.0,
-    "operating_income_ttm": 86927000000.0,
-    "operating_cash_flow_ttm": 130301000000.0,
-    "capex_ttm": 89325000000.0,
-    "sbc_ttm": 25136000000.0,
+    "latest_quarter_end": "2026-09-30",
+    "revenue_q": 64601000000.0,
+    "revenue_yoy_q": 26.07,
+    "revenue_yoy_q_prev": 27.96,
+    "acceleration_pp": -1.89,
+    "ttm_end": "2026-09-30",
+    "revenue_ttm": 241606000000.0,
+    "revenue_yoy_ttm": 27.53,
+    "gross_profit_ttm": 195783000000.0,
+    "operating_income_ttm": 79380000000.0,
+    "operating_cash_flow_ttm": 133087000000.0,
+    "capex_ttm": 104438000000.0,
+    "sbc_ttm": 26943000000.0,
     "gross_profit_source": "revenue - CostOfRevenue",
     "operating_income_source": "OperatingIncomeLoss",
-    "fcf_ttm": 40976000000.0,
-    "gross_margin_pct": 81.75,
-    "operating_margin_pct": 38.08,
-    "fcf_margin_pct": 17.95,
-    "capex_intensity_pct": 39.14,
-    "sbc_pct_revenue": 11.01,
+    "fcf_ttm": 28649000000.0,
+    "gross_margin_pct": 81.03,
+    "operating_margin_pct": 32.86,
+    "fcf_margin_pct": 11.86,
+    "capex_intensity_pct": 43.23,
+    "sbc_pct_revenue": 11.15,
     "missing_inputs": {},
     "prepayments": {
-      "increase": 284000000.0,
-      "source": "balance sheet: contract 2025-06-30 to 2026-06-30",
-      "base": 876000000.0,
-      "base_date": "2025-06-30",
-      "revenue_growth_pct": 27.65,
-      "expected": 242232097.71593478,
-      "excess": 41767902.28406522,
+      "increase": 266000000.0,
+      "source": "balance sheet: contract 2025-09-30 to 2026-09-30",
+      "base": 924000000.0,
+      "base_date": "2025-09-30",
+      "revenue_growth_pct": 27.53,
+      "expected": 254335685.6700993,
+      "excess": 11664314.329900712,
       "max_share_of_ocf": 0.25,
       "applies": false,
-      "share_of_ocf": 0.0003
+      "share_of_ocf": 0.0001
     },
     "fcf_spike": {
       "triggered": false,
       "reasons": [],
-      "fcf_margin_pct": 17.95,
-      "fcf_margin_year_earlier_pct": 28.04,
-      "median_margin_pct": 24.13,
+      "fcf_margin_pct": 11.86,
+      "fcf_margin_year_earlier_pct": 23.67,
+      "median_margin_pct": 22.65,
       "quarters": 8,
       "quarter_fcf_to_revenue": 1.0,
       "margin_jump_x": 2.0,
@@ -364,50 +364,47 @@
       "min_quarters": 4
     },
     "fcf_basis": "reported",
-    "fcf_scored_ttm": 40976000000.0,
-    "fcf_scored_margin_pct": 17.95,
+    "fcf_scored_ttm": 28649000000.0,
+    "fcf_scored_margin_pct": 11.86,
     "balance_sheet": {
-      "date": "2026-06-30",
-      "cash": 15462000000.0,
+      "date": "2026-09-30",
+      "cash": 11222000000.0,
       "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
-      "short_term_investments": 74798000000.0,
+      "short_term_investments": 71227000000.0,
       "investment_tags": [
         {
           "tag": "MarketableSecuritiesCurrent",
-          "val": 74798000000.0
+          "val": 71227000000.0
         }
       ],
       "investment_note": null,
-      "cash_and_investments": 90260000000.0,
-      "debt": 83664000000.0,
+      "cash_and_investments": 82449000000.0,
+      "debt": 83669000000.0,
       "debt_tags": [
-        "LongTermDebt"
+        "LongTermDebtNoncurrent",
+        "LongTermDebtCurrent"
       ],
       "debt_parts": [
         {
-          "tag": "LongTermDebt",
-          "val": 83664000000.0
+          "tag": "LongTermDebtNoncurrent",
+          "val": 80922000000.0
+        },
+        {
+          "tag": "LongTermDebtCurrent",
+          "val": 2747000000.0
         }
       ],
       "debt_note": null,
-      "net_debt": -6596000000.0,
+      "net_debt": 1220000000.0,
       "unknown": []
     },
     "share_outliers": [],
-    "diluted_shares": 2566000000.0,
-    "diluted_shares_end": "2026-06-30",
+    "diluted_shares": 2573000000.0,
+    "diluted_shares_end": "2026-09-30",
     "diluted_shares_derived": null,
-    "dilution_yoy_pct": -0.16,
+    "dilution_yoy_pct": 0.04,
     "shares_outstanding": null,
     "quarterly": [
-      {
-        "end": "2023-09-30",
-        "revenue": 34146000000.0,
-        "revenue_yoy_pct": 23.21,
-        "operating_margin_pct": 40.26,
-        "fcf": 13906000000.0,
-        "diluted_shares": 2641000000.0
-      },
       {
         "end": "2023-12-31",
         "revenue": 40111000000.0,
@@ -495,31 +492,39 @@
         "operating_margin_pct": 30.88,
         "fcf": 1746000000.0,
         "diluted_shares": 2566000000.0
+      },
+      {
+        "end": "2026-09-30",
+        "revenue": 64601000000.0,
+        "revenue_yoy_pct": 26.07,
+        "operating_margin_pct": 20.1,
+        "fcf": -1157000000.0,
+        "diluted_shares": 2573000000.0
       }
     ]
   },
   "valuation": {
-    "price": 737.54,
-    "price_date": "2026-10-14",
+    "price": 620.19,
+    "price_date": "2026-10-27",
     "shares": {
-      "shares": 2566000000.0,
+      "shares": 2573000000.0,
       "source": "diluted weighted-average shares",
-      "date": "2026-06-30"
+      "date": "2026-09-30"
     },
-    "market_cap": 1892527640000.0,
-    "enterprise_value": 1885931640000.0,
-    "price_to_sales": 8.292,
-    "price_to_fcf": 46.186,
-    "ev_to_ebit": 21.696,
-    "sales_yield_pct": 12.06,
-    "fcf_yield_pct": 2.165,
-    "ebit_yield_pct": 4.609,
+    "market_cap": 1595748870000.0,
+    "enterprise_value": 1596968870000.0,
+    "price_to_sales": 6.605,
+    "price_to_fcf": 55.7,
+    "ev_to_ebit": 20.118,
+    "sales_yield_pct": 15.141,
+    "fcf_yield_pct": 1.795,
+    "ebit_yield_pct": 4.971,
     "fcf_negative": false,
     "ebit_negative": false,
     "fcf_basis": "reported",
-    "ust10y_pct": 5.21,
-    "ust10y_date": "2026-10-13",
-    "fcf_yield_vs_10y_pp": -3.045,
+    "ust10y_pct": 4.96,
+    "ust10y_date": "2026-10-22",
+    "fcf_yield_vs_10y_pp": -3.165,
     "history": [
       {
         "date": "2021-10-29",
@@ -1062,41 +1067,41 @@
         "ebit_yield_pct": 4.688
       },
       {
-        "date": "2026-10-14",
-        "price_to_sales": 8.292,
-        "price_to_fcf": 46.186,
-        "ev_to_ebit": 21.696,
-        "sales_yield_pct": 12.06,
-        "fcf_yield_pct": 2.165,
-        "ebit_yield_pct": 4.609
+        "date": "2026-10-27",
+        "price_to_sales": 6.605,
+        "price_to_fcf": 55.7,
+        "ev_to_ebit": 20.118,
+        "sales_yield_pct": 15.141,
+        "fcf_yield_pct": 1.795,
+        "ebit_yield_pct": 4.971
       }
     ],
     "share_outliers": [],
     "vs_history": {
       "price_to_sales": {
-        "current": 8.292,
-        "current_yield_pct": 12.06,
+        "current": 6.605,
+        "current_yield_pct": 15.141,
         "points": 61,
-        "median": 7.973,
+        "median": 7.913,
         "low": 2.119,
         "high": 11.221,
         "negative_points": 0,
-        "median_yield_pct": 12.542,
-        "percentile": 58.2,
-        "cheaper_points": 35,
-        "dearer_points": 25,
+        "median_yield_pct": 12.638,
+        "percentile": 36.9,
+        "cheaper_points": 22,
+        "dearer_points": 38,
         "not_comparable": null,
         "max_negative_share": null,
         "min_points": 24,
         "from": "2021-10-29"
       },
       "price_to_fcf": {
-        "current": 46.186,
-        "current_yield_pct": 2.165,
+        "current": 55.7,
+        "current_yield_pct": 1.795,
         "points": 61,
         "median": 28.969,
         "low": 9.525,
-        "high": 46.189,
+        "high": 55.71,
         "negative_points": 0,
         "median_yield_pct": 3.452,
         "percentile": 99.2,
@@ -1108,17 +1113,17 @@
         "from": "2021-10-29"
       },
       "ev_to_ebit": {
-        "current": 21.696,
-        "current_yield_pct": 4.609,
+        "current": 20.118,
+        "current_yield_pct": 4.971,
         "points": 61,
-        "median": 20.538,
+        "median": 20.479,
         "low": 6.219,
         "high": 27.793,
         "negative_points": 0,
-        "median_yield_pct": 4.869,
-        "percentile": 56.6,
-        "cheaper_points": 34,
-        "dearer_points": 26,
+        "median_yield_pct": 4.883,
+        "percentile": 43.4,
+        "cheaper_points": 26,
+        "dearer_points": 34,
         "not_comparable": null,
         "max_negative_share": 0.2,
         "min_points": 24,
@@ -1126,12 +1131,12 @@
       }
     },
     "vs_own_history": {
-      "label": "expensive",
-      "text": "expensive against its own history",
+      "label": "middle",
+      "text": "near the middle of its own history",
       "multiples": {
         "price_to_sales": {
           "label": "middle",
-          "phrase": "near the middle of the last 61 month-ends (cheaper than at 25, more expensive than at 35)"
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 38, more expensive than at 22)"
         },
         "price_to_fcf": {
           "label": "expensive",
@@ -1139,66 +1144,57 @@
         },
         "ev_to_ebit": {
           "label": "middle",
-          "phrase": "near the middle of the last 61 month-ends (cheaper than at 26, more expensive than at 34)"
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 34, more expensive than at 26)"
         }
       }
     }
   },
   "trend": {
-    "close": 737.54,
-    "date": "2026-10-14",
-    "ma50": 649.89,
-    "ma200": 631.37,
-    "vs_ma50_pct": 13.49,
-    "vs_ma200_pct": 16.82,
-    "momentum_12_1_pct": -6.11,
+    "close": 620.19,
+    "date": "2026-10-27",
+    "ma50": 665.65,
+    "ma200": 632.29,
+    "vs_ma50_pct": -6.83,
+    "vs_ma200_pct": -1.91,
+    "momentum_12_1_pct": -2.77,
     "high_52w": 777.59,
-    "drawdown_52w_pct": -5.15,
-    "return_rs_pct": 10.0,
+    "drawdown_52w_pct": -20.24,
+    "return_rs_pct": -7.47,
     "rs_days": 126,
-    "spy_return_pct": 10.51,
-    "rs_spy_pp": -0.51,
-    "qqq_return_pct": 14.61,
-    "rs_qqq_pp": -4.61
+    "spy_return_pct": 9.06,
+    "rs_spy_pp": -16.53,
+    "qqq_return_pct": 10.58,
+    "rs_qqq_pp": -18.05
   },
   "ust10y": {
-    "value": 5.21,
-    "date": "2026-10-13"
+    "value": 4.96,
+    "date": "2026-10-22"
   },
   "guidance": {
-    "accession": "0001628280-26-050596",
-    "filing_date": "2026-07-29",
-    "period_end": "2026-06-30",
+    "accession": "0001628280-26-066700",
+    "filing_date": "2026-10-21",
+    "period_end": "2026-09-30",
     "period_source": "release",
     "period_rejected": null,
-    "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
-    "summary": "Meta guided Q3 2026 revenue to $61-64 billion, raised the low end of full-year 2026 total expenses to $165-169 billion, expects 2026 operating income above 2025, narrowed 2026 capex to $130-145 billion, and raised its remaining-2026 tax rate outlook to 15-17%.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+    "summary": "Meta guides Q4 2026 revenue of $73-76 billion, raises its 2026 total expense outlook to $175-179 billion to include the legal charge, narrows 2026 capex to $135-145 billion, expects Reality Labs losses of $18-19 billion in 2026 narrowing to around $15 billion in 2027, and anticipates strong revenue growth and continued aggressive investment in 2027.",
     "read": true,
     "guidance": [
       {
         "metric": "revenue",
-        "period": "Q3 FY2026",
-        "amount_text": "$61-64 billion",
+        "period": "Q4 FY2026",
+        "amount_text": "$73-76 billion",
         "stated_change": "not stated",
-        "sentence": "We expect third quarter 2026 total revenue to be in the range of $61-64 billion.",
-        "verified": true,
-        "problem": null
-      },
-      {
-        "metric": "other",
-        "period": "Q3 FY2026",
-        "amount_text": "approximately 1%",
-        "stated_change": "not stated",
-        "sentence": "Our guidance assumes foreign currency is an approximately 1% headwind to year-over-year total revenue growth, based on current exchange rates.",
+        "sentence": "We expect fourth quarter 2026 total revenue to be in the range of $73-76 billion.",
         "verified": true,
         "problem": null
       },
       {
         "metric": "other",
         "period": "FY2026",
-        "amount_text": "$165-169 billion",
+        "amount_text": "$175-179 billion",
         "stated_change": "raised",
-        "sentence": "We now expect full year 2026 total expenses to be in the range of $165-169 billion.",
+        "sentence": "We now expect full year 2026 total expenses to be in the range of $175-179 billion.",
         "verified": true,
         "problem": null
       },
@@ -1207,25 +1203,61 @@
         "period": "FY2026",
         "amount_text": "",
         "stated_change": "reiterated",
-        "sentence": "We continue to expect to deliver operating income this year that is above 2025 operating income.",
+        "sentence": "Excluding the third quarter legal charge, we continue to expect 2026 operating income to be above 2025 operating income.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$18-19 billion",
+        "stated_change": "not stated",
+        "sentence": "At a segment level, we now expect Reality Labs losses to decline compared to 2025 to a range of $18-19 billion.",
         "verified": true,
         "problem": null
       },
       {
         "metric": "capex",
         "period": "FY2026",
-        "amount_text": "$130-145 billion",
+        "amount_text": "$135-145 billion",
         "stated_change": "not stated",
-        "sentence": "We anticipate 2026 capital expenditures, including principal payments on finance leases, to be in the range of $130-145 billion, narrowed from our prior outlook of $125-145 billion.",
+        "sentence": "We anticipate 2026 capital expenditures, including principal payments on finance leases, to be in the range of $135-145 billion, narrowed from our prior outlook of $130-145 billion.",
         "verified": true,
         "problem": null
       },
       {
         "metric": "other",
-        "period": "remaining quarters of FY2026",
+        "period": "Q4 FY2026",
         "amount_text": "between 15-17%",
-        "stated_change": "raised",
-        "sentence": "Absent any changes to our tax landscape, we expect our tax rate for the remaining quarters of 2026 to be between 15-17%, an increase from our prior outlook of 13-16%.",
+        "stated_change": "not stated",
+        "sentence": "Absent any changes to our tax landscape, we expect our fourth quarter 2026 tax rate to be between 15-17%.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2027",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Looking beyond 2026, we are still developing our budget and capacity plans for next year, but we expect to continue investing aggressively to support both our core business and emerging AI initiatives.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2027",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Looking ahead, although we are not providing a full-year 2027 revenue outlook, the benefits our AI investments are delivering to the core business, combined with emerging opportunities from model advances and product launches, position us to sustain strong overall revenue growth throughout 2027.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2027",
+        "amount_text": "around $15 billion",
+        "stated_change": "not stated",
+        "sentence": "Separately, we remain focused on improving Reality Labs profitability and expect losses to narrow next year to around $15 billion as we reallocate investment toward other priority areas, primarily AI.",
         "verified": true,
         "problem": null
       }
@@ -1281,268 +1313,316 @@
       }
     },
     "previous": {
-      "accession": "0001628280-26-028364",
-      "filing_date": "2026-04-29",
-      "period_end": "2026-03-31",
-      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028364/meta-03312026xexhibit991.htm"
+      "accession": "0001628280-26-050596",
+      "filing_date": "2026-07-29",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm"
     },
     "note": null
   },
   "news": {
     "topics": {
       "guidance": {
-        "rating": 0,
-        "summary": "No new guidance came out in the window. The latest outlook is from the July 29 Q2 release: Q3 revenue of $61-64B, a narrowed FY26 capex range of $130-145B and FY26 expenses of $165-169B. Q3 results are due October 21.",
+        "rating": 1,
+        "summary": "Meta guided Q4 2026 revenue to $73-76B, with a midpoint above the Street estimate, and reiterated its outlook for 2026 operating income excluding the legal charge. Offsetting this, it raised the full-year expense outlook to include the legal charge, lifted the capex floor and signalled aggressive 2027 spending.",
         "evidence": [
           {
-            "claim": "We expect third quarter 2026 total revenue to be in the range of $61-64 billion.",
-            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
-            "event_date": "2026-07-29",
+            "claim": "We expect fourth quarter 2026 total revenue to be in the range of $73-76 billion.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+            "event_date": "2026-10-21",
+            "direction": "positive",
             "tier": "primary",
-            "age_days": 78,
-            "background": true,
+            "age_days": 7,
+            "background": false,
             "status": "verified",
             "check": "numbers 3/3, names 0/0"
           },
           {
-            "claim": "We anticipate 2026 capital expenditures, including principal payments on finance leases, to be in the range of $130-145 billion, narrowed from our prior outlook of $125-145 billion.",
-            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
-            "event_date": "2026-07-29",
-            "tier": "primary",
-            "age_days": 78,
-            "background": true,
+            "claim": "Q4 revenue guidance of $73-76 billion has a midpoint above the $73.73 billion estimate; 2026 capex guidance narrowed to $135-145 billion from $130-145 billion.",
+            "url": "https://www.cnbc.com/2026/10/21/meta-earnings-q3-2026-live-updates.html",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "major",
+            "age_days": 7,
+            "background": false,
             "status": "verified",
-            "check": "numbers 4/4, names 0/0"
+            "check": "numbers 8/8, names 0/0"
+          },
+          {
+            "claim": "We now expect full year 2026 total expenses to be in the range of $175-179 billion.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+            "event_date": "2026-10-21",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 0/0"
+          },
+          {
+            "claim": "Excluding the third quarter legal charge, we continue to expect 2026 operating income to be above 2025 operating income.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+            "event_date": "2026-10-21",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
           }
         ],
         "label": "Guidance changes"
       },
       "analyst_actions": {
-        "rating": 1,
-        "summary": "Many brokers raised their price targets during the window, including Wells Fargo, Truist, JPMorgan, KeyBanc and Piper Sandler. Goldman and Cantor trimmed theirs, and there were no rating changes.",
+        "rating": 0,
+        "summary": "There were no rating changes, but most price-target moves before and after earnings were increases. Examples include Wells Fargo and Truist to $1,000 and Mizuho to $950; a few targets were trimmed.",
         "evidence": [
           {
-            "claim": "Wells Fargo raised its price target to $1,000 from $796, maintaining Overweight.",
+            "claim": "Wells Fargo (Overweight) raised its price target on Meta to $1,000 from $796.",
             "url": "https://www.benzinga.com/quote/META/price-targets",
             "event_date": "2026-10-06",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 9,
+            "age_days": 22,
             "background": false,
-            "status": "verified",
-            "check": "numbers 2/2, names 3/3"
+            "status": "unreachable",
+            "check": "HTTP 403"
           },
           {
-            "claim": "JPMorgan raised its price target to $920 from $820.",
-            "url": "https://www.benzinga.com/quote/META/price-targets",
-            "event_date": "2026-09-24",
+            "claim": "Mizuho raised its Meta price target to $950 from $750; Evercore ISI to $870 from $860.",
+            "url": "https://stockanalysis.com/stocks/meta/forecast/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 21,
+            "age_days": 6,
             "background": false,
             "status": "unverified",
-            "check": "numbers 2/2, names 0/1 · missing: JPMorgan"
+            "check": "numbers 1/4, names 1/4 · missing: 750, 870, 860, Mizuho, Evercore, ISI"
           },
           {
-            "claim": "Truist raised its price target to $1,000 from $763.",
-            "url": "https://www.cnn.com/markets/stocks/META",
-            "event_date": "2026-10-13",
+            "claim": "Pivotal Research raised its target for Meta Platforms to $960 from $930.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/pivotal-research-raises-target-for-meta-platforms-stock-to-usd-960-00/70421655",
+            "event_date": "2026-10-22",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 2,
+            "age_days": 6,
             "background": false,
-            "status": "verified",
-            "check": "numbers 2/2, names 1/1"
+            "status": "unverified",
+            "check": "numbers 0/2, names 4/4 · missing: 960, 930"
           },
           {
-            "claim": "Cantor Fitzgerald lowered its price target to $840 from $860.",
-            "url": "https://www.tipranks.com/stocks/meta/forecast",
-            "event_date": "2026-10-12",
+            "claim": "After Q3, TD Cowen cut its target to $830 from $865, while Wedbush raised to $730, Scotiabank to $650, Rosenblatt to $900 and KeyBanc to $905.",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62543931/meta-analysts-revise-price-target-after-q3-core-ad-strength-muse-concerns-remain",
+            "event_date": "2026-10-22",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 3,
+            "age_days": 6,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
           }
         ],
-        "label": "Analyst actions"
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
       },
       "litigation_regulation": {
-        "rating": 0,
-        "summary": "The FTC is still pressing its appeal to revive the antitrust case, which is a known, ongoing risk. The large youth-harm settlement with state attorneys general came before the window, and the remaining youth trials are still ahead, so there is nothing materially new.",
+        "rating": -1,
+        "summary": "Publishers and advertisers asked EU and UK antitrust regulators to suspend Meta's new commercial terms. The UK CMA is in urgent discussions and Meta has delayed the rollout. Ongoing FTC appeal efforts and large youth-harm legal exposures remain in the background.",
         "evidence": [
           {
-            "claim": "The FTC is urging an appeals court to revive its antitrust case against Meta that Judge Boasberg dismissed after trial.",
-            "url": "https://www.mediapost.com/publications/article/418520/ftc-presses-to-revive-antitrust-case-against-meta.html",
-            "event_date": "2026-10-06",
+            "claim": "Publishers and advertisers called on EU and UK antitrust regulators to suspend Meta's new commercial terms.",
+            "url": "https://money.usnews.com/investing/news/articles/2026-10-22/publishers-advertisers-call-eu-uk-antitrust-regulators-suspend-metas-new-commercial-terms",
+            "event_date": "2026-10-22",
+            "direction": "negative",
             "tier": "other",
-            "age_days": 9,
+            "age_days": 6,
             "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 4/4"
+            "status": "unreachable",
+            "check": "ReadTimeout"
           },
           {
-            "claim": "The FTC filed a notice of appeal of the antitrust ruling.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026050705/meta-20260630.htm",
-            "event_date": "2026-01-20",
-            "tier": "primary",
-            "age_days": 268,
-            "background": true,
+            "claim": "The UK CMA said it is holding urgent discussions and the European Commission is assessing the complaint about Meta's new terms.",
+            "url": "https://www.analyticsinsight.net/news/meta-faces-antitrust-pressure-over-new-terms-for-publishers-and-advertisers",
+            "event_date": "2026-10-22",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
             "status": "verified",
-            "check": "numbers 0/0, names 1/1"
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Meta delayed its new commercial terms, moving the effective date to Nov 20 from Oct 30.",
+            "url": "https://www.investing.com/news/stock-market-news/meta-to-delay-new-commercial-terms-criticised-by-publishers-advertisers-4969745",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 5,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Meta took a $9.89bn charge tied to the teen settlement with state attorneys general.",
+            "url": "https://ppc.land/meta-takes-9-89bn-teen-settlement-charge-as-ad-revenue-gains-26/",
+            "event_date": "2026-10-21",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
           }
         ],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
         "rating": 0,
-        "summary": "Nothing material. Meta's advertising revenue is spread across a very large base of advertisers.",
+        "summary": "Nothing material on customer or supplier concentration surfaced in the window.",
         "evidence": [],
         "label": "Customer concentration"
       },
       "insider_activity": {
         "rating": 0,
-        "summary": "The only selling was a small, pre-planned 10b5-1 sale by a Zuckerberg-linked entity (CZ Biohub). No insider purchases were found, so the signal is neutral.",
-        "evidence": [
-          {
-            "claim": "Form 4 reports sales of Meta Class A shares by Chan Zuckerberg Biohub.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001326801/000095010326014647/ownership.xml",
-            "event_date": null,
-            "tier": "primary",
-            "age_days": null,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 1/1, names 5/6"
-          },
-          {
-            "claim": "Zuckerberg-linked entities sold 27,474 Class A shares under a 10b5-1 plan adopted 2026-01-31.",
-            "url": "https://www.stocktitan.net/sec-filings/META/form-4-meta-platforms-inc-insider-trading-activity-45f32277db2b.html",
-            "event_date": null,
-            "tier": "other",
-            "age_days": null,
-            "background": false,
-            "status": "unverified",
-            "check": "numbers 6/7, names 2/2 · missing: 01"
-          }
-        ],
+        "summary": "The research notes reported no insider transactions for the window.",
+        "evidence": [],
         "label": "Insider activity"
       },
       "product_competitive": {
-        "rating": 1,
-        "summary": "At Connect, Meta launched a broad smart-glasses lineup and brought its Muse AI agent to the glasses. Coverage was well received, though it all comes from secondary sources.",
-        "evidence": [
-          {
-            "claim": "At Meta Connect 2026 Meta announced Ray-Ban Meta Gen 3 at $449 and a camera-free Ray-Ban Meta Audio at $349.",
-            "url": "https://www.forbes.com/sites/forbes-personal-shopper/2026/09/25/meta-connect-2026/",
-            "event_date": "2026-09-23",
-            "tier": "other",
-            "age_days": 22,
-            "background": false,
-            "status": "unreachable",
-            "check": "HTTP 403"
-          },
-          {
-            "claim": "Meta announced Meta VR Glasses, plans to bring Muse to its glasses, and a Muse Charm device.",
-            "url": "https://www.geeky-gadgets.com/meta-connect-2026-announcements/",
-            "event_date": "2026-09-23",
-            "tier": "other",
-            "age_days": 22,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 4/5"
-          }
-        ],
+        "rating": 0,
+        "summary": "The research notes contained no specific, sourced product or competitive news to rate.",
+        "evidence": [],
         "label": "Product and competitive news"
       }
     },
     "source_check": {
       "counts": {
         "guidance": {
-          "verified": 2,
+          "verified": 4,
           "unverified": 0,
           "unreachable": 0
         },
         "analyst_actions": {
-          "verified": 2,
-          "unverified": 1,
-          "unreachable": 1
+          "verified": 0,
+          "unverified": 2,
+          "unreachable": 2
         },
         "litigation_regulation": {
           "verified": 2,
           "unverified": 0,
-          "unreachable": 0
-        },
-        "insider_activity": {
-          "verified": 1,
-          "unverified": 1,
-          "unreachable": 0
-        },
-        "product_competitive": {
-          "verified": 1,
-          "unverified": 0,
-          "unreachable": 1
+          "unreachable": 2
         }
       }
     },
-    "reused_from": "2026-10-15T07:18:34Z",
-    "caps_reapplied": [],
-    "direction_unchecked": [
-      {
-        "topic": "analyst_actions",
-        "label": "Analyst actions",
-        "rating": 1
-      },
-      {
-        "topic": "product_competitive",
-        "label": "Product and competitive news",
-        "rating": 1
-      }
-    ],
-    "rechecked": []
+    "reused_from": null
   },
   "claude": {
     "enabled": true,
-    "news_reused": {
-      "news_from": "2026-10-15T07:18:34Z",
-      "archived": "data/stocks/runs/META/2026-10-15T134752Z.json",
-      "models": {
-        "sources": {
-          "research": "input",
-          "scoring": "input"
-        },
-        "research": "claude-sonnet-5-5",
-        "scoring": "claude-opus-5-5"
-      }
+    "research": {
+      "urls": [
+        "https://www.cnbc.com/2026/10/21/meta-earnings-q3-2026-live-updates.html",
+        "https://sec-api.io/insights/financial-analysis-of-meta-platforms-meta-q3-2026-earnings",
+        "https://fortune.com/2026/10/21/meta-q3-earnings-mark-zuckerberg-capex-muse/",
+        "https://www.marketbeat.com/stocks/NASDAQ/META/earnings/",
+        "https://coindcx.com/blog/us-stock/meta-q3-2026-earnings-results",
+        "https://www.stocktitan.net/articles/meta-q3-2026-earnings-results",
+        "https://www.vantagemarkets.com/market-analysis/big-tech-earnings-preview-q3-2026/",
+        "https://blog.kcex.com/markets/meta-q3-2026-earnings-ai-capex-advertising-cash-flow/",
+        "https://shattered.io/meta-q3-2026-earnings-ai-capex-muse-5-million/",
+        "https://www.benzinga.com/quote/META/price-targets",
+        "https://stockanalysis.com/stocks/meta/forecast/",
+        "https://beinsure.com/news/meta-platforms-stock-price-forecast/",
+        "https://www.investing.com/equities/facebook-inc-consensus-estimates",
+        "https://www.tipranks.com/stocks/meta/forecast",
+        "https://www.chartmill.com/stock/quote/META/analyst-ratings",
+        "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62543931/meta-analysts-revise-price-target-after-q3-core-ad-strength-muse-concerns-remain",
+        "https://tickernerd.com/stock/meta-forecast/",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/pivotal-research-raises-target-for-meta-platforms-stock-to-usd-960-00/70421655",
+        "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026050705/meta-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026028526/meta-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026066773/meta-20260930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+        "https://www.mediapost.com/publications/article/418520/ftc-presses-to-revive-antitrust-case-against-meta.html",
+        "https://www.law360.com/cases/5fd3a09d83a4f10601ad7f55/articles",
+        "https://money.usnews.com/investing/news/articles/2026-10-22/publishers-advertisers-call-eu-uk-antitrust-regulators-to-suspend-metas-new-commercial-terms",
+        "https://www.euronews.com/2026/01/21/ftc-presses-on-with-appeal-after-metas-monopoly-battle-win",
+        "https://www.analyticsinsight.net/news/meta-faces-antitrust-pressure-over-new-terms-for-publishers-and-advertisers",
+        "https://live.euronext.com/en/financial-news/publishers-advertisers-call-eu-uk-antitrust-regulators-suspend-metas-new-commercial",
+        "https://uk.investing.com/news/insider-trading-news/zuckerberg-mark-sells-meta-platforms-shares-worth-122-million-93CH-4205559",
+        "https://www.sec.gov/Archives/edgar/data/0001326801/000095010326014647/ownership.xml",
+        "https://massive.com/quote/meta/insider-trading",
+        "https://www.stocktitan.net/sec-filings/META/form-4-meta-platforms-inc-insider-trading-activity-b5d379eedb0d.html",
+        "https://www.stocktitan.net/sec-filings/META/form-4-meta-platforms-inc-insider-trading-activity-a69a39bed7a8.html",
+        "https://www.stocktitan.net/sec-filings/META/form-4-meta-platforms-inc-insider-trading-activity-45f32277db2b.html",
+        "https://www.stocktitan.net/sec-filings/META/form-4-meta-platforms-inc-insider-trading-activity-6e3fa769cad6.html",
+        "https://benzinga.com/z/23985135",
+        "https://benzinga.com/z/23072694",
+        "https://benzinga.com/z/23891905",
+        "https://blog.mean.ceo/meta-ai-news-october-2026/",
+        "https://about.fb.com/news/2026/06/meta-essilorluxottica-partner-launch-meta-glasses/",
+        "https://www.engadget.com/2267230/everything-announced-at-meta-connect-2026/",
+        "https://en.wikipedia.org/wiki/2023_in_artificial_intelligence",
+        "https://en.wikipedia.org/wiki/Meta_AI",
+        "https://finance.yahoo.com/technology/article/meta-debuts-ai-powered-meta-glasses-starting-at-299-130000232.html",
+        "https://futureaitechx.com/ai/meta-muse-wonder-superintelligence-labs-october-2026",
+        "https://memeburn.com/meta-new-299-ai-smart-glasses-2026/",
+        "https://thedeveloperstory.com/2026/06/21/meta-launches-a-299-dollar-glasses-line-powered-by-its-first-superintelligence-labs-model/",
+        "https://www.datacenterdynamics.com/en/news/meta-signs-142bn-with-coreweave/",
+        "https://www.bisnow.com/news/national/data-center/meta-signs-142b-deal-with-with-ai-cloud-firm-coreweave-131206",
+        "https://finance.yahoo.com/sectors/technology/articles/meta-coreweave-ai-cloud-deal-131940401.html",
+        "https://augment.market/pulse/coreweave-has-now-signed-the-four-biggest-ai-labs",
+        "https://www.coreweave.com/news/coreweave-and-meta-announce-21-billion-expanded-ai-infrastructure-agreement",
+        "https://www.cnbc.com/2025/09/30/coreweave-meta-deal-ai.html",
+        "https://nexttechtoday.com/news/coreweave-signs-21b-cloud-deal-with-meta-through-2032/",
+        "https://www.stocktitan.net/sec-filings/CRWV/8-k-core-weave-inc-reports-material-event-52eed2a9d09b.html",
+        "https://www.forbes.com/sites/janakirammsv/2026/04/13/coreweave-becomes-ais-landlord-with-meta-and-anthropic-deals/",
+        "https://ppc.land/meta-takes-9-89bn-teen-settlement-charge-as-ad-revenue-gains-26/",
+        "https://variety.com/2026/digital/news/meta-18-billion-settlement-state-ags-lawsuit-social-media-addiction-1236843725/",
+        "https://finance.yahoo.com/markets/stocks/articles/meta-loses-400-billion-auctions-172143380.html",
+        "https://ca.investing.com/news/stock-market-news/meta-reaches-18-billion-settlement-with-52-state-attorneys-general-93CH-4817765",
+        "https://finance.yahoo.com/markets/stocks/articles/meta-capital-raise-spooking-investors-170342944.html",
+        "https://www.nbcnews.com/tech/social-media/meta-settles-social-media-addiction-suit-16-billion-rcna594492",
+        "https://www.techtimes.com/articles/329466/20261026/meta-class-c-shares-let-zuckerberg-fund-ai-shareholders-cannot-vote-against-it.htm",
+        "https://news.yahoo.com/news/meta-pay-texas-1-4b-163802143.html",
+        "https://kbssidhu.substack.com/p/metas-historic-14-billion-settlement",
+        "https://www.investing.com/news/stock-market-news/meta-to-delay-new-commercial-terms-criticised-by-publishers-advertisers-4969745",
+        "https://www.relevantaudience.com/meta/meta-commercial-terms-delayed-to-november-20-2026/",
+        "https://money.usnews.com/investing/news/articles/2026-10-23/meta-to-delay-new-commercial-terms-criticised-by-publishers-advertisers",
+        "https://ppc.land/meta-delays-website-crawling-terms-to-nov-20-after-publisher-complaints/",
+        "https://www.investing.com/news/stock-market-news/meta-delays-indefinitely-its-rollout-of-new-commercial-terms-after-publishers-concerns-4980457",
+        "https://www.thekeyword.co/news/meta-crawling-clause-delay",
+        "https://tech-insider.org/meta-delays-commercial-terms-nov-20-publishers-2026/",
+        "https://maccus.fr/en/meta-terms-delayed-november-20/",
+        "https://unhyd.com/article/meta-commercial-terms-delay-publisher-rights-november-2026/"
+      ],
+      "searches": 8
     }
   },
-  "news_from": "2026-10-15T07:18:34Z",
-  "news_models": {
-    "sources": {
-      "research": "input",
-      "scoring": "input"
-    },
-    "research": "claude-sonnet-5-5",
-    "scoring": "claude-opus-5-5"
-  },
+  "news_from": null,
+  "news_models": null,
   "subject_prefix": "[Stock]",
   "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
   "errors": {},
   "writeup": {
-    "headline": "Meta rates Hold at 64, one point below Buy, as strong fundamentals meet a high valuation.",
-    "thesis": "Meta scores 64, just 1 point short of the Buy band, held back mainly by valuation. The business itself scores well: revenue is up 28.0% year on year, though growth slowed by 5.1 pp from the previous quarter, and quality is strong with an 81.8% gross margin, a 38.1% operating margin and diluted shares down 0.2% year on year. The balance sheet scores 93 thanks to a net cash position. Valuation scores only 29: in absolute terms P/FCF of 46.2x is high and the FCF yield is 3.0 pp below the 10-year Treasury yield, while against its own history P/FCF is more expensive than at 60 of the last 61 month-ends, though P/S and EV/EBIT sit near the middle of the last 61 month-ends. Trend is decent, with the stock 16.8% above its 200-day average and 5.2% below its 52-week high, and news is mildly positive on analyst target raises and the smart-glasses launch at Connect.",
+    "headline": "Meta rates Hold: strong growth and balance sheet offset by a weak price trend and full valuation.",
+    "thesis": "Meta scores 57, a Hold, with fundamentals pulling up and price action and valuation pulling down. Growth is strong, with TTM revenue growth of 27.5% and latest-quarter revenue growth of 26.1% year on year, though growth slowed by 1.9 pp from the previous quarter. Quality is high, with an 81.0% gross margin and a 32.9% operating margin and the diluted share count flat year on year, and the balance sheet scores 91 with net debt at 0.04 times FCF. Valuation scores 33: in absolute terms P/FCF of 55.7x is high and the FCF yield sits 3.2 pp below the 10-year Treasury yield, reflecting an 11.9% FCF margin squeezed by heavy capex. Against its own history the stock is near the middle overall, but P/FCF is more expensive than at 60 of the last 61 month-ends, while the trend score of 31 reflects the price 20.2% below its 52-week high and shares 16.5 pp behind SPY over the last 126 trading days.",
     "key_risks": [
-      "Heavy AI spending: FY26 capex guided to $130-145B weighs on free cash flow, with an FCF margin of 17.9% versus a 38.1% operating margin, and the AI capex early warning is AMBER.",
-      "Revenue growth slowed by 5.1 pp from the previous quarter; further deceleration would hurt the growth score.",
-      "Valuation is high in absolute terms (P/FCF 46.2x) and P/FCF is expensive against its own history.",
-      "The FTC appeal to revive the antitrust case and remaining youth-harm trials are ongoing legal risks.",
-      "Stock-based compensation equals 11.0% of revenue."
+      "Heavy AI spending: 2026 capex of $135-145 billion and signalled aggressive 2027 investment keep free cash flow thin relative to revenue.",
+      "EU and UK antitrust pushback on new commercial terms, plus the FTC appeal and youth-harm legal exposures.",
+      "Reality Labs losses expected at $18-19 billion in 2026, narrowing only to around $15 billion in 2027.",
+      "Weak price momentum, with shares 18.1 pp behind QQQ over the last 126 trading days.",
+      "Further slowing in revenue growth after it slowed by 1.9 pp from the previous quarter."
     ],
     "what_would_change": [
-      "A 1-point gain in the score would move the rating to Buy, for example from a solid Q3 report on October 21 that lifts growth or news scores.",
-      "A lower share price or higher free cash flow that improves the valuation score of 29 could push the rating to Buy.",
-      "A move to Sell would need a 20-point drop, such as a sharp slowdown in growth combined with weaker trend and negative news.",
-      "Escalation of the AI capex warning signs could lead to the rating being capped."
+      "An 8-point score gain would reach Buy, most plausibly from a recovering price trend or a better FCF margin lifting the valuation score.",
+      "Delivering Q4 revenue at or above the $73-76 billion guide with stable growth would support the growth factor.",
+      "A 13-point score drop would mean Sell, for example if growth decelerates sharply, the trend weakens further and regulatory news turns more negative.",
+      "A higher 2027 capex outlook that further compresses free cash flow would weigh on valuation and quality."
     ]
   },
   "writeup_check": {
-    "history_label": "expensive",
+    "history_label": "middle",
     "conflicts": [],
     "regenerated": false,
     "dropped": [],
@@ -1550,18 +1630,18 @@
   },
   "cost": {
     "steps": {
-      "writeup": {
+      "guidance": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3665,
-        "output_tokens": 756,
+        "input_tokens": 1821,
+        "output_tokens": 1445,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3665,
-            "output_tokens": 756,
+            "input_tokens": 1821,
+            "output_tokens": 1445,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1572,103 +1652,138 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0298,
+        "cost_usd": 0.0362,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 126739,
+        "output_tokens": 4793,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 126739,
+            "output_tokens": 4793,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3814,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8437,
+        "output_tokens": 2297,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8437,
+            "output_tokens": 2297,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0797,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3769,
+        "output_tokens": 782,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3769,
+            "output_tokens": 782,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0307,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.0298,
+    "total_usd": 0.528,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 732.27,
-    "as_of": "2026-10-15T14:09:38Z",
-    "prev_close": 737.54
+    "price": 616.43,
+    "as_of": "2026-10-28T20:53:03Z",
+    "prev_close": 620.19
   },
   "close_note": {
-    "scored_on": "2026-10-14",
-    "latest": "2026-10-14",
-    "latest_from": "weekday",
-    "run_et": "2026-10-15 10:08",
-    "note": null,
-    "close_window": null
+    "scored_on": "2026-10-27",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-28 16:45",
+    "note": "today's close not yet published; scored on 2026-10-27",
+    "close_window": "Run at 4:45 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "38748587437",
+    "run_id": "40766001137",
     "tickers": [
-      "RBRK",
+      "NVDA",
       "ORCL",
-      "MSFT",
       "GOOGL",
       "META",
-      "MSGS",
-      "NTAP",
       "SHOP",
-      "TIC",
-      "ZS",
+      "RBRK",
       "GTLB",
+      "ZS",
+      "NTAP",
       "PLTR",
       "INOD",
-      "NVDA"
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
     ]
   },
   "chart": [
-    [
-      "2021-10-05",
-      332.96,
-      null,
-      null
-    ],
-    [
-      "2021-10-06",
-      333.64,
-      null,
-      null
-    ],
-    [
-      "2021-10-07",
-      329.22,
-      null,
-      null
-    ],
-    [
-      "2021-10-08",
-      330.05,
-      null,
-      null
-    ],
-    [
-      "2021-10-11",
-      325.45,
-      null,
-      null
-    ],
-    [
-      "2021-10-12",
-      323.77,
-      null,
-      null
-    ],
-    [
-      "2021-10-13",
-      324.54,
-      null,
-      null
-    ],
-    [
-      "2021-10-14",
-      328.53,
-      null,
-      null
-    ],
-    [
-      "2021-10-15",
-      324.76,
-      null,
-      null
-    ],
     [
       "2021-10-18",
       335.34,
@@ -1912,55 +2027,55 @@
     [
       "2021-12-14",
       333.74,
-      330.53,
+      null,
       null
     ],
     [
       "2021-12-15",
       341.66,
-      330.71,
+      null,
       null
     ],
     [
       "2021-12-16",
       334.9,
-      330.73,
+      null,
       null
     ],
     [
       "2021-12-17",
       333.79,
-      330.83,
+      null,
       null
     ],
     [
       "2021-12-20",
       325.45,
-      330.73,
+      null,
       null
     ],
     [
       "2021-12-21",
       334.2,
-      330.91,
+      null,
       null
     ],
     [
       "2021-12-22",
       330.45,
-      331.04,
+      null,
       null
     ],
     [
       "2021-12-23",
       335.24,
-      331.26,
+      null,
       null
     ],
     [
       "2021-12-27",
       346.18,
-      331.61,
+      null,
       null
     ],
     [
@@ -2813,55 +2928,55 @@
       "2022-07-21",
       183.17,
       178.08,
-      251.99
+      null
     ],
     [
       "2022-07-22",
       169.27,
       177.51,
-      251.17
+      null
     ],
     [
       "2022-07-25",
       166.65,
       177.07,
-      250.33
+      null
     ],
     [
       "2022-07-26",
       159.15,
       176.43,
-      249.48
+      null
     ],
     [
       "2022-07-27",
       169.58,
       175.85,
-      248.68
+      null
     ],
     [
       "2022-07-28",
       160.72,
       175.06,
-      247.86
+      null
     ],
     [
       "2022-07-29",
       159.1,
       174.19,
-      247.03
+      null
     ],
     [
       "2022-08-01",
       159.93,
       173.54,
-      246.21
+      null
     ],
     [
       "2022-08-02",
       160.19,
       172.92,
-      245.37
+      null
     ],
     [
       "2022-08-03",
@@ -8675,7 +8790,7 @@
       "2026-06-12",
       566.98,
       621.83,
-      658.08
+      658.09
     ],
     [
       "2026-06-15",
@@ -9186,9 +9301,85 @@
       737.54,
       649.89,
       631.37
+    ],
+    [
+      "2026-10-15",
+      736.72,
+      652.85,
+      631.76
+    ],
+    [
+      "2026-10-16",
+      709.33,
+      655.24,
+      631.98
+    ],
+    [
+      "2026-10-19",
+      705.44,
+      657.51,
+      632.2
+    ],
+    [
+      "2026-10-20",
+      694.25,
+      659.49,
+      632.42
+    ],
+    [
+      "2026-10-21",
+      697.52,
+      661.46,
+      632.62
+    ],
+    [
+      "2026-10-22",
+      648.85,
+      662.86,
+      632.56
+    ],
+    [
+      "2026-10-23",
+      642.62,
+      663.81,
+      632.53
+    ],
+    [
+      "2026-10-26",
+      630.56,
+      664.63,
+      632.45
+    ],
+    [
+      "2026-10-27",
+      620.19,
+      665.65,
+      632.29
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-28T20:45:30Z",
+      "ticker": "META",
+      "rating": "Hold",
+      "score": "57",
+      "confidence": "Medium",
+      "growth": "73",
+      "quality": "74",
+      "balance_sheet": "91",
+      "valuation": "33",
+      "trend": "31",
+      "news_risk": "51",
+      "price": "620.19",
+      "price_date": "2026-10-27",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.528",
+      "overlay": "",
+      "quote_price": "616.43",
+      "quote_as_of": "2026-10-28T20:53:03Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-15T14:08:07Z",
       "ticker": "META",
