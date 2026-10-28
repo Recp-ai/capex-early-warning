@@ -46,7 +46,7 @@ def parse(raw: str | None) -> tuple[list[str], list[str]]:
 def plan(raw: str | None, cfg: dict) -> dict:
     """{"tickers": [...], "error": None} or {"tickers": [], "error": reason}."""
     tickers, invalid = parse(raw)
-    cap = int((cfg.get("batch") or {}).get("max_batch", 15))
+    cap = int((cfg.get("batch") or {}).get("max_batch", 256))
     if invalid:
         return {"tickers": [], "error": "Invalid ticker(s): " + ", ".join(invalid)
                 + " (1-10 characters, a letter first, then letters, digits, '.' or '-')"}

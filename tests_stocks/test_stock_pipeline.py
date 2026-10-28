@@ -108,7 +108,7 @@ def test_full_run(sandbox, monkeypatch, capsys):
     index = util.read_json(util.SITE_DATA / "stocks" / "index.json")
     assert [e["ticker"] for e in index["tickers"]] == ["MSFT"]
     assert index["tickers"][0]["change_pct"] == round((310.5 / r["price"]["close"] - 1) * 100, 2)
-    assert index["settings"] == {"stale_after_days": 14, "max_batch": 15, "max_tickers_per_day": 30, "max_rescore_tickers_per_day": 30}
+    assert index["settings"] == {"stale_after_days": 14, "max_batch": 256, "max_tickers_per_day": 0, "max_rescore_tickers_per_day": 0}
     assert index["recent_cost"] == {"avg_usd": r["cost"]["total_usd"], "runs": 1}
     assert "Not investment advice" in index["disclaimer"] and index["last_run"]["steps"]["research"]["web_searches"] == 3
     assert r["email"] == "skipped (email off)"

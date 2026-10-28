@@ -167,9 +167,12 @@ append-only files, refreshes the latest prices in one request, commits once with
 and sends one summary email if email is on; a batch of one gets the full single-stock email). The page
 shows each ticker as queued / running / done / failed from the jobs, then reloads the list when the
 data is deployed; a failed ticker shows its error (from `site/data/stocks/batch.json`) and never blocks
-the others. Limits (`config/stocks.yaml` `batch`, enforced by `site/api/stock.js`): 15 tickers per run
-and 30 tickers in any 24 hours, counted across full stocks.yml runs; re-scores (below) have their own 30
-tickers in any 24 hours. Stock runs share the concurrency group
+the others. Limits (`config/stocks.yaml` `batch`, enforced by `site/api/stock.js`): up to 256 tickers per run
+(GitHub's limit of 256 jobs in one matrix) and, by default, no daily limit (`max_tickers_per_day` and
+`max_rescore_tickers_per_day` are 0; set a number to cap tickers in any 24 hours, full runs and re-scores
+counted apart). Tiingo's free tier allows about 50 requests an hour and a batch of n costs n + 3, so the
+plan and rate jobs set `STOCK_PRICE_RATE_WAIT_MIN` (75): on HTTP 429 a fetch pauses 5 minutes and retries
+until that budget is used, and a large batch simply takes longer. Stock runs share the concurrency group
 `stocks`, so two batches never overlap; the capex workflow is unaffected. Once the results are on the
 page, the rows' done tags go away; failed tickers keep theirs, and the Run panel keeps the batch summary,
 until you dismiss it (×).
@@ -188,8 +191,8 @@ on the normalised text (below; `news.rechecked`), so a rating capped only becaus
 caps re-applied on the new result. The row is
 appended as usual with `news_from` set to the run whose news was used (blank for a run's own news). A
 re-score costs about $0.03 a ticker (the write-up), so it is titled "Stock research (rescore) <tickers>"
-and counted against its own cap of 30 tickers a day (`batch.max_rescore_tickers_per_day`), not the full
-runs' 30; the page estimates it from recent re-scores and leaves it out of the full-run estimate.
+and counted against its own daily cap (`batch.max_rescore_tickers_per_day`, 0 = none), not the full
+runs'; the page estimates it from recent re-scores and leaves it out of the full-run estimate.
 
 **Six factors, each 0–100.** Five are computed by code; Claude never sets a number or the rating.
 
@@ -414,8 +417,8 @@ and the run still completes; a failed quote only leaves the latest price at the 
 3. The stocks page uses the same Vercel variables as Run now (`GITHUB_TOKEN`, `RUN_PASSCODE`) through
    its own function, [`site/api/stock.js`](site/api/stock.js). The token's **Actions: Read and write**
    permission covers `stocks.yml`; its **Variables: Read and write** permission covers the
-   `STOCK_LISTS` variable (lists). Runs are capped at 15 tickers each and 30 tickers per 24 hours,
-   counted on `stocks.yml` only; re-scores at 30 tickers per 24 hours of their own.
+   `STOCK_LISTS` variable (lists). Runs take up to 256 tickers each, with no daily cap
+   unless one is set in `config/stocks.yaml` (`batch`).
 4. For live prices on the page, also add the Tiingo token in Vercel (Settings → Environment Variables)
    as `STOCK_PRICE_API_KEY`, then redeploy. Without it the page shows the stored latest close.
 

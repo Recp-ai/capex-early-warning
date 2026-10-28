@@ -786,3 +786,27 @@ def test_not_comparable_rule_edges():
     assert nc("price_to_sales", -1.0, [-1.0] * 10, 0.2) is None                     # P/S: never
     assert nc("price_to_fcf", None, [1.0], 0.2) is None and nc("price_to_fcf", 1.0, [], 0.2) is None
     assert nc("price_to_fcf", 2.0, [1.0] * 5 + [-1.0] * 5, 0.5) is None             # the share is a setting
+
+
+def test_rate_limit_pauses_and_resumes_when_a_batch_allows_waiting(sandbox, monkeypatch):
+    """Batch jobs set STOCK_PRICE_RATE_WAIT_MIN: on HTTP 429 the fetch pauses and retries instead of failing."""
+    slept = []
+    monkeypatch.setattr(prices.util.time, "sleep", lambda s: slept.append(s))
+    good = F.price_routes()[F.tiingo_url("MSFT")]
+    answers = iter([F.FakeResponse(429, "slow down"), F.FakeResponse(429, "slow down"), good])
+    sess = F.FakeSession({**F.price_routes(), F.tiingo_url("MSFT"): lambda params: next(answers)})
+    monkeypatch.setenv("STOCK_PRICE_RATE_WAIT_MIN", "75")
+    out = prices.run("MSFT", CFG, "SECRETKEY", sess=sess)
+    assert "MSFT" in out["series"] and not out["errors"]
+    assert slept == [prices.RATE_LIMIT_PAUSE_S] * 2
+    # the waiting has a ceiling: past it the run records the error as before
+    always = F.FakeSession({**F.price_routes(), F.tiingo_url("MSFT"): F.FakeResponse(429, "slow down")})
+    slept.clear()
+    monkeypatch.setenv("STOCK_PRICE_RATE_WAIT_MIN", "10")
+    out = prices.run("MSFT", CFG, "SECRETKEY", sess=always)
+    assert "rate limit" in out["errors"]["MSFT"] and "waited 10 min" in out["errors"]["MSFT"] and len(slept) == 2
+    # without the setting (single runs, tests) it fails at once, as before
+    monkeypatch.delenv("STOCK_PRICE_RATE_WAIT_MIN")
+    slept.clear()
+    out = prices.run("MSFT", CFG, "SECRETKEY", sess=always)
+    assert "rate limit" in out["errors"]["MSFT"] and slept == []

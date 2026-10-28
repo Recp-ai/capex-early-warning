@@ -257,7 +257,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
   email, one commit). Keep the job names, the run-name `Stock research <tickers>` / `Stock research (rescore)
   <tickers>` (api/stock.js counts tickers per 24 h from run titles and reads per-ticker status from job names) and the limits in
   `api/stock.js` equal to `config/stocks.yaml` (a test checks).
-- **Tiingo budget** (free tier ~50 requests/hour, shared): a batch of n costs n + 3; quotes are always ONE
+- **Tiingo budget** (free tier ~50 requests/hour, shared): a batch of n costs n + 3; the plan and rate jobs set
+  `STOCK_PRICE_RATE_WAIT_MIN` (75), so `prices.fetch_daily` pauses `RATE_LIMIT_PAUSE_S` on HTTP 429 and retries
+  within that budget (unset = fail at once); quotes are always ONE
   request for any number of tickers (`iex/?tickers=`, else the all-tickers endpoint), never one per ticker.
   The page's quotes use one fixed URL, `GET api/stock?quotes=all` (anything else is a 400 before any
   upstream call), cached `public, s-maxage=300` (errors 60 s): the function quotes only tickers that are
@@ -269,8 +271,9 @@ An on-demand stock rating module lives beside the capex pipeline and must never 
 - **Secrets.** `STOCK_PRICE_API_KEY` (GitHub secret, and a Vercel env var for the page's quotes) goes in
   the Tiingo Authorization header, never a URL or an error message. `api/stock.js` uses the same
   `RUN_PASSCODE` (timingSafeEqual) and `GITHUB_TOKEN` as `api/run.js`, validates every ticker
-  (`^[A-Z][A-Z0-9.\-]{0,9}$` after uppercasing) and models, caps runs at 15 tickers and 30 tickers per 24 h
-  counted on `stocks.yml` (re-scores: their own 30 per 24 h), saves lists only with the passcode (validated: 30 lists, 100 tickers each,
+  (`^[A-Z][A-Z0-9.\-]{0,9}$` after uppercasing) and models, caps runs at `batch.max_batch` tickers (256, GitHub's matrix limit) and, when
+  `batch.max_tickers_per_day` / `max_rescore_tickers_per_day` are above 0, tickers per 24 h counted on `stocks.yml`
+  (0 = no daily cap, the default), saves lists only with the passcode (validated: 30 lists, 100 tickers each,
   40,000 bytes), and scrubs all three secrets from every response.
 
 ```

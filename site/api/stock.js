@@ -28,9 +28,9 @@ const REPO = process.env.GITHUB_REPO ||
 const WORKFLOW = "stocks.yml";
 const REF = "main";
 // The same limits as config/stocks.yaml (a test checks they match).
-const MAX_BATCH = 15;            // batch.max_batch
-const MAX_TICKERS_PER_DAY = 30;  // batch.max_tickers_per_day, counted across stocks.yml runs (re-scores excluded)
-const MAX_RESCORE_TICKERS_PER_DAY = 30; // batch.max_rescore_tickers_per_day, counted across re-score runs only
+const MAX_BATCH = 256;           // batch.max_batch (GitHub's limit: 256 jobs per matrix)
+const MAX_TICKERS_PER_DAY = 0;  // batch.max_tickers_per_day, counted across stocks.yml runs (re-scores excluded); 0 = no limit
+const MAX_RESCORE_TICKERS_PER_DAY = 0; // batch.max_rescore_tickers_per_day, counted across re-score runs only; 0 = no limit
 const MAX_LISTS = 30;            // lists.max_lists
 const MAX_PER_LIST = 100;        // lists.max_tickers_per_list
 const MAX_LIST_BYTES = 40000;    // lists.max_bytes (GitHub's variable limit is 48 KB)
@@ -407,7 +407,7 @@ async function handleRun(req, res) {
 
   const raw = Array.isArray(body.tickers) ? body.tickers : typeof body.ticker === "string" ? [body.ticker] : null;
   if (!raw || !raw.length) throw new Fail(400, "Give a ticker or a list of tickers");
-  if (raw.length > 100) throw new Fail(400, `A batch takes at most ${MAX_BATCH} tickers`);
+  if (raw.length > MAX_BATCH * 2) throw new Fail(400, `A batch takes at most ${MAX_BATCH} tickers`);
   const tickers = [];
   for (const v of raw) {
     const t = normalizeTicker(v);
@@ -439,7 +439,7 @@ async function handleRun(req, res) {
   const runs = await recentRuns(now - 24 * 3600 * 1000);
   const cap = rescore ? MAX_RESCORE_TICKERS_PER_DAY : MAX_TICKERS_PER_DAY;
   const used = runs.filter(x => isRescore(x.display_title) === rescore).reduce((n, x) => n + tickersInTitle(x.display_title).length, 0);
-  if (used + tickers.length > cap) {
+  if (cap > 0 && used + tickers.length > cap) {
     throw new Fail(429, `Limit: ${used} of ${cap} ${rescore ? "rescored " : ""}tickers used in the last 24 hours; this batch has ${tickers.length}`);
   }
   // GitHub keeps one running and one waiting run per concurrency group and cancels an older waiting one.
@@ -453,7 +453,7 @@ async function handleRun(req, res) {
   if (!r.ok) throw ghFail("starting the stock workflow", r);
   const run = (r.data && r.data.html_url) ? r.data : await findRun(now);
   return send(res, 200, {
-    ok: true, ticker: tickers[0], tickers, rescore, used_24h: used + tickers.length, max_24h: cap,
+    ok: true, ticker: tickers[0], tickers, rescore, used_24h: used + tickers.length, max_24h: cap || null,
     run_url: (run && run.html_url) || `https://github.com/${REPO}/actions/workflows/${WORKFLOW}`,
     run_id: (run && run.id) || null, run_found: Boolean(run && run.html_url),
   });

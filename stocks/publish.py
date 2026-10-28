@@ -158,8 +158,8 @@ def recent_cost(rows: list[dict], n: int = 10, rescore: bool = False) -> dict | 
 def settings(cfg: dict) -> dict:
     b = cfg.get("batch") or {}
     return {"stale_after_days": int((cfg.get("page") or {}).get("stale_after_days", 14)),
-            "max_batch": int(b.get("max_batch", 15)), "max_tickers_per_day": int(b.get("max_tickers_per_day", 30)),
-            "max_rescore_tickers_per_day": int(b.get("max_rescore_tickers_per_day", 30))}
+            "max_batch": int(b.get("max_batch", 256)), "max_tickers_per_day": int(b.get("max_tickers_per_day", 0)),
+            "max_rescore_tickers_per_day": int(b.get("max_rescore_tickers_per_day", 0))}
 
 
 def update_index(report: dict, quotes: dict | None = None, cfg: dict | None = None) -> dict:

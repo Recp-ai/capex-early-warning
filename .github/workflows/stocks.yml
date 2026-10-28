@@ -43,7 +43,7 @@ concurrency:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 90   # long enough to wait out the price feed's hourly limit (STOCK_PRICE_RATE_WAIT_MIN)
     outputs:
       tickers: ${{ steps.plan.outputs.tickers }}
       max_parallel: ${{ steps.plan.outputs.max_parallel }}
@@ -67,6 +67,7 @@ jobs:
           STOCK_PRICE_API_KEY: ${{ secrets.STOCK_PRICE_API_KEY }}
           # Inputs reach the script only through env, never as expressions inside run:, so they cannot inject shell.
           INPUT_TICKERS: ${{ inputs.tickers }}
+          STOCK_PRICE_RATE_WAIT_MIN: "75"   # on HTTP 429, pause and retry for up to this long (free tier: ~50 requests/hour)
         run: python -m stocks.batch plan --shared shared
 
       - name: Share the benchmark prices with every ticker's job
@@ -81,7 +82,7 @@ jobs:
     name: rate ${{ matrix.ticker }}
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 100  # research (~2 min) plus up to 75 min waiting out the price feed's hourly limit
     strategy:
       fail-fast: false
       max-parallel: ${{ fromJSON(needs.plan.outputs.max_parallel) }}
@@ -115,6 +116,7 @@ jobs:
           INPUT_RESEARCH_MODEL: ${{ inputs.research_model }}
           INPUT_SCORING_MODEL: ${{ inputs.scoring_model }}
           INPUT_REUSE_NEWS: ${{ inputs.reuse_news }}
+          STOCK_PRICE_RATE_WAIT_MIN: "75"   # large batches pause on HTTP 429 and resume instead of failing
         run: python -m stocks.run --batch-out out --shared shared
 
       - name: Hand the result to the collect job

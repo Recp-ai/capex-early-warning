@@ -31,9 +31,9 @@ prices:
 page:
   stale_after_days: 14          # a rating older than this shows a "stale" tag in the list view
 batch:
-  max_batch: 15                 # tickers per run (the plan job and site/api/stock.js both enforce it)
-  max_tickers_per_day: 30       # tickers across stocks.yml runs in any 24 hours (site/api/stock.js counts them)
-  max_rescore_tickers_per_day: 30   # reuse_news re-scores (write-up only, ~$0.03 a ticker), counted apart from the above
+  max_batch: 256                # tickers per run: GitHub's limit of 256 jobs in one matrix (the plan job and site/api/stock.js both enforce it)
+  max_tickers_per_day: 0        # tickers across stocks.yml runs in any 24 hours; 0 = no limit (site/api/stock.js counts them otherwise)
+  max_rescore_tickers_per_day: 0    # reuse_news re-scores (write-up only, ~$0.03 a ticker), counted apart from the above; 0 = no limit
   max_parallel: 5               # ticker jobs at once (matrix max-parallel)
 # Lists live in the STOCK_LISTS repo Actions variable ({version, lists: [{id, name, tickers}]}), saved
 # whole by site/api/stock.js, which enforces these limits (GitHub's limit for one variable is 48 KB).

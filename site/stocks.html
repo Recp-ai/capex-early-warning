@@ -457,7 +457,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const clone = x => JSON.parse(JSON.stringify(x));
   const MAX_LISTS = 30, MAX_PER_LIST = 100; // config/stocks.yaml lists.* (api/stock.js enforces them)
   const RANK = { "Strong Buy": 5, "Buy": 4, "Hold": 3, "Sell": 2, "Strong Sell": 1 };
-  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 15, max_tickers_per_day: 30, max_rescore_tickers_per_day: 30 }, (state.index || {}).settings || {});
+  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 256, max_tickers_per_day: 0, max_rescore_tickers_per_day: 0 }, (state.index || {}).settings || {});
   const rescoring = () => { const c = $("#run-rescore"); return Boolean(c && c.checked); };
   // Cost per ticker for the estimate: the recent average of full runs, or of re-scores (write-up only).
   const costPer = () => (state.index || {})[rescoring() ? "recent_rescore_cost" : "recent_cost"];
@@ -950,7 +950,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     const S = settings();
     $("#run").innerHTML = `
       <h2 style="margin:0">Research stocks</h2>
-      <div class="sub">Tick tickers in the list above (or add one here), then Run. Starts the Stock research workflow on GitHub: one job per ticker, results written once at the end (a few minutes). At most ${S.max_batch} tickers per run and ${S.max_tickers_per_day} tickers per 24 hours; re-scores have their own ${S.max_rescore_tickers_per_day} a day.</div>
+      <div class="sub">Tick tickers in the list above (or add one here), then Run. Starts the Stock research workflow on GitHub: one job per ticker, results written once at the end (a few minutes). Up to ${S.max_batch} tickers per run (GitHub's limit for one run)${S.max_tickers_per_day ? `, ${S.max_tickers_per_day} tickers per 24 hours` : ""}${S.max_rescore_tickers_per_day ? `; re-scores ${S.max_rescore_tickers_per_day} a day` : ""}. Large batches take longer: the free price feed allows about 50 requests an hour, so a batch over ~45 tickers pauses and resumes on its own.</div>
       <div id="run-sel" style="margin-top:10px"></div>
       <div class="run-grid">
         <div class="field"><span>Add a ticker <small>· SEC-registered, e.g. MSFT</small></span><span style="display:flex;gap:6px"><input type="text" id="run-ticker" class="inp" maxlength="10" autocomplete="off" spellcheck="false" placeholder="MSFT" aria-label="Ticker to add to the selection"><button type="button" class="sbtn" id="run-add">Add</button></span></div>
@@ -1016,7 +1016,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     if (!pass.value) { msg.textContent = "Enter the passcode."; pass.focus(); return; }
     const rc = costPer(), rescore = rescoring();
     const cost = rc && rc.avg_usd != null ? `\nEstimated cost: ~${usd(tickers.length * rc.avg_usd)} (${tickers.length} × ${usd(rc.avg_usd)}).` : "";
-    if (!confirm(`${rescore ? "Re-score (latest news kept, write-up only)" : "Run"} ${tickers.length} ticker${tickers.length === 1 ? "" : "s"}: ${tickers.join(", ")}?${cost}\nCounts ${tickers.length} of the ${rescore ? S.max_rescore_tickers_per_day + " rescored" : S.max_tickers_per_day} tickers allowed per 24 hours.${$("#run-email").checked ? "\nOne summary email when it finishes." : ""}`)) return;
+    if (!confirm(`${rescore ? "Re-score (latest news kept, write-up only)" : "Run"} ${tickers.length} ticker${tickers.length === 1 ? "" : "s"}: ${tickers.join(", ")}?${cost}${(rescore ? S.max_rescore_tickers_per_day : S.max_tickers_per_day) ? `\nCounts ${tickers.length} of the ${rescore ? S.max_rescore_tickers_per_day + " rescored" : S.max_tickers_per_day} tickers allowed per 24 hours.` : ""}${tickers.length > 45 ? "\nOver ~45 tickers: the price feed's hourly limit makes this take an hour or more." : ""}${$("#run-email").checked ? "\nOne summary email when it finishes." : ""}`)) return;
     btn.disabled = true;
     msg.textContent = "Starting…";
     let res = null, data = {};
@@ -1064,7 +1064,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     if (!B || polling) return;
     polling = true;
     const save = () => store("stocks-batch", B);
-    while (state.batch === B && B.phase === "running" && Date.now() - B.started < 60 * 60e3) {
+    while (state.batch === B && B.phase === "running" && Date.now() - B.started < 8 * 3600e3) {
       const s = await fetch("api/stock" + (B.run_id ? `?run=${encodeURIComponent(B.run_id)}` : ""), { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null);
       if (s && s.run_id && !B.run_id && Date.parse(s.created_at) >= B.started - 15000) { B.run_id = s.run_id; B.run_url = s.run_url; }
       if (s && s.run_id && String(s.run_id) === String(B.run_id)) {
@@ -1136,7 +1136,7 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
     route();
     loadQuotes();
     const B = load("stocks-batch");
-    if (B && Array.isArray(B.tickers) && (Date.now() - B.started < 2 * 3600e3 || batchFailed(B))) {
+    if (B && Array.isArray(B.tickers) && (Date.now() - B.started < 10 * 3600e3 || batchFailed(B))) {
       state.batch = B;
       renderProgress();
       if (B.phase === "running" || B.phase === "deploying") pollBatch();

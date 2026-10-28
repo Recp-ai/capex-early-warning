@@ -85,7 +85,7 @@ def test_plan_validates_dedupes_and_caps_the_batch():
     assert batch.plan("msft,nvda,MSFT", CFG) == {"tickers": ["MSFT", "NVDA"], "error": None}
     assert "Invalid ticker(s): 1BAD, $X" in batch.plan("MSFT,1BAD,$X", CFG)["error"]
     assert batch.plan(" , ", CFG)["error"] == "No ticker given"
-    assert batch.plan(",".join(f"T{i}" for i in range(16)), CFG)["error"] == "16 tickers; a batch takes at most 15"
+    assert batch.plan(",".join(f"T{i}" for i in range(257)), CFG)["error"] == "257 tickers; a batch takes at most 256"
     assert len(batch.plan(",".join(f"T{i}" for i in range(15)), CFG)["tickers"]) == 15
 
 

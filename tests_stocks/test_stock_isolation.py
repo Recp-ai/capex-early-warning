@@ -64,9 +64,9 @@ def test_function_limits_match_the_config():
     cfg = yaml.safe_load((ROOT / "config" / "stocks.yaml").read_text())
     js = (ROOT / "site" / "api" / "stock.js").read_text()
     const = lambda name: int(re.search(rf"const {name} = +(\d+);", js).group(1))  # noqa: E731
-    assert const("MAX_BATCH") == cfg["batch"]["max_batch"] == 15
-    assert const("MAX_TICKERS_PER_DAY") == cfg["batch"]["max_tickers_per_day"] == 30
-    assert const("MAX_RESCORE_TICKERS_PER_DAY") == cfg["batch"]["max_rescore_tickers_per_day"] == 30
+    assert const("MAX_BATCH") == cfg["batch"]["max_batch"] == 256  # GitHub: 256 jobs per matrix
+    assert const("MAX_TICKERS_PER_DAY") == cfg["batch"]["max_tickers_per_day"] == 0  # 0 = no daily limit
+    assert const("MAX_RESCORE_TICKERS_PER_DAY") == cfg["batch"]["max_rescore_tickers_per_day"] == 0
     assert const("MAX_LISTS") == cfg["lists"]["max_lists"] == 30
     assert const("MAX_PER_LIST") == cfg["lists"]["max_tickers_per_list"] == 100
     assert const("MAX_LIST_BYTES") == cfg["lists"]["max_bytes"] and cfg["lists"]["max_bytes"] <= 45000  # GitHub's limit: 48 KB
@@ -153,7 +153,7 @@ def test_batch_tags_clear_once_results_are_on_the_page_but_failures_stay_until_d
     assert out["dismissed"] == "" and out["failed"] == [True, False, False]
     # the Run panel keeps the summary with a dismiss button; a batch with failures is restored until dismissed
     assert 'data-act="dismiss-batch"' in page and 'store("stocks-batch", null)' in page
-    assert "Date.now() - B.started < 2 * 3600e3 || batchFailed(B)" in page
+    assert "Date.now() - B.started < 10 * 3600e3 || batchFailed(B)" in page  # big batches can run for hours
 
 
 
@@ -314,8 +314,23 @@ const call = (method, url, body) => new Promise(resolve => {
 """
 
 
-def run_function(tmp_path, cases, index=None, **world):
-    """index: the rated tickers bundled with the function (data/stocks/index.json under its working dir)."""
+def _function_copy(tmp_path, caps):
+    src = ROOT / "site" / "api" / "stock.js"
+    if not caps:
+        return src
+    js = src.read_text()
+    for name, value in caps.items():
+        js, n = re.subn(rf"const {name} = +\d+;", f"const {name} = {value};", js)
+        assert n == 1, name
+    dst = tmp_path / "api_copy" / "stock.js"
+    dst.parent.mkdir(exist_ok=True)
+    dst.write_text(js)
+    return dst
+
+
+def run_function(tmp_path, cases, index=None, caps=None, **world):
+    """index: the rated tickers bundled with the function (data/stocks/index.json under its working dir).
+    caps: {CONST_NAME: value} to run a copy of the function with those limits (e.g. daily caps switched on)."""
     h = tmp_path / "harness.js"
     h.write_text(HARNESS)
     bundled = tmp_path / "data" / "stocks" / "index.json"
@@ -324,7 +339,7 @@ def run_function(tmp_path, cases, index=None, **world):
         bundled.write_text(json.dumps({"tickers": [{"ticker": t} for t in index]}))
     elif bundled.exists():
         bundled.unlink()
-    p = subprocess.run([NODE, str(h), str(ROOT / "site" / "api" / "stock.js"), json.dumps(world), json.dumps(cases)],
+    p = subprocess.run([NODE, str(h), str(_function_copy(tmp_path, caps)), json.dumps(world), json.dumps(cases)],
                        capture_output=True, text=True, cwd=tmp_path, timeout=60)
     assert p.returncode == 0, p.stderr
     out = json.loads(p.stdout)
@@ -342,7 +357,7 @@ def test_function_validates_and_dispatches_a_single_ticker_and_a_batch(tmp_path)
         ["wrong", "POST", "/api/stock", {"passcode": "nope", "ticker": "MSFT"}],
         ["bad_ticker", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT; rm -rf /"}],
         ["bad_in_batch", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["MSFT", "1BAD"]}],
-        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(16)]}],
+        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(257)]}],
         ["bad_model", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "gpt-5"}],
         ["unknown_model", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "scoring_model": "claude-nope-1"}],
         ["single", "POST", "/api/stock", {**GOOD, "ticker": " brk.b "}],
@@ -353,7 +368,7 @@ def test_function_validates_and_dispatches_a_single_ticker_and_a_batch(tmp_path)
     assert out["wrong"] == {"status": 401, "body": {"error": "Wrong passcode"}, "cache": "no-store"}
     assert out["bad_ticker"]["status"] == 400 and "Invalid ticker" in out["bad_ticker"]["body"]["error"]
     assert out["bad_in_batch"]["status"] == 400 and '"1BAD"' in out["bad_in_batch"]["body"]["error"]
-    assert out["too_many"]["status"] == 400 and "at most 15" in out["too_many"]["body"]["error"]
+    assert out["too_many"]["status"] == 400 and "at most 256" in out["too_many"]["body"]["error"]
     assert out["bad_model"]["body"] == {"error": "Invalid scoring_model"}
     assert out["unknown_model"]["body"]["error"] == "Unknown scoring_model: not in data/models.json"
     assert out["single"]["status"] == 200 and out["single"]["body"]["tickers"] == ["BRK.B"] and out["single"]["body"]["run_id"] == 9
@@ -372,7 +387,8 @@ def test_function_caps_tickers_per_day_and_refuses_a_second_waiting_batch(tmp_pa
     runs = [{"title": "Stock research MSFT,NVDA,TIC"}, {"title": "Stock research AAPL"}, {"title": "Stock research " + ",".join(f"A{i}" for i in range(24))},
             {"title": "Stock research OLD,ER", "hours_ago": 30}]  # older than 24 h: not counted
     r = run_function(tmp_path, [["over", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["X", "Y", "Z"]}],
-                                ["fits", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["X", "Y"]}]], runs=runs)
+                                ["fits", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["X", "Y"]}]], runs=runs,
+                     caps={"MAX_TICKERS_PER_DAY": 30})
     assert r["out"]["over"]["status"] == 429
     assert r["out"]["over"]["body"]["error"] == "Limit: 28 of 30 tickers used in the last 24 hours; this batch has 3"
     assert r["out"]["fits"]["status"] == 200 and r["out"]["fits"]["body"]["used_24h"] == 30
@@ -386,6 +402,18 @@ def test_function_caps_tickers_per_day_and_refuses_a_second_waiting_batch(tmp_pa
 
 
 @node
+def test_function_has_no_daily_cap_when_set_to_zero(tmp_path):
+    runs = [{"title": "Stock research " + ",".join(f"F{i}" for i in range(200))},
+            {"title": "Stock research (rescore) " + ",".join(f"R{i}" for i in range(200))}]
+    big = [f"N{i}" for i in range(256)]
+    r = run_function(tmp_path, [["full", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": big}],
+                                ["rescore", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": big, "reuse_news": True}]], runs=runs)
+    assert r["out"]["full"]["status"] == 200 and len(r["out"]["full"]["body"]["tickers"]) == 256
+    assert r["out"]["full"]["body"]["max_24h"] is None
+    assert r["out"]["rescore"]["status"] == 200
+
+
+@node
 def test_function_counts_rescores_apart_from_full_runs(tmp_path):
     full = ",".join(f"F{i}" for i in range(30))
     runs = [{"title": f"Stock research {full}"},                                    # the full-run cap is used up
@@ -395,15 +423,15 @@ def test_function_counts_rescores_apart_from_full_runs(tmp_path):
         ["rescore", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["ORCL", "INOD", "RBRK", "ZS"], "reuse_news": True}],
         ["rescore_over", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": ["A", "B", "C", "D", "E"], "reuse_news": True}],
         ["bad_flag", "POST", "/api/stock", {"passcode": "pass-SECRET", "ticker": "MSFT", "reuse_news": "yes"}],
-        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(16)], "reuse_news": True}]],
-        runs=runs)
+        ["too_many", "POST", "/api/stock", {"passcode": "pass-SECRET", "tickers": [f"T{i}" for i in range(257)], "reuse_news": True}]],
+        runs=runs, caps={"MAX_TICKERS_PER_DAY": 30, "MAX_RESCORE_TICKERS_PER_DAY": 30})
     out = r["out"]
     assert out["full"]["status"] == 429 and out["full"]["body"]["error"] == "Limit: 30 of 30 tickers used in the last 24 hours; this batch has 1"
     assert out["rescore"]["status"] == 200 and out["rescore"]["body"]["rescore"] is True
     assert (out["rescore"]["body"]["used_24h"], out["rescore"]["body"]["max_24h"]) == (30, 30)
     assert out["rescore_over"]["status"] == 429
     assert out["rescore_over"]["body"]["error"] == "Limit: 26 of 30 rescored tickers used in the last 24 hours; this batch has 5"
-    assert out["bad_flag"]["status"] == 400 and out["too_many"]["status"] == 400 and "at most 15" in out["too_many"]["body"]["error"]
+    assert out["bad_flag"]["status"] == 400 and out["too_many"]["status"] == 400 and "at most 256" in out["too_many"]["body"]["error"]
     dispatches = [c["body"] for c in r["calls"] if c["url"].endswith("/dispatches")]
     assert dispatches == [{"ref": "main", "inputs": {"tickers": "ORCL,INOD,RBRK,ZS", "send_email": "false", "reuse_news": "true"}}]
     # a re-score's status: tickers read past the marker

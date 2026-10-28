@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+import os
 
 import requests
 
@@ -44,27 +45,50 @@ def _scrub(text: str, key: str | None) -> str:
     return text.replace(key, "***") if key else text
 
 
+RATE_LIMIT_PAUSE_S = 300   # one pause after HTTP 429 (Tiingo's free tier allows about 50 requests an hour)
+
+
+def rate_limit_budget_s() -> int:
+    """How long a run may wait out Tiingo's hourly limit in total: STOCK_PRICE_RATE_WAIT_MIN minutes (set by the
+    stocks.yml batch jobs so large batches pause and resume); 0 / unset = fail at once, as before."""
+    try:
+        return max(0, int(float(os.environ.get("STOCK_PRICE_RATE_WAIT_MIN", "0")) * 60))
+    except ValueError:
+        return 0
+
+
 def fetch_daily(sess, ticker: str, key: str, start: date, retries: int = 2) -> list[dict]:
-    """Daily rows {date, close, adj_close, split_factor} from `start` to the latest close, oldest first."""
+    """Daily rows {date, close, adj_close, split_factor} from `start` to the latest close, oldest first.
+    On HTTP 429 it pauses RATE_LIMIT_PAUSE_S and tries again while rate_limit_budget_s() allows."""
     last = "no response"
-    for attempt in range(retries):
+    budget = rate_limit_budget_s()
+    waited = 0
+    attempt = 0
+    while attempt < retries:
+        attempt += 1
         try:
             r = sess.get(URL.format(symbol=symbol(ticker)), timeout=60,
                          params={"startDate": start.isoformat(), "format": "json", "resampleFreq": "daily"},
                          headers={"Authorization": f"Token {key}", "Content-Type": "application/json"})
         except requests.RequestException as e:
             last = type(e).__name__
-            util.time.sleep(2 * (attempt + 1))
+            util.time.sleep(2 * attempt)
             continue
         if r.status_code in (401, 403):
             raise PriceError(f"price API rejected the key (HTTP {r.status_code})")
         if r.status_code == 404:
             raise PriceError(f"price API has no ticker {ticker}")
         if r.status_code == 429:
-            raise PriceError("price API rate limit reached (HTTP 429); try again later")
+            if waited + RATE_LIMIT_PAUSE_S <= budget:
+                util.time.sleep(RATE_LIMIT_PAUSE_S)
+                waited += RATE_LIMIT_PAUSE_S
+                attempt -= 1          # a rate-limit pause is not a failed attempt
+                continue
+            raise PriceError("price API rate limit reached (HTTP 429); try again later"
+                             + (f" (waited {waited // 60} min)" if waited else ""))
         if r.status_code >= 500:
             last = f"HTTP {r.status_code}"
-            util.time.sleep(2 * (attempt + 1))
+            util.time.sleep(2 * attempt)
             continue
         if r.status_code >= 400:
             raise PriceError(f"price API returned HTTP {r.status_code}")
