@@ -457,7 +457,10 @@ td.ck input, .run-checks input { accent-color: var(--s1); width: 17px; height: 1
   const clone = x => JSON.parse(JSON.stringify(x));
   const MAX_LISTS = 30, MAX_PER_LIST = 100; // config/stocks.yaml lists.* (api/stock.js enforces them)
   const RANK = { "Strong Buy": 5, "Buy": 4, "Hold": 3, "Sell": 2, "Strong Sell": 1 };
-  const settings = () => Object.assign({ stale_after_days: 14, max_batch: 256, max_tickers_per_day: 0, max_rescore_tickers_per_day: 0 }, (state.index || {}).settings || {});
+  // Run limits ship with the page (same values as api/stock.js and config/stocks.yaml, a test checks), so a
+  // redeploy changes them at once; index.json's stored copy is only as new as the last stock run.
+  const RUN_LIMITS = { max_batch: 256, max_tickers_per_day: 0, max_rescore_tickers_per_day: 0 };
+  const settings = () => Object.assign({ stale_after_days: 14 }, (state.index || {}).settings || {}, RUN_LIMITS);
   const rescoring = () => { const c = $("#run-rescore"); return Boolean(c && c.checked); };
   // Cost per ticker for the estimate: the recent average of full runs, or of re-scores (write-up only).
   const costPer = () => (state.index || {})[rescoring() ? "recent_rescore_cost" : "recent_cost"];

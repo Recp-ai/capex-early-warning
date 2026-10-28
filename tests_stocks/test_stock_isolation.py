@@ -74,6 +74,9 @@ def test_function_limits_match_the_config():
     assert cfg["batch"]["max_parallel"] == 5 and cfg["page"]["stale_after_days"] == 14
     page = (ROOT / "site" / "stocks.html").read_text()
     assert "const MAX_LISTS = 30, MAX_PER_LIST = 100;" in page
+    limits = re.search(r"const RUN_LIMITS = \{ max_batch: (\d+), max_tickers_per_day: (\d+), max_rescore_tickers_per_day: (\d+) \};", page)
+    assert [int(x) for x in limits.groups()] == [const("MAX_BATCH"), const("MAX_TICKERS_PER_DAY"), const("MAX_RESCORE_TICKERS_PER_DAY")]
+    assert "settings || {}, RUN_LIMITS)" in page  # the page's limits win over index.json's stored copy
     assert page.count("quotes=") == 1 and 'fetch("api/stock?quotes=all")' in page  # the one cacheable quote URL
 
 
