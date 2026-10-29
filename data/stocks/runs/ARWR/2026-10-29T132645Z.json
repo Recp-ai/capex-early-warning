@@ -1,0 +1,1684 @@
+{
+  "run_id": "2026-10-29T13:26:45Z",
+  "generated_at": "2026-10-29T13:27:40+00:00",
+  "ticker": "ARWR",
+  "sec_ticker": "ARWR",
+  "cik": "0000879407",
+  "name": "ARROWHEAD PHARMACEUTICALS, INC.",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 47,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      },
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "excess prepayments: contract liabilities rose $103.4M over the year, $99.5M more than revenue growth of 16.9% explains (operating cash flow not positive; threshold 25%); the lower normalised FCF is scored"
+      },
+      {
+        "issue": "fcf_spike",
+        "points": 1.0,
+        "text": "FCF spike (cause not in tagged data): FCF $81.9M in the quarter to 2026-03-31 on revenue of $73.7M; scored on normalised FCF (median quarterly margin -118.3% of the last 8 quarters x TTM revenue)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 47 is within 2 points of the Hold edge (45)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Litigation and regulation, Product and competitive news"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 18
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 47,
+    "raw": 47.4,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 171.02,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 16.85,
+          "score": 68.7,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 257.43,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 91,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": -33.82,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -118.33,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": "normalised FCF; reported FCF margin -11.2%"
+        },
+        "sbc_pct_revenue": {
+          "value": 10.46,
+          "score": 48.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 3.12,
+          "score": 38.8,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 16,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash, negative FCF: 21.3 years of cash at the current burn"
+        },
+        "cash_to_debt": {
+          "value": 1.85,
+          "score": 97.1,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 99,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 12.704,
+          "score": 23.6,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative normalised FCF"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -14.305,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": "normalised FCF"
+        },
+        "price_to_sales_percentile": {
+          "value": 29.5,
+          "score": 70.5,
+          "weight": 0.1,
+          "note": "cheaper than now in 29.5% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 61 of 61 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 55 of 61 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 13,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -15.1,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -16.13,
+          "score": 9.7,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 67.81,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -23.71,
+          "score": 9.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -24.54,
+          "score": 8.2,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -32.79,
+          "score": 12.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 31,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 59,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 60.21,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 75253000.0,
+    "revenue_yoy_q": 171.02,
+    "revenue_yoy_q_prev": -86.41,
+    "acceleration_pp": 257.43,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 669495000.0,
+    "revenue_yoy_ttm": 16.85,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": -226438000.0,
+    "operating_cash_flow_ttm": -59055000.0,
+    "capex_ttm": 16056000.0,
+    "sbc_ttm": 70000000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -75111000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": -33.82,
+    "fcf_margin_pct": -11.22,
+    "capex_intensity_pct": 2.4,
+    "sbc_pct_revenue": 10.46,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 103360000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability + IncreaseDecreaseInDeferredRevenue",
+      "base": 22979000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 16.85,
+      "expected": 3870860.386822486,
+      "excess": 99489139.61317751,
+      "max_share_of_ocf": 0.25,
+      "applies": true,
+      "share_of_ocf": null
+    },
+    "fcf_spike": {
+      "triggered": true,
+      "reasons": [
+        "FCF $81.9M in the quarter to 2026-03-31 on revenue of $73.7M"
+      ],
+      "fcf_margin_pct": -11.22,
+      "fcf_margin_year_earlier_pct": -3.08,
+      "median_margin_pct": -118.33,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4,
+      "normalised_fcf": -792209834.353933
+    },
+    "fcf_basis": "normalised",
+    "fcf_scored_ttm": -792209834.353933,
+    "fcf_ex_prepayments_ttm": -174600139.6131775,
+    "fcf_ex_prepayments_margin_pct": -26.08,
+    "fcf_normalised_ttm": -792209834.353933,
+    "fcf_normalised_margin_pct": -118.33,
+    "fcf_scored_margin_pct": -118.33,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 54759000.0,
+      "cash_tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "short_term_investments": 1547201000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 1547201000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 1601960000.0,
+      "debt": 864066000.0,
+      "debt_tags": [
+        "ConvertibleDebt",
+        "LongTermLineOfCredit",
+        "LinesOfCreditCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleDebt",
+          "val": 682700000.0
+        },
+        {
+          "tag": "LongTermLineOfCredit",
+          "val": 141366000.0
+        },
+        {
+          "tag": "LinesOfCreditCurrent",
+          "val": 40000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -737894000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 143378000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 3.12,
+    "shares_outstanding": {
+      "val": 141254467.0,
+      "end": "2026-07-30",
+      "filed": "2026-08-04",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 16097000.0,
+        "revenue_yoy_pct": -49.02,
+        "operating_margin_pct": -672.98,
+        "fcf": -89833000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 3551000.0,
+        "revenue_yoy_pct": -94.32,
+        "operating_margin_pct": -3845.25,
+        "fcf": -186496000.0,
+        "diluted_shares": 107415000.0
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 0.0,
+        "revenue_yoy_pct": -100.0,
+        "operating_margin_pct": null,
+        "fcf": -126452000.0,
+        "diluted_shares": 123285000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 0.0,
+        "revenue_yoy_pct": -100.0,
+        "operating_margin_pct": null,
+        "fcf": -129867000.0,
+        "diluted_shares": 124199000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 0.0,
+        "revenue_yoy_pct": -100.0,
+        "operating_margin_pct": null,
+        "fcf": -161505000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 2500000.0,
+        "revenue_yoy_pct": -29.6,
+        "operating_margin_pct": -6456.48,
+        "fcf": -153788000.0,
+        "diluted_shares": 124848000.0
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 542709000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 70.24,
+        "fcf": 454756000.0,
+        "diluted_shares": 134484000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 27767000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -596.21,
+        "fcf": -157084000.0,
+        "diluted_shares": 139039000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 256472000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 17.2,
+        "fcf": 13002000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 264033000.0,
+        "revenue_yoy_pct": 10461.32,
+        "operating_margin_pct": 15.46,
+        "fcf": 11333000.0,
+        "diluted_shares": 140706000.0
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 73737000.0,
+        "revenue_yoy_pct": -86.41,
+        "operating_margin_pct": -191.57,
+        "fcf": 81877000.0,
+        "diluted_shares": 142417000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 75253000.0,
+        "revenue_yoy_pct": 171.02,
+        "operating_margin_pct": -226.03,
+        "fcf": -181323000.0,
+        "diluted_shares": 143378000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 60.21,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 141254467.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-30"
+    },
+    "market_cap": 8504931458.07,
+    "enterprise_value": 7767037458.07,
+    "price_to_sales": 12.704,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 7.872,
+    "fcf_yield_pct": -9.315,
+    "ebit_yield_pct": -2.915,
+    "fcf_negative": true,
+    "ebit_negative": true,
+    "fcf_basis": "normalised",
+    "price_to_fcf_reported": null,
+    "fcf_yield_reported_pct": -0.883,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -14.305,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 61.722,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.62,
+        "fcf_yield_pct": -1.818,
+        "ebit_yield_pct": -2.169
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 52.552,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.903,
+        "fcf_yield_pct": -2.136,
+        "ebit_yield_pct": -2.143
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 49.739,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.01,
+        "fcf_yield_pct": -2.256,
+        "ebit_yield_pct": -2.269
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 39.581,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.526,
+        "fcf_yield_pct": -2.835,
+        "ebit_yield_pct": -2.887
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 31.847,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.14,
+        "fcf_yield_pct": -4.121,
+        "ebit_yield_pct": -4.297
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 33.288,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.004,
+        "fcf_yield_pct": -3.943,
+        "ebit_yield_pct": -4.103
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 29.755,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.361,
+        "fcf_yield_pct": -4.411,
+        "ebit_yield_pct": -4.616
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 13.668,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.316,
+        "fcf_yield_pct": -7.832,
+        "ebit_yield_pct": -3.495
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 14.426,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.932,
+        "fcf_yield_pct": -7.42,
+        "ebit_yield_pct": -3.3
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 17.426,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.739,
+        "fcf_yield_pct": -6.143,
+        "ebit_yield_pct": -2.705
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 16.802,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.952,
+        "fcf_yield_pct": -7.63,
+        "ebit_yield_pct": -3.93
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 13.984,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.151,
+        "fcf_yield_pct": -9.168,
+        "ebit_yield_pct": -4.755
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 14.729,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.789,
+        "fcf_yield_pct": -8.704,
+        "ebit_yield_pct": -4.505
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 13.957,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.165,
+        "fcf_yield_pct": -10.28,
+        "ebit_yield_pct": -5.431
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 17.58,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.688,
+        "fcf_yield_pct": -8.161,
+        "ebit_yield_pct": -4.283
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 15.166,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.594,
+        "fcf_yield_pct": -9.46,
+        "ebit_yield_pct": -4.985
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 12.305,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.127,
+        "fcf_yield_pct": -10.854,
+        "ebit_yield_pct": -5.382
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 9.677,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.334,
+        "fcf_yield_pct": -13.803,
+        "ebit_yield_pct": -7.178
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 13.49,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.413,
+        "fcf_yield_pct": -9.901,
+        "ebit_yield_pct": -4.836
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 13.641,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.331,
+        "fcf_yield_pct": -9.792,
+        "ebit_yield_pct": -4.651
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 14.136,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.074,
+        "fcf_yield_pct": -9.448,
+        "ebit_yield_pct": -4.465
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 13.684,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.308,
+        "fcf_yield_pct": -9.76,
+        "ebit_yield_pct": -4.634
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 11.543,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.663,
+        "fcf_yield_pct": -18.395,
+        "ebit_yield_pct": -7.203
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 11.222,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.911,
+        "fcf_yield_pct": -18.922,
+        "ebit_yield_pct": -7.448
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 10.27,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.737,
+        "fcf_yield_pct": -20.677,
+        "ebit_yield_pct": -8.282
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 9.401,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.637,
+        "fcf_yield_pct": -25.861,
+        "ebit_yield_pct": -11.025
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 13.569,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.37,
+        "fcf_yield_pct": -17.917,
+        "ebit_yield_pct": -7.161
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 14.234,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.025,
+        "fcf_yield_pct": -17.079,
+        "ebit_yield_pct": -6.781
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 18.972,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.271,
+        "fcf_yield_pct": -14.838,
+        "ebit_yield_pct": -9.276
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 16.904,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.916,
+        "fcf_yield_pct": -16.654,
+        "ebit_yield_pct": -10.499
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 13.369,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.48,
+        "fcf_yield_pct": -21.057,
+        "ebit_yield_pct": -13.551
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 79.762,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.254,
+        "fcf_yield_pct": -3.529,
+        "ebit_yield_pct": -20.543
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 90.327,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.107,
+        "fcf_yield_pct": -3.117,
+        "ebit_yield_pct": -17.671
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 99.259,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.007,
+        "fcf_yield_pct": -2.836,
+        "ebit_yield_pct": -15.803
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 150.634,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.664,
+        "fcf_yield_pct": -1.869,
+        "ebit_yield_pct": -21.689
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 122.442,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.817,
+        "fcf_yield_pct": -2.299,
+        "ebit_yield_pct": -27.79
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 121.557,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.823,
+        "fcf_yield_pct": -2.316,
+        "ebit_yield_pct": -28.038
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 878.056,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.114,
+        "fcf_yield_pct": -0.321,
+        "ebit_yield_pct": -21.238
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 634.17,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.158,
+        "fcf_yield_pct": -0.444,
+        "ebit_yield_pct": -30.602
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 670.601,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.149,
+        "fcf_yield_pct": -0.42,
+        "ebit_yield_pct": -28.711
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 944.35,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.106,
+        "fcf_yield_pct": -0.396,
+        "ebit_yield_pct": -28.229
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 636.225,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.157,
+        "fcf_yield_pct": -0.587,
+        "ebit_yield_pct": -43.257
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 693.655,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.144,
+        "fcf_yield_pct": -0.539,
+        "ebit_yield_pct": -39.352
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 3.964,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.228,
+        "fcf_yield_pct": -94.236,
+        "ebit_yield_pct": -8.863
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 3.897,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.659,
+        "fcf_yield_pct": -95.847,
+        "ebit_yield_pct": -9.11
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 3.897,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.659,
+        "fcf_yield_pct": -95.847,
+        "ebit_yield_pct": -9.11
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 5.346,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.706,
+        "fcf_yield_pct": -92.022,
+        "ebit_yield_pct": -4.493
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 8.369,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.948,
+        "fcf_yield_pct": -58.778,
+        "ebit_yield_pct": -2.611
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 10.286,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.722,
+        "fcf_yield_pct": -47.824,
+        "ebit_yield_pct": -2.063
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 8.498,
+        "price_to_fcf": null,
+        "ev_to_ebit": 64.919,
+        "sales_yield_pct": 11.767,
+        "fcf_yield_pct": -57.885,
+        "ebit_yield_pct": 1.54
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 10.706,
+        "price_to_fcf": null,
+        "ev_to_ebit": 83.539,
+        "sales_yield_pct": 9.34,
+        "fcf_yield_pct": -45.949,
+        "ebit_yield_pct": 1.197
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 11.18,
+        "price_to_fcf": null,
+        "ev_to_ebit": 87.537,
+        "sales_yield_pct": 8.944,
+        "fcf_yield_pct": -44.0,
+        "ebit_yield_pct": 1.142
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 8.16,
+        "price_to_fcf": null,
+        "ev_to_ebit": 27.245,
+        "sales_yield_pct": 12.255,
+        "fcf_yield_pct": -60.286,
+        "ebit_yield_pct": 3.67
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 8.087,
+        "price_to_fcf": null,
+        "ev_to_ebit": 26.978,
+        "sales_yield_pct": 12.366,
+        "fcf_yield_pct": -60.834,
+        "ebit_yield_pct": 3.707
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 9.477,
+        "price_to_fcf": null,
+        "ev_to_ebit": 32.025,
+        "sales_yield_pct": 10.552,
+        "fcf_yield_pct": -51.909,
+        "ebit_yield_pct": 3.123
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 17.839,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.606,
+        "fcf_yield_pct": -15.522,
+        "ebit_yield_pct": -2.177
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 18.663,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.358,
+        "fcf_yield_pct": -14.837,
+        "ebit_yield_pct": -2.073
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 19.382,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.16,
+        "fcf_yield_pct": -14.286,
+        "ebit_yield_pct": -1.99
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 17.645,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.667,
+        "fcf_yield_pct": -6.706,
+        "ebit_yield_pct": -2.045
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 14.017,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.134,
+        "fcf_yield_pct": -8.442,
+        "ebit_yield_pct": -2.619
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 12.894,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.755,
+        "fcf_yield_pct": -9.177,
+        "ebit_yield_pct": -2.868
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 12.704,
+        "current_yield_pct": 7.872,
+        "points": 61,
+        "median": 14.426,
+        "low": 3.897,
+        "high": 943.396,
+        "negative_points": 0,
+        "median_yield_pct": 6.932,
+        "percentile": 29.5,
+        "cheaper_points": 18,
+        "dearer_points": 43,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -9.315,
+        "points": 61,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 61,
+        "median_yield_pct": -9.46,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 61 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -2.915,
+        "points": 61,
+        "median": null,
+        "low": 26.976,
+        "high": null,
+        "negative_points": 55,
+        "median_yield_pct": -4.651,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 55 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 43 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 61 of 61 month-ends)",
+          "not_comparable": "negative now and in 61 of 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 55 of 61 month-ends)",
+          "not_comparable": "negative now and in 55 of 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 60.21,
+    "date": "2026-10-28",
+    "ma50": 70.92,
+    "ma200": 71.79,
+    "vs_ma50_pct": -15.1,
+    "vs_ma200_pct": -16.13,
+    "momentum_12_1_pct": 67.81,
+    "high_52w": 89.59,
+    "drawdown_52w_pct": -32.79,
+    "return_rs_pct": -14.63,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -23.71,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -24.54
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0000879407-26-000058",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000058/arwr-202608048kex991.htm",
+    "summary": "",
+    "read": true,
+    "guidance": [],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0000879407-26-000045",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000045/arwr-202605078kex991.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or earnings release this month. Arrowhead reiterated that it plans to file the plozasiran sNDA for severe hypertriglyceridemia by year-end 2026.",
+        "evidence": [
+          {
+            "claim": "Arrowhead said it remains on schedule to file the plozasiran sNDA for severe hypertriglyceridemia (sHTG) by year-end 2026.",
+            "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program",
+            "event_date": "2026-10-07",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst news was positive: UBS started coverage at Buy with a $109 target, and HC Wainwright and Chardan reiterated Buy ratings. No downgrades were found, but all sources are lower-tier.",
+        "evidence": [
+          {
+            "claim": "UBS Group initiated coverage of Arrowhead Pharmaceuticals with a Buy rating and a $109 price target.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-ubs-group-initiates-coverage-on-arrowhead-pharmaceuticals-nasdaq-arwr-2026-10-15/",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/5"
+          },
+          {
+            "claim": "HC Wainwright reiterated a Buy rating with a $120 price target; consensus rating is Moderate Buy with an average price target of $99.07.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-arrowhead-pharmaceuticals-inc-nasdaq-arwr-stock-has-average-price-target-of-9907-2026-10-23/",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 4/4 · missing: 120"
+          },
+          {
+            "claim": "Chardan Capital reaffirmed its Buy rating on Arrowhead Pharmaceuticals with a $115 price target.",
+            "url": "https://www.defenseworld.net/2026/10/16/arrowhead-pharmaceuticals-nasdaqarwr-stock-keeps-buy-rating-at-chardan-capital.html",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 1,
+        "summary": "Two regulatory wins this month. The FDA admitted plozasiran for sHTG into its STAR pilot program, which brings Priority Review without spending Arrowhead's voucher. REDEMPLO also became available for FCS patients in England and Wales.",
+        "evidence": [
+          {
+            "claim": "FDA granted plozasiran entry into the STAR pilot program for sHTG, providing Priority Review without using Arrowhead's priority review voucher.",
+            "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "FDA grants Arrowhead's plozasiran entry into STAR pilot program, with a six-month Priority Review.",
+            "url": "https://www.streetinsider.com/Corporate+News/FDA+grants+Arrowheads+plozasiran+entry+into+STAR+pilot+program/27157989.html",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Adults living with familial chylomicronaemia syndrome (FCS) in England and Wales have REDEMPLO (plozasiran) as a new treatment option to reduce triglycerides.",
+            "url": "https://www.businesswire.com/news/home/20261027614909/en/adults-living-with-familial-chylomicronaemia-syndrome-fcs-in-england-and-wales-have-redemplo%c2%ae-plozasiran-as-a-new-treatment-option-to-reduce-triglycerides/",
+            "event_date": "2026-10-27",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 2,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Litigation and regulation",
+        "weak_sources_note": "Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or major-tier positive source dated within the last 30 days; 0 of its 3 sources qualify",
+        "rating_before_cap": 2
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new partner or contract changes were found this month. Sarepta's ability to terminate on 30 days' notice is background risk only.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions were found within the window. The most recent director sales date from August, before the window.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Interim ARO-MAPT Alzheimer's data showed a mean 73% reduction in CSF tau, the first clinical validation of Arrowhead's brain-delivery platform. This comes from a single company source.",
+        "evidence": [
+          {
+            "claim": "ARO-MAPT interim Phase 1/2a data showed mean CSF total tau reduction of 73% at Day 105, with a maximum individual reduction of 85%.",
+            "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-announces-aro-mapt-interim-phase-12a",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 3
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Arrowhead Pharmaceuticals (ARWR): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- No guidance change, pre-announcement or earnings release found in the window. Arrowhead's last results were fiscal Q3, reported 2026-08-04, which is before the window. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000058/arwr-202608048kex991.htm\n- Reiterated timeline: Arrowhead said it is on schedule to file the plozasiran sNDA for severe hypertriglyceridemia (sHTG) by year-end 2026. — 2026-10-07 — https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program\n- MarketBeat's estimate for the next earnings date is 2026-11-24. This is not confirmed by the company. — date unknown — https://www.marketbeat.com/stocks/NASDAQ/ARWR/\n\n**2. Analyst actions**\n- UBS started coverage with a Buy rating and a $109 price target. — 2026-10-15 — https://www.marketbeat.com/instant-alerts/analyst-ubs-group-initiates-coverage-on-arrowhead-pharmaceuticals-nasdaq-arwr-2026-10-15/\n  - TipRanks listed the UBS note on 2026-10-14. — 2026-10-14 — https://www.cnn.com/markets/stocks/ARWR\n  - The Basis Report says UBS raised its target from $63 to $109. The other sources describe an initiation or assumption of coverage, so these conflict. — 2026-10-15 — https://www.basisreport.com/news/arwr-arrowhead-insiders-sold-before-tau-data\n- HC Wainwright reiterated Buy with a $120 target. — 2026-10-15 — https://www.marketbeat.com/instant-alerts/consensus-arrowhead-pharmaceuticals-inc-nasdaq-arwr-stock-has-average-price-target-of-9907-2026-10-23/\n- Chardan Capital reaffirmed Buy with a $115 target. — 2026-10-15 — https://sg.finance.yahoo.com/quote/ARWR/analyst-insights/\n  - Defense World reports the Chardan note as Thursday, which is 2026-10-15. — https://www.defenseworld.net/2026/10/16/arrowhead-pharmaceuticals-nasdaqarwr-stock-keeps-buy-rating-at-chardan-capital.html\n- Piper Sandler: TipRanks headline reports a Buy. I could not see the price target. — 2026-10-15 — https://www.cnn.com/markets/stocks/ARWR\n- Consensus is \"Moderate Buy\" from 15 firms (10 Buy, 1 Strong Buy, 3 Hold, 1 Sell), with an average target of $99.07. — 2026-10-23 — https://www.marketbeat.com/instant-alerts/consensus-arrowhead-pharmaceuticals-inc-nasdaq-arwr-stock-has-average-price-target-of-9907-2026-10-23/\n  - Yahoo/Investing.com show a different average target of $107.71, with a range of $74–$126. — date unknown — https://sg.finance.yahoo.com/quote/ARWR/analyst-insights/\n- No downgrades found in the window.\n\n**3. Litigation and regulation**\n- The FDA granted plozasiran entry into its STAR pilot program for sHTG. Arrowhead says this gives Priority Review without using its priority review voucher (PRV), so it can redeploy or sell the voucher. — 2026-10-07 — https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program\n  - STAR carries a six-month Priority Review, and the FDA may act at least one month early. — 2026-10-07 — https://www.streetinsider.com/Corporate+News/FDA+grants+Arrowheads+plozasiran+entry+into+STAR+pilot+program/27157989.html\n- UK: REDEMPLO received marketing authorization for familial chylomicronemia syndrome (FCS), and NICE recommended NHS funding in England and Wales. — 2026-10-27 — https://rallies.ai/news/arrowheads-redemplo-wins-uk-approval-for-rare-cholesterol-disorder-8a25d571a5183142\n  - This is an aggregator. The original Business Wire release is linked from MarketBeat's headline list: https://www.businesswire.com/news/home/20261027614909/en/adults-living-with-familial-chylomicronaemia-syndrome-fcs-in-england-and-wales-have-redemplo%c2%ae-plozasiran-as-a-new-treatment-option-to-reduce-triglycerides/\n- Existing approvals for FCS are the US, EU, China, Australia and Canada. — 2026-10-07 — https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program\n- No new lawsuits, investigations or fines found in the window. The earlier Ionis patent dispute dates from 2025. — date unknown — https://www.fiercepharma.com/pharma/arrowhead-strikes-true-1st-fda-approval-genetic-disorder-drug-ionis-competition-looms\n\n**4. Customer concentration and partners**\n- No new contract wins, losses or changes found in the window.\n- Background from the 10-Q for the quarter ended 2026-06-30: Sarepta exercised step-in rights on certain C1 programs, and Sarepta can terminate on 30 days' notice before any regulatory approval. — date unknown — https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000057/arwr-20260630.htm\n- Sanofi holds Greater China rights to REDEMPLO. Arrowhead retains all other geographies. — 2026-10-07 — https://www.streetinsider.com/Corporate+News/FDA+grants+Arrowheads+plozasiran+entry+into+STAR+pilot+program/27157989.html\n\n**5. Insider activity**\n- I found no Form 4 transactions dated within the window.\n- The most recent sales found were before the window:\n  - Director Michael Perry sold 11,600 shares at $87.30, about $1.01M. — 2026-08-18 — https://www.fool.com/coverage/filings/2026/09/06/arrowhead-pharmaceuticals-director-sells-11-600-shares-for-usd1-million/\n  - Director Adeoye Olukotun sold 2,000 shares at $86.96. — 2026-08-18 — https://m.investing.com/news/insider-trading-news/arrowhead-pharmaceuticals-director-sells-173920-in-stock-93CH-4871197?ampMode=1\n- GuruFocus says there was no insider buying over the past 12 months and about $35.6M of insider sales. — date unknown — https://www.gurufocus.com/news/9123108/arrowhead-pharmaceuticals-arwr-shares-rise-on-alzheimers-therapy-trial-data\n- My search may not have captured every Form 4 filed in the window.\n\n**6. Product and competitive news**\n- ARO-MAPT (Alzheimer's) interim Phase 1/2a data in healthy volunteers: mean cerebrospinal fluid (CSF) total tau reduction of 73% at Day 105, with a maximum individual reduction of 85%. This supports potential quarterly dosing and is the first clinical validation of the TRiM blood-brain-barrier delivery platform. — 2026-10-14 — https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-announces-aro-mapt-interim-phase-12a\n- The stock was about $58–59 in late October. MarketBeat reports a close of $59.03. — 2026-10-27 — https://www.marketbeat.com/stocks/NASDAQ/ARWR/\n  - The 52-week high is $95.49. — date unknown — https://www.defenseworld.net/2026/10/16/arrowhead-pharmaceuticals-nasdaqarwr-now-covered-by-analysts-at-ubs-group.html\n- Competition (before the window): the FDA approved Ionis' Tryngolza for sHTG in June 2026. Arrowhead is still to file its sHTG supplement. — 2026-06 (day unknown) — https://ir.ionis.com/news-releases/news-release-details/tryngolzar-olezarsen-approved-fda-first-and-only-treatment\n- No pricing changes or new competitor entries found in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000058/arwr-202608048kex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000045/arwr-202605078kex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/879407/000087940726000033/arwr-202602058kex991.htm",
+        "https://www.cnn.com/markets/stocks/ARWR",
+        "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-announces-aro-mapt-interim-phase-12a",
+        "https://www.marketbeat.com/stocks/NASDAQ/ARWR/",
+        "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-granted-entry-fda-star-pilot-program",
+        "https://seekingalpha.com/article/4954238-arrowhead-pharmaceuticals-inc-arwr-discusses-aro-mapt-interim-results-and-trim-cns-delivery",
+        "https://stocktwits.com/symbol/ARWR",
+        "https://rallies.ai/news/arrowheads-redemplo-wins-uk-approval-for-rare-cholesterol-disorder-8a25d571a5183142",
+        "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-arwr/arrowhead-pharmaceuticals/future",
+        "https://sg.finance.yahoo.com/quote/ARWR/analyst-insights/",
+        "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-arwr/arrowhead-pharmaceuticals",
+        "https://www.investing.com/equities/arrowhead-research-corp-consensus-estimates",
+        "https://stockanalysis.com/stocks/arwr/",
+        "https://anachart.com/ticker/arwr/",
+        "https://www.tradingkey.com/markets/stocks/arwr/forecast",
+        "https://tickernerd.com/stock/arwr-forecast/",
+        "https://www.marketbeat.com/stocks/NASDAQ/ARWR/price-target",
+        "https://www.benzinga.com/quote/ARWR/analyst-ratings",
+        "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-announces-fda-approval-redemplor",
+        "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-announces-fda-approval-redemplor",
+        "https://ir.arrowheadpharma.com/static-files/30b2fbe8-e8b9-4e03-ac03-bd276293430c",
+        "https://finance.yahoo.com/healthcare/articles/arrowhead-pharmaceuticals-granted-entry-fda-113000317.html",
+        "https://www.streetinsider.com/Corporate+News/FDA+grants+Arrowheads+plozasiran+entry+into+STAR+pilot+program/27157989.html",
+        "https://www.hcplive.com/view/fda-approves-plozasiran-for-adults-with-familial-chylomicronemia-syndrome",
+        "https://www.biospace.com/press-releases/arrowhead-pharmaceuticals-receives-fda-breakthrough-therapy-designation-for-plozasiran-in-severe-hypertriglyceridemia",
+        "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-reports-fiscal-2026-second-quarter",
+        "https://site.financialmodelingprep.com/market-news/arrowhead-pharmaceuticals-insider-trading-stock-performance",
+        "https://www.marketscreener.com/quote/stock/ARROWHEAD-PHARMACEUTICALS-26864651/news/Arrowhead-Pharmaceuticals-Insider-Sold-Shares-Worth-1-533-337-According-to-a-Recent-SEC-Filing-49608329/",
+        "https://www.fool.com/coverage/filings/2026/09/06/arrowhead-pharmaceuticals-director-sells-11-600-shares-for-usd1-million/",
+        "https://finance.yahoo.com/markets/stocks/articles/arrowhead-pharmaceuticals-director-sells-11-221501169.html",
+        "https://insidertradealerts.com/ticker/ARWR/",
+        "https://www.stocktitan.net/sec-filings/ARWR/form-4-arrowhead-pharmaceuticals-inc-insider-trading-activity-a727a6623304.html",
+        "https://www.stocktitan.net/sec-filings/ARWR/form-4-arrowhead-pharmaceuticals-inc-insider-trading-activity-3129ab06342b.html",
+        "https://www.stocktitan.net/sec-filings/ARWR/form-4-arrowhead-pharmaceuticals-inc-insider-trading-activity-bba641da11aa.html",
+        "https://www.marketbeat.com/instant-alerts/insider-selling-arrowhead-pharmaceuticals-nasdaqarwr-insider-sells-20000-shares-of-stock-2025-10-03",
+        "https://www.sec.gov/Archives/edgar/data/879407/000087940726000029/arwrarsproxy2026fy2025jan2.pdf",
+        "https://www.sec.gov/Archives/edgar/data/879407/000087940726000019/arwr-20260126.htm",
+        "https://ir.arrowheadpharma.com/static-files/41871ab1-f464-4e38-997a-77ebbebfdd80",
+        "https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000057/arwr-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000879407/000087940726000047/arwr-20260331.htm",
+        "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-earns-100-million-milestone-sarepta",
+        "https://primarysourceai.substack.com/p/arrowhead-and-novartis-breaking-into",
+        "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-earns-200-million-milestone-payment",
+        "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-reports-fiscal-2026-first-quarter",
+        "https://www.marketbeat.com/instant-alerts/analyst-ubs-group-initiates-coverage-on-arrowhead-pharmaceuticals-nasdaq-arwr-2026-10-15/",
+        "https://www.marketbeat.com/instant-alerts/consensus-arrowhead-pharmaceuticals-inc-nasdaq-arwr-stock-has-average-price-target-of-9907-2026-10-23/",
+        "https://www.marketbeat.com/instant-alerts/filing-arrowhead-pharmaceuticals-inc-arwr-stock-washington-trust-advisors-inc-grows-stake-2026-10-24/",
+        "https://www.thecerbatgem.com/2026/10/18/arrowhead-pharmaceuticals-nasdaqarwr-research-coverage-started-at-ubs-group.html",
+        "https://www.defenseworld.net/2026/10/16/arrowhead-pharmaceuticals-nasdaqarwr-now-covered-by-analysts-at-ubs-group.html",
+        "https://www.basisreport.com/news/arwr-arrowhead-insiders-sold-before-tau-data",
+        "https://www.marketbeat.com/instant-alerts/arrowhead-pharmaceuticals-inc-nasdaqarwr-given-average-rating-of-buy-by-analysts-2025-09-18",
+        "https://www.marketbeat.com/instant-alerts/filing-wealth-enhancement-advisory-services-llc-invests-262000-in-arrowhead-pharmaceuticals-inc-arwr-2025-10-10",
+        "https://www.delveinsight.com/blog/tryngolza-approval-for-severe-hypertriglyceridemia",
+        "https://www.fiercepharma.com/pharma/arrowhead-strikes-true-1st-fda-approval-genetic-disorder-drug-ionis-competition-looms",
+        "https://www.sec.gov/Archives/edgar/data/0000874015/000114036126016395/ny20063671x3_ars.pdf",
+        "https://pharmaphorum.com/news/esc26-can-arrowhead-pierce-ionis-triglyceride-armour",
+        "https://www.sec.gov/Archives/edgar/data/879407/000087940725000007/a9912025-09x10arrowheadc.htm",
+        "https://journals.sagepub.com/doi/full/10.1089/genedge.7.1.108",
+        "https://www.sec.gov/Archives/edgar/data/0000874015/000087401526000115/form10k.htm",
+        "https://ir.ionis.com/news-releases/news-release-details/tryngolzar-olezarsen-approved-fda-first-and-only-treatment",
+        "https://www.prnewswire.com/news-releases/severe-hypertriglyceridemia-market-set-for-growth-during-the-forecast-period-20262036-following-approval-of-ionis-tryngolza-and-emergence-of-novel-therapies--delveinsight-302912224.html",
+        "https://www.gurufocus.com/news/9123108/arrowhead-pharmaceuticals-arwr-shares-rise-on-alzheimers-therapy-trial-data",
+        "https://www.marketbeat.com/instant-alerts/filing-assenagon-asset-management-sa-sells-198659-shares-of-arrowhead-pharmaceuticals-inc-arwr-2026-10-24/",
+        "https://www.sec.gov/Archives/edgar/data/879407/000119312526006942/d84409dfwp.htm",
+        "https://www.investing.com/news/insider-trading-news/arrowhead-pharmaceuticals-director-sells-173920-in-stock-93CH-4871197",
+        "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-arwr/arrowhead-pharmaceuticals/news/have-arrowhead-pharmaceuticals-insiders-been-selling-stock-3",
+        "https://m.investing.com/news/insider-trading-news/arrowhead-pharmaceuticals-director-sells-173920-in-stock-93CH-4871197?ampMode=1",
+        "https://www.defenseworld.net/2026/10/16/arrowhead-pharmaceuticals-nasdaqarwr-stock-keeps-buy-rating-at-chardan-capital.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Arrowhead rates Hold at 47, just above Sell, as strong growth and cash offset losses and weak trend.",
+    "thesis": "Arrowhead scores 47, a Hold, only 3 points above the Sell line. Growth (91) and the balance sheet (99) carry the score: TTM revenue growth of 16.9%, latest-quarter revenue growth of 171.0% year on year, and cash at 1.85 times debt, about 21.3 years of cash at the current burn. Quality is weak at 16, with an operating margin of -33.8%, a normalised FCF margin of -118.3% and diluted share count up 3.1% year on year. Valuation scores 13 because absolute levels are high, with a P/S of 12.7 and an FCF yield 14.3 pp below the 10-year Treasury yield, even though P/S is cheaper than at 43 of the last 61 month-ends. The trend score of 31 reflects a price 32.8% below its 52-week high and shares 23.7 pp behind SPY over the last 126 trading days, while news (59) is mildly positive on analyst coverage and FDA progress for plozasiran.",
+    "key_risks": [
+      "The company is still loss-making and burning cash, with a normalised FCF margin of -118.3%.",
+      "Revenue is lumpy and partly partner-driven. Sarepta can terminate on 30 days' notice.",
+      "The price is 15.1% below its 50-day average and 16.1% below its 200-day average, so the downtrend could continue.",
+      "Valuation is high in absolute terms at 12.7x sales, which leaves little room if the plozasiran sNDA or pipeline data disappoint.",
+      "Ongoing share dilution, with the diluted share count up 3.1% year on year and stock compensation at 10.5% of revenue."
+    ],
+    "what_would_change": [
+      "A drop of 3 points would move the rating to Sell. Further price weakness hitting the trend score, or fading growth, could do it.",
+      "Reaching Buy needs 18 more points, which most likely means better quality scores from narrowing operating losses and cash burn.",
+      "A successful plozasiran sNDA filing and Priority Review outcome, backed by stronger sources, could lift the news score.",
+      "A trend recovery, with the price back above its 50- and 200-day averages, would add points."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1847,
+        "output_tokens": 16,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1847,
+            "output_tokens": 16,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0077,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 117150,
+        "output_tokens": 4487,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 117150,
+            "output_tokens": 4487,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3592,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7569,
+        "output_tokens": 2121,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7569,
+            "output_tokens": 2121,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0727,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 4102,
+        "output_tokens": 757,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 4102,
+            "output_tokens": 757,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0315,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4711,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 60.21,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 59.03
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:26",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40881855457",
+    "tickers": [
+      "LLY",
+      "ALNY",
+      "ARWR"
+    ]
+  }
+}

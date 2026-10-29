@@ -1,0 +1,1740 @@
+{
+  "run_id": "2026-10-29T13:26:45Z",
+  "generated_at": "2026-10-29T13:28:00+00:00",
+  "ticker": "LLY",
+  "sec_ticker": "LLY",
+  "cik": "0000059478",
+  "name": "ELI LILLY & Co",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Strong Buy",
+  "rating_before_overlay": "Strong Buy",
+  "score": 84,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: operating margin, FCF margin"
+      },
+      {
+        "issue": "unknown_cash_debt",
+        "points": 1.0,
+        "text": "short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions, Product and competitive news"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": null,
+    "down": {
+      "label": "Buy",
+      "below": 80,
+      "points": 5
+    }
+  },
+  "composite": {
+    "score": 84,
+    "raw": 84.21,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 47.67,
+          "score": 99.2,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 49.58,
+          "score": 99.9,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -7.87,
+          "score": 10.7,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 77,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 83.4,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 0.81,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -0.68,
+          "score": 80.7,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.5,
+      "score": 94,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": "missing: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": "missing: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 15.223,
+          "score": 18.8,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: EV unknown: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 59.0,
+          "score": 41.0,
+          "weight": 0.1,
+          "note": "cheaper than now in 59% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: EV unknown: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+        }
+      },
+      "coverage": 0.2,
+      "score": null,
+      "missing": "only 20% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 8.1,
+          "score": 90.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 18.41,
+          "score": 96.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 44.25,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 42.75,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 41.92,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -1.41,
+          "score": 95.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 97,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 68,
+      "metrics": {
+        "guidance": {
+          "value": 2,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Strong Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 1288.3,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 22974000000.0,
+    "revenue_yoy_q": 47.67,
+    "revenue_yoy_q_prev": 55.54,
+    "acceleration_pp": -7.87,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 79665800000.0,
+    "revenue_yoy_ttm": 49.58,
+    "gross_profit_ttm": 66440800000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 28083000000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 649000000.0,
+    "gross_profit_source": "revenue - CostOfGoodsAndServicesSold",
+    "operating_income_source": null,
+    "fcf_ttm": null,
+    "gross_margin_pct": 83.4,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 0.81,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 8950000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": null,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": null,
+      "debt": 54908000000.0,
+      "debt_tags": [
+        "DebtCurrent",
+        "LongTermDebtNoncurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtCurrent",
+          "val": 7050000000.0
+        },
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 47858000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": null,
+      "unknown": [
+        "short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+      ]
+    },
+    "share_outliers": [],
+    "diluted_shares": 893700000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -0.68,
+    "shares_outstanding": {
+      "val": 941357065.0,
+      "end": "2026-08-03",
+      "filed": "2026-08-05",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 9498600000.0,
+        "revenue_yoy_pct": 36.84,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 899800000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 9353300000.0,
+        "revenue_yoy_pct": 28.1,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 8768000000.0,
+        "revenue_yoy_pct": 25.98,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 903800000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 11302800000.0,
+        "revenue_yoy_pct": 35.98,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 904200000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 11439100000.0,
+        "revenue_yoy_pct": 20.43,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 905000000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 13533100000.0,
+        "revenue_yoy_pct": 44.69,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 12729000000.0,
+        "revenue_yoy_pct": 45.18,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 900600000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 15558000000.0,
+        "revenue_yoy_pct": 37.65,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 899800000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 17600800000.0,
+        "revenue_yoy_pct": 53.87,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 898800000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 19292000000.0,
+        "revenue_yoy_pct": 42.55,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 19799000000.0,
+        "revenue_yoy_pct": 55.54,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 895900000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 22974000000.0,
+        "revenue_yoy_pct": 47.67,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 893700000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 1288.3,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 941357065.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-03"
+    },
+    "market_cap": 1212750306839.5,
+    "enterprise_value": null,
+    "price_to_sales": 15.223,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 6.569,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": null,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ev_note": "EV unknown: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 8.359,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.963,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 8.139,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.287,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 9.063,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.034,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 8.052,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.42,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 8.047,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.427,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 9.219,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.847,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 9.03,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.074,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 9.689,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.321,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 10.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.978,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 10.191,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.813,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 9.356,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.689,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 10.043,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.957,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 11.246,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.892,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 11.47,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.718,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 11.308,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.843,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 10.638,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.4,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 9.864,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.138,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 10.885,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.187,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 12.913,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.744,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 14.009,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.138,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 15.298,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.537,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 14.828,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.744,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 16.95,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.9,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 16.428,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.087,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 16.941,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.903,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 16.582,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.031,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 16.354,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.115,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 18.113,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.521,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 19.951,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.012,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 20.593,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.856,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 19.647,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.09,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 20.634,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.846,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 22.773,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.391,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 20.23,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.943,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 22.302,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.484,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 20.581,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.859,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 18.376,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.442,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 17.615,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.677,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 17.098,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.849,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 17.963,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.567,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 18.479,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.412,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 16.578,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.032,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 18.044,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.542,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 13.557,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.376,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 14.326,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.98,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 13.601,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.352,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 12.377,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.08,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 12.891,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.758,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 13.052,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.662,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 16.268,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.147,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 16.256,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.152,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 15.688,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.374,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 14.515,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.89,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 12.69,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.88,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 11.589,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.629,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 13.702,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.298,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 14.873,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.724,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 14.246,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.02,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 12.976,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.706,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 12.98,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.704,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 14.452,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.919,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 15.223,
+        "current_yield_pct": 6.569,
+        "points": 61,
+        "median": 14.245,
+        "low": 8.047,
+        "high": 22.774,
+        "negative_points": 0,
+        "median_yield_pct": 7.02,
+        "percentile": 59.0,
+        "cheaper_points": 36,
+        "dearer_points": 25,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 25, more expensive than at 36)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "EV unknown: short-term investments unknown: ShortTermInvestments was $121.6M on 2025-09-30, and no short-term investments tag covers 2026-06-30"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 1288.3,
+    "date": "2026-10-28",
+    "ma50": 1191.81,
+    "ma200": 1088.04,
+    "vs_ma50_pct": 8.1,
+    "vs_ma200_pct": 18.41,
+    "momentum_12_1_pct": 44.25,
+    "high_52w": 1306.69,
+    "drawdown_52w_pct": -1.41,
+    "return_rs_pct": 51.83,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 42.75,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 41.92
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0000059478-26-000104",
+    "filing_date": "2026-10-29",
+    "period_end": "2026-09-30",
+    "period_source": "fiscal calendar",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000104/q326lillysalesandearningsp.htm",
+    "summary": "Lilly raised its 2026 revenue guidance to $91.0 to $92.0 billion and updated non-GAAP EPS guidance to $35.00 to $36.00, as an underlying increase was more than offset by Q3 acquired IPR&D charges.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "$91.0 to $92.0 billion",
+        "stated_change": "raised",
+        "sentence": "• Increased the midpoint of our 2026 full-year revenue guidance by $5.5 billion to be in the range of $91.0 to $92.0 billion and raised underlying non-GAAP EPS guidance for the full year by $4.07 at the midpoint, which was more than offset by $4.57 of acquired IPR&D charges from Q3 business development activity, resulting in an updated range of $35.00 to $36.00.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "FY2026",
+        "amount_text": "$35.00 to $36.00",
+        "stated_change": "not stated",
+        "sentence": "• Increased the midpoint of our 2026 full-year revenue guidance by $5.5 billion to be in the range of $91.0 to $92.0 billion and raised underlying non-GAAP EPS guidance for the full year by $4.07 at the midpoint, which was more than offset by $4.57 of acquired IPR&D charges from Q3 business development activity, resulting in an updated range of $35.00 to $36.00.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "These items are uncertain, depend on various factors, and could have a material impact on Lilly's reported results in accordance with GAAP."
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "Harnessing the power of biotechnology, chemistry and genetic medicine, our scientists are urgently advancing new discoveries to solve some of the world's most significant health challenges: redefining diabetes care; treating obesity and curtailing its most devastating long-term effects; advancing the fight against Alzheimer's disease; providing solutions to some of the most debilitating immune sys"
+        ]
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0000059478-26-000077",
+      "filing_date": "2026-08-05",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000077/q226lillysalesandearningsp.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 2,
+        "summary": "Lilly raised FY2026 revenue guidance to $91–92B from $85–87B, its third raise this year, and beat consensus on Q3 revenue and EPS. Non-GAAP EPS guidance slipped slightly, but only because of acquired IPR&D charges; underlying EPS guidance rose.",
+        "evidence": [
+          {
+            "claim": "Q3 2026 revenue was $24.4B and full-year 2026 revenue guidance was raised to $91.0 to $92.0 billion.",
+            "url": "https://www.prnewswire.com/news-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio-302922907.html",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 0/0"
+          },
+          {
+            "claim": "Increased the midpoint of our 2026 full-year revenue guidance by $5.5 billion to be in the range of $91.0 to $92.0 billion and raised underlying non-GAAP EPS guidance for the full year by $4.07 at the midpoint, which was more than offset by $4.57 of acquired IPR&D charges from Q3 business development activity, resulting in an updated range of $35.00 to $36.00.",
+            "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000104/q326lillysalesandearningsp.htm",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 9/9, names 4/4"
+          },
+          {
+            "claim": "Eli Lilly reported EPS of $7.48 vs $6.26 expected and revenue of $24.40 billion vs $22.61 billion expected per LSEG.",
+            "url": "https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "major",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 3/4"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Several brokers, including Bernstein, Goldman Sachs and Leerink, raised price targets ahead of Q3 and kept their bullish ratings. There were no upgrades or downgrades, and all sources are other-tier.",
+        "evidence": [
+          {
+            "claim": "Bernstein raised its Eli Lilly price target to $1,450 from $1,385 and kept Outperform.",
+            "url": "https://www.investing.com/news/analyst-ratings/bernstein-raises-eli-lilly-stock-price-target-on-revenue-outlook-93CH-4973217",
+            "event_date": "2026-10-26",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Leerink maintained Outperform and raised its price target from $1,309 to $1,316.",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62645956/top-wall-street-forecasters-revamp-eli-lilly-expectations-ahead-of-q3-earnings",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Goldman Sachs raised its price target to $1,413 from $1,371.",
+            "url": "https://www.tipranks.com/stocks/lly/forecast",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Lilly is suing retatrutide copycat sellers, and several FDA approvals came through, while the GLP-1 product-liability MDL continues in the background. There were no new government actions, so the net is neutral.",
+        "evidence": [
+          {
+            "claim": "Lilly filed five lawsuits against online retailers, a weight-loss clinic and a med spa over products sold as retatrutide.",
+            "url": "https://www.bipc.com/eli-lillys-retatrutide-lawsuits-what-pharmacies-telemedicine-companies-and-online-retailers-need-to-know",
+            "event_date": "2026-10-08",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Lilly has filed at least 11 federal suits against retatrutide copycat sellers.",
+            "url": "https://news.bloomberglaw.com/health-law-and-business/eli-lilly-toughens-legal-game-plan-over-next-weight-loss-drug",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Distribution runs through the big three wholesalers, but no revenue-share figures were found. Formulary and employer-coverage shifts are background risks without a clear Lilly-specific loss.",
+        "evidence": [
+          {
+            "claim": "Employer plans are dropping GLP-1 coverage for 2027.",
+            "url": "https://cnbc.com/2026/10/27/glp1-drug-coverage-weight-loss-options.html",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "major",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider Form 4 trades fell in the window. A planned Lilly Endowment sale of 300,000 shares is described as a routine annual charity payout.",
+        "evidence": [
+          {
+            "claim": "Lilly Endowment filed a Form 144 to sell 300,000 shares via J.P. Morgan, described as a required annual charity payout.",
+            "url": "https://yahoo.com/markets/stocks/articles/eli-lilly-biggest-shareholder-just-132032737.html",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Mounjaro and Zepbound sales grew strongly, with Zepbound beating consensus, and retatrutide showed strong head-to-head data. Offsets are the Foundayo pill launch missing estimates and Novo's cheaper self-pay pricing.",
+        "evidence": [
+          {
+            "claim": "Mounjaro revenue was $10.7 billion and Zepbound revenue was $5.35 billion, versus $5.09 billion expected for Zepbound.",
+            "url": "https://qz.com/eli-lilly-raises-outlook-third-time-zepbound-102926",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          },
+          {
+            "claim": "Foundayo had $184 million in third-quarter sales, below the StreetAccount estimate of about $229 million.",
+            "url": "https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "major",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "Lilly's Q3 release highlights Phase 2 EloraTZP results, Phase 3 Ebglyss data and completion of the AtaiBeckley acquisition.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          },
+          {
+            "claim": "Retatrutide delivered more than double the weight loss of Ozempic in a late-stage diabetes trial.",
+            "url": "https://www.benzinga.com/news/health-care/26/10/62654661/eli-lilly-says-retatrutide-delivers-more-than-double-ozempics-weight-loss-in-late-stage-diabetes-trial",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news",
+        "rating_before_cap": 2,
+        "cap_note": "Capped at +1 (was +2): 1 of 4 sources verified or unreachable, dated within the last 30 days and positive (2 more checked out but are older or undated; 1 more in the window is not positive)",
+        "weak_sources_note": "Capped at +1 (was +2): a rating above ±1 needs 1 verified primary- or major-tier positive source dated within the last 30 days; 0 of its 4 sources qualify"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 3
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n\n- Q3 2026 revenue was $24.4B (+39%) and non-GAAP EPS was $7.48. FY2026 revenue guidance was raised to $91–92B from $85–87B. The midpoint rise is $5.5B. — 2026-10-29 — https://www.prnewswire.com/news-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio-302922907.html\n- Non-GAAP EPS guidance is now $35.00–36.00, down from $35.50–36.50. Underlying EPS guidance rose $4.07 at the midpoint, but $4.57 of Q3 acquired IPR&D charges more than offset it. — 2026-10-29 — https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html\n- Versus LSEG consensus, EPS was $7.48 vs $6.26 expected and revenue was $24.40B vs $22.61B expected. — 2026-10-29 — https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html\n- A Hudson Labs preview showed a different consensus of $22.36B revenue. — date unknown — https://www.hudson-labs.com/research/eli-lilly-q3-2026-earnings-preview-lly-revenue-eps-preview\n- Q3 revenue included about $900M of one-time-type benefits. These were $410M of Jardiance milestones (none remain) plus favorable rebate and discount adjustments. — 2026-10-29 — https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm\n- Volume rose 53% and realized prices fell 15%. — 2026-10-29 — https://www.biospace.com/press-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio\n- This is the third guidance raise this year. The stock rose more than 4% premarket. — 2026-10-29 — https://qz.com/eli-lilly-raises-outlook-third-time-zepbound-102926\n\n## 2. Analyst actions\n\nI found no upgrades, downgrades or initiations. All actions below are price-target raises or reiterations, and all were made before the Q3 report.\n- Bernstein: Outperform, PT $1,385 → $1,450 — 2026-10-26 — https://www.investing.com/news/analyst-ratings/bernstein-raises-eli-lilly-stock-price-target-on-revenue-outlook-93CH-4973217\n- Goldman Sachs: PT $1,371 → $1,413 — 2026-10-20 — https://www.tipranks.com/stocks/lly/forecast\n- Leerink: Outperform, PT $1,309 → $1,316 — 2026-10-21 — https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62645956/top-wall-street-forecasters-revamp-eli-lilly-expectations-ahead-of-q3-earnings\n- BofA: PT $1,341 → $1,397. The date is approximate because the source list is jumbled. — 2026-10-19 — https://www.cnn.com/markets/stocks/LLY\n- Wells Fargo: Buy, PT $1,330 — 2026-10-15 — https://www.ad-hoc-news.de/boerse/news/corporate-news/eli-lilly-stock-wells-fargo-sets-usd-1-330-00-target-for-eli-lilly-stock/70362750\n- RBC: Outperform, PT $1,500 maintained — 2026-10-12 — https://www.benzinga.com/quote/LLY/price-targets\n- Cantor Fitzgerald: Overweight, PT $1,410 → $1,440 — 2026-10-08 — https://www.benzinga.com/quote/LLY/price-targets\n- Morgan Stanley: Overweight, PT $1,419 → $1,430 — 2026-10-07 — https://www.benzinga.com/quote/LLY/price-targets\n- BMO: Buy, PT $1,400 — 2026-10-01 — https://www.investing.com/equities/eli-lilly-and-co-consensus-estimates\n- Citi reiterated Buy at $1,600, and Berenberg reiterated Buy at $1,400. — 2026-10-20 — https://www.tipranks.com/stocks/lly/forecast\n\n## 3. Litigation and regulation\n\n- Lilly filed five lawsuits against online retailers, a weight-loss clinic and a med spa over products sold as retatrutide. — 2026-10-08 — https://www.bipc.com/eli-lillys-retatrutide-lawsuits-what-pharmacies-telemedicine-companies-and-online-retailers-need-to-know\n- Bloomberg Law counts at least 11 federal suits against retatrutide copycat sellers so far. — 2026-10-26 (article date; individual filing dates unknown) — https://news.bloomberglaw.com/health-law-and-business/eli-lilly-toughens-legal-game-plan-over-next-weight-loss-drug\n- FDA approvals cited in the Q3 release: Mounjaro for cardiovascular risk reduction, Onswik (weekly basal insulin), Inluriyo with Verzenio, and an expanded Jaypirca indication. — date unknown — https://www.biospace.com/press-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio\n- The GLP-1 product-liability MDL (E.D. Pa.) shows 4,025 pending cases as of October 2026. This is from an aggregator. — date unknown — https://www.drugwatch.com/legal/mounjaro-lawsuit/\n- I found no new government investigations, fines or antitrust actions against Lilly in the window.\n\n## 4. Customer concentration\n\n- Lilly relies on McKesson, Cencora and Cardinal Health for distribution. This is a Motley Fool characterization, and I found no percentage-of-revenue figure. — 2026-10-22 (article date) — https://www.fool.com/coverage/better-buy/2026/10/22/amgen-vs-eli-lilly-does-the-glp-1-mania-make-lly-stock-a-better-buy-in-2026/\n- CVS Caremark adds other weight-loss drugs alongside Wegovy to its largest commercial formularies. Per Novo's filing, this takes effect 2026-10-01. — https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000023/caq22026.htm\n- CNBC reports employer plans are dropping GLP-1 coverage for 2027. — 2026-10-27 (article date) — https://cnbc.com/2026/10/27/glp1-drug-coverage-weight-loss-options.html\n- No material customer wins or losses beyond the above.\n\n## 5. Insider activity\n\n- I found no Form 4 transactions dated 2026-09-29 to 2026-10-29.\n- Lilly Endowment (largest shareholder) filed a Form 144 to sell 300,000 shares (~$347M) via J.P. Morgan. The transaction date is not given; the article is dated 2026-10-09. 24/7 Wall St. describes it as a required annual charity payout. — https://yahoo.com/markets/stocks/articles/eli-lilly-biggest-shareholder-just-132032737.html\n- For context, these 10b5-1 sales were before the window:\n  - Hakim: 5,000 shares at $1,190 — 2026-08-07 — https://www.sec.gov/Archives/edgar/data/0000059478/000168555626000006/wk-form4_1786393159.xml\n  - Zakrowski: 2,000 shares at $1,185.01 — 2026-08-10 — https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000083/wk-form4_1786480313.xml\n  - Jonsson: 6,500 shares at $1,175.10 — 2026-08-17 — https://www.sec.gov/Archives/edgar/data/0000059478/000178605426000006/wk-form4_1787084453.xml\n- Hakim's plan covers up to 10,000 shares through 2026-11-30. — plan adopted 2026-02-10 — https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000045/lly-20260331.htm\n\n## 6. Product and competitive news\n\n- Mounjaro revenue was $10.7B (+65%) and Zepbound was $5.35B (+49%), versus a $5.09B Zepbound consensus. — 2026-10-29 — https://qz.com/eli-lilly-raises-outlook-third-time-zepbound-102926\n- Foundayo (oral obesity pill, launched in April) had $184M of Q3 sales, below the ~$229M StreetAccount estimate. — 2026-10-29 — https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html\n- Retatrutide delivered more than double the weight loss of Ozempic 2 mg in a head-to-head Phase 3 trial in type 2 diabetes. — date unknown — https://www.benzinga.com/news/health-care/26/10/62654661/eli-lilly-says-retatrutide-delivers-more-than-double-ozempics-weight-loss-in-late-stage-diabetes-trial\n- Lilly plans to file retatrutide for obesity in Q1 2027. Novo's CagriSema is the only competing next-generation candidate already filed. — date unknown — https://qz.com/next-weight-loss-drugs-2026\n- Other pipeline items:\n  - Phase 2 EloraTZP results, with Phase 3 starting in Q4 2026.\n  - Phase 3 Ebglyss data in hand-and-foot atopic dermatitis.\n  - The AtaiBeckley acquisition is complete, and the Merida Biosciences acquisition closed after quarter end.\n  - Dates for all of these are unknown. — https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm\n- Self-pay pricing: Zepbound starts at $299 a month, while Novo's Wegovy starts at $149 for the pill and $199 for the shot. — 2026-10-27 (article date) — https://cnbc.com/2026/10/27/glp1-drug-coverage-weight-loss-options.html",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000077/q226lillysalesandearningsp.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000043/q126lillysalesandearningsp.htm",
+        "https://www.biospace.com/press-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio",
+        "https://www.cnbc.com/2026/10/29/eli-lilly-lly-earnings-q3-2026.html",
+        "https://qz.com/eli-lilly-raises-outlook-third-time-zepbound-102926",
+        "https://www.tradingview.com/news/stockstory:0eaee54d2094b:0-eli-lilly-nyse-lly-reports-upbeat-q3-2026-guides-for-strong-full-year-sales/",
+        "https://www.hudson-labs.com/research/eli-lilly-q3-2026-earnings-preview-lly-revenue-eps-preview",
+        "https://www.prnewswire.com/news-releases/lilly-reports-third-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-regulatory-progress-across-the-portfolio-302922907.html",
+        "https://www.cnn.com/markets/stocks/LLY",
+        "https://www.benzinga.com/quote/LLY/price-targets",
+        "https://www.investing.com/news/analyst-ratings/bernstein-raises-eli-lilly-stock-price-target-on-revenue-outlook-93CH-4973217",
+        "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62645956/top-wall-street-forecasters-revamp-eli-lilly-expectations-ahead-of-q3-earnings",
+        "https://www.investing.com/equities/eli-lilly-and-co-consensus-estimates",
+        "https://www.tipranks.com/stocks/lly/forecast",
+        "https://247wallst.com/investing/2026/10/19/prediction-eli-lilly-stock-could-be-a-long-term-winner-for-investors/",
+        "https://247wallst.com/companies/lly/price-prediction/",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/eli-lilly-stock-wells-fargo-sets-usd-1-330-00-target-for-eli-lilly-stock/70362750",
+        "https://www.marketbeat.com/stocks/NYSE/LLY/price-target",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000045/lly-20260331.htm",
+        "https://www.bipc.com/eli-lillys-retatrutide-lawsuits-what-pharmacies-telemedicine-companies-and-online-retailers-need-to-know",
+        "https://news.bloomberglaw.com/health-law-and-business/eli-lilly-toughens-legal-game-plan-over-next-weight-loss-drug",
+        "https://www.law360.com/compliance/articles/2536018",
+        "https://www.npr.org/2026/08/13/g-s1-138594/eli-lilly-files-6-lawsuits-against-businesses-selling-black-market-obesity-drug",
+        "https://www.fiercepharma.com/pharma/lilly-takes-6-companies-court-selling-retatrutide-knockoffs",
+        "https://www.sec.gov/Archives/edgar/data/59478/000005947825000254/lly-20250930.htm",
+        "https://www.robertkinglawfirm.com/personal-injury/trulicity-lawsuit/",
+        "https://www.drugwatch.com/legal/mounjaro-lawsuit/",
+        "https://www.marketscreener.com/quote/stock/ELI-LILLY-AND-COMPANY-13401/news/Eli-Lilly-Insider-Sold-Shares-Worth-716-410-According-to-a-Recent-SEC-Filing-50079168/",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000083/wk-form4_1786480313.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000168555626000006/wk-form4_1786393159.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000203208926000002/wk-form4_1785789751.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000178605426000006/wk-form4_1787084453.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000186105226000006/wk-form4_1788553126.xml",
+        "https://www.stocktitan.net/sec-filings/LLY/form-4-eli-lilly-co-insider-trading-activity-0c567beae441.html",
+        "https://www.stocktitan.net/sec-filings/LLY/form-4-eli-lilly-co-insider-trading-activity-88234179d214.html",
+        "https://www.stocktitan.net/sec-filings/LLY/form-4-eli-lilly-co-insider-trading-activity-24f2941f65d5.html",
+        "https://www.stocktitan.net/sec-filings/LLY/form-4-eli-lilly-co-insider-trading-activity-ffbb434bf0f4.html",
+        "https://www.fiercepharma.com/pharma/eli-lilly-novo-nordisk-strike-deal-white-house-cut-price-weight-loss-drugs",
+        "https://www.managedhealthcareexecutive.com/view/deal-with-white-house-provides-discounts-on-some-glp-1-drugs-for-obesity",
+        "https://investor.lilly.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines",
+        "https://www.cnbc.com/2026/01/10/2026-is-the-year-of-obesity-pills-from-novo-nordisk-eli-lilly-.html",
+        "https://whtc.com/2026/04/01/factbox-pricing-and-availability-of-novo-lillys-weight-loss-drugs/",
+        "https://cnbc.com/2026/10/27/glp1-drug-coverage-weight-loss-options.html",
+        "https://www.strategicrevenueinsights.com/blogs/why-are-glp-1-drugs-getting-cheaper",
+        "https://finance.yahoo.com/news/eli-lilly-stock-slips-outlook-140000811.html",
+        "https://www.barchart.com/story/news/35962734/lilly-and-u-s-government-agree-to-expand-access-to-obesity-medicines-to-millions-of-americans",
+        "https://intuitionlabs.ai/articles/drug-wholesaler-market-concentration",
+        "https://www.fool.com/coverage/better-buy/2026/10/22/amgen-vs-eli-lilly-does-the-glp-1-mania-make-lly-stock-a-better-buy-in-2026/",
+        "https://www.warren.senate.gov/newsroom/press-releases/warren-urges-ftc-to-protect-cancer-patients-closely-scrutinize-acquisitions-of-oncology-practices-for-anticompetitive-effects/",
+        "https://www.drugchannels.net/2024/10/five-crucial-trends-facing-us-drug.html",
+        "https://drugchannelsinstitute.com/files/2024-25-PharmaWholesalers-Overview.pdf",
+        "https://www.pcmanet.org/pcma-blog/as-wholesalers-grow-so-should-the-scrutiny",
+        "https://www.drugchannels.net/2025/09/inside-2025-psao-market-how-wholesalers.html",
+        "https://www.economicliberties.us/press-release/antitrust-enforcers-must-crack-down-on-big-wholesaler-acquisitions-and-protect-patients/",
+        "https://quantfury.com/market-insights/mckesson/",
+        "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000081/lly-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/59478/000005947825000132/lly-20250331.htm",
+        "https://investor.lilly.com/static-files/d4eb9b03-08ce-4ebc-8641-e5f86950fc25",
+        "https://www.marketbeat.com/instant-alerts/filing-geneva-partners-llc-buys-7008-shares-of-eli-lilly-and-company-lly-2026-10-29/",
+        "https://www.marketbeat.com/instant-alerts/filing-1811-shares-in-eli-lilly-and-company-lly-purchased-by-leo-wealth-llc-2026-10-29/",
+        "https://finance.yahoo.com/markets/stocks/articles/eli-lilly-biggest-shareholder-just-132032737.html",
+        "https://247wallst.com/investing/2026/10/09/eli-lillys-biggest-shareholder-just-filed-to-sell-347-million-of-stock/",
+        "https://qz.com/next-weight-loss-drugs-2026",
+        "https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000023/caq22026.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000018/caq12026.htm",
+        "https://www.fool.com/investing/2026/08/07/eli-lillys-timing-of-the-fda-filing-of-its-next-we/",
+        "https://www.biopharmadive.com/news/lilly-retatrutide-fda-application-obesity-drug-results/825987/",
+        "https://www.iqvia.com/locations/emea/blogs/2026/01/outlook-for-obesity-in-2026",
+        "https://finance.yahoo.com/healthcare/articles/eli-lillys-timing-fda-filing-225000821.html",
+        "https://www.benzinga.com/news/health-care/26/10/62654661/eli-lilly-says-retatrutide-delivers-more-than-double-ozempics-weight-loss-in-late-stage-diabetes-trial",
+        "https://www.retaweightloss.com/article/retatrutide-approval-status-2026-monthly-update"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Eli Lilly rates Strong Buy on rapid growth, high gross margins, strong trend and raised guidance.",
+    "thesis": "Lilly scores 84, a Strong Buy, driven mainly by a very strong price trend (97) and high quality (94). The shares are 18.4% above their 200-day average, 42.8 pp ahead of SPY over the last 126 trading days and only 1.4% below their 52-week high. Quality rests on a gross margin of 83.4%, stock-based pay of 0.8% of revenue and diluted share count down 0.7% year on year. Growth scores 77 on TTM revenue growth of 49.6%, though growth slowed by 7.9 pp from the previous quarter. News is supportive (68): Lilly raised FY2026 revenue guidance to $91–92B for the third time this year. Balance sheet and valuation had no score here. P/S of 15.2x is high in absolute terms but near the middle of its own history.",
+    "key_risks": [
+      "Growth is decelerating: latest-quarter revenue growth of 47.7% year on year, with growth slowed by 7.9 pp from the previous quarter.",
+      "P/S of 15.2x is high in absolute terms, leaving little room for disappointment.",
+      "Competition in obesity drugs, including Novo's cheaper self-pay pricing and the Foundayo pill launch missing estimates.",
+      "The GLP-1 product-liability MDL and copycat retatrutide sellers are ongoing legal background risks.",
+      "After a strong run (shares up 44.2% from 12 months ago to 1 month ago), the price is extended at 8.1% above its 50-day average."
+    ],
+    "what_would_change": [
+      "The score is 5 points above the Buy band (below 80); a further slowdown in revenue growth or a weaker trend score could tip it down.",
+      "A pullback that erodes the 97 trend score, such as the price falling back toward its 200-day average, would weigh on the rating.",
+      "Negative guidance or competitive news, such as share loss to Novo or pricing pressure, would cut the 68 news score.",
+      "Once scored, the balance sheet and valuation factors could move the composite either way."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2687,
+        "output_tokens": 483,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2687,
+            "output_tokens": 483,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0204,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 123225,
+        "output_tokens": 6004,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 123225,
+            "output_tokens": 6004,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3865,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8619,
+        "output_tokens": 2381,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8619,
+            "output_tokens": 2381,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0821,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 4392,
+        "output_tokens": 708,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 4392,
+            "output_tokens": 708,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0317,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5207,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 1341.99,
+    "as_of": "2026-10-29T13:20:59Z",
+    "prev_close": 1288.3
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:26",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40881855457",
+    "tickers": [
+      "LLY",
+      "ALNY",
+      "ARWR"
+    ]
+  }
+}
