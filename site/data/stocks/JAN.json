@@ -1,0 +1,1718 @@
+{
+  "run_id": "2026-10-29T13:16:11Z",
+  "generated_at": "2026-10-29T13:16:54+00:00",
+  "ticker": "JAN",
+  "sec_ticker": "JAN",
+  "cik": "0002100805",
+  "name": "Janus Living, Inc.",
+  "sector": "Real Estate Investment Trusts",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 65,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 6.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (TTM), price vs 200-day, momentum 12-1"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 65 is within 2 points of the Buy edge (65)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 15
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 1
+    }
+  },
+  "composite": {
+    "score": 65,
+    "raw": 65.4,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 45.41,
+          "score": 98.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": 10.88,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.7,
+      "score": 99,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no TTM revenue"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.07,
+          "score": 9.6,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "momentum_12_1_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "rs_spy_pp": {
+          "value": -3.02,
+          "score": 44.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -3.85,
+          "score": 42.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -13.82,
+          "score": 51.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 36,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 27.37,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 216456000.0,
+    "revenue_yoy_q": 45.41,
+    "revenue_yoy_q_prev": 34.53,
+    "acceleration_pp": 10.88
+  },
+  "valuation": {
+    "missing": "no TTM revenue"
+  },
+  "trend": {
+    "close": 27.37,
+    "date": "2026-10-28",
+    "ma50": 29.77,
+    "ma200": null,
+    "vs_ma50_pct": -8.07,
+    "vs_ma200_pct": null,
+    "momentum_12_1_pct": null,
+    "high_52w": 31.76,
+    "drawdown_52w_pct": -13.82,
+    "return_rs_pct": 6.06,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -3.02,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -3.85,
+    "note": "only 148 trading days of prices"
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001628280-26-052603",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026052603/ex99106302026.htm",
+    "summary": "Janus Living says it increased its full year 2026 guidance, but the guidance table with the specific ranges is cut off in the excerpt.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Janus Living Reports Second Quarter 2026 Results and Increases Full Year 2026 Guidance",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 2,
+        "previous": 1,
+        "sentences": [
+          "system of internal control over financial reporting; our ability to implement and maintain effective disclosure controls and procedures; volatility, disruption, or uncertainty in the financial markets; increased interest rates and borrowing costs, which could impact our business and ability to refinance existing debt, sell properties, and conduct investment activities; the availability of external"
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 2,
+        "previous": 5,
+        "sentences": [
+          "system of internal control over financial reporting; our ability to implement and maintain effective disclosure controls and procedures; volatility, disruption, or uncertainty in the financial markets; increased interest rates and borrowing costs, which could impact our business and ability to refinance existing debt, sell properties, and conduct investment activities; the availability of external"
+        ]
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-030581",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026030581/ex99103312026.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window. The last action was a raise on 2026-08-04, before the window, and Q3 results are due 2026-11-02.",
+        "evidence": [
+          {
+            "claim": "Janus Living announced Q3 results will be released after the close on 2026-11-02, with the call on 2026-11-03.",
+            "url": "https://finance.yahoo.com/real-estate/articles/janus-living-announces-dates-third-201500782.html",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 3/5, names 2/2 · missing: 02, 03"
+          },
+          {
+            "claim": "Janus Living Reports Second Quarter 2026 Results and Increases Full Year 2026 Guidance",
+            "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026052603/ex99106302026.htm",
+            "event_date": "2026-08-04",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 86,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 9/9"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Barclays and Wells Fargo each trimmed their price targets by $1 and kept Overweight ratings. These are modest negatives from non-major sources.",
+        "evidence": [
+          {
+            "claim": "Barclays cut its price target on JAN to $33 from $34 and maintained Overweight.",
+            "url": "https://www.benzinga.com/quote/JAN/price-targets",
+            "event_date": "2026-10-13",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Wells Fargo maintained JAN and lowered its price target to $34 from $35.",
+            "url": "https://www.gurufocus.com/news/9130017/jan-maintained-by-wells-fargo-price-target-lowered-to-3400",
+            "event_date": "2026-10-19",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was -1): only other-tier sources, none verified",
+        "rating_before_cap": -1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material in the window. The company has no traditional tenants; its main dependency is on Healthpeak as majority owner and external manager.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider purchases or sales were found in the window. The last insider buying was at the March 2026 IPO.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Janus bought Harmony at Greensboro for $123.5M, its first North Carolina community. The deal's date is not established, so it supports no rating.",
+        "evidence": [
+          {
+            "claim": "Janus Living pays $123.5M for Greensboro senior living center Harmony at Greensboro.",
+            "url": "https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/2100805/000162828026030581/ex99103312026.htm",
+        "https://finance.yahoo.com/real-estate/articles/janus-living-announces-dates-third-201500782.html",
+        "https://www.businesswire.com/news/home/20260917179705/en/Janus-Living-Announces-Closing-of-Upsized-%241.25-Billion-Revolving-Credit-Facility",
+        "https://www.benzinga.com/quote/JAN/earnings-forecasts",
+        "https://stockhouse.com/news/press-releases/2026/10/01/janus-living-announces-dates-of-third-quarter-2026-earnings-release-conference",
+        "https://rallies.ai/news/janus-living-updates-financial-calendar-for-third-quarter-results-release-and-call-f34e70c489b8c01a",
+        "https://www.stocktitan.net/news/JAN/",
+        "https://www.stocktitan.net/sec-filings/JAN/8-k-janus-living-inc-reports-material-event-3f88fcd2e9f5.html",
+        "https://www.stocktitan.net/news/JAN/janus-living-announces-dates-of-third-quarter-2026-earnings-release-1eqndfpzgd8p.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/janus-living-stock-heads-toward-november-results-after-q2-growth/70240829",
+        "https://www.webull.com/news/15582936508875776",
+        "https://www.webull.com/news/15588288187991040",
+        "https://www.gurufocus.com/news/8791713/jan-initiated-coverage-by-morgan-stanley-price-target-set-at-2800",
+        "https://www.gurufocus.com/news/8920908/jan-initiates-coverage-on-raymond-james-strong-buy-rating-announced",
+        "https://stockanalysis.com/stocks/jan/",
+        "https://www.investing.com/news/analyst-ratings/rbc-capital-initiates-janus-living-stock-at-outperform-sets-27-target-93CH-4611919",
+        "https://uk.investing.com/news/stock-market-news/jefferies-initiates-janus-living-stock-with-buy-rating-on-growth-outlook-93CH-4869020",
+        "https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-janus-living-stock-with-overweight-on-growth-outlook-93CH-4611917",
+        "https://www.investing.com/news/analyst-ratings/huntington-initiates-janus-living-stock-with-outperform-rating-93CH-4895028",
+        "https://www.futunn.com/en/stock/JAN-US/news",
+        "https://www.investing.com/news/stock-market-news/tuesdays-insider-activity-janus-living-insiders-buy-36-million-93CH-4579961",
+        "https://www.investing.com/news/insider-trading-news/sandstrom-buys-janus-living-jan-shares-worth-270000-93CH-4578717",
+        "https://www.tipranks.com/news/insider-trading/top-brass-go-on-a-buying-spree-at-janus-living-insider-trading-news",
+        "https://simplywall.st/stocks/us/real-estate/nyse-jan/janus-living/ownership",
+        "https://www.benzinga.com/quote/JAN/ownership",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926068606/tmb-20260331xs11.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000162828026053387/jan-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926032901/tm2533329-13_424b4.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926061302/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000162828026052603/ex99106302026.htm",
+        "https://www.heygotrade.com/en/us-stock/jan/",
+        "https://247wallst.com/companies/jan/",
+        "https://www.stocktitan.net/news/JAN/janus-living-announces-dates-of-second-quarter-2026-earnings-release-j2zwe0tqqb0k.html",
+        "https://www.stocktitan.net/news/JAN/janus-living-declares-monthly-common-stock-cash-dividends-for-the-olkd40hvjxfh.html",
+        "https://swingtradebot.com/equities/JAN",
+        "https://www.gurufocus.com/news/9130017/jan-maintained-by-wells-fargo-price-target-lowered-to-3400",
+        "https://stockanalysis.com/stocks/jan/forecast/",
+        "https://www.benzinga.com/quote/JAN/price-targets",
+        "https://public.com/stocks/jan/forecast-price-target",
+        "https://rallies.ai/news/janus-living-cuts-target-price-to-34-from-35-574a103b9dc0efa5",
+        "https://www.wallstreetzen.com/stocks/us/nyse/jan/stock-forecast",
+        "https://tickeron.com/ticker/JAN/price-charts/",
+        "https://www.linkedin.com/in/jason-roberts-23700616/",
+        "https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/",
+        "https://greensboro.com/news/local/business/real-estate/article_e0f0deb1-0e54-4b2c-8a23-77aa2a93ae6d.html",
+        "https://www.mcknightsseniorliving.com/news/janus-living-shares-750-million-acquisition-plan-for-2026-on-inaugural-earnings-call/",
+        "https://s202.q4cdn.com/584270836/files/doc_presentations/2026/Jan/07/Healthpeak-Investor-Presentation_01-07-2026.pdf",
+        "https://www.mcknightsseniorliving.com/news/healthpeak-properties-janus-living-announce-initial-public-offering/",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926027908/tm2533329-5_s11a.htm",
+        "https://www.businesswire.com/news/home/20250904728610/en",
+        "https://www.renaissancecapital.com/IPO-Center/News/117325/Healthpeak-Properties-senior-housing-REIT-Janus-Living-files-for-a-$100-mil",
+        "https://ir.healthpeak.com/news/news-details/2026/Healthpeak-Properties-Inc--Announces-Public-Filing-of-Registration-Statement-with-the-SEC-for-Janus-Living-Inc-/default.aspx",
+        "https://www.sec.gov/Archives/edgar/data/765880/000162828026004623/ex99112312025.htm",
+        "https://www.sec.gov/Archives/edgar/data/765880/000110465926027107/doc-20251231xars.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926089993/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000765880/000162828026031287/peak-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926065239/filename1.htm"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Janus Living rates Buy on strong quarterly revenue growth, but sits just one point above Hold.",
+    "thesis": "Janus Living scores 65, exactly at the Buy edge, with the rating built on only three of six factors: growth, trend and news risk. Growth scores 99, driven by latest-quarter revenue growth of 45.4% year on year, with growth sped up by 10.9 pp from the previous quarter. Trend is weak at 36, with the price 8.1% below its 50-day average, 13.8% below its 52-week high, and shares 3.0 pp behind SPY over the last 126 trading days. News risk is neutral at 50: two brokers trimmed price targets by $1 while keeping Overweight ratings, and no lawsuits, insider trades or guidance changes turned up in the window. Quality, balance sheet and valuation could not be scored, so the rating leans heavily on one strong growth quarter.",
+    "key_risks": [
+      "The score is 1 point above Hold, so a small slip in any factor would cut the rating.",
+      "Weak share price trend: price 8.1% below its 50-day average and 3.9 pp behind QQQ over the last 126 trading days.",
+      "Heavy dependence on Healthpeak as majority owner and external manager.",
+      "Q3 results due 2026-11-02 could show growth cooling from the latest-quarter rate of 45.4%.",
+      "Profitability, debt and valuation are unscored, so these possible weak spots are not reflected in the rating."
+    ],
+    "what_would_change": [
+      "Down to Hold: a 1-point drop, such as a further weakening in trend or a negative news item around Q3 results.",
+      "Up to Strong Buy needs 15 more points, likely from a sustained trend recovery above the 50-day average and positive news such as another guidance raise.",
+      "Once quality, balance sheet and valuation can be scored, they could move the score materially in either direction."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2267,
+        "output_tokens": 478,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2267,
+            "output_tokens": 478,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0186,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 98807,
+        "output_tokens": 3284,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 98807,
+            "output_tokens": 3284,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3005,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6245,
+        "output_tokens": 921,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6245,
+            "output_tokens": 921,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0434,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3549,
+        "output_tokens": 622,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3549,
+            "output_tokens": 622,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0266,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3891,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 27.37,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 27.84
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:16",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  },
+  "chart": [
+    [
+      "2026-03-30",
+      22.89,
+      null,
+      null
+    ],
+    [
+      "2026-03-31",
+      23.57,
+      null,
+      null
+    ],
+    [
+      "2026-04-01",
+      23.35,
+      null,
+      null
+    ],
+    [
+      "2026-04-02",
+      23.89,
+      null,
+      null
+    ],
+    [
+      "2026-04-06",
+      23.35,
+      null,
+      null
+    ],
+    [
+      "2026-04-07",
+      23.53,
+      null,
+      null
+    ],
+    [
+      "2026-04-08",
+      23.7,
+      null,
+      null
+    ],
+    [
+      "2026-04-09",
+      23.37,
+      null,
+      null
+    ],
+    [
+      "2026-04-10",
+      23.85,
+      null,
+      null
+    ],
+    [
+      "2026-04-13",
+      23.99,
+      null,
+      null
+    ],
+    [
+      "2026-04-14",
+      25.75,
+      null,
+      null
+    ],
+    [
+      "2026-04-15",
+      26.14,
+      null,
+      null
+    ],
+    [
+      "2026-04-16",
+      25.86,
+      null,
+      null
+    ],
+    [
+      "2026-04-17",
+      25.75,
+      null,
+      null
+    ],
+    [
+      "2026-04-20",
+      25.17,
+      null,
+      null
+    ],
+    [
+      "2026-04-21",
+      24.72,
+      null,
+      null
+    ],
+    [
+      "2026-04-22",
+      24.15,
+      null,
+      null
+    ],
+    [
+      "2026-04-23",
+      24.7,
+      null,
+      null
+    ],
+    [
+      "2026-04-24",
+      25.11,
+      null,
+      null
+    ],
+    [
+      "2026-04-27",
+      24.85,
+      null,
+      null
+    ],
+    [
+      "2026-04-28",
+      25.26,
+      null,
+      null
+    ],
+    [
+      "2026-04-29",
+      26.13,
+      null,
+      null
+    ],
+    [
+      "2026-04-30",
+      26.24,
+      null,
+      null
+    ],
+    [
+      "2026-05-01",
+      26.47,
+      null,
+      null
+    ],
+    [
+      "2026-05-04",
+      26.32,
+      null,
+      null
+    ],
+    [
+      "2026-05-05",
+      26.25,
+      null,
+      null
+    ],
+    [
+      "2026-05-06",
+      26.49,
+      null,
+      null
+    ],
+    [
+      "2026-05-07",
+      27.42,
+      null,
+      null
+    ],
+    [
+      "2026-05-08",
+      27.92,
+      null,
+      null
+    ],
+    [
+      "2026-05-11",
+      27.23,
+      null,
+      null
+    ],
+    [
+      "2026-05-12",
+      27.02,
+      null,
+      null
+    ],
+    [
+      "2026-05-13",
+      27.31,
+      null,
+      null
+    ],
+    [
+      "2026-05-14",
+      27.05,
+      null,
+      null
+    ],
+    [
+      "2026-05-15",
+      26.68,
+      null,
+      null
+    ],
+    [
+      "2026-05-18",
+      26.6,
+      null,
+      null
+    ],
+    [
+      "2026-05-19",
+      26.55,
+      null,
+      null
+    ],
+    [
+      "2026-05-20",
+      26.69,
+      null,
+      null
+    ],
+    [
+      "2026-05-21",
+      26.76,
+      null,
+      null
+    ],
+    [
+      "2026-05-22",
+      26.72,
+      null,
+      null
+    ],
+    [
+      "2026-05-26",
+      26.9,
+      null,
+      null
+    ],
+    [
+      "2026-05-27",
+      27.1,
+      null,
+      null
+    ],
+    [
+      "2026-05-28",
+      27.54,
+      null,
+      null
+    ],
+    [
+      "2026-05-29",
+      26.77,
+      null,
+      null
+    ],
+    [
+      "2026-06-01",
+      26.0,
+      null,
+      null
+    ],
+    [
+      "2026-06-02",
+      25.45,
+      null,
+      null
+    ],
+    [
+      "2026-06-03",
+      24.65,
+      null,
+      null
+    ],
+    [
+      "2026-06-04",
+      24.65,
+      null,
+      null
+    ],
+    [
+      "2026-06-05",
+      25.12,
+      null,
+      null
+    ],
+    [
+      "2026-06-08",
+      25.02,
+      null,
+      null
+    ],
+    [
+      "2026-06-09",
+      25.42,
+      25.59,
+      null
+    ],
+    [
+      "2026-06-10",
+      25.42,
+      25.64,
+      null
+    ],
+    [
+      "2026-06-11",
+      25.67,
+      25.68,
+      null
+    ],
+    [
+      "2026-06-12",
+      25.73,
+      25.73,
+      null
+    ],
+    [
+      "2026-06-15",
+      25.19,
+      25.75,
+      null
+    ],
+    [
+      "2026-06-16",
+      25.37,
+      25.8,
+      null
+    ],
+    [
+      "2026-06-17",
+      25.54,
+      25.84,
+      null
+    ],
+    [
+      "2026-06-18",
+      26.22,
+      25.89,
+      null
+    ],
+    [
+      "2026-06-22",
+      26.31,
+      25.94,
+      null
+    ],
+    [
+      "2026-06-23",
+      27.04,
+      26.01,
+      null
+    ],
+    [
+      "2026-06-24",
+      28.58,
+      26.1,
+      null
+    ],
+    [
+      "2026-06-25",
+      28.92,
+      26.16,
+      null
+    ],
+    [
+      "2026-06-26",
+      28.25,
+      26.21,
+      null
+    ],
+    [
+      "2026-06-29",
+      28.8,
+      26.26,
+      null
+    ],
+    [
+      "2026-06-30",
+      28.74,
+      26.32,
+      null
+    ],
+    [
+      "2026-07-01",
+      28.99,
+      26.4,
+      null
+    ],
+    [
+      "2026-07-02",
+      29.12,
+      26.49,
+      null
+    ],
+    [
+      "2026-07-06",
+      29.38,
+      26.59,
+      null
+    ],
+    [
+      "2026-07-07",
+      29.85,
+      26.7,
+      null
+    ],
+    [
+      "2026-07-08",
+      29.32,
+      26.78,
+      null
+    ],
+    [
+      "2026-07-09",
+      29.13,
+      26.87,
+      null
+    ],
+    [
+      "2026-07-10",
+      28.7,
+      26.93,
+      null
+    ],
+    [
+      "2026-07-13",
+      29.13,
+      26.99,
+      null
+    ],
+    [
+      "2026-07-14",
+      29.56,
+      27.06,
+      null
+    ],
+    [
+      "2026-07-15",
+      28.9,
+      27.11,
+      null
+    ],
+    [
+      "2026-07-16",
+      29.88,
+      27.18,
+      null
+    ],
+    [
+      "2026-07-17",
+      30.35,
+      27.26,
+      null
+    ],
+    [
+      "2026-07-20",
+      30.16,
+      27.34,
+      null
+    ],
+    [
+      "2026-07-21",
+      30.65,
+      27.4,
+      null
+    ],
+    [
+      "2026-07-22",
+      30.77,
+      27.46,
+      null
+    ],
+    [
+      "2026-07-23",
+      30.6,
+      27.53,
+      null
+    ],
+    [
+      "2026-07-24",
+      31.41,
+      27.61,
+      null
+    ],
+    [
+      "2026-07-27",
+      31.6,
+      27.7,
+      null
+    ],
+    [
+      "2026-07-28",
+      31.65,
+      27.79,
+      null
+    ],
+    [
+      "2026-07-29",
+      31.36,
+      27.88,
+      null
+    ],
+    [
+      "2026-07-30",
+      30.4,
+      27.96,
+      null
+    ],
+    [
+      "2026-07-31",
+      30.21,
+      28.03,
+      null
+    ],
+    [
+      "2026-08-03",
+      29.55,
+      28.09,
+      null
+    ],
+    [
+      "2026-08-04",
+      29.91,
+      28.15,
+      null
+    ],
+    [
+      "2026-08-05",
+      30.49,
+      28.23,
+      null
+    ],
+    [
+      "2026-08-06",
+      29.69,
+      28.29,
+      null
+    ],
+    [
+      "2026-08-07",
+      30.47,
+      28.35,
+      null
+    ],
+    [
+      "2026-08-10",
+      30.18,
+      28.41,
+      null
+    ],
+    [
+      "2026-08-11",
+      29.57,
+      28.46,
+      null
+    ],
+    [
+      "2026-08-12",
+      29.1,
+      28.52,
+      null
+    ],
+    [
+      "2026-08-13",
+      29.93,
+      28.61,
+      null
+    ],
+    [
+      "2026-08-14",
+      30.63,
+      28.73,
+      null
+    ],
+    [
+      "2026-08-17",
+      30.41,
+      28.85,
+      null
+    ],
+    [
+      "2026-08-18",
+      30.41,
+      28.95,
+      null
+    ],
+    [
+      "2026-08-19",
+      30.56,
+      29.06,
+      null
+    ],
+    [
+      "2026-08-20",
+      30.59,
+      29.17,
+      null
+    ],
+    [
+      "2026-08-21",
+      30.71,
+      29.27,
+      null
+    ],
+    [
+      "2026-08-24",
+      31.2,
+      29.38,
+      null
+    ],
+    [
+      "2026-08-25",
+      31.35,
+      29.5,
+      null
+    ],
+    [
+      "2026-08-26",
+      31.76,
+      29.63,
+      null
+    ],
+    [
+      "2026-08-27",
+      30.71,
+      29.73,
+      null
+    ],
+    [
+      "2026-08-28",
+      30.5,
+      29.83,
+      null
+    ],
+    [
+      "2026-08-31",
+      29.75,
+      29.9,
+      null
+    ],
+    [
+      "2026-09-01",
+      30.9,
+      30.0,
+      null
+    ],
+    [
+      "2026-09-02",
+      30.7,
+      30.07,
+      null
+    ],
+    [
+      "2026-09-03",
+      31.29,
+      30.12,
+      null
+    ],
+    [
+      "2026-09-04",
+      30.79,
+      30.16,
+      null
+    ],
+    [
+      "2026-09-08",
+      30.97,
+      30.22,
+      null
+    ],
+    [
+      "2026-09-09",
+      31.0,
+      30.26,
+      null
+    ],
+    [
+      "2026-09-10",
+      30.81,
+      30.3,
+      null
+    ],
+    [
+      "2026-09-11",
+      30.92,
+      30.34,
+      null
+    ],
+    [
+      "2026-09-14",
+      31.07,
+      30.38,
+      null
+    ],
+    [
+      "2026-09-15",
+      31.59,
+      30.42,
+      null
+    ],
+    [
+      "2026-09-16",
+      30.55,
+      30.44,
+      null
+    ],
+    [
+      "2026-09-17",
+      30.23,
+      30.45,
+      null
+    ],
+    [
+      "2026-09-18",
+      30.34,
+      30.48,
+      null
+    ],
+    [
+      "2026-09-21",
+      30.11,
+      30.51,
+      null
+    ],
+    [
+      "2026-09-22",
+      29.77,
+      30.52,
+      null
+    ],
+    [
+      "2026-09-23",
+      29.56,
+      30.52,
+      null
+    ],
+    [
+      "2026-09-24",
+      30.2,
+      30.55,
+      null
+    ],
+    [
+      "2026-09-25",
+      30.05,
+      30.55,
+      null
+    ],
+    [
+      "2026-09-28",
+      30.04,
+      30.54,
+      null
+    ],
+    [
+      "2026-09-29",
+      29.96,
+      30.54,
+      null
+    ],
+    [
+      "2026-09-30",
+      29.63,
+      30.52,
+      null
+    ],
+    [
+      "2026-10-01",
+      28.74,
+      30.48,
+      null
+    ],
+    [
+      "2026-10-02",
+      29.05,
+      30.45,
+      null
+    ],
+    [
+      "2026-10-05",
+      28.75,
+      30.39,
+      null
+    ],
+    [
+      "2026-10-06",
+      28.56,
+      30.33,
+      null
+    ],
+    [
+      "2026-10-07",
+      27.83,
+      30.26,
+      null
+    ],
+    [
+      "2026-10-08",
+      28.1,
+      30.19,
+      null
+    ],
+    [
+      "2026-10-09",
+      28.15,
+      30.15,
+      null
+    ],
+    [
+      "2026-10-12",
+      28.73,
+      30.12,
+      null
+    ],
+    [
+      "2026-10-13",
+      28.85,
+      30.1,
+      null
+    ],
+    [
+      "2026-10-14",
+      28.98,
+      30.08,
+      null
+    ],
+    [
+      "2026-10-15",
+      29.29,
+      30.06,
+      null
+    ],
+    [
+      "2026-10-16",
+      29.05,
+      30.05,
+      null
+    ],
+    [
+      "2026-10-19",
+      28.64,
+      30.01,
+      null
+    ],
+    [
+      "2026-10-20",
+      29.23,
+      29.99,
+      null
+    ],
+    [
+      "2026-10-21",
+      28.35,
+      29.97,
+      null
+    ],
+    [
+      "2026-10-22",
+      28.64,
+      29.96,
+      null
+    ],
+    [
+      "2026-10-23",
+      28.31,
+      29.93,
+      null
+    ],
+    [
+      "2026-10-26",
+      28.61,
+      29.89,
+      null
+    ],
+    [
+      "2026-10-27",
+      27.84,
+      29.83,
+      null
+    ],
+    [
+      "2026-10-28",
+      27.37,
+      29.77,
+      null
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-29T13:16:11Z",
+      "ticker": "JAN",
+      "rating": "Buy",
+      "score": "65",
+      "confidence": "Low",
+      "growth": "99",
+      "quality": "",
+      "balance_sheet": "",
+      "valuation": "",
+      "trend": "36",
+      "news_risk": "50",
+      "price": "27.37",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.3891",
+      "overlay": "",
+      "quote_price": "27.37",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    }
+  ]
+}

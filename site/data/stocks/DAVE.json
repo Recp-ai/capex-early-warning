@@ -1,0 +1,9165 @@
+{
+  "run_id": "2026-10-29T13:19:11Z",
+  "generated_at": "2026-10-29T13:20:11+00:00",
+  "ticker": "DAVE",
+  "sec_ticker": "DAVE",
+  "cik": "0001841408",
+  "name": "Dave Inc./DE",
+  "sector": "Finance Services",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 71,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin, operating margin, EV/EBIT"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: EV/EBIT 0 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 9
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 7
+    }
+  },
+  "composite": {
+    "score": 71,
+    "raw": 71.25,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 29.63,
+          "score": 87.8,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 48.63,
+          "score": 99.5,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -17.08,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 69,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+        },
+        "fcf_margin_pct": {
+          "value": 50.73,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 5.83,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -6.01,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 93,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 0.05,
+          "score": 99.3,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.94,
+          "score": 76.5,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 90,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 6.858,
+          "score": 46.4,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 13.518,
+          "score": 89.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": 2.407,
+          "score": 80.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 78.4,
+          "score": 21.6,
+          "weight": 0.1,
+          "note": "cheaper than now in 78.4% of 44 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 46.6,
+          "score": 53.4,
+          "weight": 0.15,
+          "note": "cheaper than now in 46.6% of 44 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.7,
+      "score": 63,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.87,
+          "score": 5.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 12.88,
+          "score": 82.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 27.49,
+          "score": 85.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 16.35,
+          "score": 79.5,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 15.52,
+          "score": 78.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -27.08,
+          "score": 21.5,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 61,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 322.69,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 170793000.0,
+    "revenue_yoy_q": 29.63,
+    "revenue_yoy_q_prev": 46.71,
+    "acceleration_pp": -17.08,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 643653000.0,
+    "revenue_yoy_ttm": 48.63,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 326946000.0,
+    "capex_ttm": 404000.0,
+    "sbc_ttm": 37500000.0,
+    "gross_profit_source": null,
+    "operating_income_source": null,
+    "fcf_ttm": 326542000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": 50.73,
+    "capex_intensity_pct": 0.06,
+    "sbc_pct_revenue": 5.83,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 50.73,
+      "fcf_margin_year_earlier_pct": 44.32,
+      "median_margin_pct": 46.78,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 326542000.0,
+    "fcf_scored_margin_pct": 50.73,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 209613000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 42979000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 42979000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 252592000.0,
+      "debt": 268134000.0,
+      "debt_tags": [
+        "ConvertibleDebtNoncurrent",
+        "LinesOfCreditCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleDebtNoncurrent",
+          "val": 193134000.0
+        },
+        {
+          "tag": "LinesOfCreditCurrent",
+          "val": 75000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 15542000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 13679803.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -6.01,
+    "shares_outstanding": null,
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 65811000.0,
+        "revenue_yoy_pct": 15.85,
+        "operating_margin_pct": null,
+        "fcf": 15305000.0,
+        "diluted_shares": 11960078.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 73119000.0,
+        "revenue_yoy_pct": 22.53,
+        "operating_margin_pct": null,
+        "fcf": 15603000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 73630000.0,
+        "revenue_yoy_pct": 24.95,
+        "operating_margin_pct": null,
+        "fcf": 18332000.0,
+        "diluted_shares": 13182517.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 80117000.0,
+        "revenue_yoy_pct": 30.84,
+        "operating_margin_pct": null,
+        "fcf": 27912000.0,
+        "diluted_shares": 13543648.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 92489000.0,
+        "revenue_yoy_pct": 40.54,
+        "operating_margin_pct": null,
+        "fcf": 36967000.0,
+        "diluted_shares": 13932652.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 100840000.0,
+        "revenue_yoy_pct": 37.91,
+        "operating_margin_pct": null,
+        "fcf": 41664000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 107979000.0,
+        "revenue_yoy_pct": 46.65,
+        "operating_margin_pct": null,
+        "fcf": 45210000.0,
+        "diluted_shares": 14646526.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 131757000.0,
+        "revenue_yoy_pct": 64.46,
+        "operating_margin_pct": null,
+        "fcf": 68110000.0,
+        "diluted_shares": 14554218.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 150725000.0,
+        "revenue_yoy_pct": 62.97,
+        "operating_margin_pct": null,
+        "fcf": 83185000.0,
+        "diluted_shares": 14525301.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 163721000.0,
+        "revenue_yoy_pct": 62.36,
+        "operating_margin_pct": null,
+        "fcf": 93201000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 158414000.0,
+        "revenue_yoy_pct": 46.71,
+        "operating_margin_pct": null,
+        "fcf": 82007000.0,
+        "diluted_shares": 14399635.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 170793000.0,
+        "revenue_yoy_pct": 29.63,
+        "operating_margin_pct": null,
+        "fcf": 68149000.0,
+        "diluted_shares": 13679803.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 322.69,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 13679803.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-06-30"
+    },
+    "market_cap": 4414335630.07,
+    "enterprise_value": 4429877630.07,
+    "price_to_sales": 6.858,
+    "price_to_fcf": 13.518,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 14.581,
+    "fcf_yield_pct": 7.397,
+    "ebit_yield_pct": null,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 2.407,
+    "history": [
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.343,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 291.698,
+        "fcf_yield_pct": -64.952,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.317,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 315.659,
+        "fcf_yield_pct": -70.287,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.289,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 345.434,
+        "fcf_yield_pct": -62.561,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.285,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 351.267,
+        "fcf_yield_pct": -63.618,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.333,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 300.522,
+        "fcf_yield_pct": -54.427,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.387,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 258.599,
+        "fcf_yield_pct": -18.053,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.311,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 321.163,
+        "fcf_yield_pct": -22.42,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.265,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 377.839,
+        "fcf_yield_pct": -26.377,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.292,
+        "price_to_fcf": 5.393,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 342.318,
+        "fcf_yield_pct": 18.542,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.408,
+        "price_to_fcf": 7.537,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 244.95,
+        "fcf_yield_pct": 13.268,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.843,
+        "price_to_fcf": 15.559,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 118.654,
+        "fcf_yield_pct": 6.427,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 1.275,
+        "price_to_fcf": 23.541,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 78.423,
+        "fcf_yield_pct": 4.248,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.711,
+        "price_to_fcf": 13.405,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 58.452,
+        "fcf_yield_pct": 7.46,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 2.018,
+        "price_to_fcf": 15.809,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 49.564,
+        "fcf_yield_pct": 6.326,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 2.17,
+        "price_to_fcf": 10.138,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 46.093,
+        "fcf_yield_pct": 9.864,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 1.459,
+        "price_to_fcf": 6.817,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 68.546,
+        "fcf_yield_pct": 14.669,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 1.751,
+        "price_to_fcf": 8.181,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.122,
+        "fcf_yield_pct": 12.224,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 1.74,
+        "price_to_fcf": 6.6,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.473,
+        "fcf_yield_pct": 15.15,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 1.849,
+        "price_to_fcf": 7.015,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 54.079,
+        "fcf_yield_pct": 14.256,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 1.784,
+        "price_to_fcf": 6.769,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 56.042,
+        "fcf_yield_pct": 14.773,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 4.305,
+        "price_to_fcf": 13.914,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.228,
+        "fcf_yield_pct": 7.187,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 3.792,
+        "price_to_fcf": 12.256,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.371,
+        "fcf_yield_pct": 8.16,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 4.18,
+        "price_to_fcf": 13.511,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.921,
+        "fcf_yield_pct": 7.402,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 4.392,
+        "price_to_fcf": 14.193,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.771,
+        "fcf_yield_pct": 7.046,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 3.292,
+        "price_to_fcf": 9.15,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.377,
+        "fcf_yield_pct": 10.929,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 3.776,
+        "price_to_fcf": 10.496,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.481,
+        "fcf_yield_pct": 9.528,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 7.711,
+        "price_to_fcf": 19.382,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.968,
+        "fcf_yield_pct": 5.159,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 10.307,
+        "price_to_fcf": 25.906,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.702,
+        "fcf_yield_pct": 3.86,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 9.055,
+        "price_to_fcf": 22.758,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.044,
+        "fcf_yield_pct": 4.394,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 7.166,
+        "price_to_fcf": 16.167,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.955,
+        "fcf_yield_pct": 6.185,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 6.7,
+        "price_to_fcf": 15.115,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.926,
+        "fcf_yield_pct": 6.616,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 8.043,
+        "price_to_fcf": 18.146,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.433,
+        "fcf_yield_pct": 5.511,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 6.453,
+        "price_to_fcf": 13.311,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.497,
+        "fcf_yield_pct": 7.513,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 6.546,
+        "price_to_fcf": 13.503,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.277,
+        "fcf_yield_pct": 7.406,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 4.839,
+        "price_to_fcf": 9.983,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.663,
+        "fcf_yield_pct": 10.017,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 5.714,
+        "price_to_fcf": 11.787,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.501,
+        "fcf_yield_pct": 8.484,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 4.549,
+        "price_to_fcf": 8.702,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.983,
+        "fcf_yield_pct": 11.492,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.107,
+        "price_to_fcf": 13.595,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.071,
+        "fcf_yield_pct": 7.356,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 6.729,
+        "price_to_fcf": 12.462,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.86,
+        "fcf_yield_pct": 8.025,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 8.874,
+        "price_to_fcf": 16.432,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.269,
+        "fcf_yield_pct": 6.086,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 8.876,
+        "price_to_fcf": 16.437,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.266,
+        "fcf_yield_pct": 6.084,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 7.641,
+        "price_to_fcf": 15.061,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.087,
+        "fcf_yield_pct": 6.64,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 6.833,
+        "price_to_fcf": 13.469,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.634,
+        "fcf_yield_pct": 7.424,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 6.858,
+        "price_to_fcf": 13.518,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.581,
+        "fcf_yield_pct": 7.397,
+        "ebit_yield_pct": null
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 6.858,
+        "current_yield_pct": 14.581,
+        "points": 44,
+        "median": 3.784,
+        "low": 0.265,
+        "high": 10.307,
+        "negative_points": 0,
+        "median_yield_pct": 26.426,
+        "percentile": 78.4,
+        "cheaper_points": 34,
+        "dearer_points": 9,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2023-03-31"
+      },
+      "price_to_fcf": {
+        "current": 13.518,
+        "current_yield_pct": 7.397,
+        "points": 44,
+        "median": 13.752,
+        "low": 5.393,
+        "high": null,
+        "negative_points": 8,
+        "median_yield_pct": 7.271,
+        "percentile": 46.6,
+        "cheaper_points": 20,
+        "dearer_points": 23,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2023-03-31"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2023-03-31"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 34 of the last 44 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "middle",
+          "phrase": "near the middle of the last 44 month-ends (cheaper than at 23, more expensive than at 20)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 322.69,
+    "date": "2026-10-28",
+    "ma50": 354.1,
+    "ma200": 285.87,
+    "vs_ma50_pct": -8.87,
+    "vs_ma200_pct": 12.88,
+    "momentum_12_1_pct": 27.49,
+    "high_52w": 442.53,
+    "drawdown_52w_pct": -27.08,
+    "return_rs_pct": 25.43,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 16.35,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 15.52
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-335119",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526335119/dave-ex99_1.htm",
+    "summary": "Dave raised its full-year 2026 guidance for revenue, Adjusted EBITDA and Adjusted Diluted EPS, and expects non-GAAP gross margin to expand into the mid-70s in the second half, with accelerating MTM growth and above-plan marketing investment.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "gross_margin",
+        "period": "second half 2026",
+        "amount_text": "mid-70s",
+        "stated_change": "not stated",
+        "sentence": "With loss provision calendar dynamics turning favorable in the second half, we expect non-GAAP gross margin to continue expanding into the mid-70s.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "That strength has continued into the third quarter, supported by the early rollout of our CashAI v6.0 underwriting model, which we expect to sustain loss rates in a similar range to Q2 while driving larger ExtraCash origination sizes.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "second half 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "At the same time, we expect MTM growth to accelerate in the second half of 2026, supported by strong member acquisition trends.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "second half 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "As returns have exceeded our expectations at higher spend levels, we plan to invest above our original plan in the second half.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-206471",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526206471/dave-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; the last raise came with Q2 results on 2026-08-05, before the window. Q3 results are scheduled for 2026-11-04.",
+        "evidence": [
+          {
+            "claim": "Dave will report Q3 2026 results on 2026-11-04 with a call at 4:30 p.m. ET.",
+            "url": "https://investors.dave.com/news-events/news-releases",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Dave raised full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526335119/dave-ex99_1.htm",
+            "event_date": "2026-08-05",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 85,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst actions in the window lean positive: Seaport raised its target to $422, Barrington reiterated Buy and UBS kept Buy at $470. Monness Crespi started at Neutral, and all of these come from lower-tier sources.",
+        "evidence": [
+          {
+            "claim": "Seaport Research raised its price target on DAVE to $422 from $410.",
+            "url": "https://www.cnn.com/markets/stocks/DAVE",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "UBS maintained Buy with a $470 price target.",
+            "url": "https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings upgraded Dave to \"buy (b)\" from \"buy (b-)\".",
+            "url": "https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/",
+            "event_date": "2026-10-16",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Monness Crespi & Hardt initiated coverage at Neutral.",
+            "url": "https://stockanalysis.com/stocks/dave/",
+            "event_date": "2026-10-26",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new legal developments in the window. The FTC/DOJ case over ExtraCash and the Baltimore suit remain pending as background risk.",
+        "evidence": [
+          {
+            "claim": "FTC referred its case against Dave Inc. to the Department of Justice; the case remains pending.",
+            "url": "https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-refers-case-against-online-cash-advance-firm-dave-inc-department-justice",
+            "event_date": "2024-12-30",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 668,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material in the window. Dave serves consumers, and its main dependency is the Coastal Community Bank partnership.",
+        "evidence": [
+          {
+            "claim": "Liquidity increase driven by $93.0M funded through the Coastal Community Bank arrangement.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm",
+            "event_date": "2026-06-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 121,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions in the window. The latest filing was a tax withholding on 2026-09-02, and earlier open-market sales predate the window.",
+        "evidence": [
+          {
+            "claim": "CEO Wilk had 7,809 shares withheld for taxes at $372.85.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526383909/ownership.xml",
+            "event_date": "2026-09-02",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 57,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "No dated product launch, delay or competitive development in the window.",
+        "evidence": [],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://investors.dave.com/",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/news/",
+        "https://www.heygotrade.com/en/us-stock/dave/",
+        "https://stockanalysis.com/stocks/dave/",
+        "https://www.cnn.com/markets/stocks/DAVE",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/",
+        "https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-inc-dave-beat-estimates-151005549.html",
+        "https://en.wikipedia.org/wiki/Dave_(company)",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526206471/dave-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312524255957/d862351dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312523272474/d568851dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312523206198/d547819dex991.htm",
+        "https://simplywall.st/stocks/us/diversified-financials/nasdaq-dave/dave/future",
+        "https://investors.dave.com/news-events/news-releases",
+        "https://pluang.com/en/news-feed/dave-inc-panggil-konferensi-telepon-kuartal-tiga-2026",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-host-third-quarter-2026-124300520.html",
+        "https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/dave/stock-forecast",
+        "https://www.tradingkey.com/markets/stocks/dave/forecast",
+        "https://www.benzinga.com/quote/DAVE/analyst-ratings",
+        "https://benzinga.com/quote/dave/analyst-ratings",
+        "https://benzinga.com/insights/analyst-ratings/24/08/40322007/analyst-scoreboard-9-ratings-for-dave",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/forecast",
+        "https://www.benzinga.com/insights/news/25/12/49209546/insider-transaction-jason-wilk-sells-1-51m-worth-of-dave-shares",
+        "https://www.marketscreener.com/news/dave-inc-insider-sold-shares-worth-1-506-472-according-to-a-recent-sec-filing-ce7d51dfda8ff22d",
+        "http://openinsider.com/DAVE",
+        "https://www.tradingview.com/news/tradingview:cb5e3999df71f:0-dave-insiders-sold-shares-worth-over-3-5m/",
+        "https://www.tradingview.com/news/tradingview:6b0c787b1bbb6:0-dave-inc-executives-sell-shares-to-cover-tax-obligations/",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526383909/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000095017025103967/dave-20250630.htm",
+        "https://www.secform4.com/insider-trading/1841408.htm",
+        "https://biztoc.com/x/27b8daee848c0e2d",
+        "https://www.stocktitan.net/sec-filings/DAVE/form-4-dave-inc-de-insider-trading-activity-90560f47e8fd.html",
+        "https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-refers-case-against-online-cash-advance-firm-dave-inc-department-justice",
+        "https://www.nasdaq.com/press-release/hundreds-dave-customers-file-arbitration-claims-alleging-misleading-promises-and",
+        "https://investors.dave.com/news-releases/news-release-details/dave-issues-statement-response-amended-ftc-complaint-and",
+        "https://www.hlc.com/en/publications/baltimore-sues-fintech-company-dave-over-extracash-overdraft-product",
+        "https://www.bankingdive.com/news/fintech-dave-alters-fee-structure-blasts-doj-over-amended-lawsuit-jason-wilk/736830/",
+        "https://www.gtlaw-financialservicesobserver.com/2024/11/ftc-alleges-fintech-dave-inc-deceived-consumers/",
+        "https://lawcompensate.com/dave-settlement/",
+        "https://www.jdsupra.com/topics/unfair-or-deceptive-trade-practices/permanent-injunctions",
+        "https://www.ftc.gov/bureau-consumer-protection?page=15",
+        "https://www.fool.com/investing/2026/08/06/why-dave-stock-got-thrashed-on-thursday/",
+        "https://ca.investing.com/news/stock-market-news/why-is-dave-stock-sliding-today-93CH-4850196",
+        "https://www.thecerbatgem.com/2026/10/28/dave-nasdaqdave-stock-falls-9-1-should-you-sell.html",
+        "https://thecryptobasic.com/2026/10/26/nebius-stock-falls-amid-neocloud-debt-concerns-after-3-5-billion-citi-facility/",
+        "https://www.thestockobserver.com/2026/10/26/dave-nasdaqdave-stock-price-down-9-1-heres-why.html",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262239016-neocloud-stocks-fall-nebius-coreweave-iren-drop-4-percent-musk-consolidation-warning-tradingkey",
+        "https://www.nerdwallet.com/personal-loans/learn/dave-cash-advance",
+        "https://shareholdersunite.substack.com/p/a-primer-on-dave-inc",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-expands-ai-driven-credit-160400490.html",
+        "https://play.google.com/store/apps/details/Dave_Banking_Cash_Advance?id=com.dave&hl=en_NZ",
+        "https://play.google.com/store/apps/details?id=com.dave&hl=en_US",
+        "https://dave.com/macais",
+        "https://investors.dave.com/our-story",
+        "https://dcfanalyst.com/blogs/overview/dave-overview",
+        "https://tradingview.com/news/zacks:353dbdacf094b:0-nu-holdings-vs-dave-which-fintech-stock-is-the-better-buy-right-now"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Dave rates Buy on very strong quality, a clean balance sheet and fast but slowing growth.",
+    "thesis": "Dave scores 71, a Buy, carried mainly by quality (93) and balance sheet (90). It has a free cash flow margin of 50.7%, stock-based pay at 5.8% of revenue and a diluted share count down 6.0% year on year, while net debt is just 0.05 times free cash flow. Growth scores 69 on TTM revenue growth of 48.6% and latest-quarter revenue growth of 29.6% year on year, though growth slowed by 17.1 pp from the previous quarter. Valuation (63) is moderate in absolute terms at 6.9x sales and 13.5x free cash flow, with FCF yield 2.4 pp above the 10-year Treasury yield; against its own history it is near the middle overall, with P/S more expensive than at 34 of the last 44 month-ends. Trend (61) and news risk (54) are middling: the price is 27.1% below its 52-week high and 8.9% below its 50-day average, but shares are 16.4 pp ahead of SPY over the last 126 trading days.",
+    "key_risks": [
+      "Revenue growth is decelerating sharply, with growth slowed by 17.1 pp from the previous quarter.",
+      "The pending FTC/DOJ case over ExtraCash and the Baltimore suit could hit its core product.",
+      "It depends on the Coastal Community Bank partnership.",
+      "Q3 results on 2026-11-04 could reset expectations after the August guidance raise.",
+      "Weak recent price action: the price is 27.1% below its 52-week high and 8.9% below its 50-day average."
+    ],
+    "what_would_change": [
+      "A gain of 9 points, for example from re-accelerating growth or a recovering trend, would lift the rating to Strong Buy.",
+      "A loss of 7 points would drop it to Hold, for instance if growth keeps slowing or the trend weakens further.",
+      "An adverse ruling or settlement in the FTC/DOJ ExtraCash case would likely push news risk down.",
+      "A rise in P/S further above its own history without matching growth would weigh on the valuation score."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1985,
+        "output_tokens": 1164,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1985,
+            "output_tokens": 1164,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0312,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 108135,
+        "output_tokens": 3714,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 108135,
+            "output_tokens": 3714,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3234,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8032,
+        "output_tokens": 1345,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8032,
+            "output_tokens": 1345,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.059,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3757,
+        "output_tokens": 715,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3757,
+            "output_tokens": 715,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0293,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4429,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 322.69,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 328.47
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:19",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  },
+  "chart": [
+    [
+      "2021-10-19",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-10-20",
+      317.76,
+      null,
+      null
+    ],
+    [
+      "2021-10-21",
+      318.08,
+      null,
+      null
+    ],
+    [
+      "2021-10-22",
+      318.08,
+      null,
+      null
+    ],
+    [
+      "2021-10-25",
+      318.08,
+      null,
+      null
+    ],
+    [
+      "2021-10-26",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-10-27",
+      318.54,
+      null,
+      null
+    ],
+    [
+      "2021-10-28",
+      319.36,
+      null,
+      null
+    ],
+    [
+      "2021-10-29",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-11-01",
+      320.32,
+      null,
+      null
+    ],
+    [
+      "2021-11-02",
+      319.68,
+      null,
+      null
+    ],
+    [
+      "2021-11-03",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-11-04",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-11-05",
+      319.36,
+      null,
+      null
+    ],
+    [
+      "2021-11-08",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-11-09",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-11-10",
+      319.4,
+      null,
+      null
+    ],
+    [
+      "2021-11-11",
+      319.68,
+      null,
+      null
+    ],
+    [
+      "2021-11-12",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-11-15",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-11-16",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-11-17",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-11-18",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-11-19",
+      320.32,
+      null,
+      null
+    ],
+    [
+      "2021-11-22",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-11-23",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-11-24",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-11-26",
+      317.76,
+      null,
+      null
+    ],
+    [
+      "2021-11-29",
+      318.16,
+      null,
+      null
+    ],
+    [
+      "2021-11-30",
+      320.0,
+      null,
+      null
+    ],
+    [
+      "2021-12-01",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-12-02",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-03",
+      317.92,
+      null,
+      null
+    ],
+    [
+      "2021-12-06",
+      318.08,
+      null,
+      null
+    ],
+    [
+      "2021-12-07",
+      317.6,
+      null,
+      null
+    ],
+    [
+      "2021-12-08",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-09",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-10",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-12-13",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-14",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-15",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-16",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-17",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-12-20",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-21",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-22",
+      318.4,
+      null,
+      null
+    ],
+    [
+      "2021-12-23",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-27",
+      319.04,
+      null,
+      null
+    ],
+    [
+      "2021-12-28",
+      318.72,
+      null,
+      null
+    ],
+    [
+      "2021-12-29",
+      319.04,
+      318.87,
+      null
+    ],
+    [
+      "2021-12-30",
+      311.68,
+      318.73,
+      null
+    ],
+    [
+      "2021-12-31",
+      328.0,
+      318.94,
+      null
+    ],
+    [
+      "2022-01-03",
+      266.56,
+      317.91,
+      null
+    ],
+    [
+      "2022-01-04",
+      256.64,
+      316.68,
+      null
+    ],
+    [
+      "2022-01-05",
+      262.72,
+      315.57,
+      null
+    ],
+    [
+      "2022-01-06",
+      272.96,
+      314.66,
+      null
+    ],
+    [
+      "2022-01-07",
+      186.24,
+      312.02,
+      null
+    ],
+    [
+      "2022-01-10",
+      162.56,
+      308.88,
+      null
+    ],
+    [
+      "2022-01-11",
+      158.08,
+      305.67,
+      null
+    ],
+    [
+      "2022-01-12",
+      166.4,
+      302.59,
+      null
+    ],
+    [
+      "2022-01-13",
+      198.08,
+      300.16,
+      null
+    ],
+    [
+      "2022-01-14",
+      194.88,
+      297.66,
+      null
+    ],
+    [
+      "2022-01-18",
+      197.76,
+      295.25,
+      null
+    ],
+    [
+      "2022-01-19",
+      216.32,
+      293.19,
+      null
+    ],
+    [
+      "2022-01-20",
+      231.68,
+      291.42,
+      null
+    ],
+    [
+      "2022-01-21",
+      301.76,
+      291.08,
+      null
+    ],
+    [
+      "2022-01-24",
+      282.24,
+      290.34,
+      null
+    ],
+    [
+      "2022-01-25",
+      290.56,
+      289.76,
+      null
+    ],
+    [
+      "2022-01-26",
+      307.52,
+      289.52,
+      null
+    ],
+    [
+      "2022-01-27",
+      294.72,
+      289.02,
+      null
+    ],
+    [
+      "2022-01-28",
+      364.48,
+      289.93,
+      null
+    ],
+    [
+      "2022-01-31",
+      401.6,
+      291.6,
+      null
+    ],
+    [
+      "2022-02-01",
+      457.6,
+      294.38,
+      null
+    ],
+    [
+      "2022-02-02",
+      445.44,
+      296.88,
+      null
+    ],
+    [
+      "2022-02-03",
+      346.24,
+      297.43,
+      null
+    ],
+    [
+      "2022-02-04",
+      364.16,
+      298.31,
+      null
+    ],
+    [
+      "2022-02-07",
+      359.68,
+      299.11,
+      null
+    ],
+    [
+      "2022-02-08",
+      371.52,
+      300.18,
+      null
+    ],
+    [
+      "2022-02-09",
+      335.68,
+      300.53,
+      null
+    ],
+    [
+      "2022-02-10",
+      326.72,
+      300.67,
+      null
+    ],
+    [
+      "2022-02-11",
+      298.24,
+      300.26,
+      null
+    ],
+    [
+      "2022-02-14",
+      188.16,
+      297.64,
+      null
+    ],
+    [
+      "2022-02-15",
+      183.36,
+      294.95,
+      null
+    ],
+    [
+      "2022-02-16",
+      182.08,
+      292.23,
+      null
+    ],
+    [
+      "2022-02-17",
+      167.68,
+      289.24,
+      null
+    ],
+    [
+      "2022-02-18",
+      167.36,
+      286.2,
+      null
+    ],
+    [
+      "2022-02-22",
+      154.56,
+      282.91,
+      null
+    ],
+    [
+      "2022-02-23",
+      154.88,
+      279.64,
+      null
+    ],
+    [
+      "2022-02-24",
+      148.16,
+      276.22,
+      null
+    ],
+    [
+      "2022-02-25",
+      153.6,
+      272.92,
+      null
+    ],
+    [
+      "2022-02-28",
+      139.84,
+      269.34,
+      null
+    ],
+    [
+      "2022-03-01",
+      137.6,
+      265.72,
+      null
+    ],
+    [
+      "2022-03-02",
+      131.84,
+      261.98,
+      null
+    ],
+    [
+      "2022-03-03",
+      145.6,
+      258.52,
+      null
+    ],
+    [
+      "2022-03-04",
+      140.8,
+      254.96,
+      null
+    ],
+    [
+      "2022-03-07",
+      130.56,
+      251.21,
+      null
+    ],
+    [
+      "2022-03-08",
+      139.52,
+      247.62,
+      null
+    ],
+    [
+      "2022-03-09",
+      165.12,
+      244.54,
+      null
+    ],
+    [
+      "2022-03-10",
+      177.6,
+      241.72,
+      null
+    ],
+    [
+      "2022-03-11",
+      185.6,
+      239.05,
+      null
+    ],
+    [
+      "2022-03-14",
+      205.76,
+      236.93,
+      null
+    ],
+    [
+      "2022-03-15",
+      214.08,
+      234.66,
+      null
+    ],
+    [
+      "2022-03-16",
+      237.44,
+      234.07,
+      null
+    ],
+    [
+      "2022-03-17",
+      254.72,
+      234.04,
+      null
+    ],
+    [
+      "2022-03-18",
+      323.52,
+      235.25,
+      null
+    ],
+    [
+      "2022-03-21",
+      339.2,
+      236.58,
+      null
+    ],
+    [
+      "2022-03-22",
+      305.92,
+      238.97,
+      null
+    ],
+    [
+      "2022-03-23",
+      280.0,
+      241.32,
+      null
+    ],
+    [
+      "2022-03-24",
+      269.44,
+      243.55,
+      null
+    ],
+    [
+      "2022-03-25",
+      232.96,
+      244.88,
+      null
+    ],
+    [
+      "2022-03-28",
+      208.64,
+      245.09,
+      null
+    ],
+    [
+      "2022-03-29",
+      265.92,
+      246.51,
+      null
+    ],
+    [
+      "2022-03-30",
+      248.64,
+      247.53,
+      null
+    ],
+    [
+      "2022-03-31",
+      228.8,
+      247.78,
+      null
+    ],
+    [
+      "2022-04-01",
+      218.56,
+      247.51,
+      null
+    ],
+    [
+      "2022-04-04",
+      232.64,
+      246.13,
+      null
+    ],
+    [
+      "2022-04-05",
+      233.28,
+      245.15,
+      null
+    ],
+    [
+      "2022-04-06",
+      211.52,
+      243.57,
+      null
+    ],
+    [
+      "2022-04-07",
+      193.92,
+      241.3,
+      null
+    ],
+    [
+      "2022-04-08",
+      181.92,
+      239.04,
+      null
+    ],
+    [
+      "2022-04-11",
+      178.24,
+      235.32,
+      null
+    ],
+    [
+      "2022-04-12",
+      180.48,
+      230.9,
+      null
+    ],
+    [
+      "2022-04-13",
+      173.76,
+      225.22,
+      null
+    ],
+    [
+      "2022-04-14",
+      163.52,
+      219.58,
+      null
+    ],
+    [
+      "2022-04-18",
+      158.08,
+      215.82,
+      null
+    ],
+    [
+      "2022-04-19",
+      158.72,
+      211.71,
+      null
+    ],
+    [
+      "2022-04-20",
+      160.0,
+      207.72,
+      null
+    ],
+    [
+      "2022-04-21",
+      155.52,
+      203.4,
+      null
+    ],
+    [
+      "2022-04-22",
+      141.76,
+      199.52,
+      null
+    ],
+    [
+      "2022-04-25",
+      144.0,
+      195.86,
+      null
+    ],
+    [
+      "2022-04-26",
+      135.68,
+      192.61,
+      null
+    ],
+    [
+      "2022-04-27",
+      131.2,
+      191.47,
+      null
+    ],
+    [
+      "2022-04-28",
+      135.68,
+      190.52,
+      null
+    ],
+    [
+      "2022-04-29",
+      129.6,
+      189.47,
+      null
+    ],
+    [
+      "2022-05-02",
+      123.52,
+      188.59,
+      null
+    ],
+    [
+      "2022-05-03",
+      123.2,
+      187.7,
+      null
+    ],
+    [
+      "2022-05-04",
+      122.24,
+      187.06,
+      null
+    ],
+    [
+      "2022-05-05",
+      112.64,
+      186.21,
+      null
+    ],
+    [
+      "2022-05-06",
+      103.36,
+      185.32,
+      null
+    ],
+    [
+      "2022-05-09",
+      84.48,
+      183.93,
+      null
+    ],
+    [
+      "2022-05-10",
+      73.44,
+      182.6,
+      null
+    ],
+    [
+      "2022-05-11",
+      64.0,
+      181.13,
+      null
+    ],
+    [
+      "2022-05-12",
+      74.88,
+      179.99,
+      null
+    ],
+    [
+      "2022-05-13",
+      91.84,
+      178.92,
+      null
+    ],
+    [
+      "2022-05-16",
+      82.88,
+      177.76,
+      null
+    ],
+    [
+      "2022-05-17",
+      83.52,
+      176.82,
+      null
+    ],
+    [
+      "2022-05-18",
+      78.08,
+      175.59,
+      null
+    ],
+    [
+      "2022-05-19",
+      74.24,
+      173.77,
+      null
+    ],
+    [
+      "2022-05-20",
+      73.28,
+      171.69,
+      null
+    ],
+    [
+      "2022-05-23",
+      72.32,
+      169.42,
+      null
+    ],
+    [
+      "2022-05-24",
+      68.8,
+      166.68,
+      null
+    ],
+    [
+      "2022-05-25",
+      71.36,
+      163.83,
+      null
+    ],
+    [
+      "2022-05-26",
+      73.28,
+      160.54,
+      null
+    ],
+    [
+      "2022-05-27",
+      73.92,
+      156.93,
+      null
+    ],
+    [
+      "2022-05-31",
+      73.28,
+      151.92,
+      null
+    ],
+    [
+      "2022-06-01",
+      72.96,
+      146.6,
+      null
+    ],
+    [
+      "2022-06-02",
+      73.6,
+      141.95,
+      null
+    ],
+    [
+      "2022-06-03",
+      63.68,
+      137.63,
+      null
+    ],
+    [
+      "2022-06-06",
+      46.72,
+      133.17,
+      null
+    ],
+    [
+      "2022-06-07",
+      43.84,
+      129.39,
+      null
+    ],
+    [
+      "2022-06-08",
+      45.12,
+      126.12,
+      null
+    ],
+    [
+      "2022-06-09",
+      40.0,
+      121.6,
+      null
+    ],
+    [
+      "2022-06-10",
+      31.68,
+      117.26,
+      null
+    ],
+    [
+      "2022-06-13",
+      30.29,
+      113.29,
+      null
+    ],
+    [
+      "2022-06-14",
+      29.44,
+      109.51,
+      null
+    ],
+    [
+      "2022-06-15",
+      31.51,
+      105.49,
+      null
+    ],
+    [
+      "2022-06-16",
+      30.28,
+      101.43,
+      null
+    ],
+    [
+      "2022-06-17",
+      31.68,
+      97.83,
+      null
+    ],
+    [
+      "2022-06-21",
+      31.78,
+      94.59,
+      null
+    ],
+    [
+      "2022-06-22",
+      29.05,
+      91.53,
+      null
+    ],
+    [
+      "2022-06-23",
+      27.92,
+      88.52,
+      null
+    ],
+    [
+      "2022-06-24",
+      29.49,
+      85.5,
+      null
+    ],
+    [
+      "2022-06-27",
+      27.52,
+      82.58,
+      null
+    ],
+    [
+      "2022-06-28",
+      26.18,
+      79.83,
+      null
+    ],
+    [
+      "2022-06-29",
+      24.0,
+      77.15,
+      null
+    ],
+    [
+      "2022-06-30",
+      22.02,
+      74.42,
+      null
+    ],
+    [
+      "2022-07-01",
+      22.08,
+      71.66,
+      null
+    ],
+    [
+      "2022-07-05",
+      23.04,
+      69.01,
+      null
+    ],
+    [
+      "2022-07-06",
+      23.16,
+      66.64,
+      null
+    ],
+    [
+      "2022-07-07",
+      22.01,
+      64.2,
+      null
+    ],
+    [
+      "2022-07-08",
+      20.86,
+      61.9,
+      null
+    ],
+    [
+      "2022-07-11",
+      19.4,
+      59.66,
+      null
+    ],
+    [
+      "2022-07-12",
+      18.24,
+      57.31,
+      null
+    ],
+    [
+      "2022-07-13",
+      17.93,
+      55.08,
+      null
+    ],
+    [
+      "2022-07-14",
+      18.62,
+      52.98,
+      null
+    ],
+    [
+      "2022-07-15",
+      19.2,
+      50.9,
+      null
+    ],
+    [
+      "2022-07-18",
+      18.92,
+      48.84,
+      null
+    ],
+    [
+      "2022-07-19",
+      18.28,
+      46.95,
+      null
+    ],
+    [
+      "2022-07-20",
+      21.92,
+      45.32,
+      null
+    ],
+    [
+      "2022-07-21",
+      22.57,
+      44.08,
+      null
+    ],
+    [
+      "2022-07-22",
+      20.26,
+      43.02,
+      null
+    ],
+    [
+      "2022-07-25",
+      18.65,
+      42.11,
+      null
+    ],
+    [
+      "2022-07-26",
+      20.04,
+      41.01,
+      null
+    ],
+    [
+      "2022-07-27",
+      23.36,
+      39.65,
+      null
+    ],
+    [
+      "2022-07-28",
+      23.04,
+      38.45,
+      null
+    ],
+    [
+      "2022-07-29",
+      22.08,
+      37.22,
+      null
+    ],
+    [
+      "2022-08-01",
+      20.33,
+      36.06,
+      null
+    ],
+    [
+      "2022-08-02",
+      21.12,
+      35.0,
+      null
+    ],
+    [
+      "2022-08-03",
+      23.58,
+      34.01,
+      null
+    ],
+    [
+      "2022-08-04",
+      25.28,
+      33.07,
+      190.1
+    ],
+    [
+      "2022-08-05",
+      24.96,
+      32.19,
+      188.63
+    ],
+    [
+      "2022-08-08",
+      22.88,
+      31.22,
+      187.16
+    ],
+    [
+      "2022-08-09",
+      22.4,
+      30.2,
+      185.68
+    ],
+    [
+      "2022-08-10",
+      23.82,
+      29.2,
+      184.21
+    ],
+    [
+      "2022-08-11",
+      27.48,
+      28.29,
+      182.76
+    ],
+    [
+      "2022-08-12",
+      21.35,
+      27.25,
+      181.27
+    ],
+    [
+      "2022-08-15",
+      18.88,
+      26.16,
+      179.77
+    ],
+    [
+      "2022-08-16",
+      19.94,
+      25.28,
+      178.28
+    ],
+    [
+      "2022-08-17",
+      19.68,
+      24.74,
+      176.78
+    ],
+    [
+      "2022-08-18",
+      19.16,
+      24.25,
+      175.28
+    ],
+    [
+      "2022-08-19",
+      18.17,
+      23.71,
+      173.77
+    ],
+    [
+      "2022-08-22",
+      16.29,
+      23.24,
+      172.25
+    ],
+    [
+      "2022-08-23",
+      15.76,
+      22.92,
+      170.74
+    ],
+    [
+      "2022-08-24",
+      16.71,
+      22.65,
+      169.22
+    ],
+    [
+      "2022-08-25",
+      17.27,
+      22.4,
+      167.71
+    ],
+    [
+      "2022-08-26",
+      16.93,
+      22.11,
+      166.2
+    ],
+    [
+      "2022-08-29",
+      16.13,
+      21.83,
+      164.69
+    ],
+    [
+      "2022-08-30",
+      16.01,
+      21.52,
+      163.17
+    ],
+    [
+      "2022-08-31",
+      16.48,
+      21.21,
+      161.65
+    ],
+    [
+      "2022-09-01",
+      15.99,
+      20.95,
+      160.13
+    ],
+    [
+      "2022-09-02",
+      15.14,
+      20.69,
+      158.62
+    ],
+    [
+      "2022-09-06",
+      15.61,
+      20.41,
+      157.1
+    ],
+    [
+      "2022-09-07",
+      15.66,
+      20.18,
+      155.59
+    ],
+    [
+      "2022-09-08",
+      15.37,
+      19.96,
+      154.06
+    ],
+    [
+      "2022-09-09",
+      15.57,
+      19.79,
+      152.55
+    ],
+    [
+      "2022-09-12",
+      17.03,
+      19.69,
+      151.03
+    ],
+    [
+      "2022-09-13",
+      15.38,
+      19.56,
+      149.51
+    ],
+    [
+      "2022-09-14",
+      15.66,
+      19.41,
+      148.0
+    ],
+    [
+      "2022-09-15",
+      15.92,
+      19.27,
+      146.49
+    ],
+    [
+      "2022-09-16",
+      15.88,
+      19.14,
+      144.97
+    ],
+    [
+      "2022-09-19",
+      14.92,
+      19.02,
+      143.45
+    ],
+    [
+      "2022-09-20",
+      15.09,
+      18.94,
+      141.93
+    ],
+    [
+      "2022-09-21",
+      14.52,
+      18.86,
+      140.41
+    ],
+    [
+      "2022-09-22",
+      13.28,
+      18.77,
+      138.89
+    ],
+    [
+      "2022-09-23",
+      13.29,
+      18.66,
+      137.37
+    ],
+    [
+      "2022-09-26",
+      13.7,
+      18.55,
+      135.84
+    ],
+    [
+      "2022-09-27",
+      13.93,
+      18.46,
+      134.31
+    ],
+    [
+      "2022-09-28",
+      12.88,
+      18.35,
+      132.79
+    ],
+    [
+      "2022-09-29",
+      11.5,
+      18.14,
+      131.25
+    ],
+    [
+      "2022-09-30",
+      11.48,
+      17.92,
+      129.71
+    ],
+    [
+      "2022-10-03",
+      13.05,
+      17.77,
+      128.18
+    ],
+    [
+      "2022-10-04",
+      13.85,
+      17.68,
+      126.66
+    ],
+    [
+      "2022-10-05",
+      14.11,
+      17.56,
+      125.14
+    ],
+    [
+      "2022-10-06",
+      14.14,
+      17.37,
+      123.61
+    ],
+    [
+      "2022-10-07",
+      12.52,
+      17.16,
+      122.08
+    ],
+    [
+      "2022-10-10",
+      12.05,
+      16.96,
+      120.55
+    ],
+    [
+      "2022-10-11",
+      11.84,
+      16.79,
+      119.02
+    ],
+    [
+      "2022-10-12",
+      12.15,
+      16.61,
+      117.48
+    ],
+    [
+      "2022-10-13",
+      12.64,
+      16.39,
+      115.95
+    ],
+    [
+      "2022-10-14",
+      11.43,
+      16.12,
+      114.41
+    ],
+    [
+      "2022-10-17",
+      11.46,
+      15.85,
+      112.91
+    ],
+    [
+      "2022-10-18",
+      10.99,
+      15.61,
+      111.33
+    ],
+    [
+      "2022-10-19",
+      10.38,
+      15.37,
+      110.05
+    ],
+    [
+      "2022-10-20",
+      10.4,
+      15.1,
+      108.82
+    ],
+    [
+      "2022-10-21",
+      10.23,
+      14.76,
+      107.55
+    ],
+    [
+      "2022-10-24",
+      9.91,
+      14.53,
+      106.24
+    ],
+    [
+      "2022-10-25",
+      10.56,
+      14.36,
+      105.36
+    ],
+    [
+      "2022-10-26",
+      10.35,
+      14.17,
+      104.6
+    ],
+    [
+      "2022-10-27",
+      9.93,
+      13.97,
+      103.86
+    ],
+    [
+      "2022-10-28",
+      9.76,
+      13.79,
+      103.08
+    ],
+    [
+      "2022-10-31",
+      10.06,
+      13.62,
+      102.14
+    ],
+    [
+      "2022-11-01",
+      10.12,
+      13.5,
+      101.21
+    ],
+    [
+      "2022-11-02",
+      8.83,
+      13.36,
+      100.27
+    ],
+    [
+      "2022-11-03",
+      8.54,
+      13.2,
+      99.23
+    ],
+    [
+      "2022-11-04",
+      9.28,
+      13.04,
+      98.12
+    ],
+    [
+      "2022-11-07",
+      9.42,
+      12.89,
+      96.65
+    ],
+    [
+      "2022-11-08",
+      9.38,
+      12.75,
+      95.29
+    ],
+    [
+      "2022-11-09",
+      8.96,
+      12.61,
+      93.88
+    ],
+    [
+      "2022-11-10",
+      9.49,
+      12.47,
+      92.39
+    ],
+    [
+      "2022-11-11",
+      10.88,
+      12.37,
+      90.97
+    ],
+    [
+      "2022-11-14",
+      10.24,
+      12.27,
+      89.2
+    ],
+    [
+      "2022-11-15",
+      10.86,
+      12.18,
+      87.25
+    ],
+    [
+      "2022-11-16",
+      10.58,
+      12.08,
+      85.01
+    ],
+    [
+      "2022-11-17",
+      9.42,
+      11.96,
+      82.83
+    ],
+    [
+      "2022-11-18",
+      9.34,
+      11.83,
+      81.15
+    ],
+    [
+      "2022-11-21",
+      10.08,
+      11.69,
+      79.38
+    ],
+    [
+      "2022-11-22",
+      11.74,
+      11.62,
+      77.64
+    ],
+    [
+      "2022-11-23",
+      11.67,
+      11.54,
+      75.84
+    ],
+    [
+      "2022-11-25",
+      13.12,
+      11.49,
+      74.23
+    ],
+    [
+      "2022-11-28",
+      12.8,
+      11.42,
+      72.66
+    ],
+    [
+      "2022-11-29",
+      13.37,
+      11.39,
+      71.23
+    ],
+    [
+      "2022-11-30",
+      13.04,
+      11.35,
+      70.36
+    ],
+    [
+      "2022-12-01",
+      12.8,
+      11.32,
+      69.5
+    ],
+    [
+      "2022-12-02",
+      12.8,
+      11.31,
+      68.66
+    ],
+    [
+      "2022-12-05",
+      11.86,
+      11.28,
+      67.88
+    ],
+    [
+      "2022-12-06",
+      11.89,
+      11.24,
+      67.1
+    ],
+    [
+      "2022-12-07",
+      11.61,
+      11.2,
+      66.39
+    ],
+    [
+      "2022-12-08",
+      11.16,
+      11.16,
+      65.67
+    ],
+    [
+      "2022-12-09",
+      11.27,
+      11.16,
+      64.98
+    ],
+    [
+      "2022-12-12",
+      10.45,
+      11.14,
+      64.27
+    ],
+    [
+      "2022-12-13",
+      9.54,
+      11.07,
+      63.62
+    ],
+    [
+      "2022-12-14",
+      9.48,
+      10.98,
+      62.97
+    ],
+    [
+      "2022-12-15",
+      9.28,
+      10.88,
+      62.36
+    ],
+    [
+      "2022-12-16",
+      9.09,
+      10.78,
+      61.68
+    ],
+    [
+      "2022-12-19",
+      8.7,
+      10.7,
+      61.02
+    ],
+    [
+      "2022-12-20",
+      8.43,
+      10.63,
+      60.41
+    ],
+    [
+      "2022-12-21",
+      8.34,
+      10.56,
+      59.75
+    ],
+    [
+      "2022-12-22",
+      8.36,
+      10.49,
+      58.97
+    ],
+    [
+      "2022-12-23",
+      9.5,
+      10.42,
+      58.13
+    ],
+    [
+      "2022-12-27",
+      8.65,
+      10.37,
+      57.24
+    ],
+    [
+      "2022-12-28",
+      8.61,
+      10.31,
+      56.26
+    ],
+    [
+      "2022-12-29",
+      8.69,
+      10.27,
+      55.23
+    ],
+    [
+      "2022-12-30",
+      9.28,
+      10.24,
+      54.09
+    ],
+    [
+      "2023-01-03",
+      9.26,
+      10.22,
+      52.86
+    ],
+    [
+      "2023-01-04",
+      9.71,
+      10.21,
+      51.29
+    ],
+    [
+      "2023-01-05",
+      9.44,
+      10.2,
+      49.64
+    ],
+    [
+      "2023-01-06",
+      8.16,
+      10.15,
+      48.16
+    ],
+    [
+      "2023-01-09",
+      7.87,
+      10.1,
+      46.8
+    ],
+    [
+      "2023-01-10",
+      7.91,
+      10.06,
+      45.49
+    ],
+    [
+      "2023-01-11",
+      7.8,
+      10.02,
+      44.36
+    ],
+    [
+      "2023-01-12",
+      8.2,
+      9.99,
+      43.36
+    ],
+    [
+      "2023-01-13",
+      9.02,
+      9.96,
+      42.08
+    ],
+    [
+      "2023-01-17",
+      9.59,
+      9.98,
+      40.88
+    ],
+    [
+      "2023-01-18",
+      9.64,
+      10.0,
+      39.78
+    ],
+    [
+      "2023-01-19",
+      9.3,
+      10.0,
+      38.74
+    ],
+    [
+      "2023-01-20",
+      9.32,
+      10.0,
+      37.62
+    ],
+    [
+      "2023-01-23",
+      8.99,
+      9.99,
+      36.5
+    ],
+    [
+      "2023-01-24",
+      8.8,
+      9.99,
+      35.49
+    ],
+    [
+      "2023-01-25",
+      8.96,
+      9.98,
+      34.56
+    ],
+    [
+      "2023-01-26",
+      9.28,
+      9.95,
+      33.7
+    ],
+    [
+      "2023-01-27",
+      9.24,
+      9.93,
+      32.85
+    ],
+    [
+      "2023-01-30",
+      8.82,
+      9.89,
+      31.99
+    ],
+    [
+      "2023-01-31",
+      9.08,
+      9.86,
+      31.17
+    ],
+    [
+      "2023-02-01",
+      9.26,
+      9.85,
+      30.4
+    ],
+    [
+      "2023-02-02",
+      9.75,
+      9.86,
+      29.66
+    ],
+    [
+      "2023-02-03",
+      9.8,
+      9.85,
+      28.91
+    ],
+    [
+      "2023-02-06",
+      9.85,
+      9.82,
+      28.16
+    ],
+    [
+      "2023-02-07",
+      9.75,
+      9.78,
+      27.43
+    ],
+    [
+      "2023-02-08",
+      9.53,
+      9.71,
+      26.77
+    ],
+    [
+      "2023-02-09",
+      9.39,
+      9.64,
+      26.1
+    ],
+    [
+      "2023-02-10",
+      8.95,
+      9.55,
+      25.47
+    ],
+    [
+      "2023-02-13",
+      8.57,
+      9.46,
+      24.85
+    ],
+    [
+      "2023-02-14",
+      8.34,
+      9.37,
+      24.22
+    ],
+    [
+      "2023-02-15",
+      8.64,
+      9.29,
+      23.61
+    ],
+    [
+      "2023-02-16",
+      8.46,
+      9.22,
+      23.04
+    ],
+    [
+      "2023-02-17",
+      8.71,
+      9.16,
+      22.46
+    ],
+    [
+      "2023-02-21",
+      8.46,
+      9.09,
+      21.9
+    ],
+    [
+      "2023-02-22",
+      8.2,
+      9.03,
+      21.37
+    ],
+    [
+      "2023-02-23",
+      8.24,
+      8.97,
+      20.9
+    ],
+    [
+      "2023-02-24",
+      8.32,
+      8.93,
+      20.52
+    ],
+    [
+      "2023-02-27",
+      8.47,
+      8.91,
+      20.19
+    ],
+    [
+      "2023-02-28",
+      8.41,
+      8.89,
+      19.91
+    ],
+    [
+      "2023-03-01",
+      8.25,
+      8.87,
+      19.58
+    ],
+    [
+      "2023-03-02",
+      8.0,
+      8.85,
+      19.16
+    ],
+    [
+      "2023-03-03",
+      8.3,
+      8.84,
+      18.79
+    ],
+    [
+      "2023-03-06",
+      7.91,
+      8.83,
+      18.41
+    ],
+    [
+      "2023-03-07",
+      7.61,
+      8.81,
+      18.06
+    ],
+    [
+      "2023-03-08",
+      7.5,
+      8.8,
+      17.72
+    ],
+    [
+      "2023-03-09",
+      7.31,
+      8.75,
+      17.39
+    ],
+    [
+      "2023-03-10",
+      6.94,
+      8.72,
+      17.07
+    ],
+    [
+      "2023-03-13",
+      7.1,
+      8.69,
+      16.76
+    ],
+    [
+      "2023-03-14",
+      6.9,
+      8.65,
+      16.44
+    ],
+    [
+      "2023-03-15",
+      6.74,
+      8.6,
+      16.1
+    ],
+    [
+      "2023-03-16",
+      7.03,
+      8.56,
+      15.77
+    ],
+    [
+      "2023-03-17",
+      6.6,
+      8.49,
+      15.44
+    ],
+    [
+      "2023-03-20",
+      6.35,
+      8.43,
+      15.1
+    ],
+    [
+      "2023-03-21",
+      6.45,
+      8.4,
+      14.77
+    ],
+    [
+      "2023-03-22",
+      6.36,
+      8.37,
+      14.48
+    ],
+    [
+      "2023-03-23",
+      6.66,
+      8.34,
+      14.28
+    ],
+    [
+      "2023-03-24",
+      6.05,
+      8.31,
+      14.09
+    ],
+    [
+      "2023-03-27",
+      5.99,
+      8.26,
+      13.9
+    ],
+    [
+      "2023-03-28",
+      5.71,
+      8.2,
+      13.72
+    ],
+    [
+      "2023-03-29",
+      5.85,
+      8.12,
+      13.6
+    ],
+    [
+      "2023-03-30",
+      6.0,
+      8.05,
+      13.47
+    ],
+    [
+      "2023-03-31",
+      6.06,
+      7.99,
+      13.36
+    ],
+    [
+      "2023-04-03",
+      6.05,
+      7.92,
+      13.23
+    ],
+    [
+      "2023-04-04",
+      5.89,
+      7.86,
+      13.11
+    ],
+    [
+      "2023-04-05",
+      5.67,
+      7.8,
+      12.98
+    ],
+    [
+      "2023-04-06",
+      5.82,
+      7.73,
+      12.85
+    ],
+    [
+      "2023-04-10",
+      5.55,
+      7.66,
+      12.73
+    ],
+    [
+      "2023-04-11",
+      6.02,
+      7.59,
+      12.62
+    ],
+    [
+      "2023-04-12",
+      5.79,
+      7.53,
+      12.5
+    ],
+    [
+      "2023-04-13",
+      6.4,
+      7.48,
+      12.4
+    ],
+    [
+      "2023-04-14",
+      6.09,
+      7.42,
+      12.3
+    ],
+    [
+      "2023-04-17",
+      5.98,
+      7.34,
+      12.21
+    ],
+    [
+      "2023-04-18",
+      5.84,
+      7.26,
+      12.13
+    ],
+    [
+      "2023-04-19",
+      5.93,
+      7.18,
+      12.04
+    ],
+    [
+      "2023-04-20",
+      5.85,
+      7.1,
+      11.96
+    ],
+    [
+      "2023-04-21",
+      5.61,
+      7.03,
+      11.87
+    ],
+    [
+      "2023-04-24",
+      5.56,
+      6.95,
+      11.79
+    ],
+    [
+      "2023-04-25",
+      5.53,
+      6.88,
+      11.71
+    ],
+    [
+      "2023-04-26",
+      5.53,
+      6.82,
+      11.64
+    ],
+    [
+      "2023-04-27",
+      5.56,
+      6.76,
+      11.58
+    ],
+    [
+      "2023-04-28",
+      5.6,
+      6.7,
+      11.52
+    ],
+    [
+      "2023-05-01",
+      5.55,
+      6.65,
+      11.45
+    ],
+    [
+      "2023-05-02",
+      5.64,
+      6.58,
+      11.38
+    ],
+    [
+      "2023-05-03",
+      5.4,
+      6.52,
+      11.32
+    ],
+    [
+      "2023-05-04",
+      5.15,
+      6.46,
+      11.25
+    ],
+    [
+      "2023-05-05",
+      5.03,
+      6.4,
+      11.17
+    ],
+    [
+      "2023-05-08",
+      5.15,
+      6.33,
+      11.08
+    ],
+    [
+      "2023-05-09",
+      4.82,
+      6.26,
+      11.0
+    ],
+    [
+      "2023-05-10",
+      4.71,
+      6.19,
+      10.93
+    ],
+    [
+      "2023-05-11",
+      4.63,
+      6.12,
+      10.86
+    ],
+    [
+      "2023-05-12",
+      4.84,
+      6.05,
+      10.76
+    ],
+    [
+      "2023-05-15",
+      4.7,
+      5.98,
+      10.67
+    ],
+    [
+      "2023-05-16",
+      4.64,
+      5.91,
+      10.58
+    ],
+    [
+      "2023-05-17",
+      4.7,
+      5.86,
+      10.51
+    ],
+    [
+      "2023-05-18",
+      4.73,
+      5.8,
+      10.42
+    ],
+    [
+      "2023-05-19",
+      4.54,
+      5.75,
+      10.33
+    ],
+    [
+      "2023-05-22",
+      4.73,
+      5.7,
+      10.23
+    ],
+    [
+      "2023-05-23",
+      5.39,
+      5.67,
+      10.13
+    ],
+    [
+      "2023-05-24",
+      5.29,
+      5.64,
+      10.04
+    ],
+    [
+      "2023-05-25",
+      5.3,
+      5.61,
+      9.95
+    ],
+    [
+      "2023-05-26",
+      5.38,
+      5.57,
+      9.86
+    ],
+    [
+      "2023-05-30",
+      5.47,
+      5.55,
+      9.75
+    ],
+    [
+      "2023-05-31",
+      5.42,
+      5.53,
+      9.67
+    ],
+    [
+      "2023-06-01",
+      5.42,
+      5.51,
+      9.61
+    ],
+    [
+      "2023-06-02",
+      5.79,
+      5.5,
+      9.54
+    ],
+    [
+      "2023-06-05",
+      6.4,
+      5.49,
+      9.47
+    ],
+    [
+      "2023-06-06",
+      6.02,
+      5.49,
+      9.4
+    ],
+    [
+      "2023-06-07",
+      5.75,
+      5.49,
+      9.34
+    ],
+    [
+      "2023-06-08",
+      5.73,
+      5.49,
+      9.29
+    ],
+    [
+      "2023-06-09",
+      5.69,
+      5.49,
+      9.24
+    ],
+    [
+      "2023-06-12",
+      5.78,
+      5.48,
+      9.18
+    ],
+    [
+      "2023-06-13",
+      5.67,
+      5.47,
+      9.12
+    ],
+    [
+      "2023-06-14",
+      5.42,
+      5.46,
+      9.07
+    ],
+    [
+      "2023-06-15",
+      5.5,
+      5.45,
+      9.01
+    ],
+    [
+      "2023-06-16",
+      5.7,
+      5.45,
+      8.96
+    ],
+    [
+      "2023-06-20",
+      5.53,
+      5.45,
+      8.91
+    ],
+    [
+      "2023-06-21",
+      5.58,
+      5.45,
+      8.86
+    ],
+    [
+      "2023-06-22",
+      5.25,
+      5.43,
+      8.81
+    ],
+    [
+      "2023-06-23",
+      4.93,
+      5.42,
+      8.75
+    ],
+    [
+      "2023-06-26",
+      5.08,
+      5.39,
+      8.7
+    ],
+    [
+      "2023-06-27",
+      4.92,
+      5.37,
+      8.65
+    ],
+    [
+      "2023-06-28",
+      5.12,
+      5.35,
+      8.6
+    ],
+    [
+      "2023-06-29",
+      5.26,
+      5.34,
+      8.54
+    ],
+    [
+      "2023-06-30",
+      5.33,
+      5.33,
+      8.49
+    ],
+    [
+      "2023-07-03",
+      5.39,
+      5.32,
+      8.44
+    ],
+    [
+      "2023-07-05",
+      5.45,
+      5.31,
+      8.38
+    ],
+    [
+      "2023-07-06",
+      5.49,
+      5.31,
+      8.33
+    ],
+    [
+      "2023-07-07",
+      5.51,
+      5.31,
+      8.28
+    ],
+    [
+      "2023-07-10",
+      5.47,
+      5.31,
+      8.24
+    ],
+    [
+      "2023-07-11",
+      5.58,
+      5.31,
+      8.19
+    ],
+    [
+      "2023-07-12",
+      6.0,
+      5.32,
+      8.15
+    ],
+    [
+      "2023-07-13",
+      6.22,
+      5.33,
+      8.12
+    ],
+    [
+      "2023-07-14",
+      5.46,
+      5.33,
+      8.08
+    ],
+    [
+      "2023-07-17",
+      5.55,
+      5.33,
+      8.04
+    ],
+    [
+      "2023-07-18",
+      5.46,
+      5.34,
+      8.0
+    ],
+    [
+      "2023-07-19",
+      5.6,
+      5.35,
+      7.97
+    ],
+    [
+      "2023-07-20",
+      5.52,
+      5.36,
+      7.94
+    ],
+    [
+      "2023-07-21",
+      5.38,
+      5.37,
+      7.9
+    ],
+    [
+      "2023-07-24",
+      5.32,
+      5.38,
+      7.86
+    ],
+    [
+      "2023-07-25",
+      5.45,
+      5.4,
+      7.82
+    ],
+    [
+      "2023-07-26",
+      5.73,
+      5.41,
+      7.77
+    ],
+    [
+      "2023-07-27",
+      5.69,
+      5.43,
+      7.74
+    ],
+    [
+      "2023-07-28",
+      6.06,
+      5.46,
+      7.71
+    ],
+    [
+      "2023-07-31",
+      6.23,
+      5.49,
+      7.68
+    ],
+    [
+      "2023-08-01",
+      6.5,
+      5.53,
+      7.65
+    ],
+    [
+      "2023-08-02",
+      6.76,
+      5.57,
+      7.62
+    ],
+    [
+      "2023-08-03",
+      6.91,
+      5.62,
+      7.6
+    ],
+    [
+      "2023-08-04",
+      7.0,
+      5.65,
+      7.58
+    ],
+    [
+      "2023-08-07",
+      6.71,
+      5.68,
+      7.56
+    ],
+    [
+      "2023-08-08",
+      6.55,
+      5.7,
+      7.54
+    ],
+    [
+      "2023-08-09",
+      6.73,
+      5.73,
+      7.52
+    ],
+    [
+      "2023-08-10",
+      7.5,
+      5.77,
+      7.51
+    ],
+    [
+      "2023-08-11",
+      7.46,
+      5.81,
+      7.49
+    ],
+    [
+      "2023-08-14",
+      7.37,
+      5.85,
+      7.48
+    ],
+    [
+      "2023-08-15",
+      6.87,
+      5.87,
+      7.46
+    ],
+    [
+      "2023-08-16",
+      6.89,
+      5.88,
+      7.45
+    ],
+    [
+      "2023-08-17",
+      7.13,
+      5.9,
+      7.43
+    ],
+    [
+      "2023-08-18",
+      6.67,
+      5.92,
+      7.42
+    ],
+    [
+      "2023-08-21",
+      6.57,
+      5.94,
+      7.4
+    ],
+    [
+      "2023-08-22",
+      6.63,
+      5.96,
+      7.39
+    ],
+    [
+      "2023-08-23",
+      6.82,
+      5.98,
+      7.38
+    ],
+    [
+      "2023-08-24",
+      6.78,
+      6.0,
+      7.37
+    ],
+    [
+      "2023-08-25",
+      7.21,
+      6.04,
+      7.35
+    ],
+    [
+      "2023-08-28",
+      6.99,
+      6.07,
+      7.34
+    ],
+    [
+      "2023-08-29",
+      7.25,
+      6.1,
+      7.33
+    ],
+    [
+      "2023-08-30",
+      6.99,
+      6.13,
+      7.32
+    ],
+    [
+      "2023-08-31",
+      7.7,
+      6.17,
+      7.31
+    ],
+    [
+      "2023-09-01",
+      8.05,
+      6.22,
+      7.29
+    ],
+    [
+      "2023-09-05",
+      8.1,
+      6.29,
+      7.28
+    ],
+    [
+      "2023-09-06",
+      7.6,
+      6.34,
+      7.27
+    ],
+    [
+      "2023-09-07",
+      7.08,
+      6.38,
+      7.25
+    ],
+    [
+      "2023-09-08",
+      7.01,
+      6.42,
+      7.24
+    ],
+    [
+      "2023-09-11",
+      6.52,
+      6.44,
+      7.22
+    ],
+    [
+      "2023-09-12",
+      6.4,
+      6.47,
+      7.2
+    ],
+    [
+      "2023-09-13",
+      6.48,
+      6.49,
+      7.17
+    ],
+    [
+      "2023-09-14",
+      6.15,
+      6.5,
+      7.14
+    ],
+    [
+      "2023-09-15",
+      6.13,
+      6.51,
+      7.1
+    ],
+    [
+      "2023-09-18",
+      6.07,
+      6.53,
+      7.07
+    ],
+    [
+      "2023-09-19",
+      6.1,
+      6.54,
+      7.03
+    ],
+    [
+      "2023-09-20",
+      6.13,
+      6.55,
+      7.0
+    ],
+    [
+      "2023-09-21",
+      6.52,
+      6.56,
+      6.97
+    ],
+    [
+      "2023-09-22",
+      6.34,
+      6.56,
+      6.94
+    ],
+    [
+      "2023-09-25",
+      6.03,
+      6.57,
+      6.91
+    ],
+    [
+      "2023-09-26",
+      6.34,
+      6.59,
+      6.88
+    ],
+    [
+      "2023-09-27",
+      6.14,
+      6.6,
+      6.86
+    ],
+    [
+      "2023-09-28",
+      6.2,
+      6.62,
+      6.83
+    ],
+    [
+      "2023-09-29",
+      6.2,
+      6.63,
+      6.81
+    ],
+    [
+      "2023-10-02",
+      5.98,
+      6.64,
+      6.8
+    ],
+    [
+      "2023-10-03",
+      5.74,
+      6.65,
+      6.78
+    ],
+    [
+      "2023-10-04",
+      5.5,
+      6.65,
+      6.76
+    ],
+    [
+      "2023-10-05",
+      5.12,
+      6.64,
+      6.74
+    ],
+    [
+      "2023-10-06",
+      5.55,
+      6.64,
+      6.72
+    ],
+    [
+      "2023-10-09",
+      5.25,
+      6.62,
+      6.71
+    ],
+    [
+      "2023-10-10",
+      5.57,
+      6.61,
+      6.69
+    ],
+    [
+      "2023-10-11",
+      5.37,
+      6.58,
+      6.68
+    ],
+    [
+      "2023-10-12",
+      5.14,
+      6.55,
+      6.66
+    ],
+    [
+      "2023-10-13",
+      5.12,
+      6.51,
+      6.64
+    ],
+    [
+      "2023-10-16",
+      5.29,
+      6.48,
+      6.62
+    ],
+    [
+      "2023-10-17",
+      5.37,
+      6.45,
+      6.6
+    ],
+    [
+      "2023-10-18",
+      5.2,
+      6.43,
+      6.58
+    ],
+    [
+      "2023-10-19",
+      5.16,
+      6.4,
+      6.56
+    ],
+    [
+      "2023-10-20",
+      5.1,
+      6.35,
+      6.54
+    ],
+    [
+      "2023-10-23",
+      5.06,
+      6.3,
+      6.52
+    ],
+    [
+      "2023-10-24",
+      5.29,
+      6.26,
+      6.5
+    ],
+    [
+      "2023-10-25",
+      5.09,
+      6.22,
+      6.49
+    ],
+    [
+      "2023-10-26",
+      5.03,
+      6.19,
+      6.48
+    ],
+    [
+      "2023-10-27",
+      5.24,
+      6.15,
+      6.46
+    ],
+    [
+      "2023-10-30",
+      5.11,
+      6.12,
+      6.45
+    ],
+    [
+      "2023-10-31",
+      5.27,
+      6.09,
+      6.43
+    ],
+    [
+      "2023-11-01",
+      5.1,
+      6.06,
+      6.41
+    ],
+    [
+      "2023-11-02",
+      5.55,
+      6.03,
+      6.39
+    ],
+    [
+      "2023-11-03",
+      5.65,
+      6.01,
+      6.37
+    ],
+    [
+      "2023-11-06",
+      5.78,
+      5.98,
+      6.35
+    ],
+    [
+      "2023-11-07",
+      5.88,
+      5.96,
+      6.33
+    ],
+    [
+      "2023-11-08",
+      6.05,
+      5.94,
+      6.32
+    ],
+    [
+      "2023-11-09",
+      5.86,
+      5.91,
+      6.31
+    ],
+    [
+      "2023-11-10",
+      5.66,
+      5.87,
+      6.29
+    ],
+    [
+      "2023-11-13",
+      5.2,
+      5.82,
+      6.27
+    ],
+    [
+      "2023-11-14",
+      5.99,
+      5.77,
+      6.25
+    ],
+    [
+      "2023-11-15",
+      6.03,
+      5.74,
+      6.24
+    ],
+    [
+      "2023-11-16",
+      5.57,
+      5.71,
+      6.22
+    ],
+    [
+      "2023-11-17",
+      6.12,
+      5.69,
+      6.2
+    ],
+    [
+      "2023-11-20",
+      6.12,
+      5.69,
+      6.18
+    ],
+    [
+      "2023-11-21",
+      6.0,
+      5.68,
+      6.16
+    ],
+    [
+      "2023-11-22",
+      5.6,
+      5.66,
+      6.14
+    ],
+    [
+      "2023-11-24",
+      5.7,
+      5.65,
+      6.12
+    ],
+    [
+      "2023-11-27",
+      6.19,
+      5.65,
+      6.11
+    ],
+    [
+      "2023-11-28",
+      6.22,
+      5.66,
+      6.09
+    ],
+    [
+      "2023-11-29",
+      6.2,
+      5.66,
+      6.08
+    ],
+    [
+      "2023-11-30",
+      6.0,
+      5.66,
+      6.07
+    ],
+    [
+      "2023-12-01",
+      6.19,
+      5.65,
+      6.06
+    ],
+    [
+      "2023-12-04",
+      6.52,
+      5.65,
+      6.05
+    ],
+    [
+      "2023-12-05",
+      6.3,
+      5.66,
+      6.04
+    ],
+    [
+      "2023-12-06",
+      6.51,
+      5.66,
+      6.03
+    ],
+    [
+      "2023-12-07",
+      6.8,
+      5.67,
+      6.02
+    ],
+    [
+      "2023-12-08",
+      7.76,
+      5.71,
+      6.02
+    ],
+    [
+      "2023-12-11",
+      7.74,
+      5.74,
+      6.01
+    ],
+    [
+      "2023-12-12",
+      7.5,
+      5.77,
+      6.01
+    ],
+    [
+      "2023-12-13",
+      7.71,
+      5.81,
+      6.01
+    ],
+    [
+      "2023-12-14",
+      7.77,
+      5.85,
+      6.0
+    ],
+    [
+      "2023-12-15",
+      8.03,
+      5.91,
+      6.0
+    ],
+    [
+      "2023-12-18",
+      8.29,
+      5.96,
+      6.0
+    ],
+    [
+      "2023-12-19",
+      8.4,
+      6.03,
+      6.01
+    ],
+    [
+      "2023-12-20",
+      8.6,
+      6.09,
+      6.01
+    ],
+    [
+      "2023-12-21",
+      8.15,
+      6.14,
+      6.01
+    ],
+    [
+      "2023-12-22",
+      8.34,
+      6.21,
+      6.02
+    ],
+    [
+      "2023-12-26",
+      8.21,
+      6.27,
+      6.03
+    ],
+    [
+      "2023-12-27",
+      8.5,
+      6.33,
+      6.03
+    ],
+    [
+      "2023-12-28",
+      8.68,
+      6.4,
+      6.04
+    ],
+    [
+      "2023-12-29",
+      8.38,
+      6.46,
+      6.05
+    ],
+    [
+      "2024-01-02",
+      8.62,
+      6.53,
+      6.06
+    ],
+    [
+      "2024-01-03",
+      8.4,
+      6.6,
+      6.07
+    ],
+    [
+      "2024-01-04",
+      8.29,
+      6.66,
+      6.08
+    ],
+    [
+      "2024-01-05",
+      8.29,
+      6.72,
+      6.09
+    ],
+    [
+      "2024-01-08",
+      8.93,
+      6.8,
+      6.1
+    ],
+    [
+      "2024-01-09",
+      8.85,
+      6.88,
+      6.11
+    ],
+    [
+      "2024-01-10",
+      9.71,
+      6.97,
+      6.13
+    ],
+    [
+      "2024-01-11",
+      9.4,
+      7.05,
+      6.14
+    ],
+    [
+      "2024-01-12",
+      9.76,
+      7.14,
+      6.17
+    ],
+    [
+      "2024-01-16",
+      10.23,
+      7.24,
+      6.19
+    ],
+    [
+      "2024-01-17",
+      10.41,
+      7.34,
+      6.21
+    ],
+    [
+      "2024-01-18",
+      11.95,
+      7.47,
+      6.24
+    ],
+    [
+      "2024-01-19",
+      12.3,
+      7.6,
+      6.27
+    ],
+    [
+      "2024-01-22",
+      14.76,
+      7.78,
+      6.31
+    ],
+    [
+      "2024-01-23",
+      16.81,
+      7.99,
+      6.37
+    ],
+    [
+      "2024-01-24",
+      17.6,
+      8.23,
+      6.43
+    ],
+    [
+      "2024-01-25",
+      16.75,
+      8.45,
+      6.48
+    ],
+    [
+      "2024-01-26",
+      14.72,
+      8.64,
+      6.53
+    ],
+    [
+      "2024-01-29",
+      17.7,
+      8.87,
+      6.59
+    ],
+    [
+      "2024-01-30",
+      17.48,
+      9.1,
+      6.64
+    ],
+    [
+      "2024-01-31",
+      17.31,
+      9.34,
+      6.7
+    ],
+    [
+      "2024-02-01",
+      18.23,
+      9.58,
+      6.76
+    ],
+    [
+      "2024-02-02",
+      22.01,
+      9.9,
+      6.84
+    ],
+    [
+      "2024-02-05",
+      22.1,
+      10.22,
+      6.92
+    ],
+    [
+      "2024-02-06",
+      22.97,
+      10.57,
+      7.01
+    ],
+    [
+      "2024-02-07",
+      21.98,
+      10.89,
+      7.09
+    ],
+    [
+      "2024-02-08",
+      20.11,
+      11.17,
+      7.16
+    ],
+    [
+      "2024-02-09",
+      20.67,
+      11.46,
+      7.24
+    ],
+    [
+      "2024-02-12",
+      20.95,
+      11.75,
+      7.32
+    ],
+    [
+      "2024-02-13",
+      20.67,
+      12.05,
+      7.39
+    ],
+    [
+      "2024-02-14",
+      21.8,
+      12.36,
+      7.47
+    ],
+    [
+      "2024-02-15",
+      22.75,
+      12.68,
+      7.56
+    ],
+    [
+      "2024-02-16",
+      26.1,
+      13.08,
+      7.66
+    ],
+    [
+      "2024-02-20",
+      24.08,
+      13.43,
+      7.75
+    ],
+    [
+      "2024-02-21",
+      22.63,
+      13.75,
+      7.84
+    ],
+    [
+      "2024-02-22",
+      22.28,
+      14.04,
+      7.93
+    ],
+    [
+      "2024-02-23",
+      23.58,
+      14.35,
+      8.02
+    ],
+    [
+      "2024-02-26",
+      23.36,
+      14.67,
+      8.11
+    ],
+    [
+      "2024-02-27",
+      25.4,
+      15.03,
+      8.22
+    ],
+    [
+      "2024-02-28",
+      26.18,
+      15.39,
+      8.32
+    ],
+    [
+      "2024-02-29",
+      26.19,
+      15.76,
+      8.43
+    ],
+    [
+      "2024-03-01",
+      22.82,
+      16.05,
+      8.52
+    ],
+    [
+      "2024-03-04",
+      21.9,
+      16.32,
+      8.61
+    ],
+    [
+      "2024-03-05",
+      36.0,
+      16.87,
+      8.76
+    ],
+    [
+      "2024-03-06",
+      31.62,
+      17.34,
+      8.9
+    ],
+    [
+      "2024-03-07",
+      37.1,
+      17.91,
+      9.06
+    ],
+    [
+      "2024-03-08",
+      36.0,
+      18.47,
+      9.22
+    ],
+    [
+      "2024-03-11",
+      33.65,
+      18.97,
+      9.36
+    ],
+    [
+      "2024-03-12",
+      35.14,
+      19.5,
+      9.51
+    ],
+    [
+      "2024-03-13",
+      33.78,
+      20.01,
+      9.65
+    ],
+    [
+      "2024-03-14",
+      35.22,
+      20.54,
+      9.8
+    ],
+    [
+      "2024-03-15",
+      34.23,
+      21.06,
+      9.94
+    ],
+    [
+      "2024-03-18",
+      33.27,
+      21.55,
+      10.08
+    ],
+    [
+      "2024-03-19",
+      33.2,
+      22.05,
+      10.22
+    ],
+    [
+      "2024-03-20",
+      35.03,
+      22.57,
+      10.37
+    ],
+    [
+      "2024-03-21",
+      36.99,
+      23.14,
+      10.52
+    ],
+    [
+      "2024-03-22",
+      40.23,
+      23.75,
+      10.69
+    ],
+    [
+      "2024-03-25",
+      39.58,
+      24.35,
+      10.86
+    ],
+    [
+      "2024-03-26",
+      40.75,
+      24.97,
+      11.04
+    ],
+    [
+      "2024-03-27",
+      39.57,
+      25.56,
+      11.21
+    ],
+    [
+      "2024-03-28",
+      37.14,
+      26.09,
+      11.36
+    ],
+    [
+      "2024-04-01",
+      36.0,
+      26.57,
+      11.51
+    ],
+    [
+      "2024-04-02",
+      35.92,
+      27.05,
+      11.67
+    ],
+    [
+      "2024-04-03",
+      37.5,
+      27.5,
+      11.83
+    ],
+    [
+      "2024-04-04",
+      37.77,
+      27.92,
+      11.99
+    ],
+    [
+      "2024-04-05",
+      37.68,
+      28.32,
+      12.15
+    ],
+    [
+      "2024-04-08",
+      38.0,
+      28.75,
+      12.31
+    ],
+    [
+      "2024-04-09",
+      36.0,
+      29.17,
+      12.46
+    ],
+    [
+      "2024-04-10",
+      36.28,
+      29.54,
+      12.62
+    ],
+    [
+      "2024-04-11",
+      36.5,
+      29.92,
+      12.78
+    ],
+    [
+      "2024-04-12",
+      34.62,
+      30.27,
+      12.93
+    ],
+    [
+      "2024-04-15",
+      35.03,
+      30.61,
+      13.07
+    ],
+    [
+      "2024-04-16",
+      35.48,
+      30.88,
+      13.23
+    ],
+    [
+      "2024-04-17",
+      33.9,
+      31.11,
+      13.37
+    ],
+    [
+      "2024-04-18",
+      34.11,
+      31.33,
+      13.51
+    ],
+    [
+      "2024-04-19",
+      33.31,
+      31.56,
+      13.65
+    ],
+    [
+      "2024-04-22",
+      36.22,
+      31.88,
+      13.81
+    ],
+    [
+      "2024-04-23",
+      41.87,
+      32.31,
+      13.99
+    ],
+    [
+      "2024-04-24",
+      42.91,
+      32.75,
+      14.17
+    ],
+    [
+      "2024-04-25",
+      42.52,
+      33.18,
+      14.36
+    ],
+    [
+      "2024-04-26",
+      43.72,
+      33.62,
+      14.55
+    ],
+    [
+      "2024-04-29",
+      48.24,
+      34.13,
+      14.76
+    ],
+    [
+      "2024-04-30",
+      43.8,
+      34.49,
+      14.95
+    ],
+    [
+      "2024-05-01",
+      44.97,
+      34.9,
+      15.15
+    ],
+    [
+      "2024-05-02",
+      43.88,
+      35.33,
+      15.34
+    ],
+    [
+      "2024-05-03",
+      45.14,
+      35.79,
+      15.54
+    ],
+    [
+      "2024-05-06",
+      46.54,
+      36.25,
+      15.74
+    ],
+    [
+      "2024-05-07",
+      52.3,
+      36.82,
+      15.98
+    ],
+    [
+      "2024-05-08",
+      50.78,
+      37.33,
+      16.2
+    ],
+    [
+      "2024-05-09",
+      53.09,
+      37.87,
+      16.44
+    ],
+    [
+      "2024-05-10",
+      49.09,
+      38.33,
+      16.66
+    ],
+    [
+      "2024-05-13",
+      48.97,
+      38.85,
+      16.87
+    ],
+    [
+      "2024-05-14",
+      49.1,
+      39.39,
+      17.09
+    ],
+    [
+      "2024-05-15",
+      49.7,
+      39.67,
+      17.31
+    ],
+    [
+      "2024-05-16",
+      49.95,
+      40.04,
+      17.52
+    ],
+    [
+      "2024-05-17",
+      49.83,
+      40.29,
+      17.74
+    ],
+    [
+      "2024-05-20",
+      46.65,
+      40.5,
+      17.94
+    ],
+    [
+      "2024-05-21",
+      45.21,
+      40.73,
+      18.13
+    ],
+    [
+      "2024-05-22",
+      44.46,
+      40.92,
+      18.32
+    ],
+    [
+      "2024-05-23",
+      43.6,
+      41.12,
+      18.5
+    ],
+    [
+      "2024-05-24",
+      42.17,
+      41.26,
+      18.68
+    ],
+    [
+      "2024-05-28",
+      43.11,
+      41.43,
+      18.86
+    ],
+    [
+      "2024-05-29",
+      44.54,
+      41.66,
+      19.04
+    ],
+    [
+      "2024-05-30",
+      47.47,
+      41.94,
+      19.24
+    ],
+    [
+      "2024-05-31",
+      45.06,
+      42.15,
+      19.44
+    ],
+    [
+      "2024-06-03",
+      37.92,
+      42.16,
+      19.59
+    ],
+    [
+      "2024-06-04",
+      34.96,
+      42.06,
+      19.73
+    ],
+    [
+      "2024-06-05",
+      37.76,
+      42.02,
+      19.89
+    ],
+    [
+      "2024-06-06",
+      36.7,
+      41.94,
+      20.04
+    ],
+    [
+      "2024-06-07",
+      37.62,
+      41.9,
+      20.19
+    ],
+    [
+      "2024-06-10",
+      36.5,
+      41.89,
+      20.34
+    ],
+    [
+      "2024-06-11",
+      35.04,
+      41.87,
+      20.48
+    ],
+    [
+      "2024-06-12",
+      38.02,
+      41.91,
+      20.63
+    ],
+    [
+      "2024-06-13",
+      36.17,
+      41.89,
+      20.78
+    ],
+    [
+      "2024-06-14",
+      37.23,
+      41.87,
+      20.93
+    ],
+    [
+      "2024-06-17",
+      37.83,
+      41.88,
+      21.08
+    ],
+    [
+      "2024-06-18",
+      38.17,
+      41.88,
+      21.24
+    ],
+    [
+      "2024-06-20",
+      38.18,
+      41.92,
+      21.39
+    ],
+    [
+      "2024-06-21",
+      39.49,
+      41.99,
+      21.54
+    ],
+    [
+      "2024-06-24",
+      37.6,
+      42.01,
+      21.69
+    ],
+    [
+      "2024-06-25",
+      35.87,
+      42.04,
+      21.84
+    ],
+    [
+      "2024-06-26",
+      30.58,
+      41.95,
+      21.96
+    ],
+    [
+      "2024-06-27",
+      29.89,
+      41.83,
+      22.07
+    ],
+    [
+      "2024-06-28",
+      30.3,
+      41.76,
+      22.19
+    ],
+    [
+      "2024-07-01",
+      30.09,
+      41.68,
+      22.31
+    ],
+    [
+      "2024-07-02",
+      29.99,
+      41.62,
+      22.43
+    ],
+    [
+      "2024-07-03",
+      30.5,
+      41.5,
+      22.55
+    ],
+    [
+      "2024-07-05",
+      30.46,
+      41.27,
+      22.67
+    ],
+    [
+      "2024-07-08",
+      31.98,
+      41.05,
+      22.8
+    ],
+    [
+      "2024-07-09",
+      34.59,
+      40.9,
+      22.95
+    ],
+    [
+      "2024-07-10",
+      34.69,
+      40.72,
+      23.09
+    ],
+    [
+      "2024-07-11",
+      36.34,
+      40.48,
+      23.24
+    ],
+    [
+      "2024-07-12",
+      37.25,
+      40.35,
+      23.39
+    ],
+    [
+      "2024-07-15",
+      38.54,
+      40.22,
+      23.55
+    ],
+    [
+      "2024-07-16",
+      41.68,
+      40.17,
+      23.73
+    ],
+    [
+      "2024-07-17",
+      41.27,
+      40.1,
+      23.91
+    ],
+    [
+      "2024-07-18",
+      37.4,
+      39.91,
+      24.06
+    ],
+    [
+      "2024-07-19",
+      37.5,
+      39.62,
+      24.22
+    ],
+    [
+      "2024-07-22",
+      38.43,
+      39.37,
+      24.38
+    ],
+    [
+      "2024-07-23",
+      38.28,
+      39.07,
+      24.55
+    ],
+    [
+      "2024-07-24",
+      35.37,
+      38.8,
+      24.7
+    ],
+    [
+      "2024-07-25",
+      34.53,
+      38.51,
+      24.84
+    ],
+    [
+      "2024-07-26",
+      35.95,
+      38.25,
+      25.0
+    ],
+    [
+      "2024-07-29",
+      36.35,
+      37.98,
+      25.15
+    ],
+    [
+      "2024-07-30",
+      34.34,
+      37.67,
+      25.3
+    ],
+    [
+      "2024-07-31",
+      36.36,
+      37.4,
+      25.45
+    ],
+    [
+      "2024-08-01",
+      34.81,
+      37.16,
+      25.6
+    ],
+    [
+      "2024-08-02",
+      33.3,
+      36.92,
+      25.74
+    ],
+    [
+      "2024-08-05",
+      30.58,
+      36.65,
+      25.87
+    ],
+    [
+      "2024-08-06",
+      31.21,
+      36.4,
+      26.0
+    ],
+    [
+      "2024-08-07",
+      31.46,
+      36.19,
+      26.13
+    ],
+    [
+      "2024-08-08",
+      31.98,
+      35.96,
+      26.26
+    ],
+    [
+      "2024-08-09",
+      30.53,
+      35.68,
+      26.39
+    ],
+    [
+      "2024-08-12",
+      30.61,
+      35.35,
+      26.52
+    ],
+    [
+      "2024-08-13",
+      34.9,
+      35.14,
+      26.67
+    ],
+    [
+      "2024-08-14",
+      35.78,
+      35.1,
+      26.82
+    ],
+    [
+      "2024-08-15",
+      36.05,
+      35.12,
+      26.97
+    ],
+    [
+      "2024-08-16",
+      36.2,
+      35.09,
+      27.13
+    ],
+    [
+      "2024-08-19",
+      37.8,
+      35.11,
+      27.29
+    ],
+    [
+      "2024-08-20",
+      37.08,
+      35.1,
+      27.45
+    ],
+    [
+      "2024-08-21",
+      38.39,
+      35.14,
+      27.62
+    ],
+    [
+      "2024-08-22",
+      38.42,
+      35.21,
+      27.78
+    ],
+    [
+      "2024-08-23",
+      39.44,
+      35.23,
+      27.95
+    ],
+    [
+      "2024-08-26",
+      39.88,
+      35.31,
+      28.12
+    ],
+    [
+      "2024-08-27",
+      37.4,
+      35.31,
+      28.27
+    ],
+    [
+      "2024-08-28",
+      35.88,
+      35.27,
+      28.42
+    ],
+    [
+      "2024-08-29",
+      37.31,
+      35.26,
+      28.58
+    ],
+    [
+      "2024-08-30",
+      37.6,
+      35.24,
+      28.74
+    ],
+    [
+      "2024-09-03",
+      38.19,
+      35.22,
+      28.91
+    ],
+    [
+      "2024-09-04",
+      36.86,
+      35.2,
+      29.06
+    ],
+    [
+      "2024-09-05",
+      36.17,
+      35.21,
+      29.21
+    ],
+    [
+      "2024-09-06",
+      34.39,
+      35.29,
+      29.35
+    ],
+    [
+      "2024-09-09",
+      33.38,
+      35.36,
+      29.49
+    ],
+    [
+      "2024-09-10",
+      33.38,
+      35.42,
+      29.63
+    ],
+    [
+      "2024-09-11",
+      33.86,
+      35.49,
+      29.77
+    ],
+    [
+      "2024-09-12",
+      35.06,
+      35.59,
+      29.92
+    ],
+    [
+      "2024-09-13",
+      36.15,
+      35.71,
+      30.07
+    ],
+    [
+      "2024-09-16",
+      36.9,
+      35.84,
+      30.22
+    ],
+    [
+      "2024-09-17",
+      38.18,
+      35.96,
+      30.38
+    ],
+    [
+      "2024-09-18",
+      38.33,
+      36.03,
+      30.54
+    ],
+    [
+      "2024-09-19",
+      41.31,
+      36.17,
+      30.72
+    ],
+    [
+      "2024-09-20",
+      41.2,
+      36.26,
+      30.89
+    ],
+    [
+      "2024-09-23",
+      40.01,
+      36.32,
+      31.06
+    ],
+    [
+      "2024-09-24",
+      40.77,
+      36.36,
+      31.23
+    ],
+    [
+      "2024-09-25",
+      40.65,
+      36.34,
+      31.4
+    ],
+    [
+      "2024-09-26",
+      39.97,
+      36.32,
+      31.56
+    ],
+    [
+      "2024-09-27",
+      42.06,
+      36.41,
+      31.73
+    ],
+    [
+      "2024-09-30",
+      39.96,
+      36.46,
+      31.89
+    ],
+    [
+      "2024-10-01",
+      40.0,
+      36.49,
+      32.05
+    ],
+    [
+      "2024-10-02",
+      40.34,
+      36.53,
+      32.22
+    ],
+    [
+      "2024-10-03",
+      39.92,
+      36.62,
+      32.38
+    ],
+    [
+      "2024-10-04",
+      43.07,
+      36.79,
+      32.55
+    ],
+    [
+      "2024-10-07",
+      42.73,
+      36.93,
+      32.72
+    ],
+    [
+      "2024-10-08",
+      44.5,
+      37.09,
+      32.9
+    ],
+    [
+      "2024-10-09",
+      43.18,
+      37.27,
+      33.08
+    ],
+    [
+      "2024-10-10",
+      41.24,
+      37.37,
+      33.24
+    ],
+    [
+      "2024-10-11",
+      43.78,
+      37.55,
+      33.42
+    ],
+    [
+      "2024-10-14",
+      43.81,
+      37.76,
+      33.6
+    ],
+    [
+      "2024-10-15",
+      45.83,
+      38.06,
+      33.78
+    ],
+    [
+      "2024-10-16",
+      49.38,
+      38.43,
+      33.99
+    ],
+    [
+      "2024-10-17",
+      42.79,
+      38.65,
+      34.16
+    ],
+    [
+      "2024-10-18",
+      42.63,
+      38.86,
+      34.33
+    ],
+    [
+      "2024-10-21",
+      43.78,
+      39.13,
+      34.51
+    ],
+    [
+      "2024-10-22",
+      42.83,
+      39.37,
+      34.68
+    ],
+    [
+      "2024-10-23",
+      40.28,
+      39.48,
+      34.84
+    ],
+    [
+      "2024-10-24",
+      39.88,
+      39.56,
+      34.99
+    ],
+    [
+      "2024-10-25",
+      38.74,
+      39.62,
+      35.14
+    ],
+    [
+      "2024-10-28",
+      39.27,
+      39.68,
+      35.29
+    ],
+    [
+      "2024-10-29",
+      39.19,
+      39.71,
+      35.43
+    ],
+    [
+      "2024-10-30",
+      39.91,
+      39.76,
+      35.58
+    ],
+    [
+      "2024-10-31",
+      38.56,
+      39.77,
+      35.72
+    ],
+    [
+      "2024-11-01",
+      38.21,
+      39.76,
+      35.85
+    ],
+    [
+      "2024-11-04",
+      37.67,
+      39.73,
+      35.98
+    ],
+    [
+      "2024-11-05",
+      37.66,
+      39.68,
+      36.09
+    ],
+    [
+      "2024-11-06",
+      45.87,
+      39.85,
+      36.24
+    ],
+    [
+      "2024-11-07",
+      45.91,
+      40.05,
+      36.38
+    ],
+    [
+      "2024-11-08",
+      53.0,
+      40.37,
+      36.56
+    ],
+    [
+      "2024-11-11",
+      59.26,
+      40.8,
+      36.79
+    ],
+    [
+      "2024-11-12",
+      62.8,
+      41.29,
+      37.01
+    ],
+    [
+      "2024-11-13",
+      90.43,
+      42.36,
+      37.38
+    ],
+    [
+      "2024-11-14",
+      79.96,
+      43.24,
+      37.69
+    ],
+    [
+      "2024-11-15",
+      80.06,
+      44.15,
+      38.0
+    ],
+    [
+      "2024-11-18",
+      79.68,
+      45.08,
+      38.29
+    ],
+    [
+      "2024-11-19",
+      81.53,
+      46.04,
+      38.58
+    ],
+    [
+      "2024-11-20",
+      78.0,
+      46.92,
+      38.86
+    ],
+    [
+      "2024-11-21",
+      82.42,
+      47.87,
+      39.16
+    ],
+    [
+      "2024-11-22",
+      86.26,
+      48.87,
+      39.49
+    ],
+    [
+      "2024-11-25",
+      85.22,
+      49.84,
+      39.81
+    ],
+    [
+      "2024-11-26",
+      87.89,
+      50.83,
+      40.15
+    ],
+    [
+      "2024-11-27",
+      91.03,
+      51.89,
+      40.5
+    ],
+    [
+      "2024-11-29",
+      98.68,
+      53.04,
+      40.89
+    ],
+    [
+      "2024-12-02",
+      93.01,
+      54.07,
+      41.24
+    ],
+    [
+      "2024-12-03",
+      89.64,
+      55.06,
+      41.55
+    ],
+    [
+      "2024-12-04",
+      87.73,
+      56.0,
+      41.87
+    ],
+    [
+      "2024-12-05",
+      88.46,
+      56.96,
+      42.2
+    ],
+    [
+      "2024-12-06",
+      91.97,
+      58.0,
+      42.55
+    ],
+    [
+      "2024-12-09",
+      84.28,
+      58.84,
+      42.85
+    ],
+    [
+      "2024-12-10",
+      84.03,
+      59.73,
+      43.16
+    ],
+    [
+      "2024-12-11",
+      88.66,
+      60.7,
+      43.47
+    ],
+    [
+      "2024-12-12",
+      85.99,
+      61.61,
+      43.77
+    ],
+    [
+      "2024-12-13",
+      91.7,
+      62.65,
+      44.1
+    ],
+    [
+      "2024-12-16",
+      102.04,
+      63.83,
+      44.5
+    ],
+    [
+      "2024-12-17",
+      103.96,
+      65.05,
+      44.91
+    ],
+    [
+      "2024-12-18",
+      89.63,
+      65.95,
+      45.17
+    ],
+    [
+      "2024-12-19",
+      86.72,
+      66.83,
+      45.45
+    ],
+    [
+      "2024-12-20",
+      87.84,
+      67.76,
+      45.7
+    ],
+    [
+      "2024-12-23",
+      88.73,
+      68.66,
+      45.97
+    ],
+    [
+      "2024-12-24",
+      96.69,
+      69.71,
+      46.28
+    ],
+    [
+      "2024-12-26",
+      100.55,
+      70.81,
+      46.61
+    ],
+    [
+      "2024-12-27",
+      97.81,
+      71.78,
+      46.93
+    ],
+    [
+      "2024-12-30",
+      94.46,
+      72.81,
+      47.23
+    ],
+    [
+      "2024-12-31",
+      86.92,
+      73.7,
+      47.49
+    ],
+    [
+      "2025-01-02",
+      86.31,
+      74.55,
+      47.75
+    ],
+    [
+      "2025-01-03",
+      89.87,
+      75.49,
+      48.04
+    ],
+    [
+      "2025-01-06",
+      91.23,
+      76.51,
+      48.32
+    ],
+    [
+      "2025-01-07",
+      85.77,
+      77.42,
+      48.56
+    ],
+    [
+      "2025-01-08",
+      85.26,
+      78.35,
+      48.79
+    ],
+    [
+      "2025-01-10",
+      84.86,
+      79.27,
+      49.01
+    ],
+    [
+      "2025-01-13",
+      81.87,
+      80.12,
+      49.22
+    ],
+    [
+      "2025-01-14",
+      82.02,
+      80.96,
+      49.43
+    ],
+    [
+      "2025-01-15",
+      86.79,
+      81.93,
+      49.68
+    ],
+    [
+      "2025-01-16",
+      89.32,
+      82.95,
+      49.95
+    ],
+    [
+      "2025-01-17",
+      87.85,
+      83.95,
+      50.21
+    ],
+    [
+      "2025-01-21",
+      90.92,
+      85.02,
+      50.47
+    ],
+    [
+      "2025-01-22",
+      95.15,
+      86.0,
+      50.76
+    ],
+    [
+      "2025-01-23",
+      93.03,
+      86.95,
+      51.04
+    ],
+    [
+      "2025-01-24",
+      89.89,
+      87.68,
+      51.3
+    ],
+    [
+      "2025-01-27",
+      88.32,
+      88.26,
+      51.56
+    ],
+    [
+      "2025-01-28",
+      93.3,
+      88.87,
+      51.84
+    ],
+    [
+      "2025-01-29",
+      95.69,
+      88.98,
+      52.14
+    ],
+    [
+      "2025-01-30",
+      96.94,
+      89.32,
+      52.45
+    ],
+    [
+      "2025-01-31",
+      95.82,
+      89.63,
+      52.76
+    ],
+    [
+      "2025-02-03",
+      91.08,
+      89.86,
+      53.03
+    ],
+    [
+      "2025-02-04",
+      98.8,
+      90.21,
+      53.36
+    ],
+    [
+      "2025-02-05",
+      103.64,
+      90.72,
+      53.71
+    ],
+    [
+      "2025-02-06",
+      108.31,
+      91.24,
+      54.08
+    ],
+    [
+      "2025-02-07",
+      103.02,
+      91.57,
+      54.41
+    ],
+    [
+      "2025-02-10",
+      109.4,
+      92.06,
+      54.75
+    ],
+    [
+      "2025-02-11",
+      103.78,
+      92.38,
+      55.06
+    ],
+    [
+      "2025-02-12",
+      108.32,
+      92.72,
+      55.39
+    ],
+    [
+      "2025-02-13",
+      109.92,
+      92.95,
+      55.72
+    ],
+    [
+      "2025-02-14",
+      117.3,
+      93.43,
+      56.06
+    ],
+    [
+      "2025-02-18",
+      115.65,
+      93.95,
+      56.42
+    ],
+    [
+      "2025-02-19",
+      113.12,
+      94.46,
+      56.76
+    ],
+    [
+      "2025-02-20",
+      109.73,
+      94.89,
+      57.09
+    ],
+    [
+      "2025-02-21",
+      100.9,
+      95.06,
+      57.37
+    ],
+    [
+      "2025-02-24",
+      101.07,
+      95.4,
+      57.64
+    ],
+    [
+      "2025-02-25",
+      99.6,
+      95.71,
+      57.88
+    ],
+    [
+      "2025-02-26",
+      103.55,
+      96.01,
+      58.14
+    ],
+    [
+      "2025-02-27",
+      96.74,
+      96.22,
+      58.36
+    ],
+    [
+      "2025-02-28",
+      100.66,
+      96.4,
+      58.62
+    ],
+    [
+      "2025-03-03",
+      95.03,
+      96.26,
+      58.85
+    ],
+    [
+      "2025-03-04",
+      90.38,
+      95.99,
+      59.06
+    ],
+    [
+      "2025-03-05",
+      91.42,
+      96.03,
+      59.26
+    ],
+    [
+      "2025-03-06",
+      83.21,
+      95.96,
+      59.43
+    ],
+    [
+      "2025-03-07",
+      83.36,
+      95.87,
+      59.6
+    ],
+    [
+      "2025-03-10",
+      81.92,
+      95.73,
+      59.77
+    ],
+    [
+      "2025-03-11",
+      81.82,
+      95.43,
+      59.96
+    ],
+    [
+      "2025-03-12",
+      86.06,
+      95.14,
+      60.17
+    ],
+    [
+      "2025-03-13",
+      81.8,
+      94.82,
+      60.36
+    ],
+    [
+      "2025-03-14",
+      86.3,
+      94.66,
+      60.58
+    ],
+    [
+      "2025-03-17",
+      87.24,
+      94.67,
+      60.8
+    ],
+    [
+      "2025-03-18",
+      83.44,
+      94.61,
+      60.99
+    ],
+    [
+      "2025-03-19",
+      86.09,
+      94.53,
+      61.19
+    ],
+    [
+      "2025-03-20",
+      87.79,
+      94.46,
+      61.4
+    ],
+    [
+      "2025-03-21",
+      90.57,
+      94.56,
+      61.66
+    ],
+    [
+      "2025-03-24",
+      96.73,
+      94.79,
+      61.97
+    ],
+    [
+      "2025-03-25",
+      96.9,
+      95.03,
+      62.27
+    ],
+    [
+      "2025-03-26",
+      92.49,
+      95.24,
+      62.55
+    ],
+    [
+      "2025-03-27",
+      88.25,
+      95.37,
+      62.8
+    ],
+    [
+      "2025-03-28",
+      84.55,
+      95.32,
+      63.04
+    ],
+    [
+      "2025-03-31",
+      82.66,
+      95.19,
+      63.28
+    ],
+    [
+      "2025-04-01",
+      84.53,
+      95.12,
+      63.51
+    ],
+    [
+      "2025-04-02",
+      85.09,
+      95.01,
+      63.75
+    ],
+    [
+      "2025-04-03",
+      79.39,
+      94.69,
+      63.97
+    ],
+    [
+      "2025-04-04",
+      70.8,
+      94.25,
+      64.13
+    ],
+    [
+      "2025-04-07",
+      76.22,
+      93.97,
+      64.32
+    ],
+    [
+      "2025-04-08",
+      74.18,
+      93.69,
+      64.5
+    ],
+    [
+      "2025-04-09",
+      87.3,
+      93.57,
+      64.74
+    ],
+    [
+      "2025-04-10",
+      82.51,
+      93.31,
+      64.96
+    ],
+    [
+      "2025-04-11",
+      83.03,
+      93.03,
+      65.2
+    ],
+    [
+      "2025-04-14",
+      83.2,
+      92.78,
+      65.46
+    ],
+    [
+      "2025-04-15",
+      83.84,
+      92.63,
+      65.73
+    ],
+    [
+      "2025-04-16",
+      82.17,
+      92.3,
+      65.99
+    ],
+    [
+      "2025-04-17",
+      84.27,
+      91.91,
+      66.26
+    ],
+    [
+      "2025-04-21",
+      80.66,
+      91.36,
+      66.52
+    ],
+    [
+      "2025-04-22",
+      83.37,
+      90.97,
+      66.78
+    ],
+    [
+      "2025-04-23",
+      85.91,
+      90.5,
+      67.06
+    ],
+    [
+      "2025-04-24",
+      89.96,
+      90.22,
+      67.35
+    ],
+    [
+      "2025-04-25",
+      92.93,
+      89.91,
+      67.64
+    ],
+    [
+      "2025-04-28",
+      93.68,
+      89.59,
+      67.93
+    ],
+    [
+      "2025-04-29",
+      95.22,
+      89.15,
+      68.23
+    ],
+    [
+      "2025-04-30",
+      94.82,
+      88.73,
+      68.52
+    ],
+    [
+      "2025-05-01",
+      96.43,
+      88.4,
+      68.81
+    ],
+    [
+      "2025-05-02",
+      104.72,
+      88.3,
+      69.12
+    ],
+    [
+      "2025-05-05",
+      104.75,
+      88.37,
+      69.44
+    ],
+    [
+      "2025-05-06",
+      105.92,
+      88.47,
+      69.78
+    ],
+    [
+      "2025-05-07",
+      107.83,
+      88.63,
+      70.13
+    ],
+    [
+      "2025-05-08",
+      152.73,
+      89.62,
+      70.7
+    ],
+    [
+      "2025-05-09",
+      167.22,
+      91.03,
+      71.35
+    ],
+    [
+      "2025-05-12",
+      171.92,
+      92.45,
+      72.03
+    ],
+    [
+      "2025-05-13",
+      181.76,
+      94.19,
+      72.77
+    ],
+    [
+      "2025-05-14",
+      183.32,
+      96.05,
+      73.5
+    ],
+    [
+      "2025-05-15",
+      183.85,
+      97.89,
+      74.24
+    ],
+    [
+      "2025-05-16",
+      185.45,
+      99.94,
+      75.0
+    ],
+    [
+      "2025-05-19",
+      182.97,
+      101.93,
+      75.73
+    ],
+    [
+      "2025-05-20",
+      196.04,
+      104.21,
+      76.54
+    ],
+    [
+      "2025-05-21",
+      193.7,
+      106.45,
+      77.34
+    ],
+    [
+      "2025-05-22",
+      198.85,
+      108.71,
+      78.18
+    ],
+    [
+      "2025-05-23",
+      197.32,
+      111.02,
+      79.01
+    ],
+    [
+      "2025-05-27",
+      209.0,
+      113.47,
+      79.9
+    ],
+    [
+      "2025-05-28",
+      217.16,
+      116.07,
+      80.82
+    ],
+    [
+      "2025-05-29",
+      208.32,
+      118.57,
+      81.71
+    ],
+    [
+      "2025-05-30",
+      200.82,
+      120.86,
+      82.56
+    ],
+    [
+      "2025-06-02",
+      209.08,
+      123.29,
+      83.44
+    ],
+    [
+      "2025-06-03",
+      210.32,
+      125.68,
+      84.31
+    ],
+    [
+      "2025-06-04",
+      207.05,
+      127.89,
+      85.16
+    ],
+    [
+      "2025-06-05",
+      209.17,
+      130.13,
+      86.03
+    ],
+    [
+      "2025-06-06",
+      221.55,
+      132.72,
+      86.95
+    ],
+    [
+      "2025-06-09",
+      224.72,
+      135.45,
+      87.88
+    ],
+    [
+      "2025-06-10",
+      224.58,
+      138.25,
+      88.82
+    ],
+    [
+      "2025-06-11",
+      231.67,
+      141.23,
+      89.78
+    ],
+    [
+      "2025-06-12",
+      238.25,
+      144.3,
+      90.78
+    ],
+    [
+      "2025-06-13",
+      208.24,
+      146.76,
+      91.62
+    ],
+    [
+      "2025-06-16",
+      216.68,
+      149.51,
+      92.51
+    ],
+    [
+      "2025-06-17",
+      204.26,
+      152.18,
+      93.36
+    ],
+    [
+      "2025-06-18",
+      200.88,
+      154.67,
+      94.17
+    ],
+    [
+      "2025-06-20",
+      211.0,
+      157.41,
+      95.04
+    ],
+    [
+      "2025-06-23",
+      214.73,
+      159.96,
+      95.92
+    ],
+    [
+      "2025-06-24",
+      229.42,
+      162.89,
+      96.89
+    ],
+    [
+      "2025-06-25",
+      226.11,
+      165.76,
+      97.84
+    ],
+    [
+      "2025-06-26",
+      243.03,
+      168.95,
+      98.88
+    ],
+    [
+      "2025-06-27",
+      249.64,
+      172.27,
+      99.96
+    ],
+    [
+      "2025-06-30",
+      268.41,
+      175.99,
+      101.14
+    ],
+    [
+      "2025-07-01",
+      260.67,
+      179.52,
+      102.27
+    ],
+    [
+      "2025-07-02",
+      270.03,
+      183.31,
+      103.44
+    ],
+    [
+      "2025-07-03",
+      281.79,
+      187.28,
+      104.67
+    ],
+    [
+      "2025-07-07",
+      279.8,
+      191.16,
+      105.89
+    ],
+    [
+      "2025-07-08",
+      262.07,
+      194.6,
+      107.01
+    ],
+    [
+      "2025-07-09",
+      244.99,
+      197.64,
+      108.04
+    ],
+    [
+      "2025-07-10",
+      229.98,
+      200.36,
+      108.98
+    ],
+    [
+      "2025-07-11",
+      202.66,
+      202.51,
+      109.79
+    ],
+    [
+      "2025-07-14",
+      214.05,
+      204.9,
+      110.66
+    ],
+    [
+      "2025-07-15",
+      202.49,
+      207.02,
+      111.47
+    ],
+    [
+      "2025-07-16",
+      191.0,
+      208.74,
+      112.22
+    ],
+    [
+      "2025-07-17",
+      204.02,
+      210.73,
+      113.04
+    ],
+    [
+      "2025-07-18",
+      218.1,
+      212.97,
+      113.92
+    ],
+    [
+      "2025-07-21",
+      195.54,
+      214.73,
+      114.7
+    ],
+    [
+      "2025-07-22",
+      194.05,
+      215.55,
+      115.47
+    ],
+    [
+      "2025-07-23",
+      209.21,
+      216.39,
+      116.31
+    ],
+    [
+      "2025-07-24",
+      208.99,
+      217.14,
+      117.16
+    ],
+    [
+      "2025-07-25",
+      210.61,
+      217.71,
+      118.0
+    ],
+    [
+      "2025-07-28",
+      213.13,
+      218.31,
+      118.85
+    ],
+    [
+      "2025-07-29",
+      220.23,
+      219.04,
+      119.73
+    ],
+    [
+      "2025-07-30",
+      240.2,
+      220.13,
+      120.71
+    ],
+    [
+      "2025-07-31",
+      235.8,
+      221.19,
+      121.69
+    ],
+    [
+      "2025-08-01",
+      232.73,
+      221.92,
+      122.63
+    ],
+    [
+      "2025-08-04",
+      245.51,
+      222.96,
+      123.64
+    ],
+    [
+      "2025-08-05",
+      238.83,
+      223.76,
+      124.6
+    ],
+    [
+      "2025-08-06",
+      196.11,
+      223.73,
+      125.34
+    ],
+    [
+      "2025-08-07",
+      191.39,
+      223.38,
+      126.08
+    ],
+    [
+      "2025-08-08",
+      183.02,
+      222.7,
+      126.78
+    ],
+    [
+      "2025-08-11",
+      186.72,
+      222.27,
+      127.5
+    ],
+    [
+      "2025-08-12",
+      184.64,
+      221.94,
+      128.21
+    ],
+    [
+      "2025-08-13",
+      200.49,
+      221.77,
+      129.01
+    ],
+    [
+      "2025-08-14",
+      201.06,
+      221.59,
+      129.81
+    ],
+    [
+      "2025-08-15",
+      201.39,
+      221.47,
+      130.63
+    ],
+    [
+      "2025-08-18",
+      202.3,
+      221.34,
+      131.44
+    ],
+    [
+      "2025-08-19",
+      190.0,
+      220.7,
+      132.2
+    ],
+    [
+      "2025-08-20",
+      188.25,
+      219.97,
+      132.94
+    ],
+    [
+      "2025-08-21",
+      186.26,
+      219.21,
+      133.68
+    ],
+    [
+      "2025-08-22",
+      199.0,
+      218.56,
+      134.48
+    ],
+    [
+      "2025-08-25",
+      198.01,
+      217.75,
+      135.28
+    ],
+    [
+      "2025-08-26",
+      208.21,
+      217.75,
+      136.13
+    ],
+    [
+      "2025-08-27",
+      207.81,
+      217.57,
+      136.94
+    ],
+    [
+      "2025-08-28",
+      217.83,
+      217.84,
+      137.8
+    ],
+    [
+      "2025-08-29",
+      213.22,
+      218.09,
+      138.6
+    ],
+    [
+      "2025-09-02",
+      210.14,
+      218.07,
+      139.36
+    ],
+    [
+      "2025-09-03",
+      204.79,
+      217.87,
+      140.07
+    ],
+    [
+      "2025-09-04",
+      195.59,
+      217.2,
+      140.6
+    ],
+    [
+      "2025-09-05",
+      194.65,
+      216.57,
+      141.17
+    ],
+    [
+      "2025-09-08",
+      195.2,
+      215.61,
+      141.74
+    ],
+    [
+      "2025-09-09",
+      217.16,
+      214.96,
+      142.43
+    ],
+    [
+      "2025-09-10",
+      214.25,
+      213.88,
+      143.1
+    ],
+    [
+      "2025-09-11",
+      224.87,
+      213.16,
+      143.83
+    ],
+    [
+      "2025-09-12",
+      229.42,
+      212.35,
+      144.56
+    ],
+    [
+      "2025-09-15",
+      218.93,
+      211.09,
+      145.23
+    ],
+    [
+      "2025-09-16",
+      214.24,
+      209.78,
+      145.87
+    ],
+    [
+      "2025-09-17",
+      218.69,
+      208.92,
+      146.53
+    ],
+    [
+      "2025-09-18",
+      227.8,
+      208.57,
+      147.21
+    ],
+    [
+      "2025-09-19",
+      238.54,
+      208.74,
+      147.91
+    ],
+    [
+      "2025-09-22",
+      242.56,
+      209.54,
+      148.66
+    ],
+    [
+      "2025-09-23",
+      231.37,
+      209.89,
+      149.37
+    ],
+    [
+      "2025-09-24",
+      229.03,
+      210.42,
+      150.07
+    ],
+    [
+      "2025-09-25",
+      223.27,
+      211.06,
+      150.75
+    ],
+    [
+      "2025-09-26",
+      218.1,
+      211.34,
+      151.38
+    ],
+    [
+      "2025-09-29",
+      210.87,
+      211.2,
+      152.01
+    ],
+    [
+      "2025-09-30",
+      199.35,
+      211.28,
+      152.59
+    ],
+    [
+      "2025-10-01",
+      197.35,
+      211.34,
+      153.13
+    ],
+    [
+      "2025-10-02",
+      204.23,
+      211.24,
+      153.72
+    ],
+    [
+      "2025-10-03",
+      203.43,
+      211.13,
+      154.28
+    ],
+    [
+      "2025-10-06",
+      200.28,
+      210.93,
+      154.77
+    ],
+    [
+      "2025-10-07",
+      202.88,
+      210.72,
+      155.27
+    ],
+    [
+      "2025-10-08",
+      208.01,
+      210.48,
+      155.86
+    ],
+    [
+      "2025-10-09",
+      206.67,
+      209.81,
+      156.46
+    ],
+    [
+      "2025-10-10",
+      195.07,
+      208.99,
+      156.99
+    ],
+    [
+      "2025-10-13",
+      202.43,
+      208.38,
+      157.56
+    ],
+    [
+      "2025-10-14",
+      216.25,
+      207.8,
+      158.16
+    ],
+    [
+      "2025-10-15",
+      220.54,
+      207.43,
+      158.76
+    ],
+    [
+      "2025-10-16",
+      211.54,
+      207.74,
+      159.33
+    ],
+    [
+      "2025-10-17",
+      206.36,
+      208.04,
+      159.89
+    ],
+    [
+      "2025-10-20",
+      215.52,
+      208.69,
+      160.53
+    ],
+    [
+      "2025-10-21",
+      226.4,
+      209.49,
+      161.23
+    ],
+    [
+      "2025-10-22",
+      218.33,
+      210.16,
+      161.87
+    ],
+    [
+      "2025-10-23",
+      240.96,
+      210.97,
+      162.62
+    ],
+    [
+      "2025-10-24",
+      248.67,
+      211.92,
+      163.44
+    ],
+    [
+      "2025-10-27",
+      256.05,
+      213.01,
+      164.29
+    ],
+    [
+      "2025-10-28",
+      250.99,
+      213.99,
+      165.12
+    ],
+    [
+      "2025-10-29",
+      243.87,
+      215.06,
+      165.93
+    ],
+    [
+      "2025-10-30",
+      224.18,
+      215.78,
+      166.64
+    ],
+    [
+      "2025-10-31",
+      239.32,
+      216.84,
+      167.41
+    ],
+    [
+      "2025-11-03",
+      240.11,
+      217.67,
+      168.16
+    ],
+    [
+      "2025-11-04",
+      234.58,
+      218.4,
+      168.89
+    ],
+    [
+      "2025-11-05",
+      243.47,
+      219.1,
+      169.66
+    ],
+    [
+      "2025-11-06",
+      223.63,
+      219.42,
+      170.3
+    ],
+    [
+      "2025-11-07",
+      235.45,
+      219.77,
+      171.01
+    ],
+    [
+      "2025-11-10",
+      246.98,
+      220.45,
+      171.8
+    ],
+    [
+      "2025-11-11",
+      241.21,
+      221.07,
+      172.56
+    ],
+    [
+      "2025-11-12",
+      241.59,
+      221.8,
+      173.3
+    ],
+    [
+      "2025-11-13",
+      216.24,
+      222.22,
+      173.9
+    ],
+    [
+      "2025-11-14",
+      205.3,
+      222.43,
+      174.45
+    ],
+    [
+      "2025-11-17",
+      194.1,
+      222.41,
+      174.94
+    ],
+    [
+      "2025-11-18",
+      190.46,
+      221.87,
+      175.43
+    ],
+    [
+      "2025-11-19",
+      190.12,
+      221.39,
+      175.89
+    ],
+    [
+      "2025-11-20",
+      182.51,
+      220.54,
+      176.29
+    ],
+    [
+      "2025-11-21",
+      194.68,
+      219.85,
+      176.72
+    ],
+    [
+      "2025-11-24",
+      203.79,
+      219.55,
+      177.22
+    ],
+    [
+      "2025-11-25",
+      210.3,
+      219.47,
+      177.73
+    ],
+    [
+      "2025-11-26",
+      213.13,
+      219.36,
+      178.27
+    ],
+    [
+      "2025-11-28",
+      218.26,
+      219.17,
+      178.82
+    ],
+    [
+      "2025-12-01",
+      203.7,
+      218.47,
+      179.29
+    ],
+    [
+      "2025-12-02",
+      202.65,
+      217.67,
+      179.72
+    ],
+    [
+      "2025-12-03",
+      203.77,
+      217.12,
+      180.16
+    ],
+    [
+      "2025-12-04",
+      210.09,
+      216.74,
+      180.64
+    ],
+    [
+      "2025-12-05",
+      207.01,
+      216.42,
+      181.13
+    ],
+    [
+      "2025-12-08",
+      202.41,
+      216.1,
+      181.64
+    ],
+    [
+      "2025-12-09",
+      194.69,
+      215.78,
+      182.11
+    ],
+    [
+      "2025-12-10",
+      196.89,
+      215.73,
+      182.59
+    ],
+    [
+      "2025-12-11",
+      204.35,
+      215.87,
+      183.1
+    ],
+    [
+      "2025-12-12",
+      197.61,
+      215.74,
+      183.6
+    ],
+    [
+      "2025-12-15",
+      191.03,
+      215.49,
+      184.05
+    ],
+    [
+      "2025-12-16",
+      198.93,
+      215.46,
+      184.57
+    ],
+    [
+      "2025-12-17",
+      196.95,
+      215.34,
+      185.1
+    ],
+    [
+      "2025-12-18",
+      208.78,
+      215.36,
+      185.69
+    ],
+    [
+      "2025-12-19",
+      215.25,
+      215.53,
+      186.35
+    ],
+    [
+      "2025-12-22",
+      218.01,
+      215.99,
+      187.02
+    ],
+    [
+      "2025-12-23",
+      221.02,
+      216.36,
+      187.72
+    ],
+    [
+      "2025-12-24",
+      228.69,
+      216.61,
+      188.45
+    ],
+    [
+      "2025-12-26",
+      229.22,
+      216.78,
+      189.17
+    ],
+    [
+      "2025-12-29",
+      227.74,
+      217.11,
+      189.9
+    ],
+    [
+      "2025-12-30",
+      221.25,
+      217.4,
+      190.57
+    ],
+    [
+      "2025-12-31",
+      221.41,
+      217.52,
+      191.25
+    ],
+    [
+      "2026-01-02",
+      219.48,
+      217.38,
+      191.93
+    ],
+    [
+      "2026-01-05",
+      230.18,
+      217.62,
+      192.65
+    ],
+    [
+      "2026-01-06",
+      233.25,
+      217.47,
+      193.37
+    ],
+    [
+      "2026-01-07",
+      234.74,
+      217.19,
+      194.09
+    ],
+    [
+      "2026-01-08",
+      236.6,
+      216.8,
+      194.79
+    ],
+    [
+      "2026-01-09",
+      239.35,
+      216.57,
+      195.51
+    ],
+    [
+      "2026-01-12",
+      215.51,
+      216.0,
+      196.12
+    ],
+    [
+      "2026-01-13",
+      211.72,
+      215.75,
+      196.74
+    ],
+    [
+      "2026-01-14",
+      185.46,
+      214.67,
+      197.24
+    ],
+    [
+      "2026-01-15",
+      192.06,
+      213.71,
+      197.79
+    ],
+    [
+      "2026-01-16",
+      194.01,
+      212.9,
+      198.34
+    ],
+    [
+      "2026-01-20",
+      185.27,
+      211.74,
+      198.84
+    ],
+    [
+      "2026-01-21",
+      186.0,
+      210.98,
+      199.37
+    ],
+    [
+      "2026-01-22",
+      190.4,
+      210.08,
+      199.97
+    ],
+    [
+      "2026-01-23",
+      182.37,
+      208.79,
+      200.5
+    ],
+    [
+      "2026-01-26",
+      184.06,
+      207.65,
+      201.05
+    ],
+    [
+      "2026-01-27",
+      177.51,
+      206.37,
+      201.5
+    ],
+    [
+      "2026-01-28",
+      174.89,
+      205.54,
+      201.96
+    ],
+    [
+      "2026-01-29",
+      171.4,
+      204.86,
+      202.4
+    ],
+    [
+      "2026-01-30",
+      163.69,
+      204.25,
+      202.81
+    ],
+    [
+      "2026-02-02",
+      174.73,
+      203.94,
+      203.26
+    ],
+    [
+      "2026-02-03",
+      170.0,
+      203.54,
+      203.7
+    ],
+    [
+      "2026-02-04",
+      163.08,
+      203.15,
+      204.09
+    ],
+    [
+      "2026-02-05",
+      155.92,
+      202.37,
+      204.47
+    ],
+    [
+      "2026-02-06",
+      183.22,
+      201.96,
+      204.97
+    ],
+    [
+      "2026-02-09",
+      185.23,
+      201.46,
+      205.47
+    ],
+    [
+      "2026-02-10",
+      185.53,
+      200.91,
+      205.94
+    ],
+    [
+      "2026-02-11",
+      169.61,
+      199.93,
+      206.33
+    ],
+    [
+      "2026-02-12",
+      170.12,
+      199.26,
+      206.71
+    ],
+    [
+      "2026-02-13",
+      177.28,
+      198.76,
+      207.12
+    ],
+    [
+      "2026-02-17",
+      176.61,
+      198.21,
+      207.53
+    ],
+    [
+      "2026-02-18",
+      180.57,
+      197.62,
+      207.95
+    ],
+    [
+      "2026-02-19",
+      178.24,
+      197.05,
+      208.32
+    ],
+    [
+      "2026-02-20",
+      176.51,
+      196.53,
+      208.68
+    ],
+    [
+      "2026-02-23",
+      165.59,
+      195.95,
+      208.97
+    ],
+    [
+      "2026-02-24",
+      169.31,
+      195.39,
+      209.28
+    ],
+    [
+      "2026-02-25",
+      172.41,
+      194.76,
+      209.38
+    ],
+    [
+      "2026-02-26",
+      192.33,
+      194.65,
+      209.51
+    ],
+    [
+      "2026-02-27",
+      193.27,
+      194.7,
+      209.61
+    ],
+    [
+      "2026-03-02",
+      199.01,
+      194.7,
+      209.7
+    ],
+    [
+      "2026-03-03",
+      208.76,
+      194.93,
+      209.83
+    ],
+    [
+      "2026-03-04",
+      210.67,
+      194.97,
+      209.96
+    ],
+    [
+      "2026-03-05",
+      218.21,
+      195.03,
+      210.12
+    ],
+    [
+      "2026-03-06",
+      217.33,
+      195.02,
+      210.3
+    ],
+    [
+      "2026-03-09",
+      221.42,
+      195.02,
+      210.42
+    ],
+    [
+      "2026-03-10",
+      225.34,
+      194.96,
+      210.58
+    ],
+    [
+      "2026-03-11",
+      223.31,
+      194.84,
+      210.7
+    ],
+    [
+      "2026-03-12",
+      212.85,
+      194.54,
+      210.78
+    ],
+    [
+      "2026-03-13",
+      212.02,
+      194.36,
+      210.8
+    ],
+    [
+      "2026-03-16",
+      209.69,
+      194.12,
+      210.76
+    ],
+    [
+      "2026-03-17",
+      210.19,
+      193.94,
+      210.77
+    ],
+    [
+      "2026-03-18",
+      206.09,
+      193.45,
+      210.79
+    ],
+    [
+      "2026-03-19",
+      210.46,
+      193.0,
+      210.8
+    ],
+    [
+      "2026-03-20",
+      209.82,
+      192.5,
+      210.8
+    ],
+    [
+      "2026-03-23",
+      215.36,
+      192.08,
+      210.84
+    ],
+    [
+      "2026-03-24",
+      206.4,
+      191.42,
+      210.83
+    ],
+    [
+      "2026-03-25",
+      181.0,
+      190.73,
+      210.62
+    ],
+    [
+      "2026-03-26",
+      179.1,
+      190.07,
+      210.4
+    ],
+    [
+      "2026-03-27",
+      174.95,
+      189.86,
+      210.15
+    ],
+    [
+      "2026-03-30",
+      169.46,
+      189.41,
+      209.84
+    ],
+    [
+      "2026-03-31",
+      174.09,
+      189.01,
+      209.52
+    ],
+    [
+      "2026-04-01",
+      173.45,
+      188.78,
+      209.34
+    ],
+    [
+      "2026-04-02",
+      172.7,
+      188.51,
+      209.12
+    ],
+    [
+      "2026-04-06",
+      174.03,
+      188.18,
+      208.97
+    ],
+    [
+      "2026-04-07",
+      165.58,
+      187.85,
+      208.79
+    ],
+    [
+      "2026-04-08",
+      178.38,
+      187.73,
+      208.63
+    ],
+    [
+      "2026-04-09",
+      181.88,
+      187.82,
+      208.47
+    ],
+    [
+      "2026-04-10",
+      185.41,
+      188.03,
+      208.25
+    ],
+    [
+      "2026-04-13",
+      195.13,
+      188.51,
+      208.09
+    ],
+    [
+      "2026-04-14",
+      213.76,
+      189.51,
+      207.95
+    ],
+    [
+      "2026-04-15",
+      230.0,
+      190.61,
+      207.85
+    ],
+    [
+      "2026-04-16",
+      232.95,
+      191.87,
+      207.67
+    ],
+    [
+      "2026-04-17",
+      250.71,
+      193.63,
+      207.62
+    ],
+    [
+      "2026-04-20",
+      267.37,
+      195.85,
+      207.61
+    ],
+    [
+      "2026-04-21",
+      273.99,
+      197.67,
+      207.57
+    ],
+    [
+      "2026-04-22",
+      281.94,
+      199.6,
+      207.58
+    ],
+    [
+      "2026-04-23",
+      274.35,
+      201.38,
+      207.64
+    ],
+    [
+      "2026-04-24",
+      274.56,
+      203.48,
+      207.79
+    ],
+    [
+      "2026-04-27",
+      279.48,
+      205.67,
+      208.04
+    ],
+    [
+      "2026-04-28",
+      278.54,
+      207.69,
+      208.41
+    ],
+    [
+      "2026-04-29",
+      257.27,
+      209.3,
+      208.63
+    ],
+    [
+      "2026-04-30",
+      271.99,
+      211.13,
+      208.98
+    ],
+    [
+      "2026-05-01",
+      272.65,
+      213.02,
+      209.39
+    ],
+    [
+      "2026-05-04",
+      279.17,
+      215.07,
+      209.76
+    ],
+    [
+      "2026-05-05",
+      263.81,
+      217.04,
+      209.99
+    ],
+    [
+      "2026-05-06",
+      246.37,
+      218.58,
+      210.25
+    ],
+    [
+      "2026-05-07",
+      249.27,
+      220.12,
+      210.52
+    ],
+    [
+      "2026-05-08",
+      256.33,
+      221.4,
+      210.76
+    ],
+    [
+      "2026-05-11",
+      249.42,
+      222.52,
+      210.96
+    ],
+    [
+      "2026-05-12",
+      242.25,
+      223.39,
+      211.12
+    ],
+    [
+      "2026-05-13",
+      240.07,
+      224.01,
+      211.25
+    ],
+    [
+      "2026-05-14",
+      234.49,
+      224.49,
+      211.32
+    ],
+    [
+      "2026-05-15",
+      235.79,
+      224.84,
+      211.3
+    ],
+    [
+      "2026-05-18",
+      240.56,
+      225.3,
+      211.32
+    ],
+    [
+      "2026-05-19",
+      239.11,
+      225.66,
+      211.36
+    ],
+    [
+      "2026-05-20",
+      243.8,
+      226.03,
+      211.35
+    ],
+    [
+      "2026-05-21",
+      240.9,
+      226.38,
+      211.36
+    ],
+    [
+      "2026-05-22",
+      228.46,
+      226.69,
+      211.52
+    ],
+    [
+      "2026-05-26",
+      249.35,
+      227.44,
+      211.81
+    ],
+    [
+      "2026-05-27",
+      256.26,
+      228.37,
+      212.18
+    ],
+    [
+      "2026-05-28",
+      268.82,
+      229.54,
+      212.59
+    ],
+    [
+      "2026-05-29",
+      282.56,
+      231.07,
+      213.08
+    ],
+    [
+      "2026-06-01",
+      282.56,
+      232.51,
+      213.49
+    ],
+    [
+      "2026-06-02",
+      266.83,
+      233.65,
+      213.82
+    ],
+    [
+      "2026-06-03",
+      249.33,
+      234.33,
+      214.06
+    ],
+    [
+      "2026-06-04",
+      261.69,
+      235.44,
+      214.35
+    ],
+    [
+      "2026-06-05",
+      258.25,
+      236.98,
+      214.69
+    ],
+    [
+      "2026-06-08",
+      270.29,
+      238.81,
+      215.1
+    ],
+    [
+      "2026-06-09",
+      278.71,
+      240.88,
+      215.57
+    ],
+    [
+      "2026-06-10",
+      270.9,
+      242.91,
+      215.93
+    ],
+    [
+      "2026-06-11",
+      285.43,
+      245.14,
+      216.36
+    ],
+    [
+      "2026-06-12",
+      286.78,
+      247.4,
+      216.76
+    ],
+    [
+      "2026-06-15",
+      308.75,
+      250.13,
+      217.26
+    ],
+    [
+      "2026-06-16",
+      298.52,
+      252.62,
+      217.66
+    ],
+    [
+      "2026-06-17",
+      285.84,
+      255.02,
+      218.03
+    ],
+    [
+      "2026-06-18",
+      314.44,
+      257.74,
+      218.55
+    ],
+    [
+      "2026-06-22",
+      309.72,
+      260.3,
+      219.07
+    ],
+    [
+      "2026-06-23",
+      317.97,
+      262.95,
+      219.68
+    ],
+    [
+      "2026-06-24",
+      323.22,
+      265.51,
+      220.33
+    ],
+    [
+      "2026-06-25",
+      322.75,
+      267.69,
+      220.97
+    ],
+    [
+      "2026-06-26",
+      348.71,
+      270.07,
+      221.62
+    ],
+    [
+      "2026-06-29",
+      371.62,
+      272.84,
+      222.41
+    ],
+    [
+      "2026-06-30",
+      372.59,
+      275.28,
+      223.15
+    ],
+    [
+      "2026-07-01",
+      383.13,
+      277.59,
+      223.92
+    ],
+    [
+      "2026-07-02",
+      387.36,
+      279.86,
+      224.76
+    ],
+    [
+      "2026-07-06",
+      396.0,
+      282.14,
+      225.67
+    ],
+    [
+      "2026-07-07",
+      383.96,
+      284.33,
+      226.49
+    ],
+    [
+      "2026-07-08",
+      375.51,
+      286.35,
+      227.23
+    ],
+    [
+      "2026-07-09",
+      390.14,
+      288.56,
+      227.99
+    ],
+    [
+      "2026-07-10",
+      400.75,
+      291.01,
+      228.78
+    ],
+    [
+      "2026-07-13",
+      389.56,
+      293.65,
+      229.57
+    ],
+    [
+      "2026-07-14",
+      417.0,
+      296.55,
+      230.51
+    ],
+    [
+      "2026-07-15",
+      438.19,
+      299.87,
+      231.59
+    ],
+    [
+      "2026-07-16",
+      442.53,
+      303.13,
+      232.71
+    ],
+    [
+      "2026-07-17",
+      440.42,
+      306.67,
+      233.86
+    ],
+    [
+      "2026-07-20",
+      438.28,
+      310.5,
+      235.05
+    ],
+    [
+      "2026-07-21",
+      438.9,
+      314.3,
+      236.26
+    ],
+    [
+      "2026-07-22",
+      423.66,
+      317.64,
+      237.36
+    ],
+    [
+      "2026-07-23",
+      408.59,
+      320.83,
+      238.38
+    ],
+    [
+      "2026-07-24",
+      402.81,
+      324.04,
+      239.4
+    ],
+    [
+      "2026-07-27",
+      405.65,
+      327.35,
+      240.41
+    ],
+    [
+      "2026-07-28",
+      406.45,
+      330.79,
+      241.4
+    ],
+    [
+      "2026-07-29",
+      378.99,
+      333.65,
+      242.26
+    ],
+    [
+      "2026-07-30",
+      377.64,
+      336.39,
+      243.18
+    ],
+    [
+      "2026-07-31",
+      372.69,
+      339.07,
+      244.03
+    ],
+    [
+      "2026-08-03",
+      399.15,
+      342.17,
+      244.94
+    ],
+    [
+      "2026-08-04",
+      429.26,
+      345.94,
+      245.99
+    ],
+    [
+      "2026-08-05",
+      430.16,
+      349.97,
+      247.08
+    ],
+    [
+      "2026-08-06",
+      365.26,
+      352.29,
+      247.87
+    ],
+    [
+      "2026-08-07",
+      317.93,
+      353.52,
+      248.38
+    ],
+    [
+      "2026-08-10",
+      308.82,
+      354.32,
+      248.8
+    ],
+    [
+      "2026-08-11",
+      310.0,
+      354.87,
+      249.26
+    ],
+    [
+      "2026-08-12",
+      316.19,
+      355.55,
+      249.63
+    ],
+    [
+      "2026-08-13",
+      333.77,
+      356.89,
+      250.06
+    ],
+    [
+      "2026-08-14",
+      334.57,
+      358.59,
+      250.45
+    ],
+    [
+      "2026-08-17",
+      341.43,
+      360.18,
+      250.9
+    ],
+    [
+      "2026-08-18",
+      333.14,
+      361.68,
+      251.35
+    ],
+    [
+      "2026-08-19",
+      345.05,
+      363.18,
+      251.95
+    ],
+    [
+      "2026-08-20",
+      335.01,
+      364.3,
+      252.43
+    ],
+    [
+      "2026-08-21",
+      354.72,
+      365.98,
+      253.0
+    ],
+    [
+      "2026-08-24",
+      354.79,
+      367.37,
+      253.6
+    ],
+    [
+      "2026-08-25",
+      349.47,
+      368.62,
+      254.13
+    ],
+    [
+      "2026-08-26",
+      372.3,
+      369.89,
+      254.88
+    ],
+    [
+      "2026-08-27",
+      374.01,
+      371.4,
+      255.57
+    ],
+    [
+      "2026-08-28",
+      378.55,
+      373.26,
+      256.23
+    ],
+    [
+      "2026-08-31",
+      359.52,
+      374.16,
+      256.82
+    ],
+    [
+      "2026-09-01",
+      340.64,
+      374.78,
+      257.32
+    ],
+    [
+      "2026-09-02",
+      372.85,
+      375.87,
+      258.1
+    ],
+    [
+      "2026-09-03",
+      390.86,
+      377.23,
+      259.03
+    ],
+    [
+      "2026-09-04",
+      380.69,
+      378.39,
+      259.96
+    ],
+    [
+      "2026-09-08",
+      376.38,
+      378.94,
+      260.89
+    ],
+    [
+      "2026-09-09",
+      361.88,
+      378.74,
+      261.75
+    ],
+    [
+      "2026-09-10",
+      358.36,
+      378.46,
+      262.63
+    ],
+    [
+      "2026-09-11",
+      350.71,
+      377.81,
+      263.41
+    ],
+    [
+      "2026-09-14",
+      365.78,
+      377.38,
+      264.22
+    ],
+    [
+      "2026-09-15",
+      374.67,
+      376.95,
+      265.04
+    ],
+    [
+      "2026-09-16",
+      365.83,
+      376.59,
+      265.8
+    ],
+    [
+      "2026-09-17",
+      356.49,
+      376.21,
+      266.49
+    ],
+    [
+      "2026-09-18",
+      337.82,
+      375.16,
+      267.16
+    ],
+    [
+      "2026-09-21",
+      350.65,
+      374.16,
+      267.9
+    ],
+    [
+      "2026-09-22",
+      353.57,
+      373.44,
+      268.65
+    ],
+    [
+      "2026-09-23",
+      326.19,
+      371.63,
+      269.23
+    ],
+    [
+      "2026-09-24",
+      331.45,
+      369.49,
+      269.86
+    ],
+    [
+      "2026-09-25",
+      324.88,
+      367.14,
+      270.47
+    ],
+    [
+      "2026-09-28",
+      320.7,
+      364.74,
+      271.1
+    ],
+    [
+      "2026-09-29",
+      326.44,
+      362.51,
+      271.75
+    ],
+    [
+      "2026-09-30",
+      321.51,
+      360.16,
+      272.33
+    ],
+    [
+      "2026-10-01",
+      339.59,
+      358.48,
+      273.04
+    ],
+    [
+      "2026-10-02",
+      346.57,
+      357.24,
+      273.82
+    ],
+    [
+      "2026-10-05",
+      368.94,
+      356.56,
+      274.67
+    ],
+    [
+      "2026-10-06",
+      343.14,
+      355.31,
+      275.4
+    ],
+    [
+      "2026-10-07",
+      344.82,
+      354.08,
+      276.08
+    ],
+    [
+      "2026-10-08",
+      353.4,
+      353.56,
+      276.77
+    ],
+    [
+      "2026-10-09",
+      368.42,
+      353.38,
+      277.52
+    ],
+    [
+      "2026-10-12",
+      361.09,
+      353.15,
+      278.22
+    ],
+    [
+      "2026-10-13",
+      362.87,
+      352.42,
+      278.89
+    ],
+    [
+      "2026-10-14",
+      356.8,
+      350.97,
+      279.53
+    ],
+    [
+      "2026-10-15",
+      369.0,
+      349.75,
+      280.24
+    ],
+    [
+      "2026-10-16",
+      367.4,
+      349.79,
+      280.97
+    ],
+    [
+      "2026-10-19",
+      359.46,
+      350.62,
+      281.66
+    ],
+    [
+      "2026-10-20",
+      363.67,
+      351.72,
+      282.38
+    ],
+    [
+      "2026-10-21",
+      376.76,
+      353.06,
+      283.11
+    ],
+    [
+      "2026-10-22",
+      382.39,
+      354.38,
+      283.86
+    ],
+    [
+      "2026-10-23",
+      354.6,
+      354.8,
+      284.46
+    ],
+    [
+      "2026-10-26",
+      323.01,
+      354.57,
+      284.89
+    ],
+    [
+      "2026-10-27",
+      328.47,
+      354.31,
+      285.34
+    ],
+    [
+      "2026-10-28",
+      322.69,
+      354.1,
+      285.87
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-29T13:19:11Z",
+      "ticker": "DAVE",
+      "rating": "Buy",
+      "score": "71",
+      "confidence": "Medium",
+      "growth": "69",
+      "quality": "93",
+      "balance_sheet": "90",
+      "valuation": "63",
+      "trend": "61",
+      "news_risk": "54",
+      "price": "322.69",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4429",
+      "overlay": "",
+      "quote_price": "322.69",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    }
+  ]
+}

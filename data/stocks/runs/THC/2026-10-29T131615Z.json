@@ -1,0 +1,1668 @@
+{
+  "run_id": "2026-10-29T13:16:15Z",
+  "generated_at": "2026-10-29T13:17:12+00:00",
+  "ticker": "THC",
+  "sec_ticker": "THC",
+  "cik": "0000070318",
+  "name": "TENET HEALTHCARE CORP",
+  "sector": "Services-General Medical & Surgical Hospitals, NEC",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 66,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 66 is within 2 points of the Buy edge (65)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 14
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 2
+    }
+  },
+  "composite": {
+    "score": 66,
+    "raw": 65.85,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 6.77,
+          "score": 45.3,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 5.41,
+          "score": 41.2,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 3.99,
+          "score": 70.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 50,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 20.81,
+          "score": 66.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 13.86,
+          "score": 59.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 0.61,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -8.53,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 77,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 3.66,
+          "score": 45.0,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.16,
+          "score": 19.7,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 35,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.991,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 7.152,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": 7.204,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": 8.993,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 95.1,
+          "score": 4.9,
+          "weight": 0.1,
+          "note": "cheaper than now in 95.1% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 31.1,
+          "score": 68.9,
+          "weight": 0.15,
+          "note": "cheaper than now in 31.1% of 61 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": 47.5,
+          "score": 52.5,
+          "weight": 0.15,
+          "note": "cheaper than now in 47.5% of 61 month-ends (ranked on yields)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 79,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 1.39,
+          "score": 57.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 22.35,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 19.17,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 40.0,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 39.17,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -4.37,
+          "score": 84.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 85,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 56,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 268.5,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 5628000000.0,
+    "revenue_yoy_q": 6.77,
+    "revenue_yoy_q_prev": 2.78,
+    "acceleration_pp": 3.99,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 21812000000.0,
+    "revenue_yoy_ttm": 5.41,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 4539000000.0,
+    "operating_cash_flow_ttm": 4015000000.0,
+    "capex_ttm": 992000000.0,
+    "sbc_ttm": 132000000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 3023000000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 20.81,
+    "fcf_margin_pct": 13.86,
+    "capex_intensity_pct": 4.55,
+    "sbc_pct_revenue": 0.61,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 13.86,
+      "fcf_margin_year_earlier_pct": 7.5,
+      "median_margin_pct": 13.19,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 3023000000.0,
+    "fcf_scored_margin_pct": 13.86,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 2170000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 2170000000.0,
+      "debt": 13248000000.0,
+      "debt_tags": [
+        "LongTermDebtAndCapitalLeaseObligations",
+        "LongTermDebtAndCapitalLeaseObligationsCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtAndCapitalLeaseObligations",
+          "val": 13088000000.0
+        },
+        {
+          "tag": "LongTermDebtAndCapitalLeaseObligationsCurrent",
+          "val": 160000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 11078000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 83964000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -8.53,
+    "shares_outstanding": {
+      "val": 80519000.0,
+      "end": "2026-07-24",
+      "filed": "2026-07-29",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 5066000000.0,
+        "revenue_yoy_pct": 5.52,
+        "operating_margin_pct": 11.21,
+        "fcf": 327000000.0,
+        "diluted_shares": 104425000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 5395000000.0,
+        "revenue_yoy_pct": 8.12,
+        "operating_margin_pct": 13.62,
+        "fcf": 616000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 5368000000.0,
+        "revenue_yoy_pct": 6.91,
+        "operating_margin_pct": 61.2,
+        "fcf": 346000000.0,
+        "diluted_shares": 100598000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 5108000000.0,
+        "revenue_yoy_pct": 0.51,
+        "operating_margin_pct": 14.9,
+        "fcf": 602000000.0,
+        "diluted_shares": 98444000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 5126000000.0,
+        "revenue_yoy_pct": 1.18,
+        "operating_margin_pct": 21.24,
+        "fcf": 829000000.0,
+        "diluted_shares": 96652000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 5073000000.0,
+        "revenue_yoy_pct": -5.97,
+        "operating_margin_pct": 16.18,
+        "fcf": -661000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 5223000000.0,
+        "revenue_yoy_pct": -2.7,
+        "operating_margin_pct": 18.05,
+        "fcf": 642000000.0,
+        "diluted_shares": 95019000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 5271000000.0,
+        "revenue_yoy_pct": 3.19,
+        "operating_margin_pct": 15.61,
+        "fcf": 743000000.0,
+        "diluted_shares": 91791000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 5289000000.0,
+        "revenue_yoy_pct": 3.18,
+        "operating_margin_pct": 16.81,
+        "fcf": 778000000.0,
+        "diluted_shares": 88610000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 5527000000.0,
+        "revenue_yoy_pct": 8.95,
+        "operating_margin_pct": 15.43,
+        "fcf": 367000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 5368000000.0,
+        "revenue_yoy_pct": 2.78,
+        "operating_margin_pct": 24.14,
+        "fcf": 1461000000.0,
+        "diluted_shares": 87596000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 5628000000.0,
+        "revenue_yoy_pct": 6.77,
+        "operating_margin_pct": 26.67,
+        "fcf": 417000000.0,
+        "diluted_shares": 83964000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 268.5,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 80519000.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-24"
+    },
+    "market_cap": 21619351500.0,
+    "enterprise_value": 32697351500.0,
+    "price_to_sales": 0.991,
+    "price_to_fcf": 7.152,
+    "ev_to_ebit": 7.204,
+    "sales_yield_pct": 100.891,
+    "fcf_yield_pct": 13.983,
+    "ebit_yield_pct": 13.882,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 8.993,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 0.399,
+        "price_to_fcf": 6.855,
+        "ev_to_ebit": 6.459,
+        "sales_yield_pct": 250.763,
+        "fcf_yield_pct": 14.588,
+        "ebit_yield_pct": 15.482
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 0.406,
+        "price_to_fcf": 6.97,
+        "ev_to_ebit": 6.502,
+        "sales_yield_pct": 246.599,
+        "fcf_yield_pct": 14.346,
+        "ebit_yield_pct": 15.379
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 0.455,
+        "price_to_fcf": 7.814,
+        "ev_to_ebit": 6.818,
+        "sales_yield_pct": 219.974,
+        "fcf_yield_pct": 12.797,
+        "ebit_yield_pct": 14.667
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 0.412,
+        "price_to_fcf": 7.09,
+        "ev_to_ebit": 6.547,
+        "sales_yield_pct": 242.44,
+        "fcf_yield_pct": 14.104,
+        "ebit_yield_pct": 15.274
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.479,
+        "price_to_fcf": 10.259,
+        "ev_to_ebit": 7.931,
+        "sales_yield_pct": 208.708,
+        "fcf_yield_pct": 9.747,
+        "ebit_yield_pct": 12.609
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.479,
+        "price_to_fcf": 10.256,
+        "ev_to_ebit": 7.93,
+        "sales_yield_pct": 208.781,
+        "fcf_yield_pct": 9.751,
+        "ebit_yield_pct": 12.611
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.418,
+        "price_to_fcf": 14.25,
+        "ev_to_ebit": 7.192,
+        "sales_yield_pct": 239.444,
+        "fcf_yield_pct": 7.017,
+        "ebit_yield_pct": 13.904
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.373,
+        "price_to_fcf": 12.717,
+        "ev_to_ebit": 6.901,
+        "sales_yield_pct": 268.306,
+        "fcf_yield_pct": 7.863,
+        "ebit_yield_pct": 14.492
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.303,
+        "price_to_fcf": 10.329,
+        "ev_to_ebit": 6.447,
+        "sales_yield_pct": 330.329,
+        "fcf_yield_pct": 9.681,
+        "ebit_yield_pct": 15.512
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.376,
+        "price_to_fcf": 17.368,
+        "ev_to_ebit": 7.05,
+        "sales_yield_pct": 266.085,
+        "fcf_yield_pct": 5.758,
+        "ebit_yield_pct": 14.184
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.321,
+        "price_to_fcf": 14.841,
+        "ev_to_ebit": 6.698,
+        "sales_yield_pct": 311.39,
+        "fcf_yield_pct": 6.738,
+        "ebit_yield_pct": 14.931
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.293,
+        "price_to_fcf": 13.549,
+        "ev_to_ebit": 6.517,
+        "sales_yield_pct": 341.093,
+        "fcf_yield_pct": 7.381,
+        "ebit_yield_pct": 15.344
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.256,
+        "price_to_fcf": 20.06,
+        "ev_to_ebit": 7.362,
+        "sales_yield_pct": 390.594,
+        "fcf_yield_pct": 4.985,
+        "ebit_yield_pct": 13.582
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.267,
+        "price_to_fcf": 20.883,
+        "ev_to_ebit": 7.441,
+        "sales_yield_pct": 375.2,
+        "fcf_yield_pct": 4.789,
+        "ebit_yield_pct": 13.439
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.282,
+        "price_to_fcf": 22.064,
+        "ev_to_ebit": 7.554,
+        "sales_yield_pct": 355.129,
+        "fcf_yield_pct": 4.532,
+        "ebit_yield_pct": 13.239
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.317,
+        "price_to_fcf": 24.804,
+        "ev_to_ebit": 7.815,
+        "sales_yield_pct": 315.893,
+        "fcf_yield_pct": 4.032,
+        "ebit_yield_pct": 12.796
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.337,
+        "price_to_fcf": 20.151,
+        "ev_to_ebit": 8.924,
+        "sales_yield_pct": 296.421,
+        "fcf_yield_pct": 4.963,
+        "ebit_yield_pct": 11.205
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.342,
+        "price_to_fcf": 20.458,
+        "ev_to_ebit": 8.967,
+        "sales_yield_pct": 291.981,
+        "fcf_yield_pct": 4.888,
+        "ebit_yield_pct": 11.153
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.4,
+        "price_to_fcf": 16.823,
+        "ev_to_ebit": 9.654,
+        "sales_yield_pct": 250.246,
+        "fcf_yield_pct": 5.944,
+        "ebit_yield_pct": 10.358
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.388,
+        "price_to_fcf": 16.337,
+        "ev_to_ebit": 9.556,
+        "sales_yield_pct": 257.697,
+        "fcf_yield_pct": 6.121,
+        "ebit_yield_pct": 10.464
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.444,
+        "price_to_fcf": 18.673,
+        "ev_to_ebit": 10.028,
+        "sales_yield_pct": 225.461,
+        "fcf_yield_pct": 5.355,
+        "ebit_yield_pct": 9.972
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.394,
+        "price_to_fcf": 8.148,
+        "ev_to_ebit": 9.382,
+        "sales_yield_pct": 254.072,
+        "fcf_yield_pct": 12.273,
+        "ebit_yield_pct": 10.659
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.408,
+        "price_to_fcf": 8.456,
+        "ev_to_ebit": 9.509,
+        "sales_yield_pct": 244.802,
+        "fcf_yield_pct": 11.825,
+        "ebit_yield_pct": 10.517
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.347,
+        "price_to_fcf": 7.184,
+        "ev_to_ebit": 8.986,
+        "sales_yield_pct": 288.159,
+        "fcf_yield_pct": 13.92,
+        "ebit_yield_pct": 11.129
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.278,
+        "price_to_fcf": 4.928,
+        "ev_to_ebit": 8.479,
+        "sales_yield_pct": 359.493,
+        "fcf_yield_pct": 20.294,
+        "ebit_yield_pct": 11.793
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.357,
+        "price_to_fcf": 6.332,
+        "ev_to_ebit": 9.171,
+        "sales_yield_pct": 279.739,
+        "fcf_yield_pct": 15.792,
+        "ebit_yield_pct": 10.904
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.391,
+        "price_to_fcf": 6.934,
+        "ev_to_ebit": 9.468,
+        "sales_yield_pct": 255.455,
+        "fcf_yield_pct": 14.421,
+        "ebit_yield_pct": 10.562
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.429,
+        "price_to_fcf": 7.592,
+        "ev_to_ebit": 9.791,
+        "sales_yield_pct": 233.318,
+        "fcf_yield_pct": 13.171,
+        "ebit_yield_pct": 10.213
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 0.474,
+        "price_to_fcf": 6.005,
+        "ev_to_ebit": 9.419,
+        "sales_yield_pct": 210.991,
+        "fcf_yield_pct": 16.652,
+        "ebit_yield_pct": 10.617
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 0.536,
+        "price_to_fcf": 6.787,
+        "ev_to_ebit": 9.925,
+        "sales_yield_pct": 186.682,
+        "fcf_yield_pct": 14.734,
+        "ebit_yield_pct": 10.076
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.54,
+        "price_to_fcf": 6.437,
+        "ev_to_ebit": 4.178,
+        "sales_yield_pct": 185.116,
+        "fcf_yield_pct": 15.536,
+        "ebit_yield_pct": 23.933
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.651,
+        "price_to_fcf": 7.751,
+        "ev_to_ebit": 4.623,
+        "sales_yield_pct": 153.725,
+        "fcf_yield_pct": 12.902,
+        "ebit_yield_pct": 21.633
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.64,
+        "price_to_fcf": 7.625,
+        "ev_to_ebit": 4.58,
+        "sales_yield_pct": 156.256,
+        "fcf_yield_pct": 13.114,
+        "ebit_yield_pct": 21.833
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.704,
+        "price_to_fcf": 7.793,
+        "ev_to_ebit": 4.623,
+        "sales_yield_pct": 142.07,
+        "fcf_yield_pct": 12.832,
+        "ebit_yield_pct": 21.631
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.78,
+        "price_to_fcf": 8.634,
+        "ev_to_ebit": 4.92,
+        "sales_yield_pct": 128.244,
+        "fcf_yield_pct": 11.583,
+        "ebit_yield_pct": 20.325
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.781,
+        "price_to_fcf": 8.652,
+        "ev_to_ebit": 4.927,
+        "sales_yield_pct": 127.966,
+        "fcf_yield_pct": 11.558,
+        "ebit_yield_pct": 20.298
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.714,
+        "price_to_fcf": 6.261,
+        "ev_to_ebit": 4.048,
+        "sales_yield_pct": 140.139,
+        "fcf_yield_pct": 15.971,
+        "ebit_yield_pct": 24.705
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.657,
+        "price_to_fcf": 5.763,
+        "ev_to_ebit": 3.845,
+        "sales_yield_pct": 152.259,
+        "fcf_yield_pct": 17.353,
+        "ebit_yield_pct": 26.011
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.581,
+        "price_to_fcf": 5.098,
+        "ev_to_ebit": 3.574,
+        "sales_yield_pct": 172.101,
+        "fcf_yield_pct": 19.614,
+        "ebit_yield_pct": 27.983
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.649,
+        "price_to_fcf": 5.69,
+        "ev_to_ebit": 3.815,
+        "sales_yield_pct": 154.194,
+        "fcf_yield_pct": 17.573,
+        "ebit_yield_pct": 26.212
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.599,
+        "price_to_fcf": 11.103,
+        "ev_to_ebit": 3.801,
+        "sales_yield_pct": 166.858,
+        "fcf_yield_pct": 9.007,
+        "ebit_yield_pct": 26.309
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.637,
+        "price_to_fcf": 11.797,
+        "ev_to_ebit": 3.931,
+        "sales_yield_pct": 157.045,
+        "fcf_yield_pct": 8.477,
+        "ebit_yield_pct": 25.439
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.662,
+        "price_to_fcf": 9.62,
+        "ev_to_ebit": 6.573,
+        "sales_yield_pct": 151.145,
+        "fcf_yield_pct": 10.395,
+        "ebit_yield_pct": 15.214
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.781,
+        "price_to_fcf": 11.357,
+        "ev_to_ebit": 7.252,
+        "sales_yield_pct": 128.022,
+        "fcf_yield_pct": 8.805,
+        "ebit_yield_pct": 13.79
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.815,
+        "price_to_fcf": 11.844,
+        "ev_to_ebit": 7.442,
+        "sales_yield_pct": 122.763,
+        "fcf_yield_pct": 8.443,
+        "ebit_yield_pct": 13.438
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.715,
+        "price_to_fcf": 9.533,
+        "ev_to_ebit": 6.897,
+        "sales_yield_pct": 139.779,
+        "fcf_yield_pct": 10.49,
+        "ebit_yield_pct": 14.499
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.818,
+        "price_to_fcf": 10.895,
+        "ev_to_ebit": 7.473,
+        "sales_yield_pct": 122.3,
+        "fcf_yield_pct": 9.179,
+        "ebit_yield_pct": 13.382
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.901,
+        "price_to_fcf": 12.001,
+        "ev_to_ebit": 7.94,
+        "sales_yield_pct": 111.03,
+        "fcf_yield_pct": 8.333,
+        "ebit_yield_pct": 12.595
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.877,
+        "price_to_fcf": 12.182,
+        "ev_to_ebit": 8.202,
+        "sales_yield_pct": 113.985,
+        "fcf_yield_pct": 8.209,
+        "ebit_yield_pct": 12.193
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.921,
+        "price_to_fcf": 12.792,
+        "ev_to_ebit": 8.466,
+        "sales_yield_pct": 108.545,
+        "fcf_yield_pct": 7.817,
+        "ebit_yield_pct": 11.813
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.844,
+        "price_to_fcf": 11.723,
+        "ev_to_ebit": 8.004,
+        "sales_yield_pct": 118.442,
+        "fcf_yield_pct": 8.53,
+        "ebit_yield_pct": 12.494
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.804,
+        "price_to_fcf": 11.167,
+        "ev_to_ebit": 7.763,
+        "sales_yield_pct": 124.349,
+        "fcf_yield_pct": 8.955,
+        "ebit_yield_pct": 12.882
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 1.02,
+        "price_to_fcf": 8.595,
+        "ev_to_ebit": 9.158,
+        "sales_yield_pct": 98.002,
+        "fcf_yield_pct": 11.635,
+        "ebit_yield_pct": 10.919
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.804,
+        "price_to_fcf": 6.775,
+        "ev_to_ebit": 7.846,
+        "sales_yield_pct": 124.321,
+        "fcf_yield_pct": 14.76,
+        "ebit_yield_pct": 12.746
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.723,
+        "price_to_fcf": 4.633,
+        "ev_to_ebit": 6.671,
+        "sales_yield_pct": 138.285,
+        "fcf_yield_pct": 21.586,
+        "ebit_yield_pct": 14.99
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.716,
+        "price_to_fcf": 4.586,
+        "ev_to_ebit": 6.63,
+        "sales_yield_pct": 139.705,
+        "fcf_yield_pct": 21.807,
+        "ebit_yield_pct": 15.082
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.764,
+        "price_to_fcf": 4.893,
+        "ev_to_ebit": 6.897,
+        "sales_yield_pct": 130.923,
+        "fcf_yield_pct": 20.436,
+        "ebit_yield_pct": 14.499
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.981,
+        "price_to_fcf": 7.077,
+        "ev_to_ebit": 7.154,
+        "sales_yield_pct": 101.962,
+        "fcf_yield_pct": 14.131,
+        "ebit_yield_pct": 13.979
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 1.024,
+        "price_to_fcf": 7.386,
+        "ev_to_ebit": 7.36,
+        "sales_yield_pct": 97.694,
+        "fcf_yield_pct": 13.54,
+        "ebit_yield_pct": 13.588
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.984,
+        "price_to_fcf": 7.098,
+        "ev_to_ebit": 7.168,
+        "sales_yield_pct": 101.65,
+        "fcf_yield_pct": 14.088,
+        "ebit_yield_pct": 13.951
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 1.034,
+        "price_to_fcf": 7.458,
+        "ev_to_ebit": 7.407,
+        "sales_yield_pct": 96.752,
+        "fcf_yield_pct": 13.409,
+        "ebit_yield_pct": 13.5
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.991,
+        "current_yield_pct": 100.891,
+        "points": 61,
+        "median": 0.54,
+        "low": 0.256,
+        "high": 1.034,
+        "negative_points": 0,
+        "median_yield_pct": 185.116,
+        "percentile": 95.1,
+        "cheaper_points": 58,
+        "dearer_points": 3,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": 7.152,
+        "current_yield_pct": 13.983,
+        "points": 61,
+        "median": 8.633,
+        "low": 4.586,
+        "high": 24.802,
+        "negative_points": 0,
+        "median_yield_pct": 11.583,
+        "percentile": 31.1,
+        "cheaper_points": 19,
+        "dearer_points": 42,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 7.204,
+        "current_yield_pct": 13.882,
+        "points": 61,
+        "median": 7.359,
+        "low": 3.574,
+        "high": 10.028,
+        "negative_points": 0,
+        "median_yield_pct": 13.588,
+        "percentile": 47.5,
+        "cheaper_points": 29,
+        "dearer_points": 32,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history (the multiples disagree: P/S expensive, P/FCF cheap, EV/EBIT middle)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 58 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "cheap",
+          "phrase": "cheaper than at 42 of the last 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 32, more expensive than at 29)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 268.5,
+    "date": "2026-10-28",
+    "ma50": 264.82,
+    "ma200": 219.46,
+    "vs_ma50_pct": 1.39,
+    "vs_ma200_pct": 22.35,
+    "momentum_12_1_pct": 19.17,
+    "high_52w": 280.77,
+    "drawdown_52w_pct": -4.37,
+    "return_rs_pct": 49.08,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 40.0,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 39.17
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0000070318-26-000045",
+    "filing_date": "2026-10-29",
+    "period_end": "2026-09-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/70318/000007031826000045/thc-20260930ex991earningsr.htm",
+    "summary": "Tenet raised its FY 2026 outlook, now expecting Adjusted EBITDA of $5.05 billion to $5.20 billion and Adjusted Free Cash Flow of $2.825 billion to $3.125 billion, and said the RCM-related catch-up adjustments do not change its full-year 2026 revenue expectations.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$5.05 billion to $5.20 billion",
+        "stated_change": "raised",
+        "sentence": "FY 2026 Adjusted EBITDA Outlook is now expected to be in the range of $5.05 billion to $5.20 billion, a $195 million increase at the midpoint of the range; FY 2026 Adjusted Free Cash Flow outlook now expected to be in the range of $2.825 billion to $3.125 billion, a $100 million increase",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "free_cash_flow",
+        "period": "FY2026",
+        "amount_text": "$2.825 billion to $3.125 billion",
+        "stated_change": "raised",
+        "sentence": "FY 2026 Adjusted EBITDA Outlook is now expected to be in the range of $5.05 billion to $5.20 billion, a $195 million increase at the midpoint of the range; FY 2026 Adjusted Free Cash Flow outlook now expected to be in the range of $2.825 billion to $3.125 billion, a $100 million increase",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "These are timing-related adjustments and as such, do not impact total or full year 2026 expectations for revenue from contract termination or net operating revenues associated with the RCM Agreements.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 1,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0000070318-26-000032",
+      "filing_date": "2026-07-23",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/70318/000007031826000032/thc-20260630ex991earningsr.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Tenet raised its FY2026 Adjusted EBITDA outlook to $5.05–5.20 billion and its Adjusted Free Cash Flow outlook by $100 million. Part of the lift comes from roughly $450M of one-time Conifer transition benefits that will not recur in 2027, which tempers the positive.",
+        "evidence": [
+          {
+            "claim": "FY 2026 Adjusted EBITDA Outlook is now expected to be in the range of $5.05 billion to $5.20 billion, a $195 million increase at the midpoint of the range; FY 2026 Adjusted Free Cash Flow outlook now expected to be in the range of $2.825 billion to $3.125 billion, a $100 million increase",
+            "url": "https://www.sec.gov/Archives/edgar/data/70318/000007031826000045/thc-20260930ex991earningsr.htm",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 7/7, names 6/6"
+          },
+          {
+            "claim": "Contract transition activities are expected to add about $450M to FY26 EBITDA, not expected to recur in 2027; Q3 EBITDA included a $147M net favorable impact from the Conifer RCM transition.",
+            "url": "https://rallies.ai/news/tenet-healthcare-q3-revenue-beats-on-same-store-sales-growth-cddfa1e9918264ec",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 4/5, names 2/5 · missing: 26, FY26, Conifer, RCM"
+          },
+          {
+            "claim": "FY revenue guidance midpoint of $22.25B was 0.8% below consensus.",
+            "url": "https://stockstory.org/us/stocks/nyse/thc/news/earnings/tenet-healthcare-nysethc-exceeds-q3-2026-expectations",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 0/0"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Guggenheim raised its price target to $307 from $283 and kept a Buy rating. Consensus remains strongly Buy-rated, and no post-earnings changes were found.",
+        "evidence": [
+          {
+            "claim": "Guggenheim raised its Tenet Healthcare price target to $307 from $283, maintaining Buy.",
+            "url": "https://www.investing.com/news/analyst-ratings/guggenheim-raises-tenet-healthcare-stock-price-target-on-momentum-93CH-4954060",
+            "event_date": "2026-10-16",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "The only new items are a minor former-employee suit over a tobacco surcharge and a small pixel-privacy settlement. Neither is material.",
+        "evidence": [
+          {
+            "claim": "A former Tenet Healthcare employee filed suit alleging the tobacco-use surcharge violates wellness program rules.",
+            "url": "https://news.bloomberglaw.com/employee-benefits/ex-tenet-healthcare-employee-files-suit-over-tobacco-use-penalty",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "The early wind-down of Conifer's RCM services for CommonSpirit is proceeding as previously disclosed, with a known 2027 EBITDA headwind. There is no new development.",
+        "evidence": [
+          {
+            "claim": "Transition of certain services under the CommonSpirit RCM agreements occurred in Q3 2026 as part of the early wind-down.",
+            "url": "https://www.sec.gov/Archives/edgar/data/70318/000007031826000045/thc-20260930ex991earningsr.htm",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions were found within the window. Director and CEO sales occurred just before it, from late July through mid-September.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "USPI ambulatory growth continues, while lower exchange admissions remain a payer-mix headwind. There were no launches or new competitive developments.",
+        "evidence": [
+          {
+            "claim": "Lower exchange admissions remain a payer-mix headwind.",
+            "url": "https://www.panabee.com/news/tenet-earnings-q4-2026",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Tenet Healthcare (THC), news for 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Tenet raised its FY26 adjusted EBITDA outlook to $5.05–5.20B, up $195M at the midpoint. It also raised its adjusted free cash flow outlook by $100M. — 2026-10-29 — https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000045/thc-20260930ex991earningsr.htm\n- Free cash flow range, two figures. The 8-K headline gives $2.825–3.125B (same URL as above). Another source gives $1.93–2.16B, which looks like the figure after noncontrolling interests. — 2026-10-29 — https://rallies.ai/news/tenet-healthcare-q3-revenue-beats-on-same-store-sales-growth-cddfa1e9918264ec\n- Other FY26 guidance: revenue $22.05–22.45B and adjusted EPS $22.05–23.01. — 2026-10-29 — https://rallies.ai/news/tenet-healthcare-q3-revenue-beats-on-same-store-sales-growth-cddfa1e9918264ec\n- Q3 adjusted EPS was $6.64, against $3.70 a year earlier. Q3 adjusted EBITDA was $1.355B, and Ambulatory Care adjusted EBITDA was $537M. — 2026-10-29 — https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000045/thc-20260930ex991earningsr.htm\n- Q3 versus expectations. The consensus EPS estimate varies by source:\n  - Zacks consensus was $4.60 on revenue of $5.47B. — https://www.tradingview.com/news/zacks:3388fb9bf094b:0-can-tenet-healthcare-beat-q3-earnings-on-ambulatory-care-strength/\n  - Investing.com consensus was $4.67 on revenue of $5.49B. — https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071\n  - StockStory says EPS was 42% above consensus and revenue was $5.63B. It says the FY revenue guidance midpoint ($22.25B) was 0.8% below consensus. Shares fell 1.9% to $263.50 after the report. — 2026-10-29 — https://stockstory.org/us/stocks/nyse/thc/news/earnings/tenet-healthcare-nysethc-exceeds-q3-2026-expectations\n- Quality of the beat: Q3 EBITDA included a $147M net favorable impact from the Conifer revenue cycle management (RCM) transition. Contract transition activities are expected to add about $450M to FY26 EBITDA. That amount is not expected to recur in 2027. — 2026-10-29 — https://rallies.ai/news/tenet-healthcare-q3-revenue-beats-on-same-store-sales-growth-cddfa1e9918264ec\n\n**2. Analyst actions**\n- Guggenheim (Jason Cassorla) raised its price target to $307 from $283 and kept Buy. — 2026-10-16 — https://www.investing.com/news/analyst-ratings/guggenheim-raises-tenet-healthcare-stock-price-target-on-momentum-93CH-4954060\n- Raymond James initiated with a Buy and a $285 target, per Investing.com, which says \"late September\". The exact date isn't given. A MarketBeat-syndicated item instead lists a reiteration of Outperform with a $285 target on 2026-08-14, so the initiation date is unconfirmed. — date unknown — https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071 and https://www.dailypolitical.com/2026/10/27/tenet-healthcare-thc-projected-to-release-quarterly-earnings-on-thursday.html\n- Consensus is a mean target of $286.41, with 19 of 23 analysts rating it a Buy. — 2026-10-28 — https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071\n- I found no post-earnings target changes in the results, which were published on the earnings day.\n\n**3. Litigation and regulation**\n- A former employee sued Tenet. The suit says its $25-per-pay-period tobacco surcharge breaks wellness-program rules. — reported 2026-10-19 (filing date not stated) — https://news.bloomberglaw.com/employee-benefits/ex-tenet-healthcare-employee-files-suit-over-tobacco-use-penalty\n- A pixel-tracking privacy class action (Jane Doe v. AMISUB) has a settlement paying $16 per claimant. The claims deadline is 2027-03-15. The settlement approval date isn't stated. — date unknown — https://www.dapeer.com/open-settlements/tenet-amisub-pixel-settlement\n- I found no new government investigations, fines or approvals in the window. A NatLawReview item dated 2026-10-13 describes a $514M settlement. It is a republished 2016 matter, so I did not count it.\n\n**4. Customer concentration**\n- CommonSpirit and Conifer: the early wind-down of RCM services under the CommonSpirit agreements is under way. The transition of certain services occurred in Q3 2026. — 2026-09-30 (quarter-end) — https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000045/thc-20260930ex991earningsr.htm\n- Services conclude by 2026-12-31. — https://investor.tenethealth.com/press-releases/press-release-details/2026/Tenet-Announces-Accretive-Transaction-and-Previews-Strong-2025-Results/default.aspx\n- Investing.com flags a known $290M EBITDA headwind in 2027 from the early termination. — date unknown — https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071\n\n**5. Insider activity**\n- I found no Form 4 transactions dated 2026-09-29 to 2026-10-29. The most recent ones I found fall just before the window:\n  - Director Robert Kerrey sold 12,010 shares, not under a 10b5-1 plan. — 2026-09-14 — https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-9f0848d2363c.html\n  - Director Richard Mark sold 10,000 shares at $263.42. — 2026-09-10 — https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-bf33eb1a265d.html\n  - Director Nadja West sold 1,152 shares at $258.80. — 2026-09-02 — https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-46cfed030340.html\n  - CEO Saum Sutaria sold shares at about $273–279 on several days. — 2026-08-24 (earliest) — https://www.sec.gov/Archives/edgar/data/0000070318/000119312526369162/ownership.xml\n- Directors have been selling steadily from late July through mid-September. I saw no insider purchases.\n\n**6. Product and competitive**\n- USPI (ambulatory) remains the growth driver. Management raised its annual M&A target above the historical $250M. — date unknown — https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071\n- Lower exchange admissions are still a payer-mix headwind. — 2026-10-29 — https://www.panabee.com/news/tenet-earnings-q4-2026\n- Net debt to adjusted EBITDA improved to 2.11x from 2.33x. — 2026-10-29 — https://www.panabee.com/news/tenet-earnings-q4-2026\n- I found no product launches, delays or new competitor news in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000045/thc-20260930ex991earningsr.htm",
+        "https://www.theglobeandmail.com/investing/markets/stocks/THC/pressreleases/3466777/tenet-healthcare-lifts-2026-outlook-after-strong-quarter/",
+        "https://finance.yahoo.com/healthcare/articles/tenet-healthcare-beat-q3-earnings-155600425.html",
+        "https://www.tradingview.com/news/zacks:3388fb9bf094b:0-can-tenet-healthcare-beat-q3-earnings-on-ambulatory-care-strength/",
+        "https://www.panabee.com/news/tenet-earnings-q4-2026",
+        "https://rallies.ai/news/tenet-healthcare-q3-adjusted-eps-664-vs-462-estimate-5be705d9f84b5466",
+        "https://www.biopharmawatch.com/news/THC/tenet-reports-strong-q3-2026-results",
+        "https://markets.financialcontent.com/stocks/article/stockstory-2026-10-29-tenet-healthcare-nysethc-exceeds-q3-2026-expectations",
+        "https://stockstory.org/us/stocks/nyse/thc/news/earnings/tenet-healthcare-nysethc-exceeds-q3-2026-expectations",
+        "https://www.marketbeat.com/instant-alerts/consensus-tenet-healthcare-corporation-nyse-thc-stock-has-consensus-price-target-of-27725-2026-10-06/",
+        "https://www.marketbeat.com/stocks/NYSE/THC/forecast/",
+        "https://simplywall.st/stocks/us/healthcare/nyse-thc/tenet-healthcare",
+        "https://stockanalysis.com/stocks/thc/",
+        "https://public.com/stocks/thc/forecast-price-target",
+        "https://anachart.com/ticker/thc/",
+        "https://www.wallstreetzen.com/stocks/us/nyse/thc/stock-forecast",
+        "https://tickeron.com/blogs/tenet-healthcare-thc-can-it-reach-the-300-level-15253/",
+        "https://benzinga.com/quote/THC/analyst-ratings",
+        "https://natlawreview.com/article/tenet-healthcare-to-settle-false-claims-act-lawsuit-alleged-hospitals-paid-pre-natal",
+        "https://news.bloomberglaw.com/employee-benefits/ex-tenet-healthcare-employee-files-suit-over-tobacco-use-penalty",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000155837017001079/Financial_Report.xlsx",
+        "https://en.wikipedia.org/wiki/Banning_Lyon",
+        "https://www.healthcaredive.com/news/tenet-medicaid-settlement-triggers-class-action-lawsuit/427990/",
+        "https://openclassactions.com/settlements/pixel-tracking/tenet-healthcare-pixel-tracking-class-action-settlement.php",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000091205795011556/0000912057-95-011556.txt",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000091205795011235/0000912057-95-011235.txt",
+        "https://www.dapeer.com/open-settlements/tenet-amisub-pixel-settlement",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000119312526369162/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000112880002000002/clo68.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000112880002000005/clo76.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000112880002000001/clo68.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000120544703000002/fet106.htm",
+        "https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-61d858b1c45a.html",
+        "https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-2681f861e4f3.html",
+        "https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-9f0848d2363c.html",
+        "https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-bf33eb1a265d.html",
+        "https://www.stocktitan.net/sec-filings/THC/form-4-tenet-healthcare-corp-insider-trading-activity-46cfed030340.html",
+        "https://www.healthcaredive.com/news/tenet-conifer-commonspirit-equity-deal-rcm/811073/",
+        "https://www.sec.gov/Archives/edgar/data/70318/000007031821000008/thc-20201231.htm",
+        "https://ascnews.com/2026/02/tenet-strengthens-balance-sheet-with-conifer-deal-setting-stage-for-accelerated-ambulatory-growth/",
+        "https://www.sec.gov/Archives/edgar/data/70318/000007031819000024/thc-20190331x10xq.htm",
+        "https://www.healthcarefinancenews.com/news/tenet-gets-19-billion-resume-full-ownership-conifer-health-solutions",
+        "https://www.investing.com/news/earnings/tenet-healthcare-earnings-loom-as-investors-eye-2027-outlook-93CH-4980071",
+        "https://www.sec.gov/Archives/edgar/data/70318/000007031826000003/thc-20260202exh991.htm",
+        "https://investor.tenethealth.com/press-releases/press-release-details/2026/Tenet-Announces-Accretive-Transaction-and-Previews-Strong-2025-Results/default.aspx",
+        "https://www.fiercehealthcare.com/providers/tenet-healthcare-again-raises-2025-guidance-increases-hospital-units-capex-spending",
+        "https://www.investing.com/news/analyst-ratings/guggenheim-raises-tenet-healthcare-stock-price-target-on-margin-gains-93CH-4816446",
+        "https://www.gurufocus.com/news/9127669/thc-maintained-by-guggenheim-price-target-raised-to-307",
+        "https://www.investing.com/news/analyst-ratings/guggenheim-raises-tenet-healthcare-stock-price-target-on-momentum-93CH-4954060",
+        "https://za.investing.com/news/stock-market-news/ubs-raises-tenet-healthcare-stock-price-target-on-higher-earnings-outlook-93CH-4388092",
+        "https://finance.yahoo.com/quote/THC/",
+        "https://m.in.investing.com/news/stock-market-news/guggenheim-raises-tenet-healthcare-stock-price-target-on-margin-gains-93CH-5517203?ampMode=1",
+        "https://www.dailypolitical.com/2026/10/27/tenet-healthcare-thc-projected-to-release-quarterly-earnings-on-thursday.html",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000032/thc-20260630ex991earningsr.htm",
+        "https://www.sec.gov/Archives/edgar/data/70318/000007031826000007/thc-20251231ex991earningsr.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000070318/000007031826000023/thc-20260331ex991earningsr.htm",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-tenet-healthcare-tops-q2-2026-estimates-and-lifts-outlook-93CH-4812292",
+        "https://finance.yahoo.com/healthcare/articles/tenet-healthcare-tops-q2-earnings-191100509.html",
+        "https://www.sec.gov/Archives/edgar/data/70318/000007031824000049/thc-20240930ex991earningsr.htm",
+        "https://rallies.ai/news/tenet-healthcare-q3-revenue-beats-on-same-store-sales-growth-cddfa1e9918264ec"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Tenet rates Buy on strong trend, low absolute multiples and solid margins, but sits just above Hold.",
+    "thesis": "Tenet scores 66, a Buy, but only 2 points above the Hold line. The strongest supports are trend (85), with the price 22.4% above its 200-day average and shares 40.0 pp ahead of SPY over the last 126 trading days, and valuation (79). In absolute terms the multiples are low: P/FCF of 7.2x, EV/EBIT of 7.2x and an FCF yield 9.0 pp above the 10-year Treasury yield. Against its own history the valuation sits near the middle, and the multiples disagree: P/S is more expensive than at 58 of the last 61 month-ends, while P/FCF is cheaper than at 42 of the last 61 month-ends. Quality (77) is helped by a 20.8% operating margin, a 13.9% FCF margin and the diluted share count down 8.5% year on year. Growth is middling at 50, with TTM revenue growth of 5.4%, and the balance sheet is the weak spot at 35, with net debt at 3.66 times FCF and cash covering only 0.16 of debt.",
+    "key_risks": [
+      "Leverage: net debt is 3.66 times FCF and cash-to-debt is only 0.16.",
+      "Part of the raised FY2026 outlook comes from roughly $450M of one-time Conifer transition benefits that will not recur in 2027.",
+      "The CommonSpirit RCM wind-down at Conifer carries a known 2027 EBITDA headwind.",
+      "Lower exchange admissions remain a payer-mix headwind.",
+      "The price is 4.4% below its 52-week high after a strong run, so the trend score could fade quickly."
+    ],
+    "what_would_change": [
+      "A drop of just 2 points would move the rating to Hold, for example from weaker trend or news scores.",
+      "Reaching Strong Buy needs 14 more points, likely from stronger growth than TTM revenue growth of 5.4% or from a better balance sheet score.",
+      "Paying down debt to improve net debt to FCF and cash-to-debt would lift the weakest factor.",
+      "Signs that the 2027 Conifer headwinds hit results harder than expected would pressure growth, quality and news scores."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2861,
+        "output_tokens": 849,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2861,
+            "output_tokens": 849,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0284,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 108163,
+        "output_tokens": 4138,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 108163,
+            "output_tokens": 4138,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3277,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7882,
+        "output_tokens": 1427,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7882,
+            "output_tokens": 1427,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0601,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3861,
+        "output_tokens": 753,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3861,
+            "output_tokens": 753,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0305,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4467,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 268.5,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 262.05
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:16",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  }
+}

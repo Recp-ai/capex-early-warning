@@ -1,0 +1,1568 @@
+{
+  "run_id": "2026-10-29T13:19:11Z",
+  "generated_at": "2026-10-29T13:20:11+00:00",
+  "ticker": "DAVE",
+  "sec_ticker": "DAVE",
+  "cik": "0001841408",
+  "name": "Dave Inc./DE",
+  "sector": "Finance Services",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 71,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin, operating margin, EV/EBIT"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: EV/EBIT 0 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 9
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 7
+    }
+  },
+  "composite": {
+    "score": 71,
+    "raw": 71.25,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 29.63,
+          "score": 87.8,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 48.63,
+          "score": 99.5,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -17.08,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 69,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+        },
+        "fcf_margin_pct": {
+          "value": 50.73,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 5.83,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -6.01,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 93,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 0.05,
+          "score": 99.3,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.94,
+          "score": 76.5,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 90,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 6.858,
+          "score": 46.4,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 13.518,
+          "score": 89.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": 2.407,
+          "score": 80.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 78.4,
+          "score": 21.6,
+          "weight": 0.1,
+          "note": "cheaper than now in 78.4% of 44 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 46.6,
+          "score": 53.4,
+          "weight": 0.15,
+          "note": "cheaper than now in 46.6% of 44 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.7,
+      "score": 63,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.87,
+          "score": 5.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 12.88,
+          "score": 82.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 27.49,
+          "score": 85.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 16.35,
+          "score": 79.5,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 15.52,
+          "score": 78.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -27.08,
+          "score": 21.5,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 61,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 322.69,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 170793000.0,
+    "revenue_yoy_q": 29.63,
+    "revenue_yoy_q_prev": 46.71,
+    "acceleration_pp": -17.08,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 643653000.0,
+    "revenue_yoy_ttm": 48.63,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 326946000.0,
+    "capex_ttm": 404000.0,
+    "sbc_ttm": 37500000.0,
+    "gross_profit_source": null,
+    "operating_income_source": null,
+    "fcf_ttm": 326542000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": 50.73,
+    "capex_intensity_pct": 0.06,
+    "sbc_pct_revenue": 5.83,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 50.73,
+      "fcf_margin_year_earlier_pct": 44.32,
+      "median_margin_pct": 46.78,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 326542000.0,
+    "fcf_scored_margin_pct": 50.73,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 209613000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 42979000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 42979000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 252592000.0,
+      "debt": 268134000.0,
+      "debt_tags": [
+        "ConvertibleDebtNoncurrent",
+        "LinesOfCreditCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleDebtNoncurrent",
+          "val": 193134000.0
+        },
+        {
+          "tag": "LinesOfCreditCurrent",
+          "val": 75000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 15542000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 13679803.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -6.01,
+    "shares_outstanding": null,
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 65811000.0,
+        "revenue_yoy_pct": 15.85,
+        "operating_margin_pct": null,
+        "fcf": 15305000.0,
+        "diluted_shares": 11960078.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 73119000.0,
+        "revenue_yoy_pct": 22.53,
+        "operating_margin_pct": null,
+        "fcf": 15603000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 73630000.0,
+        "revenue_yoy_pct": 24.95,
+        "operating_margin_pct": null,
+        "fcf": 18332000.0,
+        "diluted_shares": 13182517.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 80117000.0,
+        "revenue_yoy_pct": 30.84,
+        "operating_margin_pct": null,
+        "fcf": 27912000.0,
+        "diluted_shares": 13543648.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 92489000.0,
+        "revenue_yoy_pct": 40.54,
+        "operating_margin_pct": null,
+        "fcf": 36967000.0,
+        "diluted_shares": 13932652.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 100840000.0,
+        "revenue_yoy_pct": 37.91,
+        "operating_margin_pct": null,
+        "fcf": 41664000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 107979000.0,
+        "revenue_yoy_pct": 46.65,
+        "operating_margin_pct": null,
+        "fcf": 45210000.0,
+        "diluted_shares": 14646526.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 131757000.0,
+        "revenue_yoy_pct": 64.46,
+        "operating_margin_pct": null,
+        "fcf": 68110000.0,
+        "diluted_shares": 14554218.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 150725000.0,
+        "revenue_yoy_pct": 62.97,
+        "operating_margin_pct": null,
+        "fcf": 83185000.0,
+        "diluted_shares": 14525301.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 163721000.0,
+        "revenue_yoy_pct": 62.36,
+        "operating_margin_pct": null,
+        "fcf": 93201000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 158414000.0,
+        "revenue_yoy_pct": 46.71,
+        "operating_margin_pct": null,
+        "fcf": 82007000.0,
+        "diluted_shares": 14399635.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 170793000.0,
+        "revenue_yoy_pct": 29.63,
+        "operating_margin_pct": null,
+        "fcf": 68149000.0,
+        "diluted_shares": 13679803.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 322.69,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 13679803.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-06-30"
+    },
+    "market_cap": 4414335630.07,
+    "enterprise_value": 4429877630.07,
+    "price_to_sales": 6.858,
+    "price_to_fcf": 13.518,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 14.581,
+    "fcf_yield_pct": 7.397,
+    "ebit_yield_pct": null,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 2.407,
+    "history": [
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.343,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 291.698,
+        "fcf_yield_pct": -64.952,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.317,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 315.659,
+        "fcf_yield_pct": -70.287,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.289,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 345.434,
+        "fcf_yield_pct": -62.561,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.285,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 351.267,
+        "fcf_yield_pct": -63.618,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.333,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 300.522,
+        "fcf_yield_pct": -54.427,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.387,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 258.599,
+        "fcf_yield_pct": -18.053,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.311,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 321.163,
+        "fcf_yield_pct": -22.42,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.265,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 377.839,
+        "fcf_yield_pct": -26.377,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.292,
+        "price_to_fcf": 5.393,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 342.318,
+        "fcf_yield_pct": 18.542,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.408,
+        "price_to_fcf": 7.537,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 244.95,
+        "fcf_yield_pct": 13.268,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.843,
+        "price_to_fcf": 15.559,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 118.654,
+        "fcf_yield_pct": 6.427,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 1.275,
+        "price_to_fcf": 23.541,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 78.423,
+        "fcf_yield_pct": 4.248,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.711,
+        "price_to_fcf": 13.405,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 58.452,
+        "fcf_yield_pct": 7.46,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 2.018,
+        "price_to_fcf": 15.809,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 49.564,
+        "fcf_yield_pct": 6.326,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 2.17,
+        "price_to_fcf": 10.138,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 46.093,
+        "fcf_yield_pct": 9.864,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 1.459,
+        "price_to_fcf": 6.817,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 68.546,
+        "fcf_yield_pct": 14.669,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 1.751,
+        "price_to_fcf": 8.181,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.122,
+        "fcf_yield_pct": 12.224,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 1.74,
+        "price_to_fcf": 6.6,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.473,
+        "fcf_yield_pct": 15.15,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 1.849,
+        "price_to_fcf": 7.015,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 54.079,
+        "fcf_yield_pct": 14.256,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 1.784,
+        "price_to_fcf": 6.769,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 56.042,
+        "fcf_yield_pct": 14.773,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 4.305,
+        "price_to_fcf": 13.914,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.228,
+        "fcf_yield_pct": 7.187,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 3.792,
+        "price_to_fcf": 12.256,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.371,
+        "fcf_yield_pct": 8.16,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 4.18,
+        "price_to_fcf": 13.511,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.921,
+        "fcf_yield_pct": 7.402,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 4.392,
+        "price_to_fcf": 14.193,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.771,
+        "fcf_yield_pct": 7.046,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 3.292,
+        "price_to_fcf": 9.15,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.377,
+        "fcf_yield_pct": 10.929,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 3.776,
+        "price_to_fcf": 10.496,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.481,
+        "fcf_yield_pct": 9.528,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 7.711,
+        "price_to_fcf": 19.382,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.968,
+        "fcf_yield_pct": 5.159,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 10.307,
+        "price_to_fcf": 25.906,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.702,
+        "fcf_yield_pct": 3.86,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 9.055,
+        "price_to_fcf": 22.758,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.044,
+        "fcf_yield_pct": 4.394,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 7.166,
+        "price_to_fcf": 16.167,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.955,
+        "fcf_yield_pct": 6.185,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 6.7,
+        "price_to_fcf": 15.115,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.926,
+        "fcf_yield_pct": 6.616,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 8.043,
+        "price_to_fcf": 18.146,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.433,
+        "fcf_yield_pct": 5.511,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 6.453,
+        "price_to_fcf": 13.311,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.497,
+        "fcf_yield_pct": 7.513,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 6.546,
+        "price_to_fcf": 13.503,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.277,
+        "fcf_yield_pct": 7.406,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 4.839,
+        "price_to_fcf": 9.983,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.663,
+        "fcf_yield_pct": 10.017,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 5.714,
+        "price_to_fcf": 11.787,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.501,
+        "fcf_yield_pct": 8.484,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 4.549,
+        "price_to_fcf": 8.702,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.983,
+        "fcf_yield_pct": 11.492,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.107,
+        "price_to_fcf": 13.595,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.071,
+        "fcf_yield_pct": 7.356,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 6.729,
+        "price_to_fcf": 12.462,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.86,
+        "fcf_yield_pct": 8.025,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 8.874,
+        "price_to_fcf": 16.432,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.269,
+        "fcf_yield_pct": 6.086,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 8.876,
+        "price_to_fcf": 16.437,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.266,
+        "fcf_yield_pct": 6.084,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 7.641,
+        "price_to_fcf": 15.061,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.087,
+        "fcf_yield_pct": 6.64,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 6.833,
+        "price_to_fcf": 13.469,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.634,
+        "fcf_yield_pct": 7.424,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 6.858,
+        "price_to_fcf": 13.518,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.581,
+        "fcf_yield_pct": 7.397,
+        "ebit_yield_pct": null
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 6.858,
+        "current_yield_pct": 14.581,
+        "points": 44,
+        "median": 3.784,
+        "low": 0.265,
+        "high": 10.307,
+        "negative_points": 0,
+        "median_yield_pct": 26.426,
+        "percentile": 78.4,
+        "cheaper_points": 34,
+        "dearer_points": 9,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2023-03-31"
+      },
+      "price_to_fcf": {
+        "current": 13.518,
+        "current_yield_pct": 7.397,
+        "points": 44,
+        "median": 13.752,
+        "low": 5.393,
+        "high": null,
+        "negative_points": 8,
+        "median_yield_pct": 7.271,
+        "percentile": 46.6,
+        "cheaper_points": 20,
+        "dearer_points": 23,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2023-03-31"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2023-03-31"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 34 of the last 44 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "middle",
+          "phrase": "near the middle of the last 44 month-ends (cheaper than at 23, more expensive than at 20)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 322.69,
+    "date": "2026-10-28",
+    "ma50": 354.1,
+    "ma200": 285.87,
+    "vs_ma50_pct": -8.87,
+    "vs_ma200_pct": 12.88,
+    "momentum_12_1_pct": 27.49,
+    "high_52w": 442.53,
+    "drawdown_52w_pct": -27.08,
+    "return_rs_pct": 25.43,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 16.35,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 15.52
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-335119",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526335119/dave-ex99_1.htm",
+    "summary": "Dave raised its full-year 2026 guidance for revenue, Adjusted EBITDA and Adjusted Diluted EPS, and expects non-GAAP gross margin to expand into the mid-70s in the second half, with accelerating MTM growth and above-plan marketing investment.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Wilk continued, “Based on our strong first-half performance, the depth of our product roadmap, and the significant operating leverage we continue to see in our model, we are raising our full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "gross_margin",
+        "period": "second half 2026",
+        "amount_text": "mid-70s",
+        "stated_change": "not stated",
+        "sentence": "With loss provision calendar dynamics turning favorable in the second half, we expect non-GAAP gross margin to continue expanding into the mid-70s.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "That strength has continued into the third quarter, supported by the early rollout of our CashAI v6.0 underwriting model, which we expect to sustain loss rates in a similar range to Q2 while driving larger ExtraCash origination sizes.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "second half 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "At the same time, we expect MTM growth to accelerate in the second half of 2026, supported by strong member acquisition trends.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "second half 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "As returns have exceeded our expectations at higher spend levels, we plan to invest above our original plan in the second half.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-206471",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526206471/dave-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; the last raise came with Q2 results on 2026-08-05, before the window. Q3 results are scheduled for 2026-11-04.",
+        "evidence": [
+          {
+            "claim": "Dave will report Q3 2026 results on 2026-11-04 with a call at 4:30 p.m. ET.",
+            "url": "https://investors.dave.com/news-events/news-releases",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Dave raised full-year 2026 guidance for Revenue, Adjusted EBITDA, and Adjusted Diluted EPS.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1841408/000119312526335119/dave-ex99_1.htm",
+            "event_date": "2026-08-05",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 85,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst actions in the window lean positive: Seaport raised its target to $422, Barrington reiterated Buy and UBS kept Buy at $470. Monness Crespi started at Neutral, and all of these come from lower-tier sources.",
+        "evidence": [
+          {
+            "claim": "Seaport Research raised its price target on DAVE to $422 from $410.",
+            "url": "https://www.cnn.com/markets/stocks/DAVE",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "UBS maintained Buy with a $470 price target.",
+            "url": "https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings upgraded Dave to \"buy (b)\" from \"buy (b-)\".",
+            "url": "https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/",
+            "event_date": "2026-10-16",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Monness Crespi & Hardt initiated coverage at Neutral.",
+            "url": "https://stockanalysis.com/stocks/dave/",
+            "event_date": "2026-10-26",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new legal developments in the window. The FTC/DOJ case over ExtraCash and the Baltimore suit remain pending as background risk.",
+        "evidence": [
+          {
+            "claim": "FTC referred its case against Dave Inc. to the Department of Justice; the case remains pending.",
+            "url": "https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-refers-case-against-online-cash-advance-firm-dave-inc-department-justice",
+            "event_date": "2024-12-30",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 668,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material in the window. Dave serves consumers, and its main dependency is the Coastal Community Bank partnership.",
+        "evidence": [
+          {
+            "claim": "Liquidity increase driven by $93.0M funded through the Coastal Community Bank arrangement.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm",
+            "event_date": "2026-06-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 121,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions in the window. The latest filing was a tax withholding on 2026-09-02, and earlier open-market sales predate the window.",
+        "evidence": [
+          {
+            "claim": "CEO Wilk had 7,809 shares withheld for taxes at $372.85.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526383909/ownership.xml",
+            "event_date": "2026-09-02",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 57,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "No dated product launch, delay or competitive development in the window.",
+        "evidence": [],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Dave Inc. (DAVE): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- I found no guidance change, pre-announcement or withdrawal in the window.\n- Dave will report Q3 2026 results on 2026-11-04, with the call at 4:30 p.m. ET. The announcement was made 2026-10-23. — 2026-10-23 — https://investors.dave.com/news-events/news-releases\n- For context, the last guidance raise was with Q2 results, before the window. It raised 2026 revenue, adjusted EBITDA and adjusted diluted EPS guidance. — 2026-08-05 — https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm\n- Revenue guidance moved to $725–735M from $710–720M. — 2026-08-05 — https://www.fool.com/investing/2026/08/06/why-dave-stock-got-thrashed-on-thursday/\n- MarketBeat lists FY2026 EPS guidance at 17.00–17.50. — date unknown — https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/\n- The stock fell 9.1% on Oct 26, closing at $323.01 after a prior close of $354.60. The articles I found give no company-specific catalyst. — 2026-10-26 — https://stockanalysis.com/stocks/dave/ and https://www.thestockobserver.com/2026/10/26/dave-nasdaqdave-stock-price-down-9-1-heres-why.html\n\n**2. Analyst actions**\n- Monness Crespi & Hardt initiated at Neutral with no price target. It sees fair value of $350. — 2026-10-26 — https://stockanalysis.com/stocks/dave/\n- Seaport Research raised its price target to $422 from $410. — 2026-10-08 — https://www.cnn.com/markets/stocks/DAVE\n- Barrington Research reiterated Buy. — 2026-10-09 — https://www.cnn.com/markets/stocks/DAVE\n- UBS maintained Buy with a $470 target. — 2026-10-01 — https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates\n- Weiss Ratings upgraded to \"buy (b)\" from \"buy (b-)\". — 2026-10-16 — https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/\n- Consensus is \"Moderate Buy\" per MarketBeat, with 14 Buy and 4 Hold ratings and a $433.25 target. — 2026-10-26 — https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/\n- StockAnalysis shows a $445.07 average target. — date unknown — https://stockanalysis.com/stocks/dave/\n- B. Riley's Hal Goetsch raised the target to $449 from $370 with a Buy rating. The source gives no date, so I can't confirm it falls in the window. — date unknown — https://stockanalysis.com/stocks/dave/\n- Several other actions fall before the window:\n  - Wall Street Zen downgraded to Sell around 2026-09-19. — https://ca.investing.com/news/stock-market-news/why-is-dave-stock-sliding-today-93CH-4850196\n  - JPMorgan initiated at Buy with a $480 target on 2026-09-15. — https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates\n  - Loop Capital initiated at Buy with a $500 target on 2026-09-09. — https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates\n\n**3. Litigation and regulation**\n- I found no new lawsuit, fine, settlement or approval in the window.\n- The FTC/DOJ case over ExtraCash marketing and fees is still pending. It was filed 2024-11-05, and the DOJ amended complaint naming CEO Jason Wilk followed on 2024-12-30. — https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-refers-case-against-online-cash-advance-firm-dave-inc-department-justice\n- A third-party site said there was no settlement as of August 2026. — date unknown — https://lawcompensate.com/dave-settlement/\n- Baltimore filed a separate state-court suit, which says ExtraCash is a loan that needs a Maryland license. — 2026-01 (month only) — https://www.hlc.com/en/publications/baltimore-sues-fintech-company-dave-over-extracash-overdraft-product\n\n**4. Customer concentration**\n- I found nothing material in the window. Dave's customers are consumers, so concentration risk is more on the bank-partner side.\n- Q2 liquidity rose by $76.6M, driven by $93.0M funded through the Coastal Community Bank arrangement. — 2026-08-05 — https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm\n\n**5. Insider activity**\n- I found no Form 4 with a transaction date in the window.\n- The most recent Form 4 I found is CEO Wilk's 7,809 shares withheld for RSU taxes at $372.85. It is not an open-market sale, and it is before the window. — 2026-09-02 — https://www.sec.gov/Archives/edgar/data/0001841408/000119312526383909/ownership.xml\n- Earlier open-market sales, all before the window:\n  - Wilk sold 8,474 shares at $275.05 on 2026-06-02. — http://openinsider.com/DAVE\n  - CFO Beilman sold 4,122 shares at $275.03 on 2026-06-02. — http://openinsider.com/DAVE\n  - Director Preston sold 550 shares at $253.74 on 2026-06-04. — http://openinsider.com/DAVE\n- Investing.com says insiders sold about $64M over the prior 12 months with no purchases. — 2026-09-23 (article date) — https://ca.investing.com/news/stock-market-news/why-is-dave-stock-sliding-today-93CH-4850196\n\n**6. Product and competitive news**\n- I found no product launch, delay or new competitor in the window.\n- A Zacks piece says CashAI v6.0 is intended to enable bigger limits while holding credit performance. The 28-day past-due rate was 2.12% in Q2. — date unknown — https://tradingview.com/news/zacks:353dbdacf094b:0-nu-holdings-vs-dave-which-fintech-stock-is-the-better-buy-right-now\n- Dave's investor site describes a forthcoming \"Pay In Four\" card aimed at subprime credit cards. — date unknown — https://investors.dave.com/our-story\n- Management said on 2026-08-05 it would increase marketing in the second half. A Motley Fool article says this could pressure profitability and growth. — https://www.fool.com/investing/2026/08/06/why-dave-stock-got-thrashed-on-thursday/\n- An article cited by MarketBeat describes a new Dave ad campaign. — date unknown — https://www.thecerbatgem.com/2026/10/28/dave-nasdaqdave-stock-falls-9-1-should-you-sell.html",
+      "urls": [
+        "https://investors.dave.com/",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/news/",
+        "https://www.heygotrade.com/en/us-stock/dave/",
+        "https://stockanalysis.com/stocks/dave/",
+        "https://www.cnn.com/markets/stocks/DAVE",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/",
+        "https://www.marketbeat.com/instant-alerts/price-dave-nasdaq-dave-stock-price-down-91-heres-why-2026-10-26/",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-inc-dave-beat-estimates-151005549.html",
+        "https://en.wikipedia.org/wiki/Dave_(company)",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526335119/dave-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526206471/dave-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312524255957/d862351dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312523272474/d568851dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000119312523206198/d547819dex991.htm",
+        "https://simplywall.st/stocks/us/diversified-financials/nasdaq-dave/dave/future",
+        "https://investors.dave.com/news-events/news-releases",
+        "https://pluang.com/en/news-feed/dave-inc-panggil-konferensi-telepon-kuartal-tiga-2026",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-host-third-quarter-2026-124300520.html",
+        "https://www.investing.com/equities/vpc-impact-acquisition-holdings-iii-consensus-estimates",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/dave/stock-forecast",
+        "https://www.tradingkey.com/markets/stocks/dave/forecast",
+        "https://www.benzinga.com/quote/DAVE/analyst-ratings",
+        "https://benzinga.com/quote/dave/analyst-ratings",
+        "https://benzinga.com/insights/analyst-ratings/24/08/40322007/analyst-scoreboard-9-ratings-for-dave",
+        "https://www.marketbeat.com/stocks/NASDAQ/DAVE/forecast",
+        "https://www.benzinga.com/insights/news/25/12/49209546/insider-transaction-jason-wilk-sells-1-51m-worth-of-dave-shares",
+        "https://www.marketscreener.com/news/dave-inc-insider-sold-shares-worth-1-506-472-according-to-a-recent-sec-filing-ce7d51dfda8ff22d",
+        "http://openinsider.com/DAVE",
+        "https://www.tradingview.com/news/tradingview:cb5e3999df71f:0-dave-insiders-sold-shares-worth-over-3-5m/",
+        "https://www.tradingview.com/news/tradingview:6b0c787b1bbb6:0-dave-inc-executives-sell-shares-to-cover-tax-obligations/",
+        "https://www.sec.gov/Archives/edgar/data/0001841408/000119312526383909/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/1841408/000095017025103967/dave-20250630.htm",
+        "https://www.secform4.com/insider-trading/1841408.htm",
+        "https://biztoc.com/x/27b8daee848c0e2d",
+        "https://www.stocktitan.net/sec-filings/DAVE/form-4-dave-inc-de-insider-trading-activity-90560f47e8fd.html",
+        "https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-refers-case-against-online-cash-advance-firm-dave-inc-department-justice",
+        "https://www.nasdaq.com/press-release/hundreds-dave-customers-file-arbitration-claims-alleging-misleading-promises-and",
+        "https://investors.dave.com/news-releases/news-release-details/dave-issues-statement-response-amended-ftc-complaint-and",
+        "https://www.hlc.com/en/publications/baltimore-sues-fintech-company-dave-over-extracash-overdraft-product",
+        "https://www.bankingdive.com/news/fintech-dave-alters-fee-structure-blasts-doj-over-amended-lawsuit-jason-wilk/736830/",
+        "https://www.gtlaw-financialservicesobserver.com/2024/11/ftc-alleges-fintech-dave-inc-deceived-consumers/",
+        "https://lawcompensate.com/dave-settlement/",
+        "https://www.jdsupra.com/topics/unfair-or-deceptive-trade-practices/permanent-injunctions",
+        "https://www.ftc.gov/bureau-consumer-protection?page=15",
+        "https://www.fool.com/investing/2026/08/06/why-dave-stock-got-thrashed-on-thursday/",
+        "https://ca.investing.com/news/stock-market-news/why-is-dave-stock-sliding-today-93CH-4850196",
+        "https://www.thecerbatgem.com/2026/10/28/dave-nasdaqdave-stock-falls-9-1-should-you-sell.html",
+        "https://thecryptobasic.com/2026/10/26/nebius-stock-falls-amid-neocloud-debt-concerns-after-3-5-billion-citi-facility/",
+        "https://www.thestockobserver.com/2026/10/26/dave-nasdaqdave-stock-price-down-9-1-heres-why.html",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262239016-neocloud-stocks-fall-nebius-coreweave-iren-drop-4-percent-musk-consolidation-warning-tradingkey",
+        "https://www.nerdwallet.com/personal-loans/learn/dave-cash-advance",
+        "https://shareholdersunite.substack.com/p/a-primer-on-dave-inc",
+        "https://finance.yahoo.com/markets/stocks/articles/dave-expands-ai-driven-credit-160400490.html",
+        "https://play.google.com/store/apps/details/Dave_Banking_Cash_Advance?id=com.dave&hl=en_NZ",
+        "https://play.google.com/store/apps/details?id=com.dave&hl=en_US",
+        "https://dave.com/macais",
+        "https://investors.dave.com/our-story",
+        "https://dcfanalyst.com/blogs/overview/dave-overview",
+        "https://tradingview.com/news/zacks:353dbdacf094b:0-nu-holdings-vs-dave-which-fintech-stock-is-the-better-buy-right-now"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Dave rates Buy on very strong quality, a clean balance sheet and fast but slowing growth.",
+    "thesis": "Dave scores 71, a Buy, carried mainly by quality (93) and balance sheet (90). It has a free cash flow margin of 50.7%, stock-based pay at 5.8% of revenue and a diluted share count down 6.0% year on year, while net debt is just 0.05 times free cash flow. Growth scores 69 on TTM revenue growth of 48.6% and latest-quarter revenue growth of 29.6% year on year, though growth slowed by 17.1 pp from the previous quarter. Valuation (63) is moderate in absolute terms at 6.9x sales and 13.5x free cash flow, with FCF yield 2.4 pp above the 10-year Treasury yield; against its own history it is near the middle overall, with P/S more expensive than at 34 of the last 44 month-ends. Trend (61) and news risk (54) are middling: the price is 27.1% below its 52-week high and 8.9% below its 50-day average, but shares are 16.4 pp ahead of SPY over the last 126 trading days.",
+    "key_risks": [
+      "Revenue growth is decelerating sharply, with growth slowed by 17.1 pp from the previous quarter.",
+      "The pending FTC/DOJ case over ExtraCash and the Baltimore suit could hit its core product.",
+      "It depends on the Coastal Community Bank partnership.",
+      "Q3 results on 2026-11-04 could reset expectations after the August guidance raise.",
+      "Weak recent price action: the price is 27.1% below its 52-week high and 8.9% below its 50-day average."
+    ],
+    "what_would_change": [
+      "A gain of 9 points, for example from re-accelerating growth or a recovering trend, would lift the rating to Strong Buy.",
+      "A loss of 7 points would drop it to Hold, for instance if growth keeps slowing or the trend weakens further.",
+      "An adverse ruling or settlement in the FTC/DOJ ExtraCash case would likely push news risk down.",
+      "A rise in P/S further above its own history without matching growth would weigh on the valuation score."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1985,
+        "output_tokens": 1164,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1985,
+            "output_tokens": 1164,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0312,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 108135,
+        "output_tokens": 3714,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 108135,
+            "output_tokens": 3714,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3234,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8032,
+        "output_tokens": 1345,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8032,
+            "output_tokens": 1345,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.059,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3757,
+        "output_tokens": 715,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3757,
+            "output_tokens": 715,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0293,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4429,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 322.69,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 328.47
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:19",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  }
+}

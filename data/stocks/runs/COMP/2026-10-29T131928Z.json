@@ -1,0 +1,1695 @@
+{
+  "run_id": "2026-10-29T13:19:28Z",
+  "generated_at": "2026-10-29T13:20:49+00:00",
+  "ticker": "COMP",
+  "sec_ticker": "COMP",
+  "cik": "0001563190",
+  "name": "Compass, Inc.",
+  "sector": "Real Estate Agents & Managers (For Others)",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 46,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 46 is within 2 points of the Hold edge (45)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 19
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 2
+    }
+  },
+  "composite": {
+    "score": 46,
+    "raw": 46.25,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 109.03,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 67.81,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 9.62,
+          "score": 98.1,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": -2.62,
+          "score": 14.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 1.22,
+          "score": 23.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 2.52,
+          "score": 96.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 42.44,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 30,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 19.06,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.22,
+          "score": 26.5,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 11,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.658,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 54.142,
+          "score": 17.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -3.143,
+          "score": 10.7,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 64.8,
+          "score": 35.2,
+          "weight": 0.1,
+          "note": "cheaper than now in 64.8% of 54 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 24 of 54 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 31 of 31 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 26,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.71,
+          "score": 6.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -7.76,
+          "score": 30.6,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 11.79,
+          "score": 64.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 11.26,
+          "score": 71.9,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 10.43,
+          "score": 70.6,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -32.47,
+          "score": 12.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 43,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 9.17,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 4306000000.0,
+    "revenue_yoy_q": 109.03,
+    "revenue_yoy_q_prev": 99.41,
+    "acceleration_pp": 9.62,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 10555800000.0,
+    "revenue_yoy_ttm": 67.81,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": -276100000.0,
+    "operating_cash_flow_ttm": 154700000.0,
+    "capex_ttm": 26400000.0,
+    "sbc_ttm": 265700000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 128300000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": -2.62,
+    "fcf_margin_pct": 1.22,
+    "capex_intensity_pct": 0.25,
+    "sbc_pct_revenue": 2.52,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 1.22,
+      "fcf_margin_year_earlier_pct": 2.33,
+      "median_margin_pct": 2.34,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 128300000.0,
+    "fcf_scored_margin_pct": 1.22,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 694000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 694000000.0,
+      "debt": 3140000000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 3140000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 2446000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 842377292.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 42.44,
+    "shares_outstanding": {
+      "val": 757522197.0,
+      "end": "2026-08-03",
+      "filed": "2026-08-06",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 1337400000.0,
+        "revenue_yoy_pct": -10.46,
+        "operating_margin_pct": -2.91,
+        "fcf": 12200000.0,
+        "diluted_shares": 470945736.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 1096400000.0,
+        "revenue_yoy_pct": -0.98,
+        "operating_margin_pct": -7.57,
+        "fcf": -41000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 1054100000.0,
+        "revenue_yoy_pct": 10.12,
+        "operating_margin_pct": -12.53,
+        "fcf": 5900000.0,
+        "diluted_shares": 490000265.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 1700600000.0,
+        "revenue_yoy_pct": 13.83,
+        "operating_margin_pct": 1.25,
+        "fcf": 40400000.0,
+        "diluted_shares": 509884022.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 1494000000.0,
+        "revenue_yoy_pct": 11.71,
+        "operating_margin_pct": -0.23,
+        "fcf": 32800000.0,
+        "diluted_shares": 505993014.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 1380400000.0,
+        "revenue_yoy_pct": 25.9,
+        "operating_margin_pct": -2.94,
+        "fcf": 26700000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 1356000000.0,
+        "revenue_yoy_pct": 28.64,
+        "operating_margin_pct": -3.98,
+        "fcf": 19000000.0,
+        "diluted_shares": 550146367.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 2060000000.0,
+        "revenue_yoy_pct": 21.13,
+        "operating_margin_pct": 1.89,
+        "fcf": 68000000.0,
+        "diluted_shares": 591370687.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 1846000000.0,
+        "revenue_yoy_pct": 23.56,
+        "operating_margin_pct": -0.39,
+        "fcf": 74100000.0,
+        "diluted_shares": 565895221.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 1699800000.0,
+        "revenue_yoy_pct": 23.14,
+        "operating_margin_pct": -2.46,
+        "fcf": 42200000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 2704000000.0,
+        "revenue_yoy_pct": 99.41,
+        "operating_margin_pct": -12.98,
+        "fcf": -168000000.0,
+        "diluted_shares": 823393622.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 4306000000.0,
+        "revenue_yoy_pct": 109.03,
+        "operating_margin_pct": 2.88,
+        "fcf": 180000000.0,
+        "diluted_shares": 842377292.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 9.17,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 757522197.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-03"
+    },
+    "market_cap": 6946478546.49,
+    "enterprise_value": 9392478546.49,
+    "price_to_sales": 0.658,
+    "price_to_fcf": 54.142,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 151.959,
+    "fcf_yield_pct": 1.847,
+    "ebit_yield_pct": -2.94,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -3.143,
+    "history": [
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.363,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 275.418,
+        "fcf_yield_pct": -6.294,
+        "ebit_yield_pct": -23.571
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.224,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 447.077,
+        "fcf_yield_pct": -10.216,
+        "ebit_yield_pct": -44.715
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.237,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 422.5,
+        "fcf_yield_pct": -9.655,
+        "ebit_yield_pct": -41.26
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.181,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 553.314,
+        "fcf_yield_pct": -21.601,
+        "ebit_yield_pct": -67.65
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.147,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 682.102,
+        "fcf_yield_pct": -26.628,
+        "ebit_yield_pct": -94.024
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.167,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 599.423,
+        "fcf_yield_pct": -23.401,
+        "ebit_yield_pct": -76.379
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.198,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 504.457,
+        "fcf_yield_pct": -25.072,
+        "ebit_yield_pct": -62.453
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.154,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 647.35,
+        "fcf_yield_pct": -32.174,
+        "ebit_yield_pct": -88.316
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.267,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 375.205,
+        "fcf_yield_pct": -18.648,
+        "ebit_yield_pct": -42.864
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.239,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 417.819,
+        "fcf_yield_pct": -20.766,
+        "ebit_yield_pct": -48.979
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.23,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 435.145,
+        "fcf_yield_pct": -26.161,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.166,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 600.649,
+        "fcf_yield_pct": -36.111,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.299,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 334.985,
+        "fcf_yield_pct": -17.355,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.282,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 354.127,
+        "fcf_yield_pct": -18.347,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.338,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 295.81,
+        "fcf_yield_pct": -15.326,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.328,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 304.443,
+        "fcf_yield_pct": -12.558,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.265,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 377.929,
+        "fcf_yield_pct": -15.59,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.181,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 553.533,
+        "fcf_yield_pct": -22.833,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.214,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 468.274,
+        "fcf_yield_pct": -12.157,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.362,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 276.481,
+        "fcf_yield_pct": -7.178,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.331,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 302.2,
+        "fcf_yield_pct": -7.845,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 0.377,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 265.091,
+        "fcf_yield_pct": -2.013,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 0.344,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 290.863,
+        "fcf_yield_pct": -2.209,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.301,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 332.415,
+        "fcf_yield_pct": -2.525,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.369,
+        "price_to_fcf": 66.097,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 271.124,
+        "fcf_yield_pct": 1.513,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.354,
+        "price_to_fcf": 63.453,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 282.42,
+        "fcf_yield_pct": 1.576,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.432,
+        "price_to_fcf": 77.378,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 231.598,
+        "fcf_yield_pct": 1.292,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.504,
+        "price_to_fcf": 149.469,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 198.36,
+        "fcf_yield_pct": 0.669,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.6,
+        "price_to_fcf": 178.022,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 166.544,
+        "fcf_yield_pct": 0.562,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.624,
+        "price_to_fcf": 185.015,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 160.25,
+        "fcf_yield_pct": 0.54,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.671,
+        "price_to_fcf": 94.16,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 148.993,
+        "fcf_yield_pct": 1.062,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.554,
+        "price_to_fcf": 77.692,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 180.574,
+        "fcf_yield_pct": 1.287,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.686,
+        "price_to_fcf": 96.285,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 145.705,
+        "fcf_yield_pct": 1.039,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.801,
+        "price_to_fcf": 42.615,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 124.852,
+        "fcf_yield_pct": 2.347,
+        "ebit_yield_pct": -3.613
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.778,
+        "price_to_fcf": 41.382,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 128.57,
+        "fcf_yield_pct": 2.417,
+        "ebit_yield_pct": -3.726
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.688,
+        "price_to_fcf": 36.594,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 145.391,
+        "fcf_yield_pct": 2.733,
+        "ebit_yield_pct": -4.244
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.548,
+        "price_to_fcf": 27.345,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 182.416,
+        "fcf_yield_pct": 3.657,
+        "ebit_yield_pct": -2.455
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.583,
+        "price_to_fcf": 29.057,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 171.668,
+        "fcf_yield_pct": 3.441,
+        "ebit_yield_pct": -2.305
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.736,
+        "price_to_fcf": 36.738,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 135.778,
+        "fcf_yield_pct": 2.722,
+        "ebit_yield_pct": -1.808
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.854,
+        "price_to_fcf": 36.653,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 117.147,
+        "fcf_yield_pct": 2.728,
+        "ebit_yield_pct": -1.136
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.755,
+        "price_to_fcf": 32.414,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 132.466,
+        "fcf_yield_pct": 3.085,
+        "ebit_yield_pct": -1.291
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.725,
+        "price_to_fcf": 31.123,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 137.963,
+        "fcf_yield_pct": 3.213,
+        "ebit_yield_pct": -1.346
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.888,
+        "price_to_fcf": 31.398,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 112.647,
+        "fcf_yield_pct": 3.185,
+        "ebit_yield_pct": -1.097
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.901,
+        "price_to_fcf": 31.85,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 111.049,
+        "fcf_yield_pct": 3.14,
+        "ebit_yield_pct": -1.081
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 1.067,
+        "price_to_fcf": 37.726,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 93.753,
+        "fcf_yield_pct": 2.651,
+        "ebit_yield_pct": -0.908
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.787,
+        "price_to_fcf": 26.96,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 127.017,
+        "fcf_yield_pct": 3.709,
+        "ebit_yield_pct": -1.214
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.59,
+        "price_to_fcf": 20.213,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 169.414,
+        "fcf_yield_pct": 4.947,
+        "ebit_yield_pct": -1.639
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.611,
+        "price_to_fcf": 20.932,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 163.595,
+        "fcf_yield_pct": 4.777,
+        "ebit_yield_pct": -1.58
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.815,
+        "price_to_fcf": 415.738,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 122.626,
+        "fcf_yield_pct": 0.241,
+        "ebit_yield_pct": -3.828
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 1.222,
+        "price_to_fcf": 622.849,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 81.85,
+        "fcf_yield_pct": 0.161,
+        "ebit_yield_pct": -2.819
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 1.129,
+        "price_to_fcf": 575.365,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 88.605,
+        "fcf_yield_pct": 0.174,
+        "ebit_yield_pct": -3.001
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.843,
+        "price_to_fcf": 69.334,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 118.664,
+        "fcf_yield_pct": 1.442,
+        "ebit_yield_pct": -2.434
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.709,
+        "price_to_fcf": 58.303,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 141.114,
+        "fcf_yield_pct": 1.715,
+        "ebit_yield_pct": -2.781
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.732,
+        "price_to_fcf": 60.207,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 136.652,
+        "fcf_yield_pct": 1.661,
+        "ebit_yield_pct": -2.715
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.658,
+        "current_yield_pct": 151.959,
+        "points": 54,
+        "median": 0.465,
+        "low": 0.147,
+        "high": 1.222,
+        "negative_points": 0,
+        "median_yield_pct": 214.979,
+        "percentile": 64.8,
+        "cheaper_points": 35,
+        "dearer_points": 19,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2022-05-31"
+      },
+      "price_to_fcf": {
+        "current": 54.142,
+        "current_yield_pct": 1.847,
+        "points": 54,
+        "median": 256.082,
+        "low": 20.214,
+        "high": null,
+        "negative_points": 24,
+        "median_yield_pct": 0.391,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 24 of 54 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-05-31"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -2.94,
+        "points": 31,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 31,
+        "median_yield_pct": -2.819,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 31 of 31 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-05-31"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 54 month-ends (cheaper than at 19, more expensive than at 35)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative in 24 of 54 month-ends)",
+          "not_comparable": "negative in 24 of 54 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 31 of 31 month-ends)",
+          "not_comparable": "negative now and in 31 of 31 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 9.17,
+    "date": "2026-10-28",
+    "ma50": 10.04,
+    "ma200": 9.94,
+    "vs_ma50_pct": -8.71,
+    "vs_ma200_pct": -7.76,
+    "momentum_12_1_pct": 11.79,
+    "high_52w": 13.58,
+    "drawdown_52w_pct": -32.47,
+    "return_rs_pct": 20.34,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 11.26,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 10.43
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001563190-26-000135",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000135/exhibit9918-k2q26pr.htm",
+    "summary": "Compass raised its Year 1 actioned synergy target to $330 million and 2026 realized synergy target to $220 million, raised full-year 2026 non-GAAP OPEX guidance to $2.75–$2.80 billion, and expects positive free cash flow for full year 2026.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "Year 1",
+        "amount_text": "$330 million",
+        "stated_change": "raised",
+        "sentence": "As such, we are raising our Year 1 actioned net cost synergy target from $300 million to $330 million and our 2026 realized net cost synergy target from $200 million to $220 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$220 million",
+        "stated_change": "raised",
+        "sentence": "As such, we are raising our Year 1 actioned net cost synergy target from $300 million to $330 million and our 2026 realized net cost synergy target from $200 million to $220 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$150 million",
+        "stated_change": "not stated",
+        "sentence": "Of the $220 million, we expect to now realize $150 million through the P&L and the remaining $70 million as a Capex synergy.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "three years",
+        "amount_text": "$500 million",
+        "stated_change": "not stated",
+        "sentence": "Our progress to date reinforces our confidence in delivering on our $500 million net cost synergy target over three years.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "free_cash_flow",
+        "period": "H2 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "With $694 million of cash on hand and the positive free cash flow we expect to generate in the second half of the year, we remain committed to redeeming our $500 million 9.75% Notes when they are first callable in Q2 of 2027.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "future periods",
+        "amount_text": "$470 million",
+        "stated_change": "not stated",
+        "sentence": "Deleveraging the balance sheet remains a key focus for the company and we expect to continue to make progress on this front through strong cash flow generation, bolstered by the expected $470 million in future cash tax savings from our $1.8 billion in net operating losses.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$2.75 billion to $2.80 billion",
+        "stated_change": "raised",
+        "sentence": "Non-GAAP OPEX of $2.75 billion to $2.80 billion, reflecting an increase from the prior range of $2.70 billion to $2.75 billion.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "free_cash_flow",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Free cash flow positive for the full year 2026.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001563190-26-000094",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000094/exhibit9918-k1q26pr.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No new guidance in the window; the latest outlook came with Q2 results in August, which raised synergy targets and opex guidance and reiterated positive full-year free cash flow. Q3 results are due November 5.",
+        "evidence": [
+          {
+            "claim": "Compass will report third quarter results after the close on November 5, 2026.",
+            "url": "https://www.nasdaq.com/press-release/compass-inc-announce-third-quarter-results-november-5-2026-10-16",
+            "event_date": "2026-10-16",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "unreachable",
+            "check": "ReadTimeout"
+          },
+          {
+            "claim": "Non-GAAP OPEX of $2.75 billion to $2.80 billion, reflecting an increase from the prior range of $2.70 billion to $2.75 billion; free cash flow positive for the full year 2026.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000135/exhibit9918-k2q26pr.htm",
+            "event_date": "2026-08-04",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 86,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 4/4, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Mixed: Zelman upgraded and Citizens JMP and Citigroup initiated at outperform, while UBS, Needham and Wells Fargo all cut price targets.",
+        "evidence": [
+          {
+            "claim": "UBS kept Buy and cut its price target from $17 to $15.",
+            "url": "https://stockanalysis.com/stocks/comp/forecast/",
+            "event_date": "2026-10-28",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "Zelman & Associates upgraded Compass to Outperform.",
+            "url": "https://www.defenseworld.net/2026/10/22/compass-nysecomp-stock-lifted-to-outperform-by-zelman-associates.html",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Needham maintained Buy and lowered its price target to $12.00 from $17.",
+            "url": "https://www.gurufocus.com/news/9127413/comp-maintained-by-needham-price-target-lowered-to-1200",
+            "event_date": "2026-10-16",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Citizens JMP initiated coverage at Market Outperform with an $11 price target.",
+            "url": "https://www.defenseworld.net/2026/10/15/compass-nysecomp-coverage-initiated-by-analysts-at-citizens-jmp.html",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Wells Fargo maintained Equal Weight and lowered its price target to $10.00 from $13.",
+            "url": "https://www.gurufocus.com/news/9119484/comp-maintained-by-wells-fargo-price-target-lowered-to-1000",
+            "event_date": "2026-10-12",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Securities class actions over the Anywhere merger materials surfaced through law-firm notices, but their filing date is unconfirmed and the allegations are unproven. Other matters (Zillow suit, NAR class actions, NY AG probe) had no new in-window developments.",
+        "evidence": [
+          {
+            "claim": "Securities class actions allege non-disclosure about regulatory approval efforts related to the Anywhere merger offering materials.",
+            "url": "https://www.marketbeat.com/stocks/NYSE/COMP/news/",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          },
+          {
+            "claim": "The court denied Zillow's preliminary injunction, compelled MRED claims to arbitration and paused claims against Compass.",
+            "url": "https://www.housingwire.com/articles/zillow-mred-arbitration-ruling/",
+            "event_date": "2026-09-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 44,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material; Compass is an agent-based brokerage and franchisor with no disclosed large-customer dependence.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions found inside the window; the CEO's recent sales follow a routine monthly cadence under a 10b5-1 plan.",
+        "evidence": [
+          {
+            "claim": "Reffkin sold 23,456 shares at $11.70, totalling $274,433.",
+            "url": "http://www.openinsider.com/COMP",
+            "event_date": "2026-08-03",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 87,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 1/1"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Executives described the Home Platform rollout to owned brands now and franchisees in 2027, with no outside licensing for now; no material competitive shift in the window.",
+        "evidence": [
+          {
+            "claim": "Rory Golod said the Home Platform is rolling out to owned brands now and to franchisees in 2027, and is not being licensed to outside brokerages for now.",
+            "url": "https://www.inman.com/2026/10/16/compass-home-platform-rory-golod/",
+            "event_date": "2026-10-16",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 4
+        },
+        "litigation_regulation": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Compass, Inc. (COMP), 2026-09-29 to 2026-10-29.** Q3 results are due 2026-11-05, so the window has no earnings release.\n\n**1. Guidance**\n- Nothing new in the window. The latest guidance was given with Q2 results. Q3 revenue is guided to $3.85–4.05B and adjusted EBITDA to $275–305M. Full-year non-GAAP opex was raised by $50M to $2.75–2.80B. — 2026-08-04 — https://www.fool.com/earnings/call-transcripts/2026/08/11/compass-comp-q2-2026-earnings-call-transcript/\n- Q2 revenue and adjusted EBITDA beat the high end of guidance. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000135/exhibit9918-k2q26pr.htm\n- Compass will report Q3 after the close on Nov 5, with a 5pm ET call. — 2026-10-16 — https://www.nasdaq.com/press-release/compass-inc-announce-third-quarter-results-november-5-2026-10-16\n- No pre-announcement, cut or withdrawal found.\n\n**2. Analyst actions**\n- UBS (Stephen Ju) kept Buy and cut its target from $17 to $15. — 2026-10-28 — https://stockanalysis.com/stocks/comp/forecast/\n- Zelman & Associates upgraded to Buy/Outperform. No target was given. — 2026-10-21 — https://www.defenseworld.net/2026/10/22/compass-nysecomp-stock-lifted-to-outperform-by-zelman-associates.html\n- Needham kept Buy and cut its target from $17 to $12. — 2026-10-16 — https://www.gurufocus.com/news/9127413/comp-maintained-by-needham-price-target-lowered-to-1200\n- Citizens JMP initiated at Market Outperform with an $11 target. — 2026-10-14 — https://www.defenseworld.net/2026/10/15/compass-nysecomp-coverage-initiated-by-analysts-at-citizens-jmp.html\n- Citigroup initiated at Outperform. No target was given. — 2026-10-14 — https://www.marketbeat.com/instant-alerts/analyst-compass-nyse-comp-given-new-1500-price-target-at-ubs-group-2026-10-28/\n- Wells Fargo kept Equal Weight and cut its target from $13 to $10, the lowest target on the Street. — 2026-10-12 — https://www.gurufocus.com/news/9119484/comp-maintained-by-wells-fargo-price-target-lowered-to-1000\n- Weiss Ratings moved from \"hold (c-)\" to \"hold (c)\". — 2026-10-12 — https://www.defenseworld.net/2026/10/22/compass-nysecomp-stock-lifted-to-outperform-by-zelman-associates.html\n- Consensus targets differ by source: $14.08 from S&P Global via StockAnalysis, and $13.36 from MarketBeat. — 2026-10-28 — https://stockanalysis.com/stocks/comp/forecast/ ; https://www.marketbeat.com/instant-alerts/analyst-compass-nyse-comp-given-new-1500-price-target-at-ubs-group-2026-10-28/\n\n**3. Litigation and regulation**\n- Securities class actions were filed over the Anywhere merger offering materials. They allege non-disclosure about regulatory approval efforts, including an alleged DOJ backchannel. Law-firm lead-plaintiff notices were issued Oct 27. The filing date was not found and the allegations are unproven. — date unknown — https://www.marketbeat.com/stocks/NYSE/COMP/news/\n- Zillow v. MRED and Compass, a Sherman Act suit in N.D. Ill. The court denied Zillow's preliminary injunction, compelled the MRED claims to arbitration and paused the claims against Compass. The ruling is from before the window but sets the current status. — 2026-09-15 — https://www.housingwire.com/articles/zillow-mred-arbitration-ruling/\n- A House Subcommittee sent letters to MRED and Compass about private listings. — date unknown — https://www.housingwire.com/articles/zillow-mred-arbitration-ruling/\n- The NY Attorney General's antitrust probe was reported earlier, in June. I found no new development in the window. — 2026-06-03 — https://finviz.com/quote.ashx?t=COMP\n- The 10-Q lists the NAR-related Sherman Act class actions (Gibson, Grace, Fierro, Whaley) that name Compass. They were filed in 2023–24. — 2023-10-31 (earliest, Gibson) — https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000143/comp-20260630.htm\n- Compass dropped its own suit against Zillow. This is not in the window. — 2026-03-18 — https://www.housingwire.com/articles/compass-dismisses-zillow-lawsuit/\n\n**4. Customer concentration**\n- Nothing material found. Compass is an agent-based brokerage and franchisor with no disclosed large-customer dependence.\n\n**5. Insider activity**\n- I found no Form 4 with a transaction date inside the window. The latest I could see are Chief Accounting Officer Gustavson's option exercise of 2,299 shares and a Chief Legal Officer Glass filing, both before the window. — 2026-09-15 (Gustavson) — https://finviz.com/quote.ashx?t=COMP\n- The latest Reffkin sale I could see was 23,456 shares at $11.70, totalling $274,433. It is part of a monthly cadence (Jun 3, Jul 1, Aug 3). The Sept/Oct data may be incomplete in these sources. — 2026-08-03 — http://www.openinsider.com/COMP\n- Older Reffkin sales were made under a 10b5-1 plan adopted 2024-05-10. — 2025-02-11 — https://www.tradingview.com/news/tradingview:66c9ac69ddc1e:0-compass-ceo-robert-l-reffkin-sells-over-224k-shares/\n- CFO Wahlers also sold about $1.2M of stock. The transaction date is not given. — date unknown — https://www.quiverquant.com/news/Why+Compass+(COMP)+Stock+Is+Down+Today\n\n**6. Product and competitive**\n- Rory Golod, who leads the Home Platform rollout, said it is going to owned brands now and to franchisees in 2027. He said Compass is not licensing it to outside brokerages for now, and that agents are not mandated to use it. — 2026-10-16 — https://www.inman.com/2026/10/16/compass-home-platform-rory-golod/\n- Home Platform is rolling out to @properties, Coldwell Banker Realty, Corcoran and Sotheby's International Realty. This is earlier news, not in the window. — 2026-07-02 — https://www.housingwire.com/articles/compass-home-platform-rollout/\n- Management expected about 80% of Compass Brokerage listings to launch as \"coming soon\" on Compass.com and Redfin by the end of Q3. — 2026-08-04 — https://www.fool.com/earnings/call-transcripts/2026/08/11/compass-comp-q2-2026-earnings-call-transcript/\n- U.S. brokerage agents fell to 83,184 in Q2 from 84,187 in Q1. The company said this came mainly from cutting low-productivity agents at a former Anywhere brand. — 2026-08-04 — https://www.realestatenews.com/2026/08/04/bolstered-by-the-high-end-market-compass-tops-4-3b-in-revenue\n- A Zillow \"See It First\" product went live, per Real Estate News. I did not open the article for details. — date unknown (article dated 2026-09-22) — https://www.realestatenews.com/2026/09/22/the-future-of-zillow-and-compass-as-see-it-first-goes-live\n- The stock closed at $9.17 on Oct 28, down 5.76%. — 2026-10-28 — https://stockanalysis.com/stocks/comp/forecast/",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000135/exhibit9918-k2q26pr.htm",
+        "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000044/exhibit9918-k4q25pr.htm",
+        "https://investors.compassminerals.com/investors-relations/investor-news/press-release-details/2026/Compass-Minerals-Reports-Fiscal-2026-Third-Quarter-Results/",
+        "https://finance.yahoo.com/markets/stocks/articles/compass-minerals-reports-fiscal-2026-211500846.html",
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000143/comp-20260630.htm",
+        "https://www.fool.com/earnings/call-transcripts/2026/08/11/compass-comp-q2-2026-earnings-call-transcript/",
+        "https://www.nasdaq.com/press-release/compass-minerals-reports-fiscal-2026-third-quarter-results-2026-08-05",
+        "https://www.marketscreener.com/news/compass-group-plc-reports-revenue-results-for-the-third-quarter-and-year-to-date-ended-june-30-2026-ce7f51dbd189f722",
+        "https://www.compass-group.com/en/media/news/2026/compass-group-third-quarter-trading-update-2026.html",
+        "https://www.gurufocus.com/news/9127413/comp-maintained-by-needham-price-target-lowered-to-1200",
+        "https://www.gurufocus.com/news/9119484/comp-maintained-by-wells-fargo-price-target-lowered-to-1000",
+        "https://stockanalysis.com/stocks/comp/forecast/",
+        "https://www.marketbeat.com/instant-alerts/analyst-compass-nyse-comp-given-new-1500-price-target-at-ubs-group-2026-10-28/",
+        "https://www.marketbeat.com/instant-alerts/analyst-compass-nyse-comp-given-new-1200-price-target-at-needham-company-llc-2026-10-16/",
+        "https://simplywall.st/stocks/us/real-estate-management-and-development/nyse-comp/compass/future",
+        "https://simplywall.st/stocks/us/real-estate-management-and-development/nyse-comp/compass",
+        "https://www.defenseworld.net/2026/10/22/compass-nysecomp-stock-lifted-to-outperform-by-zelman-associates.html",
+        "https://www.nasdaq.com/articles/needham-reiterates-compass-comp-buy-recommendation",
+        "https://benzinga.com/quote/comp/analyst-ratings",
+        "https://www.sec.gov/Archives/edgar/data/0001617640/000161764026000039/z-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001617640/000161764026000052/z-20260630.htm",
+        "https://www.housingwire.com/articles/compass-zillow-lawsuit/",
+        "https://www.zillow.com/news/zillow-sues-mred-compass/",
+        "https://www.inman.com/2026/03/18/compass-drops-antitrust-lawsuit-against-zillow/",
+        "https://www.housingwire.com/articles/compass-dismisses-zillow-lawsuit/",
+        "https://www.housingwire.com/articles/compass-ethics-complaints-zillow/",
+        "https://www.onlinemarketplaces.com/articles/compass-drops-zillow-ban-lawsuit/",
+        "https://www.housingwire.com/articles/zillow-mred-compass-lawsuit/",
+        "http://www.openinsider.com/COMP",
+        "https://www.tradingview.com/news/tradingview:66c9ac69ddc1e:0-compass-ceo-robert-l-reffkin-sells-over-224k-shares/",
+        "https://www.tradingview.com/news/tradingview:e6921afc7e0c8:0-compass-ceo-robert-l-reffkin-sells-shares/",
+        "https://www.tradingview.com/news/tradingview:8fd02ac04953b:0-compass-ceo-robert-l-reffkin-sells-over-800k-shares/",
+        "https://www.investing.com/news/insider-trading-news/compass-ceo-robert-reffkin-sells-405-million-in-stock-93CH-3736392",
+        "https://www.secform4.com/insider-trading/1563190.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000184717825000002/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/1563190/000156319024000072/comp-20240418.htm",
+        "https://www.sec.gov/Archives/edgar/data/1563190/000156319023000248/comp-20231222.htm",
+        "https://www.sec.gov/Archives/edgar/data/1563190/000156319025000082/comp-20250404.htm",
+        "https://www.realestatenews.com/2026/07/02/compass-deploys-tech-platform-across-brands-ai-coach-launches",
+        "https://www.inman.com/2026/07/02/compass-rolls-out-its-agent-platform-within-brokerage-brands/",
+        "https://www.prnewswire.com/news/compass/",
+        "https://therealdeal.com/national/2026/08/09/compass-leverages-growing-market-share/",
+        "https://www.prnewswire.com/news-releases/compass-announces-combination-with-anywhere-real-estate-in-all-stock-transaction-302562626.html",
+        "https://www.housingwire.com/articles/compass-home-platform-rollout/",
+        "https://www.housingwire.com/articles/compass-ai-assistant-home-platform-2/",
+        "https://www.inman.com/2026/10/16/compass-home-platform-rory-golod/",
+        "https://www.realestatenews.com/2026/08/04/bolstered-by-the-high-end-market-compass-tops-4-3b-in-revenue",
+        "https://www.biospace.com/press-releases/compass-pathways-to-announce-third-quarter-2026-financial-results-on-november-3-2026",
+        "https://www.morningstar.com/news/pr-newswire/20261016ny73937/compass-inc-to-announce-third-quarter-results-on-november-5",
+        "https://www.nasdaq.com/press-release/compass-inc-announce-third-quarter-results-november-5-2026-10-16",
+        "https://marketchameleon.com/articles/b/2026/10/16/comp-q3-2026-earnings-date-november-5-conference-call-details",
+        "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000044/comp-20260226.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000094/exhibit9918-k1q26pr.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000135/comp-20260804.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001563190/000156319026000094/comp-20260505.htm",
+        "https://probig.substack.com/p/is-it-worth-it-let-me-work-it-i-put",
+        "https://therealdeal.com/chicago/2026/05/12/zillow-sues-chicago-mls-and-compass-in-over-private-listings/",
+        "https://cdn.arstechnica.net/wp-content/uploads/2026/05/Zillow-v-Midwest-Real-Estate-Data-Complaint-5-12-26.pdf",
+        "https://www.housingwire.com/articles/zillow-mred-arbitration-ruling/",
+        "https://www.housingwire.com/articles/judge-restores-zillow-mred-feeds/",
+        "https://www.housingwire.com/articles/zillow-mred-arbitration-injunction/",
+        "https://www.realestatenews.com/2026/09/22/the-future-of-zillow-and-compass-as-see-it-first-goes-live",
+        "https://joinkale.com/zillow-sues-mred-compass-over-chicago-listings",
+        "https://www.itiger.com/stock/COMP/news",
+        "https://www.quiverquant.com/news/Why+Compass+(COMP)+Stock+Is+Down+Today",
+        "https://www.tradingview.com/news/stockstory:22fb40f58094b:0-why-compass-comp-stock-is-down-today/",
+        "https://finviz.com/quote.ashx?t=COMP",
+        "https://www.marketbeat.com/stocks/NYSE/COMP/news/",
+        "https://www.tipranks.com/stocks/comp",
+        "https://www.defenseworld.net/2026/10/15/compass-nysecomp-coverage-initiated-by-analysts-at-citizens-jmp.html",
+        "https://finance.yahoo.com/markets/stocks/articles/compass-comp-stock-sees-modest-051459184.html",
+        "https://www.nasdaq.com/articles/why-compass-stock-was-falling-today"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Compass rates Hold at 46, two points above Sell, as merger-driven growth meets weak quality and debt.",
+    "thesis": "Compass scores 46, a Hold that sits just 2 points above the Sell line. Growth is the clear strength, scoring 100 on latest-quarter revenue growth of 109.0% year on year, TTM revenue growth of 67.8%, and growth that sped up by 9.6 pp from the previous quarter, which largely reflects the Anywhere merger. That is offset by a weak balance sheet (score 11, net debt at 19.06 times FCF and cash covering only 0.22 of debt) and soft quality (score 30), with an operating margin of -2.6%, an FCF margin of 1.2% and the diluted share count up 42.4% year on year. Valuation scores 26: P/S of 0.7x is low in absolute terms, but P/FCF of 54.1x is high in absolute terms, EBIT is negative, and the FCF yield is 3.1 pp below the 10-year Treasury yield; P/S is near the middle of the last 54 month-ends. Trend is middling at 43, with the price 32.5% below its 52-week high but shares 11.3 pp ahead of SPY over the last 126 trading days, and news is neutral at 50.",
+    "key_risks": [
+      "Heavy leverage: net debt at 19.06 times FCF and cash at 0.22 of debt leave little room if housing activity weakens.",
+      "Integration of the Anywhere merger may fall short of the raised $330 million actioned and $220 million realized 2026 synergy targets.",
+      "Thin profitability, with an operating margin of -2.6% and an FCF margin of 1.2%, plus the diluted share count up 42.4% year on year.",
+      "Securities class actions over the merger materials, alongside the Zillow suit, NAR class actions and a NY AG probe.",
+      "Weak price trend: shares 8.7% below their 50-day average and 7.8% below their 200-day average."
+    ],
+    "what_would_change": [
+      "A 2-point drop in the score would move the rating to Sell, for example from a weak Q3 report on November 5, softer trend or negative news.",
+      "Delivering positive full-year 2026 free cash flow and paying down debt would lift the balance sheet and quality scores.",
+      "A move to Buy needs 19 more points, which would require sustained gains in quality, balance sheet and valuation, not growth alone."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3428,
+        "output_tokens": 1520,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3428,
+            "output_tokens": 1520,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0441,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 107919,
+        "output_tokens": 4375,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 107919,
+            "output_tokens": 4375,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3396,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8241,
+        "output_tokens": 1960,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8241,
+            "output_tokens": 1960,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0722,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3788,
+        "output_tokens": 797,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3788,
+            "output_tokens": 797,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0311,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.487,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 9.17,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 9.73
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:19",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  }
+}

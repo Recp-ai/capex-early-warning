@@ -1,0 +1,805 @@
+{
+  "run_id": "2026-10-29T13:16:11Z",
+  "generated_at": "2026-10-29T13:16:54+00:00",
+  "ticker": "JAN",
+  "sec_ticker": "JAN",
+  "cik": "0002100805",
+  "name": "Janus Living, Inc.",
+  "sector": "Real Estate Investment Trusts",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 65,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 6.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (TTM), price vs 200-day, momentum 12-1"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 65 is within 2 points of the Buy edge (65)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 15
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 1
+    }
+  },
+  "composite": {
+    "score": 65,
+    "raw": 65.4,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 45.41,
+          "score": 98.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": 10.88,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.7,
+      "score": 99,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no TTM revenue"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.07,
+          "score": 9.6,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "momentum_12_1_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "rs_spy_pp": {
+          "value": -3.02,
+          "score": 44.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -3.85,
+          "score": 42.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -13.82,
+          "score": 51.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 36,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 27.37,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 216456000.0,
+    "revenue_yoy_q": 45.41,
+    "revenue_yoy_q_prev": 34.53,
+    "acceleration_pp": 10.88
+  },
+  "valuation": {
+    "missing": "no TTM revenue"
+  },
+  "trend": {
+    "close": 27.37,
+    "date": "2026-10-28",
+    "ma50": 29.77,
+    "ma200": null,
+    "vs_ma50_pct": -8.07,
+    "vs_ma200_pct": null,
+    "momentum_12_1_pct": null,
+    "high_52w": 31.76,
+    "drawdown_52w_pct": -13.82,
+    "return_rs_pct": 6.06,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -3.02,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -3.85,
+    "note": "only 148 trading days of prices"
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001628280-26-052603",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026052603/ex99106302026.htm",
+    "summary": "Janus Living says it increased its full year 2026 guidance, but the guidance table with the specific ranges is cut off in the excerpt.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Janus Living Reports Second Quarter 2026 Results and Increases Full Year 2026 Guidance",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 2,
+        "previous": 1,
+        "sentences": [
+          "system of internal control over financial reporting; our ability to implement and maintain effective disclosure controls and procedures; volatility, disruption, or uncertainty in the financial markets; increased interest rates and borrowing costs, which could impact our business and ability to refinance existing debt, sell properties, and conduct investment activities; the availability of external"
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 2,
+        "previous": 5,
+        "sentences": [
+          "system of internal control over financial reporting; our ability to implement and maintain effective disclosure controls and procedures; volatility, disruption, or uncertainty in the financial markets; increased interest rates and borrowing costs, which could impact our business and ability to refinance existing debt, sell properties, and conduct investment activities; the availability of external"
+        ]
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-030581",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026030581/ex99103312026.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window. The last action was a raise on 2026-08-04, before the window, and Q3 results are due 2026-11-02.",
+        "evidence": [
+          {
+            "claim": "Janus Living announced Q3 results will be released after the close on 2026-11-02, with the call on 2026-11-03.",
+            "url": "https://finance.yahoo.com/real-estate/articles/janus-living-announces-dates-third-201500782.html",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 3/5, names 2/2 · missing: 02, 03"
+          },
+          {
+            "claim": "Janus Living Reports Second Quarter 2026 Results and Increases Full Year 2026 Guidance",
+            "url": "https://www.sec.gov/Archives/edgar/data/2100805/000162828026052603/ex99106302026.htm",
+            "event_date": "2026-08-04",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 86,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 9/9"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Barclays and Wells Fargo each trimmed their price targets by $1 and kept Overweight ratings. These are modest negatives from non-major sources.",
+        "evidence": [
+          {
+            "claim": "Barclays cut its price target on JAN to $33 from $34 and maintained Overweight.",
+            "url": "https://www.benzinga.com/quote/JAN/price-targets",
+            "event_date": "2026-10-13",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Wells Fargo maintained JAN and lowered its price target to $34 from $35.",
+            "url": "https://www.gurufocus.com/news/9130017/jan-maintained-by-wells-fargo-price-target-lowered-to-3400",
+            "event_date": "2026-10-19",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was -1): only other-tier sources, none verified",
+        "rating_before_cap": -1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material in the window. The company has no traditional tenants; its main dependency is on Healthpeak as majority owner and external manager.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider purchases or sales were found in the window. The last insider buying was at the March 2026 IPO.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Janus bought Harmony at Greensboro for $123.5M, its first North Carolina community. The deal's date is not established, so it supports no rating.",
+        "evidence": [
+          {
+            "claim": "Janus Living pays $123.5M for Greensboro senior living center Harmony at Greensboro.",
+            "url": "https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Janus Living (JAN), 2026-09-29 to 2026-10-29**\n\n**1. Guidance**\n- No guidance change, pre-announcement or Q3 result in the window. Q3 results are due after the close on 2026-11-02, with the call on 2026-11-03. — 2026-10-01 — https://finance.yahoo.com/real-estate/articles/janus-living-announces-dates-third-201500782.html\n- The last guidance action was a raise on 2026-08-04, before the window. FFO as Adjusted is now $0.95–0.98 per share and same-store adjusted NOI growth is 13–17%. — 2026-08-04 — https://www.stocktitan.net/sec-filings/JAN/8-k-janus-living-inc-reports-material-event-3f88fcd2e9f5.html\n- Q2 same-store adjusted NOI rose 19.2%. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0002100805/000162828026052603/ex99106302026.htm\n- Dividend: the board declared monthly dividends of $0.0475 per share for Q4, which is $0.57 annualized. Payments are due 2026-10-28, 2026-11-23 and 2026-12-29. — 2026-09-11 — https://www.stocktitan.net/news/JAN/janus-living-declares-monthly-common-stock-cash-dividends-for-the-olkd40hvjxfh.html\n\n**2. Analyst actions**\n- Barclays (Richard Hightower) cut its price target to $33 from $34 and kept Overweight. — 2026-10-13 — https://www.benzinga.com/quote/JAN/price-targets\n- Wells Fargo cut its price target to $34 from $35 and kept Overweight. Benzinga attributes this to James Feldman. — 2026-10-19 — https://www.gurufocus.com/news/9130017/jan-maintained-by-wells-fargo-price-target-lowered-to-3400\n- Same date, second source: https://www.benzinga.com/quote/JAN/price-targets\n- No upgrades, downgrades or initiations dated inside the window turned up. The latest ones came just before it:\n  - Scotiabank raised its target to $33 from $31 on 2026-09-17. — https://www.benzinga.com/quote/JAN/price-targets\n  - Compass Point initiated at Neutral with a $37 target on 2026-09-16. — https://www.benzinga.com/quote/JAN/price-targets\n  - Jefferies initiated at Buy with a $36 target on 2026-09-15. — https://www.benzinga.com/quote/JAN/price-targets\n- Consensus targets differ by source:\n  - $34.43 average across 14 analysts — date unknown — https://stockanalysis.com/stocks/jan/\n  - $33 average across 12 analysts — date unknown — https://www.benzinga.com/quote/JAN/price-targets\n\n**3. Litigation and regulation**\n- Nothing material found in the window. My searches turned up no lawsuits, investigations, fines or regulatory actions against Janus Living.\n\n**4. Customer concentration**\n- Nothing material found in the window. The company has no traditional tenants. It owns communities under RIDEA structures and hires independent operators. — date unknown — https://247wallst.com/companies/jan/\n- Healthpeak owns about 81.6% and externally manages the company. This is a related-party dependency, not a customer one. — 2026-03-23 — https://www.sec.gov/Archives/edgar/data/2100805/000162828026030581/ex99103312026.htm\n- The seller of the Greensboro property, Smith/Packett, will keep operating it. — date unknown — https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/\n\n**5. Insider activity**\n- No Form 4 purchases or sales found in the window.\n- The most recent insider transactions I found were IPO-program purchases on 2026-03-23, well before the window:\n  - CEO Scott Brinker bought $2.0M of stock. — 2026-03-23 — https://www.investing.com/news/stock-market-news/tuesdays-insider-activity-janus-living-insiders-buy-36-million-93CH-4579961\n  - Directors and the COO also bought. — 2026-03-23 — https://www.tipranks.com/news/insider-trading/top-brass-go-on-a-buying-spree-at-janus-living-insider-trading-news\n- I could not check EDGAR directly, so a Form 4 in the window may have been missed.\n\n**6. Product and competitive news**\n- Janus Living bought Harmony at Greensboro, North Carolina, for $123.5M. It is the company's first North Carolina community. The deal was reported around 2026-10-06 and the closing date is not given. — date unknown — https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/\n- The same source says Janus operates 42 communities in 11 states. — date unknown — https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/\n- The company closed an upsized $1.25B unsecured revolver. It was undrawn at closing and the company has no debt. It was announced on 2026-09-17, so it falls just before the window. — 2026-09-17 — https://www.businesswire.com/news/home/20260917179705/en/Janus-Living-Announces-Closing-of-Upsized-%241.25-Billion-Revolving-Credit-Facility\n- No product launches, delays, pricing moves or new-competitor news found in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/2100805/000162828026030581/ex99103312026.htm",
+        "https://finance.yahoo.com/real-estate/articles/janus-living-announces-dates-third-201500782.html",
+        "https://www.businesswire.com/news/home/20260917179705/en/Janus-Living-Announces-Closing-of-Upsized-%241.25-Billion-Revolving-Credit-Facility",
+        "https://www.benzinga.com/quote/JAN/earnings-forecasts",
+        "https://stockhouse.com/news/press-releases/2026/10/01/janus-living-announces-dates-of-third-quarter-2026-earnings-release-conference",
+        "https://rallies.ai/news/janus-living-updates-financial-calendar-for-third-quarter-results-release-and-call-f34e70c489b8c01a",
+        "https://www.stocktitan.net/news/JAN/",
+        "https://www.stocktitan.net/sec-filings/JAN/8-k-janus-living-inc-reports-material-event-3f88fcd2e9f5.html",
+        "https://www.stocktitan.net/news/JAN/janus-living-announces-dates-of-third-quarter-2026-earnings-release-1eqndfpzgd8p.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/janus-living-stock-heads-toward-november-results-after-q2-growth/70240829",
+        "https://www.webull.com/news/15582936508875776",
+        "https://www.webull.com/news/15588288187991040",
+        "https://www.gurufocus.com/news/8791713/jan-initiated-coverage-by-morgan-stanley-price-target-set-at-2800",
+        "https://www.gurufocus.com/news/8920908/jan-initiates-coverage-on-raymond-james-strong-buy-rating-announced",
+        "https://stockanalysis.com/stocks/jan/",
+        "https://www.investing.com/news/analyst-ratings/rbc-capital-initiates-janus-living-stock-at-outperform-sets-27-target-93CH-4611919",
+        "https://uk.investing.com/news/stock-market-news/jefferies-initiates-janus-living-stock-with-buy-rating-on-growth-outlook-93CH-4869020",
+        "https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-janus-living-stock-with-overweight-on-growth-outlook-93CH-4611917",
+        "https://www.investing.com/news/analyst-ratings/huntington-initiates-janus-living-stock-with-outperform-rating-93CH-4895028",
+        "https://www.futunn.com/en/stock/JAN-US/news",
+        "https://www.investing.com/news/stock-market-news/tuesdays-insider-activity-janus-living-insiders-buy-36-million-93CH-4579961",
+        "https://www.investing.com/news/insider-trading-news/sandstrom-buys-janus-living-jan-shares-worth-270000-93CH-4578717",
+        "https://www.tipranks.com/news/insider-trading/top-brass-go-on-a-buying-spree-at-janus-living-insider-trading-news",
+        "https://simplywall.st/stocks/us/real-estate/nyse-jan/janus-living/ownership",
+        "https://www.benzinga.com/quote/JAN/ownership",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926068606/tmb-20260331xs11.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000162828026053387/jan-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926032901/tm2533329-13_424b4.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926061302/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000162828026052603/ex99106302026.htm",
+        "https://www.heygotrade.com/en/us-stock/jan/",
+        "https://247wallst.com/companies/jan/",
+        "https://www.stocktitan.net/news/JAN/janus-living-announces-dates-of-second-quarter-2026-earnings-release-j2zwe0tqqb0k.html",
+        "https://www.stocktitan.net/news/JAN/janus-living-declares-monthly-common-stock-cash-dividends-for-the-olkd40hvjxfh.html",
+        "https://swingtradebot.com/equities/JAN",
+        "https://www.gurufocus.com/news/9130017/jan-maintained-by-wells-fargo-price-target-lowered-to-3400",
+        "https://stockanalysis.com/stocks/jan/forecast/",
+        "https://www.benzinga.com/quote/JAN/price-targets",
+        "https://public.com/stocks/jan/forecast-price-target",
+        "https://rallies.ai/news/janus-living-cuts-target-price-to-34-from-35-574a103b9dc0efa5",
+        "https://www.wallstreetzen.com/stocks/us/nyse/jan/stock-forecast",
+        "https://tickeron.com/ticker/JAN/price-charts/",
+        "https://www.linkedin.com/in/jason-roberts-23700616/",
+        "https://www.connectcre.com/stories/janus-living-pays-123-5m-for-greensboro-senior-living-center/",
+        "https://greensboro.com/news/local/business/real-estate/article_e0f0deb1-0e54-4b2c-8a23-77aa2a93ae6d.html",
+        "https://www.mcknightsseniorliving.com/news/janus-living-shares-750-million-acquisition-plan-for-2026-on-inaugural-earnings-call/",
+        "https://s202.q4cdn.com/584270836/files/doc_presentations/2026/Jan/07/Healthpeak-Investor-Presentation_01-07-2026.pdf",
+        "https://www.mcknightsseniorliving.com/news/healthpeak-properties-janus-living-announce-initial-public-offering/",
+        "https://www.sec.gov/Archives/edgar/data/2100805/000110465926027908/tm2533329-5_s11a.htm",
+        "https://www.businesswire.com/news/home/20250904728610/en",
+        "https://www.renaissancecapital.com/IPO-Center/News/117325/Healthpeak-Properties-senior-housing-REIT-Janus-Living-files-for-a-$100-mil",
+        "https://ir.healthpeak.com/news/news-details/2026/Healthpeak-Properties-Inc--Announces-Public-Filing-of-Registration-Statement-with-the-SEC-for-Janus-Living-Inc-/default.aspx",
+        "https://www.sec.gov/Archives/edgar/data/765880/000162828026004623/ex99112312025.htm",
+        "https://www.sec.gov/Archives/edgar/data/765880/000110465926027107/doc-20251231xars.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926089993/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000765880/000162828026031287/peak-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100805/000110465926065239/filename1.htm"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Janus Living rates Buy on strong quarterly revenue growth, but sits just one point above Hold.",
+    "thesis": "Janus Living scores 65, exactly at the Buy edge, with the rating built on only three of six factors: growth, trend and news risk. Growth scores 99, driven by latest-quarter revenue growth of 45.4% year on year, with growth sped up by 10.9 pp from the previous quarter. Trend is weak at 36, with the price 8.1% below its 50-day average, 13.8% below its 52-week high, and shares 3.0 pp behind SPY over the last 126 trading days. News risk is neutral at 50: two brokers trimmed price targets by $1 while keeping Overweight ratings, and no lawsuits, insider trades or guidance changes turned up in the window. Quality, balance sheet and valuation could not be scored, so the rating leans heavily on one strong growth quarter.",
+    "key_risks": [
+      "The score is 1 point above Hold, so a small slip in any factor would cut the rating.",
+      "Weak share price trend: price 8.1% below its 50-day average and 3.9 pp behind QQQ over the last 126 trading days.",
+      "Heavy dependence on Healthpeak as majority owner and external manager.",
+      "Q3 results due 2026-11-02 could show growth cooling from the latest-quarter rate of 45.4%.",
+      "Profitability, debt and valuation are unscored, so these possible weak spots are not reflected in the rating."
+    ],
+    "what_would_change": [
+      "Down to Hold: a 1-point drop, such as a further weakening in trend or a negative news item around Q3 results.",
+      "Up to Strong Buy needs 15 more points, likely from a sustained trend recovery above the 50-day average and positive news such as another guidance raise.",
+      "Once quality, balance sheet and valuation can be scored, they could move the score materially in either direction."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2267,
+        "output_tokens": 478,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2267,
+            "output_tokens": 478,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0186,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 98807,
+        "output_tokens": 3284,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 98807,
+            "output_tokens": 3284,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3005,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6245,
+        "output_tokens": 921,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6245,
+            "output_tokens": 921,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0434,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3549,
+        "output_tokens": 622,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3549,
+            "output_tokens": 622,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0266,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3891,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 27.37,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 27.84
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:16",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  }
+}

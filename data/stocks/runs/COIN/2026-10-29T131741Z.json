@@ -1,0 +1,1756 @@
+{
+  "run_id": "2026-10-29T13:17:41Z",
+  "generated_at": "2026-10-29T13:18:59+00:00",
+  "ticker": "COIN",
+  "sec_ticker": "COIN",
+  "cik": "0001679788",
+  "name": "Coinbase Global, Inc.",
+  "sector": "Finance Services",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 39,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin, FCF margin"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 6
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 10
+    }
+  },
+  "composite": {
+    "score": 39,
+    "raw": 38.79,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -18.51,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": -10.35,
+          "score": 0.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 12.03,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 25,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 9.86,
+          "score": 43.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 14.94,
+          "score": 32.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -5.56,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 56,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 1.36,
+          "score": 87.3,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 6.805,
+          "score": 46.6,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": 65.239,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 37.7,
+          "score": 62.3,
+          "weight": 0.1,
+          "note": "cheaper than now in 37.7% of 57 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 21 of 57 month-ends)"
+        }
+      },
+      "coverage": 0.412,
+      "score": null,
+      "missing": "only 41% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -9.98,
+          "score": 0.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -9.45,
+          "score": 26.4,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -47.43,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -19.76,
+          "score": 15.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -20.59,
+          "score": 14.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -54.3,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 9,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 64,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 162.32,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 1220068000.0,
+    "revenue_yoy_q": -18.51,
+    "revenue_yoy_q_prev": -30.54,
+    "acceleration_pp": 12.03,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 6282872000.0,
+    "revenue_yoy_ttm": -10.35,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 619376000.0,
+    "operating_cash_flow_ttm": 1713665000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 938947000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 9.86,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 14.94,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 8614065000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 174778000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 174778000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 8788843000.0,
+      "debt": 6439195000.0,
+      "debt_tags": [
+        "LongTermDebt",
+        "ShortTermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 5900000000.0
+        },
+        {
+          "tag": "ShortTermBorrowings",
+          "val": 539195000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -2349648000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 263412000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -5.56,
+    "shares_outstanding": null,
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 674148000.0,
+        "revenue_yoy_pct": 14.2,
+        "operating_margin_pct": -11.84,
+        "fcf": 313781000.0,
+        "diluted_shares": 237270000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 953795000.0,
+        "revenue_yoy_pct": 51.61,
+        "operating_margin_pct": 12.12,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 1637570000.0,
+        "revenue_yoy_pct": 111.98,
+        "operating_margin_pct": 46.44,
+        "fcf": null,
+        "diluted_shares": 267945000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 1449628000.0,
+        "revenue_yoy_pct": 104.78,
+        "operating_margin_pct": 23.67,
+        "fcf": null,
+        "diluted_shares": 266831000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 1205193000.0,
+        "revenue_yoy_pct": 78.77,
+        "operating_margin_pct": 14.07,
+        "fcf": null,
+        "diluted_shares": 267440000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 2271637000.0,
+        "revenue_yoy_pct": 138.17,
+        "operating_margin_pct": 45.52,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 2034295000.0,
+        "revenue_yoy_pct": 24.23,
+        "operating_margin_pct": 34.7,
+        "fcf": null,
+        "diluted_shares": 271251000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 1497208000.0,
+        "revenue_yoy_pct": 3.28,
+        "operating_margin_pct": -1.65,
+        "fcf": null,
+        "diluted_shares": 278913000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 1868693000.0,
+        "revenue_yoy_pct": 55.05,
+        "operating_margin_pct": 25.71,
+        "fcf": null,
+        "diluted_shares": 291958000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 1781129000.0,
+        "revenue_yoy_pct": -21.59,
+        "operating_margin_pct": 15.37,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 1412982000.0,
+        "revenue_yoy_pct": -30.54,
+        "operating_margin_pct": -1.52,
+        "fcf": null,
+        "diluted_shares": 264775000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 1220068000.0,
+        "revenue_yoy_pct": -18.51,
+        "operating_margin_pct": -9.3,
+        "fcf": null,
+        "diluted_shares": 263412000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 162.32,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 263412000.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-06-30"
+    },
+    "market_cap": 42757035840.0,
+    "enterprise_value": 40407387840.0,
+    "price_to_sales": 6.805,
+    "price_to_fcf": null,
+    "ev_to_ebit": 65.239,
+    "sales_yield_pct": 14.694,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": 1.533,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 5.353,
+        "price_to_fcf": 10.399,
+        "ev_to_ebit": 12.431,
+        "sales_yield_pct": 18.682,
+        "fcf_yield_pct": 9.616,
+        "ebit_yield_pct": 8.045
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 5.327,
+        "price_to_fcf": 10.349,
+        "ev_to_ebit": 12.366,
+        "sales_yield_pct": 18.771,
+        "fcf_yield_pct": 9.662,
+        "ebit_yield_pct": 8.087
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 3.163,
+        "price_to_fcf": 6.144,
+        "ev_to_ebit": 6.85,
+        "sales_yield_pct": 31.621,
+        "fcf_yield_pct": 16.276,
+        "ebit_yield_pct": 14.599
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 2.357,
+        "price_to_fcf": 31.988,
+        "ev_to_ebit": 9.388,
+        "sales_yield_pct": 42.42,
+        "fcf_yield_pct": 3.126,
+        "ebit_yield_pct": 10.652
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 1.419,
+        "price_to_fcf": 19.259,
+        "ev_to_ebit": 4.983,
+        "sales_yield_pct": 70.459,
+        "fcf_yield_pct": 5.192,
+        "ebit_yield_pct": 20.069
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 1.9,
+        "price_to_fcf": 25.787,
+        "ev_to_ebit": 7.242,
+        "sales_yield_pct": 52.62,
+        "fcf_yield_pct": 3.878,
+        "ebit_yield_pct": 13.809
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 2.552,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 39.181,
+        "fcf_yield_pct": -25.773,
+        "ebit_yield_pct": -3.085
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 2.464,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.585,
+        "fcf_yield_pct": -26.696,
+        "ebit_yield_pct": -3.216
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 2.531,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 39.506,
+        "fcf_yield_pct": -25.987,
+        "ebit_yield_pct": -3.115
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 2.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 49.45,
+        "fcf_yield_pct": -44.372,
+        "ebit_yield_pct": -14.296
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 1.565,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 63.898,
+        "fcf_yield_pct": -57.336,
+        "ebit_yield_pct": -19.542
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 2.586,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 38.669,
+        "fcf_yield_pct": -34.698,
+        "ebit_yield_pct": -10.741
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 4.513,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.16,
+        "fcf_yield_pct": -11.019,
+        "ebit_yield_pct": -20.221
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 4.703,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.262,
+        "fcf_yield_pct": -10.573,
+        "ebit_yield_pct": -19.342
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 3.744,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.708,
+        "fcf_yield_pct": -13.281,
+        "ebit_yield_pct": -24.754
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 5.142,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 19.448,
+        "fcf_yield_pct": -7.173,
+        "ebit_yield_pct": -17.843
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 5.915,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.907,
+        "fcf_yield_pct": -6.235,
+        "ebit_yield_pct": -15.258
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 8.152,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.267,
+        "fcf_yield_pct": -4.524,
+        "ebit_yield_pct": -10.751
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 6.918,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.455,
+        "fcf_yield_pct": -2.829,
+        "ebit_yield_pct": -7.77
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 6.525,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.326,
+        "fcf_yield_pct": -2.999,
+        "ebit_yield_pct": -8.292
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 6.702,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.92,
+        "fcf_yield_pct": -2.92,
+        "ebit_yield_pct": -8.048
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 10.631,
+        "price_to_fcf": 161.723,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.407,
+        "fcf_yield_pct": 0.618,
+        "ebit_yield_pct": -3.019
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 14.824,
+        "price_to_fcf": 225.519,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.746,
+        "fcf_yield_pct": 0.443,
+        "ebit_yield_pct": -2.121
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 10.927,
+        "price_to_fcf": 166.235,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.151,
+        "fcf_yield_pct": 0.602,
+        "ebit_yield_pct": -2.931
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 16.659,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.003,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.328
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 21.698,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.609,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.249
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 16.69,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.992,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.327
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 15.235,
+        "price_to_fcf": null,
+        "ev_to_ebit": 80.324,
+        "sales_yield_pct": 6.564,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.245
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 14.986,
+        "price_to_fcf": null,
+        "ev_to_ebit": 78.955,
+        "sales_yield_pct": 6.673,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.267
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 15.13,
+        "price_to_fcf": null,
+        "ev_to_ebit": 79.745,
+        "sales_yield_pct": 6.61,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.254
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 10.376,
+        "price_to_fcf": null,
+        "ev_to_ebit": 40.311,
+        "sales_yield_pct": 9.637,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.481
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 10.083,
+        "price_to_fcf": null,
+        "ev_to_ebit": 39.095,
+        "sales_yield_pct": 9.918,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.558
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 9.138,
+        "price_to_fcf": null,
+        "ev_to_ebit": 32.005,
+        "sales_yield_pct": 10.944,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.124
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 15.1,
+        "price_to_fcf": null,
+        "ev_to_ebit": 54.528,
+        "sales_yield_pct": 6.623,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.834
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 12.658,
+        "price_to_fcf": null,
+        "ev_to_ebit": 45.303,
+        "sales_yield_pct": 7.9,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.207
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 14.851,
+        "price_to_fcf": null,
+        "ev_to_ebit": 53.59,
+        "sales_yield_pct": 6.733,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.866
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 8.98,
+        "price_to_fcf": null,
+        "ev_to_ebit": 23.512,
+        "sales_yield_pct": 11.136,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 4.253
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 7.173,
+        "price_to_fcf": null,
+        "ev_to_ebit": 18.371,
+        "sales_yield_pct": 13.941,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 5.443
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 8.45,
+        "price_to_fcf": null,
+        "ev_to_ebit": 22.003,
+        "sales_yield_pct": 11.834,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 4.545
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 9.61,
+        "price_to_fcf": null,
+        "ev_to_ebit": 27.154,
+        "sales_yield_pct": 10.405,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.683
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 13.658,
+        "price_to_fcf": null,
+        "ev_to_ebit": 39.662,
+        "sales_yield_pct": 7.322,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.521
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 15.034,
+        "price_to_fcf": null,
+        "ev_to_ebit": 53.182,
+        "sales_yield_pct": 6.652,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.88
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 12.12,
+        "price_to_fcf": null,
+        "ev_to_ebit": 42.347,
+        "sales_yield_pct": 8.251,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.361
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 13.431,
+        "price_to_fcf": null,
+        "ev_to_ebit": 47.223,
+        "sales_yield_pct": 7.445,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.118
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 13.083,
+        "price_to_fcf": null,
+        "ev_to_ebit": 44.541,
+        "sales_yield_pct": 7.644,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.245
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 10.382,
+        "price_to_fcf": null,
+        "ev_to_ebit": 35.106,
+        "sales_yield_pct": 9.632,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.849
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 8.606,
+        "price_to_fcf": null,
+        "ev_to_ebit": 28.899,
+        "sales_yield_pct": 11.62,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.46
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 7.411,
+        "price_to_fcf": null,
+        "ev_to_ebit": 24.724,
+        "sales_yield_pct": 13.493,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 4.045
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 7.033,
+        "price_to_fcf": null,
+        "ev_to_ebit": 32.438,
+        "sales_yield_pct": 14.219,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.083
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 6.983,
+        "price_to_fcf": null,
+        "ev_to_ebit": 32.19,
+        "sales_yield_pct": 14.32,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.107
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.51,
+        "price_to_fcf": null,
+        "ev_to_ebit": 34.823,
+        "sales_yield_pct": 13.316,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.872
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 7.63,
+        "price_to_fcf": null,
+        "ev_to_ebit": 66.896,
+        "sales_yield_pct": 13.107,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.495
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 5.901,
+        "price_to_fcf": null,
+        "ev_to_ebit": 50.88,
+        "sales_yield_pct": 16.948,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.965
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 6.132,
+        "price_to_fcf": null,
+        "ev_to_ebit": 58.409,
+        "sales_yield_pct": 16.308,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.712
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 7.887,
+        "price_to_fcf": null,
+        "ev_to_ebit": 76.211,
+        "sales_yield_pct": 12.679,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.312
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 7.815,
+        "price_to_fcf": null,
+        "ev_to_ebit": 75.484,
+        "sales_yield_pct": 12.795,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.325
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 6.805,
+        "price_to_fcf": null,
+        "ev_to_ebit": 65.239,
+        "sales_yield_pct": 14.694,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.533
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 6.805,
+        "current_yield_pct": 14.694,
+        "points": 57,
+        "median": 7.63,
+        "low": 1.419,
+        "high": 21.697,
+        "negative_points": 0,
+        "median_yield_pct": 13.107,
+        "percentile": 37.7,
+        "cheaper_points": 21,
+        "dearer_points": 35,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 24,
+        "median": null,
+        "low": 6.144,
+        "high": null,
+        "negative_points": 15,
+        "median_yield_pct": -3.761,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "ev_to_ebit": {
+        "current": 65.239,
+        "current_yield_pct": 1.533,
+        "points": 57,
+        "median": 58.411,
+        "low": 4.983,
+        "high": null,
+        "negative_points": 21,
+        "median_yield_pct": 1.712,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 21 of 57 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 57 month-ends (cheaper than at 35, more expensive than at 21)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "24 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative in 21 of 57 month-ends)",
+          "not_comparable": "negative in 21 of 57 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 162.32,
+    "date": "2026-10-28",
+    "ma50": 180.31,
+    "ma200": 179.27,
+    "vs_ma50_pct": -9.98,
+    "vs_ma200_pct": -9.45,
+    "momentum_12_1_pct": -47.43,
+    "high_52w": 355.22,
+    "drawdown_52w_pct": -54.3,
+    "return_rs_pct": -10.68,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -19.76,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -20.59
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001679788-26-000087",
+    "filing_date": "2026-07-30",
+    "period_end": "2026-06-30",
+    "period_source": "companyfacts",
+    "period_rejected": "2026-09-30",
+    "url": "https://www.sec.gov/Archives/edgar/data/1679788/000167978826000087/q226earningsdeck_sec.htm",
+    "summary": "Coinbase guided Q3'26 subscription & services revenue of $500-$580 million, transaction expenses in the mid-teens as a % of net revenue, adjusted expenses of $980-$1,080 million and ~$245 million of stock-based compensation, while reducing and narrowing its FY2026 adjusted expense guidance to $4,200-$4,450 million.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q3 FY2026",
+        "amount_text": "$500-$580 million",
+        "stated_change": "not stated",
+        "sentence": "Transaction Revenue S&S Revenue Transaction Expenses Adjusted Expenses Stock-based Compensation ~$130M QTD Through July 26 $500-$580 million Mid-teens as a % of net revenue $980-$1,080 million1 ~$245 million",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 FY2026",
+        "amount_text": "Mid-teens as a % of net revenue",
+        "stated_change": "not stated",
+        "sentence": "Transaction Revenue S&S Revenue Transaction Expenses Adjusted Expenses Stock-based Compensation ~$130M QTD Through July 26 $500-$580 million Mid-teens as a % of net revenue $980-$1,080 million1 ~$245 million",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 FY2026",
+        "amount_text": "$980-$1,080 million",
+        "stated_change": "not stated",
+        "sentence": "Transaction Revenue S&S Revenue Transaction Expenses Adjusted Expenses Stock-based Compensation ~$130M QTD Through July 26 $500-$580 million Mid-teens as a % of net revenue $980-$1,080 million1 ~$245 million",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 FY2026",
+        "amount_text": "~$245 million",
+        "stated_change": "not stated",
+        "sentence": "Transaction Revenue S&S Revenue Transaction Expenses Adjusted Expenses Stock-based Compensation ~$130M QTD Through July 26 $500-$580 million Mid-teens as a % of net revenue $980-$1,080 million1 ~$245 million",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 FY2026",
+        "amount_text": "$1,015 million to $1,120 million",
+        "stated_change": "not stated",
+        "sentence": "We expect amortization of intangible assets of $35 million to $40 million for Q3'26, implying GAAP Technology & Development, General & Administrative and Sales & Marketing expenses of $1,015 million to $1,120 million for Q3'26.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$4,340 million to $4,600 million",
+        "stated_change": "lowered",
+        "sentence": "We expect amortization of intangible assets of $140 million to $150 million for FY'26, implying GAAP Technology & Development, General & Administrative and Sales & Marketing expenses of $4,340 million to $4,600 million for FY'26.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Excluding USDC Rewards growth, we anticipate Adjusted Expenses to be flat Y/Y",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 1,
+    "phrases": {
+      "headwind": {
+        "count": 3,
+        "previous": 2,
+        "sentences": [
+          "Q2 Report Card Strong fundamentals despite macro headwinds The business is healthy Gained Crypto Market Share Reached ATH in Coinbase Crypto Trading Volume Market Share; gained share in both Spot and Derivatives Everything Exchange is Working • Prediction Markets: $100M+ annualized revenue1 as of Q2ʼ26; >2x revenue and contracts growth Q/Q • Derivatives: Crypto Derivatives Trading Volumes ~flat Q/",
+          "Q2 results reflect expense execution despite macro headwinds Metric Q2 Outlook (May 2026) Q2 Actuals Subscription & Services Revenue Transaction Expenses Technology & Development + General & Administrative Expenses Sales and Marketing Expenses Stock-based Compensation $565-$645 million Low-to-Mid Teens as a % of net revenue $200-$300 million $820-$870 million ~$240 million $555 million 16.4% $240 "
+        ]
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 3,
+        "previous": 1,
+        "sentences": [
+          "$201 $311 $851 $1,570 $2,520 $3,241 $3,996 $4,224 $4,221 Crypto Derivatives Trading Volume (TTM) Crypto Derivatives Trading Volume Market Share (TTM) Q2'24 Q3'24 Q4'24 Q1'25 Q2'25 Q3'25 Q4'25 Q1'26 Q2'26 Crypto Derivatives Trading Volume1 TTM ($B) • $4.2T+ in Crypto Derivatives Trading Volume TTM, flat despite market down 12% ◦ New ATH global derivatives market share ◦ 3rd consecutive quarter of d",
+          "Q2 Report Card Strong fundamentals despite macro headwinds The business is healthy Gained Crypto Market Share Reached ATH in Coinbase Crypto Trading Volume Market Share; gained share in both Spot and Derivatives Everything Exchange is Working • Prediction Markets: $100M+ annualized revenue1 as of Q2ʼ26; >2x revenue and contracts growth Q/Q • Derivatives: Crypto Derivatives Trading Volumes ~flat Q/",
+          "$708 $674 $954 $1,638 $1,450 $1,205 $2,272 $2,034 $1,497 $1,869 $1,781 $1,413 $1,220 Q2'23 Q3'23 Q4'23 Q1'24 Q2'24 Q3'24 Q4'24 Q1'25 Q2'25 Q3'25 Q4'25 Q1'26 Q2’26 Total Revenue 24 • $1.2B total revenue (-14% Q/Q) against a backdrop of a decline in Total Market Crypto Trading Volumes1 (-15% Q/Q) and Total Market Crypto Spot Trading Volume2 (-25% Q/Q) • Transaction revenue decline of 21% Q/Q outperf"
+        ]
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 3,
+        "previous": 2,
+        "sentences": [
+          "Q2 Report Card Strong fundamentals despite macro headwinds The business is healthy Gained Crypto Market Share Reached ATH in Coinbase Crypto Trading Volume Market Share; gained share in both Spot and Derivatives Everything Exchange is Working • Prediction Markets: $100M+ annualized revenue1 as of Q2ʼ26; >2x revenue and contracts growth Q/Q • Derivatives: Crypto Derivatives Trading Volumes ~flat Q/",
+          "Q2 results reflect expense execution despite macro headwinds Metric Q2 Outlook (May 2026) Q2 Actuals Subscription & Services Revenue Transaction Expenses Technology & Development + General & Administrative Expenses Sales and Marketing Expenses Stock-based Compensation $565-$645 million Low-to-Mid Teens as a % of net revenue $200-$300 million $820-$870 million ~$240 million $555 million 16.4% $240 "
+        ]
+      },
+      "cautious": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "Outlook Metric Q3ʼ26 Outlook Q3 Drivers Transaction Revenue S&S Revenue Transaction Expenses Adjusted Expenses Stock-based Compensation ~$130M QTD Through July 26 $500-$580 million Mid-teens as a % of net revenue $980-$1,080 million1 ~$245 million Caution extrapolating results (+) Average USDC Market Cap & Average USDC Held in Coinbase Products (-) Roll-off of Q2 performance earn outs (-) QTD aver"
+        ]
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001679788-26-000053",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1679788/000167978826000053/q126earningsdeck-finalse.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "Coinbase reports Q3 results after today's close, so there are no results yet. No pre-announcement, withdrawal or change to the July Q3 guidance turned up in the window.",
+        "evidence": [
+          {
+            "claim": "Coinbase announced the date of its third quarter 2026 financial results.",
+            "url": "https://investor.coinbase.com/news/news-details/2026/Coinbase-Announces-Date-of-Third-Quarter-2026-Financial-Results/default.aspx",
+            "event_date": "2026-10-14",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          },
+          {
+            "claim": "Q3'26 guidance: S&S revenue of $500-$580 million and adjusted expenses of $980-$1,080 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1679788/000167978826000087/q226earningsdeck_sec.htm",
+            "event_date": "2026-07-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 91,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 6/6, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Several brokers raised price targets during the month, including Citi, Morgan Stanley, Barclays and Needham. Citizens cut its target, so the net tilt is modestly positive, and all of it comes from aggregator sites.",
+        "evidence": [
+          {
+            "claim": "Citi raised its COIN price target to $230 from $210 with a Buy rating.",
+            "url": "https://tickernerd.com/stock/coin-forecast/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/3"
+          },
+          {
+            "claim": "Barclays raised its COIN price target to $149 from $95, rating Underweight.",
+            "url": "https://tickernerd.com/stock/coin-forecast/",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Needham raised its COIN price target to $205 from $200, rating Buy.",
+            "url": "https://tickernerd.com/stock/coin-forecast/",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Citizens cut its COIN price target to $280 from $325, rating Market Outperform.",
+            "url": "https://tickernerd.com/stock/coin-forecast/",
+            "event_date": "2026-10-09",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 20,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 1,
+        "summary": "A federal judge dismissed a proposed investor class action over Coinbase's AML/KYC compliance disclosures. The OCC also finalized GENIUS Act stablecoin rules, which supports Coinbase's stablecoin business.",
+        "evidence": [
+          {
+            "claim": "A federal judge dismissed a proposed investor class action against Coinbase over regulatory compliance concerns.",
+            "url": "https://news.bloomberglaw.com/securities-law/coinbase-beats-investor-suit-over-regulatory-compliance-concerns",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          },
+          {
+            "claim": "The E.D. Pa. court found Coinbase made misleading cybersecurity compliance statements, but the complaint failed on scienter.",
+            "url": "https://www.vitallaw.com/news/e-d-pa-coinbase-misrepresented-cybersecurity-compliance-but-without-scienter/cspd01edd4d56ea58a4d3089476d5a37907495",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Coinbase stock rose 5% after the OCC finalized rules under the GENIUS Act.",
+            "url": "https://247wallst.com/investing/cryptocurrency/2026/10/22/should-you-buy-coinbase-stock-under-170/",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing new in the window. The Circle USDC revenue-sharing renewal through 2029 came in August, before the period.",
+        "evidence": [
+          {
+            "claim": "The Circle and Coinbase USDC agreement was renewed through 2029.",
+            "url": "https://stablecoininsider.org/circle-coinbase-usdc-agreement-renewal-2029/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions turned up in the past month. The latest Armstrong plan sales found ended in January 2026.",
+        "evidence": [
+          {
+            "claim": "Brian Armstrong insider sales were made under a disclosed trading plan.",
+            "url": "https://foliolantern.com/stocks/coin/insiders/",
+            "event_date": "2026-01-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 297,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Coinbase completed its Deribit integration, launched short-duration crypto prediction contracts for US users and added Ripple's RLUSD stablecoin. These are incremental product wins; the Webull perpetual futures launch planned for November is a competitive note.",
+        "evidence": [
+          {
+            "claim": "Coinbase said its Deribit integration is complete and that Coinbase Financial Markets will connect US and global crypto derivatives liquidity.",
+            "url": "https://www.coinbase.com/blog/landing",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Coinbase launched crypto price prediction markets for US users through Coinbase Financial Markets.",
+            "url": "https://cryptobriefing.com/coinbase-launches-crypto-price-prediction-markets/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Ripple's RLUSD stablecoin was added to Coinbase.",
+            "url": "https://crypto.news/rlusd-reaches-coinbase-how-does-its-dollar-backing-work",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 4,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Coverage note:** Coinbase reports Q3 on 2026-10-29 after the close. I found no published Q3 results, so nothing below says whether it beat or missed.\n\n## 1. Guidance / results\n- Q3 report is scheduled for after the close, with a live Q&A on X at 2pm PT. \nThe date was announced Oct 14.\n — 2026-10-14 — https://investor.coinbase.com/news/news-details/2026/Coinbase-Announces-Date-of-Third-Quarter-2026-Financial-Results/default.aspx\n- Standing Q3 guidance, per Zacks: \nsubscription and services revenue of $500–$580M and adjusted expenses of $980M–$1.08B.\n The guidance date isn't stated; the Q2 results were released 2026-07-30. — date unknown — https://finance.yahoo.com/markets/stocks/articles/coin-report-q3-earnings-time-160800681.html\n- Consensus is revenue of about $1.2B and an EPS loss of about $0.22. \nCoinbase has missed revenue expectations three quarters in a row.\n — 2026-10-26 (approx.) — https://www.aol.com/articles/coinbase-q3-earnings-preview-crypto-151002000.html\n- EPS estimates conflict. \nBenzinga/MarketBeat compilations range from a $0.27 loss to a profit above $1.60, with an average near $0.70.\n Zacks puts \nthe consensus at a 15-cent loss.\n — 2026-10-27 (approx.) — https://startupfortune.com/coinbase-analysts-cant-agree-if-thursdays-earnings-show-a-profit-or-a-loss/ ; https://finance.yahoo.com/markets/stocks/articles/coin-report-q3-earnings-time-160800681.html\n- No pre-announcement, withdrawal or change to guidance found in the window.\n\n## 2. Analyst actions\n- Citi raised its target to $230 from $210, rating Buy. — 2026-10-13 — https://tickernerd.com/stock/coin-forecast/\n- Morgan Stanley (Equal-Weight) raised its target to $258 from $250. — 2026-10-09 — https://tickernerd.com/stock/coin-forecast/\n- Citizens (Market Outperform) cut its target to $280 from $325. — 2026-10-09 — https://tickernerd.com/stock/coin-forecast/\n- Barclays (Underweight) raised its target to $149 from $95. — 2026-10-07 — https://tickernerd.com/stock/coin-forecast/\n- \nGoldman Sachs has a $244 target.\n — 2026-10-07 — https://stockcircle.com/stocks/coin/target-price\n- BTIG reiterated Buy with a $240 target. — 2026-10-07 — https://tickernerd.com/stock/coin-forecast/\n- Wells Fargo initiated at Hold with a $200 target. — 2026-10-02 — https://www.wallstreetzen.com/stocks/us/nasdaq/coin/stock-forecast\n- Piper Sandler (Hold) set a $170 target. — 2026-10-02 — https://www.wallstreetzen.com/stocks/us/nasdaq/coin/stock-forecast\n- Compass Point's target is $187. — 2026-10-09 — https://stockcircle.com/stocks/coin/target-price\n- Keefe, Bruyette & Woods reinstated at Buy with a $237 target. — 2026-09-28 — https://www.wallstreetzen.com/stocks/us/nasdaq/coin/stock-forecast\n- Baird (Hold) has a $205 target. — 2026-09-28 — https://www.wallstreetzen.com/stocks/us/nasdaq/coin/stock-forecast\n- Needham (Buy) raised its target to $205 from $200. — 2026-10-21 — https://tickernerd.com/stock/coin-forecast/\n- H.C. Wainwright maintained Buy with a $240 target. — 2026-10-27 — https://blockchain.news/news/20261028-price-prediction-coin-analyst-buy-calls-stack-up-to\n- JPMorgan (Worthington) raised its target to $189 from $148, Overweight. The exact date isn't given; it was reported by 2026-10-28. — date unknown — https://stockanalysis.com/stocks/coin/\n- Consensus figures differ by source. Mean target is \n$211.12 from stockanalysis\n and \n$219.99 from Chartmill\n. — 2026-10-28 and 2026-10-21 — https://stockanalysis.com/stocks/coin/ ; https://www.chartmill.com/stock/quote/COIN/analyst-ratings\n\n## 3. Litigation / regulation\n- \nA federal judge dismissed a proposed investor class action over Coinbase's AML/KYC disclosures. The judge said the NYDFS and UK FCA examinations were sufficiently disclosed.\n The case is Castle v. Coinbase, E.D. Pa. — 2026-10-21 — https://news.bloomberglaw.com/securities-law/coinbase-beats-investor-suit-over-regulatory-compliance-concerns\n- Vital Law notes the court found \ntwo misleading statements, but the complaint failed on scienter and loss causation.\n — 2026-10-21 — https://www.vitallaw.com/news/e-d-pa-coinbase-misrepresented-cybersecurity-compliance-but-without-scienter/cspd01edd4d56ea58a4d3089476d5a37907495\n- \nThe stock rose 5% on Oct 21 after the OCC finalized rules under the GENIUS Act stablecoin law.\n — 2026-10-21 — https://247wallst.com/investing/cryptocurrency/2026/10/22/should-you-buy-coinbase-stock-under-170/\n- The CFTC proposed a retail crypto trading framework. This is a headline only; the Coinbase impact isn't detailed. — 2026-10-09 — https://www.cnn.com/markets/stocks/COIN\n- The 10-Q still discloses state staking actions. \nState regulators in several states alleged violations of state securities laws over staking.\n The filing is dated for the quarter ended June 30 and is not new in this window. — date unknown — https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000088/coin-20260630.htm\n- No new fines or enforcement actions found in the window.\n\n## 4. Customer concentration\n- No new customer win, loss or contract change found in the window. Concentration here means USDC and Circle rather than individual customers.\n- The Circle USDC revenue-sharing deal renewed on unchanged terms through 2029. This falls before the window. \nOne source dates the renewal to Aug 18, 2026.\n Another says \nCircle announced it on Aug 5.\n — 2026-08-18 / 2026-08-05 — https://stablecoininsider.org/circle-coinbase-usdc-agreement-renewal-2029/ ; https://cryptonews.net/news/finance/33255392/\n- \nCoinbase held roughly 30% of USDC circulation at the end of Q2.\n — 2026-06-30 — https://stablecoininsider.org/circle-coinbase-usdc-agreement-renewal-2029/\n- \nQ2 subscription revenue was $555M.\n — 2026-06-30 — https://247wallst.com/investing/cryptocurrency/2026/10/22/should-you-buy-coinbase-stock-under-170/\n- \nCoinbase generated 84% of Q1 revenue in the U.S.\n — 2026-03-31 — https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000054/coin-20260331.htm\n\n## 5. Insider activity\n- I found no Form 4 filings or transactions dated 2026-09-29 to 2026-10-29. The most recent Armstrong sales I found are earlier. \nFoliolantern shows them running from Nov 3, 2025 to Jan 5, 2026, all under a disclosed plan.\n — 2026-01-05 — https://foliolantern.com/stocks/coin/insiders/\n- That is not confirmation that no insider trades occurred. I did not check EDGAR directly.\n\n## 6. Product / competitive\n- Coinbase launched 15-minute crypto price prediction contracts for US users. \nThey run through Coinbase Financial Markets, a CFTC and NFA member.\n — 2026-10-06 — https://cryptobriefing.com/coinbase-launches-crypto-price-prediction-markets/\n- \nCoinbase said its Deribit integration is complete. Coinbase Financial Markets will soon connect US and global crypto derivatives into a single liquidity pool.\n — 2026-10-07 — https://www.coinbase.com/blog/landing\n- \nCoinbase added Ripple's RLUSD stablecoin to its app, Exchange and Prime.\n — 2026-10-28 — https://crypto.news/rlusd-reaches-coinbase-how-does-its-dollar-backing-work\n- \nPrediction markets revenue grew 106% sequentially in Q2.\n — 2026-06-30 — https://www.tradingview.com/news/zacks:f8ce3e118094b:0-coin-to-report-q3-earnings-time-to-buy-hold-or-sell-the-stock/\n- Competitor note: Webull plans to debut crypto-linked perpetual futures in November. This is a headline only. — 2026-10-22 — https://www.cnn.com/markets/stocks/COIN",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000088/coin-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000053/coin-20260507.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000087/coin-20260730.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978826000011/q425shareholderletter.htm",
+        "https://www.tradingview.com/news/zacks:f8ce3e118094b:0-coin-to-report-q3-earnings-time-to-buy-hold-or-sell-the-stock/",
+        "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000054/coin-20260331.htm",
+        "https://www.marketscreener.com/news/coinbase-announces-date-of-third-quarter-2026-financial-results-ce785dd2d181f324",
+        "https://public.com/stocks/coin/earnings",
+        "https://startupfortune.com/coinbase-analysts-cant-agree-if-thursdays-earnings-show-a-profit-or-a-loss/",
+        "https://www.aol.com/articles/coinbase-q3-earnings-preview-crypto-151002000.html",
+        "https://stockanalysis.com/stocks/coin/",
+        "https://www.cnn.com/markets/stocks/COIN",
+        "https://247wallst.com/companies/coin/price-prediction/",
+        "https://247wallst.com/investing/cryptocurrency/2026/10/22/should-you-buy-coinbase-stock-under-170/",
+        "https://www.chartmill.com/stock/quote/COIN/analyst-ratings",
+        "https://blockchain.news/news/20261028-price-prediction-coin-analyst-buy-calls-stack-up-to",
+        "https://stockcircle.com/stocks/coin/target-price",
+        "https://tickernerd.com/stock/coin-forecast/",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/coin/stock-forecast",
+        "https://news.bloomberglaw.com/securities-law/coinbase-beats-investor-suit-over-regulatory-compliance-concerns",
+        "https://www.law360.com/pennsylvania/articles/2540851",
+        "https://cryptobriefing.com/coinbase-wins-sec-lawsuit-crypto-regulation/",
+        "https://finance.yahoo.com/news/coinbase-ripple-biggest-crypto-cases-202640480.html",
+        "https://www.vitallaw.com/news/e-d-pa-coinbase-misrepresented-cybersecurity-compliance-but-without-scienter/cspd01edd4d56ea58a4d3089476d5a37907495",
+        "https://www.thestreet.com/crypto/policy/coinbase-secures-major-legal-win-in-banking-lawsuit",
+        "https://www.sheppard.com/insights/blogs/sec-withdraws-from-prominent-crypto-enforcement-amid-regulatory-shift",
+        "https://www.investing.com/news/insider-trading-news/coinbase-global-ceo-armstrong-sells-84-million-in-shares-93CH-4335570",
+        "https://www.marketscreener.com/news/coinbase-global-insider-sold-shares-worth-10-005-879-according-to-a-recent-sec-filing-ce7d50d3d08cf625",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978824000187/coin-20240930.htm",
+        "https://www.marketscreener.com/news/coinbase-global-insider-sold-shares-worth-9-958-268-according-to-a-recent-sec-filing-ce7e59dcd18aff20",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978823000113/coin-20230930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000162828021006850/coinbaseglobalinc424b.htm",
+        "https://news.futunn.com/en/post/66570981/coinbase-global-insider-sold-shares-worth-10005879-according-to-a",
+        "https://news.futunn.com/en/post/59198906/coinbase-global-insider-sold-shares-worth-76282236-according-to-a",
+        "https://foliolantern.com/stocks/coin/insiders/",
+        "https://benzinga.com/z/31477610",
+        "https://www.coinbase.com/blog/system-update-the-future-of-finance-is-on-coinbase",
+        "https://en.cryptonomist.ch/2026/10/06/crypto-price-prediction-coinbase/",
+        "https://www.bankingdive.com/news/coinbase-direct-deposit-crypto-stablecoin-yield-trust-charter/821188/",
+        "https://cryptobriefing.com/coinbase-launches-crypto-price-prediction-markets/",
+        "https://www.coinbase.com/blog/coinbase-launches-a-new-matching-engine",
+        "https://cryptonews.com/cryptocurrency/new-coinbase-listings/",
+        "https://crypto.news/rlusd-reaches-coinbase-how-does-its-dollar-backing-work",
+        "https://thecryptobasic.com/2026/10/28/tcb-daily-edition-what-happened-in-crypto-on-october-28-2026/",
+        "https://www.coinbase.com/blog/landing",
+        "https://insights4vc.substack.com/p/inside-circles-stablecoin-economics",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000162827920000354/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978822000031/coin-20211231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000162827921000100/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978822000048/coin-20220331.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978822000116/coin-20220930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978823000031/coin-20221231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978822000085/coin-20220630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1876042/000119312525126208/d737521ds1a.htm",
+        "https://www.sec.gov/Archives/edgar/data/1679788/000167978826000011/coin-20260212.htm",
+        "https://www.gurufocus.com/news/9124028/coinbase-announces-date-of-third-quarter-2026-financial-results",
+        "https://www.nasdaq.com/press-release/coinbase-announces-date-third-quarter-2026-financial-results-2026-10-14",
+        "https://finance.yahoo.com/markets/stocks/articles/coin-report-q3-earnings-time-160800681.html",
+        "https://www.tokenpost.com/news/business/40538",
+        "https://investor.coinbase.com/news/news-details/2026/Coinbase-Announces-Date-of-Third-Quarter-2026-Financial-Results/default.aspx",
+        "https://coindcx.com/blog/us-stock/coinbase-q3-2026-earnings-preview",
+        "https://investingnews.com/coinbase-announces-date-of-third-quarter-2026-financial-results/",
+        "https://www.kucoin.com/blog/circle-renews-usdc-revenue-sharing-agreement-with-coinbase-through-2029",
+        "https://app.dealroom.co/news/feed/coinbase-renews-circle-partnership-on-same-terms-usdc-revenue-deal-intact",
+        "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000045/coin-20260424.htm",
+        "https://coingape.com/block-of-fame/pulse/coinbase-circle-partnership-to-renew-on-same-terms-cfo-alesia-haas-says/",
+        "https://cryptobriefing.com/circle-pays-coinbase-908m-usdc-distribution/",
+        "https://stablecoininsider.org/circle-coinbase-usdc-agreement-renewal-2029/",
+        "https://cryptonews.net/news/finance/33255392/",
+        "https://www.coinreporter.io/2026/08/coinbase-and-circle-expand-usdc-revenue-sharing-arrangement/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Coinbase rates Sell on shrinking revenue and a weak share-price trend, with Q3 results due after today's close.",
+    "thesis": "Coinbase scores 39, a Sell, driven mainly by weak growth (25) and a very weak trend score (9). Revenue is shrinking, with a TTM revenue decline of 10.3% and a latest-quarter revenue decline of 18.5% year on year, though growth sped up by 12.0 pp from the previous quarter. The shares are price 54.3% below its 52-week high and down 47.4% from 12 months ago to 1 month ago, trailing both SPY and QQQ. Quality (56) and news risk (64) partly offset this: operating margin is 9.9% and the diluted share count is down 5.6% year on year, while recent news includes a dismissed investor class action, supportive stablecoin rules and incremental product launches. Valuation and balance sheet could not be scored; in absolute terms P/S of 6.8x and EV/EBIT of 65.2x are high, and P/S sits near the middle of the last 57 month-ends (cheaper than at 35, more expensive than at 21).",
+    "key_risks": [
+      "Revenue keeps falling, with a latest-quarter decline of 18.5% year on year tied to crypto trading activity",
+      "Q3 results after today's close could disappoint against July guidance",
+      "Weak price momentum: price 10.0% below its 50-day average and 9.4% below its 200-day average",
+      "Absolute valuation is high at 65.2x EV/EBIT despite shrinking sales",
+      "Stock-based compensation at 14.9% of revenue and competition such as Webull's planned perpetual futures launch"
+    ],
+    "what_would_change": [
+      "A 6-point score gain would lift the rating to Hold, most likely via a return to revenue growth improving the growth score",
+      "A recovery in the share price relative to its moving averages and to SPY/QQQ would raise the very low trend score",
+      "A 10-point score drop would push it to Strong Sell, for example from a weak Q3 report, guidance cut or adverse regulatory news",
+      "Margin compression in Q3 that pulls down the quality score would add downside pressure"
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 12822,
+        "output_tokens": 1855,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 12822,
+            "output_tokens": 1855,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0884,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 119771,
+        "output_tokens": 5016,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 119771,
+            "output_tokens": 5016,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3697,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8879,
+        "output_tokens": 2363,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8879,
+            "output_tokens": 2363,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0828,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3842,
+        "output_tokens": 713,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3842,
+            "output_tokens": 713,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0296,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5705,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 157.29,
+    "as_of": "2026-10-29T13:20:00Z",
+    "prev_close": 162.32
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:17",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40880267098",
+    "tickers": [
+      "WELL",
+      "JAN",
+      "THC",
+      "UNH",
+      "CNK",
+      "CVS",
+      "MIAX",
+      "ADUS",
+      "COIN",
+      "IMAX",
+      "AIZ",
+      "ENSG",
+      "BKD",
+      "DAVE",
+      "COMP",
+      "MSGS",
+      "EVER",
+      "MSGR"
+    ]
+  }
+}
