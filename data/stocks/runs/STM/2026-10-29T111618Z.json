@@ -1,0 +1,829 @@
+{
+  "run_id": "2026-10-29T11:16:18Z",
+  "generated_at": "2026-10-29T11:17:08+00:00",
+  "ticker": "STM",
+  "sec_ticker": "STM",
+  "cik": "0000932787",
+  "name": "STMicroelectronics N.V.",
+  "sector": "Semiconductors & Related Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 51,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), FCF margin"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 14
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 7
+    }
+  },
+  "composite": {
+    "score": 51,
+    "raw": 51.14,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": -11.07,
+          "score": 0.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 12.17,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 45,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 33.89,
+          "score": 39.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 1.48,
+          "score": 23.5,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2025-12-31"
+        },
+        "sbc_pct_revenue": {
+          "value": 1.64,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -1.73,
+          "score": 89.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 56,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 1.79,
+          "score": 95.8,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -3.69,
+          "score": 31.6,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -2.79,
+          "score": 43.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 110.96,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -16.69,
+          "score": 20.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -17.52,
+          "score": 18.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -39.28,
+          "score": 1.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 43,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 61,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 48.52,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 12.17,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 11800000000.0,
+    "revenue_yoy_ttm": -11.07,
+    "gross_profit_ttm": 3999000000.0,
+    "operating_income_ttm": 175000000.0,
+    "operating_cash_flow_ttm": 2152000000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 193000000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 33.89,
+    "operating_margin_pct": 1.48,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 1.64,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2025-12-31"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 2837000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 985000000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 985000000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 3822000000.0,
+      "debt": 2133000000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 2133000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -1689000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 923051667.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -1.73,
+    "shares_outstanding": {
+      "val": 888768152.0,
+      "end": "2025-12-31",
+      "filed": "2026-02-26",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 48.52,
+    "date": "2026-10-28",
+    "ma50": 50.38,
+    "ma200": 49.91,
+    "vs_ma50_pct": -3.69,
+    "vs_ma200_pct": -2.79,
+    "momentum_12_1_pct": 110.96,
+    "high_52w": 79.91,
+    "drawdown_52w_pct": -39.28,
+    "return_rs_pct": -7.61,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -16.69,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -17.52
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Q3 2026 revenue of $3.76B beat the company's own guidance and consensus. Management guided Q4 to $4.15B revenue at the midpoint and reportedly raised FY2026 revenue guidance to about $14.5B. Adjusted EPS missed estimates, and all supporting sources are lower-tier, which limits the rating to +1.",
+        "evidence": [
+          {
+            "claim": "Q3 2026 net revenues were $3.76B with gross margin of 37.3%; Q4 guidance at the midpoint is revenue of $4.15B and gross margin of 39.0%.",
+            "url": "https://newsroom.st.com/media-center/press-item.html/stmicroelectronics-reports-q3-2026-financial-results.html",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 7/7, names 0/0"
+          },
+          {
+            "claim": "Revenue beat consensus by about 1.1% while adjusted EPS of $0.37 missed the $0.39 forecast; management raised FY2026 revenue guidance to about $14.5B.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-stmicroelectronics-posts-revenue-beat-in-q3-2026-93CH-4982196",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Management cited a book-to-bill ratio well above 2 with distribution inventory below target.",
+            "url": "https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions were mixed. TD Cowen cut its price target to $50 and kept Hold, while Susquehanna maintained Buy at $75 and JP Morgan held Neutral. No post-earnings rating changes were found.",
+        "evidence": [
+          {
+            "claim": "TD Cowen cut its price target from $55 to $50 and kept a Hold rating.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/td-cowen-cuts-target-for-stmicroelectronics-stock-to-usd-50-00/70421422",
+            "event_date": "2026-10-20",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 3/3 · missing: 55"
+          },
+          {
+            "claim": "Susquehanna maintained a Buy rating with a $75 target.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/stmicroelectronics-stock-gets-buy-rating-ahead-of-the-xetra-open/70390954",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 2/2 · missing: 75"
+          },
+          {
+            "claim": "JP Morgan maintained Neutral with a EUR 71.50 target.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/stmicroelectronics-stock-jp-morgan-keeps-its-eur-71-50-target-for-stmicroelectronics-stock/70394147",
+            "event_date": "2026-10-21",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or regulatory actions were found in the window. The SDNY securities class action remains pending as background.",
+        "evidence": [
+          {
+            "claim": "A securities class action filed in SDNY against the company, its CEO and CFO remains pending after the motion to dismiss was denied.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000069/stm_sarxmaster-semiannual2.htm",
+            "event_date": "2025-09-15",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 409,
+            "background": true,
+            "status": "unverified",
+            "check": "numbers 0/0, names 0/1 · missing: SDNY"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Management cited unnamed automotive MEMS design wins and growth led by AI data center and LEO satellite revenue. No customer losses or contract changes were reported, so concentration risk is unchanged.",
+        "evidence": [
+          {
+            "claim": "Management cited several automotive MEMS customer awards and an in-cabin monitoring design win, without naming customers.",
+            "url": "https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript",
+            "event_date": "2026-10-29",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "STM is a foreign private issuer and files no Form 4s. The only share transaction found was a company buyback to cover employee and board share plans, which is not an insider trade.",
+        "evidence": [
+          {
+            "claim": "Company repurchased 310,000 shares at an average EUR 47.12 to meet employee and board share-plan obligations.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000074/c3414c-oct52026xdisclosure.htm",
+            "event_date": "2026-09-28",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 31,
+            "background": true,
+            "status": "unverified",
+            "check": "numbers 1/2, names 2/2 · missing: 47.12"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "ST launched its first mass-market automotive safety combination sensors since closing the NXP MEMS acquisition, plus a Matter smart-home authentication service. Management says demand remains well above supply and it is expanding capacity.",
+        "evidence": [
+          {
+            "claim": "ST introduced its first automotive safety combination sensors (accelerometer plus gyroscope) for mass-market applications.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/26/3387826/0/en/stmicroelectronics-introduces-first-automotive-safety-combination-sensors-for-mass-market-applications.html",
+            "event_date": "2026-10-26",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 3,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Management said it is expanding capacity as demand remains well above supply.",
+            "url": "https://www.manilatimes.net/2026/10/29/tmt-newswire/globenewswire/stmicroelectronics-reports-q3-2026-financial-results/2456876",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 2,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n- Q3 2026 net revenues were $3.76B, gross margin 37.3%, and non-GAAP operating income $429M. Q4 guidance at the midpoint is revenue of $4.15B and gross margin of 39.0%. — 2026-10-29 — https://newsroom.st.com/media-center/press-item.html/stmicroelectronics-reports-q3-2026-financial-results.html\n- Q3 beat the prior guidance. In the July Q2 release, the Q3 midpoint was $3.70B revenue and 37.0% gross margin. — 2026-10-29 (guidance given in the Q2 release, date not stated in the excerpt) — https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000052/c3403c-q226earningspressre.htm\n- Versus consensus, revenue beat by about 1.1%. Adjusted EPS was $0.37 against a $0.39 forecast, a miss of about 5.1%. Management raised FY2026 revenue guidance to about $14.5B. — 2026-10-29 — https://www.investing.com/news/transcripts/earnings-call-transcript-stmicroelectronics-posts-revenue-beat-in-q3-2026-93CH-4982196\n- A pre-earnings preview put the consensus at $0.40 EPS and $3.72B revenue. — 2026-10-22 (article date; the event date for consensus is unknown) — https://www.defenseworld.net/2026/10/22/stmicroelectronics-stm-projected-to-release-earnings-on-thursday.html\n- Management cited a book-to-bill ratio well above 2, with distribution inventory below target. — 2026-10-29 — https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript\n- The Manila Times copy of the press release says an FY gross margin of about 36.4% is expected (non-GAAP about 36.6%). — 2026-10-29 — https://www.manilatimes.net/2026/10/29/tmt-newswire/globenewswire/stmicroelectronics-reports-q3-2026-financial-results/2456876\n\n## 2. Analyst actions\n- TD Cowen cut its price target from $55 to $50 and kept a Hold rating. — 2026-10-20 — https://www.ad-hoc-news.de/boerse/news/corporate-news/td-cowen-cuts-target-for-stmicroelectronics-stock-to-usd-50-00/70421422\n- Susquehanna (Christopher Rolland) maintained Buy with a $75 target. — 2026-10-21 — https://www.ad-hoc-news.de/boerse/news/vorboerse/stmicroelectronics-stock-gets-buy-rating-ahead-of-the-xetra-open/70390954\n- JP Morgan maintained Neutral with a EUR 71.50 target. — 2026-10-21 — https://www.ad-hoc-news.de/boerse/news/corporate-news/stmicroelectronics-stock-jp-morgan-keeps-its-eur-71-50-target-for-stmicroelectronics-stock/70394147\n- MarketBeat shows a $76.17 average target from 12 analysts, with 7 Buy and 5 Hold. — 2026-10-24 — https://www.ad-hoc-news.de/boerse/news/corporate-news/analysts-place-usd-76-17-target-on-stmicroelectronics-stock/70415866\n- 24/7 Wall St. shows a different set: a $74.62 consensus from 14 analysts, with 8 Buy and 6 Hold. — 2026-10-26 — https://247wallst.com/companies/stm/price-prediction/\n- I found no post-earnings rating changes in the results.\n\n## 3. Litigation and regulation\n- The securities class action in SDNY is still pending. It was filed on 2024-08-23 against the company, its CEO and its CFO, and the motion to dismiss was denied on 2025-09-15. Both dates fall outside the window, so this is background rather than a new event. — 2025-09-15 — https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000069/stm_sarxmaster-semiannual2.htm\n- I found no new lawsuits, fines, antitrust actions or export-control actions in the window.\n\n## 4. Customer concentration\n- On the Q3 call, management cited several automotive MEMS customer awards (telematics, cockpit control, tire pressure monitoring) and another in-cabin monitoring design win. No customers were named. — 2026-10-29 — https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript\n- Growth in Q3 was led by AI data center and LEO satellite revenue. — 2026-10-29 — https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript\n- Background from before the window:\n  - The July 2026 company presentation lists its 2025 top-10 customers, including Apple, Tesla, Mobileye, Denso, Bosch, Continental, Samsung and SpaceX. — date unknown — https://www.st.com/content/dam/aboutus/who-we-are/pdf/st-company-presentation-en.pdf\n  - The AWS multi-year, multi-billion USD agreement was announced on 2026-02-09. It comes with warrants for up to 24.8M ST shares. — 2026-02-09 — https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000022/q126earningspressrelease-2.htm\n- I found no customer losses or contract changes in the window.\n\n## 5. Insider activity\n- I found no Form 4 filings. STM is a foreign private issuer and files 6-Ks, not Form 4s. Aggregator pages show no insider ownership or trades. — date unknown — https://fintel.io/sn/us/stm\n- A company buyback 6-K covers purchases of 310,000 shares at an average EUR 47.12 (about EUR 14.6M). The stated purpose was to meet employee and board share-plan obligations. This is a company transaction, not an insider sale. — 2026-09-28 (start of period, which ran to 2026-10-02) — https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000074/c3414c-oct52026xdisclosure.htm\n- I found no 10b5-1 plan sales or clustered selling in the window.\n\n## 6. Product and competitive news\n- ST launched its first mass-market automotive safety combination sensors (accelerometer plus gyroscope in one package). They are the first mass-market products since the NXP MEMS acquisition closed in February 2026. — 2026-10-26 — https://www.globenewswire.com/news-release/2026/10/26/3387826/0/en/stmicroelectronics-introduces-first-automotive-safety-combination-sensors-for-mass-market-applications.html\n- ST launched the ST MatterConnect personalization service for authenticating Matter smart-home devices. — 2026-10-20 — https://newsroom.st.com/\n- ST launched the ST SafeSense VD56GA, a 1.1MP infrared in-cabin image sensor. The source article is dated 2026-10-04 and gives no launch date. — date unknown — https://www.timothysykes.com/news/stmicroelectronicsnv-stm-news-2026_10_04/\n- Management said it is expanding capacity because demand remains well above supply. — 2026-10-29 — https://www.manilatimes.net/2026/10/29/tmt-newswire/globenewswire/stmicroelectronics-reports-q3-2026-financial-results/2456876\n- I found no news on delays, pricing, share shifts or new competitors in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000052/c3403c-q226earningspressre.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000058/stm-6k_q2x2026.htm",
+        "https://www.sec.gov/Archives/edgar/data/932787/000093278726000003/c3383c-q425earningsprx29ja.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000022/q126earningspressrelease-2.htm",
+        "https://newsroom.st.com/media-center/press-item.html/stmicroelectronics-reports-q3-2026-financial-results.html",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000025/stm-6k_q1x2026.htm",
+        "https://www.manilatimes.net/2026/10/29/tmt-newswire/globenewswire/stmicroelectronics-reports-q3-2026-financial-results/2456876",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-stmicroelectronics-posts-revenue-beat-in-q3-2026-93CH-4982196",
+        "https://www.benzinga.com/news/26/10/62684848/stmicroelectronics-q3-2026-earnings-call-transcript",
+        "https://au.investing.com/news/stock-market-news/stmicroelectronics-q3-2026-slides-ai-datacenter-growth-drives-beat-93CH-4724777",
+        "https://www.marketbeat.com/instant-alerts/analyst-stmicroelectronics-nyse-stm-price-target-cut-to-5000-by-analysts-at-td-cowen-2026-10-20/",
+        "https://altindex.com/ticker/stm/price-prediction",
+        "https://247wallst.com/companies/stm/price-prediction/",
+        "https://www.defenseworld.net/2026/10/22/stmicroelectronics-stm-projected-to-release-earnings-on-thursday.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/analysts-place-usd-76-17-target-on-stmicroelectronics-stock/70415866",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/susquehanna-keeps-usd-75-target-for-stmicroelectronics-stock/70397833",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/td-cowen-cuts-target-for-stmicroelectronics-stock-to-usd-50-00/70421422",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/stmicroelectronics-stock-jp-morgan-keeps-its-eur-71-50-target-for-stmicroelectronics-stock/70394147",
+        "https://www.ad-hoc-news.de/boerse/news/vorboerse/stmicroelectronics-stock-gets-buy-rating-ahead-of-the-xetra-open/70390954",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000069/stm_sarxmaster-semiannual2.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000094787126000828/ss6743381_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000074/c3414c-oct52026xdisclosure.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000932787/000094787126000820/ss6727672_6k.htm",
+        "https://deepquarry.substack.com/p/super-micros-export-control-issues",
+        "https://www.kharon.com/brief/russia-ukraine-war-drone-combat-stmicroelectronics-china",
+        "https://natlawreview.com/article/super-micros-export-control-issues-compliance-and-financial-reporting-implications",
+        "https://www.st.com/content/dam/aboutus/who-we-are/pdf/st-company-presentation-en.pdf",
+        "https://www.sec.gov/Archives/edgar/data/932787/000094787126000099/ss5924399_6k.htm",
+        "https://supplychaindigital.com/news/stmicroelectronics-boosts-nvidia-ai-supply-chain",
+        "https://macdailynews.com/2026/04/23/apple-supplier-stmicroelectronics-shares-surge-after-strong-quarter/",
+        "https://www.sec.gov/Archives/edgar/data/932787/000093278726000005/st_nxpmemsclosingxprxfinal.htm",
+        "https://www.marketscreener.com/quote/stock/STMICROELECTRONICS-N-V-4710/news/Tesla-Supplier-STMicroelectronics-Forecasts-Sales-Decline-Amid-Weak-Demand-for-Legacy-Chips-Updat-48908625/",
+        "https://lightsource.ai/m/suppliers/st-micro",
+        "https://www.gurufocus.com/news/9142265/stmicroelectronics-stm-launches-advanced-automotive-sensors-postnxp-acquisition",
+        "https://newsroom.st.com/",
+        "https://uk.finance.yahoo.com/news/stmicroelectronics-introduces-first-automotive-safety-070000890.html",
+        "https://www.globenewswire.com/news-release/2026/10/26/3387826/0/en/stmicroelectronics-introduces-first-automotive-safety-combination-sensors-for-mass-market-applications.html",
+        "https://www.quiverquant.com/news/STMicroelectronics+Rises+as+Investors+Position+Ahead+of+Earnings",
+        "https://en.wikipedia.org/wiki/STMicroelectronics",
+        "https://en.wikipedia.org/wiki/STM32",
+        "https://www.globenewswire.com/news-release/2026/10/26/3387828/0/fr/stmicroelectronics-pr%C3%A9sente-les-premiers-capteurs-combin%C3%A9s-d%C3%A9di%C3%A9s-%C3%A0-la-s%C3%A9curit%C3%A9-automobile-pour-les-applications-grand-public.html",
+        "https://www.timothysykes.com/news/stmicroelectronicsnv-stm-news-2026_10_04/",
+        "https://fintel.io/sn/us/stm",
+        "https://evertiq.com/design/2025-04-10-stmicroelectronics-responds-to-insider-trading-allegations",
+        "https://marketchameleon.com/Overview/STM/InsiderTrades/",
+        "https://www.sec.gov/Archives/edgar/data/932787/000093278725000006/exhibit981.htm",
+        "https://www.sec.gov/Archives/edgar/data/932787/000093278725000006/stm-20241231.htm",
+        "https://kfgo.com/2025/04/10/stmicroelectronics-supervisory-board-denies-allegations-of-insider-trading/",
+        "https://www.sec.gov/Archives/edgar/data/932787/000094787124000406/ss3292494_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/932787/000156459022011737/stm-6k_20220324.htm",
+        "https://investors.st.com/static-files/fe7717b6-733c-40c9-a4ae-842503fb4f28"
+      ],
+      "searches": 6
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "STMicroelectronics rates Hold: revenue is recovering and news is positive, but margins are thin and the shares are weak.",
+    "thesis": "STM scores 51, a Hold, with growth, quality, trend and news risk carrying the weight because balance sheet and valuation were not scored. Growth scores 45. The company still shows a TTM revenue decline of 11.1%, but growth sped up by 12.2 pp from the previous quarter. Quality scores 56: gross margin is 33.9% and operating margin only 1.5%, offset by modest stock-based pay at 1.6% of revenue and a diluted share count down 1.7% year on year. Trend scores 43, with the price 39.3% below its 52-week high and shares 16.7 pp behind SPY over the last 126 trading days, even though shares are up 111.0% from 12 months ago to 1 month ago. News risk is the strongest factor at 61, helped by a Q3 revenue beat of $3.76B, Q4 guidance of $4.15B at the midpoint and new automotive sensor launches.",
+    "key_risks": [
+      "Operating margin of 1.5% leaves little room if the revenue recovery stalls.",
+      "Adjusted EPS missed estimates despite the revenue beat.",
+      "Weak price trend: the price is 3.7% below its 50-day average and 2.8% below its 200-day average.",
+      "A pending SDNY securities class action remains in the background.",
+      "Mixed analyst views, including a price target cut by TD Cowen."
+    ],
+    "what_would_change": [
+      "A move up to Buy needs 14 more points, most likely from TTM revenue returning to growth and operating margin widening.",
+      "A drop of 7 points would mean Sell, which could follow if the price trend weakens further or guidance disappoints.",
+      "A balance sheet or valuation score, once available, could move the composite in either direction; cash is 1.79 times debt.",
+      "Delivering Q4 revenue near the $4.15B guidance midpoint would support both the growth and news factors."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 52279,
+        "output_tokens": 3860,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 6,
+        "per_request": [
+          {
+            "input_tokens": 52279,
+            "output_tokens": 3860,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 6
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.2032,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6966,
+        "output_tokens": 2464,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6966,
+            "output_tokens": 2464,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0771,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3620,
+        "output_tokens": 1007,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3620,
+            "output_tokens": 1007,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0346,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3149,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 48.52,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 48.68
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:16",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40863619564",
+    "tickers": [
+      "QCOM",
+      "ISRG",
+      "PRLB",
+      "TXN",
+      "ROK",
+      "XMTR",
+      "ALGM",
+      "WOLF",
+      "APH",
+      "ADI",
+      "HSAI",
+      "ALNT",
+      "STM",
+      "MKSI",
+      "JBL",
+      "OUST"
+    ]
+  }
+}

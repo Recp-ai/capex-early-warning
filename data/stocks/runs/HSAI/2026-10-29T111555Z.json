@@ -1,0 +1,796 @@
+{
+  "run_id": "2026-10-29T11:15:55Z",
+  "generated_at": "2026-10-29T11:16:38+00:00",
+  "ticker": "HSAI",
+  "sec_ticker": "HSAI",
+  "cik": "0001861737",
+  "name": "Hesai Group",
+  "sector": "General Industrial Machinery & Equipment, NEC",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 56,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter)"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 9
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 12
+    }
+  },
+  "composite": {
+    "score": 56,
+    "raw": 56.31,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 52.14,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 44.5,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 41.79,
+          "score": 52.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 5.57,
+          "score": 33.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -6.35,
+          "score": 7.3,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 3.79,
+          "score": 88.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 13.35,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 34,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash, negative FCF: 24.7 years of cash at the current burn"
+        },
+        "cash_to_debt": {
+          "value": 6.54,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -13.9,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -30.79,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -34.95,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -46.98,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -47.81,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -51.96,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 0,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 55,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 13.83,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 44.5,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 432937000.0,
+    "revenue_yoy_ttm": 52.14,
+    "gross_profit_ttm": 180906000.0,
+    "operating_income_ttm": 24131000.0,
+    "operating_cash_flow_ttm": 16732000.0,
+    "capex_ttm": 44239000.0,
+    "sbc_ttm": 16395000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -27507000.0,
+    "gross_margin_pct": 41.79,
+    "operating_margin_pct": 5.57,
+    "fcf_margin_pct": -6.35,
+    "capex_intensity_pct": 10.22,
+    "sbc_pct_revenue": 3.79,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": -1711000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 4520000.0,
+      "base_date": "2024-12-31",
+      "revenue_growth_pct": 52.14,
+      "expected": 2356628.3045588243,
+      "excess": -4067628.3045588243,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": -0.2431
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -6.35,
+      "fcf_margin_year_earlier_pct": -9.44,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -27507000.0,
+    "fcf_scored_margin_pct": -6.35,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 237876000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 442130000.0,
+      "investment_tags": [
+        {
+          "tag": "ShortTermInvestments",
+          "val": 442130000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 680006000.0,
+      "debt": 103953000.0,
+      "debt_tags": [
+        "DebtCurrent",
+        "LongTermDebtNoncurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtCurrent",
+          "val": 64096000.0
+        },
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 39857000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -576053000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 146437135.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 13.35,
+    "shares_outstanding": {
+      "val": 156145167.0,
+      "end": "2025-12-31",
+      "filed": "2026-04-24",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 13.83,
+    "date": "2026-10-28",
+    "ma50": 16.06,
+    "ma200": 19.98,
+    "vs_ma50_pct": -13.9,
+    "vs_ma200_pct": -30.79,
+    "momentum_12_1_pct": -34.95,
+    "high_52w": 28.79,
+    "drawdown_52w_pct": -51.96,
+    "return_rs_pct": -37.9,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -46.98,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -47.81
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No new guidance in the window; the Q3 2026 guide of RMB1,100–1,150m from August remains operative, and Q3 results are scheduled for Nov 10.",
+        "evidence": [
+          {
+            "claim": "Hesai will report Q3 results on Nov 10 before the US market open.",
+            "url": "https://investor.hesaitech.com/news-events/news-releases",
+            "event_date": "2026-10-20",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Only quant-rating changes appeared in the window: a Weiss downgrade and a Wall Street Zen upgrade from strong sell to sell. There were no named broker actions, so the picture is mixed and immaterial.",
+        "evidence": [
+          {
+            "claim": "Weiss Ratings cut Hesai Group to \"hold (c-)\" from \"hold (c)\".",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-hesai-group-sponsored-adr-nasdaq-hsai-stock-has-average-target-price-of-2350-according-to-analysts-2026-10-18/",
+            "event_date": "2026-10-08",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "Wall Street Zen upgraded Hesai Group to \"sell\" from \"strong sell\".",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-hesai-group-sponsored-adr-nasdaq-hsai-stock-has-average-target-price-of-2350-according-to-analysts-2026-10-18/",
+            "event_date": "2026-10-03",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 26,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Nothing new in the window. The 1260H listing dispute (court win in August, possible relisting) remains background risk.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No customer wins or losses were announced. The new embodied-AI partnerships with Galbot and Dexmal are small and don't change the company's reliance on Chinese automakers.",
+        "evidence": [
+          {
+            "claim": "At the Kosmo launch, Hesai announced partnerships with Galbot and Dexmal.",
+            "url": "https://www.prnewswire.com/news-releases/building-the-data-infrastructure-for-physical-ai-hesai-launches-kosmo-3d-world-data-engine-302908956.html",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider open-market buys or sales were found in the window.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Hesai launched the Kosmo 3D world data engine for physical AI, extending its business beyond automotive lidar. Competition from RoboSense and pricing pressure still temper the positive.",
+        "evidence": [
+          {
+            "claim": "Hesai launched Kosmo, a 3D world data engine including the Kosmo One AI spatial camera and Kosmo World cloud platform.",
+            "url": "https://www.prnewswire.com/news-releases/building-the-data-infrastructure-for-physical-ai-hesai-launches-kosmo-3d-world-data-engine-302908956.html",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/5"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Window: 2026-09-29 to 2026-10-29. Most items below fall outside the window. I flag those as context, and I found nothing material for several topics.**\n\n## 1. Guidance\n- No new guidance or pre-announcement in the window. The operative Q3 2026 guide is net revenue of RMB1,100–1,150m (+38–45% YoY), given with Q2 results — 2026-08-18 (context) — https://www.sec.gov/Archives/edgar/data/0001861737/000110465926098050/tm2623467d1_ex99-1.htm\n- On that same call, Hesai raised its 2026 SGI (new-business) revenue guide to RMB200–300m from RMB100m. It reiterated full-year lidar shipments of 3–3.5m units — 2026-08-18 (context) — https://www.tradingkey.com/news/transcripts/262115870-tradingkey\n- Hesai announced it will report Q3 results on Nov 10, before the US open — 2026-10-20 — https://investor.hesaitech.com/news-events/news-releases\n- Q2 revenue was $126.7m against a $126.0m estimate. EPS was $0.01 against a $0.07 consensus — 2026-08-18 (context) — https://www.marketbeat.com/instant-alerts/price-hesai-group-nasdaq-hsai-reaches-new-52-week-low-heres-why-2026-10-22/\n\n## 2. Analyst actions\n- Weiss Ratings cut HSAI to \"hold (c-)\" from \"hold (c)\" — 2026-10-08 — https://www.marketbeat.com/instant-alerts/consensus-hesai-group-sponsored-adr-nasdaq-hsai-stock-has-average-target-price-of-2350-according-to-analysts-2026-10-18/\n- Wall Street Zen upgraded HSAI to \"sell\" from \"strong sell\" — 2026-10-03 — same URL.\n- I found no named broker upgrades, downgrades or price-target changes in the window.\n- Consensus figures differ by source:\n  - MarketBeat shows a \"Buy\" rating and a $23.50 average target from 4 analysts — 2026-10-18 — same URL.\n  - StockAnalysis shows \"Strong Buy\" and a $26.66 target from 19 analysts — as of 2026-10-28 — https://stockanalysis.com/stocks/hsai/\n\n## 3. Litigation and regulation\n- Nothing new in the window.\n- Context: on 2026-08-18 the D.C. Circuit unanimously held that the Pentagon violated Hesai's due-process rights over its 1260H \"Chinese military company\" listing. It remanded the case but did not immediately order delisting — https://www.globaltimes.cn/page/202608/1368546.shtml\n- The same source says DOJ stated the Pentagon had delisted Hesai on the original grounds but planned to relist it on newer information. The source gives no date for that statement. Global Times is Chinese state-linked media, and the report relays Hesai's own statement.\n- An aggregator snippet describes a US review of Chinese lidar for cybersecurity risk. It gives no date and I couldn't verify it — date unknown — https://alphai.io/stock/HSAI\n\n## 4. Customer concentration\n- No new customer win, loss or contract change was announced in the window.\n- At the 2026-10-14 Kosmo launch, Hesai announced partnerships with embodied-AI firms Galbot and Dexmal — 2026-10-14 — https://www.prnewswire.com/news-releases/building-the-data-infrastructure-for-physical-ai-hesai-launches-kosmo-3d-world-data-engine-302908956.html\n- Context: customers are mainly Chinese automakers, so the stock tracks sentiment toward China's auto sector — 2026-10-21 — https://www.ibtimes.com.au/hesai-shares-fall-chinese-auto-sector-pressure-1877141\n- Context: a Hesai circular says its related-party supply agreement with Sharpa is likely to exceed its annual cap because of a surge in demand — date unknown — https://www.sec.gov/Archives/edgar/data/0001861737/000110465926089024/tm2621807d1_ex99-3.htm\n- Context: a Dolphin Research piece on 36Kr says Xiaomi added RoboSense as a second supplier — date unknown — https://eu.36kr.com/en/p/3946451052592521\n- Context: Great Wall Motor ETX design win, with start of production expected in late 2026 — 2026-08-18 — https://www.sec.gov/Archives/edgar/data/0001861737/000110465926098050/tm2623467d1_ex99-2.htm\n\n## 5. Insider activity\n- I found no Form 4 purchases or sales by officers or directors in the window. HedgeFollow shows no open-market insider buys or sales in the past 12 months — date unknown — https://hedgefollow.com/stocks/HSAI/insider-trading\n- The Form 4s I found were RSU grants from 2026-03-25 (outside the window), for example the CTO's 157,000 RSUs — 2026-03-25 — https://www.stocktitan.net/sec-filings/HSAI/form-4-hesai-group-insider-trading-activity-106a78ec5aa8.html\n- Context: FMR LLC (an institution, not an insider) sold 168,320 shares — 2026-05-27 — https://simplywall.st/stocks/us/automobiles/nasdaq-hsai/hesai-group/ownership\n\n## 6. Product and competition\n- Hesai launched Kosmo, a 3D world data engine, with the Kosmo One AI spatial camera and the Kosmo World cloud platform — 2026-10-14 — https://www.prnewswire.com/news-releases/building-the-data-infrastructure-for-physical-ai-hesai-launches-kosmo-3d-world-data-engine-302908956.html\n- Hesai put out a release on its 6D full-colour lidar and Picasso ASIC. The platform was first unveiled on 2026-04-17, and the ETX platform is slated for mass production in 2H26 — 2026-10-21 — https://www.gurufocus.com/news/9134442/hesai-hsai-advances-6d-fullcolor-lidar-technology-amid-market-valuation-challenges (https://carnewschina.com/2026/04/20/hesai-launches-worlds-first-6d-full-colour-lidar-with-up-to-4320-lines/)\n- RoboSense is also moving into spatial cameras. Its 2026 interim report lists them alongside lidar, and it plans full-scale mass production in 2027 — date unknown — https://finance.biggo.com/news/9538cb24-b90f-48a2-b5c1-d4b1e9c1a5fe\n- Hesai captured a 44% share of China's long-range ADAS lidar market in June 2026 per Gasgoo — 2026-06-30 — https://www.sec.gov/Archives/edgar/data/0001861737/000110465926098050/tm2623467d1_ex99-2.htm\n- Pricing: Dolphin Research says Hesai has given up its 10–20% price premium over peers to defend share — date unknown — https://eu.36kr.com/en/p/3946451052592521\n- Stock: HSAI hit an intraday 52-week low of $11.85 on 2026-10-22, amid weak China auto and tech sentiment — https://www.marketbeat.com/instant-alerts/price-hesai-group-nasdaq-hsai-reaches-new-52-week-low-heres-why-2026-10-22/ and https://www.ibtimes.com.au/hesai-shares-fall-chinese-auto-sector-pressure-1877141",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001861737/000110465926098050/tm2623467d1_ex99-1.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/why-hesai-group-hsai-down-190957753.html",
+        "https://investor.hesaitech.com/node/8506/pdf",
+        "https://simplywall.st/stocks/us/automobiles/nasdaq-hsai/hesai-group/news/stronger-profitability-and-upbeat-q3-outlook-could-be-a-game/amp",
+        "https://www.marketbeat.com/stocks/NASDAQ/HSAI/earnings/",
+        "https://finance.biggo.com/news/fe1aaca5-8440-45d4-abdd-308b6abc7145",
+        "https://www.stocktitan.net/sec-filings/HSAI/6-k-hesai-group-current-report-foreign-issuer-4595b3599726.html",
+        "https://www.tradingkey.com/news/transcripts/262115870-tradingkey",
+        "https://rocketnews.com/2026/08/hesai-group-shares-drop-despite-strong-q2-revenue-growth/",
+        "https://www.marketbeat.com/instant-alerts/consensus-hesai-group-sponsored-adr-nasdaq-hsai-stock-has-average-target-price-of-2350-according-to-analysts-2026-10-18/",
+        "https://stockanalysis.com/stocks/hsai/",
+        "https://www.marketbeat.com/instant-alerts/price-hesai-group-nasdaq-hsai-shares-gap-up-whats-next-2026-10-26/",
+        "https://simplywall.st/stocks/us/automobiles/nasdaq-hsai/hesai-group/future",
+        "https://www.etoro.com/markets/hsai",
+        "https://www.defenseworld.net/2026/10/21/hesai-group-sponsored-adr-nasdaqhsai-stock-has-average-price-target-of-23-50-according-to-analysts.html",
+        "https://intellectia.ai/stock/HSAI/forecast",
+        "https://financhill.com/stocks/nasdaq/hsai",
+        "https://www.tipranks.com/news/the-fly/hesai-price-target-raised-to-36-from-26-30-at-goldman-sachs-thefly",
+        "https://exportcompliancedaily.com/news/2024/08/14/DOD-Removing-Chinese-Tech-Firm-From-Chinese-Military-Company-List-Report-Says-2408130022",
+        "https://modeldiplomat.com/story/1260h-list-pentagons-chinese-military-ban",
+        "https://x.com/petereharrell/status/2090173562212778484",
+        "https://internationaltradetoday.com/article/2025/12/11/hesai-contests-dods-absurdly-broad-reading-of-chinese-military-designation-2512100049?BC=bc_674ebe5a2173b",
+        "https://finance.biggo.com/news/706fd74c-a06f-4163-93d9-d6617685b429",
+        "https://www.globaltimes.cn/page/202405/1312303.shtml",
+        "https://www.globaltimes.cn/page/202608/1368546.shtml",
+        "https://www.globaltimes.cn/page/202410/1321792.shtml",
+        "https://www.globalsecurity.org/wmd/library/news/china/2024/02/china-240209-presstv01.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001861737/000110465926089024/tm2621807d1_ex99-3.htm",
+        "https://autonews.gasgoo.com/articles/icv/70039016",
+        "https://technode.com/2025/09/15/hesai-technology-secures-over-40-million-lidar-order-from-leading-us-robotaxi-company/",
+        "https://www.sec.gov/Archives/edgar/data/0001861737/000110465926063803/tm2615071d1_ex99-1.htm",
+        "https://www.automotiveworld.com/news/hesai-wins-1m-unit-lidar-order-from-european-oem/",
+        "https://www.sec.gov/Archives/edgar/data/0001861737/000110465926098050/tm2623467d1_ex99-2.htm",
+        "https://www.sec.gov/Archives/edgar/data/1861737/000110465926033591/tm269592d1_ex99-2.htm",
+        "https://www.sec.gov/Archives/edgar/data/1861737/000110465926033591/tm269592d1_ex99-1.htm",
+        "https://simplywall.st/stocks/us/automobiles/nasdaq-hsai/hesai-group/ownership",
+        "https://hedgefollow.com/stocks/HSAI/insider-trading",
+        "https://www.sec.gov/Archives/edgar/data/1861737/000110465925089536/tm2525233-4_424b5.htm",
+        "https://www.sec.gov/Archives/edgar/data/1861737/000110465923017567/tm2120356-28_424b4.htm",
+        "https://en.wikipedia.org/wiki/Form_4",
+        "https://www.sec.gov/Archives/edgar/data/0001861737/000110465925041824/primary_doc.xml",
+        "https://www.sec.gov/Archives/edgar/data/1861737/000110465923009861/tm2120356-22_f1a.htm",
+        "https://www.stocktitan.net/sec-filings/HSAI/form-4-hesai-group-insider-trading-activity-283b64aff367.html",
+        "https://www.stocktitan.net/sec-filings/HSAI/form-4-hesai-group-insider-trading-activity-106a78ec5aa8.html",
+        "https://cnevpost.com/2026/04/23/robosense-releases-image-grade-spad-soc-platform-lidar-competition-heats-up/",
+        "https://carnewschina.com/2026/04/20/hesai-launches-worlds-first-6d-full-colour-lidar-with-up-to-4320-lines/",
+        "https://www.caixinglobal.com/2026-04-24/robosense-unveils-more-accurate-lidar-102437519.html",
+        "https://eu.36kr.com/en/p/3946451052592521",
+        "https://en.wikipedia.org/wiki/Hesai_Technology",
+        "https://openelab.io/blogs/learn/livox-vs-hesai-vs-robosense-choosing-the-best-lidar-for-robotics",
+        "https://tofsensors.com/blogs/news/ces-2026-lidar-hesai-robosense-more-redefine-robotic-vision",
+        "https://finance.biggo.com/news/9538cb24-b90f-48a2-b5c1-d4b1e9c1a5fe",
+        "https://autotechinsight.spglobal.com/news/5276087/chinese-lidar-suppliers-robosense-and-hesai-dominate-sales-forecast",
+        "https://www.investing.com/news/earnings/hesai-group-stock-falls-over-4-on-weak-guidance-93CH-4577296",
+        "https://www.investing.com/news/earnings/hesai-group-stock-falls-6-despite-beating-revenue-estimates-93CH-4864911",
+        "https://www.marketbeat.com/instant-alerts/price-hesai-group-nasdaq-hsai-reaches-new-52-week-low-heres-why-2026-10-22/",
+        "https://benzinga.com/trading-ideas/movers/26/10/62522553/tesla-lam-research-rollins-and-other-big-stocks-moving-lower-in-thursdays-pre-market-session",
+        "https://greenstocknews.com/market-data/stock-quote/hesai-technology",
+        "https://www.ibtimes.com.au/hesai-shares-fall-chinese-auto-sector-pressure-1877141",
+        "https://stockscan.io/stocks/HSAI",
+        "https://alphai.io/stock/HSAI",
+        "https://www.itiger.com/hans/news/1196820765",
+        "https://finance.yahoo.com/technology/ai/articles/hesai-group-report-third-quarter-083000646.html",
+        "https://marketchameleon.com/Overview/HSAI/PressReleases/",
+        "https://investor.hesaitech.com/news-events/news-releases",
+        "https://www.hesaitech.com/newsroom/",
+        "https://kdhnews.com/online_features/press_releases/hesai-group-to-report-third-quarter-2026-financial-results-on-tuesday-november-10-2026/article_59e9c286-6afb-57db-9ec0-016f2fd7c6b3.html",
+        "https://www.gurufocus.com/news/9134442/hesai-hsai-advances-6d-fullcolor-lidar-technology-amid-market-valuation-challenges",
+        "https://stockhouse.com/news/press-releases/2026/10/20/hesai-group-to-report-third-quarter-2026-financial-results-on-tuesday-november",
+        "https://www.prnewswire.com/news-releases/building-the-data-infrastructure-for-physical-ai-hesai-launches-kosmo-3d-world-data-engine-302908956.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Hesai rates Hold: rapid revenue growth and net cash offset by weak margins, dilution and a falling share price.",
+    "thesis": "Hesai earns a Hold with a composite score of 56. Growth scores the maximum: TTM revenue growth of 52.1%, and growth sped up by 44.5 pp from the previous quarter. The balance sheet also scores the maximum, with cash at 6.54 times debt and 24.7 years of cash at the current burn. Those strengths are held back by quality, which scores 34 on an operating margin of 5.6%, an FCF margin of -6.3% and a diluted share count up 13.3% year on year. Trend scores 0, with the price 52.0% below its 52-week high and the shares 47.0 pp behind SPY over the last 126 trading days. Valuation could not be scored because the foreign-filer share and currency data were not reconciled, so the rating rests on the other five factors.",
+    "key_risks": [
+      "Negative free cash flow (FCF margin of -6.3%) despite fast revenue growth",
+      "Shareholder dilution, with the diluted share count up 13.3% year on year",
+      "Weak price trend: price 30.8% below its 200-day average and shares down 35.0% from 12 months ago to 1 month ago",
+      "Competition from RoboSense and lidar pricing pressure, plus reliance on Chinese automakers",
+      "Background regulatory risk from the 1260H listing dispute, including possible relisting"
+    ],
+    "what_would_change": [
+      "A score gain of 9 points would reach Buy at 65, most likely from a recovering price trend or better margins and cash flow lifting the quality score",
+      "A drop of 12 points would push the stock below 45 into Sell, for example if growth slows sharply or news turns negative",
+      "The Q3 results due Nov 10, compared with the RMB1,100–1,150m guide, could move the growth and news factors either way"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 116854,
+        "output_tokens": 4040,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 116854,
+            "output_tokens": 4040,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3541,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6984,
+        "output_tokens": 1109,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6984,
+            "output_tokens": 1109,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0501,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3495,
+        "output_tokens": 622,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3495,
+            "output_tokens": 622,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0264,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4306,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 13.83,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 13.35
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:15",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40863619564",
+    "tickers": [
+      "QCOM",
+      "ISRG",
+      "PRLB",
+      "TXN",
+      "ROK",
+      "XMTR",
+      "ALGM",
+      "WOLF",
+      "APH",
+      "ADI",
+      "HSAI",
+      "ALNT",
+      "STM",
+      "MKSI",
+      "JBL",
+      "OUST"
+    ]
+  }
+}

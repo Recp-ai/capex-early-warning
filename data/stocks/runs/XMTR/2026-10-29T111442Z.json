@@ -1,0 +1,1615 @@
+{
+  "run_id": "2026-10-29T11:14:42Z",
+  "generated_at": "2026-10-29T11:15:32+00:00",
+  "ticker": "XMTR",
+  "sec_ticker": "XMTR",
+  "cik": "0001657573",
+  "name": "Xometry, Inc.",
+  "sector": "Services-Business Services, NEC",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 68,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: FCF margin"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 12
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 4
+    }
+  },
+  "composite": {
+    "score": 68,
+    "raw": 68.0,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 41.05,
+          "score": 97.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 33.75,
+          "score": 93.3,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 5.17,
+          "score": 75.8,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 91,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 38.75,
+          "score": 47.9,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -3.79,
+          "score": 12.4,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 5.05,
+          "score": 79.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 2.44,
+          "score": 45.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 42,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 1.57,
+          "score": 91.4,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 5.697,
+          "score": 52.5,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 84.3,
+          "score": 15.7,
+          "weight": 0.1,
+          "note": "cheaper than now in 84.3% of 51 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 51 of 51 month-ends)"
+        }
+      },
+      "coverage": 0.412,
+      "score": null,
+      "missing": "only 41% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 4.35,
+          "score": 71.8,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 31.89,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 106.68,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 111.17,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 110.34,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -10.19,
+          "score": 59.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 90,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 99.75,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 229280000.0,
+    "revenue_yoy_q": 41.05,
+    "revenue_yoy_q_prev": 35.88,
+    "acceleration_pp": 5.17,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 807530000.0,
+    "revenue_yoy_ttm": 33.75,
+    "gross_profit_ttm": 312907000.0,
+    "operating_income_ttm": -30600000.0,
+    "operating_cash_flow_ttm": 27746000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 40798000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 38.75,
+    "operating_margin_pct": -3.79,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 5.05,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 3364000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 10205000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 33.75,
+      "expected": 3444159.1885544304,
+      "excess": -80159.18855443038,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": -0.0029
+    },
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 21753000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 494916000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 494916000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 516669000.0,
+      "debt": 328656000.0,
+      "debt_tags": [
+        "ConvertibleDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "ConvertibleDebt",
+          "val": 328656000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -188013000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 49082722.0,
+    "diluted_shares_end": "2024-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 2.44,
+    "shares_outstanding": {
+      "val": 46123556.0,
+      "end": "2024-04-30",
+      "filed": "2024-05-09",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 118927000.0,
+        "revenue_yoy_pct": 14.83,
+        "operating_margin_pct": -11.1,
+        "fcf": -9547000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 128145000.0,
+        "revenue_yoy_pct": 30.67,
+        "operating_margin_pct": -9.79,
+        "fcf": -7717000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 122690000.0,
+        "revenue_yoy_pct": 16.49,
+        "operating_margin_pct": -14.55,
+        "fcf": -16081000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 132595000.0,
+        "revenue_yoy_pct": 19.45,
+        "operating_margin_pct": -11.53,
+        "fcf": -13504000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 141698000.0,
+        "revenue_yoy_pct": 19.15,
+        "operating_margin_pct": -8.1,
+        "fcf": -8444000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 148546000.0,
+        "revenue_yoy_pct": 15.92,
+        "operating_margin_pct": -7.76,
+        "fcf": 4548000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 150971000.0,
+        "revenue_yoy_pct": 23.05,
+        "operating_margin_pct": -10.19,
+        "fcf": -9190000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 162547000.0,
+        "revenue_yoy_pct": 22.59,
+        "operating_margin_pct": -6.33,
+        "fcf": -7390000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 180715000.0,
+        "revenue_yoy_pct": 27.54,
+        "operating_margin_pct": -6.12,
+        "fcf": -1657000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 192397000.0,
+        "revenue_yoy_pct": 29.52,
+        "operating_margin_pct": -4.56,
+        "fcf": -5857000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 205138000.0,
+        "revenue_yoy_pct": 35.88,
+        "operating_margin_pct": -2.54,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 229280000.0,
+        "revenue_yoy_pct": 41.05,
+        "operating_margin_pct": -2.42,
+        "fcf": null,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 99.75,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 46123556.0,
+      "source": "cover page shares outstanding",
+      "date": "2024-04-30"
+    },
+    "market_cap": 4600824711.0,
+    "enterprise_value": 4412811711.0,
+    "price_to_sales": 5.697,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 17.552,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": -0.693,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 7.611,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.138,
+        "fcf_yield_pct": -3.951,
+        "ebit_yield_pct": -3.202
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 8.82,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 11.338,
+        "fcf_yield_pct": -3.41,
+        "ebit_yield_pct": -2.75
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 9.328,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.721,
+        "fcf_yield_pct": -3.224,
+        "ebit_yield_pct": -2.596
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 5.708,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.519,
+        "fcf_yield_pct": -4.403,
+        "ebit_yield_pct": -3.736
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 4.356,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.954,
+        "fcf_yield_pct": -5.769,
+        "ebit_yield_pct": -4.944
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 4.734,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.125,
+        "fcf_yield_pct": -5.31,
+        "ebit_yield_pct": -4.535
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 4.11,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.328,
+        "fcf_yield_pct": -6.114,
+        "ebit_yield_pct": -5.253
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 1.853,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.958,
+        "fcf_yield_pct": -10.797,
+        "ebit_yield_pct": -11.568
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 1.72,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 58.153,
+        "fcf_yield_pct": -11.637,
+        "ebit_yield_pct": -12.525
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 2.168,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 46.119,
+        "fcf_yield_pct": -8.027,
+        "ebit_yield_pct": -9.092
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 2.51,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 39.848,
+        "fcf_yield_pct": -6.935,
+        "ebit_yield_pct": -7.836
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 2.46,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.654,
+        "fcf_yield_pct": -7.075,
+        "ebit_yield_pct": -7.997
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 2.174,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 45.998,
+        "fcf_yield_pct": -7.45,
+        "ebit_yield_pct": -10.004
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 1.938,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 51.605,
+        "fcf_yield_pct": -8.358,
+        "ebit_yield_pct": -11.232
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 1.66,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 60.224,
+        "fcf_yield_pct": -9.753,
+        "ebit_yield_pct": -13.122
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 2.695,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 37.11,
+        "fcf_yield_pct": -5.288,
+        "ebit_yield_pct": -7.539
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 3.953,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.298,
+        "fcf_yield_pct": -3.605,
+        "ebit_yield_pct": -5.146
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 3.542,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 28.23,
+        "fcf_yield_pct": -4.023,
+        "ebit_yield_pct": -5.74
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 2.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 49.446,
+        "fcf_yield_pct": -5.16,
+        "ebit_yield_pct": -7.743
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.746,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.262,
+        "fcf_yield_pct": -5.976,
+        "ebit_yield_pct": -8.948
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 1.848,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 54.122,
+        "fcf_yield_pct": -5.648,
+        "ebit_yield_pct": -8.465
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 1.529,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 65.411,
+        "fcf_yield_pct": -5.96,
+        "ebit_yield_pct": -9.384
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 1.152,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 86.799,
+        "fcf_yield_pct": -7.908,
+        "ebit_yield_pct": -12.303
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 1.458,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 68.585,
+        "fcf_yield_pct": -6.249,
+        "ebit_yield_pct": -9.822
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 1.873,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.384,
+        "fcf_yield_pct": -4.978,
+        "ebit_yield_pct": -5.991
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 1.752,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.074,
+        "fcf_yield_pct": -5.323,
+        "ebit_yield_pct": -6.387
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 1.877,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.275,
+        "fcf_yield_pct": -4.968,
+        "ebit_yield_pct": -5.979
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 2.833,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 35.297,
+        "fcf_yield_pct": -3.075,
+        "ebit_yield_pct": -3.72
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 3.892,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.691,
+        "fcf_yield_pct": -2.238,
+        "ebit_yield_pct": -2.731
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 3.03,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 33.001,
+        "fcf_yield_pct": -2.875,
+        "ebit_yield_pct": -3.485
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 2.458,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.683,
+        "fcf_yield_pct": -2.497,
+        "ebit_yield_pct": -4.055
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 2.242,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 44.601,
+        "fcf_yield_pct": -2.737,
+        "ebit_yield_pct": -4.432
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 2.307,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 43.348,
+        "fcf_yield_pct": -2.66,
+        "ebit_yield_pct": -4.312
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 2.836,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 35.266,
+        "fcf_yield_pct": -1.634,
+        "ebit_yield_pct": -3.196
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 2.89,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 34.598,
+        "fcf_yield_pct": -1.603,
+        "ebit_yield_pct": -3.137
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 2.766,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 36.149,
+        "fcf_yield_pct": -1.675,
+        "ebit_yield_pct": -3.273
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 4.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.86,
+        "fcf_yield_pct": -0.843,
+        "ebit_yield_pct": -1.925
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 4.428,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.583,
+        "fcf_yield_pct": -0.766,
+        "ebit_yield_pct": -1.755
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 3.958,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.264,
+        "fcf_yield_pct": -0.857,
+        "ebit_yield_pct": -1.955
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 4.465,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.398,
+        "fcf_yield_pct": -0.477,
+        "ebit_yield_pct": -1.624
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 4.541,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.021,
+        "fcf_yield_pct": -0.469,
+        "ebit_yield_pct": -1.597
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 4.362,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.923,
+        "fcf_yield_pct": -0.488,
+        "ebit_yield_pct": -1.66
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 2.932,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 34.108,
+        "fcf_yield_pct": -1.197,
+        "ebit_yield_pct": -2.145
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 2.919,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 34.254,
+        "fcf_yield_pct": -1.202,
+        "ebit_yield_pct": -2.154
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 3.665,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 27.285,
+        "fcf_yield_pct": -0.957,
+        "ebit_yield_pct": -1.734
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 6.314,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.839,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.739
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 6.395,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.637,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.73
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 5.68,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.607,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.82
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 5.634,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 17.75,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.702
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 6.251,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.997,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.63
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 6.063,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.494,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.65
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 5.697,
+        "current_yield_pct": 17.552,
+        "points": 51,
+        "median": 2.919,
+        "low": 1.152,
+        "high": 9.327,
+        "negative_points": 0,
+        "median_yield_pct": 34.254,
+        "percentile": 84.3,
+        "cheaper_points": 43,
+        "dearer_points": 8,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2022-08-31"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 45,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 45,
+        "median_yield_pct": -4.023,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-08-31"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -0.693,
+        "points": 51,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 51,
+        "median_yield_pct": -4.055,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 51 of 51 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-08-31"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 43 of the last 51 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "45 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 51 of 51 month-ends)",
+          "not_comparable": "negative now and in 51 of 51 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 99.75,
+    "date": "2026-10-28",
+    "ma50": 95.59,
+    "ma200": 75.63,
+    "vs_ma50_pct": 4.35,
+    "vs_ma200_pct": 31.89,
+    "momentum_12_1_pct": 106.68,
+    "high_52w": 111.07,
+    "drawdown_52w_pct": -10.19,
+    "return_rs_pct": 120.25,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 111.17,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 110.34
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-331547",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1657573/000119312526331547/xmtr-ex99_1.htm",
+    "summary": "Xometry guided Q3 2026 revenue to $234-$236 million and Adjusted EBITDA to $16-$17 million, and raised its full-year 2026 revenue growth outlook to 33-34%, with Adjusted EBITDA of $60-$62 million.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q3 2026",
+        "amount_text": "$234-$236 million",
+        "stated_change": "not stated",
+        "sentence": "For Q3 2026, we expect revenue of $234-$236 million, representing 30-31% growth year-over-year driven by approximately 33% marketplace growth.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "$16-$17 million",
+        "stated_change": "not stated",
+        "sentence": "For Q3 2026, we expect Adjusted EBITDA of $16-$17 million, an improvement from Adjusted EBITDA of $6.1 million in Q3 2025.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "33-34%",
+        "stated_change": "raised",
+        "sentence": "For Full Year 2026, we are raising our revenue growth outlook from previous guidance of 27-28% to 33-34% driven by approximately 37% marketplace growth.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$60-$62 million",
+        "stated_change": "not stated",
+        "sentence": "For Full Year 2026, we expect Adjusted EBITDA of $60-$62 million, an improvement from an Adjusted EBITDA of $18.5 million in Full Year 2025.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-210312",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1657573/000119312526210312/xmtr-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "Guidance was not changed in the window. The last update was the 2026-08-04 raise of FY2026 revenue growth to 33-34%. Q3 results are scheduled for 2026-11-03.",
+        "evidence": [
+          {
+            "claim": "Xometry will announce third quarter 2026 financial results on November 3, before the market opens.",
+            "url": "https://investors.xometry.com/news-releases/news-release-details/xometry-announce-third-quarter-2026-financial-results-november-3",
+            "event_date": "2026-10-20",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "For Full Year 2026, we are raising our revenue growth outlook from previous guidance of 27-28% to 33-34% driven by approximately 37% marketplace growth.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1657573/000119312526331547/xmtr-ex99_1.htm",
+            "event_date": "2026-08-04",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 86,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 6/6, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Only reiterations appeared in the window, including Cantor and Citizens Market Outperform with a $120 target alongside an RBC Hold. No upgrades or downgrades were found, and the consensus stays Moderate Buy.",
+        "evidence": [
+          {
+            "claim": "Cantor Fitzgerald reiterated its rating on Xometry ahead of earnings; Citizens reiterated Market Outperform with a $120 target.",
+            "url": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-xometry-stock-rating-ahead-of-earnings-93CH-4975593",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Xometry has a consensus Moderate Buy rating from 13 analysts with an average target price of $113.18.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-xometry-inc-nasdaq-xmtr-stock-has-average-target-price-of-11318-2026-10-27/",
+            "event_date": "2026-10-27",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 3/3 · missing: 13"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or regulatory actions were found in the window. The law-firm investigation notices that came up date from 2023-2024.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No material customer wins or losses were disclosed. Revenue remains broadly spread across existing accounts.",
+        "evidence": [
+          {
+            "claim": "Xometry expanded its TradeCentric partnership, adding Purchase Order and Invoice Automation to PunchOut, which connects to 220+ eProcurement systems.",
+            "url": "https://www.stocktitan.net/news/XMTR/xometry-marketplace-enables-deeper-enterprise-integration-and-smart-0upw7wu9ga14.html",
+            "event_date": "2026-09-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 44,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 7/7"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Insiders made only small sales in the window, and no purchases. These were mostly 10b5-1 plan and tax-withholding sales by the CEO and CTO, plus a director's planned sales, so they read as routine rather than a negative signal.",
+        "evidence": [
+          {
+            "claim": "CEO Sanjeev Sahni sold 1,112 shares under a 10b5-1 plan to cover tax withholding on RSU vesting.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001657573/000205103426000009/primarydocument.xml",
+            "event_date": "2026-10-02",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 27,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 3/4, names 2/3 · missing: 1112, RSU · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "Director Randolph Altschuler sold 3,947 shares held indirectly by his spouse at $102.55 under a 10b5-1 plan.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001657573/000186981426000009/primarydocument.xml",
+            "event_date": "2026-10-01",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "CEO Sanjeev Singh Sahni sold 1,500 shares at an average of $108.80.",
+            "url": "https://www.marketbeat.com/instant-alerts/insider-xometry-nasdaq-xmtr-ceo-sanjeev-singh-sahni-sells-1500-shares-of-company-stock-2026-10-14/",
+            "event_date": "2026-10-12",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "News in the window was minor: a new General Manager for Europe and the 2027 manufacturing outlook reports. No competitive threats or share loss were reported.",
+        "evidence": [
+          {
+            "claim": "Xometry named Marc Teulières General Manager for Europe.",
+            "url": "https://investors.xometry.com/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 23,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Xometry released its 2027 US and EMEA manufacturing outlook reports.",
+            "url": "https://investors.xometry.com/",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance\n- Xometry has not changed guidance in the window. The last update was on 2026-08-04, when it raised full-year 2026 revenue growth to 33–34% (from 27–28%) and guided Q3 to revenue of $234–236M and adjusted EBITDA of $16–17M. — 2026-08-04 — https://investors.xometry.com/news-releases/news-release-details/xometry-reports-record-second-quarter-2026-results\n- Full-year 2026 adjusted EBITDA guidance is $60–62M. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0001657573/000119312526331547/xmtr-ex99_1.htm\n- On the Q2 call, management said Q2's strength had continued into Q3. — 2026-08-04 — https://investors.xometry.com/static-files/6ddab64b-c90d-41fd-899b-17483dc91b85\n- Q3 results are due before the market opens on 2026-11-03. The announcement was made 2026-10-20. — 2026-10-20 — https://investors.xometry.com/news-releases/news-release-details/xometry-announce-third-quarter-2026-financial-results-november-3\n- I found no pre-announcement in the window.\n\n## 2. Analyst actions\n- Cantor Fitzgerald reiterated its rating ahead of earnings. The same article says Citizens reiterated Market Outperform with a $120 target after investor meetings. The search result gave no event dates, and the article is about a day old. — date unknown — https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-xometry-stock-rating-ahead-of-earnings-93CH-4975593\n- A CNN/TipRanks headline says RBC Capital kept its Hold rating. The item is dated \"today\" on a page captured around 2026-10-29. No target is given. — date unknown — https://www.cnn.com/markets/stocks/XMTR\n- MarketBeat shows a \"Moderate Buy\" consensus from 13 analysts: 8 buy, 4 hold, 1 sell. The average target is $113.18. — 2026-10-27 — https://www.marketbeat.com/instant-alerts/consensus-xometry-inc-nasdaq-xmtr-stock-has-average-target-price-of-11318-2026-10-27/\n- Investing.com shows an average target of $112.09, with a range of $95–126. — date unknown — https://www.investing.com/equities/xometry-consensus-estimates\n- These actions fall just before the window and are context only:\n  - Rosenblatt raised its target to $120 from $110 (Buy) on 2026-09-22. — https://www.investing.com/equities/xometry-consensus-estimates\n  - BNP Paribas Exane initiated at Buy/Outperform with a $120 target on 2026-09-18. — https://www.investing.com/equities/xometry-consensus-estimates\n- I found no upgrades or downgrades in the window.\n\n## 3. Litigation and regulation\n- I found nothing material in the window. The securities-fraud \"investigation\" notices from law firms that came up are from 2023–2024 (for example https://www.accessnewswire.com/newsroom/en/business-and-professional-services/xometry-inc.-is-being-investigated-for-securities-fraud-and-the-s-938394). I found no new suits, fines or regulatory actions.\n\n## 4. Customer concentration\n- Nothing material in the window. No large customer wins or losses were disclosed.\n- Existing accounts made up 98% of revenue in Q1 2026, and 1,864 accounts had LTM spend of at least $50k. — 2026-03-31 — https://www.sec.gov/Archives/edgar/data/0001657573/000119312526210312/xmtr-ex99_1.htm\n- Xometry said it expanded its TradeCentric partnership. It adds Purchase Order and Invoice Automation to PunchOut, which connects to 220+ eProcurement systems. This is an enterprise-integration item, not a named customer. — 2026-09-15 — https://www.stocktitan.net/news/XMTR/xometry-marketplace-enables-deeper-enterprise-integration-and-smart-0upw7wu9ga14.html\n\n## 5. Insider activity\nEvery sale found was a sale (code S). The two CEO tax-withholding sales and the CTO sale were made under 10b5-1 plans or tax-cover arrangements. I found no purchases in the window.\n- CEO Sanjeev Sahni sold 1,112 shares at about $101–106 under a 10b5-1 plan. The sale covered tax withholding on RSU vesting. — 2026-10-02 — https://www.sec.gov/Archives/edgar/data/0001657573/000205103426000009/primarydocument.xml\n- Sahni sold 1,500 shares at an average of $108.80 ($163,200). It was a 10b5-1 sale, and the shares were acquired through RSUs. — 2026-10-12 — https://www.marketbeat.com/instant-alerts/insider-xometry-nasdaq-xmtr-ceo-sanjeev-singh-sahni-sells-1500-shares-of-company-stock-2026-10-14/ (10b5-1 confirmed at https://finwire.io/news/insider-trading-news/xometry-ceo-sanjeev-singh-sells-163201-in-company-stock)\n- Sahni's earlier 1,500-share sales were on 2026-08-17 and 2026-09-14. That is a monthly pattern. — https://www.marketbeat.com/instant-alerts/insider-xometry-nasdaq-xmtr-ceo-sanjeev-singh-sahni-sells-1500-shares-of-company-stock-2026-10-14/\n- Director Randolph Altschuler sold shares held by his spouse (indirect). The first batch was 3,947 shares at $102.55, with further sales that day. There were also direct sales on 2026-10-02, and the form says 10b5-1. — 2026-10-01 — https://www.sec.gov/Archives/edgar/data/0001657573/000186981426000009/primarydocument.xml\n- CTO Vaidyanathan Raghavan sold 1,866 shares at an average of $103.28 ($192,720). The sale was to cover tax withholding. — 2026-10-02 — https://www.marketbeat.com/instant-alerts/consensus-xometry-inc-nasdaq-xmtr-stock-has-average-target-price-of-11318-2026-10-27/\n- Selling is clustered around 2026-10-01 to 2026-10-02. GuruFocus counts 47 insider sells versus 2 buys over the past year. — 2026-10-12 — https://www.gurufocus.com/news/9124417/xometry-inc-xmtr-ceo-sanjeev-sahni-sells-1500-shares-as-stock-trades-significantly-above-gf-value\n\n## 6. Product and competitive news\n- Xometry named Marc Teulières General Manager for Europe. — 2026-10-06 — https://investors.xometry.com/\n- Xometry released its 2027 US and EMEA manufacturing outlook reports. — 2026-10-01 — https://investors.xometry.com/\n- The expanded TradeCentric partnership (see section 4) was announced on 2026-09-15. — https://investors.xometry.com/news-releases/news-release-details/xometry-marketplace-enables-deeper-enterprise-integration-and\n- Xometry launched a redesigned Workcenter for suppliers on 2026-09-08. It falls just before the window. Early testing showed job review time down more than 60% and acceptance rates up about 15%. — https://investors.xometry.com/news-releases/news-release-details/xometry-unveils-its-next-gen-workcenter-experience-streamlining\n- I found no news on new competitors, pricing changes or share loss.",
+      "urls": [
+        "https://investors.xometry.com/news-releases/news-release-details/xometry-announce-third-quarter-2026-financial-results-november-3",
+        "https://investors.xometry.com/",
+        "https://money.tmx.com/en/quote/XMTR:US/news",
+        "https://www.marketbeat.com/stocks/NASDAQ/XMTR/",
+        "https://simplywall.st/stocks/us/capital-goods/nasdaq-xmtr/xometry/news/how-europe-expansion-will-impact-xometry-xmtr-investors",
+        "https://www.cnn.com/markets/stocks/XMTR",
+        "https://stockanalysis.com/stocks/xmtr/",
+        "https://www.marketbeat.com/instant-alerts/consensus-xometry-inc-nasdaq-xmtr-stock-has-average-target-price-of-11318-2026-10-27/",
+        "https://www.marketbeat.com/instant-alerts/price-xometry-nasdaq-xmtr-stock-breaks-above-50-day-moving-average-whats-next-2026-10-28/",
+        "https://en.wikipedia.org/wiki/Xometry",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000119312526331547/xmtr-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1657573/000119312526065195/xmtr-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000119312526210312/xmtr-ex99_1.htm",
+        "https://investors.xometry.com/news-releases/news-release-details/xometry-reports-record-second-quarter-2026-results",
+        "https://investors.xometry.com/static-files/6ddab64b-c90d-41fd-899b-17483dc91b85",
+        "https://investors.xometry.com/node/12961/pdf",
+        "https://simplywall.st/stocks/us/capital-goods/nasdaq-xmtr/xometry/news/why-xometry-xmtr-is-up-87-after-raising-2026-revenue-outlook",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000119312526191498/xmtr-20260429.htm",
+        "https://explore.nemo.money/en/stocks/XMTR",
+        "https://simplywall.st/stocks/us/capital-goods/nasdaq-xmtr/xometry/future",
+        "https://www.investing.com/equities/xometry-consensus-estimates",
+        "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-xometry-stock-rating-ahead-of-earnings-93CH-4975593",
+        "https://public.com/stocks/xmtr/forecast-price-target",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/xmtr/stock-forecast",
+        "https://benzinga.com/z/37422686",
+        "https://benzinga.com/quote/XMTR/analyst-ratings",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000205103426000009/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000202404026000009/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000178679026000009/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000186981426000006/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000205602426000005/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000186981426000009/primarydocument.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001657573/000205602426000007/primarydocument.xml",
+        "https://www.stocktitan.net/sec-filings/XMTR/form-4-xometry-inc-insider-trading-activity-9e824badda76.html",
+        "https://www.stocktitan.net/sec-filings/XMTR/form-4-xometry-inc-insider-trading-activity-d2fd7f1d09b8.html",
+        "https://www.investing.com/news/insider-trading-news/xometry-ceo-sanjeev-sahni-sells-1112-xmtr-shares-for-114851-93CH-4930602",
+        "https://www.marketbeat.com/instant-alerts/insider-xometry-nasdaq-xmtr-ceo-sanjeev-singh-sahni-sells-1112-shares-of-stock-2026-10-02/",
+        "https://www.marketbeat.com/instant-alerts/insider-xometry-nasdaq-xmtr-ceo-sanjeev-singh-sahni-sells-1500-shares-of-company-stock-2026-10-14/",
+        "https://www.gurufocus.com/news/9124417/xometry-inc-xmtr-ceo-sanjeev-sahni-sells-1500-shares-as-stock-trades-significantly-above-gf-value",
+        "https://kalkinemedia.com/us/news/announcements/xometry-officer-sanjeev-singh-sahni-announces-plan-to-sell-1500-shares-under-rule-144",
+        "https://www.stocktitan.net/sec-filings/XMTR/form-4-xometry-inc-insider-trading-activity-c960a92eb3d2.html",
+        "https://www.thecerbatgem.com/2026/10/02/insider-selling-xometry-nasdaqxmtr-ceo-sells-1112-shares-of-company-stock.html",
+        "https://finwire.io/news/insider-trading-news/xometry-ceo-sanjeev-sahni-sells-1112-xmtr-shares-for-114851",
+        "https://finwire.io/news/insider-trading-news/xometry-ceo-sanjeev-singh-sells-163201-in-company-stock",
+        "https://investors.xometry.com/news-releases/news-release-details/xometry-unveils-its-next-gen-workcenter-experience-streamlining",
+        "https://investors.xometry.com/news-releases/news-release-details/xometry-marketplace-enables-deeper-enterprise-integration-and",
+        "https://www.investing.com/news/company-news/xometry-launches-redesigned-workcenter-for-manufacturing-partners-93CH-4891771",
+        "https://www.citybiz.co/article/899513/xometry-launches-redesigned-workcenter-to-speed-manufacturing-job-matching/",
+        "https://dailycadcam.com/xometry-redesigns-its-workcenter-platform/",
+        "https://lifestyle.middletownlifemagazine.com/story/674785/xometry-launches-next-gen-workcenter-for-manufacturing-partners/",
+        "https://in.investing.com/news/stock-market-news/xometry-launches-redesigned-workcenter-for-manufacturing-partners-93CH-5584700",
+        "https://briefglance.com/companies/xometry-inc",
+        "https://www.stocktitan.net/news/XMTR/xometry-marketplace-enables-deeper-enterprise-integration-and-smart-0upw7wu9ga14.html",
+        "https://www.mykxlg.com/online_features/press_releases/xometry-launches-next-gen-workcenter-for-manufacturing-partners/article_e7ba0dc7-0e70-5923-adbd-2e6d2c11ff86.html",
+        "https://www.marketscreener.com/quote/stock/XOMETRY-INC-124221576/news/INVESTIGATION-ALERT-The-Gross-Law-Firm-Notifies-Shareholders-of-Xometry-Inc-of-an-Investigation-a-44278535/",
+        "https://kdvr.com/business/press-releases/globenewswire/8946967/shareholder-alert-the-gross-law-firm-notifies-shareholders-of-xometry-inc-of-an-investigation-and-potential-class-action-lawsuit-nasdaq-xmtr/",
+        "https://www.gurufocus.com/news/2035205/investigation-alert-the-gross-law-firm-notifies-shareholders-of-xometry-inc-of-an-investigation-and-potential-class-action-lawsuit-nasdaq-xmtr?mobile=true",
+        "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/xometry-inc.-is-being-investigated-for-securities-fraud-and-the-s-938394",
+        "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/xometry-inc.-is-being-investigated-for-possible-securities-fraud-931580",
+        "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/investigation-into-xometry-inc-initiated-by-the-schall-law-firm-a-884469",
+        "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/important-shareholder-alert-the-schall-law-firm-announces-it-is-i-869541",
+        "https://zlk.com/cases/xometry-inc-class-action-lawsuit-xmtr",
+        "https://www.accessnewswire.com/newsroom/en/business-and-professional-services/levi-and-korsinsky-announces-an-investigation-on-behalf-of-xometr-943280"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Xometry rates Buy on fast, accelerating growth and strong price trend, with losses and valuation gaps unresolved.",
+    "thesis": "Xometry scores 68, a Buy, carried mainly by growth (91) and trend (90). Latest-quarter revenue growth of 41.0% year on year and TTM revenue growth of 33.8% are strong, and growth sped up by 5.2 pp from the previous quarter. The shares are up 106.7% from 12 months ago to 1 month ago and are 111.2 pp ahead of SPY over the last 126 trading days. Quality is weaker at 42: gross margin is 38.8%, but operating margin is -3.8%, stock-based pay is 5.0% of revenue, and the diluted share count is up 2.4% year on year. News risk is neutral at 50. Balance sheet and valuation could not be scored, so the rating rests on the other four factors.",
+    "key_risks": [
+      "The company is still unprofitable at the operating level, with an operating margin of -3.8%.",
+      "P/S of 5.7 is high in absolute terms and is more expensive than at 43 of the last 51 month-ends.",
+      "After a large run, the price is 31.9% above its 200-day average, so a growth miss could hit the shares hard.",
+      "Q3 results on 2026-11-03 must meet guidance of $234-$236 million revenue and full-year growth of 33-34%.",
+      "Ongoing dilution from stock-based pay, with the diluted share count up 2.4% year on year."
+    ],
+    "what_would_change": [
+      "A drop of 4 points would move the rating to Hold. Slowing revenue growth or a fading price trend could do that.",
+      "A rise of 12 points would reach Strong Buy. That would likely need better quality scores, such as a move to positive operating margin.",
+      "Q3 results or a guidance change on 2026-11-03 could shift the news risk score in either direction."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1558,
+        "output_tokens": 526,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1558,
+            "output_tokens": 526,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0168,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 101194,
+        "output_tokens": 3617,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 101194,
+            "output_tokens": 3617,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3086,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7630,
+        "output_tokens": 2031,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7630,
+            "output_tokens": 2031,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0711,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3749,
+        "output_tokens": 623,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3749,
+            "output_tokens": 623,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0275,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.424,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 99.75,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 97.14
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:14",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40863619564",
+    "tickers": [
+      "QCOM",
+      "ISRG",
+      "PRLB",
+      "TXN",
+      "ROK",
+      "XMTR",
+      "ALGM",
+      "WOLF",
+      "APH",
+      "ADI",
+      "HSAI",
+      "ALNT",
+      "STM",
+      "MKSI",
+      "JBL",
+      "OUST"
+    ]
+  }
+}

@@ -1,0 +1,2981 @@
+{
+  "run_id": "2026-10-29T11:14:45Z",
+  "generated_at": "2026-10-29T11:15:50+00:00",
+  "ticker": "WOLF",
+  "sec_ticker": "WOLF",
+  "cik": "0000895419",
+  "name": "WOLFSPEED, INC.",
+  "sector": "Semiconductors & Related Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Strong Sell",
+  "rating_before_overlay": "Strong Sell",
+  "score": 24,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "excess prepayments: contract liabilities rose -$200,000 over the year, $7.8M more than revenue growth of -12.2% explains (operating cash flow not positive; threshold 25%)"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 14 month-ends, P/FCF 14 month-ends, EV/EBIT 14 month-ends (needs 24)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Product and competitive news"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Sell",
+      "at": 30,
+      "points": 6
+    },
+    "down": null
+  },
+  "composite": {
+    "score": 24,
+    "raw": 23.55,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -24.06,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": -12.21,
+          "score": 0.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -5.07,
+          "score": 24.6,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 6,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": -34.9,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -82.6,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -58.32,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": "FCF ex-prepayments; reported FCF margin -57.1%"
+        },
+        "sbc_pct_revenue": {
+          "value": 6.12,
+          "score": 73.3,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -74.48,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 26,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": "net debt with negative FCF"
+        },
+        "cash_to_debt": {
+          "value": 0.65,
+          "score": 58.7,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 23,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 1.573,
+          "score": 92.8,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF ex-prepayments"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -42.058,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": "FCF ex-prepayments"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 14 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 14 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 14 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 15,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -0.86,
+          "score": 45.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -11.99,
+          "score": 20.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -8.93,
+          "score": 27.1,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -5.14,
+          "score": 39.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -5.97,
+          "score": 38.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -63.76,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 27,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 52,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Strong Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 26.64,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-28",
+    "revenue_q": 149600000.0,
+    "revenue_yoy_q": -24.06,
+    "revenue_yoy_q_prev": -18.99,
+    "acceleration_pp": -5.07,
+    "ttm_end": "2026-06-28",
+    "revenue_ttm": 665100000.0,
+    "revenue_yoy_ttm": -12.21,
+    "gross_profit_ttm": -232100000.0,
+    "operating_income_ttm": -549400000.0,
+    "operating_cash_flow_ttm": -203200000.0,
+    "capex_ttm": 176900000.0,
+    "sbc_ttm": 40700000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -380100000.0,
+    "gross_margin_pct": -34.9,
+    "operating_margin_pct": -82.6,
+    "fcf_margin_pct": -57.15,
+    "capex_intensity_pct": 26.6,
+    "sbc_pct_revenue": 6.12,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": -200000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 65600000.0,
+      "base_date": "2025-06-29",
+      "revenue_growth_pct": -12.21,
+      "expected": -8009503.695881734,
+      "excess": 7809503.695881734,
+      "max_share_of_ocf": 0.25,
+      "applies": true,
+      "share_of_ocf": null
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -57.15,
+      "fcf_margin_year_earlier_pct": -261.76,
+      "median_margin_pct": -72.59,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "ex-prepayments",
+    "fcf_scored_ttm": -387909503.6958817,
+    "fcf_ex_prepayments_ttm": -387909503.6958817,
+    "fcf_ex_prepayments_margin_pct": -58.32,
+    "fcf_scored_margin_pct": -58.32,
+    "balance_sheet": {
+      "date": "2026-06-28",
+      "cash": 576300000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 512300000.0,
+      "investment_tags": [
+        {
+          "tag": "ShortTermInvestments",
+          "val": 512300000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 1088600000.0,
+      "debt": 1687500000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 1687500000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 598900000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 39282000.0,
+    "diluted_shares_end": "2026-03-29",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -74.48,
+    "shares_outstanding": {
+      "val": 52995396.0,
+      "end": "2026-08-13",
+      "filed": "2026-08-20",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-12-31",
+        "revenue": 208400000.0,
+        "revenue_yoy_pct": 19.91,
+        "operating_margin_pct": -47.07,
+        "fcf": -812700000.0,
+        "diluted_shares": 125602000.0
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 200700000.0,
+        "revenue_yoy_pct": 4.21,
+        "operating_margin_pct": -53.01,
+        "fcf": -713700000.0,
+        "diluted_shares": 125830000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 200700000.0,
+        "revenue_yoy_pct": -0.99,
+        "operating_margin_pct": -72.7,
+        "fcf": -883800000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-29",
+        "revenue": 194700000.0,
+        "revenue_yoy_pct": -1.37,
+        "operating_margin_pct": -118.18,
+        "fcf": -569000000.0,
+        "diluted_shares": 126733000.0
+      },
+      {
+        "end": "2024-12-29",
+        "revenue": 180500000.0,
+        "revenue_yoy_pct": -13.39,
+        "operating_margin_pct": -178.95,
+        "fcf": -596900000.0,
+        "diluted_shares": 129018000.0
+      },
+      {
+        "end": "2025-03-30",
+        "revenue": 185400000.0,
+        "revenue_yoy_pct": -7.62,
+        "operating_margin_pct": -104.91,
+        "fcf": -362800000.0,
+        "diluted_shares": 153897000.0
+      },
+      {
+        "end": "2025-06-29",
+        "revenue": 197000000.0,
+        "revenue_yoy_pct": -1.84,
+        "operating_margin_pct": -295.23,
+        "fcf": -454400000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-28",
+        "revenue": 196800000.0,
+        "revenue_yoy_pct": 1.08,
+        "operating_margin_pct": -82.01,
+        "fcf": -98300000.0,
+        "diluted_shares": 156185000.0
+      },
+      {
+        "end": "2025-09-29",
+        "revenue": 196800000.0,
+        "revenue_yoy_pct": 1.08,
+        "operating_margin_pct": -82.01,
+        "fcf": -126400000.0,
+        "diluted_shares": 189052000.0
+      },
+      {
+        "end": "2025-12-28",
+        "revenue": 168500000.0,
+        "revenue_yoy_pct": -6.65,
+        "operating_margin_pct": -94.01,
+        "fcf": -72600000.0,
+        "diluted_shares": 26057000.0
+      },
+      {
+        "end": "2026-03-29",
+        "revenue": 150200000.0,
+        "revenue_yoy_pct": -18.99,
+        "operating_margin_pct": -76.1,
+        "fcf": -121600000.0,
+        "diluted_shares": 39282000.0
+      },
+      {
+        "end": "2026-06-28",
+        "revenue": 149600000.0,
+        "revenue_yoy_pct": -24.06,
+        "operating_margin_pct": -77.07,
+        "fcf": -59500000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 26.64,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 39282000.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-03-29"
+    },
+    "market_cap": 1046472480.0,
+    "enterprise_value": 1645372480.0,
+    "price_to_sales": 1.573,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 63.556,
+    "fcf_yield_pct": -37.068,
+    "ebit_yield_pct": -33.391,
+    "fcf_negative": true,
+    "ebit_negative": true,
+    "fcf_basis": "ex-prepayments",
+    "price_to_fcf_reported": null,
+    "fcf_yield_reported_pct": -36.322,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -42.058,
+    "history": [
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 5.335,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.744,
+        "fcf_yield_pct": -49.065,
+        "ebit_yield_pct": -13.811
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 4.91,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.368,
+        "fcf_yield_pct": -53.316,
+        "ebit_yield_pct": -14.289
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 4.169,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.985,
+        "fcf_yield_pct": -47.895,
+        "ebit_yield_pct": -56.236
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 3.579,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 27.939,
+        "fcf_yield_pct": -55.79,
+        "ebit_yield_pct": -70.294
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 3.22,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 31.061,
+        "fcf_yield_pct": -62.025,
+        "ebit_yield_pct": -82.935
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.676,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 147.846,
+        "fcf_yield_pct": -295.232,
+        "ebit_yield_pct": -106.349
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.56,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 178.648,
+        "fcf_yield_pct": -356.739,
+        "ebit_yield_pct": -114.941
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 1.013,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 98.731,
+        "fcf_yield_pct": -197.155,
+        "ebit_yield_pct": -87.482
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 3.065,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 32.624,
+        "fcf_yield_pct": -65.147,
+        "ebit_yield_pct": -43.702
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 2.495,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.082,
+        "fcf_yield_pct": -80.039,
+        "ebit_yield_pct": -51.427
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 1.221,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 81.878,
+        "fcf_yield_pct": -163.502,
+        "ebit_yield_pct": -84.966
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 1.618,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 61.793,
+        "fcf_yield_pct": -36.04,
+        "ebit_yield_pct": -32.796
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 1.661,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 60.19,
+        "fcf_yield_pct": -35.105,
+        "ebit_yield_pct": -32.244
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 1.573,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 63.556,
+        "fcf_yield_pct": -37.068,
+        "ebit_yield_pct": -33.391
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 1.573,
+        "current_yield_pct": 63.556,
+        "points": 14,
+        "median": 1.995,
+        "low": 0.56,
+        "high": 5.335,
+        "negative_points": 0,
+        "median_yield_pct": 50.136,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2025-09-30"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -37.068,
+        "points": 14,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 14,
+        "median_yield_pct": -58.907,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-09-30"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -33.391,
+        "points": 14,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 14,
+        "median_yield_pct": -53.831,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-09-30"
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "14 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "14 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "14 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 26.64,
+    "date": "2026-10-28",
+    "ma50": 26.87,
+    "ma200": 30.27,
+    "vs_ma50_pct": -0.86,
+    "vs_ma200_pct": -11.99,
+    "momentum_12_1_pct": -8.93,
+    "high_52w": 73.5,
+    "drawdown_52w_pct": -63.76,
+    "return_rs_pct": 3.94,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -5.14,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -5.97
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0000895419-26-000049",
+    "filing_date": "2026-08-19",
+    "period_end": "2026-06-28",
+    "period_source": "companyfacts",
+    "period_rejected": "2025-06-29",
+    "url": "https://www.sec.gov/Archives/edgar/data/895419/000089541926000049/ex991q4-26.htm",
+    "summary": "For Q1 FY2027, Wolfspeed expects revenue between $140 million and $160 million, non-GAAP gross margin to remain negative, and non-GAAP operating expenses between $62 million and $66 million.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q1 FY2027",
+        "amount_text": "between $140 million and $160 million",
+        "stated_change": "not stated",
+        "sentence": "The Company expects to generate revenue between $140 million and $160 million for its first quarter of fiscal 2027 with non-GAAP gross margin expected to remain negative.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "gross_margin",
+        "period": "Q1 FY2027",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "The Company expects to generate revenue between $140 million and $160 million for its first quarter of fiscal 2027 with non-GAAP gross margin expected to remain negative.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q1 FY2027",
+        "amount_text": "between $62 million and $66 million",
+        "stated_change": "not stated",
+        "sentence": "The Company expects non-GAAP operating expenses between $62 million and $66 million for its first quarter of fiscal 2027.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0000895419-26-000024",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-29",
+      "url": "https://www.sec.gov/Archives/edgar/data/895419/000089541926000024/ex991q3-26.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window. Q1 FY2027 guidance of $140–160M revenue with negative non-GAAP gross margin stands, and results are due 2026-11-04. The conditional $1.5B government financing is a funding item, not guidance.",
+        "evidence": [
+          {
+            "claim": "The Company expects to generate revenue between $140 million and $160 million for its first quarter of fiscal 2027 with non-GAAP gross margin expected to remain negative.",
+            "url": "https://www.sec.gov/Archives/edgar/data/895419/000089541926000049/ex991q4-26.htm",
+            "event_date": "2026-08-19",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 71,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          },
+          {
+            "claim": "Wolfspeed announced the date for its fiscal first quarter 2027 results.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/wolfspeed-inc-announces-date-fiscal-200500168.html",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          },
+          {
+            "claim": "Wolfspeed announced a conditional commitment of up to $1.5B in financing from the U.S. Department of War's Office of Strategic Capital.",
+            "url": "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-gap-up-should-you-buy-2026-10-08/",
+            "event_date": "2026-10-07",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 7/7"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Susquehanna cut its price target to $25 from $30 and kept a Neutral rating, a single secondary-source report. Weiss nudged its rating from D to D+ but it remains a Sell.",
+        "evidence": [
+          {
+            "claim": "Susquehanna cut its price target on Wolfspeed to $25 from $30 and kept a Neutral rating.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/wolfspeed-expanded-200-mm-wafer-deal-as-wolfspeed-stock-trades-at-eur-21-84/70420563",
+            "event_date": "2026-10-21",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 3/3 · missing: 25"
+          },
+          {
+            "claim": "Weiss Ratings moved Wolfspeed from sell (d) to sell (d+).",
+            "url": "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-gap-down-heres-why-2026-10-14/",
+            "event_date": "2026-10-08",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Analyst actions",
+        "rating_before_cap": -1,
+        "direction_note": "Capped at 0 (was -1): no negative source that checked out is dated within the last 30 days; the 1 in the window is neutral (2026-10-08); 1 negative one is older, undated or didn't check out"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or regulatory actions were found in the window. Earlier items (the Navitas patent suit, a dismissed class action and the Pomerantz investigation) are background only.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 1,
+        "summary": "Wolfspeed signed a multiyear 1200V SiC device supply deal with BorgWarner and a multi-year 200mm wafer supply deal with Infineon. Neither disclosed dollar values or volumes.",
+        "evidence": [
+          {
+            "claim": "Wolfspeed announced a multiyear silicon carbide device agreement with BorgWarner for its 800V inverter platform.",
+            "url": "https://www.financialcontent.com/article/bizwire-2026-10-28-wolfspeed-powers-the-future-of-evs-with-multiyear-silicon-carbide-device-agreement",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          },
+          {
+            "claim": "Infineon and Wolfspeed signed a multi-year 200mm silicon carbide wafer supply agreement.",
+            "url": "https://www.infineon.com/press-release/2026/infpr202610-008",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only Form 4s found are tax withholding on vesting awards for the CEO and CFO. No open-market buying or selling was found.",
+        "evidence": [
+          {
+            "claim": "CEO Robert Feurle had 8,247 shares withheld at $25.91 for taxes, leaving 334,565 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026066275/wk-form4_1792440073.xml",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "CFO Gregor van Issum had 4,924 shares withheld at $25.91 for taxes, leaving 175,949 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026066277/wk-form4_1792440114.xml",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "CEO Robert Feurle had 12,998 shares withheld at $31.17 for taxes, leaving 342,812 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026064501/wk-form4_1790971308.xml",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Wolfspeed launched a premium 200mm n-type SiC substrate just before the window, reported by a single secondary source. Infineon's move to 200mm supply from Wolfspeed points to traction for its 200mm platform.",
+        "evidence": [
+          {
+            "claim": "Wolfspeed announced commercial availability of a Premium 200mm n-type silicon carbide substrate.",
+            "url": "https://www.benzinga.com/trading-ideas/movers/26/10/62133978/wolfspeeds-busy-week-a-new-substrate-launch-a-sector-wide-rally",
+            "event_date": "2026-09-27",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 32,
+            "background": true,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://www.marketbeat.com/earnings/reports/2025-10-29-wolfspeed-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000089541926000024/ex991q3-26.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000089541926000065/wolf-20260911.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000089541926000049/ex991q4-26.htm",
+        "https://www.benzinga.com/quote/WOLF/earnings-forecasts",
+        "https://www.sec.gov/Archives/edgar/data/895419/000089541926000012/ex991q2-26.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/wolfspeed-inc-announces-date-fiscal-200500168.html",
+        "https://www.marketbeat.com/earnings/reports/2026-8-19-wolfspeed-inc-stock/",
+        "https://www.marketbeat.com/instant-alerts/upcoming-wolfspeed-wolf-projected-to-announce-earnings-on-wednesday-2026-10-28/",
+        "https://s29.q4cdn.com/278875087/files/doc_earnings/2026/q4/earnings-result/Wolfspeed_Q4_2026_Earnings_Release.pdf",
+        "https://simplywall.st/stocks/us/semiconductors/nyse-wolf/wolfspeed",
+        "https://stockanalysis.com/stocks/wolf/forecast/",
+        "https://stockanalysis.com/stocks/wolf/",
+        "https://www.investing.com/equities/cree-inc.-consensus-estimates",
+        "https://public.com/stocks/wolf/forecast-price-target",
+        "https://wallstsmart.com/stock/WOLF",
+        "https://www.wallstreetzen.com/stocks/us/nyse/wolf/stock-forecast",
+        "https://www.tipranks.com/stocks/ch:wolf/forecast",
+        "https://www.tipranks.com/news/the-fly/wolfspeed-price-target-lowered-to-88-from-90-at-susquehanna",
+        "https://www.benzinga.com/stock/WOLF/ratings",
+        "https://finance.yahoo.com/technology/ai/articles/power-struggle-wolfspeed-sues-navitas-134000688.html",
+        "https://www.wolfspeed.com/company/news-events/news/wolfspeed-files-patent-infringement-lawsuit-against-navitas-semiconductor/",
+        "https://www.federmanlaw.com/blog/wolfspeed-inc-nyse-wolf-investigated-by-federman-sherwood/",
+        "https://www.romesentinel.com/news/investors-file-class-action-lawsuit-against-wolfspeed-over-misleading-mv-fab-claims/article_adfe0a1a-bf10-11ef-b1b1-5f5a7de3253a.html",
+        "https://www.globenewswire.com/news-release/2024/12/10/2994753/23044/en/Wolfspeed-Inc-Sued-for-Securities-Law-Violations-Investors-Should-Contact-Block-Leviton-To-Learn-How-They-Might-Recover-Their-Losses.html",
+        "https://www.globenewswire.com/news-release/2024/12/30/3002837/23044/en/WOLFSPEED-JANUARY-DEADLINE-Wolfspeed-Inc-Sued-for-Securities-Fraud-Investors-Should-Contact-Block-Leviton-To-Discuss-Next-Steps.html",
+        "https://pluang.com/en/news-feed/peringatan-investor-pomerantz-investigasi-wolfspeed",
+        "https://www.law360.com/securities/articles/2513033/wolfspeed-escapes-investor-suit-over-optimistic-projections",
+        "https://www.prnewswire.com/news-releases/investor-alert-pomerantz-law-firm-investigates-claims-on-behalf-of-investors-of-wolfspeed-inc---wolf-302881620.html",
+        "https://semiconductor-today.com/news_items/2026/oct/wolfspeed-291026.shtml",
+        "https://investor.wolfspeed.com/news/news-details/2024/Wolfspeed-Expands-150mm-Silicon-Carbide-Wafer-Supply-Agreement-with-a-Leading-Global-Semiconductor-Company/default.aspx",
+        "https://www.datacenterdynamics.com/en/news/wolfspeed-signs-agreement-with-infineon-for-supply-off-200mm-silicon-carbide-substrates/",
+        "https://www.sec.gov/Archives/edgar/data/895419/000119312523181581/d526824dex991.htm",
+        "https://www.renesas.com/en/about/newsroom/renesas-and-wolfspeed-sign-10-year-silicon-carbide-wafer-supply-agreement",
+        "https://www.ainews.cc/en/news/news-8eb2ed03b91d27075351d310",
+        "https://www.financialcontent.com/article/bizwire-2026-10-28-wolfspeed-powers-the-future-of-evs-with-multiyear-silicon-carbide-device-agreement",
+        "https://www.stocktitan.net/news/WOLF/wolfspeed-powers-the-future-of-e-vs-with-multiyear-silicon-carbide-s3od7di3ipt7.html",
+        "https://theautomotivedata.com/wolfspeed-signs-multiyear-silicon-carbide/",
+        "https://capedge.com/company/895419/insider-holdings",
+        "https://fintel.io/sn/us/wolf",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026048451/wk-form4_1784232258.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026066275/wk-form4_1792440073.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026064501/wk-form4_1790971308.xml",
+        "http://openinsider.com/WOLF",
+        "https://www.secform4.com/insider-trading/895419.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026066277/wk-form4_1792440114.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000895419/000162828026059850/wk-form4_1788294188.xml",
+        "https://www.sec.gov/Archives/edgar/data/895419/000089541922000114/poa_replogle.htm",
+        "https://finance.yahoo.com/news/wolfspeed-wolf-commercially-launches-200mm-050602574.html",
+        "https://www.marketscreener.com/news/wolfspeed-announces-the-commercial-launch-of-200mm-silicon-carbide-materials-portfolio-unlocking-th-ce7d59d2da81f323",
+        "https://chargedevs.com/newswire/wolfspeed-targets-automotive-with-its-commercial-launch-of-200-mm-sic-materials-portfolio/",
+        "https://www.wolfspeed.com/company/news-events/news/wolfspeed-announces-gen-5-silicon-carbide-technology/",
+        "https://investor.wolfspeed.com/news/news-details/2026/Wolfspeed-Unveils-the-Industrys-Lowest-RDSON-Silicon-Carbide-SiC-MOSFETs-in-New-Technology-Generation/default.aspx",
+        "https://finance.yahoo.com/news/wolfspeed-inc-wolf-eyes-growth-184940795.html",
+        "https://www.businesswire.com/news/home/20260609876239/en/Wolfspeed-Unveils-the-Industrys-Lowest-RDSON-Silicon-Carbide-SiC-MOSFETs-in-New-Technology-Generation",
+        "https://www.benzinga.com/trading-ideas/movers/26/10/62133978/wolfspeeds-busy-week-a-new-substrate-launch-a-sector-wide-rally",
+        "https://autotechinsight.spglobal.com/news/5283984/wolfspeed-announces-commercial-launch-of-200-mm-silicon-carbide-materials-portfolio",
+        "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-gap-down-heres-why-2026-10-14/",
+        "https://finance.yahoo.com/markets/stocks/articles/wolfspeed-shares-tumble-q4-earnings-100304584.html",
+        "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-down-77-heres-why-2026-10-05/",
+        "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-gap-up-should-you-buy-2026-10-08/",
+        "https://kalkinemedia.com/us/stocks/technology/why-did-wolfspeed-nysewolf-shares-gap-down-at-market-open",
+        "https://www.marketbeat.com/instant-alerts/price-wolfspeed-nyse-wolf-shares-down-91-should-you-sell-2026-10-12/",
+        "https://ca.investing.com/news/stock-market-news/why-is-wolfspeed-stock-sliding-today-93CH-4881284",
+        "https://tickeron.com/blogs/why-is-wolfspeed-wolf-stock-down-11-27-today-18687/",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/wolfspeed-stock-fell-5-07-percent-as-wafer-launch-meets-losses/70246676",
+        "https://www.infineon.com/press-release/2026/infpr202610-008",
+        "https://compoundsemiconductor.net/article/125630/Infineon_signs_200mm_SiC_wafer_agreement_with_Wolfspeed",
+        "https://marketchameleon.com/articles/b/2026/10/15/wolf-infineon-extends-sic-wafer-supply-agreement-200mm",
+        "https://www.tokenpost.com/news/business/32611",
+        "https://markets.financialcontent.com/stocks/article/bizwire-2026-10-15-infineon-and-wolfspeed-expand-and-extend-long-term-silicon-carbide-wafer-supply-agreement-to-include-200-mm?Language=english",
+        "https://www.techtimes.com/articles/329190/20261019/ai-data-centers-join-evs-sic-demand-engines-infineon-wolfspeed-200mm-wafer-deal.htm",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/wolfspeed-expands-200-mm-wafer-deal-for-wolfspeed-stock/70372599",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/wolfspeed-expanded-200-mm-wafer-deal-as-wolfspeed-stock-trades-at-eur-21-84/70420563"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Wolfspeed rates Strong Sell on shrinking revenue, deeply negative margins and weak price trend.",
+    "thesis": "Wolfspeed scores 24, a Strong Sell, because nearly every factor is weak. Growth scores 6, with a latest-quarter revenue decline of 24.1% year on year, a TTM revenue decline of 12.2%, and growth slowed by 5.1 pp from the previous quarter. Quality (26) and balance sheet (23) reflect a gross margin of -34.9%, an operating margin of -82.6%, an FCF margin of -58.3%, and cash covering only 0.65 of debt while free cash flow is negative. On valuation (15), P/S of 1.6x is low in absolute terms, but P/FCF and EV/EBIT cannot be calculated because FCF and EBIT are negative, and the FCF yield is 42.1 pp below the 10-year Treasury yield. There is no comparison with its own history. The trend score of 27 reflects a price 63.8% below its 52-week high and 12.0% below its 200-day average. News risk (52) is the only neutral factor, helped by new supply deals with BorgWarner and Infineon.",
+    "key_risks": [
+      "Continued cash burn: negative gross margin guidance for Q1 FY2027 means losses are likely to persist",
+      "Revenue keeps falling, with Q1 FY2027 guidance of $140–160M and results due 2026-11-04",
+      "Debt exceeds cash (cash-to-debt of 0.65), and the $1.5B government financing is only conditional",
+      "Weak share price trend, with shares 5.1 pp behind SPY and 6.0 pp behind QQQ over the last 126 trading days",
+      "Supply deals with BorgWarner and Infineon disclosed no dollar values or volumes, so their revenue impact is uncertain"
+    ],
+    "what_would_change": [
+      "A 6-point rise in the composite score would lift the rating to Sell (band at 30)",
+      "Up: revenue stabilising or returning to growth, which would lift the growth score from 6",
+      "Up: gross margin turning positive or the conditional government financing closing, which would help quality and the balance sheet",
+      "Down: no lower band exists, but a weak 2026-11-04 report or a further price decline would deepen the weakness"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3217,
+        "output_tokens": 394,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3217,
+            "output_tokens": 394,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0207,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 124817,
+        "output_tokens": 4743,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 124817,
+            "output_tokens": 4743,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3771,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7842,
+        "output_tokens": 2565,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7842,
+            "output_tokens": 2565,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0827,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3853,
+        "output_tokens": 932,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3853,
+            "output_tokens": 932,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0341,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5146,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 26.64,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 25.21
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:14",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40863619564",
+    "tickers": [
+      "QCOM",
+      "ISRG",
+      "PRLB",
+      "TXN",
+      "ROK",
+      "XMTR",
+      "ALGM",
+      "WOLF",
+      "APH",
+      "ADI",
+      "HSAI",
+      "ALNT",
+      "STM",
+      "MKSI",
+      "JBL",
+      "OUST"
+    ]
+  },
+  "chart": [
+    [
+      "2025-09-29",
+      22.1,
+      null,
+      null
+    ],
+    [
+      "2025-09-30",
+      28.6,
+      null,
+      null
+    ],
+    [
+      "2025-10-01",
+      24.83,
+      null,
+      null
+    ],
+    [
+      "2025-10-02",
+      24.69,
+      null,
+      null
+    ],
+    [
+      "2025-10-03",
+      24.37,
+      null,
+      null
+    ],
+    [
+      "2025-10-06",
+      26.17,
+      null,
+      null
+    ],
+    [
+      "2025-10-07",
+      26.69,
+      null,
+      null
+    ],
+    [
+      "2025-10-08",
+      30.36,
+      null,
+      null
+    ],
+    [
+      "2025-10-09",
+      35.42,
+      null,
+      null
+    ],
+    [
+      "2025-10-10",
+      31.1,
+      null,
+      null
+    ],
+    [
+      "2025-10-13",
+      32.57,
+      null,
+      null
+    ],
+    [
+      "2025-10-14",
+      32.58,
+      null,
+      null
+    ],
+    [
+      "2025-10-15",
+      32.43,
+      null,
+      null
+    ],
+    [
+      "2025-10-16",
+      32.44,
+      null,
+      null
+    ],
+    [
+      "2025-10-17",
+      31.0,
+      null,
+      null
+    ],
+    [
+      "2025-10-20",
+      30.0,
+      null,
+      null
+    ],
+    [
+      "2025-10-21",
+      30.08,
+      null,
+      null
+    ],
+    [
+      "2025-10-22",
+      29.48,
+      null,
+      null
+    ],
+    [
+      "2025-10-23",
+      29.59,
+      null,
+      null
+    ],
+    [
+      "2025-10-24",
+      29.57,
+      null,
+      null
+    ],
+    [
+      "2025-10-27",
+      30.89,
+      null,
+      null
+    ],
+    [
+      "2025-10-28",
+      30.76,
+      null,
+      null
+    ],
+    [
+      "2025-10-29",
+      31.99,
+      null,
+      null
+    ],
+    [
+      "2025-10-30",
+      26.16,
+      null,
+      null
+    ],
+    [
+      "2025-10-31",
+      26.32,
+      null,
+      null
+    ],
+    [
+      "2025-11-03",
+      23.76,
+      null,
+      null
+    ],
+    [
+      "2025-11-04",
+      21.9,
+      null,
+      null
+    ],
+    [
+      "2025-11-05",
+      20.25,
+      null,
+      null
+    ],
+    [
+      "2025-11-06",
+      18.65,
+      null,
+      null
+    ],
+    [
+      "2025-11-07",
+      17.95,
+      null,
+      null
+    ],
+    [
+      "2025-11-10",
+      17.88,
+      null,
+      null
+    ],
+    [
+      "2025-11-11",
+      17.4,
+      null,
+      null
+    ],
+    [
+      "2025-11-12",
+      19.55,
+      null,
+      null
+    ],
+    [
+      "2025-11-13",
+      18.19,
+      null,
+      null
+    ],
+    [
+      "2025-11-14",
+      17.48,
+      null,
+      null
+    ],
+    [
+      "2025-11-17",
+      18.11,
+      null,
+      null
+    ],
+    [
+      "2025-11-18",
+      17.59,
+      null,
+      null
+    ],
+    [
+      "2025-11-19",
+      17.51,
+      null,
+      null
+    ],
+    [
+      "2025-11-20",
+      17.34,
+      null,
+      null
+    ],
+    [
+      "2025-11-21",
+      17.18,
+      null,
+      null
+    ],
+    [
+      "2025-11-24",
+      18.06,
+      null,
+      null
+    ],
+    [
+      "2025-11-25",
+      19.86,
+      null,
+      null
+    ],
+    [
+      "2025-11-26",
+      20.5,
+      null,
+      null
+    ],
+    [
+      "2025-11-28",
+      20.28,
+      null,
+      null
+    ],
+    [
+      "2025-12-01",
+      22.11,
+      null,
+      null
+    ],
+    [
+      "2025-12-02",
+      21.36,
+      null,
+      null
+    ],
+    [
+      "2025-12-03",
+      21.87,
+      null,
+      null
+    ],
+    [
+      "2025-12-04",
+      22.75,
+      null,
+      null
+    ],
+    [
+      "2025-12-05",
+      22.07,
+      null,
+      null
+    ],
+    [
+      "2025-12-08",
+      22.91,
+      24.45,
+      null
+    ],
+    [
+      "2025-12-09",
+      22.76,
+      24.47,
+      null
+    ],
+    [
+      "2025-12-10",
+      21.13,
+      24.32,
+      null
+    ],
+    [
+      "2025-12-11",
+      19.86,
+      24.22,
+      null
+    ],
+    [
+      "2025-12-12",
+      18.56,
+      24.1,
+      null
+    ],
+    [
+      "2025-12-15",
+      17.74,
+      23.96,
+      null
+    ],
+    [
+      "2025-12-16",
+      17.85,
+      23.8,
+      null
+    ],
+    [
+      "2025-12-17",
+      17.15,
+      23.61,
+      null
+    ],
+    [
+      "2025-12-18",
+      17.89,
+      23.36,
+      null
+    ],
+    [
+      "2025-12-19",
+      18.37,
+      23.02,
+      null
+    ],
+    [
+      "2025-12-22",
+      18.38,
+      22.76,
+      null
+    ],
+    [
+      "2025-12-23",
+      18.34,
+      22.48,
+      null
+    ],
+    [
+      "2025-12-24",
+      18.43,
+      22.19,
+      null
+    ],
+    [
+      "2025-12-26",
+      17.95,
+      21.9,
+      null
+    ],
+    [
+      "2025-12-29",
+      17.31,
+      21.6,
+      null
+    ],
+    [
+      "2025-12-30",
+      17.12,
+      21.32,
+      null
+    ],
+    [
+      "2025-12-31",
+      17.41,
+      21.07,
+      null
+    ],
+    [
+      "2026-01-02",
+      18.93,
+      20.85,
+      null
+    ],
+    [
+      "2026-01-05",
+      17.98,
+      20.62,
+      null
+    ],
+    [
+      "2026-01-06",
+      19.7,
+      20.42,
+      null
+    ],
+    [
+      "2026-01-07",
+      19.68,
+      20.22,
+      null
+    ],
+    [
+      "2026-01-08",
+      18.88,
+      19.98,
+      null
+    ],
+    [
+      "2026-01-09",
+      18.6,
+      19.74,
+      null
+    ],
+    [
+      "2026-01-12",
+      18.42,
+      19.47,
+      null
+    ],
+    [
+      "2026-01-13",
+      19.51,
+      19.34,
+      null
+    ],
+    [
+      "2026-01-14",
+      19.49,
+      19.2,
+      null
+    ],
+    [
+      "2026-01-15",
+      19.92,
+      19.12,
+      null
+    ],
+    [
+      "2026-01-16",
+      20.35,
+      19.09,
+      null
+    ],
+    [
+      "2026-01-20",
+      20.5,
+      19.1,
+      null
+    ],
+    [
+      "2026-01-21",
+      19.48,
+      19.11,
+      null
+    ],
+    [
+      "2026-01-22",
+      19.18,
+      19.14,
+      null
+    ],
+    [
+      "2026-01-23",
+      17.96,
+      19.14,
+      null
+    ],
+    [
+      "2026-01-26",
+      17.4,
+      19.14,
+      null
+    ],
+    [
+      "2026-01-27",
+      18.0,
+      19.11,
+      null
+    ],
+    [
+      "2026-01-28",
+      17.46,
+      19.09,
+      null
+    ],
+    [
+      "2026-01-29",
+      17.33,
+      19.09,
+      null
+    ],
+    [
+      "2026-01-30",
+      15.66,
+      19.04,
+      null
+    ],
+    [
+      "2026-02-02",
+      16.62,
+      19.02,
+      null
+    ],
+    [
+      "2026-02-03",
+      17.0,
+      19.01,
+      null
+    ],
+    [
+      "2026-02-04",
+      17.2,
+      19.01,
+      null
+    ],
+    [
+      "2026-02-05",
+      15.53,
+      18.98,
+      null
+    ],
+    [
+      "2026-02-06",
+      15.74,
+      18.93,
+      null
+    ],
+    [
+      "2026-02-09",
+      14.89,
+      18.83,
+      null
+    ],
+    [
+      "2026-02-10",
+      15.8,
+      18.74,
+      null
+    ],
+    [
+      "2026-02-11",
+      18.03,
+      18.69,
+      null
+    ],
+    [
+      "2026-02-12",
+      16.0,
+      18.57,
+      null
+    ],
+    [
+      "2026-02-13",
+      17.74,
+      18.5,
+      null
+    ],
+    [
+      "2026-02-17",
+      19.12,
+      18.44,
+      null
+    ],
+    [
+      "2026-02-18",
+      19.59,
+      18.38,
+      null
+    ],
+    [
+      "2026-02-19",
+      19.06,
+      18.32,
+      null
+    ],
+    [
+      "2026-02-20",
+      18.66,
+      18.23,
+      null
+    ],
+    [
+      "2026-02-23",
+      18.47,
+      18.15,
+      null
+    ],
+    [
+      "2026-02-24",
+      20.15,
+      18.13,
+      null
+    ],
+    [
+      "2026-02-25",
+      20.47,
+      18.14,
+      null
+    ],
+    [
+      "2026-02-26",
+      20.21,
+      18.17,
+      null
+    ],
+    [
+      "2026-02-27",
+      19.72,
+      18.21,
+      null
+    ],
+    [
+      "2026-03-02",
+      21.21,
+      18.28,
+      null
+    ],
+    [
+      "2026-03-03",
+      20.85,
+      18.35,
+      null
+    ],
+    [
+      "2026-03-04",
+      20.59,
+      18.41,
+      null
+    ],
+    [
+      "2026-03-05",
+      18.94,
+      18.42,
+      null
+    ],
+    [
+      "2026-03-06",
+      16.57,
+      18.38,
+      null
+    ],
+    [
+      "2026-03-09",
+      17.76,
+      18.37,
+      null
+    ],
+    [
+      "2026-03-10",
+      16.58,
+      18.33,
+      null
+    ],
+    [
+      "2026-03-11",
+      18.2,
+      18.34,
+      null
+    ],
+    [
+      "2026-03-12",
+      16.97,
+      18.33,
+      null
+    ],
+    [
+      "2026-03-13",
+      16.7,
+      18.32,
+      null
+    ],
+    [
+      "2026-03-16",
+      18.34,
+      18.34,
+      null
+    ],
+    [
+      "2026-03-17",
+      17.89,
+      18.32,
+      null
+    ],
+    [
+      "2026-03-18",
+      16.78,
+      18.3,
+      null
+    ],
+    [
+      "2026-03-19",
+      17.06,
+      18.25,
+      null
+    ],
+    [
+      "2026-03-20",
+      16.32,
+      18.18,
+      null
+    ],
+    [
+      "2026-03-23",
+      16.6,
+      18.13,
+      null
+    ],
+    [
+      "2026-03-24",
+      16.67,
+      18.09,
+      null
+    ],
+    [
+      "2026-03-25",
+      18.5,
+      18.1,
+      null
+    ],
+    [
+      "2026-03-26",
+      16.82,
+      18.04,
+      null
+    ],
+    [
+      "2026-03-27",
+      15.44,
+      17.96,
+      null
+    ],
+    [
+      "2026-03-30",
+      14.8,
+      17.86,
+      null
+    ],
+    [
+      "2026-03-31",
+      16.32,
+      17.78,
+      null
+    ],
+    [
+      "2026-04-01",
+      16.45,
+      17.7,
+      null
+    ],
+    [
+      "2026-04-02",
+      17.47,
+      17.66,
+      null
+    ],
+    [
+      "2026-04-06",
+      18.05,
+      17.63,
+      null
+    ],
+    [
+      "2026-04-07",
+      18.93,
+      17.65,
+      null
+    ],
+    [
+      "2026-04-08",
+      20.56,
+      17.72,
+      null
+    ],
+    [
+      "2026-04-09",
+      24.43,
+      17.84,
+      null
+    ],
+    [
+      "2026-04-10",
+      23.22,
+      17.96,
+      null
+    ],
+    [
+      "2026-04-13",
+      24.15,
+      18.1,
+      null
+    ],
+    [
+      "2026-04-14",
+      23.0,
+      18.24,
+      null
+    ],
+    [
+      "2026-04-15",
+      23.9,
+      18.39,
+      null
+    ],
+    [
+      "2026-04-16",
+      26.54,
+      18.58,
+      null
+    ],
+    [
+      "2026-04-17",
+      25.56,
+      18.75,
+      null
+    ],
+    [
+      "2026-04-20",
+      26.33,
+      18.96,
+      null
+    ],
+    [
+      "2026-04-21",
+      24.7,
+      19.14,
+      null
+    ],
+    [
+      "2026-04-22",
+      27.75,
+      19.4,
+      null
+    ],
+    [
+      "2026-04-23",
+      27.55,
+      19.63,
+      null
+    ],
+    [
+      "2026-04-24",
+      31.23,
+      19.9,
+      null
+    ],
+    [
+      "2026-04-27",
+      29.67,
+      20.17,
+      null
+    ],
+    [
+      "2026-04-28",
+      25.85,
+      20.33,
+      null
+    ],
+    [
+      "2026-04-29",
+      25.63,
+      20.46,
+      null
+    ],
+    [
+      "2026-04-30",
+      29.53,
+      20.66,
+      null
+    ],
+    [
+      "2026-05-01",
+      36.76,
+      21.02,
+      null
+    ],
+    [
+      "2026-05-04",
+      35.94,
+      21.36,
+      null
+    ],
+    [
+      "2026-05-05",
+      36.63,
+      21.73,
+      null
+    ],
+    [
+      "2026-05-06",
+      43.08,
+      22.18,
+      null
+    ],
+    [
+      "2026-05-07",
+      45.16,
+      22.68,
+      null
+    ],
+    [
+      "2026-05-08",
+      46.6,
+      23.21,
+      null
+    ],
+    [
+      "2026-05-11",
+      50.31,
+      23.82,
+      null
+    ],
+    [
+      "2026-05-12",
+      53.72,
+      24.47,
+      null
+    ],
+    [
+      "2026-05-13",
+      62.6,
+      25.3,
+      null
+    ],
+    [
+      "2026-05-14",
+      69.96,
+      26.29,
+      null
+    ],
+    [
+      "2026-05-15",
+      62.13,
+      27.15,
+      null
+    ],
+    [
+      "2026-05-18",
+      59.35,
+      28.01,
+      null
+    ],
+    [
+      "2026-05-19",
+      58.83,
+      28.83,
+      null
+    ],
+    [
+      "2026-05-20",
+      58.62,
+      29.67,
+      null
+    ],
+    [
+      "2026-05-21",
+      69.5,
+      30.7,
+      null
+    ],
+    [
+      "2026-05-22",
+      69.89,
+      31.76,
+      null
+    ],
+    [
+      "2026-05-26",
+      73.5,
+      32.89,
+      null
+    ],
+    [
+      "2026-05-27",
+      63.26,
+      33.79,
+      null
+    ],
+    [
+      "2026-05-28",
+      65.05,
+      34.73,
+      null
+    ],
+    [
+      "2026-05-29",
+      59.28,
+      35.58,
+      null
+    ],
+    [
+      "2026-06-01",
+      52.95,
+      36.3,
+      null
+    ],
+    [
+      "2026-06-02",
+      61.06,
+      37.2,
+      null
+    ],
+    [
+      "2026-06-03",
+      61.67,
+      38.1,
+      null
+    ],
+    [
+      "2026-06-04",
+      67.06,
+      39.11,
+      null
+    ],
+    [
+      "2026-06-05",
+      55.06,
+      39.84,
+      null
+    ],
+    [
+      "2026-06-08",
+      55.42,
+      40.61,
+      null
+    ],
+    [
+      "2026-06-09",
+      48.78,
+      41.28,
+      null
+    ],
+    [
+      "2026-06-10",
+      43.42,
+      41.85,
+      null
+    ],
+    [
+      "2026-06-11",
+      45.54,
+      42.43,
+      null
+    ],
+    [
+      "2026-06-12",
+      43.14,
+      42.97,
+      null
+    ],
+    [
+      "2026-06-15",
+      49.09,
+      43.6,
+      null
+    ],
+    [
+      "2026-06-16",
+      45.0,
+      44.14,
+      null
+    ],
+    [
+      "2026-06-17",
+      48.69,
+      44.73,
+      null
+    ],
+    [
+      "2026-06-18",
+      57.41,
+      45.47,
+      null
+    ],
+    [
+      "2026-06-22",
+      52.97,
+      46.04,
+      null
+    ],
+    [
+      "2026-06-23",
+      48.91,
+      46.55,
+      null
+    ],
+    [
+      "2026-06-24",
+      45.87,
+      46.99,
+      null
+    ],
+    [
+      "2026-06-25",
+      47.79,
+      47.48,
+      null
+    ],
+    [
+      "2026-06-26",
+      45.97,
+      47.93,
+      null
+    ],
+    [
+      "2026-06-29",
+      44.24,
+      48.28,
+      null
+    ],
+    [
+      "2026-06-30",
+      48.25,
+      48.73,
+      null
+    ],
+    [
+      "2026-07-01",
+      44.56,
+      49.1,
+      null
+    ],
+    [
+      "2026-07-02",
+      40.0,
+      49.4,
+      null
+    ],
+    [
+      "2026-07-06",
+      39.47,
+      49.64,
+      null
+    ],
+    [
+      "2026-07-07",
+      36.0,
+      49.81,
+      null
+    ],
+    [
+      "2026-07-08",
+      35.86,
+      49.9,
+      null
+    ],
+    [
+      "2026-07-09",
+      37.25,
+      50.05,
+      null
+    ],
+    [
+      "2026-07-10",
+      35.29,
+      50.24,
+      null
+    ],
+    [
+      "2026-07-13",
+      33.65,
+      50.4,
+      null
+    ],
+    [
+      "2026-07-14",
+      34.31,
+      50.5,
+      null
+    ],
+    [
+      "2026-07-15",
+      35.1,
+      50.46,
+      null
+    ],
+    [
+      "2026-07-16",
+      31.18,
+      50.37,
+      28.6
+    ],
+    [
+      "2026-07-17",
+      29.89,
+      50.23,
+      28.64
+    ],
+    [
+      "2026-07-20",
+      29.38,
+      49.96,
+      28.65
+    ],
+    [
+      "2026-07-21",
+      31.73,
+      49.69,
+      28.68
+    ],
+    [
+      "2026-07-22",
+      29.27,
+      49.34,
+      28.7
+    ],
+    [
+      "2026-07-23",
+      25.96,
+      48.86,
+      28.71
+    ],
+    [
+      "2026-07-24",
+      23.09,
+      48.24,
+      28.7
+    ],
+    [
+      "2026-07-27",
+      23.8,
+      47.47,
+      28.68
+    ],
+    [
+      "2026-07-28",
+      21.88,
+      46.51,
+      28.64
+    ],
+    [
+      "2026-07-29",
+      20.06,
+      45.67,
+      28.56
+    ],
+    [
+      "2026-07-30",
+      23.79,
+      44.95,
+      28.53
+    ],
+    [
+      "2026-07-31",
+      23.62,
+      44.25,
+      28.48
+    ],
+    [
+      "2026-08-03",
+      24.35,
+      43.57,
+      28.44
+    ],
+    [
+      "2026-08-04",
+      27.06,
+      42.72,
+      28.41
+    ],
+    [
+      "2026-08-05",
+      25.19,
+      41.82,
+      28.38
+    ],
+    [
+      "2026-08-06",
+      27.59,
+      40.9,
+      28.36
+    ],
+    [
+      "2026-08-07",
+      32.87,
+      40.3,
+      28.38
+    ],
+    [
+      "2026-08-10",
+      29.3,
+      39.58,
+      28.37
+    ],
+    [
+      "2026-08-11",
+      30.14,
+      39.0,
+      28.37
+    ],
+    [
+      "2026-08-12",
+      31.71,
+      38.57,
+      28.39
+    ],
+    [
+      "2026-08-13",
+      31.51,
+      37.98,
+      28.4
+    ],
+    [
+      "2026-08-14",
+      31.79,
+      37.39,
+      28.4
+    ],
+    [
+      "2026-08-17",
+      34.96,
+      36.74,
+      28.42
+    ],
+    [
+      "2026-08-18",
+      31.46,
+      36.27,
+      28.42
+    ],
+    [
+      "2026-08-19",
+      29.09,
+      35.74,
+      28.43
+    ],
+    [
+      "2026-08-20",
+      26.35,
+      35.3,
+      28.43
+    ],
+    [
+      "2026-08-21",
+      25.76,
+      34.94,
+      28.44
+    ],
+    [
+      "2026-08-24",
+      24.76,
+      34.53,
+      28.46
+    ],
+    [
+      "2026-08-25",
+      25.29,
+      34.17,
+      28.48
+    ],
+    [
+      "2026-08-26",
+      26.93,
+      33.73,
+      28.52
+    ],
+    [
+      "2026-08-27",
+      26.95,
+      33.37,
+      28.57
+    ],
+    [
+      "2026-08-28",
+      25.85,
+      32.91,
+      28.61
+    ],
+    [
+      "2026-08-31",
+      27.4,
+      32.31,
+      28.66
+    ],
+    [
+      "2026-09-01",
+      26.31,
+      31.78,
+      28.69
+    ],
+    [
+      "2026-09-02",
+      26.65,
+      31.33,
+      28.73
+    ],
+    [
+      "2026-09-03",
+      26.84,
+      30.95,
+      28.78
+    ],
+    [
+      "2026-09-04",
+      28.35,
+      30.56,
+      28.83
+    ],
+    [
+      "2026-09-08",
+      28.88,
+      30.22,
+      28.89
+    ],
+    [
+      "2026-09-09",
+      27.28,
+      29.88,
+      28.94
+    ],
+    [
+      "2026-09-10",
+      25.17,
+      29.42,
+      28.98
+    ],
+    [
+      "2026-09-11",
+      25.92,
+      29.05,
+      29.02
+    ],
+    [
+      "2026-09-14",
+      23.96,
+      28.72,
+      29.05
+    ],
+    [
+      "2026-09-15",
+      24.02,
+      28.42,
+      29.07
+    ],
+    [
+      "2026-09-16",
+      23.67,
+      28.17,
+      29.09
+    ],
+    [
+      "2026-09-17",
+      23.74,
+      27.93,
+      29.1
+    ],
+    [
+      "2026-09-18",
+      25.59,
+      27.69,
+      29.12
+    ],
+    [
+      "2026-09-21",
+      27.71,
+      27.54,
+      29.15
+    ],
+    [
+      "2026-09-22",
+      27.99,
+      27.43,
+      29.18
+    ],
+    [
+      "2026-09-23",
+      27.14,
+      27.29,
+      29.21
+    ],
+    [
+      "2026-09-24",
+      26.3,
+      27.11,
+      29.23
+    ],
+    [
+      "2026-09-25",
+      27.57,
+      27.04,
+      29.25
+    ],
+    [
+      "2026-09-28",
+      27.58,
+      26.99,
+      29.27
+    ],
+    [
+      "2026-09-29",
+      28.13,
+      26.97,
+      29.31
+    ],
+    [
+      "2026-09-30",
+      28.13,
+      26.89,
+      29.35
+    ],
+    [
+      "2026-10-01",
+      31.17,
+      26.93,
+      29.41
+    ],
+    [
+      "2026-10-02",
+      35.28,
+      27.12,
+      29.5
+    ],
+    [
+      "2026-10-05",
+      33.53,
+      27.33,
+      29.58
+    ],
+    [
+      "2026-10-06",
+      31.83,
+      27.49,
+      29.65
+    ],
+    [
+      "2026-10-07",
+      31.37,
+      27.68,
+      29.72
+    ],
+    [
+      "2026-10-08",
+      31.02,
+      27.9,
+      29.78
+    ],
+    [
+      "2026-10-09",
+      30.61,
+      28.03,
+      29.85
+    ],
+    [
+      "2026-10-12",
+      28.03,
+      28.12,
+      29.89
+    ],
+    [
+      "2026-10-13",
+      28.57,
+      28.21,
+      29.94
+    ],
+    [
+      "2026-10-14",
+      24.58,
+      28.16,
+      29.98
+    ],
+    [
+      "2026-10-15",
+      25.91,
+      28.17,
+      30.02
+    ],
+    [
+      "2026-10-16",
+      23.22,
+      28.08,
+      30.05
+    ],
+    [
+      "2026-10-19",
+      24.14,
+      27.91,
+      30.08
+    ],
+    [
+      "2026-10-20",
+      23.5,
+      27.79,
+      30.11
+    ],
+    [
+      "2026-10-21",
+      24.64,
+      27.68,
+      30.14
+    ],
+    [
+      "2026-10-22",
+      22.63,
+      27.5,
+      30.16
+    ],
+    [
+      "2026-10-23",
+      22.93,
+      27.33,
+      30.17
+    ],
+    [
+      "2026-10-26",
+      23.38,
+      27.16,
+      30.19
+    ],
+    [
+      "2026-10-27",
+      25.21,
+      26.97,
+      30.23
+    ],
+    [
+      "2026-10-28",
+      26.64,
+      26.87,
+      30.27
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-29T11:14:45Z",
+      "ticker": "WOLF",
+      "rating": "Strong Sell",
+      "score": "24",
+      "confidence": "Low",
+      "growth": "6",
+      "quality": "26",
+      "balance_sheet": "23",
+      "valuation": "15",
+      "trend": "27",
+      "news_risk": "52",
+      "price": "26.64",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.5146",
+      "overlay": "",
+      "quote_price": "26.64",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    }
+  ]
+}
