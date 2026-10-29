@@ -1,0 +1,1869 @@
+{
+  "run_id": "2026-10-29T12:06:26Z",
+  "generated_at": "2026-10-29T12:07:12+00:00",
+  "ticker": "GENB",
+  "sec_ticker": "GENB",
+  "cik": "0002100782",
+  "name": "Generate Biomedicines, Inc.",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 33,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (TTM), price vs 200-day, momentum 12-1"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 12
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 4
+    }
+  },
+  "composite": {
+    "score": 33,
+    "raw": 33.3,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -37.67,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": -19.59,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.7,
+      "score": 0,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no TTM revenue"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 2.18,
+          "score": 60.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "momentum_12_1_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "rs_spy_pp": {
+          "value": 15.15,
+          "score": 77.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 14.32,
+          "score": 76.5,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -24.53,
+          "score": 26.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 59,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 52,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 15.38,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 6314000.0,
+    "revenue_yoy_q": -37.67,
+    "revenue_yoy_q_prev": -18.08,
+    "acceleration_pp": -19.59
+  },
+  "valuation": {
+    "missing": "no TTM revenue"
+  },
+  "trend": {
+    "close": 15.38,
+    "date": "2026-10-28",
+    "ma50": 15.05,
+    "ma200": null,
+    "vs_ma50_pct": 2.18,
+    "vs_ma200_pct": null,
+    "momentum_12_1_pct": null,
+    "high_52w": 20.38,
+    "drawdown_52w_pct": -24.53,
+    "return_rs_pct": 24.23,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 15.15,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 14.32,
+    "note": "only 169 trading days of prices"
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-336462",
+    "filing_date": "2026-08-06",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526336462/ck0002100782-ex99_1.htm",
+    "summary": "Generate expects its existing cash, cash equivalents, and marketable securities to fund its current operating plan into the first half of 2028, and it expects to need additional capital for long-term operations.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "into the first half of 2028",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Generate believes its existing cash, cash equivalents, and marketable securities will be sufficient to fund its current operating plan into the first half of 2028.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "The platform has enabled the generation of a broad pipeline of therapies across multiple therapeutic areas and protein-based modalities, addressing health challenges out of reach of traditional approaches."
+        ]
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-209899",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526209899/ck0002100782-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or new results in the window; the latest stated runway (into the first half of 2028, from the August earnings release) is unchanged.",
+        "evidence": [
+          {
+            "claim": "Generate believes its existing cash, cash equivalents, and marketable securities will be sufficient to fund its current operating plan into the first half of 2028.",
+            "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526336462/ck0002100782-ex99_1.htm",
+            "event_date": "2026-08-06",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 84,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Piper Sandler and H.C. Wainwright reiterated Buy ratings in mid-October. There were no upgrades, downgrades or initiations, and the only source is a lower-tier aggregator.",
+        "evidence": [
+          {
+            "claim": "Piper Sandler reiterated Buy with a $26 target.",
+            "url": "https://www.google.com/finance/quote/GENB:NASDAQ",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/3 · missing: 26, Piper, Sandler, Buy"
+          },
+          {
+            "claim": "H.C. Wainwright reiterated Buy with a $30 target.",
+            "url": "https://www.google.com/finance/quote/GENB:NASDAQ",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/3 · missing: 30, H.C, Wainwright, Buy"
+          }
+        ],
+        "label": "Analyst actions",
+        "rating_before_cap": 1,
+        "cap_note": "Capped at 0 (was +1): 0 of 2 sources verified or unreachable",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 1,
+        "summary": "A new collaboration with Zealand Pharma brings $30M upfront and nearly $1.2B in potential milestones, adding a partner alongside Amgen and Novartis. Only one source is primary-tier, so the rating stays modest.",
+        "evidence": [
+          {
+            "claim": "Zealand Pharma and Generate Biomedicines enter collaboration and license agreement to develop protein therapeutics engineered with AI for metabolic diseases, with milestones of nearly $1.2 billion.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/13/3380177/0/en/zealand-pharma-and-generate-biomedicines-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases.html",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Generate receives $30 million upfront and up to $1.2 billion in total milestones plus tiered royalties under the Zealand Pharma collaboration.",
+            "url": "https://generatebiomedicines.com/news-releases/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions were found in the window. The only recent sale, a small one by Frances Arnold, came before it.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Generate presented its Phase 3 GB-0895 asthma program, with enrollment targets in 2027-2028. It is an incremental update from a single aggregator source.",
+        "evidence": [
+          {
+            "claim": "Generate Biomedicines presents Phase 3 asthma program for twice-yearly GB-0895.",
+            "url": "https://rallies.ai/news/generate-biomedicines-presents-phase-3-asthma-program-for-twice-yearly-gb-0895-98cf14fdb4aa65bb",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 2,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://www.renaissancecapital.com/Profile/GENB/Generate-Biomedicines/IPO",
+        "https://www.crunchbase.com/organization/generate-biomedicines",
+        "https://www.cnbc.com/quotes/GENB",
+        "https://pitchbook.com/profiles/company/437041-00",
+        "https://www.prnewswire.com/news-releases/generate-biomedicines-inc-announces-pricing-of-initial-public-offering-302699146.html",
+        "https://www.prnewswire.com/news-releases/generate-biomedicines-inc-to-participate-in-goldman-sachs-47th-annual-global-healthcare-conference-302785001.html",
+        "https://barebone.ai/resources/generate-biomedicines-genb-ai-designed-drugs",
+        "https://robinhood.com/us/en/stocks/GENB",
+        "https://robinhood.com/stocks/GENB",
+        "https://www.gurufocus.com/news/8738106/guggenheim-initiates-coverage-on-generate-biomedicines-genb-with-a-buy-rating-genb-stock-news",
+        "https://stockanalysis.com/stocks/genb/",
+        "https://www.gurufocus.com/news/8739422/generate-biomedicines-genb-coverage-initiated-by-piper-sandler-genb-stock-news",
+        "https://www.gurufocus.com/news/8740230/goldman-sachs-initiates-coverage-on-generate-biomedicines-genb-with-a-buy-rating-genb-stock-news",
+        "https://www.investing.com/news/analyst-ratings/guggenheim-initiates-generate-biomedicines-stock-with-buy-rating-93CH-4576648",
+        "https://finance.yahoo.com/sectors/healthcare/articles/h-c-wainwright-initiates-coverage-001146243.html",
+        "https://www.investing.com/news/analyst-ratings/goldman-sachs-initiates-generate-biomedicines-stock-with-buy-rating-on-ai-platform-potential-93CH-4576662",
+        "https://www.benzinga.com/quote/GENB/analyst-ratings",
+        "https://www.sahmcapital.com/news/content/hc-wainwright-co-initiates-coverage-on-generate-biomedicines-with-buy-rating-announces-price-target-of-16-2026-04-13",
+        "https://intellectia.ai/news/stock/analysts-initiate-coverage-on-generate-biomedicines-with-strong-upside-potential",
+        "https://quartr.com/companies/generate-biomedicines-inc_22008",
+        "https://www.sec.gov/Archives/edgar/data/0002100782/000119312526209899/ck0002100782-ex99_1.htm",
+        "https://www.cnn.com/markets/stocks/GENB",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526083190/generate_bio_424b4.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526037799/ck0002100782-20260204.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312525330964/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100782/000119312526336462/ck0002100782-ex99_1.htm",
+        "https://ng.investing.com/news/stock-market-news/generate-biomedicines-at-morgan-stanley-conference-ai-pipeline-grows-93CH-2694641",
+        "https://stockrow.com/GENB",
+        "https://www.stocktitan.net/news/GENB/generate-biomedicines-inc-reports-first-quarter-2026-financial-2ml3tope3ntr.html",
+        "https://www.secform4.com/insider-trading/2100782.htm",
+        "https://www.marketbeat.com/stocks/NASDAQ/GENB/sec-filings/",
+        "https://www.insidermonkey.com/insider-trading/company/generate+biomedicines+inc/2100782",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526062362/ck0002100782-20260223.htm",
+        "https://www.athenic.com/finance/GENB",
+        "https://www.stocktitan.net/sec-filings/GENB/form-4-generate-biomedicines-inc-insider-trading-activity-bbcc9bd4b99d.html",
+        "https://www.stocktitan.net/sec-filings/GENB/form-4-generate-biomedicines-inc-insider-trading-activity-99fd65a2cf51.html",
+        "https://generatebiomedicines.com/wp-content/uploads/2026/08/Generate-Biomedicines-Earnings-Release-Q22026.pdf",
+        "https://xtalks.com/generate-biomedicines-ipo-raises-400m-with-phase-iii-asthma-therapy-in-pipeline-4672/",
+        "https://synapse.patsnap.com/drug/aa3f213f60f141c8a27892eac6c98ca6",
+        "https://rallies.ai/news/generate-biomedicines-presents-phase-3-asthma-program-for-twice-yearly-gb-0895-98cf14fdb4aa65bb",
+        "https://www.withpower.com/trial/phase-3-severe-asthma-2026-ad8f0",
+        "https://clinicaltrials.gov/study/NCT07276724",
+        "https://clinicaltrials.gov/study/NCT07359846",
+        "https://clinicaltrials.gov/study/NCT07116889",
+        "https://finance.yahoo.com/healthcare/articles/generate-biomedicines-zealand-pharma-enter-203000501.html",
+        "https://finance.yahoo.com/healthcare/articles/zealand-pharma-generate-biomedicines-enter-203000242.html",
+        "https://generatebiomedicines.com/news-releases/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases/",
+        "https://www.investing.com/news/company-news/generate-biomedicines-zealand-pharma-form-ai-drug-partnership-93CH-4947531",
+        "https://www.nasdaq.com/press-release/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement",
+        "https://www.globenewswire.com/news-release/2026/10/13/3380177/0/en/zealand-pharma-and-generate-biomedicines-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases.html",
+        "https://pharmacally.com/generate-biomedicines-zealand-pharma-ai-protein-therapeutics/",
+        "https://trial.medpath.com/news/zealand-pharma-and-generate-biomedicines-partner-on-ai-engineered-protein-therapeutics-for-obesity-in-deal-worth-up-to-nearly-1-2-billion",
+        "https://www.stocktitan.net/news/GENB/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-iygm0ugi3n9v.html",
+        "https://finance.yahoo.com/markets/stocks/articles/generate-biomedicines-stock-jumps-post-151000541.html",
+        "https://finance.yahoo.com/quote/GENB/",
+        "https://www.aaii.com/stock/ticker/GENB",
+        "https://www.marketbeat.com/instant-alerts/price-generate-biomedicines-nasdaq-genb-shares-gap-up-heres-what-happened-2026-10-28/",
+        "https://seekingalpha.com/news/4636648-generate-biomedicines-surges-again-rises-12-to-new-high",
+        "https://www.google.com/finance/quote/GENB:NASDAQ",
+        "https://www.proactiveinvestors.com/companies/news/1097580/generate-biomedicines-stock-jumps-as-post-ipo-lock-up-set-to-expire-1097580.html",
+        "https://ts2.tech/en/generate-biomedicines-stock-jumps-12-ahead-of-a-103-million-share-supply-test/",
+        "https://www.bloomberg.com/news/articles/2026-10-28/genmab-shares-hit-record-as-cancer-trial-extends-drugmaker-s-run",
+        "https://www.biospace.com/press-releases/generate-biomedicines-inc-reports-second-quarter-2026-financial-results-and-provides-business-update",
+        "https://investors.generatebiomedicines.com/wp-content/uploads/2026/04/Generate-Biomedicines-Non-Confidential-Overview_April-2026-1.pdf",
+        "https://www.biospace.com/drug-development/generate-bio-drops-as-data-accidentally-leaked-ahead-of-european-conference",
+        "https://www.clinicaltrialvanguard.com/news/generate-biomedicines-gb-0895-phase-1-data-released-early-ahead-of-ers-presentation/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Generate Biomedicines rates Sell on a steep revenue drop, with only three of six factors scored.",
+    "thesis": "Generate Biomedicines rates Sell with a composite score of 33, based on just three factors because quality, balance sheet and valuation had no usable data. Growth carries the most weight and scores 0, reflecting a latest-quarter revenue decline of 37.7% year on year, with growth slowed by 19.6 pp from the previous quarter. Trend is a partial offset at 59: the price is 2.2% above its 50-day average and shares are 15.2 pp ahead of SPY over the last 126 trading days, though still 24.5% below its 52-week high. News risk is roughly neutral at 52, lifted slightly by a new Zealand Pharma collaboration bringing $30M upfront and nearly $1.2B in potential milestones. The company says its cash should fund operations into the first half of 2028 and that it expects to need additional capital for long-term operations.",
+    "key_risks": [
+      "Revenue is lumpy and partnership-driven, and the latest quarter fell sharply year on year.",
+      "The company expects to need additional capital, which could mean share dilution.",
+      "The Phase 3 GB-0895 asthma program has enrollment targets in 2027-2028, so clinical and timing risk is long-dated.",
+      "The shares remain 24.5% below their 52-week high and could give back recent relative strength."
+    ],
+    "what_would_change": [
+      "The score sits only 4 points above the Strong Sell threshold of 30, so a further slip in trend or news risk could push it down.",
+      "Moving up to Hold would need 12 more points, most plausibly from a recovery in quarterly revenue that lifts the growth factor from 0.",
+      "New milestone payments from Amgen, Novartis or Zealand, or positive clinical news, could improve growth and news risk scores.",
+      "An equity raise or a negative program update would likely weigh on trend and news risk."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1855,
+        "output_tokens": 166,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1855,
+            "output_tokens": 166,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0107,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 113677,
+        "output_tokens": 3434,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 113677,
+            "output_tokens": 3434,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3417,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6758,
+        "output_tokens": 1250,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6758,
+            "output_tokens": 1250,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.052,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3634,
+        "output_tokens": 635,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3634,
+            "output_tokens": 635,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0272,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4316,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 15.38,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 13.21
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:06",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  },
+  "chart": [
+    [
+      "2026-02-27",
+      12.65,
+      null,
+      null
+    ],
+    [
+      "2026-03-02",
+      12.17,
+      null,
+      null
+    ],
+    [
+      "2026-03-03",
+      11.93,
+      null,
+      null
+    ],
+    [
+      "2026-03-04",
+      11.58,
+      null,
+      null
+    ],
+    [
+      "2026-03-05",
+      12.45,
+      null,
+      null
+    ],
+    [
+      "2026-03-06",
+      11.21,
+      null,
+      null
+    ],
+    [
+      "2026-03-09",
+      12.17,
+      null,
+      null
+    ],
+    [
+      "2026-03-10",
+      12.21,
+      null,
+      null
+    ],
+    [
+      "2026-03-11",
+      12.72,
+      null,
+      null
+    ],
+    [
+      "2026-03-12",
+      13.28,
+      null,
+      null
+    ],
+    [
+      "2026-03-13",
+      13.08,
+      null,
+      null
+    ],
+    [
+      "2026-03-16",
+      11.96,
+      null,
+      null
+    ],
+    [
+      "2026-03-17",
+      12.36,
+      null,
+      null
+    ],
+    [
+      "2026-03-18",
+      11.81,
+      null,
+      null
+    ],
+    [
+      "2026-03-19",
+      12.29,
+      null,
+      null
+    ],
+    [
+      "2026-03-20",
+      12.27,
+      null,
+      null
+    ],
+    [
+      "2026-03-23",
+      12.52,
+      null,
+      null
+    ],
+    [
+      "2026-03-24",
+      12.03,
+      null,
+      null
+    ],
+    [
+      "2026-03-25",
+      11.83,
+      null,
+      null
+    ],
+    [
+      "2026-03-26",
+      12.85,
+      null,
+      null
+    ],
+    [
+      "2026-03-27",
+      11.44,
+      null,
+      null
+    ],
+    [
+      "2026-03-30",
+      11.51,
+      null,
+      null
+    ],
+    [
+      "2026-03-31",
+      12.5,
+      null,
+      null
+    ],
+    [
+      "2026-04-01",
+      13.31,
+      null,
+      null
+    ],
+    [
+      "2026-04-02",
+      13.75,
+      null,
+      null
+    ],
+    [
+      "2026-04-06",
+      12.1,
+      null,
+      null
+    ],
+    [
+      "2026-04-07",
+      11.83,
+      null,
+      null
+    ],
+    [
+      "2026-04-08",
+      11.94,
+      null,
+      null
+    ],
+    [
+      "2026-04-09",
+      11.53,
+      null,
+      null
+    ],
+    [
+      "2026-04-10",
+      11.41,
+      null,
+      null
+    ],
+    [
+      "2026-04-13",
+      12.8,
+      null,
+      null
+    ],
+    [
+      "2026-04-14",
+      12.89,
+      null,
+      null
+    ],
+    [
+      "2026-04-15",
+      12.5,
+      null,
+      null
+    ],
+    [
+      "2026-04-16",
+      12.61,
+      null,
+      null
+    ],
+    [
+      "2026-04-17",
+      12.45,
+      null,
+      null
+    ],
+    [
+      "2026-04-20",
+      12.12,
+      null,
+      null
+    ],
+    [
+      "2026-04-21",
+      12.67,
+      null,
+      null
+    ],
+    [
+      "2026-04-22",
+      13.03,
+      null,
+      null
+    ],
+    [
+      "2026-04-23",
+      12.86,
+      null,
+      null
+    ],
+    [
+      "2026-04-24",
+      12.8,
+      null,
+      null
+    ],
+    [
+      "2026-04-27",
+      12.45,
+      null,
+      null
+    ],
+    [
+      "2026-04-28",
+      12.47,
+      null,
+      null
+    ],
+    [
+      "2026-04-29",
+      12.38,
+      null,
+      null
+    ],
+    [
+      "2026-04-30",
+      12.63,
+      null,
+      null
+    ],
+    [
+      "2026-05-01",
+      13.15,
+      null,
+      null
+    ],
+    [
+      "2026-05-04",
+      14.46,
+      null,
+      null
+    ],
+    [
+      "2026-05-05",
+      15.42,
+      null,
+      null
+    ],
+    [
+      "2026-05-06",
+      15.3,
+      null,
+      null
+    ],
+    [
+      "2026-05-07",
+      13.59,
+      null,
+      null
+    ],
+    [
+      "2026-05-08",
+      13.66,
+      12.58,
+      null
+    ],
+    [
+      "2026-05-11",
+      14.37,
+      12.61,
+      null
+    ],
+    [
+      "2026-05-12",
+      15.49,
+      12.68,
+      null
+    ],
+    [
+      "2026-05-13",
+      16.22,
+      12.77,
+      null
+    ],
+    [
+      "2026-05-14",
+      15.47,
+      12.84,
+      null
+    ],
+    [
+      "2026-05-15",
+      16.0,
+      12.91,
+      null
+    ],
+    [
+      "2026-05-18",
+      13.01,
+      12.95,
+      null
+    ],
+    [
+      "2026-05-19",
+      12.42,
+      12.95,
+      null
+    ],
+    [
+      "2026-05-20",
+      13.02,
+      12.97,
+      null
+    ],
+    [
+      "2026-05-21",
+      13.98,
+      13.0,
+      null
+    ],
+    [
+      "2026-05-22",
+      14.53,
+      13.02,
+      null
+    ],
+    [
+      "2026-05-26",
+      13.34,
+      13.03,
+      null
+    ],
+    [
+      "2026-05-27",
+      13.08,
+      13.05,
+      null
+    ],
+    [
+      "2026-05-28",
+      13.09,
+      13.06,
+      null
+    ],
+    [
+      "2026-05-29",
+      13.12,
+      13.09,
+      null
+    ],
+    [
+      "2026-06-01",
+      12.97,
+      13.1,
+      null
+    ],
+    [
+      "2026-06-02",
+      11.97,
+      13.1,
+      null
+    ],
+    [
+      "2026-06-03",
+      12.91,
+      13.1,
+      null
+    ],
+    [
+      "2026-06-04",
+      14.7,
+      13.16,
+      null
+    ],
+    [
+      "2026-06-05",
+      12.87,
+      13.18,
+      null
+    ],
+    [
+      "2026-06-08",
+      12.78,
+      13.18,
+      null
+    ],
+    [
+      "2026-06-09",
+      13.19,
+      13.21,
+      null
+    ],
+    [
+      "2026-06-10",
+      13.16,
+      13.25,
+      null
+    ],
+    [
+      "2026-06-11",
+      12.93,
+      13.25,
+      null
+    ],
+    [
+      "2026-06-12",
+      12.38,
+      13.24,
+      null
+    ],
+    [
+      "2026-06-15",
+      13.58,
+      13.23,
+      null
+    ],
+    [
+      "2026-06-16",
+      13.37,
+      13.26,
+      null
+    ],
+    [
+      "2026-06-17",
+      13.87,
+      13.3,
+      null
+    ],
+    [
+      "2026-06-18",
+      14.49,
+      13.35,
+      null
+    ],
+    [
+      "2026-06-22",
+      15.89,
+      13.44,
+      null
+    ],
+    [
+      "2026-06-23",
+      15.43,
+      13.52,
+      null
+    ],
+    [
+      "2026-06-24",
+      16.23,
+      13.59,
+      null
+    ],
+    [
+      "2026-06-25",
+      16.42,
+      13.66,
+      null
+    ],
+    [
+      "2026-06-26",
+      16.47,
+      13.74,
+      null
+    ],
+    [
+      "2026-06-29",
+      16.91,
+      13.82,
+      null
+    ],
+    [
+      "2026-06-30",
+      16.87,
+      13.91,
+      null
+    ],
+    [
+      "2026-07-01",
+      16.5,
+      14.0,
+      null
+    ],
+    [
+      "2026-07-02",
+      17.41,
+      14.09,
+      null
+    ],
+    [
+      "2026-07-06",
+      16.92,
+      14.17,
+      null
+    ],
+    [
+      "2026-07-07",
+      16.22,
+      14.24,
+      null
+    ],
+    [
+      "2026-07-08",
+      15.87,
+      14.3,
+      null
+    ],
+    [
+      "2026-07-09",
+      15.72,
+      14.36,
+      null
+    ],
+    [
+      "2026-07-10",
+      14.32,
+      14.4,
+      null
+    ],
+    [
+      "2026-07-13",
+      14.28,
+      14.44,
+      null
+    ],
+    [
+      "2026-07-14",
+      14.21,
+      14.47,
+      null
+    ],
+    [
+      "2026-07-15",
+      14.07,
+      14.49,
+      null
+    ],
+    [
+      "2026-07-16",
+      13.66,
+      14.47,
+      null
+    ],
+    [
+      "2026-07-17",
+      13.56,
+      14.44,
+      null
+    ],
+    [
+      "2026-07-20",
+      13.58,
+      14.4,
+      null
+    ],
+    [
+      "2026-07-21",
+      14.39,
+      14.42,
+      null
+    ],
+    [
+      "2026-07-22",
+      13.9,
+      14.42,
+      null
+    ],
+    [
+      "2026-07-23",
+      13.83,
+      14.41,
+      null
+    ],
+    [
+      "2026-07-24",
+      13.4,
+      14.37,
+      null
+    ],
+    [
+      "2026-07-27",
+      13.68,
+      14.32,
+      null
+    ],
+    [
+      "2026-07-28",
+      13.14,
+      14.27,
+      null
+    ],
+    [
+      "2026-07-29",
+      13.08,
+      14.21,
+      null
+    ],
+    [
+      "2026-07-30",
+      14.03,
+      14.23,
+      null
+    ],
+    [
+      "2026-07-31",
+      14.0,
+      14.27,
+      null
+    ],
+    [
+      "2026-08-03",
+      14.34,
+      14.29,
+      null
+    ],
+    [
+      "2026-08-04",
+      14.28,
+      14.3,
+      null
+    ],
+    [
+      "2026-08-05",
+      14.49,
+      14.3,
+      null
+    ],
+    [
+      "2026-08-06",
+      13.89,
+      14.31,
+      null
+    ],
+    [
+      "2026-08-07",
+      14.35,
+      14.33,
+      null
+    ],
+    [
+      "2026-08-10",
+      14.72,
+      14.37,
+      null
+    ],
+    [
+      "2026-08-11",
+      14.27,
+      14.39,
+      null
+    ],
+    [
+      "2026-08-12",
+      15.09,
+      14.43,
+      null
+    ],
+    [
+      "2026-08-13",
+      15.03,
+      14.49,
+      null
+    ],
+    [
+      "2026-08-14",
+      15.64,
+      14.55,
+      null
+    ],
+    [
+      "2026-08-17",
+      15.69,
+      14.57,
+      null
+    ],
+    [
+      "2026-08-18",
+      16.08,
+      14.63,
+      null
+    ],
+    [
+      "2026-08-19",
+      16.97,
+      14.72,
+      null
+    ],
+    [
+      "2026-08-20",
+      15.99,
+      14.77,
+      null
+    ],
+    [
+      "2026-08-21",
+      16.12,
+      14.83,
+      null
+    ],
+    [
+      "2026-08-24",
+      17.72,
+      14.93,
+      null
+    ],
+    [
+      "2026-08-25",
+      20.38,
+      15.09,
+      null
+    ],
+    [
+      "2026-08-26",
+      16.14,
+      15.14,
+      null
+    ],
+    [
+      "2026-08-27",
+      15.77,
+      15.19,
+      null
+    ],
+    [
+      "2026-08-28",
+      15.33,
+      15.22,
+      null
+    ],
+    [
+      "2026-08-31",
+      15.27,
+      15.23,
+      null
+    ],
+    [
+      "2026-09-01",
+      15.79,
+      15.23,
+      null
+    ],
+    [
+      "2026-09-02",
+      16.28,
+      15.25,
+      null
+    ],
+    [
+      "2026-09-03",
+      16.34,
+      15.25,
+      null
+    ],
+    [
+      "2026-09-04",
+      16.39,
+      15.25,
+      null
+    ],
+    [
+      "2026-09-08",
+      15.9,
+      15.24,
+      null
+    ],
+    [
+      "2026-09-09",
+      15.52,
+      15.21,
+      null
+    ],
+    [
+      "2026-09-10",
+      15.39,
+      15.18,
+      null
+    ],
+    [
+      "2026-09-11",
+      15.72,
+      15.16,
+      null
+    ],
+    [
+      "2026-09-14",
+      16.0,
+      15.14,
+      null
+    ],
+    [
+      "2026-09-15",
+      16.19,
+      15.12,
+      null
+    ],
+    [
+      "2026-09-16",
+      15.68,
+      15.11,
+      null
+    ],
+    [
+      "2026-09-17",
+      17.12,
+      15.13,
+      null
+    ],
+    [
+      "2026-09-18",
+      17.14,
+      15.16,
+      null
+    ],
+    [
+      "2026-09-21",
+      17.38,
+      15.22,
+      null
+    ],
+    [
+      "2026-09-22",
+      17.46,
+      15.29,
+      null
+    ],
+    [
+      "2026-09-23",
+      16.52,
+      15.33,
+      null
+    ],
+    [
+      "2026-09-24",
+      15.99,
+      15.37,
+      null
+    ],
+    [
+      "2026-09-25",
+      15.15,
+      15.4,
+      null
+    ],
+    [
+      "2026-09-28",
+      14.91,
+      15.43,
+      null
+    ],
+    [
+      "2026-09-29",
+      15.42,
+      15.47,
+      null
+    ],
+    [
+      "2026-09-30",
+      15.02,
+      15.48,
+      null
+    ],
+    [
+      "2026-10-01",
+      13.8,
+      15.48,
+      null
+    ],
+    [
+      "2026-10-02",
+      13.69,
+      15.47,
+      null
+    ],
+    [
+      "2026-10-05",
+      13.91,
+      15.48,
+      null
+    ],
+    [
+      "2026-10-06",
+      13.8,
+      15.49,
+      null
+    ],
+    [
+      "2026-10-07",
+      13.57,
+      15.49,
+      null
+    ],
+    [
+      "2026-10-08",
+      13.99,
+      15.51,
+      null
+    ],
+    [
+      "2026-10-09",
+      14.34,
+      15.52,
+      null
+    ],
+    [
+      "2026-10-12",
+      13.84,
+      15.52,
+      null
+    ],
+    [
+      "2026-10-13",
+      12.26,
+      15.47,
+      null
+    ],
+    [
+      "2026-10-14",
+      12.52,
+      15.44,
+      null
+    ],
+    [
+      "2026-10-15",
+      13.06,
+      15.41,
+      null
+    ],
+    [
+      "2026-10-16",
+      12.09,
+      15.37,
+      null
+    ],
+    [
+      "2026-10-19",
+      12.56,
+      15.34,
+      null
+    ],
+    [
+      "2026-10-20",
+      12.9,
+      15.3,
+      null
+    ],
+    [
+      "2026-10-21",
+      13.11,
+      15.28,
+      null
+    ],
+    [
+      "2026-10-22",
+      12.79,
+      15.23,
+      null
+    ],
+    [
+      "2026-10-23",
+      12.41,
+      15.18,
+      null
+    ],
+    [
+      "2026-10-26",
+      12.35,
+      15.12,
+      null
+    ],
+    [
+      "2026-10-27",
+      13.21,
+      15.07,
+      null
+    ],
+    [
+      "2026-10-28",
+      15.38,
+      15.05,
+      null
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-29T12:06:26Z",
+      "ticker": "GENB",
+      "rating": "Sell",
+      "score": "33",
+      "confidence": "Low",
+      "growth": "0",
+      "quality": "",
+      "balance_sheet": "",
+      "valuation": "",
+      "trend": "59",
+      "news_risk": "52",
+      "price": "15.38",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4316",
+      "overlay": "",
+      "quote_price": "15.38",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    }
+  ]
+}

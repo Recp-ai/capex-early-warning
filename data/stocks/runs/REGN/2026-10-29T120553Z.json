@@ -1,0 +1,1649 @@
+{
+  "run_id": "2026-10-29T12:05:53Z",
+  "generated_at": "2026-10-29T12:07:05+00:00",
+  "ticker": "REGN",
+  "sec_ticker": "REGN",
+  "cik": "0000872589",
+  "name": "REGENERON PHARMACEUTICALS, INC.",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 70,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 1.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 10
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 6
+    }
+  },
+  "composite": {
+    "score": 70,
+    "raw": 70.3,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 16.73,
+          "score": 68.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 9.29,
+          "score": 52.9,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -2.31,
+          "score": 38.5,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 56,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 24.74,
+          "score": 74.5,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 24.21,
+          "score": 83.2,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 6.35,
+          "score": 71.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -2.39,
+          "score": 94.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 81,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -1.6,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": 4.02,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 4.919,
+          "score": 59.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 20.32,
+          "score": 69.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": 18.319,
+          "score": 61.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -0.069,
+          "score": 49.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 26.2,
+          "score": 73.8,
+          "weight": 0.1,
+          "note": "cheaper than now in 26.2% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 49.2,
+          "score": 50.8,
+          "weight": 0.15,
+          "note": "cheaper than now in 49.2% of 61 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": 52.5,
+          "score": 47.5,
+          "weight": 0.15,
+          "note": "cheaper than now in 52.5% of 61 month-ends (ranked on yields)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 58,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 2.72,
+          "score": 63.6,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 10.44,
+          "score": 76.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 28.87,
+          "score": 86.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 9.72,
+          "score": 69.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 8.89,
+          "score": 67.8,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -4.55,
+          "score": 83.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 76,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 66,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 813.27,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 4290700000.0,
+    "revenue_yoy_q": 16.73,
+    "revenue_yoy_q_prev": 19.04,
+    "acceleration_pp": -2.31,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 15534700000.0,
+    "revenue_yoy_ttm": 9.29,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 3843100000.0,
+    "operating_cash_flow_ttm": 4681300000.0,
+    "capex_ttm": 920900000.0,
+    "sbc_ttm": 986700000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 3760400000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 24.74,
+    "fcf_margin_pct": 24.21,
+    "capex_intensity_pct": 5.93,
+    "sbc_pct_revenue": 6.35,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 217000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 688200000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 9.29,
+      "expected": 63933819.701425396,
+      "excess": 153066180.2985746,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.0327
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 24.21,
+      "fcf_margin_year_earlier_pct": 27.11,
+      "median_margin_pct": 26.06,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 3760400000.0,
+    "fcf_scored_margin_pct": 24.21,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 2455800000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 5538800000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 5538800000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 7994600000.0,
+      "debt": 1986600000.0,
+      "debt_tags": [
+        "LongTermDebtNoncurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 1986600000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -6008000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 106000000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -2.39,
+    "shares_outstanding": {
+      "val": 93955110.0,
+      "end": "2012-07-13",
+      "filed": "2012-07-25",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 3362700000.0,
+        "revenue_yoy_pct": 14.53,
+        "operating_margin_pct": 33.04,
+        "fcf": 938300000.0,
+        "diluted_shares": 113400000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 3434300000.0,
+        "revenue_yoy_pct": 0.58,
+        "operating_margin_pct": 28.33,
+        "fcf": 838300000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 3145000000.0,
+        "revenue_yoy_pct": -0.54,
+        "operating_margin_pct": 23.89,
+        "fcf": 1378600000.0,
+        "diluted_shares": 115100000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 3547100000.0,
+        "revenue_yoy_pct": 12.32,
+        "operating_margin_pct": 30.15,
+        "fcf": 173500000.0,
+        "diluted_shares": 115400000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 3720700000.0,
+        "revenue_yoy_pct": 10.65,
+        "operating_margin_pct": 31.7,
+        "fcf": 1049300000.0,
+        "diluted_shares": 116200000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 3789200000.0,
+        "revenue_yoy_pct": 10.33,
+        "operating_margin_pct": 26.13,
+        "fcf": 1063200000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 3028700000.0,
+        "revenue_yoy_pct": -3.7,
+        "operating_margin_pct": 19.54,
+        "fcf": 815800000.0,
+        "diluted_shares": 111200000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 3675600000.0,
+        "revenue_yoy_pct": 3.62,
+        "operating_margin_pct": 29.37,
+        "fcf": 925400000.0,
+        "diluted_shares": 108600000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 3754300000.0,
+        "revenue_yoy_pct": 0.9,
+        "operating_margin_pct": 27.35,
+        "fcf": 1417300000.0,
+        "diluted_shares": 107200000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 3884300000.0,
+        "revenue_yoy_pct": 2.51,
+        "operating_margin_pct": 22.65,
+        "fcf": 922000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 3605400000.0,
+        "revenue_yoy_pct": 19.04,
+        "operating_margin_pct": 17.83,
+        "fcf": 848300000.0,
+        "diluted_shares": 107700000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 4290700000.0,
+        "revenue_yoy_pct": 16.73,
+        "operating_margin_pct": 30.15,
+        "fcf": 572800000.0,
+        "diluted_shares": 106000000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 813.27,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 93955110.0,
+      "source": "cover page shares outstanding",
+      "date": "2012-07-13"
+    },
+    "market_cap": 76410872309.7,
+    "enterprise_value": 70402872309.7,
+    "price_to_sales": 4.919,
+    "price_to_fcf": 20.32,
+    "ev_to_ebit": 18.319,
+    "sales_yield_pct": 20.33,
+    "fcf_yield_pct": 4.921,
+    "ebit_yield_pct": 5.459,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -0.069,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 5.726,
+        "price_to_fcf": 41.869,
+        "ev_to_ebit": 10.325,
+        "sales_yield_pct": 17.466,
+        "fcf_yield_pct": 2.388,
+        "ebit_yield_pct": 9.685
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 5.353,
+        "price_to_fcf": 13.472,
+        "ev_to_ebit": 9.191,
+        "sales_yield_pct": 18.68,
+        "fcf_yield_pct": 7.423,
+        "ebit_yield_pct": 10.88
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 5.311,
+        "price_to_fcf": 13.366,
+        "ev_to_ebit": 9.114,
+        "sales_yield_pct": 18.828,
+        "fcf_yield_pct": 7.481,
+        "ebit_yield_pct": 10.972
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 5.118,
+        "price_to_fcf": 12.881,
+        "ev_to_ebit": 8.765,
+        "sales_yield_pct": 19.537,
+        "fcf_yield_pct": 7.763,
+        "ebit_yield_pct": 11.409
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 4.317,
+        "price_to_fcf": 10.626,
+        "ev_to_ebit": 7.34,
+        "sales_yield_pct": 23.165,
+        "fcf_yield_pct": 9.411,
+        "ebit_yield_pct": 13.625
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 4.876,
+        "price_to_fcf": 12.002,
+        "ev_to_ebit": 8.344,
+        "sales_yield_pct": 20.509,
+        "fcf_yield_pct": 8.332,
+        "ebit_yield_pct": 11.985
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 4.601,
+        "price_to_fcf": 11.326,
+        "ev_to_ebit": 7.851,
+        "sales_yield_pct": 21.733,
+        "fcf_yield_pct": 8.829,
+        "ebit_yield_pct": 12.738
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 4.554,
+        "price_to_fcf": 9.473,
+        "ev_to_ebit": 7.711,
+        "sales_yield_pct": 21.957,
+        "fcf_yield_pct": 10.556,
+        "ebit_yield_pct": 12.969
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 4.05,
+        "price_to_fcf": 8.424,
+        "ev_to_ebit": 6.795,
+        "sales_yield_pct": 24.692,
+        "fcf_yield_pct": 11.87,
+        "ebit_yield_pct": 14.716
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 3.985,
+        "price_to_fcf": 8.29,
+        "ev_to_ebit": 6.678,
+        "sales_yield_pct": 25.092,
+        "fcf_yield_pct": 12.063,
+        "ebit_yield_pct": 14.975
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 4.656,
+        "price_to_fcf": 8.418,
+        "ev_to_ebit": 8.848,
+        "sales_yield_pct": 21.477,
+        "fcf_yield_pct": 11.879,
+        "ebit_yield_pct": 11.302
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 5.52,
+        "price_to_fcf": 9.98,
+        "ev_to_ebit": 10.641,
+        "sales_yield_pct": 18.116,
+        "fcf_yield_pct": 10.02,
+        "ebit_yield_pct": 9.398
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 6.0,
+        "price_to_fcf": 10.848,
+        "ev_to_ebit": 11.637,
+        "sales_yield_pct": 16.667,
+        "fcf_yield_pct": 9.219,
+        "ebit_yield_pct": 8.594
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 6.185,
+        "price_to_fcf": 16.709,
+        "ev_to_ebit": 12.797,
+        "sales_yield_pct": 16.169,
+        "fcf_yield_pct": 5.985,
+        "ebit_yield_pct": 7.814
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 5.936,
+        "price_to_fcf": 16.037,
+        "ev_to_ebit": 12.251,
+        "sales_yield_pct": 16.846,
+        "fcf_yield_pct": 6.235,
+        "ebit_yield_pct": 8.163
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 6.24,
+        "price_to_fcf": 16.859,
+        "ev_to_ebit": 12.92,
+        "sales_yield_pct": 16.025,
+        "fcf_yield_pct": 5.931,
+        "ebit_yield_pct": 7.74
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 7.09,
+        "price_to_fcf": 19.505,
+        "ev_to_ebit": 16.997,
+        "sales_yield_pct": 14.104,
+        "fcf_yield_pct": 5.127,
+        "ebit_yield_pct": 5.883
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 7.661,
+        "price_to_fcf": 21.077,
+        "ev_to_ebit": 18.464,
+        "sales_yield_pct": 13.053,
+        "fcf_yield_pct": 4.745,
+        "ebit_yield_pct": 5.416
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 7.476,
+        "price_to_fcf": 20.567,
+        "ev_to_ebit": 17.988,
+        "sales_yield_pct": 13.376,
+        "fcf_yield_pct": 4.862,
+        "ebit_yield_pct": 5.559
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 6.779,
+        "price_to_fcf": 22.947,
+        "ev_to_ebit": 17.365,
+        "sales_yield_pct": 14.752,
+        "fcf_yield_pct": 4.358,
+        "ebit_yield_pct": 5.759
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 6.622,
+        "price_to_fcf": 22.416,
+        "ev_to_ebit": 16.927,
+        "sales_yield_pct": 15.101,
+        "fcf_yield_pct": 4.461,
+        "ebit_yield_pct": 5.908
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 6.837,
+        "price_to_fcf": 23.145,
+        "ev_to_ebit": 17.528,
+        "sales_yield_pct": 14.625,
+        "fcf_yield_pct": 4.321,
+        "ebit_yield_pct": 5.705
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 7.429,
+        "price_to_fcf": 22.668,
+        "ev_to_ebit": 20.119,
+        "sales_yield_pct": 13.46,
+        "fcf_yield_pct": 4.412,
+        "ebit_yield_pct": 4.97
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 7.398,
+        "price_to_fcf": 22.571,
+        "ev_to_ebit": 20.027,
+        "sales_yield_pct": 13.518,
+        "fcf_yield_pct": 4.43,
+        "ebit_yield_pct": 4.993
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 7.011,
+        "price_to_fcf": 21.39,
+        "ev_to_ebit": 18.895,
+        "sales_yield_pct": 14.264,
+        "fcf_yield_pct": 4.675,
+        "ebit_yield_pct": 5.292
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 7.133,
+        "price_to_fcf": 20.288,
+        "ev_to_ebit": 20.253,
+        "sales_yield_pct": 14.02,
+        "fcf_yield_pct": 4.929,
+        "ebit_yield_pct": 4.937
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 7.604,
+        "price_to_fcf": 21.629,
+        "ev_to_ebit": 21.717,
+        "sales_yield_pct": 13.15,
+        "fcf_yield_pct": 4.623,
+        "ebit_yield_pct": 4.605
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 8.163,
+        "price_to_fcf": 23.217,
+        "ev_to_ebit": 23.449,
+        "sales_yield_pct": 12.251,
+        "fcf_yield_pct": 4.307,
+        "ebit_yield_pct": 4.264
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 8.374,
+        "price_to_fcf": 28.344,
+        "ev_to_ebit": 24.952,
+        "sales_yield_pct": 11.942,
+        "fcf_yield_pct": 3.528,
+        "ebit_yield_pct": 4.008
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 8.343,
+        "price_to_fcf": 28.238,
+        "ev_to_ebit": 24.851,
+        "sales_yield_pct": 11.986,
+        "fcf_yield_pct": 3.541,
+        "ebit_yield_pct": 4.024
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 7.72,
+        "price_to_fcf": 26.131,
+        "ev_to_ebit": 22.833,
+        "sales_yield_pct": 12.953,
+        "fcf_yield_pct": 3.827,
+        "ebit_yield_pct": 4.38
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 8.612,
+        "price_to_fcf": 27.756,
+        "ev_to_ebit": 27.073,
+        "sales_yield_pct": 11.612,
+        "fcf_yield_pct": 3.603,
+        "ebit_yield_pct": 3.694
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 9.235,
+        "price_to_fcf": 29.763,
+        "ev_to_ebit": 29.191,
+        "sales_yield_pct": 10.829,
+        "fcf_yield_pct": 3.36,
+        "ebit_yield_pct": 3.426
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 9.482,
+        "price_to_fcf": 30.56,
+        "ev_to_ebit": 30.032,
+        "sales_yield_pct": 10.546,
+        "fcf_yield_pct": 3.272,
+        "ebit_yield_pct": 3.33
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 10.135,
+        "price_to_fcf": 41.071,
+        "ev_to_ebit": 33.007,
+        "sales_yield_pct": 9.867,
+        "fcf_yield_pct": 2.435,
+        "ebit_yield_pct": 3.03
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 8.993,
+        "price_to_fcf": 36.445,
+        "ev_to_ebit": 29.063,
+        "sales_yield_pct": 11.119,
+        "fcf_yield_pct": 2.744,
+        "ebit_yield_pct": 3.441
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 7.034,
+        "price_to_fcf": 28.316,
+        "ev_to_ebit": 22.547,
+        "sales_yield_pct": 14.217,
+        "fcf_yield_pct": 3.532,
+        "ebit_yield_pct": 4.435
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 6.296,
+        "price_to_fcf": 25.344,
+        "ev_to_ebit": 19.974,
+        "sales_yield_pct": 15.884,
+        "fcf_yield_pct": 3.946,
+        "ebit_yield_pct": 5.007
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 5.978,
+        "price_to_fcf": 24.064,
+        "ev_to_ebit": 18.866,
+        "sales_yield_pct": 16.729,
+        "fcf_yield_pct": 4.156,
+        "ebit_yield_pct": 5.301
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 5.647,
+        "price_to_fcf": 22.735,
+        "ev_to_ebit": 17.715,
+        "sales_yield_pct": 17.707,
+        "fcf_yield_pct": 4.399,
+        "ebit_yield_pct": 5.645
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 5.663,
+        "price_to_fcf": 21.946,
+        "ev_to_ebit": 18.392,
+        "sales_yield_pct": 17.659,
+        "fcf_yield_pct": 4.557,
+        "ebit_yield_pct": 5.437
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 5.14,
+        "price_to_fcf": 19.92,
+        "ev_to_ebit": 16.531,
+        "sales_yield_pct": 19.455,
+        "fcf_yield_pct": 5.02,
+        "ebit_yield_pct": 6.049
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 4.727,
+        "price_to_fcf": 21.466,
+        "ev_to_ebit": 15.718,
+        "sales_yield_pct": 21.155,
+        "fcf_yield_pct": 4.659,
+        "ebit_yield_pct": 6.362
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 3.871,
+        "price_to_fcf": 17.577,
+        "ev_to_ebit": 12.57,
+        "sales_yield_pct": 25.836,
+        "fcf_yield_pct": 5.689,
+        "ebit_yield_pct": 7.956
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 4.145,
+        "price_to_fcf": 18.821,
+        "ev_to_ebit": 13.577,
+        "sales_yield_pct": 24.128,
+        "fcf_yield_pct": 5.313,
+        "ebit_yield_pct": 7.365
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 4.306,
+        "price_to_fcf": 19.555,
+        "ev_to_ebit": 14.171,
+        "sales_yield_pct": 23.223,
+        "fcf_yield_pct": 5.114,
+        "ebit_yield_pct": 7.056
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 4.437,
+        "price_to_fcf": 16.365,
+        "ev_to_ebit": 14.991,
+        "sales_yield_pct": 22.539,
+        "fcf_yield_pct": 6.111,
+        "ebit_yield_pct": 6.671
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 4.296,
+        "price_to_fcf": 15.845,
+        "ev_to_ebit": 14.47,
+        "sales_yield_pct": 23.278,
+        "fcf_yield_pct": 6.311,
+        "ebit_yield_pct": 6.911
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 4.904,
+        "price_to_fcf": 16.551,
+        "ev_to_ebit": 17.194,
+        "sales_yield_pct": 20.391,
+        "fcf_yield_pct": 6.042,
+        "ebit_yield_pct": 5.816
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 5.87,
+        "price_to_fcf": 19.811,
+        "ev_to_ebit": 20.926,
+        "sales_yield_pct": 17.035,
+        "fcf_yield_pct": 5.048,
+        "ebit_yield_pct": 4.779
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 5.808,
+        "price_to_fcf": 19.6,
+        "ev_to_ebit": 20.684,
+        "sales_yield_pct": 17.219,
+        "fcf_yield_pct": 5.102,
+        "ebit_yield_pct": 4.835
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 5.579,
+        "price_to_fcf": 18.827,
+        "ev_to_ebit": 19.8,
+        "sales_yield_pct": 17.925,
+        "fcf_yield_pct": 5.311,
+        "ebit_yield_pct": 5.051
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 5.919,
+        "price_to_fcf": 20.804,
+        "ev_to_ebit": 21.876,
+        "sales_yield_pct": 16.896,
+        "fcf_yield_pct": 4.807,
+        "ebit_yield_pct": 4.571
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 5.85,
+        "price_to_fcf": 20.563,
+        "ev_to_ebit": 21.602,
+        "sales_yield_pct": 17.093,
+        "fcf_yield_pct": 4.863,
+        "ebit_yield_pct": 4.629
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 5.104,
+        "price_to_fcf": 18.515,
+        "ev_to_ebit": 19.118,
+        "sales_yield_pct": 19.592,
+        "fcf_yield_pct": 5.401,
+        "ebit_yield_pct": 5.231
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 4.438,
+        "price_to_fcf": 16.098,
+        "ev_to_ebit": 16.38,
+        "sales_yield_pct": 22.533,
+        "fcf_yield_pct": 6.212,
+        "ebit_yield_pct": 6.105
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 4.501,
+        "price_to_fcf": 16.328,
+        "ev_to_ebit": 16.64,
+        "sales_yield_pct": 22.217,
+        "fcf_yield_pct": 6.125,
+        "ebit_yield_pct": 6.01
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 5.204,
+        "price_to_fcf": 21.497,
+        "ev_to_ebit": 19.471,
+        "sales_yield_pct": 19.217,
+        "fcf_yield_pct": 4.652,
+        "ebit_yield_pct": 5.136
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 5.452,
+        "price_to_fcf": 22.525,
+        "ev_to_ebit": 20.477,
+        "sales_yield_pct": 18.34,
+        "fcf_yield_pct": 4.44,
+        "ebit_yield_pct": 4.884
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 5.174,
+        "price_to_fcf": 21.374,
+        "ev_to_ebit": 19.351,
+        "sales_yield_pct": 19.327,
+        "fcf_yield_pct": 4.678,
+        "ebit_yield_pct": 5.168
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 5.549,
+        "price_to_fcf": 22.925,
+        "ev_to_ebit": 20.868,
+        "sales_yield_pct": 18.02,
+        "fcf_yield_pct": 4.362,
+        "ebit_yield_pct": 4.792
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 4.919,
+        "current_yield_pct": 20.33,
+        "points": 61,
+        "median": 5.808,
+        "low": 3.871,
+        "high": 10.135,
+        "negative_points": 0,
+        "median_yield_pct": 17.219,
+        "percentile": 26.2,
+        "cheaper_points": 16,
+        "dearer_points": 45,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": 20.32,
+        "current_yield_pct": 4.921,
+        "points": 61,
+        "median": 20.563,
+        "low": 8.29,
+        "high": 41.876,
+        "negative_points": 0,
+        "median_yield_pct": 4.863,
+        "percentile": 49.2,
+        "cheaper_points": 30,
+        "dearer_points": 31,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 18.319,
+        "current_yield_pct": 5.459,
+        "points": 61,
+        "median": 17.715,
+        "low": 6.678,
+        "high": 33.003,
+        "negative_points": 0,
+        "median_yield_pct": 5.645,
+        "percentile": 52.5,
+        "cheaper_points": 32,
+        "dearer_points": 29,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 45 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 31, more expensive than at 30)"
+        },
+        "ev_to_ebit": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 29, more expensive than at 32)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 813.27,
+    "date": "2026-10-28",
+    "ma50": 791.72,
+    "ma200": 736.37,
+    "vs_ma50_pct": 2.72,
+    "vs_ma200_pct": 10.44,
+    "momentum_12_1_pct": 28.87,
+    "high_52w": 852.03,
+    "drawdown_52w_pct": -4.55,
+    "return_rs_pct": 18.8,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 9.72,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 8.89
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "RuntimeError: no Exhibit 99.1 in 8-K 0001104659-26-113895"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "Q3 results are not out until Oct 30, and no guidance changes were found in the window. The only item is a small pre-announced acquired IPR&D charge of about $0.18 per share.",
+        "evidence": [
+          {
+            "claim": "Regeneron pre-announced a Q3 acquired IPR&D charge of approximately $22 million pre-tax, reducing GAAP and non-GAAP EPS by approximately $0.18.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000872589/000110465926113895/tm2627077d1_8k.htm",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 3/4"
+          },
+          {
+            "claim": "Regeneron will report third quarter 2026 financial results on October 30 before the U.S. market opens.",
+            "url": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-report-third-quarter-2026-financial-and-operating",
+            "event_date": "2026-10-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": -1,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "A broad wave of price-target raises came in during the window, including from Jefferies, Piper Sandler and Canaccord, plus a UBS upgrade to Buy with a $978 target. The rating is capped at +1 because all the sources are lower-tier.",
+        "evidence": [
+          {
+            "claim": "Jefferies raised its Regeneron price target to $930 from $870 and kept a Buy rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-93000-2026-10-01/",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "UBS upgraded Regeneron to Buy from Neutral and raised its price target to $978 from $660.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/ubs-lifts-regeneron-stock-target-to-usd-978-00/70340931",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/2, names 4/4 · missing: 978, 660"
+          },
+          {
+            "claim": "Piper Sandler maintained Overweight and raised its price target to $865 from $854.",
+            "url": "https://www.gurufocus.com/news/9130014/regn-maintained-by-piper-sandler-price-target-raised-to-865",
+            "event_date": "2026-10-19",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Canaccord Genuity maintained Buy and raised its price target to $922 from $875.",
+            "url": "https://www.gurufocus.com/news/9149245/regn-maintains-buy-rating-with-canaccord-genuity-price-target-raised-to-922",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 1,
+        "summary": "Regeneron settled its litigation with Sanofi as part of the expanded alliance, and the CHMP recommended an EU dosing update for Libtayo. The SDNY securities class action over fianlimab remains pending with no new ruling.",
+        "evidence": [
+          {
+            "claim": "The CHMP recommended EU approval of an updated Libtayo dosing regimen across all approved cancer types.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/16/3382494/0/en/libtayo-cemiplimab-recommended-for-eu-approval-by-the-chmp-for-updated-dosing-regimen-across-all-approved-cancer-types.html",
+            "event_date": "2026-10-16",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 13,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Sanofi and Regeneron settled their legal dispute as part of the expanded immunology deal.",
+            "url": "https://www.ksl.com/article/51630898/sanofi-to-pay-regeneron-1-billionupfront-in-expanded-immunology-deal",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 1,
+        "summary": "The partnership with key partner Sanofi deepened: Sanofi will pay $1 billion upfront and up to $7 billion in milestones for new antibodies. Regeneron also extended its BARDA supply agreement for Inmazeb, and no customer losses were reported.",
+        "evidence": [
+          {
+            "claim": "Sanofi will pay Regeneron $1 billion upfront and up to $7 billion in milestones for four new long-acting antibodies, with profits shared 50:50.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001121404/000119312526410232/d143371dex991.htm",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          },
+          {
+            "claim": "Regeneron extended its BARDA agreement for additional supply of the Ebola treatment Inmazeb.",
+            "url": "https://investor.regeneron.com/news/press-releases",
+            "event_date": "2026-10-26",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 3,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Insiders made only modest sales in the window, including about $3.2 million by Co-CSO Andrew Murphy, and there were no purchases. This does not stand out as a material signal.",
+        "evidence": [
+          {
+            "claim": "Andrew J. Murphy sold 4,147 shares worth $3,204,376.",
+            "url": "https://www.marketscreener.com/news/regeneron-pharmaceuticals-insider-sold-shares-worth-3-204-376-according-to-a-recent-sec-filing-ce785dd3d18dff2d",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 0/2 · missing: 4147, Andrew, Murphy"
+          },
+          {
+            "claim": "A Form 4 reports multiple open-market sales of Regeneron shares on 2026-10-14.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0000872589/000179622626000002/edgardoc.xml",
+            "event_date": "2026-10-14",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 1/2 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "The pipeline news was positive: the expanded Sanofi deal adds four long-acting immunology antibodies, garetosmab showed zero new lesions in FOP, and longer-term Libtayo C-POST data were presented at ESMO. Pressure on EYLEA from biosimilars remains background.",
+        "evidence": [
+          {
+            "claim": "Pasatru (garetosmab) showed zero new heterotopic ossification lesions in the OPTIMA extension in FOP.",
+            "url": "https://investor.regeneron.com/news/press-releases",
+            "event_date": "2026-10-12",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 17,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "The expanded alliance adds four long-acting antibodies targeting IL-13, IL-4xIL-13, IL-4 and IL-4Rα. The first, REGN20423, is in Phase 1 for atopic dermatitis.",
+            "url": "https://finance.biggo.com/news/89056784-5de5-422b-beca-479d88e7532f",
+            "event_date": "2026-10-01",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 5/6"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 2
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Regeneron (REGN), 2026-09-29 to 2026-10-29**\n\nQ3 results had not been released as of today. They are due 2026-10-30 before the open.\n\n**1. Guidance / results**\n- Q3 2026 results and call are scheduled for Oct 30, before the U.S. market opens. — 2026-09-24 (announcement date) — https://investor.regeneron.com/news-releases/news-release-details/regeneron-report-third-quarter-2026-financial-and-operating\n- 8-K pre-announcement: Q3 acquired IPR&D charge of about $22M pre-tax. It hits GAAP and non-GAAP EPS by about $0.18. — 2026-10-06 — https://www.sec.gov/Archives/edgar/data/0000872589/000110465926113895/tm2627077d1_8k.htm\n- Consensus, 23 analysts: EPS $16.19, revenue $4.56B. The EPS range is $14.88–$17.68. — 2026-10-26 — https://news.alphastreet.com/regeneron-pharmaceuticals-regn-q3-2026-preview-eps-est-16-19-reports-october-30/\n- MarketBeat shows a different consensus: EPS $16.02, revenue $4.54B. — date unknown — https://www.marketbeat.com/earnings/reports/2026-10-30-regeneron-pharmaceuticals-inc-stock/\n- Context from Q2 (before the window): non-GAAP EPS was $14.29 and revenue $4.29B. — 2026-07-30 — https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000023/exhibit991q22026.htm\n- Per a 24/7 Wall St preview, the company raised GAAP gross margin guidance to 78%–79% at Q2. No new guidance changes were found in the window. — date unknown — https://247wallst.com/investing/2026/10/26/regenerons-billion-dollar-catalyst-flying-under-wall-streets-radar-ahead-of-oct-30-earnings/\n\n**2. Analyst actions** (TipRanks headline dates per the CNN list, https://www.cnn.com/markets/stocks/REGN, unless noted)\n- Jefferies raised its target to $930 from $870 and kept Buy. — 2026-10-01 — https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-93000-2026-10-01/\n- Argus upgraded from Hold to Buy with an $850 target. — date unknown (reported by MarketBeat on 2026-10-01) — same URL\n- JPMorgan raised its target to $950 from $900. — about 2026-10-06 — https://www.cnn.com/markets/stocks/REGN\n- Morgan Stanley raised its target to $779 from $758 and kept Equal Weight. — 2026-10-07 — https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-92200-2026-10-28/\n- Truist raised its target to $780 from $772. — 2026-10-07 — https://www.cnn.com/markets/stocks/REGN\n- RBC raised its target to $810 from $737 and kept Sector Perform. — 2026-10-08 — https://tickernerd.com/stock/regn-forecast/\n- BofA raised its target to $908 from $891. — 2026-10-12 — https://www.cnn.com/markets/stocks/REGN\n- Citi kept its Hold rating. — 2026-10-12 — https://www.cnn.com/markets/stocks/REGN\n- UBS upgraded from Neutral to Buy and raised its target to $978 from $660. — 2026-10-15 — https://www.ad-hoc-news.de/boerse/news/corporate-news/ubs-lifts-regeneron-stock-target-to-usd-978-00/70340931\n- Piper Sandler kept Overweight and raised its target to $865 from $854. — 2026-10-19 — https://www.gurufocus.com/news/9130014/regn-maintained-by-piper-sandler-price-target-raised-to-865\n- TD Cowen raised its target; the figure was not in the snippet. — 2026-10-21 (article date) — https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-stock-gets-price-target-bump-from-td-cowen-2026-10-21/\n- Canaccord raised its target to $922 from $875 and kept Buy. MarketBeat dates this to Wednesday, 2026-10-28: https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-92200-2026-10-28/. GuruFocus dates it 2026-10-26: https://www.gurufocus.com/news/9149245/regn-maintains-buy-rating-with-canaccord-genuity-price-target-raised-to-922\n- MarketBeat consensus is \"Moderate Buy\" with a $847.90 target. — 2026-10-28 — https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-92200-2026-10-28/\n\n**3. Litigation / regulation**\n- Regeneron and Sanofi settled prior litigation as part of the expanded alliance. Regeneron had sued Sanofi in 2024. — 2026-10-01 — https://www.ksl.com/article/51630898/sanofi-to-pay-regeneron-1-billionupfront-in-expanded-immunology-deal\n- A securities class action against the company is pending in SDNY over the fianlimab program. It was filed 2026-07-16, and the lead-plaintiff deadline was 2026-09-14. No new ruling was found. — https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000025/regn-20260630.htm\n- The CHMP gave a positive opinion on a Libtayo dosing change, from every 3 weeks to every 6 weeks after the first 12 weeks, across all approved indications. — 2026-10-16 — https://www.globenewswire.com/news-release/2026/10/16/3382494/0/en/libtayo-cemiplimab-recommended-for-eu-approval-by-the-chmp-for-updated-dosing-regimen-across-all-approved-cancer-types.html\n- The FDA decision on cemdisiran for generalized myasthenia gravis (gMG) is targeted for November 2026. It has not happened yet. — date unknown — https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000023/exhibit991q22026.htm\n- No investigations, fines or export-control items were found.\n\n**4. Customer concentration**\n- Sanofi is the key partner. It will pay $1B upfront and up to $7B in milestones for four new long-acting antibodies, with a 50:50 profit split. — 2026-10-01 — https://www.sec.gov/Archives/edgar/data/0001121404/000119312526410232/d143371dex991.htm\n- Regeneron books its full Dupixent profit share from Q3 onward, after the Sanofi development balance was fully repaid at the end of Q2. — 2026-06-30 — https://finance.yahoo.com/healthcare/articles/regeneron-billion-dollar-catalyst-flying-133948820.html\n- Regeneron extended its BARDA agreement for additional Ebola treatment Inmazeb supply. Terms were not in the snippet. — 2026-10-26 — https://investor.regeneron.com/news/press-releases\n- No customer losses were found. No 10-K concentration percentages were retrieved.\n\n**5. Insider activity**\n- Andrew J. Murphy, Co-Chief Scientific Officer, sold 4,147 shares for $3,204,376. The source is MarketScreener, an aggregator, and I did not find the original Form 4. — 2026-10-13 — https://www.marketscreener.com/news/regeneron-pharmaceuticals-insider-sold-shares-worth-3-204-376-according-to-a-recent-sec-filing-ce785dd3d18dff2d\n- A separate Form 4 shows multiple open-market sales on 2026-10-14 at about $775–$780. The footnotes include lots of 376, 66, 38, 454 and 380 shares. The reporting person's name was not in the snippet. — 2026-10-14 — https://www.sec.gov/Archives/edgar/data/0000872589/000179622626000002/edgardoc.xml\n- No insider purchases were found. These are the only insider sales in the window that I found, and I did not check whether they are linked.\n\n**6. Product / competitive**\n- The Sanofi alliance expansion adds four long-acting antibodies targeting IL-13, IL-4xIL-13, IL-4 and IL-4Rα. The first, REGN20423, is in Phase 1 for atopic dermatitis. Regeneron also gets an option on Sanofi's lunsekimig. — 2026-10-01 — https://finance.biggo.com/news/89056784-5de5-422b-beca-479d88e7532f\n- Reuters reported Regeneron shares were down about 4% midday on the deal announcement. — 2026-10-01 — https://www.tbsnews.net/world/sanofi-regeneron-expand-tie-up-8-billion-drug-development-deal-settle-legal-dispute-1560291\n- Longer-term Phase 3 C-POST data for adjuvant Libtayo in high-risk CSCC were presented at ESMO. Regeneron's release is dated Oct 25, and GuruFocus says Oct 28. — 2026-10-25 — https://investor.regeneron.com/news/press-releases\n- Pasatru (garetosmab) showed zero new heterotopic ossification lesions in the OPTIMA extension in FOP. — 2026-10-12 — https://investor.regeneron.com/news/press-releases\n- A new Phase 3 garetosmab pediatric study was started. — 2026-10-08 — https://www.cnn.com/markets/stocks/REGN\n- On the Q2 call (before the window), management expected EYLEA demand to fall by a low-to-mid-teens percentage quarter over quarter in H2 2026. It cited biosimilars and the shift to EYLEA HD. — 2026-07-30 — https://www.trefis.com/stock/regn/articles/620788/has-regeneron-stock-become-a-different-bet/2026-10-27",
+      "urls": [
+        "https://finance.yahoo.com/healthcare/articles/regeneron-report-third-quarter-2026-200500284.html",
+        "https://investor.regeneron.com/news-releases/news-release-details/regeneron-report-third-quarter-2026-financial-and-operating",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000110465926113895/tm2627077d1_8k.htm",
+        "https://www.marketbeat.com/earnings/reports/2026-10-30-regeneron-pharmaceuticals-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000023/exhibit991q22026.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000110465926080562/tm2619682d1_8k.htm",
+        "https://finance.yahoo.com/healthcare/articles/regeneron-billion-dollar-catalyst-flying-133948820.html",
+        "https://247wallst.com/investing/2026/10/26/regenerons-billion-dollar-catalyst-flying-under-wall-streets-radar-ahead-of-oct-30-earnings/",
+        "https://news.alphastreet.com/regeneron-pharmaceuticals-regn-q3-2026-preview-eps-est-16-19-reports-october-30/",
+        "https://catalystalert.io/news/76815d7d-cf20-41ec-90bb-9c2e68d160eb",
+        "https://www.gurufocus.com/news/9130014/regn-maintained-by-piper-sandler-price-target-raised-to-865",
+        "https://www.gurufocus.com/news/9149245/regn-maintains-buy-rating-with-canaccord-genuity-price-target-raised-to-922",
+        "https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-92200-2026-10-28/",
+        "https://www.cnn.com/markets/stocks/REGN",
+        "https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-price-target-raised-to-93000-2026-10-01/",
+        "https://www.marketbeat.com/instant-alerts/analyst-regeneron-pharmaceuticals-nasdaq-regn-stock-gets-price-target-bump-from-td-cowen-2026-10-21/",
+        "https://tickernerd.com/stock/regn-forecast/",
+        "https://www.thecerbatgem.com/2026/10/28/canaccord-genuity-group-forecasts-strong-price-appreciation-for-regeneron-pharmaceuticals-nasdaqregn-stock.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/ubs-lifts-regeneron-stock-target-to-usd-978-00/70340931",
+        "https://finance.yahoo.com/healthcare/articles/regeneron-secures-fda-approval-rare-143600368.html",
+        "https://www.biospace.com/fda/regeneron-wins-fda-approval-to-challenge-ipsen-for-rare-bone-disease-market",
+        "https://en.wikipedia.org/wiki/Regeneron_Pharmaceuticals",
+        "https://www.ophthalmologytimes.com/view/regeneron-s-eylea-hd-injection-8-mg-approved-by-fda-for-the-treatment-of-macular-edema-following-rvo",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000014/exhibit991q12026.htm",
+        "https://www.genengnews.com/topics/genome-editing/gene-therapy-briefs-regeneron-wins-fda-approval-for-first-neurosensory-gene-therapy/",
+        "https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm",
+        "https://www.gurufocus.com/news/9055165/regeneron-pharmaceuticals-inc-regn-investors-september-14-2026-lead-plaintiff-deadline-in-class-action-lawsuit",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000025/regn-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000087258926000016/regn-20260331.htm",
+        "https://www.newsfilecorp.com/release/309571/Regeneron-Pharmaceuticals-Inc.-Notice-of-September-14-2026-Application-Deadline-for-Class-Action-Lawsuit-Contact-Reed-Kathrein-at-Hagens-Berman-Sobol-Shapiro-LLP-Before-Application-Deadline",
+        "https://www.aol.com/articles/regeneron-pharmaceuticals-inc-regn-investors-132800000.html",
+        "https://www.prnewswire.com/news-releases/regeneron-pharmaceuticals-inc-regn-investors-september-14-2026-lead-plaintiff-deadline-in-class-action-lawsuit-302856077.html",
+        "http://www.prnewswire.com/news-releases/suewallst-reminds-shareholders-of-a-lead-plaintiff-deadline-of-september-14-2026-in-regeneron-pharmaceuticals-inc-lawsuit---regn-302874913.html",
+        "http://www.prnewswire.com/news-releases/regn-1-week-deadline-alert-regeneron-pharmaceuticals-inc-investors-alerted-to-september-14-2026-lead-plaintiff-deadline-in-class-action-lawsuit-302871437.html",
+        "https://www.globenewswire.com/news-release/2026/08/03/3337338/0/en/regn-class-action-notice-regeneron-hit-with-securities-fraud-lawsuit-over-trial-misrepresentations-investors-urged-to-contact-bfa-law-by-september-14-deadline.html",
+        "https://www.marketscreener.com/news/regeneron-pharmaceuticals-insider-sold-shares-worth-3-204-376-according-to-a-recent-sec-filing-ce785dd3d18dff2d",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000179622626000002/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000118744326000010/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000166375826000002/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000168164326000006/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000123830326000002/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000169742226000002/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000199235226000005/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0000872589/000199235226000007/edgardoc.xml",
+        "https://insidertradealerts.com/ticker/REGN/",
+        "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-first-quarter-2026-financial-and-operating",
+        "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-second-quarter-2026-financial-and-operating",
+        "https://www.sanofi.com/en/media-room/press-releases/2026/2026-10-01-05-00-00-3372517",
+        "https://www.fool.com/investing/2026/10/17/forget-eylea-regenerons-real-value-may-be-hiding-i/",
+        "https://www.trefis.com/stock/regn/articles/620788/has-regeneron-stock-become-a-different-bet/2026-10-27",
+        "https://news.alphastreet.com/regeneron-pharmaceuticals-regn-q3-2026-preview-eps-est-16-19-reports-october-30",
+        "https://finance.yahoo.com/healthcare/articles/sanofi-regeneron-expand-alliance-deal-062700426.html",
+        "https://www.tbsnews.net/world/sanofi-regeneron-expand-tie-8-billion-drug-development-deal-settle-legal-dispute-1560291",
+        "https://www.ksl.com/article/51630898/sanofi-to-pay-regeneron-1-billionupfront-in-expanded-immunology-deal",
+        "https://www.sec.gov/Archives/edgar/data/0001121404/000119312526410232/d143371dex991.htm",
+        "https://www.chemdiv.com/company/media/pharma-news/2026/sanofi-and-regeneron-expand-immunology-partnership-to-the-tune-of-8bn/",
+        "https://www.msn.com/en-us/money/general/sanofi-regeneron-expand-tie-up-with-8-billion-drug-development-deal-settle-legal-dispute/ar-AA2dmNBa?ocid=BingNewsSerp",
+        "https://rallies.ai/news/sanofi-regeneron-expand-tie-up-with-8-billion-drug-development-deal-settle-legal-dispute-b6d030b316ae8da2",
+        "https://pm360online.com/news/sanofi-expands-regeneron-partnership-with-up-to-8-billion-deal-in-win-for-new-ceo/",
+        "https://finance.biggo.com/news/89056784-5de5-422b-beca-479d88e7532f",
+        "https://investor.regeneron.com/news/press-releases",
+        "https://www.gurufocus.com/news/9146867/regeneron-regn-reports-promising-phase-3-trial-results-for-libtayo-in-cscc",
+        "https://investor.regeneron.com/news-releases/news-release-details/regeneron-showcases-advances-care-across-several-cancers-and",
+        "https://www.manilatimes.net/2026/10/06/tmt-newswire/globenewswire/regeneron-showcases-advances-in-care-across-several-cancers-and-cancer-associated-complications-at-esmo-2026/2439819",
+        "https://edition.cnn.com/markets/stocks/REGN",
+        "https://www.globenewswire.com/news-release/2026/10/06/3375301/0/en/regeneron-showcases-advances-in-care-across-several-cancers-and-cancer-associated-complications-at-esmo-2026.html",
+        "https://www.globenewswire.com/news-release/2026/10/16/3382494/0/en/libtayo-cemiplimab-recommended-for-eu-approval-by-the-chmp-for-updated-dosing-regimen-across-all-approved-cancer-types.html",
+        "https://www.quiverquant.com/news/Regeneron+Reports+Nearly+Four-Year+C-POST+Data+Show+Sustained+Survival+Benefit+for+Adjuvant+Libtayo+in+High-Risk+CSCC"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "RuntimeError: no Exhibit 99.1 in 8-K 0001104659-26-113895"
+  },
+  "writeup": {
+    "headline": "Regeneron rates Buy on a net-cash balance sheet, solid margins and strong price trend.",
+    "thesis": "Regeneron scores 70, a Buy, driven mainly by a perfect balance sheet score of 100 (net cash, cash 4.02 times debt) and quality at 81, with a 24.7% operating margin, a 24.2% FCF margin and the diluted share count down 2.4% year on year. The trend score of 76 reflects the price 10.4% above its 200-day average, 4.5% below its 52-week high, and 9.7 pp ahead of SPY over the last 126 trading days. Growth is middling at 56: latest-quarter revenue growth of 16.7% year on year and TTM revenue growth of 9.3%, but growth slowed by 2.3 pp from the previous quarter. Valuation scores 58; in absolute terms multiples are moderate (4.9x sales, 20.3x FCF, 18.3x EV/EBIT) with the FCF yield 0.1 pp below the 10-year Treasury yield, and against its own history the stock sits near the middle of its own history. News risk at 66 is supported by the expanded Sanofi alliance, settled litigation with Sanofi and a wave of analyst target raises.",
+    "key_risks": [
+      "Biosimilar pressure on EYLEA could weigh on revenue and margins.",
+      "Growth slowed by 2.3 pp from the previous quarter; further slowing would hurt the growth score.",
+      "Q3 results due Oct 30 could disappoint, and a small acquired IPR&D charge of about $0.18 per share is pre-announced.",
+      "The SDNY securities class action over fianlimab remains pending.",
+      "FCF yield 0.1 pp below the 10-year Treasury yield leaves little valuation cushion in absolute terms."
+    ],
+    "what_would_change": [
+      "A drop of 6 points in the composite score would move the rating to Hold, for example from weaker trend or a negative news shift around Q3 results.",
+      "Reaching Strong Buy needs 10 more points, most plausibly from re-accelerating revenue growth lifting the growth score.",
+      "A pullback in the share price that leaves fundamentals intact could lift the valuation score but lower the trend score.",
+      "Adverse EYLEA biosimilar developments or litigation rulings would cut the news risk score."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 123260,
+        "output_tokens": 6018,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 123260,
+            "output_tokens": 6018,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3867,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8074,
+        "output_tokens": 3145,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8074,
+            "output_tokens": 3145,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0952,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3779,
+        "output_tokens": 772,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3779,
+            "output_tokens": 772,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0306,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5125,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 813.27,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 816.1
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:05",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  }
+}

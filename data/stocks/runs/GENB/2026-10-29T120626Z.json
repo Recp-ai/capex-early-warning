@@ -1,0 +1,830 @@
+{
+  "run_id": "2026-10-29T12:06:26Z",
+  "generated_at": "2026-10-29T12:07:12+00:00",
+  "ticker": "GENB",
+  "sec_ticker": "GENB",
+  "cik": "0002100782",
+  "name": "Generate Biomedicines, Inc.",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 33,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (TTM), price vs 200-day, momentum 12-1"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 12
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 4
+    }
+  },
+  "composite": {
+    "score": 33,
+    "raw": 33.3,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -37.67,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": -19.59,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.7,
+      "score": 0,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no TTM revenue"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 2.18,
+          "score": 60.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "momentum_12_1_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "rs_spy_pp": {
+          "value": 15.15,
+          "score": 77.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 14.32,
+          "score": 76.5,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -24.53,
+          "score": 26.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 59,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 52,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 15.38,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 6314000.0,
+    "revenue_yoy_q": -37.67,
+    "revenue_yoy_q_prev": -18.08,
+    "acceleration_pp": -19.59
+  },
+  "valuation": {
+    "missing": "no TTM revenue"
+  },
+  "trend": {
+    "close": 15.38,
+    "date": "2026-10-28",
+    "ma50": 15.05,
+    "ma200": null,
+    "vs_ma50_pct": 2.18,
+    "vs_ma200_pct": null,
+    "momentum_12_1_pct": null,
+    "high_52w": 20.38,
+    "drawdown_52w_pct": -24.53,
+    "return_rs_pct": 24.23,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 15.15,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 14.32,
+    "note": "only 169 trading days of prices"
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-336462",
+    "filing_date": "2026-08-06",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526336462/ck0002100782-ex99_1.htm",
+    "summary": "Generate expects its existing cash, cash equivalents, and marketable securities to fund its current operating plan into the first half of 2028, and it expects to need additional capital for long-term operations.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "into the first half of 2028",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Generate believes its existing cash, cash equivalents, and marketable securities will be sufficient to fund its current operating plan into the first half of 2028.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "The platform has enabled the generation of a broad pipeline of therapies across multiple therapeutic areas and protein-based modalities, addressing health challenges out of reach of traditional approaches."
+        ]
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-209899",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526209899/ck0002100782-ex99_1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or new results in the window; the latest stated runway (into the first half of 2028, from the August earnings release) is unchanged.",
+        "evidence": [
+          {
+            "claim": "Generate believes its existing cash, cash equivalents, and marketable securities will be sufficient to fund its current operating plan into the first half of 2028.",
+            "url": "https://www.sec.gov/Archives/edgar/data/2100782/000119312526336462/ck0002100782-ex99_1.htm",
+            "event_date": "2026-08-06",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 84,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Piper Sandler and H.C. Wainwright reiterated Buy ratings in mid-October. There were no upgrades, downgrades or initiations, and the only source is a lower-tier aggregator.",
+        "evidence": [
+          {
+            "claim": "Piper Sandler reiterated Buy with a $26 target.",
+            "url": "https://www.google.com/finance/quote/GENB:NASDAQ",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/3 · missing: 26, Piper, Sandler, Buy"
+          },
+          {
+            "claim": "H.C. Wainwright reiterated Buy with a $30 target.",
+            "url": "https://www.google.com/finance/quote/GENB:NASDAQ",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/3 · missing: 30, H.C, Wainwright, Buy"
+          }
+        ],
+        "label": "Analyst actions",
+        "rating_before_cap": 1,
+        "cap_note": "Capped at 0 (was +1): 0 of 2 sources verified or unreachable",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 1,
+        "summary": "A new collaboration with Zealand Pharma brings $30M upfront and nearly $1.2B in potential milestones, adding a partner alongside Amgen and Novartis. Only one source is primary-tier, so the rating stays modest.",
+        "evidence": [
+          {
+            "claim": "Zealand Pharma and Generate Biomedicines enter collaboration and license agreement to develop protein therapeutics engineered with AI for metabolic diseases, with milestones of nearly $1.2 billion.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/13/3380177/0/en/zealand-pharma-and-generate-biomedicines-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases.html",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Generate receives $30 million upfront and up to $1.2 billion in total milestones plus tiered royalties under the Zealand Pharma collaboration.",
+            "url": "https://generatebiomedicines.com/news-releases/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions were found in the window. The only recent sale, a small one by Frances Arnold, came before it.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Generate presented its Phase 3 GB-0895 asthma program, with enrollment targets in 2027-2028. It is an incremental update from a single aggregator source.",
+        "evidence": [
+          {
+            "claim": "Generate Biomedicines presents Phase 3 asthma program for twice-yearly GB-0895.",
+            "url": "https://rallies.ai/news/generate-biomedicines-presents-phase-3-asthma-program-for-twice-yearly-gb-0895-98cf14fdb4aa65bb",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 2,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**GENB news, 2026-09-29 to 2026-10-29**\n\n**1. Guidance / results**\n- No guidance change, pre-announcement or new Q3 results found in the window. Q3 report date unknown. I found no date.\n- Most recent runway statement is from before the window. Management said Q2 cash was $457M, funding operations into early 2028. This came from a Morgan Stanley conference, with the date unknown. — date unknown — https://ng.investing.com/news/stock-market-news/generate-biomedicines-at-morgan-stanley-conference-ai-pipeline-grows-93CH-2694641\n- Q2 (reported before the window) missed on EPS. The loss was $0.52 against a $0.48 consensus, on revenue of $6.31M. — date unknown — https://www.marketbeat.com/instant-alerts/price-generate-biomedicines-nasdaq-genb-shares-gap-up-heres-what-happened-2026-10-28/\n- Another source gives the Q2 EPS consensus as $0.49. — 2026-08-06 — https://www.cnn.com/markets/stocks/GENB\n- Stock closed at $15.38 on Oct 28, up 16.4%. \nThe prior close was $13.21.\n I found no company-specific catalyst. — 2026-10-28 — https://finance.yahoo.com/quote/GENB/\n\n**2. Analyst actions**\n- Piper Sandler (Edward Tenthoff) reiterated Buy with a $26 target. — 2026-10-14 — https://www.google.com/finance/quote/GENB:NASDAQ\n- H.C. Wainwright (Mitchell Kapoor) reiterated Buy with a $30 target. — 2026-10-15 — https://www.google.com/finance/quote/GENB:NASDAQ\n- MarketBeat shows 6 Buy, 1 Hold and 1 Sell, with a consensus target of $26.40. It doesn't name the Hold or Sell firms or give dates. — date unknown — https://www.marketbeat.com/instant-alerts/price-generate-biomedicines-nasdaq-genb-shares-gap-up-heres-what-happened-2026-10-28/\n- No upgrades, downgrades or initiations found in the window. The latest earlier actions listed are Morgan Stanley (Buy, $22) on 2026-08-17 and Guggenheim (Buy, $30) on 2026-06-24. — https://www.google.com/finance/quote/GENB:NASDAQ\n\n**3. Litigation / regulation**\n- Nothing material found: no lawsuits, investigations, fines or export-control items.\n- Regulatory approvals for the Phase 3 asthma trials covered 33 of 42 planned countries. The date is unknown, and the source is a secondary aggregator. — date unknown — https://synapse.patsnap.com/drug/aa3f213f60f141c8a27892eac6c98ca6\n- Before the window, the ERS poster data leaked early on Aug 25, and the company filed an 8-K. — 2026-08-25 — https://www.clinicaltrialvanguard.com/news/generate-biomedicines-gb-0895-phase-1-data-released-early-ahead-of-ers-presentation/\n\n**4. Customer concentration / partnerships**\n- New Zealand Pharma deal for multispecific proteins in obesity and metabolic disease. \nGenerate gets $30M upfront, up to $35M in early preclinical milestones, and up to $1.2B in total milestones, plus tiered royalties on two initial programs, with an option for a third.\n — 2026-10-13 — https://generatebiomedicines.com/news-releases/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases/\n- Zealand's release says milestones are \"nearly\" $1.2B. — 2026-10-13 — https://www.globenewswire.com/news-release/2026/10/13/3380177/0/en/zealand-pharma-and-generate-biomedicines-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases.html\n- Generate leads research through lead-candidate selection, and Zealand takes over later development and commercialization. — 2026-10-13 — https://www.stocktitan.net/news/GENB/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-iygm0ugi3n9v.html\n- Concentration context: revenue is small, at $6.3M in Q2. Existing Amgen and Novartis partnerships carry up to $2.9B in potential milestones. No customer wins or losses were reported in the window. — date unknown — https://seekingalpha.com/news/4636648-generate-biomedicines-surges-again-rises-12-to-new-high\n\n**5. Insider activity**\n- No Form 4 transactions found with a transaction date in the window.\n- The most recent open-market sale I found is by Frances Arnold: 1,000 shares at $16.00 (about $16K), leaving 231,472 shares. It is dated before the window. — 2026-09-01 — https://www.insidermonkey.com/insider-trading/company/generate+biomedicines+inc/2100782\n- Athenic's page (updated Oct 21) shows one insider sale of about $16K in the past 90 days. That is consistent with the Arnold sale. — date unknown — https://www.athenic.com/finance/GENB\n- No clustered selling or 10b5-1 sales found. The IPO lock-up on about 103M shares expired after Aug 26. — 2026-08-25 — https://ts2.tech/en/generate-biomedicines-stock-jumps-12-ahead-of-a-103-million-share-supply-test/\n- I could not check SEC EDGAR directly, so a late-September or October Form 4 could be missing.\n\n**6. Product / competitive**\n- GB-0895 (golukibart, long-acting anti-TSLP) presented its Phase 3 SOLAIRIA program. \nThe company targets full enrollment in the second half of 2027 and the first half of 2028.\n The source is an aggregator, and the primary release wasn't found. — 2026-10-23 — https://rallies.ai/news/generate-biomedicines-presents-phase-3-asthma-program-for-twice-yearly-gb-0895-98cf14fdb4aa65bb\n- Phase 1b COPD data for GB-0895 (about 40 patients) were scheduled for the ERS poster on Sept 8. That is before the window. — 2026-09-08 — https://www.biospace.com/press-releases/generate-biomedicines-inc-reports-second-quarter-2026-financial-results-and-provides-business-update\n- No launches, delays, pricing news or new-competitor items found in the window.",
+      "urls": [
+        "https://www.renaissancecapital.com/Profile/GENB/Generate-Biomedicines/IPO",
+        "https://www.crunchbase.com/organization/generate-biomedicines",
+        "https://www.cnbc.com/quotes/GENB",
+        "https://pitchbook.com/profiles/company/437041-00",
+        "https://www.prnewswire.com/news-releases/generate-biomedicines-inc-announces-pricing-of-initial-public-offering-302699146.html",
+        "https://www.prnewswire.com/news-releases/generate-biomedicines-inc-to-participate-in-goldman-sachs-47th-annual-global-healthcare-conference-302785001.html",
+        "https://barebone.ai/resources/generate-biomedicines-genb-ai-designed-drugs",
+        "https://robinhood.com/us/en/stocks/GENB",
+        "https://robinhood.com/stocks/GENB",
+        "https://www.gurufocus.com/news/8738106/guggenheim-initiates-coverage-on-generate-biomedicines-genb-with-a-buy-rating-genb-stock-news",
+        "https://stockanalysis.com/stocks/genb/",
+        "https://www.gurufocus.com/news/8739422/generate-biomedicines-genb-coverage-initiated-by-piper-sandler-genb-stock-news",
+        "https://www.gurufocus.com/news/8740230/goldman-sachs-initiates-coverage-on-generate-biomedicines-genb-with-a-buy-rating-genb-stock-news",
+        "https://www.investing.com/news/analyst-ratings/guggenheim-initiates-generate-biomedicines-stock-with-buy-rating-93CH-4576648",
+        "https://finance.yahoo.com/sectors/healthcare/articles/h-c-wainwright-initiates-coverage-001146243.html",
+        "https://www.investing.com/news/analyst-ratings/goldman-sachs-initiates-generate-biomedicines-stock-with-buy-rating-on-ai-platform-potential-93CH-4576662",
+        "https://www.benzinga.com/quote/GENB/analyst-ratings",
+        "https://www.sahmcapital.com/news/content/hc-wainwright-co-initiates-coverage-on-generate-biomedicines-with-buy-rating-announces-price-target-of-16-2026-04-13",
+        "https://intellectia.ai/news/stock/analysts-initiate-coverage-on-generate-biomedicines-with-strong-upside-potential",
+        "https://quartr.com/companies/generate-biomedicines-inc_22008",
+        "https://www.sec.gov/Archives/edgar/data/0002100782/000119312526209899/ck0002100782-ex99_1.htm",
+        "https://www.cnn.com/markets/stocks/GENB",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526083190/generate_bio_424b4.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526037799/ck0002100782-20260204.htm",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312525330964/filename1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002100782/000119312526336462/ck0002100782-ex99_1.htm",
+        "https://ng.investing.com/news/stock-market-news/generate-biomedicines-at-morgan-stanley-conference-ai-pipeline-grows-93CH-2694641",
+        "https://stockrow.com/GENB",
+        "https://www.stocktitan.net/news/GENB/generate-biomedicines-inc-reports-first-quarter-2026-financial-2ml3tope3ntr.html",
+        "https://www.secform4.com/insider-trading/2100782.htm",
+        "https://www.marketbeat.com/stocks/NASDAQ/GENB/sec-filings/",
+        "https://www.insidermonkey.com/insider-trading/company/generate+biomedicines+inc/2100782",
+        "https://www.sec.gov/Archives/edgar/data/2100782/000119312526062362/ck0002100782-20260223.htm",
+        "https://www.athenic.com/finance/GENB",
+        "https://www.stocktitan.net/sec-filings/GENB/form-4-generate-biomedicines-inc-insider-trading-activity-bbcc9bd4b99d.html",
+        "https://www.stocktitan.net/sec-filings/GENB/form-4-generate-biomedicines-inc-insider-trading-activity-99fd65a2cf51.html",
+        "https://generatebiomedicines.com/wp-content/uploads/2026/08/Generate-Biomedicines-Earnings-Release-Q22026.pdf",
+        "https://xtalks.com/generate-biomedicines-ipo-raises-400m-with-phase-iii-asthma-therapy-in-pipeline-4672/",
+        "https://synapse.patsnap.com/drug/aa3f213f60f141c8a27892eac6c98ca6",
+        "https://rallies.ai/news/generate-biomedicines-presents-phase-3-asthma-program-for-twice-yearly-gb-0895-98cf14fdb4aa65bb",
+        "https://www.withpower.com/trial/phase-3-severe-asthma-2026-ad8f0",
+        "https://clinicaltrials.gov/study/NCT07276724",
+        "https://clinicaltrials.gov/study/NCT07359846",
+        "https://clinicaltrials.gov/study/NCT07116889",
+        "https://finance.yahoo.com/healthcare/articles/generate-biomedicines-zealand-pharma-enter-203000501.html",
+        "https://finance.yahoo.com/healthcare/articles/zealand-pharma-generate-biomedicines-enter-203000242.html",
+        "https://generatebiomedicines.com/news-releases/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases/",
+        "https://www.investing.com/news/company-news/generate-biomedicines-zealand-pharma-form-ai-drug-partnership-93CH-4947531",
+        "https://www.nasdaq.com/press-release/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-license-agreement",
+        "https://www.globenewswire.com/news-release/2026/10/13/3380177/0/en/zealand-pharma-and-generate-biomedicines-enter-collaboration-and-license-agreement-to-develop-protein-therapeutics-engineered-with-ai-for-metabolic-diseases.html",
+        "https://pharmacally.com/generate-biomedicines-zealand-pharma-ai-protein-therapeutics/",
+        "https://trial.medpath.com/news/zealand-pharma-and-generate-biomedicines-partner-on-ai-engineered-protein-therapeutics-for-obesity-in-deal-worth-up-to-nearly-1-2-billion",
+        "https://www.stocktitan.net/news/GENB/generate-biomedicines-and-zealand-pharma-enter-collaboration-and-iygm0ugi3n9v.html",
+        "https://finance.yahoo.com/markets/stocks/articles/generate-biomedicines-stock-jumps-post-151000541.html",
+        "https://finance.yahoo.com/quote/GENB/",
+        "https://www.aaii.com/stock/ticker/GENB",
+        "https://www.marketbeat.com/instant-alerts/price-generate-biomedicines-nasdaq-genb-shares-gap-up-heres-what-happened-2026-10-28/",
+        "https://seekingalpha.com/news/4636648-generate-biomedicines-surges-again-rises-12-to-new-high",
+        "https://www.google.com/finance/quote/GENB:NASDAQ",
+        "https://www.proactiveinvestors.com/companies/news/1097580/generate-biomedicines-stock-jumps-as-post-ipo-lock-up-set-to-expire-1097580.html",
+        "https://ts2.tech/en/generate-biomedicines-stock-jumps-12-ahead-of-a-103-million-share-supply-test/",
+        "https://www.bloomberg.com/news/articles/2026-10-28/genmab-shares-hit-record-as-cancer-trial-extends-drugmaker-s-run",
+        "https://www.biospace.com/press-releases/generate-biomedicines-inc-reports-second-quarter-2026-financial-results-and-provides-business-update",
+        "https://investors.generatebiomedicines.com/wp-content/uploads/2026/04/Generate-Biomedicines-Non-Confidential-Overview_April-2026-1.pdf",
+        "https://www.biospace.com/drug-development/generate-bio-drops-as-data-accidentally-leaked-ahead-of-european-conference",
+        "https://www.clinicaltrialvanguard.com/news/generate-biomedicines-gb-0895-phase-1-data-released-early-ahead-of-ers-presentation/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Generate Biomedicines rates Sell on a steep revenue drop, with only three of six factors scored.",
+    "thesis": "Generate Biomedicines rates Sell with a composite score of 33, based on just three factors because quality, balance sheet and valuation had no usable data. Growth carries the most weight and scores 0, reflecting a latest-quarter revenue decline of 37.7% year on year, with growth slowed by 19.6 pp from the previous quarter. Trend is a partial offset at 59: the price is 2.2% above its 50-day average and shares are 15.2 pp ahead of SPY over the last 126 trading days, though still 24.5% below its 52-week high. News risk is roughly neutral at 52, lifted slightly by a new Zealand Pharma collaboration bringing $30M upfront and nearly $1.2B in potential milestones. The company says its cash should fund operations into the first half of 2028 and that it expects to need additional capital for long-term operations.",
+    "key_risks": [
+      "Revenue is lumpy and partnership-driven, and the latest quarter fell sharply year on year.",
+      "The company expects to need additional capital, which could mean share dilution.",
+      "The Phase 3 GB-0895 asthma program has enrollment targets in 2027-2028, so clinical and timing risk is long-dated.",
+      "The shares remain 24.5% below their 52-week high and could give back recent relative strength."
+    ],
+    "what_would_change": [
+      "The score sits only 4 points above the Strong Sell threshold of 30, so a further slip in trend or news risk could push it down.",
+      "Moving up to Hold would need 12 more points, most plausibly from a recovery in quarterly revenue that lifts the growth factor from 0.",
+      "New milestone payments from Amgen, Novartis or Zealand, or positive clinical news, could improve growth and news risk scores.",
+      "An equity raise or a negative program update would likely weigh on trend and news risk."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1855,
+        "output_tokens": 166,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1855,
+            "output_tokens": 166,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0107,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 113677,
+        "output_tokens": 3434,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 113677,
+            "output_tokens": 3434,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3417,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6758,
+        "output_tokens": 1250,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6758,
+            "output_tokens": 1250,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.052,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3634,
+        "output_tokens": 635,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3634,
+            "output_tokens": 635,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0272,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4316,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 15.38,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 13.21
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:06",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  }
+}

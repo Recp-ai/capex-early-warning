@@ -1,0 +1,1520 @@
+{
+  "run_id": "2026-10-29T12:03:33Z",
+  "generated_at": "2026-10-29T12:04:36+00:00",
+  "ticker": "FTRE",
+  "sec_ticker": "FTRE",
+  "cik": "0001965040",
+  "name": "Fortrea Holdings Inc.",
+  "sector": "Services-Medical Laboratories",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 44,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "excess prepayments: contract liabilities rose $120.3M over the year, $120.4M more than revenue growth of -2.1% explains (53% of operating cash flow; threshold 25%)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 44 is within 2 points of the Hold edge (45)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 1
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 15
+    }
+  },
+  "composite": {
+    "score": 44,
+    "raw": 44.35,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -4.52,
+          "score": 13.7,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": -2.09,
+          "score": 19.8,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -2.25,
+          "score": 38.8,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 22,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 19.3,
+          "score": 15.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -0.4,
+          "score": 19.2,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 2.83,
+          "score": 28.5,
+          "weight": 0.25,
+          "note": "FCF ex-prepayments; reported FCF margin 7.3%"
+        },
+        "sbc_pct_revenue": {
+          "value": 2.28,
+          "score": 98.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 4.64,
+          "score": 23.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 33,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 4.52,
+          "score": 33.5,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.16,
+          "score": 19.2,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 28,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.92,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 32.539,
+          "score": 44.9,
+          "weight": 0.15,
+          "note": "FCF ex-prepayments; reported P/FCF 12.6x"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -1.917,
+          "score": 26.0,
+          "weight": 0.2,
+          "note": "FCF ex-prepayments"
+        },
+        "price_to_sales_percentile": {
+          "value": 93.8,
+          "score": 6.2,
+          "weight": 0.1,
+          "note": "cheaper than now in 93.8% of 32 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 9 of 32 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 30 of 32 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 32,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 28.65,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 65.43,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 89.99,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 136.0,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 135.17,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": 0.0,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 61,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 25.88,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 678200000.0,
+    "revenue_yoy_q": -4.52,
+    "revenue_yoy_q_prev": -2.27,
+    "acceleration_pp": -2.25,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 2676500000.0,
+    "revenue_yoy_ttm": -2.09,
+    "gross_profit_ttm": 516600000.0,
+    "operating_income_ttm": -10800000.0,
+    "operating_cash_flow_ttm": 227800000.0,
+    "capex_ttm": 31800000.0,
+    "sbc_ttm": 61100000.0,
+    "gross_profit_source": "revenue - CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 196000000.0,
+    "gross_margin_pct": 19.3,
+    "operating_margin_pct": -0.4,
+    "fcf_margin_pct": 7.32,
+    "capex_intensity_pct": 1.19,
+    "sbc_pct_revenue": 2.28,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 120300000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 3000000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": -2.09,
+      "expected": -62557.16114871046,
+      "excess": 120362557.16114871,
+      "max_share_of_ocf": 0.25,
+      "applies": true,
+      "share_of_ocf": 0.5284
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 7.32,
+      "fcf_margin_year_earlier_pct": -3.77,
+      "median_margin_pct": 2.46,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "ex-prepayments",
+    "fcf_scored_ttm": 75637442.83885129,
+    "fcf_ex_prepayments_ttm": 75637442.83885129,
+    "fcf_ex_prepayments_margin_pct": 2.83,
+    "fcf_scored_margin_pct": 2.83,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 168600000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 168600000.0,
+      "debt": 1054300000.0,
+      "debt_tags": [
+        "LongTermDebtNoncurrent",
+        "LongTermDebtCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 1037200000.0
+        },
+        {
+          "tag": "LongTermDebtCurrent",
+          "val": 17100000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 885700000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 94800000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 4.64,
+    "shares_outstanding": {
+      "val": 95100000.0,
+      "end": "2026-07-27",
+      "filed": "2026-07-29",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 713800000.0,
+        "revenue_yoy_pct": -6.36,
+        "operating_margin_pct": 1.44,
+        "fcf": -3200000.0,
+        "diluted_shares": 88800000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 709700000.0,
+        "revenue_yoy_pct": 41.21,
+        "operating_margin_pct": -3.38,
+        "fcf": 9000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 662100000.0,
+        "revenue_yoy_pct": -4.58,
+        "operating_margin_pct": -5.65,
+        "fcf": -34900000.0,
+        "diluted_shares": 89200000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 662400000.0,
+        "revenue_yoy_pct": -8.65,
+        "operating_margin_pct": -7.68,
+        "fcf": 262500000.0,
+        "diluted_shares": 89400000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 674900000.0,
+        "revenue_yoy_pct": -5.45,
+        "operating_margin_pct": -2.67,
+        "fcf": -10600000.0,
+        "diluted_shares": 89600000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 697000000.0,
+        "revenue_yoy_pct": -1.79,
+        "operating_margin_pct": -7.98,
+        "fcf": 20300000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 651300000.0,
+        "revenue_yoy_pct": -1.63,
+        "operating_margin_pct": -79.86,
+        "fcf": -127100000.0,
+        "diluted_shares": 90100000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 710300000.0,
+        "revenue_yoy_pct": 7.23,
+        "operating_margin_pct": -46.5,
+        "fcf": 14300000.0,
+        "diluted_shares": 90600000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 701300000.0,
+        "revenue_yoy_pct": 3.91,
+        "operating_margin_pct": -1.23,
+        "fcf": 79500000.0,
+        "diluted_shares": 93529412.0,
+        "diluted_shares_derived": "net income / diluted EPS"
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 660500000.0,
+        "revenue_yoy_pct": -5.24,
+        "operating_margin_pct": -2.06,
+        "fcf": 121600000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 636500000.0,
+        "revenue_yoy_pct": -2.27,
+        "operating_margin_pct": -0.53,
+        "fcf": -25000000.0,
+        "diluted_shares": 93600000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 678200000.0,
+        "revenue_yoy_pct": -4.52,
+        "operating_margin_pct": 2.18,
+        "fcf": 19900000.0,
+        "diluted_shares": 94800000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 25.88,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 95100000.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-27"
+    },
+    "market_cap": 2461188000.0,
+    "enterprise_value": 3346888000.0,
+    "price_to_sales": 0.92,
+    "price_to_fcf": 32.539,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 108.748,
+    "fcf_yield_pct": 3.073,
+    "ebit_yield_pct": -0.323,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "ex-prepayments",
+    "price_to_fcf_reported": 12.557,
+    "fcf_yield_reported_pct": 7.964,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -1.917,
+    "history": [
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.256,
+        "price_to_fcf": 125.952,
+        "ev_to_ebit": 26.979,
+        "sales_yield_pct": 79.592,
+        "fcf_yield_pct": 0.794,
+        "ebit_yield_pct": 3.707
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 1.145,
+        "price_to_fcf": 114.812,
+        "ev_to_ebit": 25.294,
+        "sales_yield_pct": 87.314,
+        "fcf_yield_pct": 0.871,
+        "ebit_yield_pct": 3.953
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.806,
+        "price_to_fcf": 20.33,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 124.104,
+        "fcf_yield_pct": 4.919,
+        "ebit_yield_pct": -0.515
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.741,
+        "price_to_fcf": 18.689,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 135.005,
+        "fcf_yield_pct": 5.351,
+        "ebit_yield_pct": -0.541
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.876,
+        "price_to_fcf": 22.092,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 114.208,
+        "fcf_yield_pct": 4.527,
+        "ebit_yield_pct": -0.49
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.75,
+        "price_to_fcf": 10.195,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 133.297,
+        "fcf_yield_pct": 9.809,
+        "ebit_yield_pct": -3.334
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.651,
+        "price_to_fcf": 8.842,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 153.691,
+        "fcf_yield_pct": 11.309,
+        "ebit_yield_pct": -3.662
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.547,
+        "price_to_fcf": 7.436,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 182.748,
+        "fcf_yield_pct": 13.448,
+        "ebit_yield_pct": -4.078
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.696,
+        "price_to_fcf": 15.308,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 143.637,
+        "fcf_yield_pct": 6.532,
+        "ebit_yield_pct": -4.485
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.617,
+        "price_to_fcf": 13.563,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 162.121,
+        "fcf_yield_pct": 7.373,
+        "ebit_yield_pct": -4.843
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.556,
+        "price_to_fcf": 12.225,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 179.866,
+        "fcf_yield_pct": 8.18,
+        "ebit_yield_pct": -5.16
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.458,
+        "price_to_fcf": 10.072,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 218.307,
+        "fcf_yield_pct": 9.928,
+        "ebit_yield_pct": -5.765
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.251,
+        "price_to_fcf": 8.094,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 399.038,
+        "fcf_yield_pct": 12.355,
+        "ebit_yield_pct": -9.627
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.207,
+        "price_to_fcf": 6.679,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 483.585,
+        "fcf_yield_pct": 14.972,
+        "ebit_yield_pct": -10.354
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.143,
+        "price_to_fcf": 36.458,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 697.83,
+        "fcf_yield_pct": 2.743,
+        "ebit_yield_pct": -43.061
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.165,
+        "price_to_fcf": 41.884,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 607.423,
+        "fcf_yield_pct": 2.388,
+        "ebit_yield_pct": -41.474
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.191,
+        "price_to_fcf": 48.667,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 522.765,
+        "fcf_yield_pct": 2.055,
+        "ebit_yield_pct": -39.647
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.323,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 310.07,
+        "fcf_yield_pct": -26.476,
+        "ebit_yield_pct": -46.759
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.276,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 362.73,
+        "fcf_yield_pct": -30.973,
+        "ebit_yield_pct": -49.998
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.342,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 291.988,
+        "fcf_yield_pct": -24.932,
+        "ebit_yield_pct": -45.502
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.431,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 232.167,
+        "fcf_yield_pct": -8.007,
+        "ebit_yield_pct": -41.876
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.585,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 171.063,
+        "fcf_yield_pct": -5.899,
+        "ebit_yield_pct": -35.06
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.57,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 175.541,
+        "fcf_yield_pct": -6.054,
+        "ebit_yield_pct": -35.622
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.359,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 278.469,
+        "fcf_yield_pct": -2.348,
+        "ebit_yield_pct": -47.01
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.316,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 316.899,
+        "fcf_yield_pct": -2.672,
+        "ebit_yield_pct": -50.219
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.385,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 259.582,
+        "fcf_yield_pct": -2.189,
+        "ebit_yield_pct": -45.275
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.532,
+        "price_to_fcf": 18.136,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 188.031,
+        "fcf_yield_pct": 5.514,
+        "ebit_yield_pct": -15.167
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.601,
+        "price_to_fcf": 20.505,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 166.311,
+        "fcf_yield_pct": 4.877,
+        "ebit_yield_pct": -14.041
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.679,
+        "price_to_fcf": 24.027,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 147.278,
+        "fcf_yield_pct": 4.162,
+        "ebit_yield_pct": -0.4
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.651,
+        "price_to_fcf": 23.024,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 153.691,
+        "fcf_yield_pct": 4.343,
+        "ebit_yield_pct": -0.411
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.707,
+        "price_to_fcf": 25.004,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 141.519,
+        "fcf_yield_pct": 3.999,
+        "ebit_yield_pct": -0.389
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.917,
+        "price_to_fcf": 32.437,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 109.092,
+        "fcf_yield_pct": 3.083,
+        "ebit_yield_pct": -0.323
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.92,
+        "current_yield_pct": 108.748,
+        "points": 32,
+        "median": 0.563,
+        "low": 0.143,
+        "high": 1.256,
+        "negative_points": 0,
+        "median_yield_pct": 177.704,
+        "percentile": 93.8,
+        "cheaper_points": 30,
+        "dearer_points": 2,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2024-03-28"
+      },
+      "price_to_fcf": {
+        "current": 32.539,
+        "current_yield_pct": 3.073,
+        "points": 32,
+        "median": 24.507,
+        "low": 6.679,
+        "high": null,
+        "negative_points": 9,
+        "median_yield_pct": 4.08,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 9 of 32 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2024-03-28"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -0.323,
+        "points": 32,
+        "median": null,
+        "low": 25.297,
+        "high": null,
+        "negative_points": 30,
+        "median_yield_pct": -7.696,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 30 of 32 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2024-03-28"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 30 of the last 32 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative in 9 of 32 month-ends)",
+          "not_comparable": "negative in 9 of 32 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 30 of 32 month-ends)",
+          "not_comparable": "negative now and in 30 of 32 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 25.88,
+    "date": "2026-10-28",
+    "ma50": 20.12,
+    "ma200": 15.64,
+    "vs_ma50_pct": 28.65,
+    "vs_ma200_pct": 65.43,
+    "momentum_12_1_pct": 89.99,
+    "high_52w": 25.88,
+    "drawdown_52w_pct": 0.0,
+    "return_rs_pct": 145.08,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 136.0,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 135.17
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001965040-26-000146",
+    "filing_date": "2026-10-29",
+    "period_end": "2026-09-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1965040/000196504026000146/exhibit991-pressreleasedat.htm",
+    "summary": "Fortrea raised the midpoints and narrowed the ranges of its full-year 2026 guidance, now expecting revenues of $2,665 million to $2,690 million and adjusted EBITDA of $210 million to $218 million.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "$2,665 million to $2,690 million",
+        "stated_change": "raised",
+        "sentence": "The Company now expects revenues of $2,665 million to $2,690 million and adjusted EBITDA of $210 million to $218 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$210 million to $218 million",
+        "stated_change": "raised",
+        "sentence": "The Company now expects revenues of $2,665 million to $2,690 million and adjusted EBITDA of $210 million to $218 million.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "To avoid potential delays, please join at least 10 minutes prior to the start of the call."
+        ]
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-050368",
+      "filing_date": "2026-07-29",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1965040/000162828026050368/exhibit991-pressreleasedat.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Fortrea beat Q3 revenue and EPS expectations and raised the midpoints of its FY2026 revenue and adjusted EBITDA guidance while narrowing the ranges. Revenue still fell year over year, and one source notes the EBITDA midpoint sits slightly below consensus.",
+        "evidence": [
+          {
+            "claim": "The Company now expects revenues of $2,665 million to $2,690 million and adjusted EBITDA of $210 million to $218 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1965040/000196504026000146/exhibit991-pressreleasedat.htm",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 2/2"
+          },
+          {
+            "claim": "Fortrea raised the midpoints of its full-year revenue and adjusted EBITDA guidance and narrowed the ranges; Q3 2026 revenue was $691.5 million versus $701.3 million a year earlier.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Fortrea's EBITDA guidance midpoint of $214 million is below the $215.6 million consensus.",
+            "url": "https://stockstory.org/us/stocks/nasdaq/ftre/news/earnings/fortrea-nasdaqftre-surprises-with-strong-q3-2026",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions this month were mostly positive. Barclays and Deutsche Bank upgraded the stock and UBS raised its target, while Zacks downgraded to Strong Sell and Weiss reiterated Sell. All sources are lower tier.",
+        "evidence": [
+          {
+            "claim": "Deutsche Bank upgraded Fortrea to Buy from Hold and raised its price target to $25 from $20.",
+            "url": "https://www.defenseworld.net/2026/10/21/fortrea-nasdaqftre-hits-new-1-year-high-on-analyst-upgrade.html",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Barclays upgraded Fortrea to Overweight from Equal Weight and raised its price target to $23 from $22.",
+            "url": "https://www.defenseworld.net/2026/10/21/ubs-group-issues-positive-forecast-for-fortrea-nasdaqftre-stock-price.html",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Zacks Research downgraded Fortrea to Strong Sell from Hold.",
+            "url": "https://www.dailypolitical.com/2026/10/22/fortrea-nasdaqftre-price-target-raised-to-24-00.html",
+            "event_date": "2026-10-12",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings reiterated a Sell (D-) rating on Fortrea.",
+            "url": "https://www.defenseworld.net/2026/10/21/fortrea-nasdaqftre-hits-new-1-year-high-on-analyst-upgrade.html",
+            "event_date": "2026-10-15",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "The securities class action was dismissed and the Thermo Fisher/Clario suit was settled, but both events fall just outside the 30-day window. No new regulatory actions were found.",
+        "evidence": [
+          {
+            "claim": "The court dismissed the Fortrea securities class action in full and denied further leave to amend.",
+            "url": "https://www.tipranks.com/news/class-action/court-dismisses-fortrea-holdings-ftre-securities-lawsuit-over-spin-off-cost-and-backlog-claims",
+            "event_date": "2026-09-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 31,
+            "background": true,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "The Delaware Chancery suit by Thermo Fisher/Clario over CFO Knoblauch's hiring was settled with a mutual release, and he was reinstated as CFO.",
+            "url": "https://www.stocktitan.net/sec-filings/FTRE/8-k-fortrea-holdings-inc-reports-material-event-219400cacde2.html",
+            "event_date": "2026-09-09",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 50,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/6"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Fortrea removed $558 million of backlog tied to inactive trials but posted a 1.12x book-to-bill. No new customer concentration data or named customer wins or losses were reported, so the picture is mixed.",
+        "evidence": [
+          {
+            "claim": "Fortrea reduced backlog by $558 million after a contract review, leaving adjusted backlog of $7,316 million, and says the change does not affect guidance.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html",
+            "event_date": "2026-10-29",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Fortrea reported a Q3 book-to-bill of 1.12x.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider sales were small, mandatory sell-to-cover tax trades in early September, outside the window. There were no open-market purchases or discretionary sales.",
+        "evidence": [
+          {
+            "claim": "COO Mark Morais sold 3,149 shares at $16.85 to cover taxes on vested RSUs, leaving 81,794 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000138/form4.xml",
+            "event_date": "2026-09-09",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 50,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 3/4 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "Interim CAO Carrie Russell sold 246 shares at $16.85 to cover taxes, leaving 2,384 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000140/form4.xml",
+            "event_date": "2026-09-09",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 50,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 4/4 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Fortrea closed its purchase of Worldwide Clinical Trials' Early Phase Services division, lifting early-phase capacity above 570 beds. It also announced an oncology trial collaboration with Omico.",
+        "evidence": [
+          {
+            "claim": "Fortrea completed its acquisition of Worldwide Clinical Trials' Early Phase Services division, adding a 200-bed clinical pharmacology unit in San Antonio and raising early-phase capacity to more than 570 beds.",
+            "url": "https://www.morningstar.com/news/globe-newswire/9848525/fortrea-completes-acquisition-of-the-early-phase-services-division-from-worldwide-clinical-trials",
+            "event_date": "2026-10-19",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Fortrea and Omico announced a collaboration to advance biomarker-led oncology drug development.",
+            "url": "https://manilatimes.net/2026/10/23/tmt-newswire/globenewswire/fortrea-and-omico-collaboration-to-advance-biomarker-led-oncology-drug-development/2452289/amp",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 4
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n\n- Q3 2026 revenue was $691.5M, down from $701.3M a year earlier. Adjusted EPS was $0.28 and adjusted EBITDA was $58.0M. — 2026-10-29 — https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html\n- The company raised the midpoints of its full-year revenue and adjusted EBITDA guidance and narrowed the ranges. — 2026-10-29 — https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html\n- New ranges are revenue of $2.665–2.690B and adjusted EBITDA of $210–218M. — 2026-10-29 — https://www.gurufocus.com/news/9150493/fortrea-holdings-inc-reports-q3-2026-revenue-of-6915-million-and-adjusted-eps-of-028-exceeding-analyst-estimates\n- The prior (Q2) ranges were revenue of $2,620–2,690M and adjusted EBITDA of $205–220M. — 2026-08-06 (the Q2 call date is inferred from the Q2 reference) — https://quartr.com/companies/fortrea-holdings-inc_15045\n- Versus consensus, StockStory reports revenue of $671M and adjusted EPS of $0.22. It also notes the EBITDA guidance midpoint of $214M is below the $215.6M consensus. — 2026-10-29 — https://stockstory.org/us/stocks/nasdaq/ftre/news/earnings/fortrea-nasdaqftre-surprises-with-strong-q3-2026\n- GuruFocus cites different consensus figures: revenue of about $669.95M and a loss of $0.13 per share. — 2026-10-29 — https://www.gurufocus.com/news/9150493/fortrea-holdings-inc-reports-q3-2026-revenue-of-6915-million-and-adjusted-eps-of-028-exceeding-analyst-estimates\n- No pre-announcement was found in the window.\n\n## 2. Analyst actions\n\n- Barclays upgraded the stock to Overweight from Equal Weight and raised its target to $23 from $22. — 2026-10-06 — https://www.defenseworld.net/2026/10/21/ubs-group-issues-positive-forecast-for-fortrea-nasdaqftre-stock-price.html\n- BofA raised its target to $15.50 from $13. This comes from a TipRanks headline listed on CNN's quote page. — 2026-10-06 — https://www.cnn.com/markets/stocks/FTRE\n- Wall Street Zen upgraded the stock to Buy from Hold. — 2026-10-10 — https://www.thecerbatgem.com/2026/10/28/fortrea-nasdaqftre-reaches-new-12-month-high-whats-next.html\n- Zacks Research downgraded the stock to Strong Sell from Hold. — 2026-10-12 — https://www.dailypolitical.com/2026/10/22/fortrea-nasdaqftre-price-target-raised-to-24-00.html\n- Deutsche Bank upgraded the stock to Buy from Hold and raised its target to $25 from $20. — 2026-10-15 — https://www.defenseworld.net/2026/10/21/fortrea-nasdaqftre-hits-new-1-year-high-on-analyst-upgrade.html\n- Weiss Ratings reiterated Sell (D-). — 2026-10-15 — https://www.defenseworld.net/2026/10/21/fortrea-nasdaqftre-hits-new-1-year-high-on-analyst-upgrade.html\n- UBS kept its Neutral rating and raised its target to $24 from $22. — 2026-10-20 — https://uk.finance.yahoo.com/quote/FTRE/\n- MarketBeat consensus is \"Hold\" with an average target of $22.80. — 2026-10-22 (article date) — https://www.dailypolitical.com/2026/10/22/fortrea-nasdaqftre-price-target-raised-to-24-00.html\n- I found no post-earnings analyst actions as of 2026-10-29.\n\n## 3. Litigation and regulation\n\n- Judge Failla (SDNY) dismissed the Deslande securities class action in full and denied further leave to amend. — 2026-09-28 — https://www.tipranks.com/news/class-action/court-dismisses-fortrea-holdings-ftre-securities-lawsuit-over-spin-off-cost-and-backlog-claims. This is a secondary source; I did not find the court order itself.\n- The Delaware Chancery suit by Thermo Fisher/Clario over CFO Knoblauch's hiring was settled with a mutual release. The board reinstated him as CFO, and interim CFO David Smith stepped down from that role. — 2026-09-09 — https://www.stocktitan.net/sec-filings/FTRE/8-k-fortrea-holdings-inc-reports-material-event-219400cacde2.html\n- The suit was originally filed 2026-07-06, and a temporary restraining order followed on 2026-07-25. — https://ir.fortrea.com/node/9256/html\n- I found no new regulatory actions, fines or approvals in the window.\n\n## 4. Customer concentration\n\n- Fortrea cut backlog by $558M after a contract review that covered inactive trials. Adjusted backlog is $7,316M. The company says the change does not affect guidance or near-term revenue. — 2026-10-29 — https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html\n- Q3 book-to-bill was 1.12x. — 2026-10-29 — same URL.\n- Panabee says the cut is about 7% of backlog and raises questions about contract quality. This is an aggregator. — 2026-10-29 — https://www.panabee.com/news/fortrea-earnings-q3-2026\n- Concentration baseline, from the Q1 call and before the window: the top 10 customers were 54.8% of revenue and the largest was 17.2%. — 2026-03-31 (quarter end) — https://www.fool.com/earnings/call-transcripts/2026/05/05/fortrea-ftre-q1-2026-earnings-transcript/\n- The same call described a renewed multiyear FSP contract at lower rates with a large pharma customer. — https://www.fool.com/earnings/call-transcripts/2026/05/05/fortrea-ftre-q1-2026-earnings-transcript/\n- I found no Q3 concentration percentages and no named customer wins or losses.\n\n## 5. Insider activity\n\n- Interim CAO Carrie Russell vested 850 RSUs on 2026-09-08. She sold 246 shares at $16.85 on 2026-09-09 to cover taxes, leaving 2,384 shares. — 2026-09-08 — https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000140/form4.xml\n- COO Mark Morais vested 7,157 RSUs on 2026-09-08. He sold 3,149 shares at $16.85 on 2026-09-09 to cover taxes, leaving 81,794 shares. — 2026-09-08 — https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000138/form4.xml\n- Both sales are mandatory sell-to-cover trades, not discretionary.\n- I found no open-market purchases, 10b5-1 sales or clustered discretionary selling in the window. The earlier August sales by the CEO, a director and the COO fall outside it.\n\n## 6. Product and competitive news\n\n- Fortrea completed the ~$45M all-cash purchase of Worldwide Clinical Trials' Early Phase Services division. — 2026-10-19 — https://www.morningstar.com/news/globe-newswire/9848525/fortrea-completes-acquisition-of-the-early-phase-services-division-from-worldwide-clinical-trials\n- It adds a 200-bed clinical pharmacology unit in San Antonio, a bioanalytical lab in Austin and a biospecimen storage site in Pflugerville. Early-phase capacity rises to more than 570 beds. — 2026-10-19 — same URL.\n- The deal was signed 2026-09-02, before the window. — https://www.worldwide.com/newsroom/fortrea-to-acquire-clinical-pharmacology-unit-and-bioanalytical-laboratory-operations-from-worldwide-clinical-trials/\n- Fortrea announced a collaboration with Omico on biomarker-matched oncology trials in Australia. — 2026-10-22 — https://manilatimes.net/2026/10/23/tmt-newswire/globenewswire/fortrea-and-omico-collaboration-to-advance-biomarker-led-oncology-drug-development/2452289/amp\n- No share-gain or share-loss data, pricing news or new-competitor news turned up in the window.",
+      "urls": [
+        "https://www.manilatimes.net/2026/10/29/tmt-newswire/globenewswire/fortrea-reports-third-quarter-2026-results/2457096",
+        "https://ir.fortrea.com/news-events/news-releases",
+        "https://ir.fortrea.com/news-releases/news-release-details/fortrea-announces-date-third-quarter-2026-financial-results-and",
+        "https://www.gurufocus.com/news/9150493/fortrea-holdings-inc-reports-q3-2026-revenue-of-6915-million-and-adjusted-eps-of-028-exceeding-analyst-estimates",
+        "https://quartr.com/companies/fortrea-holdings-inc_15045",
+        "https://www.globenewswire.com/news-release/2026/10/29/3391053/0/en/fortrea-reports-third-quarter-2026-results.html",
+        "https://www.panabee.com/news/fortrea-earnings-q3-2026",
+        "https://stockstory.org/us/stocks/nasdaq/ftre/news/earnings/fortrea-nasdaqftre-surprises-with-strong-q3-2026",
+        "https://www.biospace.com/fortrea-reports-third-quarter-2023-results",
+        "https://uk.finance.yahoo.com/quote/FTRE/",
+        "https://tradersunion.com/currencies/forecast/ftre-usd/",
+        "https://www.cnn.com/markets/stocks/FTRE",
+        "https://markets.financialcontent.com/stocks/article/stockstory-2026-10-28-earnings-to-watch-fortrea-ftre-reports-q3-results-tomorrow",
+        "https://www.thecerbatgem.com/2026/10/28/fortrea-nasdaqftre-reaches-new-12-month-high-whats-next.html",
+        "https://www.dailypolitical.com/2026/10/22/fortrea-nasdaqftre-price-target-raised-to-24-00.html",
+        "https://www.defenseworld.net/2026/10/21/fortrea-nasdaqftre-hits-new-1-year-high-on-analyst-upgrade.html",
+        "https://www.defenseworld.net/2026/10/21/ubs-group-issues-positive-forecast-for-fortrea-nasdaqftre-stock-price.html",
+        "https://www.marketbeat.com/stocks/NASDAQ/FTRE/forecast",
+        "https://benzinga.com/quote/FTRE/analyst-ratings",
+        "https://natlawreview.com/press-releases/fortrea-holdings-inc-ftre-investigation-bronstein-gewirtz-grossman-llc-2",
+        "https://www.tipranks.com/news/class-action/court-dismisses-fortrea-holdings-ftre-securities-lawsuit-over-spin-off-cost-and-backlog-claims",
+        "https://www.morningstar.com/news/business-wire/20260723022386/kaskela-law-firm-announces-investigation-of-fortrea-holdings-inc-ftre-and-encourages-long-term-ftre-shareholders-with-investment-losses-to-contact-the-firm",
+        "https://www.businesswire.com/news/home/20260723022386/en/Kaskela-Law-Firm-Announces-Investigation-of-Fortrea-Holdings-Inc.-FTRE-and-Encourages-Long-Term-FTRE-Shareholders-with-Investment-Losses-to-Contact-the-Firm",
+        "https://ir.fortrea.com/static-files/23370556-bb80-446a-aade-c8c5ad55c36b",
+        "https://www.prnewswire.com/news-releases/fortrea-investigation-initiated-kahn-swick--foti-llc-investigates-the-officers-and-directors-of-fortrea-holdings-inc---ftre-302665810.html",
+        "https://intellectia.ai/news/stock/fortrea-holdings-under-investigation-by-kahn-swick--foti-amid-disappointing-financials",
+        "https://shareholdersfoundation.com/fortrea-holdings-inc-nasdaq-ftre-investor-securities-class-action-lawsuit-06022025",
+        "https://www.businesswire.com/news/home/20251011709481/en",
+        "https://www.marketscreener.com/news/fortrea-holdings-insider-bought-shares-worth-407-150-according-to-a-recent-sec-filing-ce7c5ed3d18cf525",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000119/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000111/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000092189524001325/sc13da206297346_05282024.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000140/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000138/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000116/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000196504026000134/form4.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000092189525000590/ex1to13da406297346_02242025.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000092189525000590/ex1to13da406297346_02242025.htm",
+        "https://biobuzz.io/news/fortrea-closes-45-million-deal-for-worldwide-clinical-trials-early-phase-division/",
+        "https://www.morningstar.com/news/globe-newswire/9848525/fortrea-completes-acquisition-of-the-early-phase-services-division-from-worldwide-clinical-trials",
+        "https://www.worldwide.com/newsroom/fortrea-to-acquire-clinical-pharmacology-unit-and-bioanalytical-laboratory-operations-from-worldwide-clinical-trials/",
+        "https://www.theglobeandmail.com/investing/markets/markets-news/GlobeNewswire/4395660/fortrea-to-acquire-clinical-pharmacology-unit-and-bioanalytical-laboratory-operations-from-worldwide-clinical-trials/",
+        "https://www.bernama.com/en/general/news.php?id=2624600",
+        "https://manilatimes.net/2026/10/23/tmt-newswire/globenewswire/fortrea-and-omico-collaboration-to-advance-biomarker-led-oncology-drug-development/2452289/amp",
+        "https://www.clinicaltrialvanguard.com/clinical-trial-ops-brief/fortreas-45m-early-phase-deal-sets-a-90-day-test-for-sponsors/",
+        "https://www.globenewswire.com/news-release/2026/10/20/3384838/0/id/fortrea-rampungkan-akuisisi-divisi-early-phase-services-dari-worldwide-clinical-trials.html",
+        "https://www.globenewswire.com/news-release/2026/10/20/3384838/0/de/fortrea-schlie%C3%9Ft-die-%C3%BCbernahme-des-gesch%C3%A4ftsbereichs-early-phase-services-von-worldwide-clinical-trials-ab.html",
+        "https://ir.fortrea.com/node/9256/html",
+        "https://pluang.com/en/news-feed/fortrea-tunjuk-jason-knoblauch-sebagai-cfo",
+        "https://www.tradingview.com/news/tradingview:b69769ae22748:0-fortrea-reinstates-jason-knoblauch-as-cfo-david-smith-steps-down-as-interim-cfo/",
+        "https://www.tradingview.com/news/tradingview:0da7549400c20:0-fortrea-names-jason-f-knoblauch-as-cfo-jill-mcconnell-to-step-down/",
+        "https://contracts.justia.com/companies/fortrea-holdings-inc-102083/contract/1379821/",
+        "https://www.stocktitan.net/sec-filings/FTRE/8-k-fortrea-holdings-inc-reports-material-event-219400cacde2.html",
+        "https://www.stocktitan.net/sec-filings/FTRE/10-q-fortrea-holdings-inc-quarterly-earnings-report-ee17cb6856d4.html",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504024000036/ftre-20240331.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504024000064/ftre-20240930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504024000054/Financial_Report.xlsx",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504024000054/ftre-20240630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504025000050/ftre-20250630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504024000064/Financial_Report.xlsx",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504025000027/ftre-20250331.htm",
+        "https://www.sec.gov/Archives/edgar/data/1965040/000196504023000043/Financial_Report.xlsx",
+        "https://www.sec.gov/Archives/edgar/data/0001965040/000162828026030496/ftre-20260331.htm",
+        "https://www.fool.com/earnings/call-transcripts/2026/05/05/fortrea-ftre-q1-2026-earnings-transcript/"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Fortrea rates Sell by a single point: strong share price momentum against shrinking revenue and thin margins.",
+    "thesis": "Fortrea scores 44, one point below the Hold band, as weak fundamentals outweigh an exceptional price trend. Growth scores 22, with a TTM revenue decline of 2.1%, a latest-quarter revenue decline of 4.5% year on year, and growth slowed by 2.2 pp from the previous quarter. Quality (33) and balance sheet (28) are also weak: operating margin is -0.4%, FCF margin excluding prepayments is 2.8% (7.3% reported), diluted share count up 4.6% year on year, and net debt is 4.52 times FCF with cash covering only 0.16 of debt. Valuation scores 32; P/S of 0.9x is low in absolute terms, but P/FCF is 32.5x on FCF excluding prepayments, EBIT is negative, and the FCF yield sits 1.9 pp below the 10-year Treasury yield, while the stock is expensive against its own history on P/S (more expensive than at 30 of the last 32 month-ends). Offsetting this, trend scores 100, with the price at its 52-week high and shares up 90.0% from 12 months ago to 1 month ago, and news is mildly positive (61) after a Q3 beat and raised guidance midpoints.",
+    "key_risks": [
+      "Revenue keeps shrinking, with a latest-quarter revenue decline of 4.5% year on year and $558 million of backlog removed for inactive trials.",
+      "Cash flow leans on customer prepayments: contract liabilities rose $120.3M, and FCF excluding them gives a much thinner 2.8% margin.",
+      "Leverage is meaningful, with net debt at 4.52 times FCF and cash to debt of 0.16.",
+      "After a run to its 52-week high, 65.4% above its 200-day average, the shares are exposed to a sharp pullback if momentum fades.",
+      "Ongoing dilution, with diluted share count up 4.6% year on year."
+    ],
+    "what_would_change": [
+      "Just 1 more point would lift the score to Hold (45), for example from revenue returning to growth or the guidance raise showing up in a better growth score.",
+      "Sustained positive operating margin and higher free cash flow excluding prepayments would lift quality, balance sheet and valuation scores.",
+      "A fall to Strong Sell needs a 15-point drop below 30, most plausibly from the trend score unwinding from 100 alongside further revenue declines or negative news."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2117,
+        "output_tokens": 280,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2117,
+            "output_tokens": 280,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0141,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 108325,
+        "output_tokens": 4513,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 108325,
+            "output_tokens": 4513,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3318,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7901,
+        "output_tokens": 3222,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7901,
+            "output_tokens": 3222,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.096,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3990,
+        "output_tokens": 843,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3990,
+            "output_tokens": 843,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0328,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4747,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 25.88,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 24.43
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:03",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  }
+}

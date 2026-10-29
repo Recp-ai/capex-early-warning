@@ -1,0 +1,1602 @@
+{
+  "run_id": "2026-10-29T12:05:03Z",
+  "generated_at": "2026-10-29T12:05:53+00:00",
+  "ticker": "ABCL",
+  "sec_ticker": "ABCL",
+  "cik": "0001703057",
+  "name": "AbCellera Biologics Inc.",
+  "sector": "Pharmaceutical Preparations",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 39,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      },
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "excess prepayments: contract liabilities rose $32.6M over the year, $3.6M more than revenue growth of 101.3% explains (operating cash flow not positive; threshold 25%); the lower normalised FCF is scored"
+      },
+      {
+        "issue": "fcf_spike",
+        "points": 1.0,
+        "text": "FCF spike (cause not in tagged data): FCF $23.8M in the quarter to 2026-06-30 on revenue of $4.0M; scored on normalised FCF (median quarterly margin -458.6% of the last 8 quarters x TTM revenue)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 6
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 10
+    }
+  },
+  "composite": {
+    "score": 39,
+    "raw": 39.25,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -76.29,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 101.28,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -172.63,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 30,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": -340.25,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -458.58,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": "normalised FCF; reported FCF margin -180.8%"
+        },
+        "sbc_pct_revenue": {
+          "value": 77.22,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 2.36,
+          "score": 46.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 9,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 85.1,
+          "weight": 0.6,
+          "note": "net cash, negative FCF: 4.5 years of cash at the current burn"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt: no debt tag with a value in the last 8 quarters"
+        }
+      },
+      "coverage": 1.0,
+      "score": 91,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 63.201,
+          "score": 0.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative normalised FCF"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -12.246,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": "normalised FCF"
+        },
+        "price_to_sales_percentile": {
+          "value": 98.2,
+          "score": 1.8,
+          "weight": 0.1,
+          "note": "cheaper than now in 98.2% of 57 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 42 of 57 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 41 of 41 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 0,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 11.34,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 101.55,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 156.85,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 247.99,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 247.16,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -7.96,
+          "score": 68.7,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 95,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 13.64,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 4050000.0,
+    "revenue_yoy_q": -76.29,
+    "revenue_yoy_q_prev": 96.34,
+    "acceleration_pp": -172.63,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 66173000.0,
+    "revenue_yoy_ttm": 101.28,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": -225156000.0,
+    "operating_cash_flow_ttm": -94937000.0,
+    "capex_ttm": 24734000.0,
+    "sbc_ttm": 51098000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -119671000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": -340.25,
+    "fcf_margin_pct": -180.85,
+    "capex_intensity_pct": 37.38,
+    "sbc_pct_revenue": 77.22,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 32573000.0,
+      "source": "cash flow statement: IncreaseDecreaseInDeferredRevenue",
+      "base": 28582000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 101.28,
+      "expected": 28948012.349434238,
+      "excess": 3624987.650565762,
+      "max_share_of_ocf": 0.25,
+      "applies": true,
+      "share_of_ocf": null
+    },
+    "fcf_spike": {
+      "triggered": true,
+      "reasons": [
+        "FCF $23.8M in the quarter to 2026-06-30 on revenue of $4.0M"
+      ],
+      "fcf_margin_pct": -180.85,
+      "fcf_margin_year_earlier_pct": -422.76,
+      "median_margin_pct": -458.58,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4,
+      "normalised_fcf": -303455187.85625404
+    },
+    "fcf_basis": "normalised",
+    "fcf_scored_ttm": -303455187.85625404,
+    "fcf_ex_prepayments_ttm": -123295987.65056576,
+    "fcf_ex_prepayments_margin_pct": -186.32,
+    "fcf_normalised_ttm": -303455187.85625404,
+    "fcf_normalised_margin_pct": -458.58,
+    "fcf_scored_margin_pct": -458.58,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 120065000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 420039000.0,
+      "investment_tags": [
+        {
+          "tag": "CashCashEquivalentsAndShortTermInvestments",
+          "val": 540104000.0
+        }
+      ],
+      "investment_note": "CashCashEquivalentsAndShortTermInvestments minus cash",
+      "cash_and_investments": 540104000.0,
+      "debt": 0.0,
+      "debt_tags": [],
+      "debt_parts": [],
+      "debt_note": "no debt: no debt tag with a value in the last 8 quarters",
+      "net_debt": -540104000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 305557294.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 2.36,
+    "shares_outstanding": {
+      "val": 306611466.0,
+      "end": "2026-08-03",
+      "filed": "2026-08-05",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 6599000.0,
+        "revenue_yoy_pct": -93.49,
+        "operating_margin_pct": -831.79,
+        "fcf": -20437000.0,
+        "diluted_shares": 289496841.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 9179000.0,
+        "revenue_yoy_pct": -57.4,
+        "operating_margin_pct": -719.61,
+        "fcf": -34042000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 9954000.0,
+        "revenue_yoy_pct": -18.36,
+        "operating_margin_pct": -551.48,
+        "fcf": -65848000.0,
+        "diluted_shares": 292723901.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 7323000.0,
+        "revenue_yoy_pct": -27.18,
+        "operating_margin_pct": -1276.17,
+        "fcf": -50076000.0,
+        "diluted_shares": 294217013.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 6507000.0,
+        "revenue_yoy_pct": -1.39,
+        "operating_margin_pct": -1439.42,
+        "fcf": -47398000.0,
+        "diluted_shares": 294851945.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 5050000.0,
+        "revenue_yoy_pct": -44.98,
+        "operating_margin_pct": -1440.69,
+        "fcf": -23630000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 4235000.0,
+        "revenue_yoy_pct": -57.45,
+        "operating_margin_pct": -1479.57,
+        "fcf": -22190000.0,
+        "diluted_shares": 297692663.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 17084000.0,
+        "revenue_yoy_pct": 133.29,
+        "operating_margin_pct": -290.24,
+        "fcf": -45769000.0,
+        "diluted_shares": 298508601.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 8955000.0,
+        "revenue_yoy_pct": 37.62,
+        "operating_margin_pct": -851.79,
+        "fcf": -61522000.0,
+        "diluted_shares": 298875174.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 44853000.0,
+        "revenue_yoy_pct": 788.18,
+        "operating_margin_pct": -63.72,
+        "fcf": -44586000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 8315000.0,
+        "revenue_yoy_pct": 96.34,
+        "operating_margin_pct": -691.75,
+        "fcf": -37354000.0,
+        "diluted_shares": 303074605.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 4050000.0,
+        "revenue_yoy_pct": -76.29,
+        "operating_margin_pct": -1550.05,
+        "fcf": 23791000.0,
+        "diluted_shares": 305557294.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 13.64,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 306611466.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-03"
+    },
+    "market_cap": 4182180396.24,
+    "enterprise_value": 3642076396.24,
+    "price_to_sales": 63.201,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 1.582,
+    "fcf_yield_pct": -7.256,
+    "ebit_yield_pct": -6.182,
+    "fcf_negative": true,
+    "ebit_negative": true,
+    "fcf_basis": "normalised",
+    "price_to_fcf_reported": null,
+    "fcf_yield_reported_pct": -2.861,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -12.246,
+    "history": [
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 7.389,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.535,
+        "fcf_yield_pct": -1.277,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 8.271,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.091,
+        "fcf_yield_pct": -1.141,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 6.506,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.37,
+        "fcf_yield_pct": -1.45,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 4.853,
+        "price_to_fcf": 35.989,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.605,
+        "fcf_yield_pct": 2.779,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 6.783,
+        "price_to_fcf": 50.299,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.743,
+        "fcf_yield_pct": 1.988,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 6.394,
+        "price_to_fcf": 47.418,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.639,
+        "fcf_yield_pct": 2.109,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 5.993,
+        "price_to_fcf": 44.441,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.686,
+        "fcf_yield_pct": 2.25,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 5.55,
+        "price_to_fcf": 41.154,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.019,
+        "fcf_yield_pct": 2.43,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 6.638,
+        "price_to_fcf": 49.227,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 15.064,
+        "fcf_yield_pct": 2.031,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 6.738,
+        "price_to_fcf": 49.968,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.841,
+        "fcf_yield_pct": 2.001,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 5.304,
+        "price_to_fcf": 39.33,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.855,
+        "fcf_yield_pct": 2.543,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 5.513,
+        "price_to_fcf": 40.883,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.139,
+        "fcf_yield_pct": 2.446,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 5.448,
+        "price_to_fcf": 13.738,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.356,
+        "fcf_yield_pct": 7.279,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 4.89,
+        "price_to_fcf": 12.331,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.449,
+        "fcf_yield_pct": 8.109,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 4.397,
+        "price_to_fcf": 11.088,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.742,
+        "fcf_yield_pct": 9.018,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 11.079,
+        "price_to_fcf": 266.468,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.026,
+        "fcf_yield_pct": 0.375,
+        "ebit_yield_pct": -4.044
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 10.268,
+        "price_to_fcf": 246.971,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.739,
+        "fcf_yield_pct": 0.405,
+        "ebit_yield_pct": -4.401
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 12.287,
+        "price_to_fcf": 295.524,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 8.139,
+        "fcf_yield_pct": 0.338,
+        "ebit_yield_pct": -3.609
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 10.846,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.22,
+        "fcf_yield_pct": -4.211,
+        "ebit_yield_pct": -8.339
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 9.154,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 10.924,
+        "fcf_yield_pct": -4.989,
+        "ebit_yield_pct": -10.12
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 8.179,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.226,
+        "fcf_yield_pct": -5.584,
+        "ebit_yield_pct": -11.542
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 27.058,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.696,
+        "fcf_yield_pct": -1.688,
+        "ebit_yield_pct": -17.541
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 32.803,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.048,
+        "fcf_yield_pct": -1.392,
+        "ebit_yield_pct": -14.111
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 29.356,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.406,
+        "fcf_yield_pct": -1.556,
+        "ebit_yield_pct": -15.987
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 38.402,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.604,
+        "fcf_yield_pct": -2.734,
+        "ebit_yield_pct": -33.901
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 34.448,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.903,
+        "fcf_yield_pct": -3.048,
+        "ebit_yield_pct": -43.18
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 28.745,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.479,
+        "fcf_yield_pct": -3.652,
+        "ebit_yield_pct": -71.348
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 32.063,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.119,
+        "fcf_yield_pct": -6.972,
+        "ebit_yield_pct": -50.556
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 24.211,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.13,
+        "fcf_yield_pct": -9.233,
+        "ebit_yield_pct": -134.9
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 26.665,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.75,
+        "fcf_yield_pct": -8.384,
+        "ebit_yield_pct": -88.671
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 22.786,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.389,
+        "fcf_yield_pct": -14.934,
+        "ebit_yield_pct": -325.075
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 23.142,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.321,
+        "fcf_yield_pct": -14.704,
+        "ebit_yield_pct": -284.638
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 24.299,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.115,
+        "fcf_yield_pct": -14.004,
+        "ebit_yield_pct": -202.693
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 26.924,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.714,
+        "fcf_yield_pct": -15.881,
+        "ebit_yield_pct": -126.067
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 26.209,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.816,
+        "fcf_yield_pct": -16.315,
+        "ebit_yield_pct": -139.536
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 28.355,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.527,
+        "fcf_yield_pct": -15.08,
+        "ebit_yield_pct": -105.667
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 26.387,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.79,
+        "fcf_yield_pct": -18.044,
+        "ebit_yield_pct": -232.776
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 22.763,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.393,
+        "fcf_yield_pct": -20.916,
+        "ebit_yield_pct": -1024.082
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 26.642,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.753,
+        "fcf_yield_pct": -17.871,
+        "ebit_yield_pct": -220.763
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 26.015,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.844,
+        "fcf_yield_pct": -19.064,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 44.174,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.264,
+        "fcf_yield_pct": -11.227,
+        "ebit_yield_pct": -77.565
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 57.568,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.737,
+        "fcf_yield_pct": -8.615,
+        "ebit_yield_pct": -44.461
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 37.954,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.635,
+        "fcf_yield_pct": -13.067,
+        "ebit_yield_pct": -40.113
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 45.672,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.19,
+        "fcf_yield_pct": -10.859,
+        "ebit_yield_pct": -29.382
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 50.393,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.984,
+        "fcf_yield_pct": -9.842,
+        "ebit_yield_pct": -25.249
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 31.559,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.169,
+        "fcf_yield_pct": -18.782,
+        "ebit_yield_pct": -42.201
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 28.937,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.456,
+        "fcf_yield_pct": -20.484,
+        "ebit_yield_pct": -49.627
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 30.629,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.265,
+        "fcf_yield_pct": -19.353,
+        "ebit_yield_pct": -44.567
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 14.353,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.967,
+        "fcf_yield_pct": -41.296,
+        "ebit_yield_pct": -39.872
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 13.876,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 7.207,
+        "fcf_yield_pct": -42.716,
+        "ebit_yield_pct": -42.682
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 16.501,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 6.06,
+        "fcf_yield_pct": -35.923,
+        "ebit_yield_pct": -30.76
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 23.609,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.236,
+        "fcf_yield_pct": -21.007,
+        "ebit_yield_pct": -15.526
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 30.037,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.329,
+        "fcf_yield_pct": -16.511,
+        "ebit_yield_pct": -11.308
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 21.849,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.577,
+        "fcf_yield_pct": -22.699,
+        "ebit_yield_pct": -17.292
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 53.01,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.886,
+        "fcf_yield_pct": -8.651,
+        "ebit_yield_pct": -7.587
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 67.37,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.484,
+        "fcf_yield_pct": -6.807,
+        "ebit_yield_pct": -5.747
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 62.983,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.588,
+        "fcf_yield_pct": -7.281,
+        "ebit_yield_pct": -6.207
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 63.201,
+        "current_yield_pct": 1.582,
+        "points": 57,
+        "median": 23.607,
+        "low": 4.397,
+        "high": 67.385,
+        "negative_points": 0,
+        "median_yield_pct": 4.236,
+        "percentile": 98.2,
+        "cheaper_points": 56,
+        "dearer_points": 1,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -7.256,
+        "points": 57,
+        "median": null,
+        "low": 11.089,
+        "high": null,
+        "negative_points": 42,
+        "median_yield_pct": -6.972,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 42 of 57 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -6.182,
+        "points": 41,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 41,
+        "median_yield_pct": -40.113,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 41 of 41 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 56 of the last 57 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 42 of 57 month-ends)",
+          "not_comparable": "negative now and in 42 of 57 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 41 of 41 month-ends)",
+          "not_comparable": "negative now and in 41 of 41 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 13.64,
+    "date": "2026-10-28",
+    "ma50": 12.25,
+    "ma200": 6.77,
+    "vs_ma50_pct": 11.34,
+    "vs_ma200_pct": 101.55,
+    "momentum_12_1_pct": 156.85,
+    "high_52w": 14.82,
+    "drawdown_52w_pct": -7.96,
+    "return_rs_pct": 257.07,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 247.99,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 247.16
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001703057-26-000044",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-06-30",
+    "period_source": "companyfacts",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1703057/000170305726000044/q22026earningspressrelease.htm",
+    "summary": "",
+    "read": true,
+    "guidance": [],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001703057-26-000027",
+      "filing_date": "2026-05-11",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1703057/000170305726000027/q12026earningspressrelease.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "There were no guidance changes or results in the window. AbCellera only scheduled its Q3 report for November 9.",
+        "evidence": [
+          {
+            "claim": "AbCellera scheduled its Q3 2026 results for 2026-11-09.",
+            "url": "https://www.stocktitan.net/overview/ABCL/",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "JPMorgan and UBS both started coverage with bullish ratings and targets of $17 and $18. Both reports come from secondary-tier sites, and there were no downgrades in the window.",
+        "evidence": [
+          {
+            "claim": "JPMorgan initiated coverage of AbCellera at Overweight with a $17 price target.",
+            "url": "https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-abcellera-stock-coverage-with-overweight-rating-93CH-4923064",
+            "event_date": "2026-09-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "UBS initiated AbCellera at Buy with an $18 price target, citing menopause drug potential.",
+            "url": "https://ca.investing.com/news/stock-market-news/ubs-initiates-abcellera-stock-with-buy-rating-on-menopause-drug-potential-93CH-4875205",
+            "event_date": "2026-10-12",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "MarketBeat consensus rating is Moderate Buy with an average price target of $13.89.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-abcellera-biologics-inc-nasdaq-abcl-stock-has-consensus-target-price-of-1389-2026-10-26/",
+            "event_date": "2026-10-26",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No customer wins, losses or contract changes were found in the window. The Jazz collaboration dates from June and is background only.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions were found in the window. The latest insider buying by directors and the CFO was in August, which is outside the window.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "AbCellera presented ABCL635 Phase 1/2 data at the Menopause Society meeting, but no coverage of the results was found. The positive Phase 2 top-line data came out before the window.",
+        "evidence": [
+          {
+            "claim": "AbCellera announced presentation of Phase 1/2 data for ABCL635 at the TMS 2026 Annual Meeting, including Phase 1 multiple-ascending-dose safety data and Phase 2 patient-reported outcomes.",
+            "url": "https://investors.abcellera.com/news/news-releases/2026/AbCellera-Announces-Presentation-of-Phase-12-Data-for-ABCL635-at-TMS-2026-Annual-Meeting/default.aspx",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 6/6"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**AbCellera (ABCL), 2026-09-29 to 2026-10-29**\n\n**1. Guidance / results**\n- No guidance change, pre-announcement or results in the window. The company scheduled Q3 results for 2026-11-09 (announced 2026-10-01). — 2026-10-01 — https://www.stocktitan.net/overview/ABCL/\n- Most recent results were Q2 2026, reported 2026-08-05, before the window. — 2026-08-05 — https://www.abcellera.com/news\n- The company said it would present Phase 1/2 data for ABCL635 at the Menopause Society meeting on 2026-10-22. The release says this includes new Phase 1 multiple-ascending-dose safety data and Phase 2 patient-reported outcomes. — 2026-10-22 — https://investors.abcellera.com/news/news-releases/2026/AbCellera-Announces-Presentation-of-Phase-12-Data-for-ABCL635-at-TMS-2026-Annual-Meeting/default.aspx\n- I found no coverage of the poster's content, so I can't report what it showed.\n\n**2. Analyst actions**\n- JPMorgan (Brian Cheng) initiated at Overweight with a $17 target. It cited a physician survey of 13 doctors. — 2026-09-29 — https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-abcellera-stock-coverage-with-overweight-rating-93CH-4923064\n- UBS initiated at Buy with an $18 target. It sees about $13B in menopause commercial opportunity by 2035. — 2026-10-12 — https://ca.investing.com/news/stock-market-news/ubs-initiates-abcellera-stock-with-buy-rating-on-menopause-drug-potential-93CH-4875205\n  - The date is from MarketBeat's listing of the initiation: https://www.marketbeat.com/stocks/NASDAQ/ABCL/news/\n  - A MarketBeat item dated 2026-10-14 calls this an upgrade to \"Strong-Buy\" at UBS. That looks like the same initiation relabelled, not a separate action. — 2026-10-14 — https://www.marketbeat.com/stocks/NASDAQ/ABCL/news/\n- Consensus figures differ by source:\n  - MarketBeat: \"Moderate Buy\" from 10 analysts, average target $13.89. — 2026-10-26 — https://www.marketbeat.com/instant-alerts/consensus-abcellera-biologics-inc-nasdaq-abcl-stock-has-consensus-target-price-of-1389-2026-10-26/\n  - StockAnalysis: average target $16.82. — date unknown — https://stockanalysis.com/stocks/abcl/\n- Just before the window:\n  - Goldman Sachs resumed at Neutral with a $13 target. — 2026-09-22/24 (sources conflict: Investing.com says Tuesday, MarketBeat says Thursday) — https://www.investing.com/news/analyst-ratings/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-4914896\n  - Wall Street Zen cut the stock from hold to sell. — 2026-09-26 — https://www.marketbeat.com/instant-alerts/consensus-abcellera-biologics-inc-nasdaq-abcl-stock-has-consensus-target-price-of-1389-2026-10-26/\n- I found no downgrades or target changes in the window.\n\n**3. Litigation / regulation**\n- Nothing material found: no lawsuits, investigations, fines or approvals in the window.\n\n**4. Customer concentration**\n- No customer wins, losses or contract changes found in the window.\n- The most recent deal was a Jazz Pharmaceuticals collaboration on T-cell engager antibodies, before the window. It pays $56M upfront, plus $28M when a third program starts. — 2026-06-17 — https://investor.jazzpharma.com/news-releases/news-release-details/jazz-pharmaceuticals-and-abcellera-announce-collaboration\n- The Jazz deal also carries up to $792M per program in option fees and milestones. — 2026-06-17 — https://www.stocktitan.net/sec-filings/ABCL/8-k-ab-cellera-biologics-inc-reports-material-event-2b7ac19b0dda.html\n- I found no concentration data for the window.\n\n**5. Insider activity**\n- I found no Form 4 transactions dated in the window. The latest I found were August purchases, before the window:\n  - Director Michael Hayden (via Genworks 2 Consulting): bought 53,613 shares at $10.64 on 2026-08-24, after earlier purchases. — 2026-08-24 — https://www.sec.gov/Archives/edgar/data/0001703057/000162828026058684/wk-form4_1787606506.xml\n  - Director John Montalbano: bought 10,000 shares at $11.03. — 2026-08-18 — https://www.sec.gov/Archives/edgar/data/0001703057/000183442326000008/wk-form4_1787078721.xml\n  - CFO Andrew Booth: bought 37,200 shares at $10.32. — 2026-08-14 — https://www.sec.gov/Archives/edgar/data/0001703057/000183441126000008/wk-form4_1786723463.xml\n- Search coverage of Form 4s may be incomplete. Check EDGAR directly for any filings in October.\n- I found no 10b5-1 or clustered selling.\n\n**6. Product / competitive**\n- ABCL635 (NK3R antibody for menopausal hot flashes) is the lead asset. Phase 2 top-line data were positive and announced 2026-08-10, before the window. — 2026-08-10 — https://investors.abcellera.com/news/news-releases/2026/AbCellera-Announces-Positive-Top-Line-Phase-2-Clinical-Trial-Results-for-ABCL635-Demonstrating-Significant-Reduction-in-Frequency-and-Severity-of-Vasomotor-Symptoms-and-a-Favorable-Tolerability-Profile/default.aspx\n- The Phase 2 trial enrolled 92 women and used a single 600 mg dose. The mean reduction was 8.8 moderate-to-severe events per day at week 4, versus 3.5 for placebo. — 2026-08-10 — https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-abcl/abcellera-biologics/news/did-positive-phase-2-results-just-shift-abcellera-biologics/amp\n- The Simply Wall St piece (a secondary source) notes the space is crowded with small-molecule competitors. — 2026-10-26 — same URL.\n- Company news page lists AbCellera presenting at investor conferences in November. — 2026-10-22 — https://www.abcellera.com/news\n- No launches, delays or pricing news found.\n\n**Gaps:** The search tool returned nothing for the window on litigation, customers or insider trades. That means the searches found nothing, not that I confirmed nothing happened.",
+      "urls": [
+        "https://www.abcellera.com/news",
+        "https://investors.abcellera.com/news/news-releases/2026/AbCellera-Announces-Presentation-of-Phase-12-Data-for-ABCL635-at-TMS-2026-Annual-Meeting/default.aspx",
+        "https://finance.yahoo.com/healthcare/articles/abcellera-announces-presentation-phase-1-200500321.html",
+        "https://www.marketbeat.com/stocks/NASDAQ/ABCL/news/",
+        "https://www.gurufocus.com/news/9116124/abcellera-abcl-to-present-phase-12-trial-data-for-abcl635-at-upcoming-menopause-society-meeting",
+        "https://www.cnn.com/markets/stocks/ABCL",
+        "https://www.marketbeat.com/stocks/NASDAQ/ABCL/",
+        "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-abcl/abcellera-biologics/news/did-positive-phase-2-results-just-shift-abcellera-biologics/amp",
+        "https://www.stocktitan.net/overview/ABCL/",
+        "https://www.barchart.com/story/news/1099214/abcellera-to-report-first-quarter-2026-financial-results-on-may-11-2026",
+        "https://www.benzinga.com/quote/ABCL/price-targets",
+        "https://www.marketbeat.com/instant-alerts/consensus-abcellera-biologics-inc-nasdaq-abcl-stock-has-consensus-target-price-of-1389-2026-10-26/",
+        "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-abcl/abcellera-biologics/future",
+        "https://stockanalysis.com/stocks/abcl/",
+        "https://stockanalysis.com/stocks/abcl/forecast/",
+        "https://www.marketscreener.com/quote/stock/ABCELLERA-BIOLOGICS-INC-116373768/consensus/",
+        "https://public.com/stocks/abcl/forecast-price-target",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/abcl/stock-forecast",
+        "https://www.benzinga.com/stock/abcl/ratings",
+        "https://finance.yahoo.com/news/notable-abcellera-biologics-insider-makes-163455097.html",
+        "https://fintel.io/n/us/abcl",
+        "https://www.sec.gov/Archives/edgar/data/1703057/000162828025008689/abcellerainsidertradingc.htm",
+        "https://www.sec.gov/Archives/edgar/data/1703057/000119312521196310/d184272d424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/1703057/000156459021048051/abcl-424b3.htm",
+        "https://www.stocktitan.net/sec-filings/ABCL/form-4-ab-cellera-biologics-inc-insider-trading-activity-55fcd138dc18.html",
+        "https://www.stocktitan.net/sec-filings/ABCL/form-4-ab-cellera-biologics-inc-insider-trading-activity-f323f80624be.html",
+        "https://www.stocktitan.net/sec-filings/ABCL/form-4-ab-cellera-biologics-inc-insider-trading-activity-a56937123b85.html",
+        "https://www.benzinga.com/news/23/11/35702306/abcellera-biologics-director-trades-companys-stock",
+        "https://synapse.patsnap.com/drug/e3d769e280b241459c797eff94dfe546",
+        "https://investors.abcellera.com/news/news-releases/2026/AbCellera-Announces-Positive-Top-Line-Phase-2-Clinical-Trial-Results-for-ABCL635-Demonstrating-Significant-Reduction-in-Frequency-and-Severity-of-Vasomotor-Symptoms-and-a-Favorable-Tolerability-Profile/default.aspx",
+        "https://investors.abcellera.com/news/news-releases/2025/AbCellera-Reports-Q2-2025-Business-Results--First-Participants-Dosed-in-a-Phase-1-Clinical-Trial-of-ABCL635-for-Vasomotor-Symptoms/default.aspx",
+        "https://investors.abcellera.com/news/news-releases/2026/AbCellera-Reports-Q1-2026-Business-Results--Announces-Positive-Interim-Phase-1-Clinical-Data-for-ABCL635/default.aspx",
+        "https://www.nasdaq.com/press-release/abcellera-reports-q2-2025-business-results-first-participants-dosed-phase-1-clinical",
+        "https://www.abcellera.com/",
+        "https://www.businesswire.com/news/home/20260511135503/en/AbCellera-Reports-Q1-2026-Business-Results-Announces-Positive-Interim-Phase-1-Clinical-Data-for-ABCL635",
+        "https://www.stocktitan.net/sec-filings/ABCL/8-k-ab-cellera-biologics-inc-reports-material-event-7add43ebe8e7.html",
+        "https://www.stocktitan.net/sec-filings/ABCL/8-k-ab-cellera-biologics-inc-reports-material-event-b83a6f889968.html",
+        "https://www.investing.com/news/company-news/jazz-pharmaceuticals-abcellera-partner-on-cancer-antibodies-93CH-4746964",
+        "https://www.thepharmaletter.com/biotech-news/jazz-pharmaceuticals-strikes-research-deal-with-abcellera",
+        "https://finance.yahoo.com/healthcare/articles/jazz-pharmaceuticals-abcellera-partner-antibody-125006964.html",
+        "https://www.contractpharma.com/breaking-news/jazz-pharma-abcellera-collaborate-on-next-gen-t-cell-engaging-antibody-discovery/",
+        "https://finance.yahoo.com/healthcare/articles/jazz-pharmaceuticals-abcellera-biologics-inc-193956887.html",
+        "https://investor.jazzpharma.com/news-releases/news-release-details/jazz-pharmaceuticals-and-abcellera-announce-collaboration",
+        "https://www.pharmaceutical-technology.com/news/jazz-abcellera-sign-t-cell-engagers/",
+        "https://www.sec.gov/Archives/edgar/data/0001232524/000123252426000044/a2q26financialpr.htm",
+        "https://www.stocktitan.net/sec-filings/ABCL/8-k-ab-cellera-biologics-inc-reports-material-event-2b7ac19b0dda.html",
+        "https://www.biospace.com/press-releases/abcellera-announces-presentation-of-phase-1-2-data-for-abcl635-at-tms-2026-annual-meeting",
+        "https://www.investing.com/news/company-news/abcellera-to-present-phase-12-data-on-menopause-drug-candidate-93CH-4939710",
+        "https://rallies.ai/news/abcellera-to-present-phase-12-data-for-menopause-hot-flash-drug-abcl635-at-tms-2026-meeting-a8314285da835444",
+        "https://www.biopharmawatch.com/news/ABCL/abcellera-phase-1-2-data-abcl635-tms-2026",
+        "https://ng.investing.com/news/stock-market-news/abcellera-to-present-phase-12-data-on-menopause-drug-candidate-93CH-2728107",
+        "https://www.stocktitan.net/news/ABCL/ab-cellera-announces-presentation-of-phase-1-2-data-for-abcl635-at-mo5uvlttrciw.html",
+        "https://investorshub.advfn.com/boards/read_msg.aspx?message_id=178027968",
+        "https://investingnews.com/abcellera-announces-presentation-of-phase-1-2-data-for-abcl635-at-tms-2026-annual-meeting/",
+        "https://www.sec.gov/Archives/edgar/data/1703057/000162828025023808/a2025q1fybusinessupdatem.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000183442326000008/wk-form4_1787078721.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000162828026056653/wk-form4_1786647701.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000162828026058684/wk-form4_1787606506.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000162828026057007/wk-form4_1786722614.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000162828026047400/wk-form4_1783376448.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000162828026047396/wk-form4_1783375492.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001703057/000183441126000008/wk-form4_1786723463.xml",
+        "https://kalkinemedia.com/us/news/announcements/abcellera-biologics-director-michael-r-hayden-acquires-46387-shares-at-1037-average-price",
+        "https://insidertradealerts.com/ticker/ABCL/",
+        "https://www.stocktitan.net/sec-filings/ABCL/form-4-ab-cellera-biologics-inc-insider-trading-activity-1b4bb82959a1.html",
+        "https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-abcellera-stock-coverage-with-overweight-rating-93CH-4923064",
+        "https://www.investing.com/news/analyst-ratings/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-4914896",
+        "https://uk.investing.com/news/stock-market-news/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-4881065",
+        "https://ca.investing.com/news/stock-market-news/ubs-initiates-abcellera-stock-with-buy-rating-on-menopause-drug-potential-93CH-4875205",
+        "https://au.investing.com/news/stock-market-news/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-4656767",
+        "https://ca.investing.com/news/stock-market-news/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-4851430",
+        "https://ng.investing.com/news/stock-market-news/goldman-sachs-resumes-abcellera-stock-coverage-with-neutral-rating-93CH-2707633",
+        "https://marketbeat.com/instant-alerts/consensus-abcellera-biologics-inc-nasdaq-abcl-stock-has-consensus-target-price-of-1389-2026-10-26",
+        "https://www.defenseworld.net/2026/09/30/abcellera-biologics-nasdaqabcl-coverage-initiated-by-analysts-at-jpmorgan-chase-co.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "AbCellera rates Sell: a strong share-price run and net cash cannot offset deep losses and a very high valuation.",
+    "thesis": "AbCellera scores 39, a Sell, because weak quality and valuation scores outweigh its strong trend and balance sheet. Quality scores 9, with an operating margin of -340.2%, a normalised FCF margin of -458.6% and stock-based compensation at 77.2% of revenue. Valuation scores 0: P/S of 63.2x is high in absolute terms, the FCF yield is 12.2 pp below the 10-year Treasury yield, and P/S is more expensive than at 56 of the last 57 month-ends. Growth scores 30 because TTM revenue growth of 101.3% hides a latest-quarter revenue decline of 76.3% year on year, with growth slowed by 172.6 pp from the previous quarter. On the positive side, trend scores 95 with the price 101.5% above its 200-day average and only 8.0% below its 52-week high, and the balance sheet scores 91 with no debt and 4.5 years of cash at the current burn.",
+    "key_risks": [
+      "Revenue is lumpy and fell sharply in the latest quarter, a decline of 76.3% year on year.",
+      "Heavy cash burn and stock-based compensation at 77.2% of revenue, with diluted share count up 2.4% year on year.",
+      "A P/S of 63.2x leaves little room for disappointment if the Q3 report on November 9 falls short.",
+      "After shares rose 156.8% from 12 months ago to 1 month ago, a momentum reversal could hit the price hard.",
+      "Pipeline value such as ABCL635 depends on clinical results that have not yet produced revenue."
+    ],
+    "what_would_change": [
+      "A 6-point rise in the score would lift the rating to Hold. Steadier quarterly revenue that improves the growth score, or a narrower operating loss that improves quality, could do it.",
+      "A share-price pullback that lowers P/S from 63.2x could lift the valuation score from 0.",
+      "A 10-point drop would mean Strong Sell. A break in the strong trend score of 95, or weak Q3 results or guidance, could cause that.",
+      "Clear progress toward positive free cash flow would help both quality and valuation."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1265,
+        "output_tokens": 119,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1265,
+            "output_tokens": 119,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0074,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 166251,
+        "output_tokens": 4073,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 166251,
+            "output_tokens": 4073,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.4532,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6899,
+        "output_tokens": 1395,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6899,
+            "output_tokens": 1395,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0555,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3895,
+        "output_tokens": 748,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3895,
+            "output_tokens": 748,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0305,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5466,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 13.64,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 12.83
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:05",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  }
+}

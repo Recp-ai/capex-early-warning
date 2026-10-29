@@ -1,0 +1,3308 @@
+{
+  "run_id": "2026-10-29T12:02:35Z",
+  "generated_at": "2026-10-29T12:04:08+00:00",
+  "ticker": "CAI",
+  "sec_ticker": "CAI",
+  "cik": "0002019410",
+  "name": "Caris Life Sciences, Inc.",
+  "sector": "Services-Medical Laboratories",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 64,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin, FCF margin"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 64 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 1
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 20
+    }
+  },
+  "composite": {
+    "score": 64,
+    "raw": 64.43,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 45.38,
+          "score": 98.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 85.37,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -33.4,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 74,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 15.49,
+          "score": 56.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 6.58,
+          "score": 70.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 335.76,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 45,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 2.16,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 10.123,
+          "score": 32.8,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": 62.487,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 8 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 5 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 8 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.25,
+      "score": null,
+      "missing": "only 25% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 23.53,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 64.98,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 4.3,
+          "score": 52.2,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 90.41,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 89.58,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": 0.0,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 88,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 35.45,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 263712000.0,
+    "revenue_yoy_q": 45.38,
+    "revenue_yoy_q_prev": 78.78,
+    "acceleration_pp": -33.4,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 989605000.0,
+    "revenue_yoy_ttm": 85.37,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 153261000.0,
+    "operating_cash_flow_ttm": 168558000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 65113000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 15.49,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 6.58,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-03-31",
+      "cash": 819901000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 2315000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 2315000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 822216000.0,
+      "debt": 381074000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 381074000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -441142000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 282888610.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 335.76,
+    "shares_outstanding": {
+      "val": 282595186.0,
+      "end": "2026-08-03",
+      "filed": "2026-08-05",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2024-06-30",
+        "revenue": 100049000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -66.98,
+        "fcf": null,
+        "diluted_shares": 35371424.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 101620000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -59.87,
+        "fcf": -71255000.0,
+        "diluted_shares": 35643589.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 129915000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -28.52,
+        "fcf": -41211000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 120915000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -47.93,
+        "fcf": -34027000.0,
+        "diluted_shares": 35623042.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 181398000.0,
+        "revenue_yoy_pct": 81.31,
+        "operating_margin_pct": -9.92,
+        "fcf": 5902000.0,
+        "diluted_shares": 64918988.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 216833000.0,
+        "revenue_yoy_pct": 113.38,
+        "operating_margin_pct": 15.05,
+        "fcf": 55330000.0,
+        "diluted_shares": 297211838.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 292886000.0,
+        "revenue_yoy_pct": 125.44,
+        "operating_margin_pct": 30.19,
+        "fcf": 39690000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 216174000.0,
+        "revenue_yoy_pct": 78.78,
+        "operating_margin_pct": 2.44,
+        "fcf": 22534000.0,
+        "diluted_shares": 282562013.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 263712000.0,
+        "revenue_yoy_pct": 45.38,
+        "operating_margin_pct": 10.21,
+        "fcf": null,
+        "diluted_shares": 282888610.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 35.45,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 282595186.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-03"
+    },
+    "market_cap": 10017999343.7,
+    "enterprise_value": 9576857343.7,
+    "price_to_sales": 10.123,
+    "price_to_fcf": null,
+    "ev_to_ebit": 62.487,
+    "sales_yield_pct": 9.878,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": 1.6,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 7.252,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 13.79,
+        "fcf_yield_pct": -8.484,
+        "ebit_yield_pct": -10.007
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 7.706,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 12.977,
+        "fcf_yield_pct": -7.984,
+        "ebit_yield_pct": -9.327
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 5.207,
+        "price_to_fcf": 38.268,
+        "ev_to_ebit": 39.533,
+        "sales_yield_pct": 19.204,
+        "fcf_yield_pct": 2.613,
+        "ebit_yield_pct": 2.53
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 5.55,
+        "price_to_fcf": 40.786,
+        "ev_to_ebit": 42.402,
+        "sales_yield_pct": 18.019,
+        "fcf_yield_pct": 2.452,
+        "ebit_yield_pct": 2.358
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 4.88,
+        "price_to_fcf": 35.865,
+        "ev_to_ebit": 36.795,
+        "sales_yield_pct": 20.491,
+        "fcf_yield_pct": 2.788,
+        "ebit_yield_pct": 2.718
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 7.287,
+        "price_to_fcf": null,
+        "ev_to_ebit": 44.171,
+        "sales_yield_pct": 13.724,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 2.264
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 8.756,
+        "price_to_fcf": null,
+        "ev_to_ebit": 53.658,
+        "sales_yield_pct": 11.421,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.864
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 10.134,
+        "price_to_fcf": null,
+        "ev_to_ebit": 62.555,
+        "sales_yield_pct": 9.868,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.599
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 10.123,
+        "current_yield_pct": 9.878,
+        "points": 8,
+        "median": 7.269,
+        "low": 4.88,
+        "high": 10.134,
+        "negative_points": 0,
+        "median_yield_pct": 13.757,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2026-03-31"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 5,
+        "median": 40.783,
+        "low": 35.868,
+        "high": null,
+        "negative_points": 2,
+        "median_yield_pct": 2.452,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2026-03-31"
+      },
+      "ev_to_ebit": {
+        "current": 62.487,
+        "current_yield_pct": 1.6,
+        "points": 8,
+        "median": 48.45,
+        "low": 36.792,
+        "high": null,
+        "negative_points": 2,
+        "median_yield_pct": 2.064,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2026-03-31"
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "8 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "5 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "8 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 35.45,
+    "date": "2026-10-28",
+    "ma50": 28.7,
+    "ma200": 21.49,
+    "vs_ma50_pct": 23.53,
+    "vs_ma200_pct": 64.98,
+    "momentum_12_1_pct": 4.3,
+    "high_52w": 35.45,
+    "drawdown_52w_pct": 0.0,
+    "return_rs_pct": 99.49,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 90.41,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 89.58
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0002019410-26-000053",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000053/cai_ex99-1.htm",
+    "summary": "Caris raised its full-year 2026 revenue guidance to $1.03–$1.04 billion (27%–28% growth) and reaffirmed approximately 20% clinical therapy selection volume growth.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "$1.03 to $1.04 billion",
+        "stated_change": "raised",
+        "sentence": "Raises 2026 revenue guidance to $1.03 to $1.04 billion, representing growth of 27% to 28%",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "$1.03 billion to $1.04 billion",
+        "stated_change": "raised",
+        "sentence": "Caris Life Sciences now expects full year 2026 revenue to be in the range of $1.03 billion to $1.04 billion, representing growth of 27% to 28% compared to full year 2025 and reaffirms its guidance to clinical therapy selection volume growth of approximately 20% compared to full year 2025.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "approximately 20%",
+        "stated_change": "reiterated",
+        "sentence": "Caris Life Sciences now expects full year 2026 revenue to be in the range of $1.03 billion to $1.04 billion, representing growth of 27% to 28% compared to full year 2025 and reaffirms its guidance to clinical therapy selection volume growth of approximately 20% compared to full year 2025.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0002019410-26-000040",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000040/cai_ex99-1.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or new results fell in the last month; the last move was the August 5 raise of FY2026 revenue guidance to $1.03–$1.04 billion. Q3 results are scheduled for November 4, 2026.",
+        "evidence": [
+          {
+            "claim": "Caris will report Q3 2026 results on November 4, 2026.",
+            "url": "https://investor.carislifesciences.com/news-releases/news-release-details/caris-life-sciences-report-third-quarter-2026-financial-results",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Raises 2026 revenue guidance to $1.03 to $1.04 billion, representing growth of 27% to 28%",
+            "url": "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000053/cai_ex99-1.htm",
+            "event_date": "2026-08-05",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 85,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 5/5, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Several brokers raised price targets in October, including BTIG, JPMorgan, Canaccord and TD Cowen, against one minor Weiss Ratings downgrade. All sources are lower-tier aggregators, so the rating is capped at +1.",
+        "evidence": [
+          {
+            "claim": "BTIG raised its price target on Caris Life Sciences to $38 from $33 and kept a Buy rating.",
+            "url": "https://www.tipranks.com/news/the-fly/caris-life-sciences-price-target-raised-to-38-from-33-at-btig-thefly-news",
+            "event_date": "2026-10-27",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "JPMorgan raised its price target on Caris Life Sciences to $35 from $25 and kept an Overweight rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-caris-life-sciences-nasdaq-cai-stock-price-target-raised-at-jpmorgan-chase-co-2026-10-14/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          },
+          {
+            "claim": "Canaccord Genuity raised its price target on Caris Life Sciences to $30 from $22 and kept a Hold rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-caris-life-sciences-nasdaq-cai-price-target-raised-to-3000-2026-10-19/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 6/6"
+          },
+          {
+            "claim": "TD Cowen raised its price target on Caris Life Sciences to $36 from $30 and kept a Buy rating.",
+            "url": "https://www.benzinga.com/quote/CAI/price-targets",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings cut Caris Life Sciences from \"sell (d+)\" to \"sell (d)\".",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-caris-life-sciences-nasdaq-cai-price-target-raised-to-3000-2026-10-19/",
+            "event_date": "2026-10-02",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 27,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Nothing new in the window. The previously disclosed DOJ False Claims Act civil investigative demand from March 2025 remains at an early stage, and Caris is cooperating.",
+        "evidence": [
+          {
+            "claim": "The 10-Q describes a DOJ civil investigative demand received in March 2025; the investigation is at too early a stage to assess outcomes, and Caris is cooperating.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002019410/000201941026000055/cai-20260630.htm",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/2"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No material news on customer wins, losses or concentration in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions fell inside the window. Notable option-exercise sales by the President, a director and the General Counsel occurred in September, just before it.",
+        "evidence": [
+          {
+            "claim": "Brian Brille exercised 400,000 options and sold 400,000 shares at $30.33.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002019410/000207195926000008/wk-form4_1789682909.xml",
+            "event_date": "2026-09-17",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 42,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "John Russel Denton sold 7,500 shares at $31.82.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002019410/000207192326000007/wk-form4_1790197601.xml",
+            "event_date": "2026-09-22",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 37,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Caris presented eight posters at ESMO 2026 and ran a national TV campaign, both routine marketing and scientific activity. Competitor GRAIL's Galleri test advancing toward FDA approval is a potential headwind for Caris Detect, so the picture is mixed.",
+        "evidence": [
+          {
+            "claim": "Caris announced it would present eight studies at ESMO 2026, held October 23-27, 2026, in Madrid.",
+            "url": "https://www.carislifesciences.com/about/news-and-media/caris-life-sciences-to-present-eight-studies-highlighting-the-power-of-ai-multi-omics-and-precision-medicine-at-esmo-2026/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 3/3"
+          },
+          {
+            "claim": "An FDA advisory panel voted 7 to 2, with one abstention, that benefits of GRAIL's Galleri multi-cancer blood test outweigh risks.",
+            "url": "https://www.statnews.com/2026/09/23/fda-advisory-panel-recommends-approval-grail-galleri-multi-cancer-blood-test/",
+            "event_date": "2026-09-23",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 36,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000201941026000053/cai_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000201941026000040/cai_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000011/cai_ex99-1.htm",
+        "https://investor.carislifesciences.com/news-events/news-releases",
+        "https://investor.carislifesciences.com/news-releases/news-release-details/caris-life-sciences-report-third-quarter-2026-financial-results",
+        "https://finance.yahoo.com/healthcare/articles/caris-life-sciences-report-third-123000762.html",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941025000026/cai_ex99-1.htm",
+        "https://pluang.com/en/news-feed/caris-life-sciences-laporkan-hasil-keuangan-kuartal-iii-2026",
+        "https://www.tradingview.com/news/prnewswire:07ea3249c112e:0-caris-life-sciences-to-report-third-quarter-2026-financial-results-on-november-4-2026/",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-caris-life-sciences-tops-q2-2026-revenue-forecast-shares-jump-93CH-4839607",
+        "https://www.gurufocus.com/news/9129688/cai-maintained-by-canaccord-genuity-price-target-raised-to-30",
+        "https://www.marketbeat.com/instant-alerts/analyst-caris-life-sciences-nasdaq-cai-price-target-raised-to-3000-2026-10-19/",
+        "https://www.cnn.com/markets/stocks/CAI",
+        "https://www.marketbeat.com/instant-alerts/consensus-caris-life-sciences-inc-nasdaq-cai-stock-has-average-target-price-of-2782-according-to-brokerages-2026-10-18/",
+        "https://www.marketbeat.com/instant-alerts/analyst-caris-life-sciences-nasdaq-cai-stock-price-target-raised-at-jpmorgan-chase-co-2026-10-14/",
+        "https://www.benzinga.com/quote/CAI/price-targets",
+        "https://www.benzinga.com/quote/CAI/analyst-ratings",
+        "https://www.tipranks.com/news/the-fly/caris-life-sciences-price-target-raised-to-45-from-38-at-btig-thefly",
+        "https://www.tipranks.com/news/the-fly/caris-life-sciences-price-target-raised-to-42-from-34-at-citi-thefly",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000207195326000007/wk-form4_1788555596.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000207192326000007/wk-form4_1790197601.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000207195926000008/wk-form4_1789682909.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000118939526000002/wk-form4_1786743580.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000123969026000005/wk-form4_1786743801.xml",
+        "https://www.stocktitan.net/sec-filings/CAI/form-4-caris-life-sciences-inc-insider-trading-activity-b510e9105be9.html",
+        "https://www.stocktitan.net/sec-filings/CAI/form-4-caris-life-sciences-inc-insider-trading-activity-8b4a09de1056.html",
+        "https://www.stocktitan.net/sec-filings/CAI/form-4-caris-life-sciences-inc-insider-trading-activity-6b3b29b324c8.html",
+        "https://www.stocktitan.net/sec-filings/CAI/form-4-caris-life-sciences-inc-insider-trading-activity-0c8a048c9191.html",
+        "https://www.stocktitan.net/sec-filings/CAI/form-4-caris-life-sciences-inc-insider-trading-activity-3865b8a3748a.html",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000005/cai_ex99-1.htm",
+        "https://finance.yahoo.com/healthcare/articles/caris-life-sciences-present-eight-123000357.html",
+        "https://www.biospace.com/press-releases/caris-life-sciences-to-present-eight-studies-highlighting-the-power-of-ai-multi-omics-and-precision-medicine-at-esmo-2026",
+        "https://www.carislifesciences.com/about/news-and-media/caris-life-sciences-to-present-eight-studies-highlighting-the-power-of-ai-multi-omics-and-precision-medicine-at-esmo-2026/",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000201941026000055/cai-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002019410/000201941026000044/cai-20260331.htm",
+        "https://www.phillipsandcohen.com/clinical-lab-caris-pays-2-8m-to-settle-whistleblower-case/",
+        "https://www.law360.com/cases/50db3b0fa895c0078d004306/articles",
+        "https://case-law.vlex.com/vid/caris-mpi-inc-v-1056854853",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941025000028/cai-20250930.htm",
+        "https://www.g2intelligence.com/caris-life-sciences-settles-medicare-14-day-rule-claims-for-2-88-million/",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941025000012/cai-20250630.htm",
+        "https://www.justice.gov/usao-edtn/pr/labcorp-and-university-health-system-agree-pay-388667-resolve-alleged-false-claims-act",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000016/cai-20251231.htm",
+        "https://www.tipranks.com/news/the-fly/caris-life-sciences-price-target-raised-to-38-from-33-at-btig-thefly-news",
+        "https://www.marketscreener.com/quote/stock/CARIS-LIFE-SCIENCES-INC-190815577/consensus/",
+        "https://www.gurufocus.com/news/9145037/cai-maintained-by-btig-price-target-raised-to-3800",
+        "https://www.investing.com/news/analyst-ratings/caris-life-sciences-stock-initiated-with-buy-rating-at-btig-on-precision-oncology-leadership-93CH-4132879",
+        "https://www.investing.com/news/analyst-ratings/citi-initiates-caris-life-sciences-stock-with-buy-rating-on-profitability-outlook-93CH-4133284",
+        "https://rallies.ai/news/caris-life-sciences-target-price-raised-to-38-from-33-69438d6c3ceb04d8",
+        "https://www.stockbase.com/stocks/CAI/forecast",
+        "https://www.defenseworld.net/2026/03/01/btig-research-lowers-caris-life-sciences-nasdaqcai-price-target-to-38-00.html",
+        "https://www.fda.gov/media/194909/download",
+        "https://www.yahoo.com/news/science/articles/fda-panel-endorses-grail-multi-113612356.html",
+        "https://www.statnews.com/2026/09/23/fda-advisory-panel-recommends-approval-grail-galleri-multi-cancer-blood-test/",
+        "https://ascopost.com/news/september-2026/fda-advisory-committee-votes-in-favor-of-approval-of-multi-cancer-early-detection-test/",
+        "https://www.medicaldevice-network.com/news/fda-panel-endorses-grail-multi-cancer-early-detection-test/",
+        "https://endpoints.news/fda-adcomm-raises-questions-on-effectiveness-of-grails-cancer-test/",
+        "https://clinicaltrials.gov/study/NCT06603259",
+        "https://www.thecardiologyadvisor.com/news/fda-panel-narrowly-backs-multi-cancer-blood-test-despite-doubts-it-works/",
+        "https://trial.medpath.com/news/fda-advisory-panel-backs-grail-s-galleri-multi-cancer-test-with-pricing-the-next-hurdle",
+        "https://www.investing.com/news/company-news/caris-life-sciences-q2-2026-slides-revenue-jumps-45-detect-launch-93CH-4839742",
+        "https://www.carislifesciences.com/payer/",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000201941026000034/carislifesciencesincars422.pdf",
+        "https://investor.carislifesciences.com/static-files/9dac0965-c6de-40f5-8c7d-92ee861df9f6",
+        "https://www.aol.com/articles/caris-cai-q1-2026-earnings-224853567.html",
+        "https://www.sec.gov/Archives/edgar/data/2019410/000110465925060762/tm2415719-25_424b4.htm",
+        "https://www.carislifesciences.com/physicians/physician-tests/caris-assure/",
+        "https://www.stocktitan.net/sec-filings/CAI/10-k-caris-life-sciences-inc-files-annual-report-83db87b1c6a8.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Caris rates Hold at 64, one point below Buy, on fast growth and strong momentum offset by heavy dilution.",
+    "thesis": "Caris scores 64, a Hold that sits just 1 point under the Buy line, driven mainly by its trend and growth factors. The price is at its 52-week high, 65.0% above its 200-day average, with shares 90.4 pp ahead of SPY over the last 126 trading days, giving a trend score of 88. Growth scores 74 on TTM revenue growth of 85.4% and latest-quarter revenue growth of 45.4% year on year, though growth slowed by 33.4 pp from the previous quarter. Quality holds the score back at 45: the operating margin is 15.5%, but the diluted share count is up 335.8% year on year and stock-based pay is 6.6% of revenue. Balance sheet and valuation could not be scored, though in absolute terms a P/S of 10.1x and EV/EBIT of 62.5x are high, and news risk is roughly neutral at 54, helped by October price-target raises.",
+    "key_risks": [
+      "Revenue growth is decelerating sharply, slowing by 33.4 pp from the previous quarter.",
+      "Diluted share count up 335.8% year on year dilutes each shareholder's claim on earnings.",
+      "Absolute valuation is high at 10.1x sales and 62.5x EV/EBIT, leaving little room for disappointment.",
+      "The price is 23.5% above its 50-day average and at its 52-week high, so a pullback could quickly hurt the trend score.",
+      "An early-stage DOJ False Claims Act investigation and GRAIL's Galleri test advancing toward FDA approval are open threats."
+    ],
+    "what_would_change": [
+      "A gain of just 1 point, such as stronger Q3 results on November 4 lifting growth or quality, would move the rating to Buy.",
+      "Easing dilution or confirmed positive free cash flow would raise the quality score.",
+      "A drop of 20 points would be needed for Sell, e.g. a sharp momentum reversal combined with a guidance cut or adverse DOJ developments."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1832,
+        "output_tokens": 484,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1832,
+            "output_tokens": 484,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.017,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 114587,
+        "output_tokens": 5352,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 114587,
+            "output_tokens": 5352,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3627,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7703,
+        "output_tokens": 2574,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7703,
+            "output_tokens": 2574,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0823,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3635,
+        "output_tokens": 697,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3635,
+            "output_tokens": 697,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0285,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4905,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 35.45,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 33.67
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:02",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  },
+  "chart": [
+    [
+      "2025-06-18",
+      28.0,
+      null,
+      null
+    ],
+    [
+      "2025-06-20",
+      27.25,
+      null,
+      null
+    ],
+    [
+      "2025-06-23",
+      25.94,
+      null,
+      null
+    ],
+    [
+      "2025-06-24",
+      27.7,
+      null,
+      null
+    ],
+    [
+      "2025-06-25",
+      26.43,
+      null,
+      null
+    ],
+    [
+      "2025-06-26",
+      26.75,
+      null,
+      null
+    ],
+    [
+      "2025-06-27",
+      26.81,
+      null,
+      null
+    ],
+    [
+      "2025-06-30",
+      26.72,
+      null,
+      null
+    ],
+    [
+      "2025-07-01",
+      26.51,
+      null,
+      null
+    ],
+    [
+      "2025-07-02",
+      26.72,
+      null,
+      null
+    ],
+    [
+      "2025-07-03",
+      26.54,
+      null,
+      null
+    ],
+    [
+      "2025-07-07",
+      26.53,
+      null,
+      null
+    ],
+    [
+      "2025-07-08",
+      26.29,
+      null,
+      null
+    ],
+    [
+      "2025-07-09",
+      27.24,
+      null,
+      null
+    ],
+    [
+      "2025-07-10",
+      26.62,
+      null,
+      null
+    ],
+    [
+      "2025-07-11",
+      26.51,
+      null,
+      null
+    ],
+    [
+      "2025-07-14",
+      27.72,
+      null,
+      null
+    ],
+    [
+      "2025-07-15",
+      28.91,
+      null,
+      null
+    ],
+    [
+      "2025-07-16",
+      31.4,
+      null,
+      null
+    ],
+    [
+      "2025-07-17",
+      31.29,
+      null,
+      null
+    ],
+    [
+      "2025-07-18",
+      30.19,
+      null,
+      null
+    ],
+    [
+      "2025-07-21",
+      28.29,
+      null,
+      null
+    ],
+    [
+      "2025-07-22",
+      30.29,
+      null,
+      null
+    ],
+    [
+      "2025-07-23",
+      30.03,
+      null,
+      null
+    ],
+    [
+      "2025-07-24",
+      29.49,
+      null,
+      null
+    ],
+    [
+      "2025-07-25",
+      29.54,
+      null,
+      null
+    ],
+    [
+      "2025-07-28",
+      27.06,
+      null,
+      null
+    ],
+    [
+      "2025-07-29",
+      27.52,
+      null,
+      null
+    ],
+    [
+      "2025-07-30",
+      29.5,
+      null,
+      null
+    ],
+    [
+      "2025-07-31",
+      28.08,
+      null,
+      null
+    ],
+    [
+      "2025-08-01",
+      28.04,
+      null,
+      null
+    ],
+    [
+      "2025-08-04",
+      29.49,
+      null,
+      null
+    ],
+    [
+      "2025-08-05",
+      30.3,
+      null,
+      null
+    ],
+    [
+      "2025-08-06",
+      28.95,
+      null,
+      null
+    ],
+    [
+      "2025-08-07",
+      28.59,
+      null,
+      null
+    ],
+    [
+      "2025-08-08",
+      29.75,
+      null,
+      null
+    ],
+    [
+      "2025-08-11",
+      30.21,
+      null,
+      null
+    ],
+    [
+      "2025-08-12",
+      32.46,
+      null,
+      null
+    ],
+    [
+      "2025-08-13",
+      34.28,
+      null,
+      null
+    ],
+    [
+      "2025-08-14",
+      36.99,
+      null,
+      null
+    ],
+    [
+      "2025-08-15",
+      36.5,
+      null,
+      null
+    ],
+    [
+      "2025-08-18",
+      35.95,
+      null,
+      null
+    ],
+    [
+      "2025-08-19",
+      36.93,
+      null,
+      null
+    ],
+    [
+      "2025-08-20",
+      35.07,
+      null,
+      null
+    ],
+    [
+      "2025-08-21",
+      38.12,
+      null,
+      null
+    ],
+    [
+      "2025-08-22",
+      39.3,
+      null,
+      null
+    ],
+    [
+      "2025-08-25",
+      38.48,
+      null,
+      null
+    ],
+    [
+      "2025-08-26",
+      38.39,
+      null,
+      null
+    ],
+    [
+      "2025-08-27",
+      38.22,
+      null,
+      null
+    ],
+    [
+      "2025-08-28",
+      38.23,
+      30.44,
+      null
+    ],
+    [
+      "2025-08-29",
+      38.39,
+      30.65,
+      null
+    ],
+    [
+      "2025-09-02",
+      36.56,
+      30.84,
+      null
+    ],
+    [
+      "2025-09-03",
+      36.8,
+      31.05,
+      null
+    ],
+    [
+      "2025-09-04",
+      36.35,
+      31.23,
+      null
+    ],
+    [
+      "2025-09-05",
+      34.85,
+      31.39,
+      null
+    ],
+    [
+      "2025-09-08",
+      34.81,
+      31.56,
+      null
+    ],
+    [
+      "2025-09-09",
+      33.95,
+      31.7,
+      null
+    ],
+    [
+      "2025-09-10",
+      33.4,
+      31.83,
+      null
+    ],
+    [
+      "2025-09-11",
+      34.21,
+      31.99,
+      null
+    ],
+    [
+      "2025-09-12",
+      34.06,
+      32.13,
+      null
+    ],
+    [
+      "2025-09-15",
+      33.12,
+      32.26,
+      null
+    ],
+    [
+      "2025-09-16",
+      33.66,
+      32.41,
+      null
+    ],
+    [
+      "2025-09-17",
+      33.53,
+      32.55,
+      null
+    ],
+    [
+      "2025-09-18",
+      33.43,
+      32.68,
+      null
+    ],
+    [
+      "2025-09-19",
+      32.58,
+      32.8,
+      null
+    ],
+    [
+      "2025-09-22",
+      32.94,
+      32.92,
+      null
+    ],
+    [
+      "2025-09-23",
+      32.1,
+      33.01,
+      null
+    ],
+    [
+      "2025-09-24",
+      30.44,
+      33.04,
+      null
+    ],
+    [
+      "2025-09-25",
+      29.73,
+      33.01,
+      null
+    ],
+    [
+      "2025-09-26",
+      29.19,
+      32.97,
+      null
+    ],
+    [
+      "2025-09-29",
+      30.0,
+      32.96,
+      null
+    ],
+    [
+      "2025-09-30",
+      30.25,
+      33.0,
+      null
+    ],
+    [
+      "2025-10-01",
+      30.33,
+      33.0,
+      null
+    ],
+    [
+      "2025-10-02",
+      29.71,
+      33.0,
+      null
+    ],
+    [
+      "2025-10-03",
+      31.78,
+      33.04,
+      null
+    ],
+    [
+      "2025-10-06",
+      32.81,
+      33.11,
+      null
+    ],
+    [
+      "2025-10-07",
+      31.58,
+      33.2,
+      null
+    ],
+    [
+      "2025-10-08",
+      32.95,
+      33.31,
+      null
+    ],
+    [
+      "2025-10-09",
+      31.26,
+      33.34,
+      null
+    ],
+    [
+      "2025-10-10",
+      30.48,
+      33.39,
+      null
+    ],
+    [
+      "2025-10-13",
+      30.26,
+      33.43,
+      null
+    ],
+    [
+      "2025-10-14",
+      30.36,
+      33.45,
+      null
+    ],
+    [
+      "2025-10-15",
+      31.16,
+      33.47,
+      null
+    ],
+    [
+      "2025-10-16",
+      31.95,
+      33.53,
+      null
+    ],
+    [
+      "2025-10-17",
+      31.5,
+      33.59,
+      null
+    ],
+    [
+      "2025-10-20",
+      31.5,
+      33.62,
+      null
+    ],
+    [
+      "2025-10-21",
+      31.53,
+      33.65,
+      null
+    ],
+    [
+      "2025-10-22",
+      30.04,
+      33.6,
+      null
+    ],
+    [
+      "2025-10-23",
+      31.66,
+      33.55,
+      null
+    ],
+    [
+      "2025-10-24",
+      31.07,
+      33.43,
+      null
+    ],
+    [
+      "2025-10-27",
+      30.25,
+      33.3,
+      null
+    ],
+    [
+      "2025-10-28",
+      30.38,
+      33.19,
+      null
+    ],
+    [
+      "2025-10-29",
+      29.43,
+      33.04,
+      null
+    ],
+    [
+      "2025-10-30",
+      31.17,
+      32.97,
+      null
+    ],
+    [
+      "2025-10-31",
+      30.08,
+      32.8,
+      null
+    ],
+    [
+      "2025-11-03",
+      29.94,
+      32.62,
+      null
+    ],
+    [
+      "2025-11-04",
+      31.18,
+      32.47,
+      null
+    ],
+    [
+      "2025-11-05",
+      29.21,
+      32.29,
+      null
+    ],
+    [
+      "2025-11-06",
+      24.61,
+      32.02,
+      null
+    ],
+    [
+      "2025-11-07",
+      25.61,
+      31.76,
+      null
+    ],
+    [
+      "2025-11-10",
+      24.8,
+      31.49,
+      null
+    ],
+    [
+      "2025-11-11",
+      25.16,
+      31.26,
+      null
+    ],
+    [
+      "2025-11-12",
+      24.77,
+      31.02,
+      null
+    ],
+    [
+      "2025-11-13",
+      24.3,
+      30.78,
+      null
+    ],
+    [
+      "2025-11-14",
+      23.85,
+      30.56,
+      null
+    ],
+    [
+      "2025-11-17",
+      23.71,
+      30.34,
+      null
+    ],
+    [
+      "2025-11-18",
+      23.76,
+      30.14,
+      null
+    ],
+    [
+      "2025-11-19",
+      23.9,
+      29.95,
+      null
+    ],
+    [
+      "2025-11-20",
+      24.03,
+      29.74,
+      null
+    ],
+    [
+      "2025-11-21",
+      24.09,
+      29.54,
+      null
+    ],
+    [
+      "2025-11-24",
+      25.15,
+      29.38,
+      null
+    ],
+    [
+      "2025-11-25",
+      25.58,
+      29.22,
+      null
+    ],
+    [
+      "2025-11-26",
+      25.09,
+      29.05,
+      null
+    ],
+    [
+      "2025-11-28",
+      25.53,
+      28.89,
+      null
+    ],
+    [
+      "2025-12-01",
+      26.05,
+      28.76,
+      null
+    ],
+    [
+      "2025-12-02",
+      26.11,
+      28.63,
+      null
+    ],
+    [
+      "2025-12-03",
+      27.24,
+      28.53,
+      null
+    ],
+    [
+      "2025-12-04",
+      28.32,
+      28.49,
+      null
+    ],
+    [
+      "2025-12-05",
+      28.86,
+      28.47,
+      null
+    ],
+    [
+      "2025-12-08",
+      28.36,
+      28.45,
+      null
+    ],
+    [
+      "2025-12-09",
+      27.15,
+      28.4,
+      null
+    ],
+    [
+      "2025-12-10",
+      27.1,
+      28.33,
+      null
+    ],
+    [
+      "2025-12-11",
+      26.54,
+      28.26,
+      null
+    ],
+    [
+      "2025-12-12",
+      26.76,
+      28.2,
+      null
+    ],
+    [
+      "2025-12-15",
+      26.7,
+      28.1,
+      null
+    ],
+    [
+      "2025-12-16",
+      27.6,
+      27.99,
+      null
+    ],
+    [
+      "2025-12-17",
+      27.19,
+      27.91,
+      null
+    ],
+    [
+      "2025-12-18",
+      27.86,
+      27.8,
+      null
+    ],
+    [
+      "2025-12-19",
+      27.94,
+      27.74,
+      null
+    ],
+    [
+      "2025-12-22",
+      28.46,
+      27.7,
+      null
+    ],
+    [
+      "2025-12-23",
+      28.0,
+      27.65,
+      null
+    ],
+    [
+      "2025-12-24",
+      28.24,
+      27.61,
+      null
+    ],
+    [
+      "2025-12-26",
+      28.23,
+      27.55,
+      null
+    ],
+    [
+      "2025-12-29",
+      27.95,
+      27.47,
+      null
+    ],
+    [
+      "2025-12-30",
+      27.32,
+      27.39,
+      null
+    ],
+    [
+      "2025-12-31",
+      26.98,
+      27.3,
+      null
+    ],
+    [
+      "2026-01-02",
+      26.98,
+      27.21,
+      null
+    ],
+    [
+      "2026-01-05",
+      26.41,
+      27.13,
+      null
+    ],
+    [
+      "2026-01-06",
+      28.38,
+      27.07,
+      null
+    ],
+    [
+      "2026-01-07",
+      28.78,
+      27.02,
+      null
+    ],
+    [
+      "2026-01-08",
+      28.25,
+      26.98,
+      null
+    ],
+    [
+      "2026-01-09",
+      28.51,
+      26.94,
+      null
+    ],
+    [
+      "2026-01-12",
+      25.6,
+      26.87,
+      null
+    ],
+    [
+      "2026-01-13",
+      26.4,
+      26.77,
+      null
+    ],
+    [
+      "2026-01-14",
+      26.42,
+      26.7,
+      null
+    ],
+    [
+      "2026-01-15",
+      27.12,
+      26.64,
+      null
+    ],
+    [
+      "2026-01-16",
+      26.78,
+      26.55,
+      null
+    ],
+    [
+      "2026-01-20",
+      26.27,
+      26.5,
+      null
+    ],
+    [
+      "2026-01-21",
+      25.48,
+      26.51,
+      null
+    ],
+    [
+      "2026-01-22",
+      25.55,
+      26.51,
+      null
+    ],
+    [
+      "2026-01-23",
+      25.0,
+      26.52,
+      null
+    ],
+    [
+      "2026-01-26",
+      25.79,
+      26.53,
+      null
+    ],
+    [
+      "2026-01-27",
+      26.01,
+      26.55,
+      null
+    ],
+    [
+      "2026-01-28",
+      26.5,
+      26.6,
+      null
+    ],
+    [
+      "2026-01-29",
+      25.2,
+      26.62,
+      null
+    ],
+    [
+      "2026-01-30",
+      23.16,
+      26.61,
+      null
+    ],
+    [
+      "2026-02-02",
+      23.32,
+      26.6,
+      null
+    ],
+    [
+      "2026-02-03",
+      23.2,
+      26.59,
+      null
+    ],
+    [
+      "2026-02-04",
+      21.84,
+      26.55,
+      null
+    ],
+    [
+      "2026-02-05",
+      21.25,
+      26.49,
+      null
+    ],
+    [
+      "2026-02-06",
+      22.0,
+      26.43,
+      null
+    ],
+    [
+      "2026-02-09",
+      22.31,
+      26.36,
+      null
+    ],
+    [
+      "2026-02-10",
+      22.17,
+      26.3,
+      null
+    ],
+    [
+      "2026-02-11",
+      21.5,
+      26.22,
+      null
+    ],
+    [
+      "2026-02-12",
+      20.65,
+      26.11,
+      null
+    ],
+    [
+      "2026-02-13",
+      20.62,
+      26.01,
+      null
+    ],
+    [
+      "2026-02-17",
+      20.8,
+      25.88,
+      null
+    ],
+    [
+      "2026-02-18",
+      21.05,
+      25.73,
+      null
+    ],
+    [
+      "2026-02-19",
+      20.85,
+      25.57,
+      null
+    ],
+    [
+      "2026-02-20",
+      19.53,
+      25.39,
+      null
+    ],
+    [
+      "2026-02-23",
+      17.64,
+      25.2,
+      null
+    ],
+    [
+      "2026-02-24",
+      18.2,
+      25.03,
+      null
+    ],
+    [
+      "2026-02-25",
+      18.31,
+      24.86,
+      null
+    ],
+    [
+      "2026-02-26",
+      19.24,
+      24.71,
+      null
+    ],
+    [
+      "2026-02-27",
+      20.14,
+      24.58,
+      null
+    ],
+    [
+      "2026-03-02",
+      20.66,
+      24.44,
+      null
+    ],
+    [
+      "2026-03-03",
+      19.38,
+      24.28,
+      null
+    ],
+    [
+      "2026-03-04",
+      19.86,
+      24.12,
+      null
+    ],
+    [
+      "2026-03-05",
+      19.22,
+      23.95,
+      null
+    ],
+    [
+      "2026-03-06",
+      18.59,
+      23.75,
+      null
+    ],
+    [
+      "2026-03-09",
+      19.0,
+      23.57,
+      null
+    ],
+    [
+      "2026-03-10",
+      18.54,
+      23.38,
+      null
+    ],
+    [
+      "2026-03-11",
+      18.62,
+      23.19,
+      null
+    ],
+    [
+      "2026-03-12",
+      17.69,
+      22.98,
+      null
+    ],
+    [
+      "2026-03-13",
+      18.15,
+      22.8,
+      null
+    ],
+    [
+      "2026-03-16",
+      19.05,
+      22.64,
+      null
+    ],
+    [
+      "2026-03-17",
+      18.54,
+      22.47,
+      null
+    ],
+    [
+      "2026-03-18",
+      18.47,
+      22.31,
+      null
+    ],
+    [
+      "2026-03-19",
+      18.81,
+      22.12,
+      null
+    ],
+    [
+      "2026-03-20",
+      18.41,
+      21.91,
+      null
+    ],
+    [
+      "2026-03-23",
+      19.26,
+      21.73,
+      null
+    ],
+    [
+      "2026-03-24",
+      19.24,
+      21.55,
+      null
+    ],
+    [
+      "2026-03-25",
+      18.56,
+      21.41,
+      null
+    ],
+    [
+      "2026-03-26",
+      18.33,
+      21.25,
+      null
+    ],
+    [
+      "2026-03-27",
+      16.95,
+      21.06,
+      null
+    ],
+    [
+      "2026-03-30",
+      16.85,
+      20.85,
+      null
+    ],
+    [
+      "2026-03-31",
+      17.88,
+      20.67,
+      null
+    ],
+    [
+      "2026-04-01",
+      19.13,
+      20.53,
+      null
+    ],
+    [
+      "2026-04-02",
+      19.29,
+      20.41,
+      null
+    ],
+    [
+      "2026-04-06",
+      19.01,
+      20.28,
+      27.25
+    ],
+    [
+      "2026-04-07",
+      18.75,
+      20.15,
+      27.2
+    ],
+    [
+      "2026-04-08",
+      19.51,
+      20.02,
+      27.16
+    ],
+    [
+      "2026-04-09",
+      19.2,
+      19.89,
+      27.13
+    ],
+    [
+      "2026-04-10",
+      18.05,
+      19.72,
+      27.08
+    ],
+    [
+      "2026-04-13",
+      19.13,
+      19.6,
+      27.04
+    ],
+    [
+      "2026-04-14",
+      20.19,
+      19.54,
+      27.01
+    ],
+    [
+      "2026-04-15",
+      20.95,
+      19.49,
+      26.98
+    ],
+    [
+      "2026-04-16",
+      20.4,
+      19.44,
+      26.95
+    ],
+    [
+      "2026-04-17",
+      21.15,
+      19.42,
+      26.92
+    ],
+    [
+      "2026-04-20",
+      21.24,
+      19.42,
+      26.9
+    ],
+    [
+      "2026-04-21",
+      20.83,
+      19.4,
+      26.87
+    ],
+    [
+      "2026-04-22",
+      20.5,
+      19.36,
+      26.84
+    ],
+    [
+      "2026-04-23",
+      19.79,
+      19.31,
+      26.81
+    ],
+    [
+      "2026-04-24",
+      20.2,
+      19.29,
+      26.77
+    ],
+    [
+      "2026-04-27",
+      19.93,
+      19.27,
+      26.74
+    ],
+    [
+      "2026-04-28",
+      18.44,
+      19.23,
+      26.7
+    ],
+    [
+      "2026-04-29",
+      17.77,
+      19.17,
+      26.65
+    ],
+    [
+      "2026-04-30",
+      19.0,
+      19.13,
+      26.6
+    ],
+    [
+      "2026-05-01",
+      18.47,
+      19.08,
+      26.53
+    ],
+    [
+      "2026-05-04",
+      18.69,
+      19.06,
+      26.47
+    ],
+    [
+      "2026-05-05",
+      18.95,
+      19.09,
+      26.41
+    ],
+    [
+      "2026-05-06",
+      19.13,
+      19.11,
+      26.37
+    ],
+    [
+      "2026-05-07",
+      19.84,
+      19.14,
+      26.32
+    ],
+    [
+      "2026-05-08",
+      16.15,
+      19.08,
+      26.25
+    ],
+    [
+      "2026-05-11",
+      15.94,
+      18.99,
+      26.18
+    ],
+    [
+      "2026-05-12",
+      16.76,
+      18.92,
+      26.11
+    ],
+    [
+      "2026-05-13",
+      14.69,
+      18.82,
+      26.05
+    ],
+    [
+      "2026-05-14",
+      15.25,
+      18.73,
+      25.99
+    ],
+    [
+      "2026-05-15",
+      14.55,
+      18.64,
+      25.92
+    ],
+    [
+      "2026-05-18",
+      15.1,
+      18.57,
+      25.85
+    ],
+    [
+      "2026-05-19",
+      14.96,
+      18.49,
+      25.79
+    ],
+    [
+      "2026-05-20",
+      15.7,
+      18.43,
+      25.72
+    ],
+    [
+      "2026-05-21",
+      15.94,
+      18.38,
+      25.65
+    ],
+    [
+      "2026-05-22",
+      15.55,
+      18.33,
+      25.58
+    ],
+    [
+      "2026-05-26",
+      15.52,
+      18.28,
+      25.51
+    ],
+    [
+      "2026-05-27",
+      15.38,
+      18.21,
+      25.44
+    ],
+    [
+      "2026-05-28",
+      16.67,
+      18.17,
+      25.37
+    ],
+    [
+      "2026-05-29",
+      16.72,
+      18.13,
+      25.29
+    ],
+    [
+      "2026-06-01",
+      16.45,
+      18.09,
+      25.21
+    ],
+    [
+      "2026-06-02",
+      16.52,
+      18.05,
+      25.1
+    ],
+    [
+      "2026-06-03",
+      15.48,
+      17.97,
+      25.0
+    ],
+    [
+      "2026-06-04",
+      17.28,
+      17.93,
+      24.9
+    ],
+    [
+      "2026-06-05",
+      16.49,
+      17.89,
+      24.8
+    ],
+    [
+      "2026-06-08",
+      16.14,
+      17.85,
+      24.71
+    ],
+    [
+      "2026-06-09",
+      16.96,
+      17.85,
+      24.6
+    ],
+    [
+      "2026-06-10",
+      17.16,
+      17.86,
+      24.49
+    ],
+    [
+      "2026-06-11",
+      18.0,
+      17.86,
+      24.39
+    ],
+    [
+      "2026-06-12",
+      17.97,
+      17.83,
+      24.29
+    ],
+    [
+      "2026-06-15",
+      18.18,
+      17.81,
+      24.19
+    ],
+    [
+      "2026-06-16",
+      17.98,
+      17.79,
+      24.09
+    ],
+    [
+      "2026-06-17",
+      17.86,
+      17.77,
+      23.98
+    ],
+    [
+      "2026-06-18",
+      18.47,
+      17.75,
+      23.89
+    ],
+    [
+      "2026-06-22",
+      17.31,
+      17.72,
+      23.8
+    ],
+    [
+      "2026-06-23",
+      17.6,
+      17.71,
+      23.7
+    ],
+    [
+      "2026-06-24",
+      18.15,
+      17.69,
+      23.62
+    ],
+    [
+      "2026-06-25",
+      18.7,
+      17.66,
+      23.54
+    ],
+    [
+      "2026-06-26",
+      18.5,
+      17.61,
+      23.46
+    ],
+    [
+      "2026-06-29",
+      18.32,
+      17.57,
+      23.38
+    ],
+    [
+      "2026-06-30",
+      17.82,
+      17.5,
+      23.3
+    ],
+    [
+      "2026-07-01",
+      18.75,
+      17.45,
+      23.23
+    ],
+    [
+      "2026-07-02",
+      18.3,
+      17.4,
+      23.15
+    ],
+    [
+      "2026-07-06",
+      17.81,
+      17.35,
+      23.07
+    ],
+    [
+      "2026-07-07",
+      17.47,
+      17.3,
+      22.99
+    ],
+    [
+      "2026-07-08",
+      17.32,
+      17.24,
+      22.91
+    ],
+    [
+      "2026-07-09",
+      17.87,
+      17.2,
+      22.84
+    ],
+    [
+      "2026-07-10",
+      16.99,
+      17.17,
+      22.76
+    ],
+    [
+      "2026-07-13",
+      17.06,
+      17.16,
+      22.68
+    ],
+    [
+      "2026-07-14",
+      16.95,
+      17.12,
+      22.62
+    ],
+    [
+      "2026-07-15",
+      17.46,
+      17.1,
+      22.55
+    ],
+    [
+      "2026-07-16",
+      16.48,
+      17.05,
+      22.49
+    ],
+    [
+      "2026-07-17",
+      16.49,
+      17.0,
+      22.42
+    ],
+    [
+      "2026-07-20",
+      15.56,
+      16.93,
+      22.35
+    ],
+    [
+      "2026-07-21",
+      15.73,
+      16.85,
+      22.28
+    ],
+    [
+      "2026-07-22",
+      15.38,
+      16.83,
+      22.21
+    ],
+    [
+      "2026-07-23",
+      15.65,
+      16.83,
+      22.12
+    ],
+    [
+      "2026-07-24",
+      15.52,
+      16.8,
+      22.04
+    ],
+    [
+      "2026-07-27",
+      15.63,
+      16.82,
+      21.96
+    ],
+    [
+      "2026-07-28",
+      15.59,
+      16.83,
+      21.87
+    ],
+    [
+      "2026-07-29",
+      15.59,
+      16.85,
+      21.79
+    ],
+    [
+      "2026-07-30",
+      16.09,
+      16.87,
+      21.72
+    ],
+    [
+      "2026-07-31",
+      15.67,
+      16.88,
+      21.65
+    ],
+    [
+      "2026-08-03",
+      16.32,
+      16.9,
+      21.58
+    ],
+    [
+      "2026-08-04",
+      16.1,
+      16.9,
+      21.5
+    ],
+    [
+      "2026-08-05",
+      16.45,
+      16.92,
+      21.43
+    ],
+    [
+      "2026-08-06",
+      20.0,
+      17.01,
+      21.37
+    ],
+    [
+      "2026-08-07",
+      22.74,
+      17.15,
+      21.32
+    ],
+    [
+      "2026-08-10",
+      23.4,
+      17.29,
+      21.28
+    ],
+    [
+      "2026-08-11",
+      23.14,
+      17.42,
+      21.25
+    ],
+    [
+      "2026-08-12",
+      22.26,
+      17.53,
+      21.2
+    ],
+    [
+      "2026-08-13",
+      22.18,
+      17.65,
+      21.16
+    ],
+    [
+      "2026-08-14",
+      21.8,
+      17.77,
+      21.12
+    ],
+    [
+      "2026-08-17",
+      21.63,
+      17.86,
+      21.07
+    ],
+    [
+      "2026-08-18",
+      20.97,
+      17.95,
+      21.03
+    ],
+    [
+      "2026-08-19",
+      22.76,
+      18.08,
+      20.99
+    ],
+    [
+      "2026-08-20",
+      24.58,
+      18.23,
+      20.96
+    ],
+    [
+      "2026-08-21",
+      26.27,
+      18.42,
+      20.94
+    ],
+    [
+      "2026-08-24",
+      26.13,
+      18.58,
+      20.92
+    ],
+    [
+      "2026-08-25",
+      28.01,
+      18.78,
+      20.91
+    ],
+    [
+      "2026-08-26",
+      26.82,
+      18.95,
+      20.92
+    ],
+    [
+      "2026-08-27",
+      26.38,
+      19.12,
+      20.93
+    ],
+    [
+      "2026-08-28",
+      25.63,
+      19.28,
+      20.93
+    ],
+    [
+      "2026-08-31",
+      25.49,
+      19.42,
+      20.93
+    ],
+    [
+      "2026-09-01",
+      24.78,
+      19.57,
+      20.93
+    ],
+    [
+      "2026-09-02",
+      24.8,
+      19.71,
+      20.93
+    ],
+    [
+      "2026-09-03",
+      25.32,
+      19.85,
+      20.94
+    ],
+    [
+      "2026-09-04",
+      25.07,
+      19.98,
+      20.95
+    ],
+    [
+      "2026-09-08",
+      24.82,
+      20.11,
+      20.95
+    ],
+    [
+      "2026-09-09",
+      24.03,
+      20.22,
+      20.95
+    ],
+    [
+      "2026-09-10",
+      24.04,
+      20.35,
+      20.95
+    ],
+    [
+      "2026-09-11",
+      24.34,
+      20.46,
+      20.95
+    ],
+    [
+      "2026-09-14",
+      26.05,
+      20.61,
+      20.96
+    ],
+    [
+      "2026-09-15",
+      28.5,
+      20.83,
+      20.97
+    ],
+    [
+      "2026-09-16",
+      28.21,
+      21.04,
+      20.99
+    ],
+    [
+      "2026-09-17",
+      30.92,
+      21.31,
+      21.02
+    ],
+    [
+      "2026-09-18",
+      29.98,
+      21.56,
+      21.04
+    ],
+    [
+      "2026-09-21",
+      30.65,
+      21.83,
+      21.06
+    ],
+    [
+      "2026-09-22",
+      31.47,
+      22.12,
+      21.08
+    ],
+    [
+      "2026-09-23",
+      31.65,
+      22.41,
+      21.1
+    ],
+    [
+      "2026-09-24",
+      32.27,
+      22.71,
+      21.11
+    ],
+    [
+      "2026-09-25",
+      31.98,
+      23.02,
+      21.13
+    ],
+    [
+      "2026-09-28",
+      31.75,
+      23.32,
+      21.15
+    ],
+    [
+      "2026-09-29",
+      31.55,
+      23.64,
+      21.18
+    ],
+    [
+      "2026-09-30",
+      30.63,
+      23.94,
+      21.2
+    ],
+    [
+      "2026-10-01",
+      28.35,
+      24.2,
+      21.21
+    ],
+    [
+      "2026-10-02",
+      28.3,
+      24.45,
+      21.21
+    ],
+    [
+      "2026-10-05",
+      30.39,
+      24.75,
+      21.23
+    ],
+    [
+      "2026-10-06",
+      27.45,
+      24.99,
+      21.23
+    ],
+    [
+      "2026-10-07",
+      27.1,
+      25.22,
+      21.22
+    ],
+    [
+      "2026-10-08",
+      27.5,
+      25.45,
+      21.22
+    ],
+    [
+      "2026-10-09",
+      29.7,
+      25.73,
+      21.23
+    ],
+    [
+      "2026-10-12",
+      29.69,
+      26.01,
+      21.24
+    ],
+    [
+      "2026-10-13",
+      29.53,
+      26.27,
+      21.24
+    ],
+    [
+      "2026-10-14",
+      30.25,
+      26.55,
+      21.25
+    ],
+    [
+      "2026-10-15",
+      31.76,
+      26.86,
+      21.27
+    ],
+    [
+      "2026-10-16",
+      30.56,
+      27.07,
+      21.29
+    ],
+    [
+      "2026-10-19",
+      30.71,
+      27.23,
+      21.31
+    ],
+    [
+      "2026-10-20",
+      31.11,
+      27.39,
+      21.33
+    ],
+    [
+      "2026-10-21",
+      32.35,
+      27.57,
+      21.36
+    ],
+    [
+      "2026-10-22",
+      31.71,
+      27.76,
+      21.37
+    ],
+    [
+      "2026-10-23",
+      32.0,
+      27.96,
+      21.39
+    ],
+    [
+      "2026-10-26",
+      32.45,
+      28.17,
+      21.41
+    ],
+    [
+      "2026-10-27",
+      33.67,
+      28.41,
+      21.44
+    ],
+    [
+      "2026-10-28",
+      35.45,
+      28.7,
+      21.49
+    ]
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-29T12:02:35Z",
+      "ticker": "CAI",
+      "rating": "Hold",
+      "score": "64",
+      "confidence": "Low",
+      "growth": "74",
+      "quality": "45",
+      "balance_sheet": "",
+      "valuation": "",
+      "trend": "88",
+      "news_risk": "54",
+      "price": "35.45",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.4905",
+      "overlay": "",
+      "quote_price": "35.45",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    }
+  ]
+}

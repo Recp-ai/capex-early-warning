@@ -1,0 +1,799 @@
+{
+  "run_id": "2026-10-29T12:05:27Z",
+  "generated_at": "2026-10-29T12:06:09+00:00",
+  "ticker": "SOPH",
+  "sec_ticker": "SOPH",
+  "cik": "0001840706",
+  "name": "SOPHiA GENETICS SA",
+  "sector": "Services-Computer Processing & Data Preparation",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 63,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter)"
+      },
+      {
+        "issue": "unknown_cash_debt",
+        "points": 1.0,
+        "text": "debt unknown: BankBorrowingsUndiscountedCashFlows is $67.1M on 2025-12-31, more than the $47.7M the debt tags read add up to (LongtermBorrowings)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 63 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 2
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 19
+    }
+  },
+  "composite": {
+    "score": 63,
+    "raw": 62.86,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 18.56,
+          "score": 72.1,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 14.07,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 85,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 67.4,
+          "score": 87.3,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -91.76,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -47.19,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 20.97,
+          "score": 13.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 2.24,
+          "score": 47.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 27,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": "missing: debt unknown: BankBorrowingsUndiscountedCashFlows is $67.1M on 2025-12-31, more than the $47.7M the debt tags read add up to (LongtermBorrowings)"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": "missing: debt unknown: BankBorrowingsUndiscountedCashFlows is $67.1M on 2025-12-31, more than the $47.7M the debt tags read add up to (LongtermBorrowings)"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "debt unknown: BankBorrowingsUndiscountedCashFlows is $67.1M on 2025-12-31, more than the $47.7M the debt tags read add up to (LongtermBorrowings)"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -0.3,
+          "score": 48.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 32.85,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 97.62,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 39.97,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 39.14,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -11.77,
+          "score": 55.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 86,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 58,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 7.87,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractsWithCustomers",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 14.07,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 77271000.0,
+    "revenue_yoy_ttm": 18.56,
+    "gross_profit_ttm": 52077000.0,
+    "operating_income_ttm": -70906000.0,
+    "operating_cash_flow_ttm": -35893000.0,
+    "capex_ttm": 574000.0,
+    "sbc_ttm": 16205000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "ProfitLossFromOperatingActivities",
+    "fcf_ttm": -36467000.0,
+    "gross_margin_pct": 67.4,
+    "operating_margin_pct": -91.76,
+    "fcf_margin_pct": -47.19,
+    "capex_intensity_pct": 0.74,
+    "sbc_pct_revenue": 20.97,
+    "missing_inputs": {},
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -47.19,
+      "fcf_margin_year_earlier_pct": -68.68,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -36467000.0,
+    "fcf_scored_margin_pct": -47.19,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 70289000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 70289000.0,
+      "debt": null,
+      "debt_tags": [
+        "LongtermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongtermBorrowings",
+          "val": 47733000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": null,
+      "unknown": [
+        "debt unknown: BankBorrowingsUndiscountedCashFlows is $67.1M on 2025-12-31, more than the $47.7M the debt tags read add up to (LongtermBorrowings)"
+      ]
+    },
+    "share_outliers": [],
+    "diluted_shares": 67539835.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 2.24,
+    "shares_outstanding": {
+      "val": 68486338.0,
+      "end": "2025-12-31",
+      "filed": "2026-03-03",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 7.87,
+    "date": "2026-10-28",
+    "ma50": 7.89,
+    "ma200": 5.92,
+    "vs_ma50_pct": -0.3,
+    "vs_ma200_pct": 32.85,
+    "momentum_12_1_pct": 97.62,
+    "high_52w": 8.92,
+    "drawdown_52w_pct": -11.77,
+    "return_rs_pct": 49.05,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 39.97,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 39.14
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; the FY26 raise to $94M–$96M came on 2026-08-04, before the window. Q3 results are scheduled for 2026-11-03.",
+        "evidence": [
+          {
+            "claim": "SOPHiA GENETICS to announce financial results for third quarter 2026 on November 3, before US market open.",
+            "url": "https://stockhouse.com/news/press-releases/2026/10/20/sophia-genetics-to-announce-financial-results-for-third-quarter-2026-on-november",
+            "event_date": "2026-10-20",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "H.C. Wainwright reiterated Buy with a $14 target and Weiss restated a sell (d-). There were no broker upgrades, downgrades or initiations in the window, so the picture is mixed.",
+        "evidence": [
+          {
+            "claim": "H.C. Wainwright reiterated a Buy rating with a $14 price target.",
+            "url": "https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/",
+            "event_date": "2026-10-12",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 2/3 · missing: 14, H.C"
+          },
+          {
+            "claim": "Weiss Ratings restated a sell (d-) rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/",
+            "event_date": "2026-10-15",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Nothing new in the window. The Guardant patent dispute is background only; the UPC rejected Guardant's provisional measures request in January 2026.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 1,
+        "summary": "A new collaboration with Myriad Genetics on PrGIS technology, linked to AstraZeneca companion diagnostic work, broadens SOPHiA's partner base. It rests on a single primary source.",
+        "evidence": [
+          {
+            "claim": "Myriad Genetics and SOPHiA GENETICS announce new collaboration to advance prostate genomic instability score technology.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/08/3377342/15459/en/myriad-genetics-and-sophia-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology.html",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 21,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Several executives sold shares in October, mostly to cover tax on RSU vesting or under 10b5-1 plans, and there were no purchases. The sales are routine and sourced only from aggregators, so the net signal is neutral.",
+        "evidence": [
+          {
+            "claim": "Jurgi Camblong disposes of 40,172 SOPHiA GENETICS shares to meet tax withholding requirements.",
+            "url": "https://kalkinemedia.com/us/news/announcements/jurgi-camblong-disposes-of-40172-sophia-genetics-shares-to-meet-tax-withholding-requirements",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          },
+          {
+            "claim": "Chairman Jurgi Camblong sells 8,500 shares of stock.",
+            "url": "https://www.marketbeat.com/instant-alerts/insider-sophia-genetics-nasdaq-soph-chairman-sells-8500-shares-of-stock-2026-10-14/",
+            "event_date": "2026-10-12",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "The Myriad PrGIS collaboration, with data planned for presentation at ESMO 2026, is a modest product positive. There was no competitive news.",
+        "evidence": [
+          {
+            "claim": "Myriad Genetics and SOPHiA GENETICS announce collaboration on prostate genomic instability score (PrGIS) technology, with data to be presented at ESMO 2026.",
+            "url": "https://www.globenewswire.com/news-release/2026/10/08/3377342/15459/en/myriad-genetics-and-sophia-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology.html",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 21,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**SOPH news, 2026-09-29 to 2026-10-29**\n\n**1. Guidance / results**\n- No guidance change in the window. The last change was on 2026-08-04, before the window. FY26 revenue guidance was raised to $94M–$96M from $92M–$94M. — 2026-08-04 — https://www.cnn.com/markets/stocks/SOPH\n- Q3 2026 results are due before the US market opens on 2026-11-03, with a call at 8:00 ET. — announced 2026-10-20 — https://stockhouse.com/news/press-releases/2026/10/20/sophia-genetics-to-announce-financial-results-for-third-quarter-2026-on-november\n- Consensus for Q3 is EPS of ($0.198) and revenue of $24.03M. — 2026-10-27 — https://marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27\n- Q2 EPS was ($0.26) against a ($0.21) consensus, per MarketBeat. — 2026-08-04 (MarketBeat says Aug 5) — https://marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27\n\n**2. Analyst actions**\n- H.C. Wainwright reiterated Buy with a $14 price target. — 2026-10-12 — https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/\n- Weiss Ratings restated \"sell (d-)\". — 2026-10-15 — https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/\n- MarketBeat shows a consensus of \"Hold\" and a $10.00 average target. — date unknown — https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/\n- Earlier actions fall outside the window. BTIG raised its target to $9 from $8, and H.C. Wainwright raised its target to $14 from $12. Both were on 2026-08-05. — https://www.benzinga.com/quote/soph/analyst-ratings\n- I found no upgrades, downgrades or initiations by brokers in the window.\n\n**3. Litigation / regulation**\n- I found nothing new in the window.\n- Background: Guardant sued in the UK (July 2025) and at the Unified Patent Court in Paris (August 2025), alleging MSK-Access infringes its patents. On 2026-01-23 the UPC rejected Guardant's request for provisional measures and ordered an interim costs award of EUR 400,000. — 2026-01-23 — https://www.sec.gov/Archives/edgar/data/1840706/000184070626000005/a2025swissannualreport.htm\n- I found no update on the Guardant case in the window.\n\n**4. Customer concentration / contracts**\n- 2026-10-08: SOPHiA and Myriad Genetics announced a collaboration on prostate-cancer genomic instability score (PrGIS) technology. It supports precision oncology work with AstraZeneca and covers companion diagnostic solutions. — 2026-10-08 — https://www.globenewswire.com/news-release/2026/10/08/3377342/15459/en/myriad-genetics-and-sophia-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology.html\n- Background: a multi-year AstraZeneca collaboration to develop two companion diagnostics was announced on 2026-08-04. — https://www.prnewswire.com/news-releases/sophia-genetics-enters-collaboration-to-develop-companion-diagnostics-for-precision-oncology-therapies-302841676.html\n- I found no customer-concentration disclosures or customer losses in the window.\n\n**5. Insider activity**\nAll items below are Form 4 sales. The sources describe them as tax-withholding sales under Rule 10b5-1 plans, except where noted. Several executives sold on the same date.\n- Executive Chairman Jurgi Camblong sold 40,172 shares at about $8.13 to cover tax on RSU vesting. — 2026-10-05 — https://kalkinemedia.com/us/news/announcements/jurgi-camblong-disposes-of-40172-sophia-genetics-shares-to-meet-tax-withholding-requirements\n- Chief People Officer Manuela Valente sold 4,240 shares at about $8.13, and CFO George Cardoza sold 1,592 shares at about $8.10. — 2026-10-05 — https://www.stocktitan.net/sec-filings/SOPH/form-4.html\n- Chief Medical Officer Philippe Menu sold 7,394 shares at about $8.13, and Chief Sales Officer Kevin Puylaert sold 185 and 31 shares. — 2026-10-05 — https://www.stocktitan.net/sec-filings/SOPH/form-4.html\n  - Puylaert's filing reports no 10b5-1 plan.\n  - Cardoza's sale is described as a non-discretionary tax sale. The same source summary also says it was under a trading plan.\n- Camblong sold a further 8,500 shares at about $7.26 under a 10b5-1 plan. He held 3,387,150 shares afterward. — 2026-10-12 — https://www.marketbeat.com/instant-alerts/insider-sophia-genetics-nasdaq-soph-chairman-sells-8500-shares-of-stock-2026-10-14/\n- Camblong sold 8,500 shares at $7.2554 on the same date. — 2026-10-12 — https://rallies.ai/news/sophia-genetics-executive-chairman-jurgi-camblong-reports-sale-of-6167090-in-common-shares-8f22175da1d3707f\n- Gurufocus says Camblong sold a total of 451,386 shares over the past year and bought none on the open market. — 2026-10-12 — https://www.gurufocus.com/news/9124227/executive-chairman-jurgi-camblong-sells-8500-shares-of-sophia-genetics-sa-soph\n- I found no insider purchases in the window.\n- Outside the window: Cardoza sold 774 shares at $8.33 on 2026-09-21. — https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-5206b02d5c71.html\n\n**6. Product / competitive**\n- Myriad collaboration (above) is the only product-related announcement I found in the window. Myriad plans to present PrGIS data at ESMO 2026. — 2026-10-08 — https://www.globenewswire.com/news-release/2026/10/08/3377342/15459/en/myriad-genetics-and-sophia-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology.html\n- SOPHiA ran a Precision Medicine Forum at ESMO (2026-10-22) and attended ASHG (2026-10-20 to 2026-10-24). — https://www.sophiagenetics.com/events-and-webinars/\n- I found no news on pricing, share gains or losses, or new competitors in the window.\n\n**Gaps:** I did not find primary SEC Form 4 documents for the October sales, so those items rely on aggregators (Kalkine, StockTitan, MarketBeat, Rallies). I also did not find the original filings or press coverage for analyst notes beyond MarketBeat's summary.",
+      "urls": [
+        "https://finance.yahoo.com/quote/SOPH/news/",
+        "https://www.sophiagenetics.com/news-room/",
+        "https://ir.sophiagenetics.com/index.php?s=43&l=50",
+        "https://www.cnn.com/markets/stocks/SOPH",
+        "https://stockanalysis.com/stocks/soph/",
+        "https://ir.sophiagenetics.com/",
+        "https://www.theglobeandmail.com/investing/markets/stocks/SOPH/pressreleases/3660554/sophia-genetics-updates-investors-with-q2-2026-form-6-k-filing/",
+        "https://www.prnewswire.com/news-releases/sophia-genetics-enters-collaboration-to-develop-companion-diagnostics-for-precision-oncology-therapies-302841676.html",
+        "https://marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27",
+        "https://www.benzinga.com/quote/soph/analyst-ratings",
+        "https://simplywall.st/stocks/us/healthcare/nasdaq-soph/sophia-genetics",
+        "https://www.tipranks.com/stocks/soph/forecast",
+        "https://finance.yahoo.com/markets/stocks/articles/sophia-genetics-nasdaqgs-soph-narrative-180324539.html",
+        "https://danelfin.com/stock/SOPH",
+        "https://www.benzinga.com/quote/SOPH/analyst-ratings",
+        "https://www.marketbeat.com/stocks/NASDAQ/SOPH/price-target",
+        "https://www.sec.gov/Archives/edgar/data/0001840706/000184070626000248/wk-form4_1783454610.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001840706/000184070626000237/wk-form4_1782936197.xml",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-a6855866824f.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-5206b02d5c71.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-7dd2a9a67f6a.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-56512e05e662.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-4ddb12e11f91.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-4540374ec537.html",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4-sop-hi-a-genetics-sa-insider-trading-activity-bc4ae3aefd9a.html",
+        "https://www.marketbeat.com/instant-alerts/upcoming-sophia-genetics-soph-projected-to-announce-earnings-on-tuesday-2026-10-27/",
+        "https://www.sophiagenetics.com/events-and-webinars/",
+        "https://stockhouse.com/news/press-releases/2026/10/20/sophia-genetics-to-announce-financial-results-for-third-quarter-2026-on-november",
+        "https://www.prnewswire.com/news-releases/sophia-genetics-and-myriad-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology-302902344.html",
+        "https://rallies.ai/news/sophia-genetics-publishes-update-to-financial-calendar-b78c5dde267d931c",
+        "https://www.globenewswire.com/news-release/2026/10/08/3377342/15459/en/myriad-genetics-and-sophia-genetics-announce-new-collaboration-to-advance-prostate-genomic-instability-score-technology.html",
+        "https://www.sec.gov/Archives/edgar/data/0001840706/000184070626000048/wk-form3_1773841583.xml",
+        "https://www.gurufocus.com/news/9124227/executive-chairman-jurgi-camblong-sells-8500-shares-of-sophia-genetics-sa-soph",
+        "https://www.marketbeat.com/instant-alerts/insider-sophia-genetics-nasdaq-soph-chairman-sells-8500-shares-of-stock-2026-10-14/",
+        "https://kalkinemedia.com/us/news/announcements/jurgi-camblong-disposes-of-40172-sophia-genetics-shares-to-meet-tax-withholding-requirements",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000095010321012887/dp156736_6k.htm",
+        "https://rallies.ai/news/sophia-genetics-executive-chairman-jurgi-camblong-reports-sale-of-6167090-in-common-shares-8f22175da1d3707f",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000095010321015751/dp159716_6k.htm",
+        "https://www.stocktitan.net/sec-filings/SOPH/form-4.html",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000184070626000005/a2025swissannualreport.htm",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000184070625000038/sophiageneticssaex992q32025.htm",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000184070625000026/sophiageneticssaex992q22025.htm",
+        "https://finimize.com/content/soph-asset-snapshot",
+        "https://www.rttnews.com/3668778/sophia-genetics-why-this-ai-powered-healthcare-stock-deserves-attention.aspx",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000184070625000011/sophiageneticssaex992q12025.htm",
+        "https://www.sec.gov/Archives/edgar/data/1840706/000119312521207629/d101766df1.htm",
+        "https://www.swissbiotech.org/news/sophia-genetics-announces-two-million-patient-cases-analyzed-marking-a-new-milestone-for-data-driven-medicine-at-nvidia-gtc/"
+      ],
+      "searches": 6
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "SOPHiA GENETICS rates Hold at 63, just short of Buy, on strong growth and momentum offset by weak profitability.",
+    "thesis": "SOPHiA GENETICS scores 63, a Hold that sits 2 points below the Buy threshold of 65. Growth is the strongest factor at 85, with TTM revenue growth of 18.6% and growth sped up by 14.1 pp from the previous quarter. The trend score of 86 is also strong: shares are up 97.6% from 12 months ago to 1 month ago, are 40.0 pp ahead of SPY over the last 126 trading days, and the price is 32.9% above its 200-day average. Quality holds the score back at 27, with an operating margin of -91.8%, an FCF margin of -47.2% and stock-based compensation at 21.0% of revenue, despite a gross margin of 67.4%. News is mildly positive at 58, helped by a new collaboration with Myriad Genetics, and the balance sheet and valuation were not scored, so the rating rests on the other four factors.",
+    "key_risks": [
+      "Deep operating losses (operating margin of -91.8%) and cash burn (FCF margin of -47.2%) may require further funding.",
+      "Stock-based compensation at 21.0% of revenue and diluted share count up 2.2% year on year dilute existing holders.",
+      "Bank borrowings appear larger than the reported long-term debt, so total debt is uncertain.",
+      "After a 97.6% run-up the shares could pull back sharply if Q3 results on 2026-11-03 disappoint against the raised FY26 guidance of $94M–$96M.",
+      "Executives sold shares in October with no insider purchases."
+    ],
+    "what_would_change": [
+      "A gain of 2 points, for example from better margins lifting the quality score or more positive news, would move the rating to Buy.",
+      "Q3 results on 2026-11-03 that confirm the growth acceleration and show narrowing losses could push the score over 65.",
+      "A drop of 19 points to below 45 would mean Sell, which would likely need a sharp reversal in the price trend together with slowing growth.",
+      "Clarity on total debt and valuation would add two unscored factors to the composite score and could shift it in either direction."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 93527,
+        "output_tokens": 3128,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 6,
+        "per_request": [
+          {
+            "input_tokens": 93527,
+            "output_tokens": 3128,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 6
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.2783,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6975,
+        "output_tokens": 1477,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6975,
+            "output_tokens": 1477,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0574,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3849,
+        "output_tokens": 732,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3849,
+            "output_tokens": 732,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.03,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3657,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 7.87,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 7.54
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:05",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40864593338",
+    "tickers": [
+      "CRL",
+      "RVTY",
+      "DHR",
+      "TMO",
+      "IQV",
+      "MRVI",
+      "CERT",
+      "ILMN",
+      "TEM",
+      "CAI",
+      "AVTR",
+      "FTRE",
+      "RGEN",
+      "A",
+      "DGX",
+      "ABCL",
+      "ADPT",
+      "AZTA",
+      "SOPH",
+      "REGN",
+      "QGEN",
+      "GENB",
+      "MLAB"
+    ]
+  }
+}
