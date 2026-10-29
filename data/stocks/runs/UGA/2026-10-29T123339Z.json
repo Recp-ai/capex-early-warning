@@ -1,0 +1,905 @@
+{
+  "run_id": "2026-10-29T12:33:39Z",
+  "generated_at": "2026-10-29T12:34:11+00:00",
+  "ticker": "UGA",
+  "sec_ticker": "UGA",
+  "cik": "0001396878",
+  "name": "United States Gasoline Fund, LP",
+  "sector": "Commodity Contracts Brokers & Dealers",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 70,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 10
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 6
+    }
+  },
+  "composite": {
+    "score": 70,
+    "raw": 69.9,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 64.07,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 717.33,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -2372.74,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 75,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no data"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt: no debt tag with a value in the last 8 quarters"
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 3.161,
+          "score": 73.7,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.1,
+      "score": null,
+      "missing": "only 10% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 2.63,
+          "score": 63.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 30.97,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 116.87,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 10.6,
+          "score": 70.9,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 9.77,
+          "score": 69.5,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -6.34,
+          "score": 75.7,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 83,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 143.19,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": -1987476.0,
+    "revenue_yoy_q": 64.07,
+    "revenue_yoy_q_prev": 2436.81,
+    "acceleration_pp": -2372.74,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 56626842.0,
+    "revenue_yoy_ttm": 717.33,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 47935928.0,
+    "capex_ttm": null,
+    "sbc_ttm": null,
+    "gross_profit_source": null,
+    "operating_income_source": null,
+    "fcf_ttm": null,
+    "gross_margin_pct": null,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 82385317.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 82385317.0,
+      "debt": 0.0,
+      "debt_tags": [],
+      "debt_parts": [],
+      "debt_note": "no debt: no debt tag with a value in the last 8 quarters",
+      "net_debt": -82385317.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "shares_outstanding": {
+      "val": 1250000.0,
+      "end": "2026-08-04",
+      "filed": "2026-08-07",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 5491883.0,
+        "revenue_yoy_pct": 120.59,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": -8218935.0,
+        "revenue_yoy_pct": -185.26,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 16134936.0,
+        "revenue_yoy_pct": 631.42,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": -3528867.0,
+        "revenue_yoy_pct": -281.76,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": -13454377.0,
+        "revenue_yoy_pct": -344.99,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 7507345.0,
+        "revenue_yoy_pct": 191.34,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 2305257.0,
+        "revenue_yoy_pct": -85.71,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": -5531109.0,
+        "revenue_yoy_pct": -56.74,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 5124872.0,
+        "revenue_yoy_pct": 138.09,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": -4990528.0,
+        "revenue_yoy_pct": -166.48,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 58479974.0,
+        "revenue_yoy_pct": 2436.81,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": -1987476.0,
+        "revenue_yoy_pct": 64.07,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 143.19,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 1250000.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-04"
+    },
+    "market_cap": 178987500.0,
+    "enterprise_value": 96602183.0,
+    "price_to_sales": 3.161,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 31.637,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": null,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 3.161,
+        "current_yield_pct": 31.637,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": null
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 143.19,
+    "date": "2026-10-28",
+    "ma50": 139.53,
+    "ma200": 109.33,
+    "vs_ma50_pct": 2.63,
+    "vs_ma200_pct": 30.97,
+    "momentum_12_1_pct": 116.87,
+    "high_52w": 152.88,
+    "drawdown_52w_pct": -6.34,
+    "return_rs_pct": 19.68,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 10.6,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 9.77
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "UGA is a commodity pool that issues no guidance. Its objective is to track front-month RBOB gasoline futures, and no new results filing came out in the window.",
+        "evidence": [
+          {
+            "claim": "UGA held 886 NYMEX gasoline futures contracts as of June 30, 2026, per its Q2 10-Q.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001396878/000110465926092629/uga-20260630x10q.htm",
+            "event_date": "2026-06-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 121,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "No analyst upgrades, downgrades or target changes were found for UGA.",
+        "evidence": [],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Madison Dearborn Partners agreed to buy Marygold, the ultimate parent of UGA's general partner, just before the window opened; closing depends on stockholder and regulatory approvals. No new lawsuits or enforcement actions against UGA or USCF were found.",
+        "evidence": [
+          {
+            "claim": "Madison Dearborn Partners (MDP) agreed to acquire The Marygold Companies (MGLD) in an all-cash deal; stockholders get $2.00 per share.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001005101/000149315226044491/ex99-1.htm",
+            "event_date": "2026-09-25",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 34,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 7/7"
+          },
+          {
+            "claim": "Closing is expected in the first half of 2027 or earlier, subject to approval by Marygold stockholders, regulatory approvals and certain change-of-control approvals.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001396878/000207187626000220/i26393_uga-8k.htm",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "This topic doesn't apply to a fund that issues shares through authorized participants, and no news on authorized-participant changes was found.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "UGA has no insiders who trade its units, and no Form 4 filings were found.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "There was no UGA-specific product news in the window. The sponsor USCF is expected to become the focus of the business under new private-equity ownership.",
+        "evidence": [
+          {
+            "claim": "MDP is partnering with ETF veteran Tim Rotolo, who will be Marygold's incoming CEO.",
+            "url": "https://www.etftrends.com/alternatives-content-hub/private-equity-giant-mdp-acquiring-marygold-companies/",
+            "event_date": "2026-09-25",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 34,
+            "background": true,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**United States Gasoline Fund, LP (UGA), news from 2026-09-29 to 2026-10-29**\n\nUGA is a commodity pool, not an operating company. It has no earnings guidance, sell-side coverage, customers or insiders in the usual sense. I found nothing material dated inside the window for any of the six topics. The one relevant item, the sponsor's parent being sold, was announced just before the window opened.\n\n**1. Guidance changes**\n- Nothing found. UGA gives no guidance. Its objective is to track the front-month RBOB gasoline futures price. — date unknown — https://www.sec.gov/Archives/edgar/data/0001396878/000119312513104952/d440803d10k.htm\n- The next results filing, the Q3 10-Q, was not out as of this search. The latest is the Q2 10-Q, which shows \n886 NYMEX gasoline futures contracts held as of June 30, 2026\n. — 2026-06-30 — https://www.sec.gov/Archives/edgar/data/0001396878/000110465926092629/uga-20260630x10q.htm\n- Price data only: \nUGA traded around $145 on Oct 19, 2026, with assets of $164.26M\n. — 2026-10-19 — https://stockanalysis.com/etf/uga/\n- Investing.com, a different source, shows \na price of 144.93 and a 52-week range of 60.54 to 153.46\n. \nIt lists total assets of 190.16M and NAV of 146.28.\n The page has no date. — date unknown — https://www.investing.com/etfs/united-states-gasoline-fund-lp\n\n**2. Analyst actions**\n- None found. No upgrades, downgrades, initiations or price-target changes for UGA turned up.\n\n**3. Litigation and regulation**\n- The sponsor's ultimate parent is being taken private. \nMadison Dearborn Partners (MDP) agreed to acquire The Marygold Companies (MGLD) in an all-cash deal.\n \nStockholders get $2.00 per share.\n — 2026-09-25 (one business day before the window opens) — https://www.sec.gov/Archives/edgar/data/0001005101/000149315226044491/ex99-1.htm\n- UGA's own 8-K says \nclosing is expected in the first half of 2027 or earlier. Conditions include approval by Marygold stockholders, regulatory approvals and certain change-of-control approvals.\n The 8-K's own date is not visible in the excerpt. — date unknown — https://www.sec.gov/Archives/edgar/data/0001396878/000207187626000220/i26393_uga-8k.htm\n- That 8-K also says \nMarygold is the sole shareholder of USCF Investments, Inc., which is the sole member of United States Commodity Funds LLC (USCF), UGA's general partner.\n — 2026-09-25 (inferred from the other sources) — same URL\n- MDP says \nit and Marygold leaders will refocus the business on USCF after closing.\n — 2026-09-25 — https://www.sec.gov/Archives/edgar/data/0001005101/000149315226044491/ex99-1.htm\n- No new lawsuits, investigations or fines against UGA or USCF were found in the window. The only enforcement item found is old: \na $2.5M CFTC penalty on USCF\n over USO disclosures. — date unknown (about 2021) — https://www.cftc.gov/PressRoom/PressReleases/8457-21\n\n**4. Customer concentration**\n- Not applicable. UGA sells shares through authorized participants. \nIt issues shares to authorized participants in 50,000-share creation baskets.\n I found no news in the window on authorized-participant changes. — date unknown — https://www.sec.gov/Archives/edgar/data/0001396878/000110465926057773/uga-20260331x10q.htm\n\n**5. Insider activity**\n- No Form 4 filings. UGA is a fund with no officers or directors who trade its units. Nothing was found for the window.\n- Marygold, the parent, is being acquired at a fixed cash price. I did not look for insider trades in its stock.\n\n**6. Product and competitive news**\n- Nothing UGA-specific in the window. The deal announcement describes USCF as \na commodity-focused ETF manager with about $6 billion in AUM\n. — 2026-09-25 — https://www.sec.gov/Archives/edgar/data/0001005101/000149315226044491/ex99-1.htm\n- \nMDP is partnering with ETF veteran Tim Rotolo, who will be Marygold's incoming CEO.\n — 2026-09-25 — https://www.etftrends.com/alternatives-content-hub/private-equity-giant-mdp-acquiring-marygold-companies/\n- A USCF product guide as of 2026-06-30 has a fee-waiver footnote. \nIt mentions October 31, 2026 and a waiver of 0.20% of a management fee.\n The excerpt doesn't say which fund this applies to, so I can't tie it to UGA. — 2026-06-30 — https://secure.alpsinc.com/MarketingAPI/api/v1/Content/uscfinvestments/uscfinvestments-edu-20260630.pdf\n\n**Gaps:** I did not find Reuters, Bloomberg or other major-outlet coverage specific to UGA in the window. I also did not check RBOB price news in depth.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000114420411014638/v214043_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000114420410013779/v176807_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000119312513104952/d440803d10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000114420414014565/v368926_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000119312512103943/d264078d10k.htm",
+        "https://finance.yahoo.com/quote/UGA/performance/",
+        "https://www.etoro.com/markets/uga",
+        "https://stockanalysis.com/etf/uga/",
+        "https://www.tradingview.com/symbols/AMEX-UGA/",
+        "https://www.investing.com/etfs/united-states-gasoline-fund-lp",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000110465926057773/uga-20260331x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000110465926092629/uga-20260630x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000207187626000123/i26206_uga-424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000207187626000220/i26393_uga-8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1396878/000110465926032671/tm268488d4_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1396878/000207187626000066/i26128_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000207187626000149/i26255_ex23-2.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001396878/000110465926102789/tm2623039d4_8k.htm",
+        "https://secure.alpsinc.com/MarketingAPI/api/v1/Content/uscfinvestments/uscfinvestments-edu-20260630.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0001479247/000110465926092635/usci-20260630x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/1479247/000110465926032677/tm268488d7_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1376227/000110465926032669/tm268488d2_ex99-1.htm",
+        "https://www.cftc.gov/PressRoom/PressReleases/8457-21",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465926092623/uso-20260630x10q.htm",
+        "https://en.wikipedia.org/wiki/United_States_Commodity_Funds",
+        "https://www.sec.gov/Archives/edgar/data/0001479247/000114420417013891/v459169_10k.htm",
+        "https://leadiq.com/c/us-commodity-futures-trading-commission/5a1d849324000024005f2f42",
+        "https://www.sec.gov/Archives/edgar/data/1479247/000119312515165326/d883058d424b3.htm",
+        "https://www.etftrends.com/alternatives-content-hub/private-equity-giant-mdp-acquiring-marygold-companies/",
+        "https://www.sec.gov/Archives/edgar/data/0001005101/000149315226044491/ex99-1.htm",
+        "https://marketchameleon.com/articles/b/2026/9/25/mgld-madison-dearborn-acquisition-2-cash-uscf-etf-platform",
+        "https://www.investing.com/news/sec-filings/marygold-companies-to-be-taken-private-by-madison-dearborn-partners-in-allcash-deal-93CH-4918240",
+        "https://www.tipranks.com/news/the-fly/madison-dearborn-to-acquire-the-marygold-companies-for-2-00-per-share-in-cash-thefly-news",
+        "https://www.paulweiss.com/insights/client-news/madison-dearborn-partners-to-acquire-the-marygold-companies",
+        "https://www.citybiz.co/article/909326/madison-dearborn-partners-to-acquire-marygold-in-2-per-share-take-private-deal/",
+        "https://natlawreview.com/press-releases/madison-dearborn-partners-announces-definitive-agreement-acquire-marygold",
+        "https://kalkinemedia.com/us/news/announcements/united-states-brent-oil-funds-parent-company-the-marygold-companies-to-go-private-in-all-cash-deal-with-madison-dearborn-partners"
+      ],
+      "searches": 4
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "UGA rates Buy on strong gasoline-futures gains and price momentum, with three factors lacking data.",
+    "thesis": "United States Gasoline Fund is a commodity pool that tracks front-month RBOB gasoline futures, so its reported 'revenue' mostly reflects gains on those contracts rather than sales. The Buy rating and score of 70 rest on three factors: growth (75), trend (83) and news risk (50). Growth is strong on the reported figures, with TTM revenue growth of 717.3% and latest-quarter revenue growth of 64.1% year on year, though growth slowed by 2372.7 pp from the previous quarter. Trend is the strongest factor: the price is 31.0% above its 200-day average, shares are up 116.9% from 12 months ago to 1 month ago, and the price is 6.3% below its 52-week high. News was neutral across all topics, and quality, balance sheet and valuation did not contribute to the score.",
+    "key_risks": [
+      "The fund's results and price move with gasoline futures, so a fall in RBOB prices would hit both reported growth and the trend score quickly.",
+      "Rolling front-month futures can cost money when later contracts trade above nearer ones, which can drag returns even if spot gasoline holds up.",
+      "Reported growth is very volatile for a futures fund, as shown by growth slowing by 2372.7 pp from the previous quarter.",
+      "Madison Dearborn Partners' pending purchase of Marygold, the parent of the general partner, depends on stockholder and regulatory approvals and could change how the sponsor is run.",
+      "Gasoline demand is seasonal, and a weaker winter period could weigh on prices after a run that left shares up 116.9% from 12 months ago to 1 month ago."
+    ],
+    "what_would_change": [
+      "A drop of 6 points would take the score below 65 and the rating to Hold, most likely through a weaker trend score if gasoline futures fall back toward the 200-day average.",
+      "A gain of 10 points to 80 would lift the rating to Strong Buy, which would need stronger growth or trend readings or positive news.",
+      "A sharp reversal in futures gains would cut the growth score, which carries the largest weight at 0.4.",
+      "Negative news, such as problems with the sponsor's ownership change, would lower the news risk score from its neutral 50."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 62666,
+        "output_tokens": 2523,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 4,
+        "per_request": [
+          {
+            "input_tokens": 62666,
+            "output_tokens": 2523,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 4
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.1906,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6119,
+        "output_tokens": 936,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6119,
+            "output_tokens": 936,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0432,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3547,
+        "output_tokens": 1060,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3547,
+            "output_tokens": 1060,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0354,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.2692,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 143.19,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 141.2
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:33",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

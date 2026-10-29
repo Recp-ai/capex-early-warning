@@ -1,0 +1,1698 @@
+{
+  "run_id": "2026-10-29T12:33:00Z",
+  "generated_at": "2026-10-29T12:34:12+00:00",
+  "ticker": "OLN",
+  "sec_ticker": "OLN",
+  "cik": "0000074303",
+  "name": "OLIN Corp",
+  "sector": "Chemicals & Allied Products",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 32,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: FCF margin"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 32 is within 2 points of the Sell edge (30)"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 13
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 32,
+    "raw": 32.0,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -0.93,
+          "score": 22.7,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 0.6,
+          "score": 26.8,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 2.79,
+          "score": 64.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 34,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 6.87,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -1.57,
+          "score": 16.9,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": 0.32,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -0.87,
+          "score": 82.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 42,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.06,
+          "score": 7.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.28,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 3.3,
+          "score": 96.7,
+          "weight": 0.1,
+          "note": "cheaper than now in 3.3% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 6 of 61 month-ends)"
+        }
+      },
+      "coverage": 0.412,
+      "score": null,
+      "missing": "only 41% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -0.27,
+          "score": 48.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -26.47,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -33.39,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -47.79,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -48.62,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -45.36,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 7,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 41,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 16.47,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 1741900000.0,
+    "revenue_yoy_q": -0.93,
+    "revenue_yoy_q_prev": -3.72,
+    "acceleration_pp": 2.79,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 6703200000.0,
+    "revenue_yoy_ttm": 0.6,
+    "gross_profit_ttm": 460700000.0,
+    "operating_income_ttm": -105500000.0,
+    "operating_cash_flow_ttm": 307200000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 21300000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 6.87,
+    "operating_margin_pct": -1.57,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 0.32,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 177400000.0,
+      "cash_tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 177400000.0,
+      "debt": 3029100000.0,
+      "debt_tags": [
+        "DebtLongtermAndShorttermCombinedAmount"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtLongtermAndShorttermCombinedAmount",
+          "val": 3029100000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 2851700000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 113900000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -0.87,
+    "shares_outstanding": {
+      "val": 113982490.0,
+      "end": "2026-06-30",
+      "filed": "2026-07-31",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 1671400000.0,
+        "revenue_yoy_pct": -28.01,
+        "operating_margin_pct": 9.93,
+        "fcf": 170500000.0,
+        "diluted_shares": 127000000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 1614600000.0,
+        "revenue_yoy_pct": -18.33,
+        "operating_margin_pct": 6.13,
+        "fcf": 353600000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 1635300000.0,
+        "revenue_yoy_pct": -11.33,
+        "operating_margin_pct": 5.95,
+        "fcf": 36700000.0,
+        "diluted_shares": 121900000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 1644000000.0,
+        "revenue_yoy_pct": -3.45,
+        "operating_margin_pct": 8.3,
+        "fcf": 34100000.0,
+        "diluted_shares": 120200000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 1589500000.0,
+        "revenue_yoy_pct": -4.9,
+        "operating_margin_pct": 0.98,
+        "fcf": 146600000.0,
+        "diluted_shares": 116900000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 1671300000.0,
+        "revenue_yoy_pct": 3.51,
+        "operating_margin_pct": 2.83,
+        "fcf": 90700000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 1644200000.0,
+        "revenue_yoy_pct": 0.54,
+        "operating_margin_pct": 2.66,
+        "fcf": -147400000.0,
+        "diluted_shares": 116600000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 1758300000.0,
+        "revenue_yoy_pct": 6.95,
+        "operating_margin_pct": 2.01,
+        "fcf": 181300000.0,
+        "diluted_shares": 114900000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 1713200000.0,
+        "revenue_yoy_pct": 7.78,
+        "operating_margin_pct": 4.83,
+        "fcf": -44400000.0,
+        "diluted_shares": 115100000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 1665100000.0,
+        "revenue_yoy_pct": -0.37,
+        "operating_margin_pct": -9.4,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 1583000000.0,
+        "revenue_yoy_pct": -3.72,
+        "operating_margin_pct": -4.95,
+        "fcf": -92300000.0,
+        "diluted_shares": 113800000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 1741900000.0,
+        "revenue_yoy_pct": -0.93,
+        "operating_margin_pct": 2.67,
+        "fcf": -21100000.0,
+        "diluted_shares": 113900000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 16.47,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 113982490.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-06-30"
+    },
+    "market_cap": 1877291610.3,
+    "enterprise_value": 4728991610.3,
+    "price_to_sales": 0.28,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 357.068,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": -2.231,
+    "fcf_negative": false,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 1.148,
+        "price_to_fcf": 7.996,
+        "ev_to_ebit": 8.578,
+        "sales_yield_pct": 87.1,
+        "fcf_yield_pct": 12.507,
+        "ebit_yield_pct": 11.657
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 1.095,
+        "price_to_fcf": 7.627,
+        "ev_to_ebit": 8.272,
+        "sales_yield_pct": 91.315,
+        "fcf_yield_pct": 13.112,
+        "ebit_yield_pct": 12.09
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 1.159,
+        "price_to_fcf": 8.072,
+        "ev_to_ebit": 8.641,
+        "sales_yield_pct": 86.282,
+        "fcf_yield_pct": 12.389,
+        "ebit_yield_pct": 11.573
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 1.021,
+        "price_to_fcf": 7.11,
+        "ev_to_ebit": 7.842,
+        "sales_yield_pct": 97.947,
+        "fcf_yield_pct": 14.064,
+        "ebit_yield_pct": 12.751
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.942,
+        "price_to_fcf": 5.451,
+        "ev_to_ebit": 5.941,
+        "sales_yield_pct": 106.127,
+        "fcf_yield_pct": 18.347,
+        "ebit_yield_pct": 16.833
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.956,
+        "price_to_fcf": 5.532,
+        "ev_to_ebit": 6.008,
+        "sales_yield_pct": 104.564,
+        "fcf_yield_pct": 18.076,
+        "ebit_yield_pct": 16.643
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.963,
+        "price_to_fcf": 5.592,
+        "ev_to_ebit": 5.796,
+        "sales_yield_pct": 103.84,
+        "fcf_yield_pct": 17.883,
+        "ebit_yield_pct": 17.253
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 1.104,
+        "price_to_fcf": 6.409,
+        "ev_to_ebit": 6.456,
+        "sales_yield_pct": 90.597,
+        "fcf_yield_pct": 15.602,
+        "ebit_yield_pct": 15.489
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.776,
+        "price_to_fcf": 4.509,
+        "ev_to_ebit": 4.921,
+        "sales_yield_pct": 128.79,
+        "fcf_yield_pct": 22.18,
+        "ebit_yield_pct": 20.319
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.811,
+        "price_to_fcf": 4.501,
+        "ev_to_ebit": 4.785,
+        "sales_yield_pct": 123.303,
+        "fcf_yield_pct": 22.218,
+        "ebit_yield_pct": 20.898
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.848,
+        "price_to_fcf": 4.707,
+        "ev_to_ebit": 4.952,
+        "sales_yield_pct": 117.911,
+        "fcf_yield_pct": 21.246,
+        "ebit_yield_pct": 20.193
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.665,
+        "price_to_fcf": 3.692,
+        "ev_to_ebit": 4.129,
+        "sales_yield_pct": 150.304,
+        "fcf_yield_pct": 27.083,
+        "ebit_yield_pct": 24.219
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.777,
+        "price_to_fcf": 4.327,
+        "ev_to_ebit": 4.952,
+        "sales_yield_pct": 128.648,
+        "fcf_yield_pct": 23.11,
+        "ebit_yield_pct": 20.192
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.836,
+        "price_to_fcf": 4.656,
+        "ev_to_ebit": 5.239,
+        "sales_yield_pct": 119.549,
+        "fcf_yield_pct": 21.476,
+        "ebit_yield_pct": 19.088
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.777,
+        "price_to_fcf": 4.326,
+        "ev_to_ebit": 4.952,
+        "sales_yield_pct": 128.672,
+        "fcf_yield_pct": 23.115,
+        "ebit_yield_pct": 20.195
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.948,
+        "price_to_fcf": 5.278,
+        "ev_to_ebit": 5.779,
+        "sales_yield_pct": 105.464,
+        "fcf_yield_pct": 18.946,
+        "ebit_yield_pct": 17.303
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.915,
+        "price_to_fcf": 5.09,
+        "ev_to_ebit": 6.162,
+        "sales_yield_pct": 109.332,
+        "fcf_yield_pct": 19.648,
+        "ebit_yield_pct": 16.228
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.879,
+        "price_to_fcf": 4.891,
+        "ev_to_ebit": 5.974,
+        "sales_yield_pct": 113.765,
+        "fcf_yield_pct": 20.445,
+        "ebit_yield_pct": 16.738
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.85,
+        "price_to_fcf": 5.495,
+        "ev_to_ebit": 6.866,
+        "sales_yield_pct": 117.639,
+        "fcf_yield_pct": 18.197,
+        "ebit_yield_pct": 14.565
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.726,
+        "price_to_fcf": 4.693,
+        "ev_to_ebit": 6.123,
+        "sales_yield_pct": 137.755,
+        "fcf_yield_pct": 21.309,
+        "ebit_yield_pct": 16.333
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.789,
+        "price_to_fcf": 5.098,
+        "ev_to_ebit": 6.497,
+        "sales_yield_pct": 126.818,
+        "fcf_yield_pct": 19.617,
+        "ebit_yield_pct": 15.391
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.959,
+        "price_to_fcf": 7.205,
+        "ev_to_ebit": 9.053,
+        "sales_yield_pct": 104.311,
+        "fcf_yield_pct": 13.879,
+        "ebit_yield_pct": 11.046
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.964,
+        "price_to_fcf": 7.248,
+        "ev_to_ebit": 9.093,
+        "sales_yield_pct": 103.699,
+        "fcf_yield_pct": 13.798,
+        "ebit_yield_pct": 10.998
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.831,
+        "price_to_fcf": 6.243,
+        "ev_to_ebit": 8.152,
+        "sales_yield_pct": 120.381,
+        "fcf_yield_pct": 16.017,
+        "ebit_yield_pct": 12.267
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.754,
+        "price_to_fcf": 7.448,
+        "ev_to_ebit": 9.087,
+        "sales_yield_pct": 132.623,
+        "fcf_yield_pct": 13.426,
+        "ebit_yield_pct": 11.005
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.832,
+        "price_to_fcf": 8.219,
+        "ev_to_ebit": 9.72,
+        "sales_yield_pct": 120.188,
+        "fcf_yield_pct": 12.167,
+        "ebit_yield_pct": 10.288
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.952,
+        "price_to_fcf": 9.406,
+        "ev_to_ebit": 10.695,
+        "sales_yield_pct": 105.017,
+        "fcf_yield_pct": 10.631,
+        "ebit_yield_pct": 9.35
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.919,
+        "price_to_fcf": 9.079,
+        "ev_to_ebit": 10.426,
+        "sales_yield_pct": 108.809,
+        "fcf_yield_pct": 11.015,
+        "ebit_yield_pct": 9.591
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 1.014,
+        "price_to_fcf": 9.386,
+        "ev_to_ebit": 13.241,
+        "sales_yield_pct": 98.608,
+        "fcf_yield_pct": 10.655,
+        "ebit_yield_pct": 7.552
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.108,
+        "price_to_fcf": 10.258,
+        "ev_to_ebit": 14.146,
+        "sales_yield_pct": 90.223,
+        "fcf_yield_pct": 9.749,
+        "ebit_yield_pct": 7.069
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.962,
+        "price_to_fcf": 7.977,
+        "ev_to_ebit": 15.523,
+        "sales_yield_pct": 103.94,
+        "fcf_yield_pct": 12.536,
+        "ebit_yield_pct": 6.442
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.989,
+        "price_to_fcf": 8.203,
+        "ev_to_ebit": 15.834,
+        "sales_yield_pct": 101.078,
+        "fcf_yield_pct": 12.191,
+        "ebit_yield_pct": 6.315
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.868,
+        "price_to_fcf": 7.194,
+        "ev_to_ebit": 14.443,
+        "sales_yield_pct": 115.248,
+        "fcf_yield_pct": 13.9,
+        "ebit_yield_pct": 6.924
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.835,
+        "price_to_fcf": 9.216,
+        "ev_to_ebit": 16.465,
+        "sales_yield_pct": 119.754,
+        "fcf_yield_pct": 10.851,
+        "ebit_yield_pct": 6.073
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.8,
+        "price_to_fcf": 8.824,
+        "ev_to_ebit": 15.997,
+        "sales_yield_pct": 125.074,
+        "fcf_yield_pct": 11.333,
+        "ebit_yield_pct": 6.251
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.878,
+        "price_to_fcf": 9.694,
+        "ev_to_ebit": 17.036,
+        "sales_yield_pct": 113.839,
+        "fcf_yield_pct": 10.315,
+        "ebit_yield_pct": 5.87
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.74,
+        "price_to_fcf": 8.4,
+        "ev_to_ebit": 21.424,
+        "sales_yield_pct": 135.172,
+        "fcf_yield_pct": 11.905,
+        "ebit_yield_pct": 4.668
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.768,
+        "price_to_fcf": 8.719,
+        "ev_to_ebit": 21.948,
+        "sales_yield_pct": 130.221,
+        "fcf_yield_pct": 11.469,
+        "ebit_yield_pct": 4.556
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.609,
+        "price_to_fcf": 6.92,
+        "ev_to_ebit": 18.997,
+        "sales_yield_pct": 164.086,
+        "fcf_yield_pct": 14.451,
+        "ebit_yield_pct": 5.264
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.528,
+        "price_to_fcf": 5.996,
+        "ev_to_ebit": 17.483,
+        "sales_yield_pct": 189.352,
+        "fcf_yield_pct": 16.676,
+        "ebit_yield_pct": 5.72
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.464,
+        "price_to_fcf": 9.848,
+        "ev_to_ebit": 19.227,
+        "sales_yield_pct": 215.553,
+        "fcf_yield_pct": 10.155,
+        "ebit_yield_pct": 5.201
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.443,
+        "price_to_fcf": 9.402,
+        "ev_to_ebit": 18.763,
+        "sales_yield_pct": 225.779,
+        "fcf_yield_pct": 10.636,
+        "ebit_yield_pct": 5.33
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.395,
+        "price_to_fcf": 8.386,
+        "ev_to_ebit": 17.707,
+        "sales_yield_pct": 253.14,
+        "fcf_yield_pct": 11.925,
+        "ebit_yield_pct": 5.647
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.346,
+        "price_to_fcf": 18.252,
+        "ev_to_ebit": 21.099,
+        "sales_yield_pct": 289.368,
+        "fcf_yield_pct": 5.479,
+        "ebit_yield_pct": 4.74
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.358,
+        "price_to_fcf": 18.891,
+        "ev_to_ebit": 21.426,
+        "sales_yield_pct": 279.574,
+        "fcf_yield_pct": 5.294,
+        "ebit_yield_pct": 4.667
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.327,
+        "price_to_fcf": 8.024,
+        "ev_to_ebit": 34.902,
+        "sales_yield_pct": 306.189,
+        "fcf_yield_pct": 12.462,
+        "ebit_yield_pct": 2.865
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.408,
+        "price_to_fcf": 10.024,
+        "ev_to_ebit": 38.727,
+        "sales_yield_pct": 245.106,
+        "fcf_yield_pct": 9.976,
+        "ebit_yield_pct": 2.582
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.431,
+        "price_to_fcf": 10.588,
+        "ev_to_ebit": 39.804,
+        "sales_yield_pct": 232.061,
+        "fcf_yield_pct": 9.445,
+        "ebit_yield_pct": 2.512
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.351,
+        "price_to_fcf": 29.708,
+        "ev_to_ebit": 25.039,
+        "sales_yield_pct": 284.86,
+        "fcf_yield_pct": 3.366,
+        "ebit_yield_pct": 3.994
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.358,
+        "price_to_fcf": 30.282,
+        "ev_to_ebit": 25.259,
+        "sales_yield_pct": 279.46,
+        "fcf_yield_pct": 3.302,
+        "ebit_yield_pct": 3.959
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.353,
+        "price_to_fcf": 29.894,
+        "ev_to_ebit": 25.111,
+        "sales_yield_pct": 283.083,
+        "fcf_yield_pct": 3.345,
+        "ebit_yield_pct": 3.982
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.353,
+        "price_to_fcf": 29.866,
+        "ev_to_ebit": 25.1,
+        "sales_yield_pct": 283.355,
+        "fcf_yield_pct": 3.348,
+        "ebit_yield_pct": 3.984
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.429,
+        "price_to_fcf": 11.728,
+        "ev_to_ebit": 1050.397,
+        "sales_yield_pct": 233.225,
+        "fcf_yield_pct": 8.527,
+        "ebit_yield_pct": 0.095
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.502,
+        "price_to_fcf": 13.744,
+        "ev_to_ebit": 1144.671,
+        "sales_yield_pct": 199.022,
+        "fcf_yield_pct": 7.276,
+        "ebit_yield_pct": 0.087
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.481,
+        "price_to_fcf": 13.166,
+        "ev_to_ebit": 1117.643,
+        "sales_yield_pct": 207.757,
+        "fcf_yield_pct": 7.595,
+        "ebit_yield_pct": 0.089
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.438,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 228.247,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.03
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.336,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 297.919,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.307
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.315,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 317.945,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.127
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.296,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 338.228,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.183
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.263,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 379.688,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.285
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.28,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 357.326,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.232
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.28,
+        "current_yield_pct": 357.068,
+        "points": 61,
+        "median": 0.777,
+        "low": 0.263,
+        "high": 1.159,
+        "negative_points": 0,
+        "median_yield_pct": 128.648,
+        "percentile": 3.3,
+        "cheaper_points": 2,
+        "dearer_points": 59,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 55,
+        "median": 7.996,
+        "low": 3.692,
+        "high": 30.285,
+        "negative_points": 0,
+        "median_yield_pct": 12.507,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -2.231,
+        "points": 61,
+        "median": 14.443,
+        "low": 4.129,
+        "high": null,
+        "negative_points": 6,
+        "median_yield_pct": 6.924,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 6 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 59 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "55 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 6 of 61 month-ends)",
+          "not_comparable": "negative now and in 6 of 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 16.47,
+    "date": "2026-10-28",
+    "ma50": 16.51,
+    "ma200": 22.4,
+    "vs_ma50_pct": -0.27,
+    "vs_ma200_pct": -26.47,
+    "momentum_12_1_pct": -33.39,
+    "high_52w": 30.14,
+    "drawdown_52w_pct": -45.36,
+    "return_rs_pct": -38.71,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -47.79,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -48.62
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0000074303-26-000071",
+    "filing_date": "2026-07-30",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/74303/000007430326000071/exhibit991q22026earningspr.htm",
+    "summary": "Olin forecasts third quarter 2026 adjusted EBITDA of $160 million to $200 million, with Chemical results comparable to Q2 (including an estimated $20 million impact from the Freeport VCM outage) and sequential earnings growth in Winchester.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "$160 million to $200 million",
+        "stated_change": "not stated",
+        "sentence": "With continued significant global volatility, third quarter 2026 adjusted EBITDA is forecast to be in the range of $160 million to $200 million,” Lane concluded.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "$20 million",
+        "stated_change": "not stated",
+        "sentence": "The disruption reduced second quarter adjusted EBITDA by $40 million, with an estimated $20 million impact expected in the third quarter as full rates are planned to resume late in the quarter.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "“Looking ahead, we expect our Chemical businesses’ third quarter 2026 results to be comparable to the second quarter, as reduced operating rates at the vinyl chloride monomer facility and weaker ethylene dichloride\npricing offset expected stronger caustic soda volumes.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "In our Winchester business, seasonally improving commercial demand is expected to support sequential earnings growth.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "H2 2026",
+        "amount_text": "approximately $100 million",
+        "stated_change": "not stated",
+        "sentence": "In addition to the normal seasonal working capital built in first half of the year, which we expect to liquidate during the second half, Olin paid approximately $93 million, including previously accrued reserves, to resolve legacy Shintech litigation matters and expect to pay the remaining approximately $100 million in the second half of 2026.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0000074303-26-000060",
+      "filing_date": "2026-05-07",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/74303/000007430326000060/exhibit991q12026earningspr.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No new guidance in the window. Q3 results are due after the close on 2026-10-29, and the standing Q3 adjusted EBITDA forecast of $160-200 million is unchanged. The new credit facilities are contingent on the Huntsman merger closing.",
+        "evidence": [
+          {
+            "claim": "Third quarter 2026 adjusted EBITDA is forecast to be in the range of $160 million to $200 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/74303/000007430326000071/exhibit991q22026earningspr.htm",
+            "event_date": "2026-07-30",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 91,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          },
+          {
+            "claim": "Olin will release third quarter 2026 results after the close on October 29, 2026, with a conference call on October 30 at 10:00 ET.",
+            "url": "https://www.nasdaq.com/press-release/olin-corporation-third-quarter-2026-earnings-conference-call-announcement-2026-10-05",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "unreachable",
+            "check": "ReadTimeout"
+          },
+          {
+            "claim": "Olin amended its credit agreement for a $750 million senior term loan and a $1.75 billion revolver, contingent on the Huntsman merger closing.",
+            "url": "https://www.stocktitan.net/sec-filings/OLN/8-k-olin-corp-reports-material-event-42f4cac27388.html",
+            "event_date": "2026-10-27",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": -1,
+        "summary": "Several brokers cut price targets in October without changing ratings: Wells Fargo, BofA, UBS, RBC and Truist. BofA keeps Underperform and Barclays initiated at Equal Weight. The supporting sources are mostly lower-tier.",
+        "evidence": [
+          {
+            "claim": "Wells Fargo cut its Olin price target to $16.00 from $20.00 and kept an Equal Weight rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-wells-fargo-company-cuts-olin-nyse-oln-price-target-to-1600-2026-10-01/",
+            "event_date": "2026-10-01",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          },
+          {
+            "claim": "BofA cut its Olin target to USD 16 from USD 19 and kept Underperform.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/bofa-cuts-olin-target-to-usd-16-from-usd-19-for-olin-stock/70376410",
+            "event_date": "2026-10-05",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Truist Securities lowered its Olin price target to $15 from $20 and maintained a Hold rating.",
+            "url": "https://www.gurufocus.com/news/9132273/oln-maintained-by-truist-securities-price-target-lowered-to-1500",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "RBC cut its Olin price target to $16 from $20 and kept a Sector Perform rating.",
+            "url": "https://www.stockanalysis.com/stocks/oln/forecast/",
+            "event_date": "2026-10-13",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/4"
+          },
+          {
+            "claim": "Barclays initiated coverage of Olin at Equal Weight with an $18 price target.",
+            "url": "https://www.gurufocus.com/news/9121089/oln-initiates-coverage-on-by-barclays-price-target-announced-at-18",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or approvals in the window. The Texas emissions suit, the Shintech verdict and the Pomerantz investigation all predate it, and merger regulatory approvals are still pending.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material is dated within the window. The Army ammunition contract worth up to about $788.4 million has an unconfirmed award date that appears to fall before the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions in the window and no sign of clustered insider selling.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": -1,
+        "summary": "Olin moved from the S&P MidCap 400 to the SmallCap 600, effective 2026-10-06. BofA cited chlorine headwinds, lower caustic volumes and maintenance costs pushed into Q4.",
+        "evidence": [
+          {
+            "claim": "BofA's target cut on Olin cited chlorine headwinds, lower caustic volumes and maintenance costs shifted into the fourth quarter.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/bofa-cuts-olin-target-to-usd-16-from-usd-19-for-olin-stock/70376410",
+            "event_date": "2026-10-05",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Scope note:** Q3 2026 results are due after the close on 2026-10-29, and I found no release yet. Items marked \"pre-window\" fall before 2026-09-29 and are included only as context.\n\n## 1. Guidance / results\n- Q3 results release is scheduled after the close on 2026-10-29, with the call on 2026-10-30 at 10:00 ET. — 2026-10-05 — https://www.nasdaq.com/press-release/olin-corporation-third-quarter-2026-earnings-conference-call-announcement-2026-10-05\n- Q3 results and any updated guidance were not found as of today.\n- Current guidance is still the one given with Q2 results: Q3 adjusted EBITDA of $160–200M. — 2026-07-30 (pre-window) — https://www.nasdaq.com/press-release/olin-announces-second-quarter-2026-results-2026-07-30\n- Q2 was a miss. Adjusted EPS was -$0.12 against a consensus of +$0.12, and revenue was $1.74B against $1.81B expected. — 2026-07-30 (pre-window) — https://www.investing.com/news/transcripts/earnings-call-transcript-olin-misses-q2-2026-estimates-as-shares-sink-17-93CH-4828621\n- The Freeport VCM outage cut Q2 EBITDA by $40M and is expected to cost another $20M in Q3. — 2026-07-30 (pre-window) — https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000071/exhibit991q22026earningspr.htm\n- Olin amended its credit agreement, giving a $750M senior term loan and a $1.75B revolver. The five-year facilities are contingent on the Huntsman merger closing. — 2026-10-27 — https://www.stocktitan.net/sec-filings/OLN/8-k-olin-corp-reports-material-event-42f4cac27388.html and https://rallies.ai/news/olin-signs-amendment-for-25-billion-in-credit-facilities-tied-to-huntsman-merger-281f5d2b89f3c5b4\n- Merger background: both sets of shareholders approved the Huntsman deal. Olin holders voted about 97% in favor of votes cast. Closing is expected in H1 2027, subject to regulatory approvals. — 2026-08-25 (pre-window) — https://www.prnewswire.com/news-releases/olin-and-huntsman-shareholders-approve-transformative-merger-of-equals-302859554.html and https://www.compositesworld.com/news/olin-huntsman-shareholders-approve-all-stock-merger-of-equals\n\n## 2. Analyst actions\n- Wells Fargo cut its target to $16 from $20 and kept Equal Weight. — 2026-10-01 — https://www.marketbeat.com/instant-alerts/analyst-wells-fargo-company-cuts-olin-nyse-oln-price-target-to-1600-2026-10-01/\n- Wells Fargo kept Hold with a $16 target in a separate note. — 2026-10-16 — https://www.stockanalysis.com/stocks/oln/forecast/\n- BofA cut its target to $16 from $19 and kept Underperform. — 2026-10-05 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/bofa-cuts-olin-target-to-usd-16-from-usd-19-for-olin-stock/70376410\n- UBS cut its target to $18 from $21 and kept Neutral. — 2026-10-05 — https://www.cnbc.com/quotes/OLN\n- Barclays initiated at Equal Weight with an $18 target. The date differs by source:\n  - 2026-10-05 per https://www.gurufocus.com/news/9121089/oln-initiates-coverage-on-by-barclays-price-target-announced-at-18\n  - 2026-10-12 per https://www.cnn.com/markets/stocks/OLN\n- RBC cut its target to $16 from $20 and kept Sector Perform. — 2026-10-13 — https://www.stockanalysis.com/stocks/oln/forecast/\n- Truist cut its target to $15 from $20 and kept Hold. The date differs by source:\n  - 2026-10-13 per https://www.gurufocus.com/news/9132273/oln-maintained-by-truist-securities-price-target-lowered-to-1500\n  - 2026-10-20 per https://www.ad-hoc-news.de/boerse/news/nebenwerte/olin-stock-truist-cuts-target-for-olin-stock-to-usd-15-00-on-october-20-2026/70396322\n- Consensus is \"Hold\" from 16 analysts, with an average target of $19.25 and a range of $15–$30. — 2026-10-27 — https://www.stockanalysis.com/stocks/oln/forecast/\n- MarketBeat shows a different consensus of \"Reduce\" with a $20.07 average target. — date unknown — https://www.marketbeat.com/stocks/NYSE/OLN/\n\n## 3. Litigation / regulation\n- I found no new lawsuits, fines or approvals in the window.\n- Pre-window item: Texas sued Blue Cube over Freeport emissions and alleged Clean Air Act non-compliance. It was disclosed in the Q2 10-Q. — 2026-04-09 — https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000077/oln-20260630.htm\n- Pre-window item: a jury found for Shintech on its breach-of-contract claims. Olin recorded a $75M Q4 2025 charge. — 2026-02-10 — https://www.sec.gov/Archives/edgar/data/74303/000007430326000010/exhibit991-shintechpressre.htm\n- Pre-window item: Pomerantz announced an investor investigation after the Q2 stock drop. — 2026-08-13 — https://pluang.com/en/news-feed/peringatan-investor-pomerantz-selidiki-tuntutan-terhadap-olin-corporation-oln\n- Pre-window item: two New York suits by Huntsman stockholders challenge the merger proxy. — 2026-07-30 — https://www.sec.gov/Archives/edgar/data/0000074303/000119312526354370/d273642d8k.htm\n- Regulatory approvals for the merger remain pending. — date unknown — https://www.compositesworld.com/news/olin-huntsman-shareholders-approve-all-stock-merger-of-equals\n\n## 4. Customer concentration\n- Nothing material was dated inside the window, other than the Army award below, which appears to fall just before it.\n- The Army awarded Olin Winchester a five-year IDIQ contract worth up to about $788.4M for 5.56mm, 7.62mm and .50-cal ammunition, running through 2031-09-10. It was awarded after a single bid. The award date is inferred as around early September 2026 from the article's age; I could not confirm it. — date unknown — https://defence-blog.com/u-s-armys-top-ammo-supplier-lands-another-big-contract/\n- Shintech buys VCM from Olin under a long-term contract and won the jury verdict against Olin. — 2026-02-10 (pre-window) — https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000063/oln-20260331.htm\n\n## 5. Insider activity\n- I found no Form 4 filings with transaction dates in the window.\n- The most recent open-market trades listed on OpenInsider are older. Marc Ehrhardt, VP, bought 20,000 shares at $18.70 on 2025-08-06. — 2025-08-06 — http://openinsider.com/OLN\n- The most recent 2026 Form 4 I found was a tax-withholding and RSU transaction by Florian Kohl. — 2026-06-01 — https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-ba3693a3e53d.html\n- There is no evidence of clustered selling or 10b5-1 sales in the window.\n\n## 6. Product / competitive\n- Olin was removed from the S&P MidCap 400 and added to the S&P SmallCap 600. Corteva replaces it in the 400 and Olin replaces Qorvo in the 600. Both changes took effect at the open on 2026-10-06 and were announced 2026-10-01. — 2026-10-06 — https://www.cnbc.com/quotes/OLN\n- BofA's target cut cited chlorine headwinds, lower caustic volumes and maintenance costs pushed into Q4. — 2026-10-05 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/bofa-cuts-olin-target-to-usd-16-from-usd-19-for-olin-stock/70376410\n- Management's Q2 commentary pointed to stronger domestic caustic pricing, lower export prices, and an epoxy unit back to positive EBITDA. — 2026-07-30 (pre-window) — https://finance.yahoo.com/markets/stocks/articles/olin-q2-earnings-call-highlights-230352992.html\n- I found no product launches or new-competitor news in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000077/oln-20260630.htm",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-olin-misses-q2-2026-estimates-as-shares-sink-17-93CH-4828621",
+        "https://pluang.com/en/news-feed/pengumuman-panggilan-konferensi-laba-kuartal-ketiga-olin-corporation-2026",
+        "https://www.sec.gov/Archives/edgar/data/74303/000007430323000174/exhibit991q32023earningspr.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/olin-q2-earnings-call-highlights-230352992.html",
+        "https://rallies.ai/news/olin-schedules-third-quarter-2026-earnings-call-b36d2ed6e49d08d3",
+        "https://uk.finance.yahoo.com/quote/OLN/analysis/",
+        "https://www.marketbeat.com/stocks/NYSE/OLN/earnings/",
+        "https://public.com/stocks/oln/earnings",
+        "https://www.gurufocus.com/news/9132273/oln-maintained-by-truist-securities-price-target-lowered-to-1500",
+        "https://www.gurufocus.com/news/9121089/oln-initiates-coverage-on-by-barclays-price-target-announced-at-18",
+        "https://stockanalysis.com/stocks/oln/",
+        "https://stockanalysis.com/stocks/oln/forecast/",
+        "https://ca.finance.yahoo.com/quote/OLN/",
+        "https://www.marketbeat.com/instant-alerts/analyst-wells-fargo-company-cuts-olin-nyse-oln-price-target-to-1600-2026-10-01/",
+        "https://www.marketbeat.com/stocks/NYSE/OLN/",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/olin-stock-truist-cuts-target-for-olin-stock-to-usd-15-00-on-october-20-2026/70396322",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/bofa-cuts-olin-target-to-usd-16-from-usd-19-for-olin-stock/70376410",
+        "https://www.benzinga.com/quote/oln/analyst-ratings",
+        "https://www.fool.com/coverage/filings/2025/12/04/olin-corp-vp-and-treasurer-sells-4-500-shares-for-usd93-850/",
+        "http://openinsider.com/OLN",
+        "https://www.secform4.com/insider-trading/74303.htm",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-20643abab6dc.html",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-8d722f3a47cf.html",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-18c7b85a0a01.html",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-ba3693a3e53d.html",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-50cbdbfcd7dc.html",
+        "https://www.stocktitan.net/sec-filings/OLN/form-4-olin-corp-insider-trading-activity-a394b95fccd3.html",
+        "https://www.nasdaq.com/press-release/olin-corporation-third-quarter-2026-earnings-conference-call-announcement-2026-10-05",
+        "https://www.cnbc.com/quotes/OLN",
+        "https://winchesternews.org/",
+        "https://www.morningstar.com/news/pr-newswire/20261005ny63704/olin-corporation-third-quarter-2026-earnings-conference-call-announcement",
+        "https://themississippilink.com/news/olin-corporation-opens-winchester-centerfire-operations-in-oxford/",
+        "https://www.prnewswire.com/news-releases/olin-announces-fourth-quarter-2025-results-302674435.html",
+        "https://www.cnn.com/markets/stocks/OLN",
+        "https://rallies.ai/news/olin-signs-amendment-for-25-billion-in-credit-facilities-tied-to-huntsman-merger-281f5d2b89f3c5b4",
+        "https://www.stocktitan.net/sec-filings/OLN/8-k-olin-corp-reports-material-event-42f4cac27388.html",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000063/oln-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/74303/000007430326000010/exhibit991-shintechpressre.htm",
+        "https://www.asbestosdiseaseawareness.org/newsroom/blogs/olin-withdraws-epa-part-1/",
+        "https://www.courtlistener.com/docket/69518326/olin-corporation-v-epa/",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526271788/d99037d425.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000110465926074267/tm2618028d3_425.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526354370/d273642d8k.htm",
+        "https://pluang.com/en/news-feed/peringatan-investor-pomerantz-selidiki-tuntutan-terhadap-olin-corporation-oln",
+        "https://finance.yahoo.com/markets/stocks/articles/huntsman-stockholders-approve-olin-merger-070153467.html",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526294465/d127943ds4.htm",
+        "https://www.compositesworld.com/news/olin-huntsman-shareholders-approve-all-stock-merger-of-equals",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526300198/d127943ds4a.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526302125/d127943d424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000119312526272877/d157699d8k.htm",
+        "https://www.panabee.com/news/olin-and-huntsman-shareholders-approve-merger-of-equals",
+        "https://www.panabee.com/news/huntsman-and-olin-secure-shareholder-approval-for-merger-of-equals",
+        "https://www.prnewswire.com/news-releases/olin-and-huntsman-shareholders-approve-transformative-merger-of-equals-302859554.html",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000071/exhibit991q22026earningspr.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000007430326000060/exhibit991q12026earningspr.htm",
+        "https://www.sec.gov/Archives/edgar/data/74303/000007430326000005/exhibit991q42025earningspr.htm",
+        "https://www.investing.com/news/company-news/olin-q2-2026-slides-sequential-gains-overshadowed-by-earnings-miss-93CH-4828666",
+        "https://www.nasdaq.com/press-release/olin-announces-second-quarter-2026-results-2026-07-30",
+        "https://www.sec.gov/Archives/edgar/data/74303/000007430326000060/exhibit991q12026earningspr.htm",
+        "https://www.theglobeandmail.com/investing/markets/stocks/OLN/pressreleases/3731103/olin-oln-q2-2026-earnings-call-transcript/",
+        "https://finance.yahoo.com/markets/stocks/articles/olin-corp-oln-q2-2026-210205186.html",
+        "https://www.globenewswire.com/news-release/2026/10/28/3390002/0/en/oatly-reports-third-quarter-2026-financial-results.html",
+        "https://www.sec.gov/Archives/edgar/data/0000074303/000007430320000072/oln-2019x1231x10xk.htm",
+        "https://www.sec.gov/Archives/edgar/data/74303/000119312519193961/d773564d424b5.htm",
+        "https://www.sec.gov/Archives/edgar/data/74303/000119312519192159/d773564d424b5.htm",
+        "https://www.sec.gov/Archives/edgar/data/74303/000007430325000058/a2024ars_filing.pdf",
+        "https://finance.yahoo.com/news/olin-unit-wins-us-army-133801926.html",
+        "https://defence-blog.com/winchester-received-contract-to-operate-lake-city-army-ammunition-plant/",
+        "https://www.prnewswire.com/news-releases/wagner-awarded-contract-with-olin-winchester-lake-city-army-ammunition-plant-301144429.html",
+        "https://govtribe.com/award/federal-idv-award/indefinite-delivery-contract-w52p1j19d0085",
+        "https://defence-blog.com/u-s-armys-top-ammo-supplier-lands-another-big-contract/",
+        "https://pennyonthedollar.substack.com/p/the-asymmetric-trade-gunpowder-chlorine"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Olin rates Sell on a weak share-price trend, thin margins and flat growth, with two factors unscored.",
+    "thesis": "Olin scores 32, a Sell, only 3 points above the Strong Sell line. The trend factor is the main drag at 7: the price is 45.4% below its 52-week high, 26.5% below its 200-day average, and the shares are 47.8 pp behind SPY over the last 126 trading days. Growth (34) is flat, with TTM revenue growth of 0.6% and a latest-quarter revenue decline of 0.9% year on year, though growth sped up by 2.8 pp from the previous quarter. Quality (42) is held back by a 6.9% gross margin and a -1.6% operating margin, and news risk (41) reflects October price-target cuts from several brokers and chlorine and caustic headwinds. Balance sheet and valuation could not be scored. On absolute terms the shares look low at a P/S of 0.3x, and they are cheap against their own history (EV/EBIT not comparable).",
+    "key_risks": [
+      "Operating margin of -1.6% and negative EBIT leave little cushion if chlorine and caustic conditions stay weak.",
+      "Low cash relative to debt (cash-to-debt of 0.06) while the pending Huntsman merger and new credit facilities add complexity.",
+      "Persistent selling pressure: shares down 33.4% from 12 months ago to 1 month ago and a move from the S&P MidCap 400 to the SmallCap 600.",
+      "Q3 results due after the close on 2026-10-29 could miss the $160-200 million adjusted EBITDA forecast, with maintenance costs pushed into Q4.",
+      "Older legal matters, including the Texas emissions suit and the Shintech verdict, remain open."
+    ],
+    "what_would_change": [
+      "A drop of 3 or more points, for example from further trend deterioration or more negative news, would move the rating to Strong Sell.",
+      "Reaching Hold needs 13 more points, most plausibly from a trend recovery off its very low score of 7 alongside margin improvement in quality.",
+      "Q3 results at or above the EBITDA forecast with a return to positive operating margin would lift quality and news risk.",
+      "Scored balance sheet and valuation factors could move the composite either way once their inputs are available."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3063,
+        "output_tokens": 675,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3063,
+            "output_tokens": 675,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0258,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 115723,
+        "output_tokens": 4798,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 115723,
+            "output_tokens": 4798,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3594,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8335,
+        "output_tokens": 2119,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8335,
+            "output_tokens": 2119,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0757,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3810,
+        "output_tokens": 758,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3810,
+            "output_tokens": 758,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0304,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4913,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 16.47,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 16.56
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:33",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

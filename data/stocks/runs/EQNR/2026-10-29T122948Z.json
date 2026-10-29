@@ -1,0 +1,884 @@
+{
+  "run_id": "2026-10-29T12:29:48Z",
+  "generated_at": "2026-10-29T12:30:33+00:00",
+  "ticker": "EQNR",
+  "sec_ticker": "EQNR",
+  "cik": "0001140625",
+  "name": "EQUINOR ASA",
+  "sector": "Petroleum Refining",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 64,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), stock comp. / revenue"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 64 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 1
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 20
+    }
+  },
+  "composite": {
+    "score": 64,
+    "raw": 63.5,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 2.59,
+          "score": 32.8,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 5.76,
+          "score": 78.8,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 54,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 48.18,
+          "score": 60.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 23.81,
+          "score": 72.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 5.61,
+          "score": 36.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": -7.99,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.85,
+      "score": 64,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 3.52,
+          "score": 47.1,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.19,
+          "score": 23.2,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 38,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 8.81,
+          "score": 94.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 27.59,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 78.02,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 12.19,
+          "score": 73.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 11.36,
+          "score": 72.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -2.38,
+          "score": 92.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 91,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 65,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 47.66,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "Revenue",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 5.76,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 106462000000.0,
+    "revenue_yoy_ttm": 2.59,
+    "gross_profit_ttm": 51298000000.0,
+    "operating_income_ttm": 25352000000.0,
+    "operating_cash_flow_ttm": 19971000000.0,
+    "capex_ttm": 13994000000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfSales",
+    "operating_income_source": "ProfitLossFromOperatingActivities",
+    "fcf_ttm": 5977000000.0,
+    "gross_margin_pct": 48.18,
+    "operating_margin_pct": 23.81,
+    "fcf_margin_pct": 5.61,
+    "capex_intensity_pct": 13.14,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {},
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 5.61,
+      "fcf_margin_year_earlier_pct": 7.02,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 5977000000.0,
+    "fcf_scored_margin_pct": 5.61,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 5036000000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 5036000000.0,
+      "debt": 26099000000.0,
+      "debt_tags": [
+        "LongtermBorrowings",
+        "ShorttermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongtermBorrowings",
+          "val": 23763000000.0
+        },
+        {
+          "tag": "ShorttermBorrowings",
+          "val": 2336000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 21063000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 2601000000.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -7.99,
+    "shares_outstanding": {
+      "val": 2500271030.0,
+      "end": "2025-12-31",
+      "filed": "2026-03-19",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 47.66,
+    "date": "2026-10-28",
+    "ma50": 43.8,
+    "ma200": 37.35,
+    "vs_ma50_pct": 8.81,
+    "vs_ma200_pct": 27.59,
+    "momentum_12_1_pct": 78.02,
+    "high_52w": 48.82,
+    "drawdown_52w_pct": -2.38,
+    "return_rs_pct": 21.27,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 12.19,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 11.36
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Equinor raised its 2026 production growth guidance from 3% to about 4% and kept its capital returns, including a USD 3bn buyback. Offsetting this, coverage of the quarter is mixed on whether profit beat or missed, and the CFO flagged softer 2027 production and a later Empire Wind start.",
+        "evidence": [
+          {
+            "claim": "Equinor raised its 2026 oil and gas production growth guidance from 3% to about 4%.",
+            "url": "https://www.equinor.com/news/equinor-third-quarter-2026-results",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 1/1"
+          },
+          {
+            "claim": "Q3 dividend of USD 0.39 per share and share buyback of up to USD 3bn for 2026, with fourth tranche of up to USD 1,125m.",
+            "url": "https://www.equinor.com/news/equinor-third-quarter-2026-results",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 1/1"
+          },
+          {
+            "claim": "Adjusted operating income was slightly above the USD 12.19bn analyst consensus.",
+            "url": "https://ua.news/en/energetika/equinor-pidvishchila-prognoz-zrostannia-vidobutku-priblizno-do-4-oilprice",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/2"
+          },
+          {
+            "claim": "CFO said 2027 production should not be fully in line with 2026; Empire Wind first power in H1 2027, a bit later than planned.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-equinor-q3-2026-profit-miss-offsets-strong-cash-flow-93CH-4978736",
+            "event_date": "2026-10-28",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Several brokers raised their price targets: Nordea to NOK 480 with a Buy, and Barclays to NOK 380 while staying at Underweight. Most analysts remain at Hold.",
+        "evidence": [
+          {
+            "claim": "Nordea raised its target for Equinor from NOK 400 to NOK 480 and reiterated Buy.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/nordea-raises-target-for-equinor-stock-from-nok-400-to-nok-480/70393140",
+            "event_date": "2026-10-19",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Barclays raised its target for Equinor from NOK 368 to NOK 380, keeping Underweight.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/barclays-raises-target-for-equinor-stock-from-nok-368-to-nok-380/70298701",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Consensus sets Equinor stock target at USD 43.47.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-stock-market-consensus-sets-equinor-stock-target-at-usd-43-47/70341944",
+            "event_date": "2026-10-09",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 20,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Nothing new and material happened in the window. The Empire Wind litigation and the French fine appeal are older background items.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Equinor signed a new five-year gas deal with Eneco, its third with that buyer this year. Nothing was disclosed that points to concentration risk.",
+        "evidence": [
+          {
+            "claim": "Equinor signed a five-year gas agreement with Eneco for about 9 TWh a year to the Dutch grid, with deliveries from 1 October 2026.",
+            "url": "https://www.equinor.com/news/20261013-eneco-five-year-gas-agreement",
+            "event_date": "2026-10-13",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 4/4"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "A single board member made a small sale of 1,662 shares, which is not material.",
+        "evidence": [
+          {
+            "claim": "Board member Hilde Møllerstad sold 1,662 shares at NOK 442.50.",
+            "url": "https://www.equinor.com/news/20261028-notifiable-trading",
+            "event_date": "2026-10-28",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Operations were strong: Mongstad posted record results and LNG trading did well. Equinor also reported an Oseberg discovery, an Afrodite appraisal suggesting larger gas volumes, and a tight-reservoir collaboration with Aker BP.",
+        "evidence": [
+          {
+            "claim": "Mongstad refinery delivered record results on high refining margins, and LNG trading was strong.",
+            "url": "https://www.equinor.com/news/equinor-third-quarter-2026-results",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/2"
+          },
+          {
+            "claim": "Afrodite appraisal well indicates recoverable gas volumes may be more than twice earlier estimates.",
+            "url": "https://www.equinor.com/news-and-media",
+            "event_date": "2026-10-29",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          },
+          {
+            "claim": "Equinor and Aker BP agreed a strategic collaboration on tight reservoirs on the Norwegian continental shelf.",
+            "url": "https://www.equinor.com/news-and-media",
+            "event_date": "2026-10-26",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Equinor (EQNR): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Equinor raised its 2026 oil and gas production growth guidance from 3% to about 4%. — 2026-10-28 — https://www.equinor.com/news/equinor-third-quarter-2026-results\n- Q3 adjusted operating income was USD 12.35bn, net income USD 2.54bn and adjusted EPS USD 1.20. — 2026-10-28 — https://www.equinor.com/news/equinor-third-quarter-2026-results\n- Against expectations: adjusted operating income was slightly above the USD 12.19bn analyst consensus. — 2026-10-28 — https://ua.news/en/energetika/equinor-pidvishchila-prognoz-zrostannia-vidobutku-priblizno-do-4-oilprice\n- Investing.com's headline calls the quarter a \"profit miss\" and describes a \"miss\" in its slide coverage, which conflicts with the source above. I could not tell which line item it refers to. — 2026-10-28 — https://www.investing.com/news/transcripts/earnings-call-transcript-equinor-q3-2026-profit-miss-offsets-strong-cash-flow-93CH-4978736\n- Capital returns: Q3 dividend of USD 0.39 per share, plus a share buyback of up to USD 3bn for 2026. The fourth tranche is up to USD 1,125m and starts 2026-10-29. — 2026-10-28 — https://www.equinor.com/news/equinor-third-quarter-2026-results\n- Management expects 2026 cash flow from operations of about USD 29bn at current forward prices, and organic capex of about USD 13bn. — 2026-10-28 — https://uk.investing.com/news/stock-market-news/equinor-q3-2026-slides-strong-cash-flow-production-growth-offset-miss-93CH-4937306\n- The CFO said 2027 production should not be fully in line with 2026. Empire Wind is about 80% complete, with first power in H1 2027, which is a bit later than planned. — 2026-10-28 — https://www.investing.com/news/transcripts/earnings-call-transcript-equinor-q3-2026-profit-miss-offsets-strong-cash-flow-93CH-4978736\n- The Snøhvit Future cost estimate was updated to NOK 26.5bn and the timetable is unchanged. — 2026-10-07 — https://www.marketscreener.com/news/equinor-and-eneco-sign-five-year-gas-agreement-with-verified-emissions-data-ce785dddda8ef423\n\n**2. Analyst actions**\n- TD Cowen raised its price target to USD 41 from USD 38 and kept Hold. — 2026-09-28 — https://www.benzinga.com/quote/EQNR/price-targets\n- Barclays (Naisheng Cui) raised its target to NOK 380 from NOK 368 and kept Underweight. — 2026-10-05 — https://www.ad-hoc-news.de/boerse/news/corporate-news/barclays-raises-target-for-equinor-stock-from-nok-368-to-nok-380/70298701\n- Nordea raised its target to NOK 480 from NOK 400 and reiterated Buy. — 2026-10-19 — https://www.ad-hoc-news.de/boerse/news/corporate-news/nordea-raises-target-for-equinor-stock-from-nok-400-to-nok-480/70393140\n- Consensus per MarketBeat on 2026-10-09: average target USD 43.47, with 8 of 13 analysts at Hold. — 2026-10-09 — https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-stock-market-consensus-sets-equinor-stock-target-at-usd-43-47/70341944\n- A MarketScreener list shows other October target changes, but I could not confirm its year, so I excluded them. — date unknown — https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/consensus/\n- I found no post-results rating changes in the sources searched.\n\n**3. Litigation and regulation**\n- I found nothing new and material in the window.\n- Background only: the Empire Wind suspension litigation (filed 2026-01-02) is still pending, and the court denied a government request for a stay. The stay denial is undated in the source and is older than the window. — 2026-01-02 — https://www.equinor.com/news/20260102-empire-wind\n- Background only: the 2025 French CRE gas-market fine (EUR 4m on Equinor, EUR 8m on Danske Commodities) is under appeal. — 2025-02-13 — https://www.euro-petrole.com/equinor-appeals-fine-for-violation-of-market-regulations-in-france-n-i-28060\n- The CFO expects a positive decision on Rosebank. — 2026-10-28 — https://www.investing.com/news/transcripts/earnings-call-transcript-equinor-q3-2026-profit-miss-offsets-strong-cash-flow-93CH-4978736\n\n**4. Customer concentration**\n- Equinor signed a five-year gas supply deal with Eneco for about 9 TWh a year (about 0.9 bcm) to the Dutch grid. Deliveries began 2026-10-01. It is the third Eneco contract this year, after February and May. — 2026-10-13 — https://www.equinor.com/news/20261013-eneco-five-year-gas-agreement\n- Eneco's May contract covers about 2.2 TWh a year to its German subsidiary LichtBlick. — 2026-05-date unknown — https://finance.yahoo.com/energy/articles/equinor-signs-five-gas-supply-070500653.html\n- No disclosure on customer concentration was found.\n\n**5. Insider activity**\n- Board member Hilde Møllerstad sold 1,662 shares at NOK 442.50. — 2026-10-28 — https://www.equinor.com/news/20261028-notifiable-trading\n- No other insider trades turned up in the window. The sale came on results day, and there was no sign of a 10b5-1 plan or clustered selling. Equinor is a foreign private issuer, so it reports under EU MAR (6-K) rather than Form 4.\n\n**6. Product and competitive news**\n- Mongstad refinery delivered record results on high refining margins, and LNG trading was strong. — 2026-10-28 — https://www.equinor.com/news/equinor-third-quarter-2026-results\n- Shell bought a 30% interest in Bay du Nord, with a final investment decision expected early 2027. Equinor had acquired bp's stake earlier. — 2026-10 (exact date unknown) — https://www.ctvnews.ca/business/article/equinor-eyes-bay-du-nords-potential-for-cash-expansion-as-company-doubles-earnings/\n- Equinor and Aker BP agreed a strategic collaboration on tight reservoirs on the Norwegian continental shelf. — 2026-10-26 — https://www.equinor.com/news-and-media\n- An appraisal well at the Afrodite discovery indicates recoverable gas volumes may be more than twice earlier estimates. — 2026-10-29 — https://www.equinor.com/news-and-media\n- Troll West electrification was completed without the second electric export compressor on Troll C. The change preserves gas supply to Europe, and emissions cuts are about 75% of the original plan. — 2026-10-15 — https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-reports-troll-project-decision-as-equinor-stock-trades-at-eur-41-46/70354381\n- Oseberg gas and oil discovery in the North Sea. — 2026-10-13 — https://www.equinor.com/news\n- Equinor opened the Kårstø marine robotics centre. — 2026-10-28 — https://www.rivieramm.com/news-content-hub/equinor-opens-marine-robotics-centre-in-norway-90406",
+      "urls": [
+        "https://www.inderes.fi/en/releases/equinor-third-quarter-2026-results",
+        "https://www.manilatimes.net/2026/10/28/tmt-newswire/globenewswire/equinor-third-quarter-2026-results/2455743",
+        "https://finance.yahoo.com/energy/articles/equinor-third-quarter-2026-results-054500867.html",
+        "https://www.equinor.com/news/equinor-third-quarter-2026-results",
+        "https://www.energy-pedia.com/news/general/equinor-third-quarter-2026-results-205850",
+        "https://www.offshore-technology.com/news/equinor-q3-2026-results/",
+        "https://www.panabee.com/news/equinor-earnings-q3-2026",
+        "https://www.financialcontent.com/article/gnwcq-2026-10-28-equinor-third-quarter-2026-results",
+        "https://www.stocktitan.net/news/EQNR/equinor-third-quarter-2026-kvwg3fvzq0z5.html",
+        "https://simplywall.st/stocks/no/energy/ob-eqnr/equinor-shares/future",
+        "https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/consensus/",
+        "https://simplywall.st/stocks/no/energy/ob-eqnr/equinor-shares",
+        "https://nz.finance.yahoo.com/quote/EQNR/analyst-insights/",
+        "https://www.benzinga.com/quote/EQNR/price-targets",
+        "https://finance.yahoo.com/research/stock-forecast/EQNR/",
+        "https://m.investing.com/news/analyst-ratings/gerdes-energy-downgrades-equinor-stock-rating-on-valuation-93CH-4868815?ampMode=1",
+        "https://benzinga.com/quote/eqnr/analyst-ratings",
+        "https://www.benzinga.com/quote/EQNR/analyst-ratings",
+        "https://www.offshore-technology.com/news/equinor-gas-market-violation/",
+        "https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/news/Equinor-to-Appeal-EUR4-Million-Fine-Imposed-by-French-Regulator-49047538/",
+        "https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/news/Equinor-to-appeal-4-mln-fine-from-French-energy-regulator-49046895/",
+        "https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/news/Equinor-to-appeal-4-million-fine-from-French-energy-regulator-49046925/",
+        "https://uk.finance.yahoo.com/news/equinor-appeal-4-million-fine-091207238.html",
+        "https://www.euro-petrole.com/equinor-appeals-fine-for-violation-of-market-regulations-in-france-n-i-28060",
+        "https://www.investing.com/news/stock-market-news/equinor-files-lawsuit-against-us-interior-department-over-empire-wind-93CH-4428104",
+        "https://www.marketscreener.com/quote/stock/EQUINOR-ASA-1413290/news/Equinor-appeals-fine-for-violation-of-market-regulations-in-France-49047759/",
+        "https://www.equinor.com/news/20260102-empire-wind",
+        "https://ng.investing.com/news/stock-market-news/equinor-files-lawsuit-against-us-interior-department-over-empire-wind-93CH-2272239",
+        "https://finance.yahoo.com/energy/articles/equinor-signs-five-gas-supply-070500653.html",
+        "https://seekingalpha.com/news/4652321-equinor-signs-third-long-term-gas-deal-with-eneco-this-year",
+        "https://oilprice.com/Company-News/Equinor-Signs-Five-Year-Gas-Supply-Deal-With-Dutch-Energy-Firm-Eneco.html",
+        "https://www.equinor.com/news/20261013-eneco-five-year-gas-agreement",
+        "https://www.marketscreener.com/news/equinor-and-eneco-sign-five-year-gas-agreement-with-verified-emissions-data-ce785dddda8ef423",
+        "https://www.chemanalyst.com/NewsAndDeals/NewsDetails/equinor-eneco-seal-five-year-gas-supply-deal-for-netherlands-44963",
+        "https://www.oilandgasadvancement.com/press-releases/equinor-signs-natural-gas-supply-agreement-with-eneco/",
+        "https://www.indexbox.io/blog/equinor-and-eneco-sign-five-year-norwegian-gas-supply-agreement/",
+        "https://energynews.pro/en/equinor-signs-new-multi-year-gas-supply-contract-with-eneco-for-the-dutch-network",
+        "https://grafa.com/en/news/united-states/equinor-signs-five-year-natural-gas-supply-agreement-with-eneco",
+        "https://www.equinor.com/news/20261028-notifiable-trading",
+        "https://www.globenewswire.com/news-release/2024/02/07/2825180/0/en/Equinor-ASA-Notifiable-trading.html",
+        "https://www.rohstoff-welt.de/news/751169--Notifiable-trading--Equinor-ASA.html",
+        "https://www.stocktitan.net/news/EQNR/notifiable-trading-equinor-z96nqyoopjip.html",
+        "https://www.stocktitan.net/sec-filings/EQNR/6-k-equinor-asa-current-report-foreign-issuer-f239c12ab701.html",
+        "https://www.stocktitan.net/sec-filings/EQNR/6-k-equinor-asa-current-report-foreign-issuer-b23fd90aa732.html",
+        "https://www.stocktitan.net/sec-filings/EQNR/6-k-equinor-asa-current-report-foreign-issuer-46fce90c0606.html",
+        "https://benzinga.com/z/14282666",
+        "https://www.benzinga.com/node/12580399",
+        "https://www.equinor.com/news",
+        "https://www.equinor.com/news-and-media",
+        "https://www.thebarentsobserver.com/news/equinor-boosts-profits-steps-up-development-of-new-arctic-field/460718",
+        "https://bnnbloomberg.ca/business/company-news/2026/10/28/equinor-eyes-bay-du-nords-potential-for-cash-expansion-as-company-doubles-earnings",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-equinor-q3-2026-profit-miss-offsets-strong-cash-flow-93CH-4978736",
+        "https://www.ctvnews.ca/business/article/equinor-eyes-bay-du-nords-potential-for-cash-expansion-as-company-doubles-earnings/",
+        "https://www.rivieramm.com/news-content-hub/equinor-opens-marine-robotics-centre-in-norway-90406",
+        "https://en.wikipedia.org/wiki/Peregrino",
+        "https://en.wikipedia.org/wiki/Johan_Sverdrup_oil_field",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-reports-troll-project-decision-as-equinor-stock-trades-at-eur-41-46/70354381",
+        "https://uk.investing.com/news/stock-market-news/equinor-q3-2026-slides-strong-cash-flow-production-growth-offset-miss-93CH-4937306",
+        "https://ua.news/en/energetika/equinor-pidvishchila-prognoz-zrostannia-vidobutku-priblizno-do-4-oilprice",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/td-cowen-raises-target-for-equinor-stock-from-usd-38-to-usd-41/70209761",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/barclays-raises-target-for-equinor-stock-from-nok-368-to-nok-380/70298701",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/nordea-raises-target-for-equinor-stock-from-nok-400-to-nok-480/70393140",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-stock-nordea-raises-target-from-nok-400-to-nok-480/70393981",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-stock-nordea-raises-target-for-equinor-stock-to-nok-480/70399492",
+        "https://www.ad-hoc-news.de/boerse/news/unternehmensnachrichten/equinor-lifts-output-guidance-as-middle-east-disruptions-inflate-quarterly-profit/70425552",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/equinor-stock-market-consensus-sets-equinor-stock-target-at-usd-43-47/70341944",
+        "https://www.rtoinsider.com/123416-judge-allows-construction-to-resume-on-empire-wind/",
+        "https://www.esgtoday.com/equinor-sues-to-keep-building-empire-wind-after-trump-order-halting-5-billion-renewable-energy-project/",
+        "https://gcaptain.com/empire-wind-wins-court-battle-as-5-3-billion-project-pulled-back-from-the-brink/",
+        "https://ag.ny.gov/sites/default/files/court-filings/state-of-new-york-new-york-state-energy-research-and-development-authority-v-douglas-j-burgum-et-al-empire-complaint-2026.pdf",
+        "https://renews.biz/110495/court-rejects-government-request-for-empire-wind-stay/",
+        "https://energywatch.com/EnergyNews/wind/article18924943.ece",
+        "https://www.renews.biz/offshore-wind/court-rejects-request-for-empire-stay/",
+        "https://www.theia.global/article/equinor-receives-court-approval-to-resume-empire-offshore-wind-project-1d38e9bd",
+        "https://seekingalpha.com/news/4539615-equinor-wins-us-court-ruling-to-resume-construction-of-empire-wind-project",
+        "https://www.bloomberg.com/news/articles/2026-01-15/equinor-wins-ruling-to-resume-us-wind-project-halted-by-trump"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Equinor rates Hold at 64, one point below Buy, on strong momentum offset by a weaker balance sheet.",
+    "thesis": "Equinor scores 64, a Hold that sits just 1 point below the Buy band. The strongest driver is trend (91): the price is 27.6% above its 200-day average, shares are up 78.0% from 12 months ago to 1 month ago, and the price is only 2.4% below its 52-week high. Quality scores 64 on an operating margin of 23.8% and a diluted share count down 8.0% year on year, though the FCF margin is a thinner 5.6%. Growth is middling at 54, with TTM revenue growth of 2.6%, although growth sped up by 5.8 pp from the previous quarter. The balance sheet is the weak spot at 38 (net debt to FCF of 3.52, cash to debt of 0.19), and valuation could not be scored because the foreign-filer price and share data were not reconciled.",
+    "key_risks": [
+      "Balance sheet is the weakest factor: net debt is 3.52 times FCF and cash covers only 0.19 of debt.",
+      "After a large run-up, with the price 27.6% above its 200-day average, the shares are exposed to a pullback if oil and gas prices soften.",
+      "The CFO flagged softer 2027 production and a later Empire Wind start, and coverage of the quarter is mixed on whether profit beat or missed.",
+      "The FCF margin of 5.6% is thin relative to the 23.8% operating margin.",
+      "Revenue growth is modest, with TTM revenue growth of 2.6%."
+    ],
+    "what_would_change": [
+      "A gain of just 1 point, for example from firmer revenue growth or a better balance sheet score, would lift the rating to Buy.",
+      "A fade in momentum would pull down the trend score of 91, which is the main support for the current score.",
+      "A drop of 20 points would be needed to reach Sell, which would likely require weaker growth, quality and trend together.",
+      "Negative news on production guidance, Empire Wind or analyst downgrades would lower the news score of 65."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 120958,
+        "output_tokens": 3406,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 120958,
+            "output_tokens": 3406,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.356,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7039,
+        "output_tokens": 1813,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7039,
+            "output_tokens": 1813,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0644,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3558,
+        "output_tokens": 682,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3558,
+            "output_tokens": 682,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0279,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4483,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 47.145,
+    "as_of": "2026-10-29T13:05:52Z",
+    "prev_close": 47.66
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 08:29",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

@@ -1,0 +1,883 @@
+{
+  "run_id": "2026-10-29T12:30:59Z",
+  "generated_at": "2026-10-29T12:32:01+00:00",
+  "ticker": "PBR",
+  "sec_ticker": "PBR",
+  "cik": "0001119639",
+  "name": "PETROBRAS - PETROLEO BRASILEIRO SA",
+  "sector": "Crude Petroleum & Natural Gas",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 59,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), stock comp. / revenue, diluted shares YoY"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 6
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 15
+    }
+  },
+  "composite": {
+    "score": 59,
+    "raw": 59.44,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 30.17,
+          "score": 88.6,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 51.08,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 94,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 53.14,
+          "score": 66.4,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 16.01,
+          "score": 57.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -10.99,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.7,
+      "score": 39,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": "net debt with negative FCF"
+        },
+        "cash_to_debt": {
+          "value": 0.48,
+          "score": 48.3,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 19,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 0.79,
+          "score": 54.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 15.68,
+          "score": 89.2,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 82.91,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -5.96,
+          "score": 38.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -6.79,
+          "score": 36.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -15.79,
+          "score": 46.5,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 67,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 60,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 22.03,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "SalesRevenueNet",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 51.08,
+    "ttm_end": "2010-12-31",
+    "revenue_ttm": 150852000000.0,
+    "revenue_yoy_ttm": 30.17,
+    "gross_profit_ttm": 80158000000.0,
+    "operating_income_ttm": 24158000000.0,
+    "operating_cash_flow_ttm": 28495000000.0,
+    "capex_ttm": 45078000000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfGoodsSold",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -16583000000.0,
+    "gross_margin_pct": 53.14,
+    "operating_margin_pct": 16.01,
+    "fcf_margin_pct": -10.99,
+    "capex_intensity_pct": 29.88,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {},
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -10.99,
+      "fcf_margin_year_earlier_pct": -8.81,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -16583000000.0,
+    "fcf_scored_margin_pct": -10.99,
+    "balance_sheet": {
+      "date": "2010-12-31",
+      "cash": 17633000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 15612000000.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 15612000000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 33245000000.0,
+      "debt": 69431000000.0,
+      "debt_tags": [
+        "LongTermDebtNoncurrent",
+        "ShortTermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 60471000000.0
+        },
+        {
+          "tag": "ShortTermBorrowings",
+          "val": 8960000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 36186000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "shares_outstanding": {
+      "val": 7442231382.0,
+      "end": "2025-12-31",
+      "filed": "2026-04-09",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 22.03,
+    "date": "2026-10-28",
+    "ma50": 21.86,
+    "ma200": 19.04,
+    "vs_ma50_pct": 0.79,
+    "vs_ma200_pct": 15.68,
+    "momentum_12_1_pct": 82.91,
+    "high_52w": 26.16,
+    "drawdown_52w_pct": -15.79,
+    "return_rs_pct": 3.12,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -5.96,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -6.79
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Petrobras reported record Q3 output of 3.512M boe/d, which beat consensus and ran above the implied 2026 plan. The company made no formal guidance change and has not yet released Q3 financial results.",
+        "evidence": [
+          {
+            "claim": "Q3 oil and gas output was a record 3.512M boe/d, up 11.7% year on year and 5.3% quarter on quarter.",
+            "url": "https://oilprice.com/Company-News/Petrobras-Oil-and-Gas-Output-Jumps-117-to-Record-High-in-Q3.html",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 0/0"
+          },
+          {
+            "claim": "Output beat the Visible Alpha consensus of 3.48M boe/d, and Brazil oil output of 2.83M bpd exceeded the peak forecast in the 2026-2030 business plan.",
+            "url": "https://www.bairdmaritime.com/offshore/drilling-production/petrobras-delivers-production-surge-in-third-quarter",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 4/4"
+          },
+          {
+            "claim": "Ativa analyst Ilan Arbetman said the quarter's output is above Petrobras' implied 2026 guidance.",
+            "url": "https://theedgemalaysia.com/node/823727",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst actions tilted positive. BofA raised its target to $28 from $22, Weiss upgraded the stock and Goldman kept its Buy rating, while Wall Street Zen trimmed its rating to buy from strong-buy.",
+        "evidence": [
+          {
+            "claim": "BofA raised its price target on PBR to $28 from $22.",
+            "url": "https://www.cnn.com/markets/stocks/PBR",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "Goldman Sachs keeps USD 24.30 target for Petrobras stock.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/goldman-sachs-keeps-usd-24-30-target-for-petrobras-stock/70416064",
+            "event_date": "2026-10-21",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          },
+          {
+            "claim": "Wall Street Zen downgraded PBR to buy from strong-buy.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-petroleo-brasileiro-sa-petrobras-nyse-pbr-stock-gets-downgrade-from-wall-street-zen-2026-10-11/",
+            "event_date": "2026-10-11",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 18,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "Weiss Ratings upgraded PBR to buy (b) from buy (b-).",
+            "url": "https://www.defenseworld.net/2026/10/27/petroleo-brasileiro-s-a-petrobras-nysepbr-stock-has-consensus-price-target-of-20-97-according-to-analysts.html",
+            "event_date": "2026-10-09",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 20,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "ANP postponed the hearing on its forced gas-sale program to Nov 19, so that risk remains unresolved. Petrobras' new exploration blocks and an inflow of about US$859M from reservoir balancing agreements are routine, and no new fines or lawsuits surfaced.",
+        "evidence": [
+          {
+            "claim": "ANP postponed the Gas Release Program hearing from Oct 21 to Nov 19.",
+            "url": "https://www.riotimesonline.com/brazil-anp-gas-release-hearing-postponed-nov-19-2026/",
+            "event_date": "2026-10-20",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/4"
+          },
+          {
+            "claim": "Petrobras signed the Berbigão and Sururu balancing agreements with Shell, TotalEnergies and Petrogal and will receive a net of about US$859 million.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004910/pbr20261013_6k.htm",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/6"
+          },
+          {
+            "claim": "Petrobras acquired the Azurita and Cruzeiro do Sul blocks with 100% stakes.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004868/pbr20261008_6k.htm",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "China took 40% of Q3 oil purchases while exports hit a record. There were no major customer wins or losses.",
+        "evidence": [
+          {
+            "claim": "China took 40% of Petrobras' oil purchases in Q3, and exports of oil and derivatives hit a record 1.25M bpd.",
+            "url": "https://www.bairdmaritime.com/offshore/drilling-production/petrobras-delivers-production-surge-in-third-quarter",
+            "event_date": "2026-10-28",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Petrobras is a foreign private issuer and files no Form 4s, and no insider transactions were reported.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "The news was mixed. A long-term Cheniere LNG deal and higher fuel sales are positives, but diesel is priced well below import parity, which raises the risk that Petrobras breaks its pricing policy.",
+        "evidence": [
+          {
+            "claim": "Petrobras signed a 22-year LNG purchase agreement with Cheniere for 0.8 Mtpa.",
+            "url": "https://www.industrialinfo.com/news/article/brazils-petrobras-signs-22-year-lng-purchase-agreement-with-cheniere-for-08-mtpa--363303",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Abicom put Petrobras' refinery diesel about R$3.53/l below import cost as the federal import subsidy lapsed, and Itaú BBA warned large gaps could push Petrobras to break its pricing policy.",
+            "url": "https://www.riotimesonline.com/brazil-diesel-subsidy-lapses-26-october-oil-117-2026",
+            "event_date": "2026-10-22",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/4"
+          },
+          {
+            "claim": "Q3 domestic fuel sales rose 6.4% quarter on quarter to 1.854M bpd, led by diesel.",
+            "url": "https://rallies.ai/news/petrobras-publishes-q3-2026-production-and-sales-report-936223a4636b03ff",
+            "event_date": "2026-10-28",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 2/3, names 0/0 · missing: 1.854"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**1. Guidance and results**\n- Q3 oil and gas output was a record 3.512M boe/d, up 11.7% year on year and 5.3% quarter on quarter. — 2026-10-28 — https://oilprice.com/Company-News/Petrobras-Oil-and-Gas-Output-Jumps-117-to-Record-High-in-Q3.html\n- That beat the Visible Alpha consensus of 3.48M boe/d. Brazil oil output of 2.83M bpd exceeded the peak forecast in the 2026-2030 business plan. — 2026-10-28 — https://www.bairdmaritime.com/offshore/drilling-production/petrobras-delivers-production-surge-in-third-quarter\n- Ativa analyst Ilan Arbetman said the quarter's output is above Petrobras' implied 2026 guidance and gives a higher starting point for 2027. This is an analyst view, not a company guidance change. — 2026-10-28 — https://theedgemalaysia.com/node/823727\n- Refinery utilization was 99%, with record diesel output of 769k bpd. — 2026-10-28 — https://rallies.ai/news/petrobras-publishes-q3-2026-production-and-sales-report-936223a4636b03ff\n- I found no formal guidance raise, cut or withdrawal. I also found no Q3 financial results (revenue, EPS) yet, only a preview. — date unknown — https://www.hudson-labs.com/research/petrobras-q3-2026-earnings-preview-pbr-results-preview\n- That preview (a lower-tier source) expected revenue of about $32.5B and EPS of $1.24. — date unknown — https://www.hudson-labs.com/research/petrobras-q3-2026-earnings-preview-pbr-results-preview\n- PBR shares fell 14% on 2026-10-26 to about $22.50, per GuruFocus (an aggregator). The same source links the drop to Brazil's election and dividend concerns. — 2026-10-26 — https://www.gurufocus.com/news/9143154/petroleo-brasileiro-sa-petrobras-pbr-shares-fall-140-gf-value-says-still-overvalued\n\n**2. Analyst actions**\n- BofA (Leonardo Marcondes) raised its price target to $28 from $22. The date is the TipRanks listing date, which is approximate. — 2026-10-14 — https://www.cnn.com/markets/stocks/PBR\n- Goldman Sachs maintained Buy with a $24.30 target. — 2026-10-21 — https://www.ad-hoc-news.de/boerse/news/corporate-news/goldman-sachs-keeps-usd-24-30-target-for-petrobras-stock/70416064\n- Wall Street Zen downgraded PBR to \"buy\" from \"strong-buy\". — 2026-10-11 — https://www.marketbeat.com/instant-alerts/analyst-petroleo-brasileiro-sa-petrobras-nyse-pbr-stock-gets-downgrade-from-wall-street-zen-2026-10-11/\n- Weiss Ratings upgraded PBR to \"buy (b)\" from \"buy (b-)\". — 2026-10-09 — https://www.defenseworld.net/2026/10/27/petroleo-brasileiro-s-a-petrobras-nysepbr-stock-has-consensus-price-target-of-20-97-according-to-analysts.html\n- MarketBeat consensus is \"Moderate Buy\" (6 Buy, 2 Hold) with an average target of $20.97. — date unknown — https://www.defenseworld.net/2026/10/27/petroleo-brasileiro-s-a-petrobras-nysepbr-stock-has-consensus-price-target-of-20-97-according-to-analysts.html\n- TipRanks shows a consensus target of $23.75 across 4 analysts. That differs from MarketBeat's $20.97 because the analyst sets differ. — date unknown — https://www.tipranks.com/stocks/pbr\n- The UBS ($23, 2026-09-23) and JPMorgan ($24, 2026-09-01) target raises fall before the window. — https://www.marketbeat.com/instant-alerts/analyst-petroleo-brasileiro-sa-petrobras-nyse-pbr-stock-gets-downgrade-from-wall-street-zen-2026-10-11/\n\n**3. Litigation and regulation**\n- ANP moved the hearing on its proposed Gas Release Program from Oct 21 to Nov 19. The program would force Petrobras to auction part of its gas. Petrobras welcomed the delay and warned the program could discourage investment. — 2026-10-20 — https://www.riotimesonline.com/brazil-anp-gas-release-hearing-postponed-nov-19-2026/ ; https://brazilstockguide.com/insights/petrobras-warns-forced-gas-sales-could-hurt-investment-as-regulator-delays-hearing/\n- The Nov 19 hearing is not final approval. — 2026-10-20 — https://brazilstockguide.com/insights/petrobras-warns-forced-gas-sales-could-hurt-investment-as-regulator-delays-hearing/\n- In ANP's bidding round, Petrobras acquired the Azurita (Campos Basin) and Cruzeiro do Sul (Santos Basin) blocks, each at 100%. — 2026-10-08 — https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004868/pbr20261008_6k.htm\n- Petrobras signed the Berbigão and Sururu shared-reservoir balancing agreements with Shell, TotalEnergies and Petrogal. It will receive a net of about US$859M, settled by November 2026. — 2026-10-13 — https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004910/pbr20261013_6k.htm\n- The P-52 platform was shut down after a gas leak. A working group was due to finish its restart assessment by October, per a July report. I found no October update. — date unknown — https://www.worldoil.com/news/2026/7/24/petrobras-delays-restart-of-p-52-platform-following-gas-leak-investigation/\n- I found no new fines, lawsuits or investigations dated in the window. The ANP fine and LPG probe results are about 200 days old.\n\n**4. Customer concentration**\n- China took 40% of Petrobras' Q3 oil purchases. Exports of oil and derivatives hit a record 1.25M bpd, up 20.7%. — 2026-10-28 — https://www.bairdmaritime.com/offshore/drilling-production/petrobras-delivers-production-surge-in-third-quarter\n- Brazilian Stock Guide says China and the U.S. gained share of crude exports in Q3. — 2026-10-28 — https://brazilstockguide.com/insights/petrobras-hits-record-production-in-q3-2026-as-china-and-u-s-gain-share-of-oil-exports/\n- I found no major customer wins or losses in the window.\n\n**5. Insider activity**\n- I found no Form 4 or insider transactions in the window. Petrobras is a foreign private issuer, so it does not file Form 4s. GuruFocus reports no net insider buying or selling over the past 12 months. — date unknown — https://www.gurufocus.com/news/9143154/petroleo-brasileiro-sa-petrobras-pbr-shares-fall-140-gf-value-says-still-overvalued\n\n**6. Product and competitive news**\n- Petrobras signed a 22-year, 0.8 Mtpa LNG purchase deal with Cheniere. — date unknown (reported 2026-10-06) — https://www.industrialinfo.com/news/article/brazils-petrobras-signs-22-year-lng-purchase-agreement-with-cheniere-for-08-mtpa--363303\n- The 20-year, 0.8 Mtpa Sempra Port Arthur LNG deal was signed at the end of August and announced around Sep 21. That is before the window. — https://energynow.tt/blog/petrobras-signs-20-year-lng-supply-agreement-with-sempra-infrastructure\n- TechnipFMC won a \"significant\" ($75M–$250M) flexible-pipe contract from Petrobras. This is a supplier award. — 2026-10-06 — https://www.technipfmc.com/en/investors/financial-news-releases/press-release/technipfmc-awarded-flexibles-contract-by-petrobras/\n- Diesel pricing: Petrobras has not changed refinery diesel prices since Sep 17. Abicom put its refinery diesel about R$3.53/l below import cost, against a R$3.52 federal import subsidy that was set to lapse around Oct 26. Itaú BBA warned large gaps could push Petrobras to break its pricing policy. — 2026-10-22 — https://www.riotimesonline.com/brazil-diesel-subsidy-lapses-26-october-oil-117-2026\n- Gasoline tax relief runs to Nov 9. The extra diesel subsidy runs 30 days from Oct 13. — 2026-10-13 — https://www.riotimesonline.com/brazil-fuel-subsidies-face-us113-oil-test-2026/\n- Q3 domestic fuel sales rose 6.4% quarter on quarter to 1.854M bpd, led by diesel (+14.4%). Imports rose 114.1% quarter on quarter. — 2026-10-28 — https://rallies.ai/news/petrobras-publishes-q3-2026-production-and-sales-report-936223a4636b03ff",
+      "urls": [
+        "https://oilprice.com/Company-News/Petrobras-Oil-and-Gas-Output-Jumps-117-to-Record-High-in-Q3.html",
+        "https://finance.yahoo.com/energy/articles/petrobras-oil-gas-output-jumps-010500840.html",
+        "https://www.bairdmaritime.com/offshore/drilling-production/petrobras-delivers-production-surge-in-third-quarter",
+        "https://www.hudson-labs.com/research/petrobras-q3-2026-earnings-preview-pbr-results-preview",
+        "https://www.gurufocus.com/news/9149294/petrobras-boosts-production-to-record-levels-amid-global-energy-market-challenges",
+        "https://www.sec.gov/Archives/edgar/data/1119639/000129281426000128/pbr20260115_6k.htm",
+        "https://theedgemalaysia.com/node/823727",
+        "https://rallies.ai/news/petrobras-publishes-q3-2026-production-and-sales-report-936223a4636b03ff",
+        "https://brazilstockguide.com/insights/petrobras-hits-record-production-in-q3-2026-as-china-and-u-s-gain-share-of-oil-exports/",
+        "https://www.tipranks.com/stocks/pbr",
+        "https://www.cnn.com/markets/stocks/PBR",
+        "https://www.marketbeat.com/instant-alerts/analyst-petroleo-brasileiro-sa-petrobras-nyse-pbr-stock-gets-downgrade-from-wall-street-zen-2026-10-11/",
+        "https://simplywall.st/stocks/us/energy/nyse-pbr/petroleo-brasileiro-petrobras/future",
+        "https://www.theglobeandmail.com/investing/markets/markets-news/Tipranks/8448673/analysts-offer-insights-on-energy-companies-pembina-pipeline-pba-and-petroleo-brasileiro-sa-petrobras-pbr/",
+        "https://247wallst.com/companies/pbr/price-prediction/",
+        "https://www.tradingview.com/news/tradingview:85c6205860f90:0-petroleo-brasileiro-s-a-petrobras-stock-12-month-price-target-raised-to-23-52-implies-5-downside/",
+        "https://www.defenseworld.net/2026/10/27/petroleo-brasileiro-s-a-petrobras-nysepbr-stock-has-consensus-price-target-of-20-97-according-to-analysts.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/goldman-sachs-keeps-usd-24-30-target-for-petrobras-stock/70416064",
+        "https://www.benzinga.com/quote/PBR/analyst-ratings",
+        "https://www.tradingview.com/news/reuters.com,2026:newsml_L1N40R18S:0-brazil-oil-regulator-anp-fines-petrobras-30-million-for-not-closing-wells-folha-reports/",
+        "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004623/pbrfs2q26usd_6ka.htm",
+        "https://www.worldoil.com/news/2026/7/24/petrobras-delays-restart-of-p-52-platform-following-gas-leak-investigation/",
+        "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426003000/pbrfs1q26usd_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004868/pbr20261008_6k.htm",
+        "https://www.offshore-mag.com/business-briefs/company-news/article/14304799/petrobras-anp-settle-jubarte-field-payments-lawsuit",
+        "https://www.riotimesonline.com/brazil-anp-gas-release-hearing-postponed-nov-19-2026/",
+        "https://brazilstockguide.com/insights/petrobras-warns-forced-gas-sales-could-hurt-investment-as-regulator-delays-hearing/",
+        "https://recordlens.org/claims/petrobras-executives-bribes/",
+        "https://seekingalpha.com/news/4572637-brazil-regulator-probes-petrobras-over-suspected-price-gouging-in-lpg-auctions",
+        "https://irei.com/news/sempra-infrastructure-signs-20-year-port-arthur-lng-supply-agreement-with-petrobras/",
+        "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426004910/pbr20261013_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001342874/000134287426000046/a2026junternium6-k.htm",
+        "https://inspenet.com/en/news/petrobras-and-sempra-agree-to-20-year-lng-supply-from-texas/",
+        "https://energynow.tt/blog/petrobras-signs-20-year-lng-supply-agreement-with-sempra-infrastructure",
+        "https://www.sec.gov/Archives/edgar/data/0001071438/000129281426004512/bak20260909_6k.htm",
+        "https://www.technipfmc.com/en/investors/financial-news-releases/press-release/technipfmc-awarded-flexibles-contract-by-petrobras/",
+        "https://www.sec.gov/Archives/edgar/data/1119639/000129281426001236/pbr20260318_6k1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1071438/000129281426000289/bak20260209_6k.htm",
+        "https://www.industrialinfo.com/news/article/brazils-petrobras-signs-22-year-lng-purchase-agreement-with-cheniere-for-08-mtpa--363303",
+        "https://oilprice.com/Company-News/Petrobras-Cuts-Diesel-Price-as-Brazil-Subsidy-Takes-Effect.html",
+        "https://www.riotimesonline.com/brazil-diesel-subsidy-lapses-26-october-oil-117-2026",
+        "https://www.riotimesonline.com/petrobras-gasoline-price-correction-fuel-subsidy-mp-1389-2026",
+        "https://www.riotimesonline.com/brazil-gasoline-taxes-2026/",
+        "https://www.riotimesonline.com/brazil-fuel-subsidies-face-us113-oil-test-2026/",
+        "https://en.clickpetroleoegas.com.br/gasolina-despenca-no-brasil-petrobras-corta-preco-e-promete-alivio-imediato-no-bolso-dos-motoristas-sima00/",
+        "https://my.tradingview.com/news/zacks%3A0386e4283094b%3A0-petrobras-announces-gasoline-price-cut-for-distributors",
+        "https://www.zacks.com/stock/news/2482254/{https:/www.zackstrade.com/2019-1-dollar}",
+        "https://news.yahoo.com/brazils-petrobras-lowers-gasoline-prices-173835788.html",
+        "https://eulerpool.com/stock/Petroleo-Brasileiro-SA-Petrobras-Stock-BRPETRACNPR6/directors-dealings",
+        "https://www.alphaspread.com/security/bovespa/petr4/ownership/block/insider-trading",
+        "https://www.gurufocus.com/news/9142541/petrobras-pbr-shares-drop-amid-brazil-election-shock-raising-dividend-concerns",
+        "https://www.gurufocus.com/news/9143154/petroleo-brasileiro-sa-petrobras-pbr-shares-fall-140-gf-value-says-still-overvalued",
+        "https://www.insidermonkey.com/insider-trading/company/petroleo%20brasileiro%20sa%20petrobras/1119639/",
+        "https://www.gurufocus.com/news/9140418/petrobras-pbr-shares-rise-amid-elevated-options-activity-ahead-of-earnings",
+        "https://www.sec.gov/Archives/edgar/data/1119639/000129281424001340/pbrform20f_2023.htm",
+        "https://www.sec.gov/Archives/edgar/data/1119639/000129281426002168/ex11-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1119639/000129281425001352/ex11-1.htm"
+      ],
+      "searches": 6
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Petrobras rates Hold at 59: strong growth and momentum offset by negative free cash flow and debt.",
+    "thesis": "Petrobras scores 59, a Hold, six points short of the Buy band. Growth is the standout at 94, with TTM revenue growth of 30.2% and growth sped up by 51.1 pp from the previous quarter. Quality scores just 39 and the balance sheet only 19. A 53.1% gross margin and 16.0% operating margin are offset by an FCF margin of -11.0%, and cash covers only 0.48 of debt, with net debt carried alongside negative free cash flow. Trend scores 67: shares are up 82.9% from 12 months ago to 1 month ago and the price is 15.7% above its 200-day average, but the stock is 6.0 pp behind SPY over the last 126 trading days and 15.8% below its 52-week high. News scores 60, helped by record Q3 output and mostly positive analyst actions, and valuation could not be scored.",
+    "key_risks": [
+      "Negative free cash flow (FCF margin of -11.0%) while carrying net debt, with cash covering only 0.48 of debt",
+      "Diesel priced well below import parity raises the risk of a break from its pricing policy and political interference",
+      "ANP's forced gas-sale program hearing, postponed to Nov 19, remains unresolved",
+      "Heavy reliance on China, which took 40% of Q3 oil purchases, plus exposure to oil price swings",
+      "Shares 6.0 pp behind SPY over the last 126 trading days and 15.8% below their 52-week high"
+    ],
+    "what_would_change": [
+      "Up to Buy (6 points away): a return to positive free cash flow would lift both the quality and balance sheet scores",
+      "Up: Q3 financial results that confirm the record output and keep revenue growth strong, or further analyst upgrades",
+      "Down to Sell (15 points away): a sharp slowdown in revenue growth combined with a weakening trend score",
+      "Down: an adverse ANP gas-sale ruling, or a pricing-policy break that hurts margins and turns news risk negative"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 54153,
+        "output_tokens": 5212,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 6,
+        "per_request": [
+          {
+            "input_tokens": 54153,
+            "output_tokens": 5212,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 6
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.2204,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7654,
+        "output_tokens": 2699,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7654,
+            "output_tokens": 2699,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0846,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3607,
+        "output_tokens": 695,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3607,
+            "output_tokens": 695,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0283,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3333,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 21.89,
+    "as_of": "2026-10-29T13:03:31Z",
+    "prev_close": 22.03
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 08:30",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

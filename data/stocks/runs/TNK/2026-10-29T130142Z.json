@@ -1,0 +1,809 @@
+{
+  "run_id": "2026-10-29T13:01:42Z",
+  "generated_at": "2026-10-29T13:02:30+00:00",
+  "ticker": "TNK",
+  "sec_ticker": "TNK",
+  "cik": "0001419945",
+  "name": "TEEKAY TANKERS LTD.",
+  "sector": "Water Transportation",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 60,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), stock comp. / revenue"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 5
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 16
+    }
+  },
+  "composite": {
+    "score": 60,
+    "raw": 59.94,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": -22.58,
+          "score": 0.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -6.0,
+          "score": 20.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 9,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 66.66,
+          "score": 86.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 32.48,
+          "score": 87.5,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 12.15,
+          "score": 55.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": 0.2,
+          "score": 72.5,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.85,
+      "score": 75,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -7.18,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt: no debt tag with a value in the last 8 quarters"
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 2.63,
+          "score": 63.1,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 25.96,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 67.69,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 20.23,
+          "score": 85.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 19.4,
+          "score": 84.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -8.43,
+          "score": 66.7,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 86,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 55,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 99.29,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "revenue_yoy_q": null,
+    "acceleration_pp": -6.0,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 951797000.0,
+    "revenue_yoy_ttm": -22.58,
+    "gross_profit_ttm": 634424000.0,
+    "operating_income_ttm": 309099000.0,
+    "operating_cash_flow_ttm": 305894000.0,
+    "capex_ttm": 190259000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfGoodsAndServicesSold",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 115635000.0,
+    "gross_margin_pct": 66.66,
+    "operating_margin_pct": 32.48,
+    "fcf_margin_pct": 12.15,
+    "capex_intensity_pct": 19.99,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 3226000.0,
+      "source": "cash flow statement: IncreaseDecreaseInDeferredRevenue",
+      "base": null,
+      "base_date": null,
+      "revenue_growth_pct": null,
+      "expected": null,
+      "excess": null,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": null,
+      "note": "no contract-liability balance a year earlier: the excess over revenue growth can't be measured"
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 12.15,
+      "fcf_margin_year_earlier_pct": 32.65,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 115635000.0,
+    "fcf_scored_margin_pct": 12.15,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 830569000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "val": 0.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 830569000.0,
+      "debt": 0.0,
+      "debt_tags": [],
+      "debt_parts": [],
+      "debt_note": "no debt: no debt tag with a value in the last 8 quarters",
+      "net_debt": -830569000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 34775458.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.2,
+    "shares_outstanding": null,
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 99.29,
+    "date": "2026-10-28",
+    "ma50": 96.74,
+    "ma200": 78.82,
+    "vs_ma50_pct": 2.63,
+    "vs_ma200_pct": 25.96,
+    "momentum_12_1_pct": 67.69,
+    "high_52w": 108.43,
+    "drawdown_52w_pct": -8.43,
+    "return_rs_pct": 29.31,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 20.23,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 19.4
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or pre-announcement in the window. The company only scheduled Q3 results for Nov 11, with a call on Nov 12.",
+        "evidence": [
+          {
+            "claim": "Teekay Group to announce third quarter 2026 earnings results on November 11, 2026, with a conference call on November 12.",
+            "url": "https://www.teekay.com/blog/2026/10/27/teekay-group-to-announce-third-quarter-2026-earnings-results-on-november-11-2026/",
+            "event_date": "2026-10-27",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Evercore reiterated Outperform with a $116 target, and Weiss Ratings upgraded TNK to buy (b). The broader consensus remains Hold, and both sources are lower-tier.",
+        "evidence": [
+          {
+            "claim": "Evercore reiterated Outperform on Teekay Tankers with a $116 price target.",
+            "url": "https://www.theglobeandmail.com/investing/markets/stocks/OXY/pressreleases/8488069/american-analyst-updates-oct-27th-2026/",
+            "event_date": "2026-10-27",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings upgraded Teekay Tankers from a \"buy (b-)\" rating to a \"buy (b)\" rating.",
+            "url": "https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html",
+            "event_date": "2026-10-08",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or fines involving TNK were found. The only item is industry sanctions commentary that could affect fleet supply.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material on customer wins, losses or concentration in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions dated inside the window. The director sales near $100 happened in mid-September, before it, and there has been no insider buying.",
+        "evidence": [
+          {
+            "claim": "Insiders sold 14,561 shares of company stock worth $1.38 million over the last 90 days.",
+            "url": "https://www.defenseworld.net/2026/10/08/teekay-tankers-ltd-nysetnk-stock-has-consensus-target-price-of-77-00-according-to-brokerages.html",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Crude tanker rates hit records in early October, and Suezmax/Aframax tonne-mile demand was up sharply. Rates have since eased from the peak, and the sources are trade press rather than major outlets.",
+        "evidence": [
+          {
+            "claim": "Tanker rates soared to a record, with supertanker rates reaching about $1.4 million per day.",
+            "url": "https://oilprice.com/Energy/Energy-General/Tanker-Rates-Soar-to-Record-as-Oil-Crisis-Becomes-Shipping-Crisis.html",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          },
+          {
+            "claim": "Suezmax and Aframax tonne-mile demand in the third quarter was about 20% higher year on year, according to the IEA.",
+            "url": "https://www.hellenicshippingnews.com/the-soaring-cost-of-shipping-is-lifting-the-price-of-oil-for-consumers/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          },
+          {
+            "claim": "Crude tanker rates retreated from their peak as the chartering pace slowed.",
+            "url": "https://www.lloydslist.com/LL1158747/Crude-tanker-rates-retreat-from-epic-peak-as-chartering-pace-slows",
+            "event_date": "2026-10-19",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "insider_activity": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Teekay Tankers (TNK): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- No guidance change or pre-announcement found in the window. The company's last results (Q2) came out before it. They showed adjusted EPS of $5.56, and Q3-to-date Suezmax spot rates of $104,800/day with 44% of days booked — 2026-07-29 — https://www.sec.gov/Archives/edgar/data/0001419945/000141994526000054/tnkq2-26erdocument.htm\n- Q3 results are due after market close on Nov 11, with a call on Nov 12 at 11:00 ET — 2026-10-27 — https://www.teekay.com/blog/2026/10/27/teekay-group-to-announce-third-quarter-2026-earnings-results-on-november-11-2026/\n- Some aggregator copy still says Nov 4. The company release above is the primary source — 2026-10-28 — https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html\n- Consensus Q3 expectation is EPS of $4.63 and revenue of about $270M — date unknown — https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html\n- A different source shows consensus EPS of $4.83 on $270M revenue. It also says estimates fell about 8% over two months — date unknown — https://www.investing.com/news/earnings/teekay-tankers-faces-earnings-test-amid-tanker-rate-surge-93CH-4980217\n- Q2 results versus expectations: EPS of $5.56 missed the $5.61 consensus. Revenue of $258.26M missed the $299.03M estimate — 2026-07-29 — https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html\n\n**2. Analyst actions**\n- Evercore reiterated Outperform with a $116 price target — 2026-10-27 — https://www.theglobeandmail.com/investing/markets/stocks/OXY/pressreleases/8488069/american-analyst-updates-oct-27th-2026/\n- Weiss Ratings upgraded TNK from \"buy (b-)\" to \"buy (b)\". MarketBeat consensus is \"Hold\" with a $87 average target — 2026-10-08 — https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html\n- An earlier MarketBeat snapshot showed a $77 consensus target, so the consensus figure differs by date — 2026-10-08 — https://www.marketbeat.com/instant-alerts/consensus-teekay-tankers-ltd-nyse-tnk-stock-has-consensus-target-price-of-7700-according-to-brokerages-2026-10-08/\n- BofA's most recent target I found is $78 with Underperform, but the source doesn't date it. It is probably before the window — date unknown — https://stockanalysis.com/stocks/tnk/\n- I found no other upgrades, downgrades or initiations in the window.\n\n**3. Litigation and regulation**\n- No lawsuits, investigations or fines involving TNK found.\n- Sanctions backdrop: a US official said dark-fleet tankers are being \"converted\" to legitimate ships, not having sanctions removed. A larger legitimate fleet could pressure rates — 2026-10-19 — https://www.lloydslist.com/LL1158747/Crude-tanker-rates-retreat-from-epic-peak-as-chartering-pace-slows\n\n**4. Customer concentration**\n- Nothing material found on customer wins, losses or concentration in the window.\n- Earlier disclosure: Q1 results said one Suezmax was time-chartered out at $80,000/day for 10–12 months, and one Aframax at $60,000/day for 12 months. This is before the window — date unknown — https://www.sec.gov/Archives/edgar/data/0001419945/000141994526000016/tnkq1-26erdocument.htm\n\n**5. Insider activity**\n- No insider transactions with a transaction date inside the window were found. The most recent sales fall just before it.\n- Director David Schellenberg sold 101 shares at $100.00 — 2026-09-15 — https://www.marketbeat.com/instant-alerts/insider-teekay-tankers-nyse-tnk-director-sells-101-shares-of-stock-2026-09-16/\n- Schellenberg then sold 7,344 shares at $100.00, about $734,400 — 2026-09-16 — https://www.marketbeat.com/instant-alerts/insider-david-schellenberg-sells-7344-shares-of-teekay-tankers-nyse-tnk-stock-2026-09-16/\n- A TradingView summary puts his two sales at $744,500 in total and says he no longer owns shares directly — 2026-09-16 — https://www.tradingview.com/news/tradingview:f620072fddb2d:0-teekay-tankers-director-sold-shares-worth-over-744k/\n- One aggregator shows 2,126 shares remaining after the sale. Another says 7,344 remained. The sources conflict on holdings — 2026-09-16 — https://www.thestockobserver.com/2026/09/22/teekay-tankers-nysetnk-shares-gap-down-heres-what-happened.html\n- Director Heidi Locke Simon sold 741 shares at $90 — 2026-08-18 — https://www.wallstreetzen.com/stocks/us/nyse/tnk/ownership\n- Insiders sold 14,561 shares worth $1.38M in the 90 days to about Oct 8 — 2026-10-08 — https://www.defenseworld.net/2026/10/08/teekay-tankers-ltd-nysetnk-stock-has-consensus-target-price-of-77-00-according-to-brokerages.html\n- GuruFocus separately reports $1.9M of insider sales over 12 months and no buying — 2026-10-23 — https://www.gurufocus.com/news/9140851/is-teekay-tankers-ltd-tnk-overvalued-after-44-rally-gf-value-says-overvalued\n\n**6. Product, competitive and market news**\n- Tanker rates hit records in early October. Supertanker rates reached about $1.4M/day on Gulf–Asia routes. Suezmax and Aframax demand was lifted by charterers splitting VLCC cargoes — 2026-10-07 — https://oilprice.com/Energy/Energy-General/Tanker-Rates-Soar-to-Record-as-Oil-Crisis-Becomes-Shipping-Crisis.html\n- Suezmax rates have since eased. The West Africa–Europe index was $479,527/day, down 16% from its peak — 2026-10-19 — https://www.lloydslist.com/LL1158747/Crude-tanker-rates-retreat-from-epic-peak-as-chartering-pace-slows\n- Suezmax and Aframax tonne-mile demand in Q3 was about 20% higher year on year, per the IEA — 2026-10-14 — https://www.hellenicshippingnews.com/the-soaring-cost-of-shipping-is-lifting-the-price-of-oil-for-consumers/\n- Clarksons counted 1,004 sanctioned tankers in October, about 20% of crude-tanker capacity — date unknown — https://discoveryalert.com/analysis/tanker-freight-rates-india-state-refiners-october-2026/\n- Suezmax secondhand prices were reported rising sharply in the week of Oct 26. One 2010-built vessel sold to a Middle East Gulf buyer — 2026-10-26 — https://compassmar.com/market-report-download/\n- Stock hit a 52-week high of about $103 on Oct 2. It was at $98.22 on Oct 28 — 2026-10-02 — https://www.marketbeat.com/instant-alerts/price-teekay-tankers-nyse-tnk-sets-new-1-year-high-heres-what-happened-2026-10-02/\n- I found no company-specific launches, share gains or losses, or new-competitor news in the window.",
+      "urls": [
+        "https://www.gurufocus.com/news/9124425/teekay-tankers-ltd-tnk-shares-fall-45-gf-value-says-still-overvalued",
+        "https://www.gurufocus.com/news/9140851/is-teekay-tankers-ltd-tnk-overvalued-after-44-rally-gf-value-says-overvalued",
+        "https://www.gurufocus.com/news/9106734/teekay-tankers-ltd-tnk-shares-surge-41-what-gf-score-of-62-tells-investors",
+        "https://www.gurufocus.com/news/9116485/teekay-tankers-ltd-tnk-shares-surge-44-what-gf-score-of-60-tells-investors",
+        "https://www.teekay.com/blog/2026/10/27/teekay-group-to-announce-third-quarter-2026-earnings-results-on-november-11-2026/",
+        "https://www.marketbeat.com/instant-alerts/price-teekay-tankers-nyse-tnk-sets-new-1-year-high-heres-what-happened-2026-10-02/",
+        "https://www.marketbeat.com/stocks/NYSE/TNK/",
+        "https://www.dailypolitical.com/2026/10/28/teekay-tankers-tnk-expected-to-release-earnings-on-wednesday.html",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/teekay-tankers-stock-trades-at-eur-84-20-with-usd-2-91-billion-value/70373154",
+        "https://www.sec.gov/Archives/edgar/data/0001419945/000141994526000054/tnkq2-26erdocument.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001419945/000141994526000016/tnkq1-26erdocument.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001419945/000141994526000018/tnk6-kq1x26.htm",
+        "https://www.teekay.com/wp-content/uploads/2026/02/TNK-Q4-25-ER-Document.pdf",
+        "https://www.investing.com/news/company-news/teekay-tankers-q2-2026-slides-record-rates-amid-geopolitical-chaos-93CH-4825694",
+        "https://www.sec.gov/Archives/edgar/data/1419945/000141994526000054/tnkq2-26erdocument.htm",
+        "https://www.sec.gov/Archives/edgar/data/1419945/000141994526000004/tnkq4-25erdocument.htm",
+        "https://rallies.ai/news/teekay-publishes-update-to-financial-calendar-355970b80da18b5e",
+        "https://www.investing.com/news/earnings/teekay-tankers-faces-earnings-test-amid-tanker-rate-surge-93CH-4980217",
+        "https://simplywall.st/stocks/us/energy/nyse-tnk/teekay-tankers",
+        "https://simplywall.st/stocks/us/energy/nyse-tnk/teekay-tankers/future",
+        "https://www.marketbeat.com/instant-alerts/consensus-teekay-tankers-ltd-nyse-tnk-stock-has-consensus-target-price-of-7700-according-to-brokerages-2026-10-08/",
+        "https://stockanalysis.com/stocks/tnk/",
+        "https://www.wallstreetzen.com/stocks/us/nyse/tnk/stock-forecast",
+        "https://www.benzinga.com/quote/TNK/analyst-ratings",
+        "https://www.benzinga.com/stock/TNK/ratings",
+        "https://www.tipranks.com/news/the-fly/teekay-tankers-price-target-raised-to-70-from-60-at-jefferies",
+        "https://www.tipranks.com/news/the-fly/teekay-tankers-price-target-raised-to-60-from-53-at-evercore-isi-thefly",
+        "https://www.sec.gov/Archives/edgar/data/1419945/000141994524000010/tnk6-kq3x24.htm",
+        "https://www.tradingview.com/news/tradingview:f620072fddb2d:0-teekay-tankers-director-sold-shares-worth-over-744k/",
+        "https://www.sec.gov/Archives/edgar/data/1419945/000141994525000002/tnkq4-24erdocument.htm",
+        "https://www.sec.gov/Archives/edgar/data/1419945/000162828024033960/tnkq2-24erdocument.htm",
+        "https://www.stocktitan.net/sec-filings/TNK/form-4-teekay-tankers-ltd-insider-trading-activity-ec7b27fd45f2.html",
+        "https://www.stocktitan.net/sec-filings/TNK/form-4-a-teekay-tankers-ltd-amended-insider-trading-activity-1d07b8a341c8.html",
+        "https://www.stocktitan.net/sec-filings/TNK/form-4-teekay-tankers-ltd-insider-trading-activity-2a46726a463e.html",
+        "https://www.stocktitan.net/sec-filings/TNK/form-4-a-teekay-tankers-ltd-amended-insider-trading-activity-1d559a5c4c5c.html",
+        "https://www.stocktitan.net/sec-filings/TNK/form-4-teekay-tankers-ltd-insider-trading-activity-b74814b8a265.html",
+        "https://www.marketbeat.com/instant-alerts/insider-david-schellenberg-sells-7344-shares-of-teekay-tankers-nyse-tnk-stock-2026-09-16/",
+        "https://www.marketbeat.com/instant-alerts/insider-teekay-tankers-nyse-tnk-director-sells-101-shares-of-stock-2026-09-16/",
+        "https://en.wikipedia.org/wiki/Teekay",
+        "https://www.defenseworld.net/2026/10/08/teekay-tankers-ltd-nysetnk-stock-has-consensus-target-price-of-77-00-according-to-brokerages.html",
+        "https://www.dailypolitical.com/2026/09/16/david-schellenberg-sells-7344-shares-of-teekay-tankers-nysetnk-stock.html",
+        "https://www.wallstreetzen.com/stocks/us/nyse/tnk/ownership",
+        "https://www.thestockobserver.com/2026/09/22/teekay-tankers-nysetnk-shares-gap-down-heres-what-happened.html",
+        "https://www.marketbeat.com/instant-alerts/filing-shariaportfolio-inc-sells-19983-shares-of-teekay-tankers-ltd-tnk-2026-04-07/",
+        "https://www.marketbeat.com/instant-alerts/filing-charles-schwab-investment-management-inc-sells-145004-shares-of-teekay-corporation-ltd-tk-2025-09-01",
+        "https://www.lloydslist.com/LL1158747/Crude-tanker-rates-retreat-from-epic-peak-as-chartering-pace-slows",
+        "https://www.lloydslist.com/LL1158100/Tanker-boom-of-2026-now-secondbest-in-history-shows-no-signs-of-abating",
+        "https://www.hellenicshippingnews.com/the-soaring-cost-of-shipping-is-lifting-the-price-of-oil-for-consumers/",
+        "https://oilprice.com/Latest-Energy-News/World-News/Goldman-Sachs-Warns-of-New-Oil-Price-Shock-as-Tanker-Rates-Soar.amp.html",
+        "https://oilprice.com/Energy/Energy-General/Tanker-Rates-Soar-to-Record-as-Oil-Crisis-Becomes-Shipping-Crisis.html",
+        "https://www.lloydslist.com/LL1158620/Tanker-rates-already-higher-than-most-imagined-possible-just-spiked-again",
+        "https://www.bernama.com/en/world/news.php?id=2623941",
+        "https://discoveryalert.com/analysis/tanker-freight-rates-india-state-refiners-october-2026/",
+        "https://compassmar.com/market-report-download/",
+        "https://www.eia.gov/todayinEnergy/detail.php?id=67064",
+        "https://www.theglobeandmail.com/investing/markets/stocks/OXY/pressreleases/8488069/american-analyst-updates-oct-27th-2026/",
+        "https://finance.yahoo.com/quote/TNK/",
+        "https://tickeron.com/blogs/teekay-tankers-tnk-is-a-120-price-target-within-reach-16696/",
+        "https://www.marketbeat.com/instant-alerts/teekay-tankers-nysetnk-shares-cross-above-two-hundred-day-moving-average-should-you-sell-2025-08-15",
+        "https://www.marketbeat.com/instant-alerts/teekay-tankers-nysetnk-reaches-new-52-week-high-following-analyst-upgrade-2025-10-20",
+        "https://www.marketbeat.com/instant-alerts/short-interest-in-teekay-tankers-ltd-nysetnk-rises-by-237-2025-04-20"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Teekay Tankers rates Hold: strong balance sheet and price trend offset by sharply falling revenue.",
+    "thesis": "Teekay Tankers scores 60, a Hold, 5 points short of the Buy band. The balance sheet scores a full 100, with net cash and no debt reported in the last 8 quarters, and quality is solid at 75 on a 66.7% gross margin, a 32.5% operating margin and a 12.2% FCF margin, with diluted share count up only 0.2% year on year. The share price trend scores 86: the price is 26.0% above its 200-day average, shares are up 67.7% from 12 months ago to 1 month ago, and they are 20.2 pp ahead of SPY over the last 126 trading days. Growth is the main drag at 9, with a TTM revenue decline of 22.6% and growth slowed by 6.0 pp from the previous quarter. Valuation could not be scored, and news is mildly positive at 55, helped by record crude tanker rates in early October.",
+    "key_risks": [
+      "Revenue is shrinking, with a TTM revenue decline of 22.6% and growth slowing further.",
+      "Tanker rates are cyclical and have already eased from the early October peak.",
+      "After a strong run the price is 8.4% below its 52-week high, so a rate pullback could hit the shares.",
+      "Directors sold shares near $100 in mid-September, and there has been no insider buying.",
+      "Sanctions shifts in the industry could change fleet supply and rates in either direction."
+    ],
+    "what_would_change": [
+      "A 5-point gain in the score would reach Buy, most likely from growth improving off its score of 9 if Q3 results on Nov 11 show revenue stabilising.",
+      "Firmer news, such as guidance or verified analyst upgrades, could lift the news risk score from 55.",
+      "A fall of 16 points would be needed for Sell, for example a sharp break in the price trend combined with weaker margins as rates fall."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 99830,
+        "output_tokens": 3751,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 99830,
+            "output_tokens": 3751,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3072,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7182,
+        "output_tokens": 1763,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7182,
+            "output_tokens": 1763,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.064,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3562,
+        "output_tokens": 641,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3562,
+            "output_tokens": 641,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0271,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3983,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 99.29,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 98.1
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 09:01",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

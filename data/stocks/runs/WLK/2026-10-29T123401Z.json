@@ -1,0 +1,1671 @@
+{
+  "run_id": "2026-10-29T12:34:01Z",
+  "generated_at": "2026-10-29T12:35:03+00:00",
+  "ticker": "WLK",
+  "sec_ticker": "WLK",
+  "cik": "0001262823",
+  "name": "WESTLAKE CORP",
+  "sector": "Industrial Organic Chemicals",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 31,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 1.0,
+    "reasons": [
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 31 is within 2 points of the Sell edge (30)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 14
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 2
+    }
+  },
+  "composite": {
+    "score": 31,
+    "raw": 31.4,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 10.77,
+          "score": 56.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": -3.95,
+          "score": 15.1,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 17.59,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 55,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 9.62,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": -11.02,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -2.35,
+          "score": 15.3,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 0.37,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 0.2,
+          "score": 72.5,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 30,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": "net debt with negative FCF"
+        },
+        "cash_to_debt": {
+          "value": 0.37,
+          "score": 39.2,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 16,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.745,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative EBIT"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -8.14,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 3.3,
+          "score": 96.7,
+          "weight": 0.1,
+          "note": "cheaper than now in 3.3% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 15 of 61 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 13 of 61 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 28,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -3.83,
+          "score": 30.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -24.46,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -18.35,
+          "score": 14.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -49.21,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -50.04,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -46.65,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 8,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 40,
+      "metrics": {
+        "guidance": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 65.83,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 3271000000.0,
+    "revenue_yoy_q": 10.77,
+    "revenue_yoy_q_prev": -6.82,
+    "acceleration_pp": 17.59,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 11294000000.0,
+    "revenue_yoy_ttm": -3.95,
+    "gross_profit_ttm": 1087000000.0,
+    "operating_income_ttm": -1245000000.0,
+    "operating_cash_flow_ttm": 631000000.0,
+    "capex_ttm": 896000000.0,
+    "sbc_ttm": 42000000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": -265000000.0,
+    "gross_margin_pct": 9.62,
+    "operating_margin_pct": -11.02,
+    "fcf_margin_pct": -2.35,
+    "capex_intensity_pct": 7.93,
+    "sbc_pct_revenue": 0.37,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 98000000.0,
+      "source": "balance sheet: contract 2025-06-30 to 2026-06-30",
+      "base": 60000000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": -3.95,
+      "expected": -2372650.7356067714,
+      "excess": 100372650.73560677,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.1591
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -2.35,
+      "fcf_margin_year_earlier_pct": -0.46,
+      "median_margin_pct": -1.32,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -265000000.0,
+    "fcf_scored_margin_pct": -2.35,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 1643000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 209000000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 209000000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 1852000000.0,
+      "debt": 5067000000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 5067000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 3215000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 128500530.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.2,
+    "shares_outstanding": {
+      "val": 127796548.0,
+      "end": "2026-07-29",
+      "filed": "2026-08-05",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 3115000000.0,
+        "revenue_yoy_pct": -21.26,
+        "operating_margin_pct": 11.2,
+        "fcf": 451000000.0,
+        "diluted_shares": 128583927.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 2826000000.0,
+        "revenue_yoy_pct": -14.34,
+        "operating_margin_pct": -19.53,
+        "fcf": 291000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 2975000000.0,
+        "revenue_yoy_pct": -11.35,
+        "operating_margin_pct": 7.5,
+        "fcf": -103000000.0,
+        "diluted_shares": 129020370.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 3207000000.0,
+        "revenue_yoy_pct": -1.35,
+        "operating_margin_pct": 12.66,
+        "fcf": 6000000.0,
+        "diluted_shares": 129350720.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 3117000000.0,
+        "revenue_yoy_pct": 0.06,
+        "operating_margin_pct": 5.77,
+        "fcf": 254000000.0,
+        "diluted_shares": 129340461.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 2843000000.0,
+        "revenue_yoy_pct": 0.6,
+        "operating_margin_pct": 2.32,
+        "fcf": 149000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 2846000000.0,
+        "revenue_yoy_pct": -4.34,
+        "operating_margin_pct": -1.12,
+        "fcf": -325000000.0,
+        "diluted_shares": 128308537.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 2953000000.0,
+        "revenue_yoy_pct": -7.92,
+        "operating_margin_pct": -3.69,
+        "fcf": -132000000.0,
+        "diluted_shares": 128238514.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 2838000000.0,
+        "revenue_yoy_pct": -8.95,
+        "operating_margin_pct": -26.99,
+        "fcf": -57000000.0,
+        "diluted_shares": 128251427.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 2533000000.0,
+        "revenue_yoy_pct": -10.9,
+        "operating_margin_pct": -26.49,
+        "fcf": -16000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 2652000000.0,
+        "revenue_yoy_pct": -6.82,
+        "operating_margin_pct": -6.49,
+        "fcf": -303000000.0,
+        "diluted_shares": 127992500.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 3271000000.0,
+        "revenue_yoy_pct": 10.77,
+        "operating_margin_pct": 11.13,
+        "fcf": 111000000.0,
+        "diluted_shares": 128500530.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 65.83,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 127796548.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-29"
+    },
+    "market_cap": 8412846754.84,
+    "enterprise_value": 11627846754.84,
+    "price_to_sales": 0.745,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 134.247,
+    "fcf_yield_pct": -3.15,
+    "ebit_yield_pct": -10.707,
+    "fcf_negative": true,
+    "ebit_negative": true,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -8.14,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 1.382,
+        "price_to_fcf": 10.759,
+        "ev_to_ebit": 10.791,
+        "sales_yield_pct": 72.372,
+        "fcf_yield_pct": 9.295,
+        "ebit_yield_pct": 9.267
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 1.169,
+        "price_to_fcf": 7.81,
+        "ev_to_ebit": 6.456,
+        "sales_yield_pct": 85.55,
+        "fcf_yield_pct": 12.804,
+        "ebit_yield_pct": 15.488
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 1.222,
+        "price_to_fcf": 8.164,
+        "ev_to_ebit": 6.714,
+        "sales_yield_pct": 81.842,
+        "fcf_yield_pct": 12.249,
+        "ebit_yield_pct": 14.894
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 1.241,
+        "price_to_fcf": 8.292,
+        "ev_to_ebit": 6.807,
+        "sales_yield_pct": 80.581,
+        "fcf_yield_pct": 12.06,
+        "ebit_yield_pct": 14.691
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 1.205,
+        "price_to_fcf": 8.178,
+        "ev_to_ebit": 6.239,
+        "sales_yield_pct": 82.963,
+        "fcf_yield_pct": 12.228,
+        "ebit_yield_pct": 16.029
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 1.348,
+        "price_to_fcf": 9.148,
+        "ev_to_ebit": 6.84,
+        "sales_yield_pct": 74.163,
+        "fcf_yield_pct": 10.931,
+        "ebit_yield_pct": 14.619
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 1.383,
+        "price_to_fcf": 9.382,
+        "ev_to_ebit": 6.985,
+        "sales_yield_pct": 72.317,
+        "fcf_yield_pct": 10.659,
+        "ebit_yield_pct": 14.316
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 1.264,
+        "price_to_fcf": 8.312,
+        "ev_to_ebit": 6.065,
+        "sales_yield_pct": 79.126,
+        "fcf_yield_pct": 12.03,
+        "ebit_yield_pct": 16.487
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.938,
+        "price_to_fcf": 6.168,
+        "ev_to_ebit": 4.804,
+        "sales_yield_pct": 106.645,
+        "fcf_yield_pct": 16.214,
+        "ebit_yield_pct": 20.814
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.931,
+        "price_to_fcf": 6.125,
+        "ev_to_ebit": 4.779,
+        "sales_yield_pct": 107.39,
+        "fcf_yield_pct": 16.327,
+        "ebit_yield_pct": 20.924
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.845,
+        "price_to_fcf": 5.685,
+        "ev_to_ebit": 4.138,
+        "sales_yield_pct": 118.375,
+        "fcf_yield_pct": 17.59,
+        "ebit_yield_pct": 24.166
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.744,
+        "price_to_fcf": 5.008,
+        "ev_to_ebit": 3.752,
+        "sales_yield_pct": 134.385,
+        "fcf_yield_pct": 19.969,
+        "ebit_yield_pct": 26.65
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.828,
+        "price_to_fcf": 5.571,
+        "ev_to_ebit": 4.073,
+        "sales_yield_pct": 120.8,
+        "fcf_yield_pct": 17.951,
+        "ebit_yield_pct": 24.552
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.866,
+        "price_to_fcf": 6.127,
+        "ev_to_ebit": 4.7,
+        "sales_yield_pct": 115.458,
+        "fcf_yield_pct": 16.321,
+        "ebit_yield_pct": 21.277
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.825,
+        "price_to_fcf": 5.836,
+        "ev_to_ebit": 4.517,
+        "sales_yield_pct": 121.211,
+        "fcf_yield_pct": 17.134,
+        "ebit_yield_pct": 22.139
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.988,
+        "price_to_fcf": 6.987,
+        "ev_to_ebit": 5.24,
+        "sales_yield_pct": 101.255,
+        "fcf_yield_pct": 14.313,
+        "ebit_yield_pct": 19.082
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.972,
+        "price_to_fcf": 6.712,
+        "ev_to_ebit": 5.902,
+        "sales_yield_pct": 102.888,
+        "fcf_yield_pct": 14.898,
+        "ebit_yield_pct": 16.943
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.946,
+        "price_to_fcf": 6.534,
+        "ev_to_ebit": 5.769,
+        "sales_yield_pct": 105.691,
+        "fcf_yield_pct": 15.304,
+        "ebit_yield_pct": 17.335
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.928,
+        "price_to_fcf": 6.41,
+        "ev_to_ebit": 5.676,
+        "sales_yield_pct": 107.735,
+        "fcf_yield_pct": 15.6,
+        "ebit_yield_pct": 17.619
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.885,
+        "price_to_fcf": 6.374,
+        "ev_to_ebit": 6.199,
+        "sales_yield_pct": 113.035,
+        "fcf_yield_pct": 15.689,
+        "ebit_yield_pct": 16.133
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 1.017,
+        "price_to_fcf": 7.326,
+        "ev_to_ebit": 6.979,
+        "sales_yield_pct": 98.351,
+        "fcf_yield_pct": 13.651,
+        "ebit_yield_pct": 14.328
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 1.17,
+        "price_to_fcf": 8.431,
+        "ev_to_ebit": 7.886,
+        "sales_yield_pct": 85.455,
+        "fcf_yield_pct": 11.861,
+        "ebit_yield_pct": 12.68
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 1.214,
+        "price_to_fcf": 9.745,
+        "ev_to_ebit": 10.73,
+        "sales_yield_pct": 82.371,
+        "fcf_yield_pct": 10.262,
+        "ebit_yield_pct": 9.32
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 1.156,
+        "price_to_fcf": 9.275,
+        "ev_to_ebit": 10.273,
+        "sales_yield_pct": 86.54,
+        "fcf_yield_pct": 10.782,
+        "ebit_yield_pct": 9.734
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 1.069,
+        "price_to_fcf": 8.582,
+        "ev_to_ebit": 9.599,
+        "sales_yield_pct": 93.524,
+        "fcf_yield_pct": 11.652,
+        "ebit_yield_pct": 10.417
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 1.268,
+        "price_to_fcf": 10.658,
+        "ev_to_ebit": 11.396,
+        "sales_yield_pct": 78.873,
+        "fcf_yield_pct": 9.383,
+        "ebit_yield_pct": 8.775
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 1.382,
+        "price_to_fcf": 11.618,
+        "ev_to_ebit": 12.321,
+        "sales_yield_pct": 72.353,
+        "fcf_yield_pct": 8.607,
+        "ebit_yield_pct": 8.116
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 1.366,
+        "price_to_fcf": 11.485,
+        "ev_to_ebit": 12.193,
+        "sales_yield_pct": 73.195,
+        "fcf_yield_pct": 8.707,
+        "ebit_yield_pct": 8.202
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 1.422,
+        "price_to_fcf": 13.7,
+        "ev_to_ebit": 26.173,
+        "sales_yield_pct": 70.345,
+        "fcf_yield_pct": 7.299,
+        "ebit_yield_pct": 3.821
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.566,
+        "price_to_fcf": 15.092,
+        "ev_to_ebit": 28.658,
+        "sales_yield_pct": 63.858,
+        "fcf_yield_pct": 6.626,
+        "ebit_yield_pct": 3.489
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 1.51,
+        "price_to_fcf": 14.555,
+        "ev_to_ebit": 27.699,
+        "sales_yield_pct": 66.215,
+        "fcf_yield_pct": 6.871,
+        "ebit_yield_pct": 3.61
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 1.703,
+        "price_to_fcf": 21.714,
+        "ev_to_ebit": 52.773,
+        "sales_yield_pct": 58.734,
+        "fcf_yield_pct": 4.605,
+        "ebit_yield_pct": 1.895
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 1.536,
+        "price_to_fcf": 19.586,
+        "ev_to_ebit": 47.891,
+        "sales_yield_pct": 65.117,
+        "fcf_yield_pct": 5.106,
+        "ebit_yield_pct": 2.088
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 1.568,
+        "price_to_fcf": 19.997,
+        "ev_to_ebit": 48.834,
+        "sales_yield_pct": 63.779,
+        "fcf_yield_pct": 5.001,
+        "ebit_yield_pct": 2.048
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 1.552,
+        "price_to_fcf": 29.167,
+        "ev_to_ebit": 47.244,
+        "sales_yield_pct": 64.44,
+        "fcf_yield_pct": 3.429,
+        "ebit_yield_pct": 2.117
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 1.604,
+        "price_to_fcf": 30.14,
+        "ev_to_ebit": 48.716,
+        "sales_yield_pct": 62.361,
+        "fcf_yield_pct": 3.318,
+        "ebit_yield_pct": 2.053
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 1.408,
+        "price_to_fcf": 26.46,
+        "ev_to_ebit": 43.144,
+        "sales_yield_pct": 71.034,
+        "fcf_yield_pct": 3.779,
+        "ebit_yield_pct": 2.318
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 1.37,
+        "price_to_fcf": 37.07,
+        "ev_to_ebit": 67.838,
+        "sales_yield_pct": 73.01,
+        "fcf_yield_pct": 2.698,
+        "ebit_yield_pct": 1.474
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 1.223,
+        "price_to_fcf": 33.1,
+        "ev_to_ebit": 60.918,
+        "sales_yield_pct": 81.766,
+        "fcf_yield_pct": 3.021,
+        "ebit_yield_pct": 1.642
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 1.219,
+        "price_to_fcf": 32.99,
+        "ev_to_ebit": 60.727,
+        "sales_yield_pct": 82.038,
+        "fcf_yield_pct": 3.031,
+        "ebit_yield_pct": 1.647
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 1.195,
+        "price_to_fcf": 47.418,
+        "ev_to_ebit": 18.46,
+        "sales_yield_pct": 83.681,
+        "fcf_yield_pct": 2.109,
+        "ebit_yield_pct": 5.417
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 1.064,
+        "price_to_fcf": 42.237,
+        "ev_to_ebit": 16.649,
+        "sales_yield_pct": 93.945,
+        "fcf_yield_pct": 2.368,
+        "ebit_yield_pct": 6.006
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.984,
+        "price_to_fcf": 39.028,
+        "ev_to_ebit": 15.526,
+        "sales_yield_pct": 101.67,
+        "fcf_yield_pct": 2.562,
+        "ebit_yield_pct": 6.441
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.759,
+        "price_to_fcf": 108.497,
+        "ev_to_ebit": 18.106,
+        "sales_yield_pct": 131.812,
+        "fcf_yield_pct": 0.922,
+        "ebit_yield_pct": 5.523
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.811,
+        "price_to_fcf": 115.982,
+        "ev_to_ebit": 19.12,
+        "sales_yield_pct": 123.306,
+        "fcf_yield_pct": 0.862,
+        "ebit_yield_pct": 5.23
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.847,
+        "price_to_fcf": 121.129,
+        "ev_to_ebit": 19.818,
+        "sales_yield_pct": 118.065,
+        "fcf_yield_pct": 0.826,
+        "ebit_yield_pct": 5.046
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.958,
+        "price_to_fcf": null,
+        "ev_to_ebit": 129.923,
+        "sales_yield_pct": 104.414,
+        "fcf_yield_pct": -0.479,
+        "ebit_yield_pct": 0.77
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.84,
+        "price_to_fcf": null,
+        "ev_to_ebit": 116.782,
+        "sales_yield_pct": 118.993,
+        "fcf_yield_pct": -0.546,
+        "ebit_yield_pct": 0.856
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.769,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 130.085,
+        "fcf_yield_pct": -4.136,
+        "ebit_yield_pct": -7.406
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.746,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 133.979,
+        "fcf_yield_pct": -4.26,
+        "ebit_yield_pct": -7.577
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.826,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 121.06,
+        "fcf_yield_pct": -3.849,
+        "ebit_yield_pct": -7.0
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.886,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 112.849,
+        "fcf_yield_pct": -3.588,
+        "ebit_yield_pct": -6.62
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 1.21,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 82.642,
+        "fcf_yield_pct": -3.921,
+        "ebit_yield_pct": -9.758
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 1.341,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 74.549,
+        "fcf_yield_pct": -3.537,
+        "ebit_yield_pct": -8.946
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 1.324,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 75.545,
+        "fcf_yield_pct": -3.585,
+        "ebit_yield_pct": -9.047
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 1.013,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 98.762,
+        "fcf_yield_pct": -4.571,
+        "ebit_yield_pct": -12.092
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.851,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 117.473,
+        "fcf_yield_pct": -5.437,
+        "ebit_yield_pct": -13.813
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.822,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 121.638,
+        "fcf_yield_pct": -5.63,
+        "ebit_yield_pct": -14.178
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.854,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 117.078,
+        "fcf_yield_pct": -2.747,
+        "ebit_yield_pct": -9.68
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.709,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 141.054,
+        "fcf_yield_pct": -3.31,
+        "ebit_yield_pct": -11.094
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.749,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 133.512,
+        "fcf_yield_pct": -3.133,
+        "ebit_yield_pct": -10.665
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.745,
+        "current_yield_pct": 134.247,
+        "points": 61,
+        "median": 1.069,
+        "low": 0.709,
+        "high": 1.703,
+        "negative_points": 0,
+        "median_yield_pct": 93.524,
+        "percentile": 3.3,
+        "cheaper_points": 2,
+        "dearer_points": 59,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -3.15,
+        "points": 61,
+        "median": 15.092,
+        "low": 5.008,
+        "high": null,
+        "negative_points": 15,
+        "median_yield_pct": 6.626,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 15 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": -10.707,
+        "points": 61,
+        "median": 18.106,
+        "low": 3.752,
+        "high": null,
+        "negative_points": 13,
+        "median_yield_pct": 5.523,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 13 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "cheap",
+      "text": "cheap against its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "cheap",
+          "phrase": "cheaper than at 59 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 15 of 61 month-ends)",
+          "not_comparable": "negative now and in 15 of 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 13 of 61 month-ends)",
+          "not_comparable": "negative now and in 13 of 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 65.83,
+    "date": "2026-10-28",
+    "ma50": 68.45,
+    "ma200": 87.15,
+    "vs_ma50_pct": -3.83,
+    "vs_ma200_pct": -24.46,
+    "momentum_12_1_pct": -18.35,
+    "high_52w": 123.39,
+    "drawdown_52w_pct": -46.65,
+    "return_rs_pct": -40.13,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -49.21,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -50.04
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001262823-26-000026",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "companyfacts",
+    "period_rejected": "2026-03-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1262823/000126282326000026/ex991_20260630earningsrele.htm",
+    "summary": "",
+    "read": true,
+    "guidance": [],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 1,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 1,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001262823-26-000019",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1262823/000126282326000019/ex991_20260331earningsrele.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": -1,
+        "summary": "Westlake said Q3 2026 results will be sequentially lower than Q2 as Iran-conflict-driven PVC and polyethylene price gains faded. It also flagged about $205M of pre-tax charges for closing its Cologne plant. There was no formal numeric guidance change, and Q3 results are due November 4.",
+        "evidence": [
+          {
+            "claim": "Westlake expects Q3 2026 financial performance to be sequentially lower than Q2 2026.",
+            "url": "https://www.globenewswire.com/news-release/2026/09/29/3370602/0/en/westlake-to-optimize-european-chlorovinyls-footprint-with-closure-of-cologne-pvc-plant.html",
+            "event_date": "2026-09-29",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 30,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Westlake expects total pre-tax charges of approximately $205 million for the Cologne closure, about $100 million cash and about $105 million non-cash.",
+            "url": "https://www.globenewswire.com/news-release/2026/09/29/3370602/0/en/westlake-to-optimize-european-chlorovinyls-footprint-with-closure-of-cologne-pvc-plant.html",
+            "event_date": "2026-09-29",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 30,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Westlake will report third quarter 2026 results on November 4, 2026 before market open, with a conference call at 11:00 a.m. ET.",
+            "url": "https://www.nasdaq.com/press-release/westlake-announces-third-quarter-2026-conference-call-2026-10-21",
+            "event_date": "2026-10-21",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unreachable",
+            "check": "ReadTimeout"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": -1,
+        "summary": "Several brokers cut price targets in October, including Wells Fargo, Truist and JPMorgan, while keeping their ratings. There were no upgrades or downgrades, and all sources are secondary.",
+        "evidence": [
+          {
+            "claim": "Wells Fargo cut its Westlake price target to $68 from $89 and kept an Equal Weight rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-6800-price-target-at-wells-fargo-company-2026-10-01/",
+            "event_date": "2026-10-01",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 5/5"
+          },
+          {
+            "claim": "Truist cut its Westlake price target to $90 from $104 and kept a Buy rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-9000-price-target-at-truist-financial-2026-10-01/",
+            "event_date": "2026-10-01",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "JPMorgan cut its Westlake price target to $65.00 from $80.00 and kept a Neutral rating.",
+            "url": "https://www.defenseworld.net/2026/10/17/westlake-nysewlk-price-target-cut-to-65-00-by-analysts-at-jpmorgan-chase-co.html",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "JPMorgan maintained Westlake and lowered its price target to $65.",
+            "url": "https://www.gurufocus.com/news/9128000/wlk-maintained-by-jp-morgan-price-target-lowered-to-6500",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new legal or regulatory developments in the window. The $67M PVC pipe antitrust settlement and the DOJ probe are older background.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No news on customer wins, losses or concentration. Cologne customers will be served from Westlake's other German sites.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions in the window. The latest insider sales were in August.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "The news was mixed. Westlake finished a new PVCO pipe plant in Texas, but it is closing its 165,000 t/yr Cologne PVC plant, citing weak demand, high energy costs and Asian imports.",
+        "evidence": [
+          {
+            "claim": "Westlake Pipe & Fittings completed a PVCO pipe manufacturing expansion in Wichita Falls, Texas.",
+            "url": "https://investors.westlake.com/news-releases/news-release-details/westlake-pipe-fittings-completes-pvco-pipe-manufacturing-expansion",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Westlake will close its Cologne PVC plant, citing weak demand, high energy costs and pressure from Asian imports.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/ex991_pressreleaseissuedby.htm",
+            "event_date": "2026-09-29",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 3
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Westlake (WLK), 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Westlake said it expects Q3 2026 financial performance to be sequentially lower than Q2 2026. — 2026-09-29 — https://www.globenewswire.com/news-release/2026/09/29/3370602/0/en/westlake-to-optimize-european-chlorovinyls-footprint-with-closure-of-cologne-pvc-plant.html\n- The same release says North American PVC and polyethylene average prices in Q3 are lower than in Q2. It attributes this to the Iran-conflict price increases moderating. — 2026-09-29 — https://www.westlake.com/node\n- It expects total pre-tax charges of about $205M for the Cologne closure: about $100M cash and about $105M non-cash. — 2026-09-29 — https://www.globenewswire.com/news-release/2026/09/29/3370602/0/en/westlake-to-optimize-european-chlorovinyls-footprint-with-closure-of-cologne-pvc-plant.html\n- About $110M of those charges is expected in 2026, with the rest in 2027. — 2026-09-29 — https://www.chemengonline.com/westlake-to-close-pvc-plant-in-cologne-germany/\n- Q3 results are not out yet. They are scheduled for 2026-11-04 before the market opens, with a call at 11:00 ET. — 2026-10-21 — https://www.nasdaq.com/press-release/westlake-announces-third-quarter-2026-conference-call-2026-10-21\n- The MarketBeat Q3 EPS consensus is $1.09–$1.17, from only 2 estimates. — date unknown — https://www.marketbeat.com/stocks/NYSE/WLK/earnings/\n- For reference, Q2 (reported 2026-08-04) had EPS of $2.01 against a $1.83 consensus. — 2026-08-04 — https://www.marketbeat.com/stocks/NYSE/WLK/earnings/\n- I found no withdrawal or formal numeric guidance change.\n\n**2. Analyst actions (all price-target cuts)**\n- Wells Fargo cut its target to $68 from $89 and kept Equal Weight. — 2026-10-01 — https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-6800-price-target-at-wells-fargo-company-2026-10-01/\n- Truist cut its target to $90 from $104 and kept Buy. — 2026-10-01 — https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-9000-price-target-at-truist-financial-2026-10-01/\n- Citigroup cut its target to $67 from $85 and kept Neutral. — 2026-10-05 — https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-stock-gets-price-target-reduction-from-jpmorgan-chase-co-2026-10-16/\n- BofA cut its target to $75 from $90 and kept Hold. — 2026-10-05 — https://www.cnn.com/markets/stocks/WLK\n- RBC cut its target to $74 from $95. The CNN listing shows it on Oct 13 and does not state the rating. — 2026-10-13 — https://www.cnn.com/markets/stocks/WLK\n- Argus lowered its target to $59. — 2026-10-14 — https://finance.yahoo.com/research/reports/ARGUS_6329_QuantitativeReport_1791936000000\n- JPMorgan cut its target to $65 from $80 and kept Neutral. The sources give two dates:\n  - 2026-10-13 — https://www.gurufocus.com/news/9128000/wlk-maintained-by-jp-morgan-price-target-lowered-to-6500\n  - 2026-10-16 — https://www.defenseworld.net/2026/10/17/westlake-nysewlk-price-target-cut-to-65-00-by-analysts-at-jpmorgan-chase-co.html\n- Wells Fargo and BMO were also reported as holding Hold ratings. The CNN/TipRanks listing gives no dates in the snippet. — date unknown — https://www.cnn.com/markets/stocks/WLK\n- MarketBeat shows a consensus of Hold (4 Buy, 10 Hold, 2 Sell) and an average target of $82.20. — 2026-10-16 — https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-stock-gets-price-target-reduction-from-jpmorgan-chase-co-2026-10-16/\n- I found no upgrades, downgrades or initiations in the window.\n\n**3. Litigation and regulation**\n- I found nothing new in the window.\n- Background on the PVC pipe antitrust case: Westlake agreed to pay $67M to the direct-purchaser class. The agreement was dated 2026-03-26 and still needs court approval. Indirect-purchaser claims remain pending. — 2026-03-26 — https://www.stocktitan.net/sec-filings/WLK/8-k-westlake-corp-reports-material-event-240ce515626d.html\n- A Department of Justice grand jury investigation is reported in parallel. — 2026-04-13 — https://finance.yahoo.com/markets/stocks/articles/westlake-wlk-agrees-67m-settlement-192652280.html\n- The Cologne closure triggered works-council consultations in Germany. About 120 jobs are affected. — 2026-09-29 — https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/wlk-20260924.htm\n\n**4. Customer concentration**\n- I found no news on customer wins, losses, contract changes or concentration in the window.\n- On the Cologne closure, Westlake said it will serve customers from its other German PVC sites, including Wilhelmshaven. — 2026-09-29 — https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/wlk-20260924.htm\n\n**5. Insider activity**\n- I found no Form 4 transactions dated within the window.\n- The most recent ones I found were from August:\n  - Executive Chairman Albert Chao exercised options and sold 7,489 shares at about $79.70 and 31,384 shares at about $80.42. — 2026-08-11 — https://www.sec.gov/Archives/edgar/data/0001262823/000119312526345140/ownership.xml\n  - Directors had RSU vesting on 2026-08-08 and RSU grants on 2026-08-14. Neither involved open-market trades. — 2026-08-08 — https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342001/ownership.xml\n- GuruFocus cites about $3.12M of insider selling over the prior three months. I did not verify this against the Form 4s. — date unknown — https://www.gurufocus.com/news/9128000/wlk-maintained-by-jp-morgan-price-target-lowered-to-6500\n\n**6. Product and competitive news**\n- Westlake Pipe & Fittings completed a new molecular-oriented PVC (PVCO) pipe plant in Wichita Falls, Texas. — 2026-10-29 — https://investors.westlake.com/news-releases/news-release-details/westlake-pipe-fittings-completes-pvco-pipe-manufacturing-expansion\n- Westlake will close its Cologne PVC plant, which has about 165,000 t/yr of capacity. It cited weak demand, high energy costs and Asian import pressure. — 2026-09-29 — https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/ex991_pressreleaseissuedby.htm\n- Operations at Cologne are expected to cease in Q1 2027. — 2026-09-29 — https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/wlk-20260924.htm\n- Westlake completed the Wilhelmshaven PVC/VCM acquisition for a preliminary price of about $109M. The 10-Q gives no completion date. — date unknown — https://allstreaminsiders.com/westlake-completes-109-million-wilhelmshaven-pvc-and-vcm-acquisition-as-first-half-capital-spending-reaches-416-million/",
+      "urls": [
+        "https://investors.westlake.com/",
+        "https://pluang.com/en/news-feed/westlake-umumkan-panggilan-konferensi-kuartal-tiga-2026",
+        "https://investors.westlake.com/news-releases/news-release-details/westlake-announces-third-quarter-2026-conference-call",
+        "https://www.nasdaq.com/press-release/westlake-announces-third-quarter-2026-conference-call-2026-10-21",
+        "https://www.marketbeat.com/earnings/reports/2026-10-29-westlake-chemical-partners-lp-stock/",
+        "https://www.quiverquant.com/news/Westlake+Corporation+to+Report+Third+Quarter+2026+Earnings+on+November+4+and+Host+Conference+Call",
+        "https://rallies.ai/news/westlake-corporation-publishes-update-to-financial-calendar-9ffd9fa4e57ca291",
+        "https://www.marketbeat.com/stocks/NYSE/WLK/earnings/",
+        "https://www.stocktitan.net/news/WLK/westlake-announces-third-quarter-2026-conference-3975wz4hqjv1.html",
+        "https://wisevoter.com/world/us/tx/houston/2026/10/21/westlake-corporation-q3-2026-earnings",
+        "https://www.gurufocus.com/news/9128000/wlk-maintained-by-jp-morgan-price-target-lowered-to-6500",
+        "https://www.cnn.com/markets/stocks/WLK",
+        "https://finance.yahoo.com/research/reports/ARGUS_6329_QuantitativeReport_1791936000000",
+        "https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-stock-gets-price-target-reduction-from-jpmorgan-chase-co-2026-10-16/",
+        "https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-6800-price-target-at-wells-fargo-company-2026-10-01/",
+        "https://www.marketbeat.com/instant-alerts/analyst-westlake-nyse-wlk-given-new-9000-price-target-at-truist-financial-2026-10-01/",
+        "https://247wallst.com/companies/wlk/price-prediction/",
+        "https://www.defenseworld.net/2026/10/17/westlake-nysewlk-price-target-cut-to-65-00-by-analysts-at-jpmorgan-chase-co.html",
+        "https://www.marketbeat.com/stocks/NYSE/WLK/price-target",
+        "https://www.tipranks.com/news/the-fly/westlake-price-target-lowered-to-116-from-134-at-bofa",
+        "https://finance.yahoo.com/markets/stocks/articles/westlake-wlk-agrees-67m-settlement-192652280.html",
+        "https://www.gurufocus.com/news/8793736/westlake-wlk-agrees-to-67m-settlement-in-pvc-pricefixing-lawsuit?mobile=true",
+        "https://investors.westlake.com/static-files/1ea3fe80-c356-4e18-a90e-35b32ffe0491",
+        "https://www.insidermonkey.com/blog/westlake-wlk-agrees-to-a-67m-settlement-in-a-lawsuit-1743116/",
+        "https://www.wric.com/business/press-releases/globenewswire/8584227/westlake-corporation-investigation-alert-reminder-scottscott-attorneys-at-law-llp-investigates-westlakes-directors-and-officers-for-breach-of-fiduciary-duties-wlk/",
+        "https://www.globenewswire.com/news-release/2022/07/14/2479955/0/en/WESTLAKE-CORPORATION-INVESTIGATION-REMINDER-Scott-Scott-Attorneys-at-Law-LLP-Investigates-Westlake-s-Directors-and-Officers-for-Breach-of-Fiduciary-Duties-WLK.html",
+        "https://files.consumerfinance.gov/f/201509_cfpb_stipulation-westlake-services-llc.pdf",
+        "https://www.sec.gov/Archives/edgar/data/1262823/000119312526153703/d134802d8k.htm",
+        "https://www.stocktitan.net/sec-filings/WLK/8-k-westlake-corp-reports-material-event-240ce515626d.html",
+        "https://www.businesswire.com/news/home/20220616005882/en",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526345140/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526341997/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526341996/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342008/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342001/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342011/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342010/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/WLK/form-4-westlake-corp-insider-trading-activity-00b2d8145b82.html",
+        "https://www.stocktitan.net/sec-filings/WLK/form-4-westlake-corp-insider-trading-activity-7ee67a194ddf.html",
+        "https://www.stocktitan.net/sec-filings/WLK/form-4-westlake-corp-insider-trading-activity-597b83a666d7.html",
+        "https://www.westlakepipe.com/news/westlakes-napco-pipe-fittings-introduces-high-performance-molecular-oriented-pvc-c909-pipe",
+        "https://www.westlake.com/node",
+        "https://www.businesswire.com/news/home/20240523775988/en/Westlake-Pipe-Fittings-Announces-Investment-to-Manufacture-PVCO-Pipe",
+        "https://investors.westlake.com/news-releases/news-release-details/westlake-pipe-fittings-completes-pvco-pipe-manufacturing",
+        "https://www.argusmedia.com/en/news-and-insights/latest-market-news/2661647-westlake-to-start-up-new-specialty-pvc-plant-in-2026",
+        "https://www.investing.com/news/company-news/westlake-completes-pvco-pipe-plant-in-texas-93CH-4982271",
+        "https://www.globenewswire.com/news-release/2026/10/29/3391021/0/en/westlake-pipe-fittings-completes-pvco-pipe-manufacturing-expansion.html",
+        "https://allstreaminsiders.com/westlake-completes-109-million-wilhelmshaven-pvc-and-vcm-acquisition-as-first-half-capital-spending-reaches-416-million/",
+        "https://www.businesswire.com/news/home/20240506805052/en",
+        "https://www.westlakefinancial.com/2019/10/11/westlake-portfolio-management-to-service-its-largest-portfolio/",
+        "https://www.sec.gov/Archives/edgar/data/1262823/000126282321000059/exhibit101_20210630.htm",
+        "https://www.westlakefinancial.com/2017/04/04/westlake-launches-econtracting/",
+        "https://assets.contenthub.wolterskluwer.com/api/public/content/b9a976ef075249818b61302008c71eeb",
+        "https://www.wolterskluwer.com/en/expert-insights/westlake-financial-achieves-econtracting-goal",
+        "https://www.sec.gov/Archives/edgar/data/1604665/000160466519000007/a12311810-kwlkppartnership.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001604665/000160466515000007/Financial_Report.xlsx",
+        "https://investors.westlake.com/static-files/82cc072a-0963-46a0-be5d-4b0b81c69d28",
+        "https://www.sec.gov/Archives/edgar/data/1262823/000126282321000059/exhibit102_20210630.htm",
+        "https://investors.westlake.com/static-files/2b176cca-e963-45e0-a1d3-5b61354ca0e9",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/ex991_pressreleaseissuedby.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000067/wlk-20260924.htm",
+        "https://www.gurufocus.com/news/9101582/westlake-corp-wlk-to-close-german-pvc-plant-amid-challenging-market-conditions",
+        "https://www.westlake.com/westlake-optimize-european-chlorovinyls-footprint-closure-cologne-pvc-plant",
+        "https://www.chemengonline.com/westlake-to-close-pvc-plant-in-cologne-germany/",
+        "https://www.globenewswire.com/news-release/2026/09/29/3370602/0/en/westlake-to-optimize-european-chlorovinyls-footprint-with-closure-of-cologne-pvc-plant.html",
+        "https://www.globenewswire.com/news-release/2026/09/29/3371389/0/fr/westlake-optimise-son-implantation-europ%C3%A9enne-dans-les-chlorovinyliques-avec-la-fermeture-de-son-usine-de-pvc-de-cologne.html",
+        "https://www.sec.gov/Archives/edgar/data/1262823/000126282325000052/wlk-20250630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1262823/000126282326000016/wlk-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000126282326000022/wlk-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526353623/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526353621/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526342004/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526353632/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526353631/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001262823/000119312526353624/ownership.xml"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Westlake rates Sell: losses, negative cash flow and a weak share price outweigh a low sales multiple.",
+    "thesis": "Westlake scores 31, a Sell, only 2 points above the Strong Sell line. Profitability is the core problem: the gross margin is 9.6%, the operating margin is -11.0% and the FCF margin is -2.4%, so quality scores 30. The balance sheet scores 16, with net debt set against negative free cash flow and cash covering only 0.37 of debt. The trend factor scores 8, with the price 24.5% below its 200-day average, 46.6% below its 52-week high and the shares 49.2 pp behind SPY over the last 126 trading days. Growth is the bright spot at 55: latest-quarter revenue growth of 10.8% year on year, and growth sped up by 17.6 pp, though the TTM picture is still a TTM revenue decline of 4.0%. Valuation scores 28. P/S of 0.7 is low in absolute terms, but the FCF yield is 8.1 pp below the 10-year Treasury yield. Against its own history the stock is cheap on P/S, cheaper than at 59 of the last 61 month-ends, while P/FCF and EV/EBIT are not comparable.",
+    "key_risks": [
+      "Negative operating margin and free cash flow, with net debt and cash covering only 0.37 of debt",
+      "Management said Q3 2026 results will be sequentially lower as the PVC and polyethylene price gains driven by the Iran conflict faded",
+      "About $205M of pre-tax charges for closing the Cologne PVC plant, citing weak demand, high energy costs and Asian imports",
+      "Several brokers cut price targets in October, and the shares remain in a steep downtrend",
+      "An older PVC pipe antitrust matter and the DOJ probe remain in the background"
+    ],
+    "what_would_change": [
+      "A drop of 2 points, for example from a weak Q3 report on November 4 or further negative news, would push the rating to Strong Sell",
+      "Moving up to Hold needs 14 more points, most plausibly from a return to positive operating income and free cash flow, which would lift the quality, balance sheet and valuation scores",
+      "A sustained price recovery toward the 200-day average would lift the very low trend score of 8",
+      "Recent revenue growth turning into TTM growth and better guidance would support the growth and news scores"
+    ]
+  },
+  "writeup_check": {
+    "history_label": "cheap",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1036,
+        "output_tokens": 16,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1036,
+            "output_tokens": 16,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0045,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 118632,
+        "output_tokens": 4097,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 118632,
+            "output_tokens": 4097,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3582,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7364,
+        "output_tokens": 1991,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7364,
+            "output_tokens": 1991,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0693,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3656,
+        "output_tokens": 783,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3656,
+            "output_tokens": 783,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0303,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4623,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 65.83,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 66.17
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:34",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

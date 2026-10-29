@@ -1,0 +1,1602 @@
+{
+  "run_id": "2026-10-29T12:30:02Z",
+  "generated_at": "2026-10-29T12:31:08+00:00",
+  "ticker": "FANG",
+  "sec_ticker": "FANG",
+  "cik": "0001539838",
+  "name": "Diamondback Energy, Inc.",
+  "sector": "Crude Petroleum & Natural Gas",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 60,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Quality, Balance sheet"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: P/FCF, FCF yield vs 10y"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/FCF 0 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 5
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 16
+    }
+  },
+  "composite": {
+    "score": 60,
+    "raw": 60.07,
+    "weights_used": {
+      "growth": 0.2857,
+      "valuation": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 51.22,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 21.45,
+          "score": 76.9,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 46.48,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 93,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 6.33,
+          "score": 34.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": -3.74,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.04,
+          "score": 4.4,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 3.377,
+          "score": 71.9,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": 64.601,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 60.7,
+          "score": 39.3,
+          "weight": 0.1,
+          "note": "cheaper than now in 60.7% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": 91.8,
+          "score": 8.2,
+          "weight": 0.15,
+          "note": "cheaper than now in 91.8% of 61 month-ends (ranked on yields)"
+        }
+      },
+      "coverage": 0.5,
+      "score": 25,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 4.47,
+          "score": 72.3,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 9.07,
+          "score": 72.7,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 30.45,
+          "score": 88.5,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -7.53,
+          "score": 34.9,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -8.36,
+          "score": 33.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -3.5,
+          "score": 87.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 69,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 206.22,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 5562000000.0,
+    "revenue_yoy_q": 51.22,
+    "revenue_yoy_q_prev": 4.74,
+    "acceleration_pp": 46.48,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 17102000000.0,
+    "revenue_yoy_ttm": 21.45,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 1082000000.0,
+    "operating_cash_flow_ttm": 10143000000.0,
+    "capex_ttm": null,
+    "sbc_ttm": null,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 6.33,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": {
+      "increase": 369000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInDeferredRevenue",
+      "base": 1563000000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 21.45,
+      "expected": 335198125.26629734,
+      "excess": 33801874.73370266,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.0033
+    },
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 462000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 462000000.0,
+      "debt": 12614000000.0,
+      "debt_tags": [
+        "DebtLongtermAndShorttermCombinedAmount"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtLongtermAndShorttermCombinedAmount",
+          "val": 12614000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 12152000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 281202000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -3.74,
+    "shares_outstanding": {
+      "val": 280024353.0,
+      "end": "2026-07-31",
+      "filed": "2026-08-05",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 2340000000.0,
+        "revenue_yoy_pct": -3.98,
+        "operating_margin_pct": 57.26,
+        "fcf": null,
+        "diluted_shares": 178872000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 2228000000.0,
+        "revenue_yoy_pct": 9.75,
+        "operating_margin_pct": 54.08,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 2227000000.0,
+        "revenue_yoy_pct": 15.69,
+        "operating_margin_pct": 50.2,
+        "fcf": null,
+        "diluted_shares": 178477000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 2483000000.0,
+        "revenue_yoy_pct": 29.39,
+        "operating_margin_pct": 46.56,
+        "fcf": null,
+        "diluted_shares": 178360000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 2645000000.0,
+        "revenue_yoy_pct": 13.03,
+        "operating_margin_pct": 26.84,
+        "fcf": null,
+        "diluted_shares": 204730000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 3711000000.0,
+        "revenue_yoy_pct": 66.56,
+        "operating_margin_pct": 38.05,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 4048000000.0,
+        "revenue_yoy_pct": 81.77,
+        "operating_margin_pct": 41.33,
+        "fcf": null,
+        "diluted_shares": 289612000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 3678000000.0,
+        "revenue_yoy_pct": 48.13,
+        "operating_margin_pct": 30.97,
+        "fcf": null,
+        "diluted_shares": 292135000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 3924000000.0,
+        "revenue_yoy_pct": 48.36,
+        "operating_margin_pct": 31.5,
+        "fcf": null,
+        "diluted_shares": 288826000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 3376000000.0,
+        "revenue_yoy_pct": -9.03,
+        "operating_margin_pct": -82.41,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 4240000000.0,
+        "revenue_yoy_pct": 4.74,
+        "operating_margin_pct": 2.74,
+        "fcf": null,
+        "diluted_shares": 282792000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 5562000000.0,
+        "revenue_yoy_pct": 51.22,
+        "operating_margin_pct": 45.16,
+        "fcf": null,
+        "diluted_shares": 281202000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 206.22,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 280024353.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-31"
+    },
+    "market_cap": 57746622075.66,
+    "enterprise_value": 69898622075.66,
+    "price_to_sales": 3.377,
+    "price_to_fcf": null,
+    "ev_to_ebit": 64.601,
+    "sales_yield_pct": 29.616,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": 1.548,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 4.461,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.417,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -1.8
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 3.485,
+        "price_to_fcf": null,
+        "ev_to_ebit": 13.266,
+        "sales_yield_pct": 28.694,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.538
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 3.522,
+        "price_to_fcf": null,
+        "ev_to_ebit": 13.37,
+        "sales_yield_pct": 28.396,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.479
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 4.119,
+        "price_to_fcf": null,
+        "ev_to_ebit": 15.075,
+        "sales_yield_pct": 24.275,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 6.633
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 3.589,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.594,
+        "sales_yield_pct": 27.863,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.169
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 3.562,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.549,
+        "sales_yield_pct": 28.07,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.247
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 3.281,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.07,
+        "sales_yield_pct": 30.483,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 14.145
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 3.365,
+        "price_to_fcf": null,
+        "ev_to_ebit": 6.414,
+        "sales_yield_pct": 29.714,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 15.591
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 2.682,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.337,
+        "sales_yield_pct": 37.286,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 18.736
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 2.834,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.577,
+        "sales_yield_pct": 35.285,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 17.931
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 2.584,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.726,
+        "sales_yield_pct": 38.702,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.158
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 2.335,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.356,
+        "sales_yield_pct": 42.821,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 22.957
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 3.046,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.415,
+        "sales_yield_pct": 32.832,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 18.469
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 2.679,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.744,
+        "sales_yield_pct": 37.322,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.079
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 2.476,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.445,
+        "sales_yield_pct": 40.389,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 22.495
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 2.645,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.694,
+        "sales_yield_pct": 37.807,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.305
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 2.574,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.748,
+        "sales_yield_pct": 38.855,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.062
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 2.475,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.601,
+        "sales_yield_pct": 40.41,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.734
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 2.603,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.792,
+        "sales_yield_pct": 38.412,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 20.869
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 2.526,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.116,
+        "sales_yield_pct": 39.586,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 19.548
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 2.61,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.246,
+        "sales_yield_pct": 38.317,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 19.062
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 2.927,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.741,
+        "sales_yield_pct": 34.166,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 17.42
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 3.294,
+        "price_to_fcf": null,
+        "ev_to_ebit": 6.926,
+        "sales_yield_pct": 30.358,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 14.439
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 3.361,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.04,
+        "sales_yield_pct": 29.75,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 14.204
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 3.479,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.241,
+        "sales_yield_pct": 28.74,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.811
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 3.363,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.146,
+        "sales_yield_pct": 29.74,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.993
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 3.377,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.172,
+        "sales_yield_pct": 29.611,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.943
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 3.348,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.12,
+        "sales_yield_pct": 29.869,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 14.044
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 3.906,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.515,
+        "sales_yield_pct": 25.605,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.744
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 4.24,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.131,
+        "sales_yield_pct": 23.583,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.952
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 4.304,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.248,
+        "sales_yield_pct": 23.236,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.813
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 4.081,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.856,
+        "sales_yield_pct": 24.503,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.292
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 4.1,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.892,
+        "sales_yield_pct": 24.389,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.246
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 4.144,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.973,
+        "sales_yield_pct": 24.133,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.145
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 3.751,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.274,
+        "sales_yield_pct": 26.661,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 12.086
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 3.314,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.433,
+        "sales_yield_pct": 30.173,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.453
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 3.398,
+        "price_to_fcf": null,
+        "ev_to_ebit": 7.595,
+        "sales_yield_pct": 29.427,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 13.166
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 3.794,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.676,
+        "sales_yield_pct": 26.357,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.565
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 3.5,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.004,
+        "sales_yield_pct": 28.571,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.088
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 3.511,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.029,
+        "sales_yield_pct": 28.479,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.067
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 3.068,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.637,
+        "sales_yield_pct": 32.6,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.401
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 3.085,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.681,
+        "sales_yield_pct": 32.412,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.362
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 2.547,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.328,
+        "sales_yield_pct": 39.255,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.721
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 3.024,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.313,
+        "sales_yield_pct": 33.071,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.696
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 3.088,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.48,
+        "sales_yield_pct": 32.385,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.542
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 3.341,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.139,
+        "sales_yield_pct": 29.932,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.978
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 3.086,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.831,
+        "sales_yield_pct": 32.404,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.453
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 2.969,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.495,
+        "sales_yield_pct": 33.685,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.699
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 2.971,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.501,
+        "sales_yield_pct": 33.664,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.695
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 2.869,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.017,
+        "sales_yield_pct": 34.854,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.077
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 2.827,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.898,
+        "sales_yield_pct": 35.378,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.176
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 3.083,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.618,
+        "sales_yield_pct": 32.439,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.607
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 3.349,
+        "price_to_fcf": null,
+        "ev_to_ebit": 51.112,
+        "sales_yield_pct": 29.859,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.956
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 3.805,
+        "price_to_fcf": null,
+        "ev_to_ebit": 56.526,
+        "sales_yield_pct": 26.28,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.769
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 3.956,
+        "price_to_fcf": null,
+        "ev_to_ebit": 58.316,
+        "sales_yield_pct": 25.278,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.715
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 3.558,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 28.104,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.429
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 3.266,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.614,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.459
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 3.771,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.516,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -0.409
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 3.296,
+        "price_to_fcf": null,
+        "ev_to_ebit": 63.334,
+        "sales_yield_pct": 30.336,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.579
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 3.022,
+        "price_to_fcf": null,
+        "ev_to_ebit": 59.002,
+        "sales_yield_pct": 33.087,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.695
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 3.391,
+        "price_to_fcf": null,
+        "ev_to_ebit": 64.826,
+        "sales_yield_pct": 29.492,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 1.543
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 3.377,
+        "current_yield_pct": 29.616,
+        "points": 61,
+        "median": 3.314,
+        "low": 2.335,
+        "high": 4.461,
+        "negative_points": 0,
+        "median_yield_pct": 30.173,
+        "percentile": 60.7,
+        "cheaper_points": 37,
+        "dearer_points": 24,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 64.601,
+        "current_yield_pct": 1.548,
+        "points": 61,
+        "median": 8.973,
+        "low": 4.356,
+        "high": null,
+        "negative_points": 4,
+        "median_yield_pct": 11.145,
+        "percentile": 91.8,
+        "cheaper_points": 56,
+        "dearer_points": 5,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 24, more expensive than at 37)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": "expensive",
+          "phrase": "more expensive than at 56 of the last 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 206.22,
+    "date": "2026-10-28",
+    "ma50": 197.4,
+    "ma200": 189.08,
+    "vs_ma50_pct": 4.47,
+    "vs_ma200_pct": 9.07,
+    "momentum_12_1_pct": 30.45,
+    "high_52w": 213.69,
+    "drawdown_52w_pct": -3.5,
+    "return_rs_pct": 1.55,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -7.53,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -8.36
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "RuntimeError: no Exhibit 99.1 in 8-K 0001539838-26-000177"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; Q3 results are due Nov 2. An 8-K pre-announced Q3 realized prices and derivative losses, which is mixed rather than a clear signal.",
+        "evidence": [
+          {
+            "claim": "Diamondback Energy scheduled its third quarter 2026 results release for November 2, with the conference call on November 3.",
+            "url": "https://www.diamondbackenergy.com/news-releases/news-release-details/diamondback-energy-inc-schedules-third-quarter-2026-conference",
+            "event_date": "2026-09-30",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 29,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Diamondback reported Q3 2026 unhedged realized oil price of $87.30/bbl and hedged $85.89, with a net cash derivative loss of $97 million and a non-cash loss of $85 million.",
+            "url": "https://kalkinemedia.com/us/news/announcements/diamondback-energy-reports-q3-2026-commodity-prices-and-182-million-derivative-loss",
+            "event_date": "2026-10-08",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 6/6, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Most analyst moves in the window were price-target raises, plus a new Outperform initiation from Scotiabank and no downgrades. All of these come from non-primary sources, so the rating is capped at +1.",
+        "evidence": [
+          {
+            "claim": "Goldman Sachs raised its price target on Diamondback Energy to $235 from $215.",
+            "url": "https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c",
+            "event_date": "2026-10-27",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Jefferies raised its price target on Diamondback Energy to $215 from $205.",
+            "url": "https://www.marketscreener.com/news/jefferies-adjusts-price-target-on-diamondback-energy-to-215-from-205-ce785ddcd08eff26",
+            "event_date": "2026-10-11",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 18,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Royal Bank of Canada reiterated an Outperform rating on Diamondback Energy with a $240 price target.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-diamondback-energy-nasdaq-fang-given-outperform-rating-at-royal-bank-of-canada-2026-10-14/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 6/6 · missing: 240"
+          },
+          {
+            "claim": "Scotiabank initiated coverage of Diamondback Energy at Outperform with a $250 price target.",
+            "url": "https://stockanalysis.com/stocks/fang/forecast/",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new litigation or regulatory matters were found; the latest 10-Q describes only routine proceedings.",
+        "evidence": [
+          {
+            "claim": "The Q2 2026 10-Q describes only routine legal proceedings, with no new material matters.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000142/fang-20260630.htm",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 0/0"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Four purchasers each exceed 10% of revenue, but the company says losing any one would not be material. There was no customer news in the window.",
+        "evidence": [
+          {
+            "claim": "Four purchasers each accounted for more than 10% of revenue, and Diamondback says losing any one would not materially affect results.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1539838/000153983826000067/diamondback2025ars.pdf",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "not a text page (application/pdf)"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider trade was a routine, pre-planned 10b5-1 sale of 33,333 shares by director Charles Meloy. It is small relative to his holdings and there were no purchases.",
+        "evidence": [
+          {
+            "claim": "Director Charles Meloy sold 33,333 shares through Wolfrock Energy, LLC under a Rule 10b5-1 trading plan.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000174/wk-form4_1791407877.xml",
+            "event_date": "2026-10-05",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 24,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 3/4, names 7/7 · missing: 33333 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "There was no material product or competitive news; analyst commentary noted improving gas takeaway capacity and investor questions on acquisitions.",
+        "evidence": [
+          {
+            "claim": "Jefferies lifted its target for Diamondback Energy stock to USD 215, citing investor questions on acquisitions and Barnett assets alongside improving gas takeaway capacity.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/jefferies-lifts-target-for-diamondback-energy-stock-to-usd-215/70300556",
+            "event_date": "2026-10-12",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/5"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Diamondback Energy (FANG), 2026-09-29 to 2026-10-29**\n\nQ3 results are due 2026-11-02 after the close, so they are not yet out. Here is what I found on each topic.\n\n**1. Guidance / results**\n- Q3 results release is scheduled for Nov 2, with the call on Nov 3. — 2026-09-30 — https://www.diamondbackenergy.com/news-releases/news-release-details/diamondback-energy-inc-schedules-third-quarter-2026-conference\n- 8-K pre-announced Q3 realized prices: unhedged oil $87.30/bbl, hedged $85.89, and gas $1.12/Mcf. It also flagged a net cash derivative loss of $97M and a non-cash loss of $85M. — 2026-10-08 (filing date; covers the quarter ended 2026-09-30) — https://kalkinemedia.com/us/news/announcements/diamondback-energy-reports-q3-2026-commodity-prices-and-182-million-derivative-loss (secondary summary of the 8-K; I did not find the 8-K itself)\n- The last guidance change was before the window. The company raised 2026 production to 1,000+ MBOE/d (from 972+) and oil to 522+ MBO/d (from 520+), and gave Q3 oil guidance of 517–527 MBO/d. — 2026-08-03 — https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000137/diamondbackex991-8x3x26.htm\n- No guidance cut or withdrawal found in the window.\n- Zacks consensus for Q3 is EPS of $4.92 on revenue of $4.29B. Zacks says Q2 adjusted EPS of $6.48 beat the $5.96 consensus. — 2026-10-28 (article date; Q2 beat reported 2026-08) — https://finance.yahoo.com/energy/articles/factors-know-ahead-diamondbacks-q3-145300098.html\n- Morgan Stanley flags the preliminary 2027 plan, expected with Q3 numbers, as the next catalyst. — 2026-10-14 — https://stockstotrade.com/news/diamondback-energy-inc-fang-news-2026_10_16/ (aggregator; I did not find the original note)\n\n**2. Analyst actions** (no downgrades found)\n- Goldman Sachs cut its target to $215 from $220, Buy. — 2026-10-01 — https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c\n- BMO raised its target to $224 from $215, Outperform. — 2026-10-02 — same URL\n- Jefferies raised its target to $215 from $205 and kept a Hold rating. The date is Oct 11 per Markets Insider and Oct 12 per MarketScreener. — 2026-10-11 — https://www.ad-hoc-news.de/boerse/news/corporate-news/jefferies-lifts-target-for-diamondback-energy-stock-to-usd-215/70300556 and https://www.marketscreener.com/news/jefferies-adjusts-price-target-on-diamondback-energy-to-215-from-205-ce785ddcd08eff26\n- Roth raised its target to $223 from $212. — 2026-10-14 — https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c\n- JPMorgan raised its target to $253 from $233. — 2026-10-14 — same URL\n- Argus raised its target to $218. — 2026-10-14 — https://finance.yahoo.com/research/reports/ARGUS_4869_QuantitativeReport_1791936000000\n- RBC reiterated Outperform with a $240 target. — 2026-10-14 — https://www.marketbeat.com/instant-alerts/analyst-diamondback-energy-nasdaq-fang-given-outperform-rating-at-royal-bank-of-canada-2026-10-14/\n- Scotiabank initiated at Outperform with a $250 target. MarketScreener and Yahoo give Oct 14 and Oct 15 respectively; stockanalysis says Oct 14. — 2026-10-14 — https://stockanalysis.com/stocks/fang/forecast/\n- Morgan Stanley (Equal-Weight) moved its target between $216 and $222, and sources disagree on direction. MarketScreener says raised to $222 from $216. — 2026-10-14 — https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c. Stockanalysis shows $222→$216. — 2026-10-15 — https://stockanalysis.com/stocks/fang/forecast/\n- UBS (Buy) moved its target from $253 to $256. — 2026-10-15 — https://stockanalysis.com/stocks/fang/forecast/\n- Raymond James raised its target to $256 from $255. — 2026-10-19 — https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c\n- BMO cut its target to $220 from $224. — 2026-10-19 — same URL\n- Goldman Sachs raised its target to $235 from $215. — 2026-10-27 — same URL\n- Consensus mean target is $239.45 across 32 analysts. — 2026-10-28 — same MarketScreener URL\n\n**3. Litigation / regulation**\n- Nothing material found in the window. The Q2 10-Q describes only routine proceedings, with no new matters. — date unknown (10-Q for the quarter ended 2026-06-30) — https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000142/fang-20260630.htm\n\n**4. Customer concentration**\n- Four purchasers each accounted for more than 10% of revenue in 2025, 2024 and 2023. Diamondback says losing any one would not materially hurt results. — period ended 2025-12-31 — https://www.sec.gov/Archives/edgar/data/1539838/000153983826000067/diamondback2025ars.pdf\n- No customer wins, losses or contract changes found in the window.\n\n**5. Insider activity**\n- Director Charles Meloy sold 33,333 shares through Wolfrock Energy, LLC at about $183–185 under a 10b5-1 plan adopted 2026-03-17. — 2026-10-05 — https://www.marketscreener.com/news/diamondback-energy-insider-sold-shares-worth-6-124-676-according-to-a-recent-sec-filing-ce785ddedc8bf720\n  - The reported proceeds differ by source: $6,124,676 (MarketScreener, above), $6,124,605.42 (https://www.marketbeat.com/instant-alerts/insider-diamondback-energy-nasdaq-fang-director-sells-612460542-in-stock-2026-10-07/), and $6.13M (https://rallies.ai/news/diamondback-energy-director-charles-alvin-meloy-sells-613-million-in-shares-1b9a9a025e6a5997).\n  - Reported holdings afterward differ: 788,121 (MarketScreener) and 759,864 held by Wolfrock (https://www.webull.com/news/15709033037693952). The two figures are consistent if Meloy's 28,257 directly held shares are added to Wolfrock's 759,864.\n  - The SEC Form 4 is at https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000174/wk-form4_1791407877.xml\n- This is the same pattern as Meloy's earlier 33,333-share sale under the same plan, so it looks like a recurring monthly sale. — 2026-08-03 — https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000139/wk-form4_1785873669.xml\n- No insider purchases or other officer or director sales found in the window. Sales just before it were by the 10% holder SGF FANG Holdings (9.08M shares, 2026-09-16, https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-2c2bb56270a1.html) and by Meloy-related gifts (2026-09-15, https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000164/wk-form4_1789675419.xml).\n\n**6. Product / competitive**\n- Jefferies cited investor questions on SFT, acquisitions and the Barnett assets, alongside improving gas takeaway capacity. — 2026-10-12 — https://www.ad-hoc-news.de/boerse/news/corporate-news/jefferies-lifts-target-for-diamondback-energy-stock-to-usd-215/70300556\n- RBC said Viper (the Diamondback subsidiary) expects Q3 production to exceed guidance. I only saw the headline. — 2026-10-09 — https://www.marketscreener.com/news/jefferies-adjusts-price-target-on-diamondback-energy-to-215-from-205-ce785ddcd08eff26\n- No product launches, delays, share shifts or new competitors found.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000137/diamondbackex991-8x3x26.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000142/fang-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000077/fang-20260331.htm",
+        "https://finance.yahoo.com/energy/articles/factors-know-ahead-diamondbacks-q3-145300098.html",
+        "https://www.diamondbackenergy.com/news-releases/news-release-details/diamondback-energy-inc-schedules-third-quarter-2026-conference",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000153983824000188/diamondbackex991-10x1x24.htm",
+        "https://www.tradingview.com/news/zacks:daba1685c094b:0-factors-you-need-to-know-ahead-of-diamondback-s-q3-earnings-release/",
+        "https://www.diamondbackenergy.com/static-files/69e4a842-30fe-4ce0-8b92-510ad5aff2e6",
+        "https://www.quiverquant.com/news/Diamondback+Energy+Announces+Third+Quarter+2026+Earnings+Release+Date+and+Conference+Call",
+        "https://kalkinemedia.com/us/news/announcements/diamondback-energy-reports-q3-2026-commodity-prices-and-182-million-derivative-loss",
+        "https://www.cnn.com/markets/stocks/FANG",
+        "https://stockanalysis.com/stocks/fang/forecast/",
+        "https://finance.yahoo.com/research/reports/ARGUS_4869_QuantitativeReport_1791936000000",
+        "https://www.marketbeat.com/instant-alerts/analyst-diamondback-energy-nasdaq-fang-given-outperform-rating-at-royal-bank-of-canada-2026-10-14/",
+        "https://247wallst.com/companies/fang/price-prediction/",
+        "https://finance.yahoo.com/quote/FANG/",
+        "https://kalkine.com/news/energy/where-analysts-see-diamondback-energy-nasdaqfang-shares-headed",
+        "https://tickernerd.com/stock/fang-forecast/",
+        "https://www.timothysykes.com/news/diamondbackenergyinc-fang-news-2026_10_16-2/",
+        "https://www.marketbeat.com/stocks/NASDAQ/FANG/price-target",
+        "https://www.diamondbackenergy.com/node/13111/html",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000153983813000015/diamondbackenergyincs-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000130817922000292/lfang2022_def14a.htm",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000114036124016439/ny20021341x14_defm14a.htm",
+        "https://www.diamondbackenergy.com/static-files/196e1426-9286-4448-ba7a-0dec9ca01e98",
+        "https://www.diamondbackenergy.com/static-files/47053fef-ee96-48a3-850d-acb5582b7ff5",
+        "https://www.law360.com/energy/archive/2024/02",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000153/wk-form4_1787601697.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000104846214000023/formsc13da5.htm",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-e3f6fe87bc97.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-2c2bb56270a1.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-2899b5bcf1d7.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-25a3266425be.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-9627c5e9c005.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-8f8a2e10b6b9.html",
+        "https://www.stocktitan.net/sec-filings/FANG/form-4-diamondback-energy-inc-insider-trading-activity-9531d4fd4e5c.html",
+        "https://www.themiddlemarket.com/latest-news/diamondback-energy-grows-presence-in-permian-oilfield-with-4-08b-acquisition",
+        "https://finance.yahoo.com/news/the-diamondback-acquisition-puts-the-spotlight-on-the-land-grab-across-permian-basin-200518520.html",
+        "https://oilprice.com/Energy/Crude-Oil/Diamondback-Energys-26-Billion-Endeavor-Acquisition-Shakes-Up-Permian-Basin.html",
+        "https://en.wikipedia.org/wiki/Energen",
+        "https://money.usnews.com/investing/news/articles/2025-02-18/diamondback-energy-to-expand-in-permian-with-4-08-billion-deal",
+        "https://invezz.com/news/2025/02/18/diamondback-expands-permian-basin-footprint-with-4b-double-eagle-deal/",
+        "https://oilgasleads.com/diamondback-energy-takes-over-zarvona-energy-air-permits-as-permian-ma-shifts-toward-portfolio-optimization/",
+        "https://www.ad-hoc-news.de/boerse/news/ueberblick/diamondback-energy-stock-trades-steady-as-q2-earnings-and-exxon-permian/69866953",
+        "https://www.itiger.com/news/2512159010",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000139/wk-form4_1785873669.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000164/wk-form4_1789675419.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001539838/000153983826000174/wk-form4_1791407877.xml",
+        "https://www.marketscreener.com/news/diamondback-energy-insider-sold-shares-worth-6-124-676-according-to-a-recent-sec-filing-ce785ddedc8bf720",
+        "https://www.webull.com/news/15709033037693952",
+        "https://www.marketbeat.com/instant-alerts/insider-diamondback-energy-nasdaq-fang-director-sells-612460542-in-stock-2026-10-07/",
+        "https://kalkinemedia.com/us/news/announcements/diamondback-energy-director-charles-meloy-sells-33333-shares-via-rule-10b5-1-plan",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000130817925000434/fang014060-def14a.htm",
+        "https://rallies.ai/news/diamondback-energy-director-charles-alvin-meloy-sells-613-million-in-shares-1b9a9a025e6a5997",
+        "https://www.marketscreener.com/news/jefferies-adjusts-price-target-on-diamondback-energy-to-215-from-205-ce785ddcd08eff26",
+        "https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-diamondback-energy-to-235-from-215-ce785cddd880f22c",
+        "https://stockstotrade.com/news/diamondback-energy-inc-fang-news-2026_10_16-2/",
+        "https://stockstotrade.com/news/diamondbackenergyinc-fang-news-2026_10_16-2/",
+        "https://www.timothysykes.com/news/diamondbackenergyinc-fang-news-2026_10_16/",
+        "https://stockstotrade.com/news/diamondback-energy-inc-fang-news-2026_10_16/",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/jefferies-lifts-target-for-diamondback-energy-stock-to-usd-215/70300556",
+        "https://www.tipranks.com/news/the-fly/diamondback-energy-price-target-lowered-to-161-from-167-at-jpmorgan",
+        "https://www.marketbeat.com/instant-alerts/jpmorgan-chase-co-lowers-diamondback-energy-nasdaqfang-price-target-to-16100-2025-05-07",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000153983826000067/diamondback2025ars.pdf",
+        "https://en.wikipedia.org/wiki/Diamondback_Energy",
+        "https://www.diamondbackenergy.com/static-files/ef502fed-d7c9-4a97-9f76-28e1e5788c8b",
+        "https://fortune.com/company-assets/927/quartr/annual-report-10-k-65a68-2026-02-25-09-26-14.pdf",
+        "https://www.viperenergy.com/news-releases/news-release-details/viper-energy-inc-subsidiary-diamondback-energy-inc-has-0/",
+        "https://www.sec.gov/Archives/edgar/data/1539838/000153983826000073/diamondbackex991-5x4x26.htm",
+        "https://finance.yahoo.com/energy/articles/diamondback-energy-fang-viper-energy-130432812.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "RuntimeError: no Exhibit 99.1 in 8-K 0001539838-26-000177"
+  },
+  "writeup": {
+    "headline": "Diamondback rates Hold: strong revenue growth and firm trend offset by a high EV/EBIT valuation.",
+    "thesis": "Diamondback scores 60, a Hold, 5 points short of Buy and 16 points above Sell. Growth is the strongest factor at 93, with latest-quarter revenue growth of 51.2% year on year, TTM revenue growth of 21.4%, and growth sped up by 46.5 pp from the previous quarter. Trend scores 69, with the price 9.1% above its 200-day average and only 3.5% below its 52-week high, though shares are 7.5 pp behind SPY over the last 126 trading days. Valuation drags at 25: EV/EBIT of 64.6x is high in absolute terms and more expensive than at 56 of the last 61 month-ends, while P/S of 3.4x sits near the middle of the last 61 month-ends (cheaper than at 24, more expensive than at 37). News risk is roughly neutral at 54, helped slightly by price-target raises and a new Outperform initiation.",
+    "key_risks": [
+      "EV/EBIT of 64.6x is high in absolute terms and expensive against its own history, leaving little room for disappointment.",
+      "Operating margin of 6.3% is thin, and cash to debt of 0.04 points to a debt-heavy balance sheet.",
+      "Q3 results due Nov 2 come after an 8-K pre-announcing derivative losses, a mixed signal.",
+      "Revenue depends on oil and gas prices; the recent growth spike may not persist.",
+      "Shares have lagged SPY and QQQ over the last 126 trading days."
+    ],
+    "what_would_change": [
+      "A 5-point score gain would reach Buy, for example if EBIT rises enough to bring EV/EBIT down and lift the valuation score from 25.",
+      "Sustained strong growth in the Q3 report plus continued price strength could push the score over 65.",
+      "A drop of more than 15 points, such as growth fading sharply alongside a weaker trend or negative news on guidance, would move it to Sell."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 118612,
+        "output_tokens": 5147,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 118612,
+            "output_tokens": 5147,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3687,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7583,
+        "output_tokens": 2341,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7583,
+            "output_tokens": 2341,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0772,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3692,
+        "output_tokens": 679,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3692,
+            "output_tokens": 679,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0283,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4742,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 206.22,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 204.48
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:30",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

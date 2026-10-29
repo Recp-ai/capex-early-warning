@@ -1,0 +1,762 @@
+{
+  "run_id": "2026-10-29T12:34:46Z",
+  "generated_at": "2026-10-29T13:05:26+00:00",
+  "ticker": "FLNG",
+  "sec_ticker": "FLNG",
+  "cik": "0001772253",
+  "name": "Flex LNG Ltd.",
+  "sector": "Water Transportation",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 58,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), FCF margin"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 7
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 14
+    }
+  },
+  "composite": {
+    "score": 58,
+    "raw": 57.79,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": -2.44,
+          "score": 18.9,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 1.51,
+          "score": 57.5,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 36,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 78.46,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 50.57,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2025-12-31"
+        },
+        "sbc_pct_revenue": {
+          "value": 0.02,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 0.11,
+          "score": 73.6,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 95,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.24,
+          "score": 28.9,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -8.11,
+          "score": 9.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -5.79,
+          "score": 35.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 36.6,
+          "score": 95.9,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -16.1,
+          "score": 20.8,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -16.93,
+          "score": 19.6,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -15.03,
+          "score": 48.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 45,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 28.27,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 1.51,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 347637000.0,
+    "revenue_yoy_ttm": -2.44,
+    "gross_profit_ttm": 272761000.0,
+    "operating_income_ttm": 175804000.0,
+    "operating_cash_flow_ttm": 140736000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 76000.0,
+    "gross_profit_source": "revenue - DirectOperatingCosts",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 78.46,
+    "operating_margin_pct": 50.57,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 0.02,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2025-12-31"
+    },
+    "prepayments": {
+      "increase": -12157000.0,
+      "source": "balance sheet: contract 2024-12-31 to 2025-12-31",
+      "base": 37124000.0,
+      "base_date": "2024-12-31",
+      "revenue_growth_pct": -2.44,
+      "expected": -907605.4317537021,
+      "excess": -11249394.568246298,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": -0.0799
+    },
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 447632000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 447632000.0,
+      "debt": 1860608000.0,
+      "debt_tags": [
+        "DebtLongtermAndShorttermCombinedAmount"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtLongtermAndShorttermCombinedAmount",
+          "val": 1860608000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 1412976000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 54088689.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.11,
+    "shares_outstanding": {
+      "val": 54092376.0,
+      "end": "2025-12-31",
+      "filed": "2026-02-27",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 28.27,
+    "date": "2026-10-28",
+    "ma50": 30.76,
+    "ma200": 30.01,
+    "vs_ma50_pct": -8.11,
+    "vs_ma200_pct": -5.79,
+    "momentum_12_1_pct": 36.6,
+    "high_52w": 33.27,
+    "drawdown_52w_pct": -15.03,
+    "return_rs_pct": -7.02,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -16.1,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -16.93
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window; the company only scheduled its Q3 2026 results for 2026-11-11. The latest guidance, maintained in August, is outside the window.",
+        "evidence": [
+          {
+            "claim": "Flex LNG will release Q3 2026 results on 2026-11-11, with a webcast at 15:00 CET.",
+            "url": "https://stockhouse.com/news/press-releases/2026/10/28/flex-lng-invitation-to-the-2026-third-quarter-presentation",
+            "event_date": "2026-10-28",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 1,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "No analyst rating or price-target changes inside the window. The consensus remains Sell-leaning from earlier actions.",
+        "evidence": [
+          {
+            "claim": "BTIG maintained Hold on 2026-09-15; Kepler Capital and Pareto downgraded to Sell in May 2026.",
+            "url": "https://stockanalysis.com/stocks/flng/forecast/",
+            "event_date": "2026-09-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 44,
+            "background": true,
+            "status": "unverified",
+            "check": "numbers 2/3, names 6/6 · missing: 09"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or regulatory actions involving Flex LNG were found in the window.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new charters or contract losses were announced. Flex Artemis and Flex Volunteer came open at the end of Q3, with no announced employment.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions were found in the window; Flex LNG is a foreign private issuer and does not file Form 4s.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "LNG spot rates were volatile in October, falling mid-month and then rising in the week to 2026-10-23, while competitors keep adding tonnage. The net effect is mixed.",
+        "evidence": [
+          {
+            "claim": "Atlantic and Pacific LNG rates down this week",
+            "url": "https://lngprime.com/americas/atlantic-pacific-lng-rates-down-this-week/198523/",
+            "event_date": "2026-10-16",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Atlantic and Pacific LNG rates rise this week",
+            "url": "https://lngprime.com/americas/atlantic-pacific-lng-rates-rise-this-week/198870/",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Flex LNG (FLNG): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Flex LNG will release Q3 2026 results on 2026-11-11. The release is due about 07:00 CET, with a webcast at 15:00 CET. The company announced this on 2026-10-28. — 2026-10-28 — https://stockhouse.com/news/press-releases/2026/10/28/flex-lng-invitation-to-the-2026-third-quarter-presentation\n- Some aggregators still show a 2026-11-27 Q3 date, which conflicts with the company's own notice. Use 11-11. — date unknown — https://bullstory.io/en/stocks/flng/earnings/2026-q3\n- I found no guidance change, pre-announcement or withdrawal inside the window.\n- The latest guidance was given with Q2 results, before the window opened. It was maintained at revenue of $345–370M (excluding EUAs), TCE of $73,000–78,000/day and adjusted EBITDA of $255–280M. — 2026-08-19 — https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-spot-earnings-drive-beat-dividend-maintained-93CH-4867785\n- Q2 results beat expectations. EPS was $0.79 against a $0.62 consensus, and revenue was $106.8M against $93.53M expected. — 2026-08-19 — https://www.marketbeat.com/instant-alerts/filing-flex-lng-ltd-flng-shares-newly-purchased-by-mn-services-vermogensbeheer-bv-2026-10-10/\n- Q2 TCE was about $86,100/day, above the full-year guidance range. — 2026-08-19 — https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-beat-but-spot-rates-soften-93CH-4867778\n\n**2. Analyst actions**\n- I found no upgrades, downgrades, initiations or price-target changes dated inside the window.\n- The latest action on StockAnalysis is BTIG (Gregory Lewis) maintaining Hold on 2026-09-15, which is before the window. No price target is listed. — 2026-09-15 — https://stockanalysis.com/stocks/flng/forecast/\n- The same page lists Kepler Capital downgrading to Sell with a target cut from $29 to $25 on 2026-05-14. It also lists Pareto downgrading to Sell with a $25 target on 2026-05-13. — 2026-05-14 — https://stockanalysis.com/stocks/flng/forecast/\n- Consensus figures differ by source:\n  - S&P Global data via StockAnalysis shows 5 analysts, a \"Sell\" consensus and an average target of $26.13, with a range of $24.50–$30. — date unknown — https://stockanalysis.com/stocks/flng/forecast/\n  - MarketBeat shows 3 analysts (2 Sell, 1 Hold) and a $25.00 target. — date unknown — https://www.marketbeat.com/stocks/NYSE/FLNG/forecast/\n\n**3. Litigation and regulation**\n- I found nothing material: no lawsuits, investigations, fines or export-control actions involving Flex LNG in the window.\n\n**4. Customer concentration**\n- I found no new customer wins, losses or contract changes inside the window.\n- Flex Artemis and Flex Volunteer were due to come open at the end of Q3 2026. Management said it was marketing them for both spot and term employment. I found no announced employment for either. — 2026-09-30 (expected open date) — https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-spot-earnings-drive-beat-dividend-maintained-93CH-4867785\n- Coverage was about 89% of remaining 2026 days, with a firm backlog of at least 51 years. — 2026-08-19 — https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-beat-but-spot-rates-soften-93CH-4867778\n- Earlier contracts, for context:\n  - Flex Aurora was fixed with a supermajor for at least two years. — 2026-03-25 — https://www.barchart.com/story/news/935514/flex-lng-announces-new-contract-for-flex-aurora\n  - Flex Constellation began a 15-year charter with an Asian utility and LNG trader. — 2026-03 — https://www.bairdmaritime.com/shipping/tankers/gas/flex-lng-secures-new-vessel-charter-and-extensions\n- Geveran owned 42.7% of the shares as of 2025-02-28. This is a shareholder-concentration data point, not a customer one. — 2025-02-28 — https://www.sec.gov/Archives/edgar/data/1772253/000177225325000011/flng-20241231.htm\n\n**5. Insider activity**\n- I found no Form 4 or PDMR notifications dated inside the window. Flex LNG is a foreign private issuer, so it files 6-Ks rather than Form 4s. The Form 4 data I found was for Flex Ltd (FLEX), a different company.\n- The most recent insider item I found is a Form 3 for director Susan Sakmar, who owns 1,338 shares. — 2026-03-18 — https://www.sec.gov/Archives/edgar/data/0001772253/000091957426001739/ownership.xml\n\n**6. Product and competitive news**\n- Spot rates were volatile in October. Atlantic spot was $31,500/day and Pacific $38,250/day in the report dated 2026-10-06. By the report dated 2026-10-20, Atlantic had fallen to $20,500 and Pacific to $27,000. — 2026-10-20 — https://lngshippingstocks.com/\n- LNG Prime reported rates down in the week to 2026-10-16 and up in the week to 2026-10-23, citing Spark Commodities.\n  - 2026-10-16 — https://lngprime.com/americas/atlantic-pacific-lng-rates-down-this-week/198523/\n  - 2026-10-23 — https://lngprime.com/americas/atlantic-pacific-lng-rates-rise-this-week/198870/\n- Competitor MISC will order five more 174,000-cbm LNG carriers at Hudong-Zhonghua for a 20-year Petronas charter. — date unknown (article dated 2026-10-09) — https://lngprime.com/americas/atlantic-lng-rates-drop-for-first-time-in-six-weeks/198169/\n- Golar LNG bought a conversion vessel for its fourth FLNG unit. Golar ordered the conversion in August, with delivery scheduled for 2029. — date unknown (October 2026 report) — https://splash247.com/baker-hughes-lands-eni-offshore-double-and-golar-flng-order\n- On supply, management said Q2 term rates for 5-year charters were around $80,000/day. It also pointed to high tonnage availability from relets and newbuild deliveries over the next 12–18 months. — 2026-08-19 — https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-beat-but-spot-rates-soften-93CH-4867778\n- Global LNG imports fell 4.4% year on year in September, the seventh straight monthly decline. — 2026-09 — https://lngprime.com/americas/lng-shipping-rates-continue-to-decline/164495/\n\n**Other items**\n- The stock closed at $28.27 on 2026-10-28. — 2026-10-28 — https://www.heygotrade.com/en/us-stock/flng/\n- The last dividend was $0.75 per share, paid 2026-09-17 to holders of record on 2026-09-03. — 2026-09-03 — https://www.marketbeat.com/instant-alerts/filing-flex-lng-ltd-flng-shares-newly-purchased-by-mn-services-vermogensbeheer-bv-2026-10-10/",
+      "urls": [
+        "https://www.heygotrade.com/en/us-stock/flng/",
+        "https://www.marketbeat.com/instant-alerts/filing-flex-lng-ltd-flng-shares-newly-purchased-by-mn-services-vermogensbeheer-bv-2026-10-10/",
+        "https://www.marketbeat.com/stocks/NYSE/FLNG/",
+        "https://news.cision.com/flex-lng",
+        "https://stockhouse.com/news/press-releases/2026/10/28/flex-lng-invitation-to-the-2026-third-quarter-presentation",
+        "https://rallies.ai/news/flex-lng-announces-third-quarter-results-presentation-e8b680d8a6ff32d7",
+        "https://splash247.com/baker-hughes-lands-eni-offshore-double-and-golar-flng-order",
+        "https://discoveryalert.com/analysis/lng-shipping-stocks-flex-golar-misc-october-2026/",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/flex-lng-stock-reports-results-november-27-2026-last-at-usd-28-23-on-october-16/70350410",
+        "https://www.barchart.com/story/news/583643/flex-lng-company-presentation-march-2026",
+        "https://www.inderes.fi/en/releases/flex-lng-invitation-to-the-2026-third-quarter-presentation",
+        "https://www.tradingview.com/news/tradingview:41dac4a40615f:0-flex-reports-third-quarter-fiscal-2026-results/",
+        "https://investors.flex.com/news/news-details/2026/FLEX-REPORTS-THIRD-QUARTER-FISCAL-2026-RESULTS/default.aspx",
+        "https://www.prnewswire.com/news-releases/flex-reports-third-quarter-fiscal-2026-results-302678824.html",
+        "https://www.stocktitan.net/news/FLNG/flex-lng-invitation-to-the-2026-third-quarter-gv5xbpb0srjf.html",
+        "https://www.stocktitan.net/sec-filings/FLNG/6-k-flex-lng-ltd-current-report-foreign-issuer-2650babca872.html",
+        "https://bullstory.io/en/stocks/flng/earnings/2026-q3",
+        "https://www.benzinga.com/quote/FLNG/price-targets",
+        "https://simplywall.st/stocks/us/energy/nyse-flng/flex-lng/future",
+        "https://www.marketbeat.com/stocks/NYSE/FLNG/forecast/",
+        "https://stockanalysis.com/stocks/flng/forecast/",
+        "https://simplywall.st/stocks/us/energy/nyse-flng/flex-lng",
+        "https://www.investing.com/equities/flex-lng-ltd-consensus-estimates",
+        "https://www.macroaxis.com/valuation/FLNG/FLEX-LNG",
+        "https://www.benzinga.com/quote/FLNG/analyst-ratings",
+        "https://www.marketbeat.com/stocks/NYSE/FLNG/price-target",
+        "https://simplywall.st/narratives/optimizing-fleet-efficiency-and-financial-strategies-to-navigate-market-volatility-and-propel-growth",
+        "https://live.euronext.com/en/products/equities/company-news/2024-11-29-flex-lng-announces-15-year-time-charter-flex",
+        "https://www.bairdmaritime.com/shipping/tankers/gas/flex-lng-secures-new-vessel-charter-and-extensions",
+        "https://www.lngindustry.com/lng-shipping/30032026/flex-lng-announces-new-contract-for-flex-aurora/",
+        "https://www.rivieramm.com/news-content-hub/news-content-hub/flex-lng-lands-15-year-time-charter-on-lng-carrier-83139",
+        "https://www.lngindustry.com/lng-shipping/02122024/flex-lng-announces-new-time-charter-agreement/",
+        "https://www.shipuniverse.com/news/flex-lng-locks-in-fresh-multi-year-cover-for-flex-aurora/",
+        "https://shippingtelegraph.com/freight-news/flex-lng-secures-multi-year-charter-deal-with-supermajor/",
+        "https://www.prnewswire.com/news-releases/flex-lng---announces-15-year-time-charter-for-flex-constellation-302318649.html",
+        "https://briefglance.com/companies/flex-lng-ltd/pulses/12071",
+        "https://www.barchart.com/story/news/935514/flex-lng-announces-new-contract-for-flex-aurora",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000177225323000021/ex99-1flexlngxmandatorynot.htm",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000177225324000013/ex-991flexlngmandatorynoti.htm",
+        "https://massive.com/quote/flex/insider-trading",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000091957424005582/d11482976_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000177225322000019/flexlng-6kq320221.htm",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000177225325000011/flng-20241231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1772253/000177225324000008/flng-20231231.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001772253/000091957426001739/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/FLEX/form-4-flex-ltd-insider-trading-activity-fa71484d42df.html",
+        "https://mb.cision.com/Main/22886/4348134/4091454.pdf",
+        "https://www.benzinga.com/news/26/07/60237564/transcript-flex-lng-q1-2026-earnings-conference-call",
+        "https://lngprime.com/asia/flex-lng-carrier-available-for-charter-in-q1-2026/168651/",
+        "https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-spot-earnings-drive-beat-dividend-maintained-93CH-4867785",
+        "https://lngprime.com/europe/flex-secures-short-term-charters-for-two-lng-carriers/186435/",
+        "https://www.investing.com/news/company-news/flex-lng-q2-2026-slides-strong-beat-but-spot-rates-soften-93CH-4867778",
+        "https://www.bairdmaritime.com/shipping/tankers/flex-lng-reports-higher-q2-earnings-on-increased-charter-revenues",
+        "https://www.aol.com/articles/flex-lng-flng-q1-2026-191359000.html",
+        "https://finance.biggo.com/news/9f243a0d-9b36-430c-80be-a43394ea250c",
+        "https://www.tradingkey.com/news/transcripts/262118911-tradingkey",
+        "https://lngprime.com/americas/atlantic-pacific-lng-rates-down-this-week/198523/",
+        "https://lngprime.com/americas/atlantic-lng-rates-drop-for-first-time-in-six-weeks/198169/",
+        "https://lngprime.com/americas/atlantic-and-pacific-lng-shipping-rates-continue-to-increase/187939/",
+        "https://lngprime.com/europe/spot-lng-shipping-rates-continue-to-slide-european-prices-rise/123144/",
+        "https://lngprime.com/americas/lng-shipping-rates-continue-to-decline/164495/",
+        "https://lngprime.com/americas/atlantic-pacific-lng-rates-rise-this-week/198870/",
+        "https://lngshippingstocks.com/",
+        "https://naturalgasintel.com/data-snapshot/lng-vessel-rate-curves/",
+        "https://www.lloydslist.com/LL1156506/LNG-shipping-spot-rates-post-record-rise-as-war-fallout-mounts"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Flex LNG rates Hold: very high margins offset by slipping revenue and a weak recent share price trend.",
+    "thesis": "Flex LNG scores 58, a Hold, held up mainly by its quality factor (95), with a gross margin of 78.5%, an operating margin of 50.6%, no stock-based compensation and diluted share count up 0.1% year on year. Growth is the weak spot at 36: the company shows a TTM revenue decline of 2.4%, though growth sped up by 1.5 pp from the previous quarter. The trend factor sits at 45, with the price 8.1% below its 50-day average, 5.8% below its 200-day average and 15.0% below its 52-week high, and shares 16.1 pp behind SPY over the last 126 trading days, despite shares up 36.6% from 12 months ago to 1 month ago. News risk is neutral at 50, with no guidance, analyst, legal or insider developments in the window. Balance sheet and valuation could not be scored, so the rating rests on the other four factors.",
+    "key_risks": [
+      "Two vessels, Flex Artemis and Flex Volunteer, came open at the end of Q3 with no announced employment, which could weigh on revenue.",
+      "LNG spot rates were volatile in October while competitors keep adding tonnage, pressuring charter rates.",
+      "Cash covers only 0.24 times debt, leaving the company reliant on refinancing and charter income.",
+      "Revenue is already declining on a TTM basis, and analyst consensus remains Sell-leaning from earlier actions.",
+      "The share price is in a weak short-term trend, trading below both its 50-day and 200-day averages."
+    ],
+    "what_would_change": [
+      "A 7-point rise in the score would reach Buy, for example from a return to revenue growth lifting the growth factor or a recovery in the share price trend.",
+      "Q3 2026 results on 2026-11-11, including any update on employment for the two open vessels, could move growth and news risk either way.",
+      "A 14-point drop would be needed for Sell, which would likely require a clear margin decline or a sharp further fall in revenue and the share price."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 101392,
+        "output_tokens": 3545,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 101392,
+            "output_tokens": 3545,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3082,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7025,
+        "output_tokens": 828,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7025,
+            "output_tokens": 828,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0447,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3456,
+        "output_tokens": 695,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3456,
+            "output_tokens": 695,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0277,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3806,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 28.27,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 28.51
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:34",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

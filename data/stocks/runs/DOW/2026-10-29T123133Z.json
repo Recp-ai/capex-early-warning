@@ -1,0 +1,1757 @@
+{
+  "run_id": "2026-10-29T12:31:33Z",
+  "generated_at": "2026-10-29T12:32:33+00:00",
+  "ticker": "DOW",
+  "sec_ticker": "DOW",
+  "cik": "0001751788",
+  "name": "DOW INC.",
+  "sector": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Sell",
+  "rating_before_overlay": "Sell",
+  "score": 36,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 2.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: growth acceleration, operating margin, stock comp. / revenue, EV/EBIT"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: EV/EBIT 0 month-ends (needs 24)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Hold",
+      "at": 45,
+      "points": 9
+    },
+    "down": {
+      "label": "Strong Sell",
+      "below": 30,
+      "points": 7
+    }
+  },
+  "composite": {
+    "score": 36,
+    "raw": 35.6,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 12.98,
+          "score": 61.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": -7.74,
+          "score": 5.6,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.75,
+      "score": 39,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 6.36,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-03-31"
+        },
+        "fcf_margin_pct": {
+          "value": -0.59,
+          "score": 18.8,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": 1.99,
+          "score": 50.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.6,
+      "score": 20,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": "net debt with negative FCF"
+        },
+        "cash_to_debt": {
+          "value": 0.24,
+          "score": 28.4,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 11,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.628,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -5.929,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 44.3,
+          "score": 55.7,
+          "weight": 0.1,
+          "note": "cheaper than now in 44.3% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 21 of 26 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.647,
+      "score": 28,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 14.44,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 4.83,
+          "score": 62.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 12.54,
+          "score": 65.9,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -20.89,
+          "score": 13.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -21.72,
+          "score": 12.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -18.49,
+          "score": 40.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 53,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 61,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 34.13,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-09-30",
+    "revenue_q": 11267000000.0,
+    "revenue_yoy_q": 12.98,
+    "acceleration_pp": null,
+    "ttm_end": "2026-03-31",
+    "revenue_ttm": 39331000000.0,
+    "revenue_yoy_ttm": -7.74,
+    "gross_profit_ttm": 2502000000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 2065000000.0,
+    "capex_ttm": 2297000000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfGoodsAndServicesSold",
+    "operating_income_source": null,
+    "fcf_ttm": -232000000.0,
+    "gross_margin_pct": 6.36,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": -0.59,
+    "capex_intensity_pct": 5.84,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-03-31"
+    },
+    "prepayments": {
+      "increase": 224000000.0,
+      "source": "balance sheet: contract 2025-03-31 to 2026-03-31",
+      "base": 1666000000.0,
+      "base_date": "2025-03-31",
+      "revenue_growth_pct": -7.74,
+      "expected": -128926436.78160925,
+      "excess": 352926436.78160924,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.1709
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": -0.59,
+      "fcf_margin_year_earlier_pct": -0.87,
+      "median_margin_pct": 0.52,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": -232000000.0,
+    "fcf_scored_margin_pct": -0.59,
+    "balance_sheet": {
+      "date": "2026-09-30",
+      "cash": 4142000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 4142000000.0,
+      "debt": 17523000000.0,
+      "debt_tags": [
+        "LongTermDebtAndCapitalLeaseObligations",
+        "LongTermDebtAndCapitalLeaseObligationsCurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtAndCapitalLeaseObligations",
+          "val": 16778000000.0
+        },
+        {
+          "tag": "LongTermDebtAndCapitalLeaseObligationsCurrent",
+          "val": 745000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 13381000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 727400000.0,
+    "diluted_shares_end": "2026-09-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 1.99,
+    "shares_outstanding": {
+      "val": 723881907.0,
+      "end": "2026-09-30",
+      "filed": "2026-10-23",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 10730000000.0,
+        "revenue_yoy_pct": -23.98,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 707500000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 10621000000.0,
+        "revenue_yoy_pct": -10.44,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 10765000000.0,
+        "revenue_yoy_pct": -9.16,
+        "operating_margin_pct": null,
+        "fcf": -250000000.0,
+        "diluted_shares": 705500000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 10915000000.0,
+        "revenue_yoy_pct": -4.42,
+        "operating_margin_pct": null,
+        "fcf": 113000000.0,
+        "diluted_shares": 705300000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 10879000000.0,
+        "revenue_yoy_pct": 1.39,
+        "operating_margin_pct": null,
+        "fcf": 64000000.0,
+        "diluted_shares": 703600000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 10405000000.0,
+        "revenue_yoy_pct": -2.03,
+        "operating_margin_pct": null,
+        "fcf": 47000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 10431000000.0,
+        "revenue_yoy_pct": -3.1,
+        "operating_margin_pct": null,
+        "fcf": -594000000.0,
+        "diluted_shares": 706900000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 10104000000.0,
+        "revenue_yoy_pct": -7.43,
+        "operating_margin_pct": null,
+        "fcf": -1132000000.0,
+        "diluted_shares": 709500000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 9973000000.0,
+        "revenue_yoy_pct": -8.33,
+        "operating_margin_pct": null,
+        "fcf": 563000000.0,
+        "diluted_shares": 713200000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 9460000000.0,
+        "revenue_yoy_pct": -9.08,
+        "operating_margin_pct": null,
+        "fcf": -284000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 9794000000.0,
+        "revenue_yoy_pct": -6.11,
+        "operating_margin_pct": null,
+        "fcf": 621000000.0,
+        "diluted_shares": 721200000.0
+      },
+      {
+        "end": "2026-09-30",
+        "revenue": 11267000000.0,
+        "revenue_yoy_pct": 12.98,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": 727400000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 34.13,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 723881907.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-09-30"
+    },
+    "market_cap": 24706089485.91,
+    "enterprise_value": 38087089485.91,
+    "price_to_sales": 0.628,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 159.196,
+    "fcf_yield_pct": -0.939,
+    "ebit_yield_pct": null,
+    "fcf_negative": true,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -5.929,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 0.818,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 122.232,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 0.803,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 124.546,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 0.829,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 120.616,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 0.873,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 114.538,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.803,
+        "price_to_fcf": 8.018,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 124.472,
+        "fcf_yield_pct": 12.473,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.868,
+        "price_to_fcf": 8.665,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 115.173,
+        "fcf_yield_pct": 11.541,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.843,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 118.606,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.862,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 116.023,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.654,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 152.824,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.647,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 154.481,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.62,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 161.176,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.534,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 187.115,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.565,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 176.996,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.616,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 162.307,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.609,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 164.175,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.717,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 139.39,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.699,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 143.134,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.67,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 149.349,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.649,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 154.199,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.582,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 171.965,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.635,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 157.5,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.675,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 148.191,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.652,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 153.379,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.616,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 162.303,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.576,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 173.702,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.616,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 162.256,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.653,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 153.114,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.852,
+        "price_to_fcf": 13.381,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 117.419,
+        "fcf_yield_pct": 7.473,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 0.888,
+        "price_to_fcf": 13.95,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 112.628,
+        "fcf_yield_pct": 7.168,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 0.92,
+        "price_to_fcf": 14.462,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 108.642,
+        "fcf_yield_pct": 6.915,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.922,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 108.452,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.934,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 107.079,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.86,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 116.323,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.893,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 112.008,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.878,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 113.869,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.895,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 111.68,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.805,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 124.281,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.72,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 138.815,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.654,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 152.928,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.636,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 157.158,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.625,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 159.888,
+        "fcf_yield_pct": -0.097,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.573,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 174.494,
+        "fcf_yield_pct": -0.106,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.507,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 197.141,
+        "fcf_yield_pct": -1.711,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.46,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 217.396,
+        "fcf_yield_pct": -1.887,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.439,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 227.74,
+        "fcf_yield_pct": -1.977,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.395,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 253.076,
+        "fcf_yield_pct": -9.774,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.418,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 239.308,
+        "fcf_yield_pct": -9.242,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.389,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 257.05,
+        "fcf_yield_pct": -9.927,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.416,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 240.526,
+        "fcf_yield_pct": -6.561,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.416,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 240.526,
+        "fcf_yield_pct": -6.561,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.408,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 245.361,
+        "fcf_yield_pct": -6.693,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.48,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 208.223,
+        "fcf_yield_pct": -5.68,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.547,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 182.774,
+        "fcf_yield_pct": -6.617,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.742,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 134.853,
+        "fcf_yield_pct": -4.882,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.742,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 134.689,
+        "fcf_yield_pct": -0.794,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.619,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 161.587,
+        "fcf_yield_pct": -0.953,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.502,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 199.326,
+        "fcf_yield_pct": -1.176,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.555,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 180.045,
+        "fcf_yield_pct": -1.062,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.56,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 178.688,
+        "fcf_yield_pct": -1.054,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.505,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 198.023,
+        "fcf_yield_pct": -1.168,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.631,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 158.426,
+        "fcf_yield_pct": -0.934,
+        "ebit_yield_pct": null
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.628,
+        "current_yield_pct": 159.196,
+        "points": 61,
+        "median": 0.647,
+        "low": 0.389,
+        "high": 0.934,
+        "negative_points": 0,
+        "median_yield_pct": 154.481,
+        "percentile": 44.3,
+        "cheaper_points": 27,
+        "dearer_points": 34,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -0.939,
+        "points": 26,
+        "median": null,
+        "low": 8.017,
+        "high": null,
+        "negative_points": 21,
+        "median_yield_pct": -1.172,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 21 of 26 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history (P/FCF not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 34, more expensive than at 27)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 21 of 26 month-ends)",
+          "not_comparable": "negative now and in 21 of 26 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 34.13,
+    "date": "2026-10-28",
+    "ma50": 29.82,
+    "ma200": 32.56,
+    "vs_ma50_pct": 14.44,
+    "vs_ma200_pct": 4.83,
+    "momentum_12_1_pct": 12.54,
+    "high_52w": 41.87,
+    "drawdown_52w_pct": -18.49,
+    "return_rs_pct": -11.81,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -20.89,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -21.72
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001751788-26-000155",
+    "filing_date": "2026-10-22",
+    "period_end": "2026-09-30",
+    "period_source": "companyfacts",
+    "period_rejected": "2025-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1751788/000175178826000155/exhibit991enrschedules3q26.htm",
+    "summary": "Dow says it is on track for the upsized $700 million in Transform to Outperform benefits in 2026 and approximately $2 billion in total uplift by the end of next year, with European asset shutdown benefits expected to build through 2027.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "$700 million",
+        "stated_change": "not stated",
+        "sentence": "Specific to the transformation, we are on track to achieve the upsized $700 million in growth and productivity benefits in 2026, as well as the approximately $2 billion in total uplift by the end of next year.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "by end of FY2027",
+        "amount_text": "approximately $2 billion",
+        "stated_change": "not stated",
+        "sentence": "Specific to the transformation, we are on track to achieve the upsized $700 million in growth and productivity benefits in 2026, as well as the approximately $2 billion in total uplift by the end of next year.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "through 2027",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "In addition, we captured sequential gains from the first of our three European asset shutdowns, where the total benefits are expected to build through 2027.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "These items are uncertain, depend on various factors, and could have a material impact on GAAP results for the guidance period."
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 1,
+        "previous": 0,
+        "sentences": [
+          "“Dow delivered a solid third quarter, driven by targeted downstream growth and disciplined execution against an evolving macro backdrop,” said Karen S."
+        ]
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001751788-26-000144",
+      "filing_date": "2026-07-23",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1751788/000175178826000144/exhibit991enrschedules2q26.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Q3 results came in ahead of expectations, with net sales up 13% and operating EPS of $0.71 above consensus. Dow guided Q4 operating EBITDA flat at about $1.5B and said its transformation savings targets remain on track.",
+        "evidence": [
+          {
+            "claim": "Q3 net sales were $11.3B, up 13% year over year; operating EPS was $0.71 and operating EBIT was $887M.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000155/exhibit991enrschedules3q26.htm",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          },
+          {
+            "claim": "Dow beat Q3 2026 estimates with operating EPS of $0.71 versus $0.61 expected.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-dow-beats-q3-2026-estimates-as-shares-rise-premarket-93CH-4966222",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Dow guided Q4 operating EBITDA to about $1.5B, flat sequentially.",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Specific to the transformation, we are on track to achieve the upsized $700 million in growth and productivity benefits in 2026, as well as the approximately $2 billion in total uplift by the end of next year.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1751788/000175178826000155/exhibit991enrschedules3q26.htm",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions were mixed. Early in the period Citi downgraded the stock and Barclays initiated at Underweight. After the Q3 beat, several firms raised their price targets, and the consensus remains Hold.",
+        "evidence": [
+          {
+            "claim": "Citigroup downgraded Dow to Neutral from Buy and cut its price target to $30 from $35.",
+            "url": "https://www.benzinga.com/quote/DOW/price-targets",
+            "event_date": "2026-09-30",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 29,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Barclays initiated Dow at Underweight with a $30 target.",
+            "url": "https://www.aries.com/us/en/stocks/DOW/analysts",
+            "event_date": "2026-10-13",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          },
+          {
+            "claim": "After Q3 earnings, Wells Fargo raised its target to $40 from $35, and UBS raised its target to $33 from $30.",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "The securities class action and derivative suits are still pending with no new rulings. No new fines or regulatory actions were found in the period.",
+        "evidence": [
+          {
+            "claim": "The securities class action in E.D. Michigan over dividend statements and five derivative suits remain pending.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/0, names 0/2 · missing: E.D, Michigan"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No customer wins, losses or concentration disclosures were found. Negotiations with Aramco over the Sadara joint venture are ongoing.",
+        "evidence": [
+          {
+            "claim": "Management said it remains engaged with Aramco on Sadara, with Jim Fitterling leading the negotiation, and has set a financial boundary around Sadara.",
+            "url": "https://www.benzinga.com/news/26/10/62525196/dow-q3-2026-earnings-call-transcript",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider transaction was the CFO's disposal of shares to the company for tax withholding, which is not an open-market sale.",
+        "evidence": [
+          {
+            "claim": "CFO Jeffrey Tate disposed of 25,564 shares to the issuer at $33.99 for tax withholding, leaving 93,197 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000164/wk-form4_1793220102.xml",
+            "event_date": "2026-10-26",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Dow nominated 12 cents/lb of polyethylene price increases and expects to achieve them, helped by industry capacity closures. Q3 volume slipped 1%, with weakness in Asia Pacific.",
+        "evidence": [
+          {
+            "claim": "Dow nominated a cumulative 12 cents/lb of polyethylene price increases for October and November.",
+            "url": "http://resource-recycling.com/plastics/2026/10/23/dow-bullish-on-pe-pricing-into-2027/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          },
+          {
+            "claim": "Dow said it expects to achieve both the 7 c/lb October and 5 c/lb November increases; announced closures cover 5–6% of global capacity.",
+            "url": "https://rbnenergy.com/daily-posts/analyst-insight/q3-2026-earnings-calls-dow-says-closures-will-lead-petchem-recovery",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Q3 volume decreased 1% versus the year-ago period.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000155/exhibit991enrschedules3q26.htm",
+            "event_date": "2026-10-22",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 0/0"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Dow Inc. (DOW), news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Q3 net sales were $11.3B, up 13% year over year. GAAP EPS was $0.62 and operating EPS was $0.71. Operating EBIT was $887M. — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000155/exhibit991enrschedules3q26.htm\n- Operating EPS of $0.71 beat consensus, which sources put at $0.61 (Investing.com), $0.64 (Alphastreet, Benzinga) and about 10% below the print (Chartmill). Revenue was roughly in line. — 2026-10-22 — https://www.investing.com/news/transcripts/earnings-call-transcript-dow-beats-q3-2026-estimates-as-shares-rise-premarket-93CH-4966222 ; https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings ; https://www.chartmill.com/news/DOW/Chartmill-56612-Dow-NYSEDOW-Q3-EPS-Beat-and-Cost-Actions-Lift-Shares-Despite-In-Line-Revenue\n- Dow guided Q4 operating EBITDA to about $1.5B, flat sequentially. The guide counts on about $100M more cost savings and more than $100M less turnaround spending. — 2026-10-22 — https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings\n- Management said it released more than $400M of cash in Q3 and is on track for more than $500M in H2. — 2026-10-22 — https://www.investing.com/news/transcripts/earnings-call-transcript-dow-beats-q3-2026-estimates-as-shares-rise-premarket-93CH-4966222\n- The board declared a $0.35 quarterly dividend, payable 2026-12-11. — 2026-10-15 — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm\n- I found no pre-announcement or guidance withdrawal in the period.\n\n**2. Analyst actions**\n- Citigroup downgraded to Neutral from Buy and cut its target to $30 from $35. — 2026-09-30 — https://www.benzinga.com/quote/DOW/price-targets\n- RBC cut its target to $29 from $32 and kept Sector Perform. — 2026-09-30 — same URL\n- UBS cut its target to $30 from $32 — 2026-09-25 — same URL\n- Mizuho cut its target to $32 from $35 — 2026-10-01 — same URL\n- Barclays initiated at Underweight with a $30 target. — 2026-10-13 — https://www.aries.com/us/en/stocks/DOW/analysts\n- BofA upgraded to Neutral from Underperform and raised its target to $31 from $29. — 2026-10-19 — https://www.aries.com/us/en/stocks/DOW/analysts\n- After earnings, these firms changed targets (2026-10-23):\n  - Wells Fargo raised its target to $40 from $35 and kept Overweight.\n  - RBC raised its target to $32 from $29.\n  - Citi raised its target to $32 from $30.\n  - UBS raised its target to $33 from $30.\n  - Mizuho raised its target to $33 from $32.\n  - Sources: https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings ; https://stockanalysis.com/stocks/dow/ratings/\n- J.P. Morgan (Buy, $40) and Morgan Stanley (Hold, $39) kept their targets. Barclays kept Sell at $30. — 2026-10-23 — https://stockanalysis.com/stocks/dow/ratings/\n- BofA's target is $31 per Aries and $32 per CNN/TipRanks. — 2026-10-23 — https://www.aries.com/us/en/stocks/DOW/analysts ; https://www.cnn.com/markets/stocks/DOW\n- Consensus is Hold with an average target of $34.76 across 20 analysts. — 2026-10-28 — https://stockanalysis.com/stocks/dow/\n\n**3. Litigation and regulation**\n- The securities class action in E.D. Michigan is still pending. It alleges misleading statements about the dividend, and an amended complaint was filed 2026-03-31. The Q3 10-Q shows no new ruling. Five derivative suits are also pending. — 2026-03-31 (amended complaint) — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm\n- Law360 reported that Dow disputed \"repackaged\" claims in a retooled New Jersey pollution suit. — 2026-09-16 — https://www.law360.com/companies/dow-inc\n- The 10-Q reports no material developments in the Union Carbide asbestos matter in the first nine months of 2026. — date unknown — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm\n- I found no new fines, antitrust actions or export-control items in the period.\n\n**4. Customer concentration**\n- I found no customer wins, losses or contract changes in the period, and no concentration disclosure.\n- On the Sadara joint venture, management said it remains engaged with Aramco and that Jim Fitterling leads the negotiation. It has set a \"financial boundary\" around Sadara. — 2026-10-22 — https://www.benzinga.com/news/26/10/62525196/dow-q3-2026-earnings-call-transcript\n- Dow suspended recognition of its share of Sadara equity losses in 2026. — date unknown — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm\n\n**5. Insider activity**\n- CFO Jeffrey Tate's Form 4 shows 25,564 shares disposed to the issuer at $33.99 for tax withholding on settled awards, leaving 93,197 shares. This was not an open-market sale. — 2026-10-26 — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000164/wk-form4_1793220102.xml\n- I found no open-market insider purchases or sales, no 10b5-1 sales and no clustered selling in the period.\n\n**6. Product and competitive news**\n- Dow nominated a cumulative 12 cents/lb of polyethylene price increases for October and November contracts. Executives cited elevated feedstock costs, lower inventories and constrained production from the Iran war. — 2026-10-22 — http://resource-recycling.com/plastics/2026/10/23/dow-bullish-on-pe-pricing-into-2027/\n- Per RBN, the split is 7 c/lb for October and 5 c/lb for November. Management said it expects to achieve both. — 2026-10-22 — https://rbnenergy.com/daily-posts/analyst-insight/q3-2026-earnings-calls-dow-says-closures-will-lead-petchem-recovery\n- Q3 volume fell 1% year over year. Volume was higher in all regions except Asia Pacific, where Middle East conflict impacts are most pronounced. — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000155/exhibit991enrschedules3q26.htm\n- Capacity closures covering 5–6% of global capacity have been announced, including Dow's Böhlen, Germany cracker, due to shut in Q4 2027. — 2026-10-22 — https://rbnenergy.com/daily-posts/analyst-insight/q3-2026-earnings-calls-dow-says-closures-will-lead-petchem-recovery\n- The Path2Zero project in Alberta is about 45% complete. Phase 1 is slated for the end of 2029 and Phase 2 for 2030. — 2026-10-22 — same URL\n- Charles Zimmer, Jr. was named President of Performance Materials & Coatings. — 2026-10-16 — https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000155/exhibit991enrschedules3q26.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dow-20260930.htm",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-dow-beats-q3-2026-estimates-as-shares-rise-premarket-93CH-4966222",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000175178824000144/exhibit991.htm",
+        "https://finance.yahoo.com/quote/DOW/earnings/DOW-Q3-2026-earnings_call-655546.html",
+        "https://www.benzinga.com/news/26/10/62525196/dow-q3-2026-earnings-call-transcript",
+        "https://www.chartmill.com/news/DOW/Chartmill-56612-Dow-NYSEDOW-Q3-EPS-Beat-and-Cost-Actions-Lift-Shares-Despite-In-Line-Revenue",
+        "https://www.prnewswire.com/news-releases/dow-reports-third-quarter-2026-results-302916752.html",
+        "https://news.alphastreet.com/dow-inc-releases-q3-2026-earnings-results/amp/",
+        "https://www.gurufocus.com/news/9140464/dow-maintained-by-citigroup-price-target-raised-to-3200",
+        "https://stockanalysis.com/stocks/dow/",
+        "https://stockanalysis.com/stocks/dow/ratings/",
+        "https://www.cnn.com/markets/stocks/DOW",
+        "https://www.benzinga.com/quote/DOW/price-targets",
+        "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62573425/dow-analysts-increase-their-forecasts-following-better-than-expected-q3-earnings",
+        "https://www.aries.com/us/en/stocks/DOW/analysts",
+        "https://www.basisreport.com/stock/DOW",
+        "https://www.benzinga.com/quote/dow/analyst-ratings",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000134/dow-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000147/dow-20260630.htm",
+        "https://www.law360.com/companies/dow-inc",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000175178826000018/dow-20251231.htm",
+        "https://www.newswire.com/news/lawsuit-update-investors-who-purchased-dow-inc-nyse-dow-shares-should-contact",
+        "https://www.prnewswire.com/news-releases/dow-inc-sued-for-securities-law-violations---contact-the-djs-law-group-to-discuss-your-rights--dow-302592260.html",
+        "https://www.prnewswire.com/news-releases/correction-securities-fraud-class-action-against-dow-inc-302597610.html",
+        "https://finviz.com/insidertrading?oc=1033501",
+        "https://finviz.com/insidertrading.ashx?oc=1751788",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000119312524055895/d518047ddef14a.htm",
+        "https://en.wikipedia.org/wiki/Form_4",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000119312519069293/d502004dex991.htm",
+        "https://www.stocktitan.net/sec-filings/DOW/form-4-dow-inc-insider-trading-activity-1c64e2202106.html",
+        "https://stocktitan.net/sec-filings/XYZ/form-4-block-inc-insider-trading-activity-61920f96c0c3.html",
+        "https://stocktitan.net/sec-filings/BSY/form-4-bentley-systems-inc-insider-trading-activity-ab140a91f556.html",
+        "https://simplywall.st/stocks/hk/media/hkg-8403/dowway-holdings-shares/news/have-dowway-holdings-insiders-been-selling-stock",
+        "https://www.argusmedia.com/en/news-and-insights/latest-market-news/2699642-dow-starts-up-new-lldpe-hdpe-unit-in-freeport",
+        "https://www.plasticsnews.com/news/dow-bringing-new-pe-production-texas-online",
+        "https://www.plasticstoday.com/materials/dow-completes-construction-of-pe-production-facility-in-texas",
+        "https://www.plasticsnews.com/suppliers/materials/pn-dow-polyethylene-price-hike-october-november/",
+        "https://texaschemistry.org/aws/TCC/pt/sd/news_article/596529/_PARENT/TCC_layout_details/false",
+        "https://en.wikipedia.org/wiki/K-Dow_Petrochemicals",
+        "http://resource-recycling.com/plastics/2026/10/23/dow-bullish-on-pe-pricing-into-2027/",
+        "https://www.spglobal.com/commodity-insights/en/news-research/latest-news/chemicals/112823-dow-moving-ahead-with-65-billion-net-zero-ethylene-polyethylene-project-in-canada",
+        "https://rbnenergy.com/daily-posts/analyst-insight/q3-2026-earnings-calls-dow-says-closures-will-lead-petchem-recovery",
+        "https://www.polyestertime.com/dow-polyethylene-prices/",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000164/wk-form4_1793220102.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000141/wk-form4_1783369076.xml",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000119312526153769/d103960d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000119312526082583/dow-20260227.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000119312526296205/d26391d8ka.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001751788/000175178826000160/dowinc-q39302026ex322.htm",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000119312526153769/d103960dex991.htm",
+        "https://uk.investing.com/news/stock-market-news/form-4-dow-inc-jeffrey-l-tate-cfo-for-26-october-93CH-4939741",
+        "https://www.globalsecurity.org/military/library/news/2026/07/dod-contracts_4554053.htm",
+        "https://www.esi.mil/",
+        "https://www.hklaw.com/en/insights/publications/2026/09/dow-memo-signals-major-push-toward-commercial-accounting",
+        "https://www.govconwire.com/articles/air-200m-dow-contract-army-ngc2-software",
+        "https://www.executivegov.com/articles/dow-unbiased-ai-procurement-guidance-llm-contracts-2",
+        "https://en.wikipedia.org/wiki/Dowlais_Group",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000175178819000023/dowinc-q2x6302019.htm",
+        "https://www.sec.gov/Archives/edgar/data/1751788/000175178825000145/dow-20250630.htm"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Dow rates Sell on thin margins, negative free cash flow and a stretched balance sheet despite a Q3 beat.",
+    "thesis": "Dow scores 36, a Sell, held down mainly by weak quality and balance sheet factors. Gross margin is just 6.4%, FCF margin is -0.6%, the diluted share count is up 2.0% year on year, and cash covers only 0.24 of debt while FCF is negative. Growth is mixed: latest-quarter revenue growth of 13.0% year on year sits against a TTM revenue decline of 7.7%. Valuation scores 28: P/S of 0.6 is low in absolute terms, but the FCF yield is 5.9 pp below the 10-year Treasury yield, and P/S sits near the middle of the last 61 month-ends (cheaper than at 34, more expensive than at 27). Trend (53) and news (61) are firmer, helped by a Q3 beat, polyethylene price increases and the price 14.4% above its 50-day average, but they do not offset the fundamentals.",
+    "key_risks": [
+      "Negative free cash flow alongside net debt, with cash covering only 0.24 of debt",
+      "Very thin gross margin of 6.4% leaves little cushion if chemical pricing weakens",
+      "Q3 volume slipped 1% with weakness in Asia Pacific, and Q4 EBITDA guided flat at about $1.5B",
+      "Pending securities class action and derivative suits, plus unresolved Sadara joint venture talks with Aramco",
+      "Shares 20.9 pp behind SPY over the last 126 trading days and 18.5% below the 52-week high"
+    ],
+    "what_would_change": [
+      "A 9-point score gain would lift the rating to Hold, most likely via a return to positive free cash flow that improves quality, balance sheet and valuation scores",
+      "Delivery of the $700 million Transform to Outperform benefits and the planned polyethylene price increases, turning the TTM revenue decline into growth",
+      "A 7-point drop would mean Strong Sell, for example if the recent price strength fades and the trend score falls or guidance turns negative",
+      "Further debt build or more share dilution would weigh further on the balance sheet and quality scores"
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2093,
+        "output_tokens": 676,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2093,
+            "output_tokens": 676,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0219,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 108786,
+        "output_tokens": 3435,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 108786,
+            "output_tokens": 3435,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3219,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7784,
+        "output_tokens": 2649,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7784,
+            "output_tokens": 2649,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0841,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3846,
+        "output_tokens": 730,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3846,
+            "output_tokens": 730,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.03,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4579,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 34.13,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 33.78
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:31",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

@@ -1,0 +1,1695 @@
+{
+  "run_id": "2026-10-29T12:35:37Z",
+  "generated_at": "2026-10-29T13:01:51+00:00",
+  "ticker": "VLO",
+  "sec_ticker": "VLO",
+  "cik": "0001035002",
+  "name": "VALERO ENERGY CORP/TX",
+  "sector": "Petroleum Refining",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 67,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Balance sheet"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: FCF margin, stock comp. / revenue, P/FCF, FCF yield vs 10y"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/FCF 18 month-ends (needs 24)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 67 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 13
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 67,
+    "raw": 66.67,
+    "weights_used": {
+      "growth": 0.2222,
+      "quality": 0.2222,
+      "valuation": 0.2222,
+      "trend": 0.1667,
+      "news_risk": 0.1667
+    },
+    "available": [
+      "growth",
+      "quality",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 43.3,
+          "score": 97.8,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 24.58,
+          "score": 81.1,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -5.5,
+          "score": 22.5,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 74,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 12.28,
+          "score": 3.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 11.46,
+          "score": 46.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-09-30"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": -7.77,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.6,
+      "score": 46,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 1.15,
+          "score": 82.9,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.707,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": 6.093,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": 95.1,
+          "score": 4.9,
+          "weight": 0.1,
+          "note": "cheaper than now in 95.1% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 18 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": 41.0,
+          "score": 59.0,
+          "weight": 0.15,
+          "note": "cheaper than now in 41% of 61 month-ends (ranked on yields)"
+        }
+      },
+      "coverage": 0.5,
+      "score": 69,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -1.82,
+          "score": 40.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 36.97,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 127.22,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 46.87,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 46.04,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -15.51,
+          "score": 47.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 83,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 65,
+      "metrics": {
+        "guidance": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 388.48,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerIncludingAssessedTax",
+    "latest_quarter_end": "2026-09-30",
+    "revenue_q": 46098000000.0,
+    "revenue_yoy_q": 43.3,
+    "revenue_yoy_q_prev": 48.8,
+    "acceleration_pp": -5.5,
+    "ttm_end": "2026-09-30",
+    "revenue_ttm": 153327000000.0,
+    "revenue_yoy_ttm": 24.58,
+    "gross_profit_ttm": 18832000000.0,
+    "operating_income_ttm": 17575000000.0,
+    "operating_cash_flow_ttm": 15959000000.0,
+    "capex_ttm": null,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfRevenue",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": null,
+    "gross_margin_pct": 12.28,
+    "operating_margin_pct": 11.46,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-09-30"
+    },
+    "prepayments": {
+      "increase": 20000000.0,
+      "source": "balance sheet: contract 2025-09-30 to 2026-09-30",
+      "base": 62000000.0,
+      "base_date": "2025-09-30",
+      "revenue_growth_pct": 24.58,
+      "expected": 15242193.53056365,
+      "excess": 4757806.469436349,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.0003
+    },
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-09-30",
+      "cash": 9840000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 9840000000.0,
+      "debt": 8579000000.0,
+      "debt_tags": [
+        "DebtLongtermAndShorttermCombinedAmount"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtLongtermAndShorttermCombinedAmount",
+          "val": 8579000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -1261000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 285000000.0,
+    "diluted_shares_end": "2026-09-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -7.77,
+    "shares_outstanding": {
+      "val": 278884400.0,
+      "end": "2026-10-23",
+      "filed": "2026-10-28",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-12-31",
+        "revenue": 35414000000.0,
+        "revenue_yoy_pct": -15.17,
+        "operating_margin_pct": 4.39,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 31759000000.0,
+        "revenue_yoy_pct": -12.84,
+        "operating_margin_pct": 5.29,
+        "fcf": 1185000000.0,
+        "diluted_shares": 331000000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 34490000000.0,
+        "revenue_yoy_pct": -0.06,
+        "operating_margin_pct": 3.54,
+        "fcf": 2052000000.0,
+        "diluted_shares": 324000000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 32876000000.0,
+        "revenue_yoy_pct": -14.39,
+        "operating_margin_pct": 1.54,
+        "fcf": 866000000.0,
+        "diluted_shares": 318000000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 30756000000.0,
+        "revenue_yoy_pct": -13.15,
+        "operating_margin_pct": 1.13,
+        "fcf": 523000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 30258000000.0,
+        "revenue_yoy_pct": -4.73,
+        "operating_margin_pct": -2.97,
+        "fcf": 293000000.0,
+        "diluted_shares": 314000000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 29889000000.0,
+        "revenue_yoy_pct": -13.34,
+        "operating_margin_pct": 3.34,
+        "fcf": 529000000.0,
+        "diluted_shares": 312000000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 32168000000.0,
+        "revenue_yoy_pct": -2.15,
+        "operating_margin_pct": 4.69,
+        "fcf": 1472000000.0,
+        "diluted_shares": 309000000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 30372000000.0,
+        "revenue_yoy_pct": -1.25,
+        "operating_margin_pct": 5.19,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 32381000000.0,
+        "revenue_yoy_pct": 7.02,
+        "operating_margin_pct": 5.35,
+        "fcf": null,
+        "diluted_shares": 298000000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 44476000000.0,
+        "revenue_yoy_pct": 48.8,
+        "operating_margin_pct": 11.68,
+        "fcf": null,
+        "diluted_shares": 294000000.0
+      },
+      {
+        "end": "2026-09-30",
+        "revenue": 46098000000.0,
+        "revenue_yoy_pct": 43.3,
+        "operating_margin_pct": 19.68,
+        "fcf": null,
+        "diluted_shares": 285000000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 388.48,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 278884400.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-10-23"
+    },
+    "market_cap": 108341011712.0,
+    "enterprise_value": 107080011712.0,
+    "price_to_sales": 0.707,
+    "price_to_fcf": null,
+    "ev_to_ebit": 6.093,
+    "sales_yield_pct": 141.523,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": 16.413,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 0.333,
+        "price_to_fcf": null,
+        "ev_to_ebit": 615.54,
+        "sales_yield_pct": 300.083,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 0.162
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 0.288,
+        "price_to_fcf": null,
+        "ev_to_ebit": 551.311,
+        "sales_yield_pct": 346.66,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 0.181
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 0.324,
+        "price_to_fcf": null,
+        "ev_to_ebit": 601.816,
+        "sales_yield_pct": 308.952,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 0.166
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 0.358,
+        "price_to_fcf": null,
+        "ev_to_ebit": 650.405,
+        "sales_yield_pct": 279.684,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 0.154
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.298,
+        "price_to_fcf": 9.994,
+        "ev_to_ebit": 19.632,
+        "sales_yield_pct": 335.339,
+        "fcf_yield_pct": 10.006,
+        "ebit_yield_pct": 5.094
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.363,
+        "price_to_fcf": 12.151,
+        "ev_to_ebit": 23.077,
+        "sales_yield_pct": 275.795,
+        "fcf_yield_pct": 8.23,
+        "ebit_yield_pct": 4.333
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.345,
+        "price_to_fcf": null,
+        "ev_to_ebit": 12.928,
+        "sales_yield_pct": 289.582,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.735
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.401,
+        "price_to_fcf": null,
+        "ev_to_ebit": 14.697,
+        "sales_yield_pct": 249.094,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 6.804
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.329,
+        "price_to_fcf": null,
+        "ev_to_ebit": 12.421,
+        "sales_yield_pct": 303.75,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.051
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.288,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.082,
+        "sales_yield_pct": 347.715,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 19.679
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.304,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.341,
+        "sales_yield_pct": 328.862,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 18.723
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.277,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.921,
+        "sales_yield_pct": 360.471,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 20.319
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.287,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.206,
+        "sales_yield_pct": 348.293,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 23.775
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.306,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.448,
+        "sales_yield_pct": 327.258,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 22.48
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.29,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.245,
+        "sales_yield_pct": 344.697,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 23.555
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.32,
+        "price_to_fcf": null,
+        "ev_to_ebit": 4.641,
+        "sales_yield_pct": 312.277,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 21.548
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.296,
+        "price_to_fcf": 5.303,
+        "ev_to_ebit": 3.604,
+        "sales_yield_pct": 338.125,
+        "fcf_yield_pct": 18.857,
+        "ebit_yield_pct": 27.748
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.313,
+        "price_to_fcf": 5.62,
+        "ev_to_ebit": 3.802,
+        "sales_yield_pct": 319.063,
+        "fcf_yield_pct": 17.794,
+        "ebit_yield_pct": 26.299
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.243,
+        "price_to_fcf": null,
+        "ev_to_ebit": 2.498,
+        "sales_yield_pct": 411.881,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 40.038
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.227,
+        "price_to_fcf": null,
+        "ev_to_ebit": 2.344,
+        "sales_yield_pct": 441.24,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 42.658
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.248,
+        "price_to_fcf": null,
+        "ev_to_ebit": 2.551,
+        "sales_yield_pct": 402.646,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 39.208
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.294,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.362,
+        "sales_yield_pct": 340.517,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 29.742
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.296,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.386,
+        "sales_yield_pct": 337.922,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 29.533
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.323,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.67,
+        "sales_yield_pct": 309.76,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 27.248
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.293,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.263,
+        "sales_yield_pct": 340.902,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 30.645
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.29,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.224,
+        "sales_yield_pct": 345.362,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 31.018
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.3,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.335,
+        "sales_yield_pct": 333.035,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 29.986
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.321,
+        "price_to_fcf": null,
+        "ev_to_ebit": 3.548,
+        "sales_yield_pct": 311.696,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 28.188
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 0.345,
+        "price_to_fcf": 6.828,
+        "ev_to_ebit": 4.531,
+        "sales_yield_pct": 289.907,
+        "fcf_yield_pct": 14.645,
+        "ebit_yield_pct": 22.07
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 0.416,
+        "price_to_fcf": 8.239,
+        "ev_to_ebit": 5.401,
+        "sales_yield_pct": 240.261,
+        "fcf_yield_pct": 12.137,
+        "ebit_yield_pct": 18.514
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.378,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.947,
+        "sales_yield_pct": 264.728,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 16.815
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.371,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.852,
+        "sales_yield_pct": 269.327,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 17.089
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.37,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.839,
+        "sales_yield_pct": 269.98,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 17.127
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.374,
+        "price_to_fcf": null,
+        "ev_to_ebit": 6.976,
+        "sales_yield_pct": 267.317,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 14.334
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.339,
+        "price_to_fcf": null,
+        "ev_to_ebit": 6.366,
+        "sales_yield_pct": 294.627,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 15.709
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.312,
+        "price_to_fcf": null,
+        "ev_to_ebit": 5.889,
+        "sales_yield_pct": 320.155,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 16.979
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.307,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.959,
+        "sales_yield_pct": 326.047,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.162
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 0.329,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.556,
+        "sales_yield_pct": 304.198,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.464
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 0.29,
+        "price_to_fcf": null,
+        "ev_to_ebit": 8.499,
+        "sales_yield_pct": 345.117,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 11.766
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 0.314,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.166,
+        "sales_yield_pct": 318.104,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.909
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 0.324,
+        "price_to_fcf": 9.1,
+        "ev_to_ebit": 12.123,
+        "sales_yield_pct": 308.542,
+        "fcf_yield_pct": 10.989,
+        "ebit_yield_pct": 8.249
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 0.327,
+        "price_to_fcf": 9.193,
+        "ev_to_ebit": 12.238,
+        "sales_yield_pct": 305.412,
+        "fcf_yield_pct": 10.878,
+        "ebit_yield_pct": 8.171
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 0.284,
+        "price_to_fcf": 9.762,
+        "ev_to_ebit": 34.308,
+        "sales_yield_pct": 352.187,
+        "fcf_yield_pct": 10.244,
+        "ebit_yield_pct": 2.915
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 0.315,
+        "price_to_fcf": 10.845,
+        "ev_to_ebit": 37.747,
+        "sales_yield_pct": 317.014,
+        "fcf_yield_pct": 9.221,
+        "ebit_yield_pct": 2.649
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 0.329,
+        "price_to_fcf": 11.304,
+        "ev_to_ebit": 39.202,
+        "sales_yield_pct": 304.161,
+        "fcf_yield_pct": 8.847,
+        "ebit_yield_pct": 2.551
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 0.346,
+        "price_to_fcf": 19.376,
+        "ev_to_ebit": 49.027,
+        "sales_yield_pct": 288.928,
+        "fcf_yield_pct": 5.161,
+        "ebit_yield_pct": 2.04
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 0.383,
+        "price_to_fcf": 21.451,
+        "ev_to_ebit": 53.845,
+        "sales_yield_pct": 260.988,
+        "fcf_yield_pct": 4.662,
+        "ebit_yield_pct": 1.857
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 0.429,
+        "price_to_fcf": 24.026,
+        "ev_to_ebit": 59.826,
+        "sales_yield_pct": 233.013,
+        "fcf_yield_pct": 4.162,
+        "ebit_yield_pct": 1.672
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 0.426,
+        "price_to_fcf": 18.599,
+        "ev_to_ebit": 28.657,
+        "sales_yield_pct": 234.895,
+        "fcf_yield_pct": 5.377,
+        "ebit_yield_pct": 3.49
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.444,
+        "price_to_fcf": 19.389,
+        "ev_to_ebit": 29.796,
+        "sales_yield_pct": 225.327,
+        "fcf_yield_pct": 5.158,
+        "ebit_yield_pct": 3.356
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.409,
+        "price_to_fcf": 17.857,
+        "ev_to_ebit": 27.587,
+        "sales_yield_pct": 244.664,
+        "fcf_yield_pct": 5.6,
+        "ebit_yield_pct": 3.625
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.456,
+        "price_to_fcf": 19.901,
+        "ev_to_ebit": 30.534,
+        "sales_yield_pct": 219.527,
+        "fcf_yield_pct": 5.025,
+        "ebit_yield_pct": 3.275
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.515,
+        "price_to_fcf": null,
+        "ev_to_ebit": 21.002,
+        "sales_yield_pct": 194.021,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 4.761
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.622,
+        "price_to_fcf": null,
+        "ev_to_ebit": 25.124,
+        "sales_yield_pct": 160.695,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 3.98
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.603,
+        "price_to_fcf": null,
+        "ev_to_ebit": 13.546,
+        "sales_yield_pct": 165.819,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.382
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.585,
+        "price_to_fcf": null,
+        "ev_to_ebit": 13.148,
+        "sales_yield_pct": 171.075,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.606
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 0.622,
+        "price_to_fcf": null,
+        "ev_to_ebit": 13.949,
+        "sales_yield_pct": 160.815,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 7.169
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 0.66,
+        "price_to_fcf": null,
+        "ev_to_ebit": 9.312,
+        "sales_yield_pct": 151.531,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 10.739
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 0.757,
+        "price_to_fcf": null,
+        "ev_to_ebit": 10.663,
+        "sales_yield_pct": 132.102,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 9.378
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 0.818,
+        "price_to_fcf": null,
+        "ev_to_ebit": 11.506,
+        "sales_yield_pct": 122.324,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 8.691
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 0.722,
+        "price_to_fcf": null,
+        "ev_to_ebit": 6.228,
+        "sales_yield_pct": 138.486,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": 16.057
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.707,
+        "current_yield_pct": 141.523,
+        "points": 61,
+        "median": 0.329,
+        "low": 0.227,
+        "high": 0.818,
+        "negative_points": 0,
+        "median_yield_pct": 304.198,
+        "percentile": 95.1,
+        "cheaper_points": 58,
+        "dearer_points": 3,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 18,
+        "median": 11.069,
+        "low": 5.303,
+        "high": 24.027,
+        "negative_points": 0,
+        "median_yield_pct": 9.034,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 6.093,
+        "current_yield_pct": 16.413,
+        "points": 61,
+        "median": 9.167,
+        "low": 2.344,
+        "high": 649.351,
+        "negative_points": 0,
+        "median_yield_pct": 10.909,
+        "percentile": 41.0,
+        "cheaper_points": 25,
+        "dearer_points": 36,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "middle",
+      "text": "near the middle of its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 58 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "18 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": "middle",
+          "phrase": "near the middle of the last 61 month-ends (cheaper than at 36, more expensive than at 25)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 388.48,
+    "date": "2026-10-28",
+    "ma50": 395.68,
+    "ma200": 283.63,
+    "vs_ma50_pct": -1.82,
+    "vs_ma200_pct": 36.97,
+    "momentum_12_1_pct": 127.22,
+    "high_52w": 459.78,
+    "drawdown_52w_pct": -15.51,
+    "return_rs_pct": 55.95,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 46.87,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 46.04
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001628280-26-066795",
+    "filing_date": "2026-10-22",
+    "period_end": "2026-09-30",
+    "period_source": "companyfacts",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026066795/a9302026exh9901earningsrel.htm",
+    "summary": "",
+    "read": true,
+    "guidance": [],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-050822",
+      "filing_date": "2026-07-30",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026050822/a6302026exh9901earningsrel.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 1,
+        "summary": "Valero's Q3 2026 adjusted EPS of $23.90 beat consensus of about $20.90, and revenue also came in above expectations. Q4 throughput guidance is modestly below Q3, and 2026 capex of about $2B was reiterated.",
+        "evidence": [
+          {
+            "claim": "Q3 2026 net income was $6.8 billion, or $23.89 per share; adjusted net income was $23.90 per share.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 0/0"
+          },
+          {
+            "claim": "Valero's results topped Q3 2026 estimates, with Q4 throughput guided at 2.875M-2.975M bpd.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-valero-tops-q3-2026-estimates-as-shares-fall-93CH-4966833",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Valero guided Q4 refinery runs at 96%-99% of capacity after a record quarterly profit.",
+            "url": "https://energynow.com/2026/10/us-refiner-valero-posts-record-quarterly-profit-as-supply-disruptions-boost-margins/",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Most brokers raised price targets in October, including Barclays, Citigroup, Wells Fargo, Mizuho and TD Cowen. Against that, Jefferies trimmed its target and Freedom Broker downgraded the stock to Sell.",
+        "evidence": [
+          {
+            "claim": "Barclays raised its Valero price target from $441 to $443 with an Overweight rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-target-raised-at-barclays-2026-10-23/",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Bank of America raised its Valero price target from $395 to $414.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-expected-to-rise-bank-of-america-analyst-says-2026-10-02/",
+            "event_date": "2026-10-02",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 27,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Jefferies cut its Valero price target from $401 to $394.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-price-target-cut-to-39400-by-analysts-at-jefferies-financial-group-2026-10-08/",
+            "event_date": "2026-10-08",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "TD Cowen raised its target from $375 to $400; consensus rating is Moderate Buy with average target $379.94.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 2/3, names 4/4 · missing: 375"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No Valero-specific lawsuits or enforcement actions turned up. The only items are industry-wide policy moves: EPA's proposal on small-refinery-exemption reallocations and a Jones Act waiver for Russian products.",
+        "evidence": [
+          {
+            "claim": "EPA proposed revising small refinery exemption reallocations, considering splitting volume between 2026 and 2027.",
+            "url": "https://legis1.com/news/renewable-fuel-standard-valero-lobbies-on-rfs",
+            "event_date": "2026-10-13",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No material customer news was found in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No open-market insider buys or sells were found in the window.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Valero earned a record refining margin of $39.24/bbl on supply disruptions, and its renewable diesel segment swung back to profit. It also completed the St. Charles FCC optimization project.",
+        "evidence": [
+          {
+            "claim": "Refining margin was $39.24 per barrel versus $13.14 a year earlier, a record quarterly profit amid supply disruptions.",
+            "url": "https://energynow.com/2026/10/us-refiner-valero-posts-record-quarterly-profit-as-supply-disruptions-boost-margins/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Renewable diesel operating income was $353 million in Q3 versus a loss a year earlier.",
+            "url": "https://oilprice.com/Company-News/Valero-Q3-Earnings-Surge-Sixfold-to-68-Billion-on-Refining-Boom.html",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          },
+          {
+            "claim": "The St. Charles FCC optimization project was completed on schedule and within budget.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n\n- Q3 adjusted EPS was $23.90 and net income was $6.8B ($23.89/share). — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm\n- The result beat consensus. Sources give consensus EPS of about $20.90 (Investing.com preview) or $20.90–$21.28 (Tickeron). Revenue was $46.1B against about $43.4B expected. — 2026-10-22 — https://www.investing.com/news/earnings/valero-earnings-loom-as-refining-margins-hit-record-highs-93CH-4963615 ; https://x.com/Tickeron/article/2113584309374201935\n- The 2026 capex guidance of about $2B was reiterated. This is up from the $1.7B guided on the Q1 call. — 2026-10-22 — https://www.fool.com/earnings/call-transcripts/2026/10/22/valero-vlo-q3-2026-earnings-call-transcript/ ; https://s23.q4cdn.com/587626645/files/doc_earnings/2026/q1/generic/VLO-Guidance-1Q26.pdf\n- Q4 refining throughput guidance is below Q3's 3.0M bpd. The sources show it in different forms:\n  - 2.875M–2.975M bpd — https://www.investing.com/news/transcripts/earnings-call-transcript-valero-tops-q3-2026-estimates-as-shares-fall-93CH-4966833\n  - Runs at 96%–99% of capacity — https://energynow.com/2026/10/us-refiner-valero-posts-record-quarterly-profit-as-supply-disruptions-boost-margins/\n  - A Reuters headline on TradingView says 80%–83%, which conflicts with the other two. I couldn't see its text. — https://www.tradingview.com/news/reuters.com,2026:newsml_FWN4682AG:0-valero-to-run-refineries-between-80-to-83-of-capacity-in-q4-conf-call/\n- Other Q4 guidance: Gulf Coast throughput of 1.855M–1.905M bpd, refining cash opex of about $4.85/bbl, and net interest expense of about $135M. — 2026-10-22 — https://finance.yahoo.com/energy/articles/valero-q3-earnings-call-highlights-120300874.html\n- The Port Arthur DHT unit repair is not in guidance. Mechanical completion is expected at year-end. — 2026-10-22 — https://finance.yahoo.com/energy/articles/valero-energy-corp-vlo-q3-210627602.html\n- Shares fell after the report. They closed at $387.34 on 10-27, down 9.24%. The article says no single headline explains the drop. — 2026-10-27 — https://247wallst.com/investing/2026/10/28/refiner-stocks-just-had-their-worst-day-since-the-tariff-shock/\n\n## 2. Analyst actions\n\n- UBS reiterated Buy with a $467 target. — 2026-10-06 — https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/\n- Barclays (Overweight):\n  - Raised its target from $323 to $441. — 2026-10-06 — https://tickernerd.com/stock/vlo-forecast/\n  - Raised it from $441 to $443. — 2026-10-23 — https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-target-raised-at-barclays-2026-10-23/\n- Bank of America (Neutral):\n  - Raised its target from $395 to $414. — 2026-10-02 — https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-expected-to-rise-bank-of-america-analyst-says-2026-10-02/\n  - A TipRanks feed lists a cut from $471 to $465 on 2026-10-23. This conflicts with the $414 figure and I couldn't verify it. — https://www.cnn.com/markets/stocks/VLO\n- Mizuho (Neutral) raised its target from $300 to $434. — 2026-10-08 — https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/\n- Jefferies (Hold) cut its target from $401 to $394. — 2026-10-08 — https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-price-target-cut-to-39400-by-analysts-at-jefferies-financial-group-2026-10-08/\n- Evercore ISI (In-Line) raised its target from $325 to $385. — 2026-10-12 — https://tickernerd.com/stock/vlo-forecast/\n- Citigroup (Neutral):\n  - Raised its target from $302 to $485. — 2026-10-13\n  - Raised it from $485 to $490. — 2026-10-23\n  - https://www.marketbeat.com/instant-alerts/price-valero-energy-nyse-vlo-stock-price-up-17-after-analyst-upgrade-2026-10-26/ ; https://tickernerd.com/stock/vlo-forecast/\n- Wells Fargo (Overweight):\n  - Raised its target from $389 to $485. — 2026-10-14\n  - Raised it from $485 to $489. — 2026-10-23\n  - https://tickernerd.com/stock/vlo-forecast/ ; https://www.marketbeat.com/instant-alerts/filing-valero-energy-corporation-vlo-stock-sold-by-conning-inc-2026-10-29/\n- Raymond James raised its target from $450 to $530. The date is unknown, but the feed places it in the days around 10-13. — https://www.cnn.com/markets/stocks/VLO\n- TD Cowen (Hold) raised its target from $375 to $400. — 2026-10-22 — https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/\n- Freedom Broker downgraded the stock to Sell with a $276 target. — 2026-10-23 — https://tickernerd.com/stock/vlo-forecast/\n- Weiss Ratings upgraded the stock from B to B+. — 2026-10-08 — https://www.marketbeat.com/instant-alerts/price-valero-energy-nyse-vlo-stock-price-up-17-after-analyst-upgrade-2026-10-26/\n- MarketBeat's consensus is \"Moderate Buy\" with an average target of $379.94 across 21 brokerages. — 2026-10-26 — https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/\n\n## 3. Litigation and regulation\n\n- EPA proposed revising its small-refinery-exemption reallocations for the Renewable Fuel Standard. It is considering splitting the extra exempted volume between the 2026 and 2027 compliance years. This is industry-wide, not Valero-specific. — 2026-10-13 — https://legis1.com/news/renewable-fuel-standard-valero-lobbies-on-rfs\n- A Trump executive order waived Graham Act (Jones Act) restrictions for Russian petroleum products, which raises concern about Russian diesel imports. — 2026-10-16 — https://finance.yahoo.com/energy/articles/valero-windfall-quarter-meets-washington-142000637.html\n- Valero reported $820K of Q3 lobbying on the RFS and energy taxes. — date unknown (Q3 2026 filing) — https://legis1.com/news/renewable-fuel-standard-valero-lobbies-on-rfs\n- I found no new lawsuits, investigations, fines or export-control actions against Valero in the window.\n\n## 4. Customer concentration\n\n- Nothing material found in the window. No large customer wins, losses or contract changes were reported.\n\n## 5. Insider activity\n\n- No open-market insider purchases or sales were found with transaction dates in 2026-09-29 to 2026-10-29. Alpha Spread shows no insider buying or selling in the last 3 months. — date unknown — https://www.alphaspread.com/security/nyse/vlo/ownership/block/insider-trading\n- Director Matthew Audette filed a Form 3/A showing 115 shares held through a trust. The event date is unknown. — https://www.stocktitan.net/overview/VLO/\n- Just before the window, two director Form 4s were non-open-market. Reymond exercised units (924 shares) on 2026-09-18, and Audette received an option award of 372 on 2026-09-17. — https://www.secform4.com/insider-trading/1035002.htm\n- The most recent open-market sale found was SVP Eric Fisher, who sold 7,500 shares at about $268 on 2026-06-29. That is outside the window. — https://www.sec.gov/Archives/edgar/data/0001035002/000162828026046225/wk-form4_1782850097.xml\n- GuruFocus reports $9.4M of insider sales and no purchases over 12 months. — date unknown — https://www.gurufocus.com/news/9137513/valero-energy-vlo-reports-strong-q3-2026-results-amid-significant-overvaluation-concerns\n\n## 6. Product and competitive news\n\n- The $230M St. Charles FCC optimization was completed on schedule and within budget. It raises output of alkylate and gasoline. — Q3 2026 (exact date unknown) — https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm\n- The refining margin was $39.24/bbl, against $13.14 a year earlier. Reuters attributes this to Middle East and Ukraine supply disruptions. — 2026-10-22 — https://energynow.com/2026/10/us-refiner-valero-posts-record-quarterly-profit-as-supply-disruptions-boost-margins/\n- Renewable diesel (Diamond Green Diesel) earned $353M operating income, against a $28M loss a year earlier. Ethanol production hit a record 4.8M gal/day. — 2026-10-22 — https://oilprice.com/Company-News/Valero-Q3-Earnings-Surge-Sixfold-to-68-Billion-on-Refining-Boom.html ; https://www.gurufocus.com/news/9137692/valero-energy-corp-vlo-q3-2026-earnings-call-highlights-net-income-surges-to-68-billion-on-record-refining-throughput-and-renewable-diesel-turnaround\n- The Benicia refinery stopped fuel production and is idled, with imports supplying California. This was reported about 2026-05. — https://www.argusmedia.com/en/news-and-insights/latest-market-news/2821046-valero-ends-fuel-production-at-benicia-refinery\n- Sentiment risk: Investor Michael Burry is reportedly considering selling or reducing long-held positions, including Valero. — date unknown — https://www.marketbeat.com/instant-alerts/filing-valero-energy-corporation-vlo-stock-sold-by-oppenheimer-co-inc-2026-10-27/",
+      "urls": [
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-valero-tops-q3-2026-estimates-as-shares-fall-93CH-4966833",
+        "https://www.gurufocus.com/news/9137513/valero-energy-vlo-reports-strong-q3-2026-results-amid-significant-overvaluation-concerns",
+        "https://x.com/Tickeron/article/2113584309374201935",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm",
+        "https://www.nasdaq.com/press-release/valero-energy-reports-third-quarter-2026-results-2026-10-22",
+        "https://oilprice.com/Company-News/Valero-Q3-Earnings-Surge-Sixfold-to-68-Billion-on-Refining-Boom.html",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026050822/a6302026exh9901earningsrel.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026067679/vlo-20260930.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026028602/a3312026exh9901earningsrel.htm",
+        "https://www.gurufocus.com/news/9137692/valero-energy-corp-vlo-q3-2026-earnings-call-highlights-net-income-surges-to-68-billion-on-record-refining-throughput-and-renewable-diesel-turnaround",
+        "https://www.marketbeat.com/instant-alerts/consensus-valero-energy-corporation-nyse-vlo-stock-has-average-price-target-of-37994-according-to-analysts-2026-10-26/",
+        "https://www.cnn.com/markets/stocks/VLO",
+        "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-target-raised-at-barclays-2026-10-23/",
+        "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-price-target-cut-to-39400-by-analysts-at-jefferies-financial-group-2026-10-08/",
+        "https://www.marketbeat.com/instant-alerts/price-valero-energy-nyse-vlo-stock-price-up-17-after-analyst-upgrade-2026-10-26/",
+        "https://www.marketbeat.com/instant-alerts/analyst-valero-energy-nyse-vlo-stock-price-expected-to-rise-bank-of-america-analyst-says-2026-10-02/",
+        "https://www.defenseworld.net/2026/10/26/valero-energy-corporation-nysevlo-stock-has-average-price-target-of-379-94-according-to-analysts.html",
+        "https://tickernerd.com/stock/vlo-forecast/",
+        "https://intellectia.ai/stock/VLO/forecast",
+        "https://www.epa.gov/enforcement/valero-energy-corporation-et-al-clean-air-act-settlement",
+        "https://www.eenews.net/articles/epa-fines-valero-refinery-in-california-and-takes-a-dig-at-gas-prices/",
+        "https://en.wikipedia.org/wiki/Benicia_Refinery",
+        "https://legis1.com/news/renewable-fuel-standard-valero-lobbies-on-rfs",
+        "https://www.sec.gov/Archives/edgar/data/0001627223/000162722326000024/cc-20260630.htm",
+        "https://www.epa.gov/newsreleases/epa-orders-valero-refining-improve-chemical-safety-benicia-ca-refinery",
+        "https://www.climatecasechart.com/collections/valero-renewable-fuels-co-v-epa_8a1b60",
+        "https://www.theadvocate.com/baton_rouge/news/courts/article_69fa64d0-155a-11eb-8b44-575b83218130.html",
+        "https://finance.yahoo.com/news/california-refinery-closures-seen-us-234500380.html",
+        "https://www.epa.gov/newsreleases/epa-fines-valero-wilmington-refinery-chemical-safety-violations",
+        "https://www.benzinga.com/insights/news/26/05/52415029/valero-energy-director-trades-72k-in-company-stock",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026046225/wk-form4_1782850097.xml",
+        "https://www.secform4.com/insider-trading/1035002.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000101553797000005/0001015537-97-000005.txt",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000101554397000001/0001015543-97-000001.txt",
+        "http://openinsider.com/VLO",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000104303700000001/0001043037-00-000001.txt",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000104307500000001/0001043075-00-000001.txt",
+        "https://www.secform4.com/insider-holders/1035002.html",
+        "https://www.stocktitan.net/sec-filings/VLO/form-4-valero-energy-corp-tx-insider-trading-activity-82c49d079325.html",
+        "https://en.wikipedia.org/wiki/Valero_Energy",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000095012900002933/0001.txt",
+        "https://www.argusmedia.com/en/news-and-insights/latest-market-news/2821046-valero-ends-fuel-production-at-benicia-refinery",
+        "https://www.sec.gov/Archives/edgar/data/0001035002/000095012900003405/e424b5.txt",
+        "https://contracosta.news/2025/04/16/valero-to-idle-benicia-refinery/",
+        "https://www.gov.ca.gov/2026/01/06/governor-newsoms-statement-on-valeros-benicia-refinery-update/",
+        "https://www.kqed.org/science/2000877/californias-fuel-fears-threaten-benicias-just-transition-to-green-economy",
+        "https://www.panabee.com/news/valero-energy-earnings-q3-2026-report",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-valero-beats-q4-2025-forecasts-stock-dips-93CH-4481008",
+        "https://www.fool.com/earnings/call-transcripts/2026/10/22/valero-vlo-q3-2026-earnings-call-transcript/",
+        "https://finance.yahoo.com/energy/articles/valero-q3-earnings-call-highlights-120300874.html",
+        "https://finance.yahoo.com/energy/articles/valero-energy-q3-earnings-call-020353613.html",
+        "https://s23.q4cdn.com/587626645/files/doc_earnings/2026/q1/generic/VLO-Guidance-1Q26.pdf",
+        "https://finance.yahoo.com/energy/articles/valero-energy-corp-vlo-q3-210627602.html",
+        "https://finance.biggo.com/news/US_VLO_2026-10-22",
+        "https://www.tradingkey.com/news/transcripts/262233514-tradingkey",
+        "https://www.marketbeat.com/instant-alerts/valero-energy-q4-earnings-call-highlights-2026-01-30/?.tsrc=rss",
+        "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN4682AG:0-valero-to-run-refineries-between-80-to-83-of-capacity-in-q4-conf-call/",
+        "https://finance.yahoo.com/energy/articles/valero-windfall-quarter-meets-washington-142000637.html",
+        "https://www.investing.com/news/earnings/valero-earnings-loom-as-refining-margins-hit-record-highs-93CH-4963615",
+        "https://boereport.com/2026/10/22/valero-kicks-off-refiner-results-with-record-quarterly-profit-on-higher-margins/",
+        "https://www.distillintelligence.com/news/valero",
+        "https://energynow.com/2026/10/us-refiner-valero-posts-record-quarterly-profit-as-supply-disruptions-boost-margins/",
+        "https://247wallst.com/investing/2026/10/28/refiner-stocks-just-had-their-worst-day-since-the-tariff-shock/",
+        "https://247wallst.com/investing/2026/10/23/valeros-refining-margins-nearly-tripled-these-3-dividend-stocks-could-benefit/",
+        "https://www.gurufocus.com/news/9121766/is-valero-energy-corp-vlo-overvalued-after-47-rally-gf-value-says-overvalued",
+        "https://www.gurufocus.com/news/9106469/a-look-at-valero-energy-corp-vlo-after-54-gain-gf-value-17495-vs-price-40846",
+        "https://www.gurufocus.com/news/9134510/valero-energy-vlo-prepares-to-report-q3-earnings-amid-elevated-valuation-concerns",
+        "https://www.marketbeat.com/instant-alerts/filing-valero-energy-corporation-vlo-shares-sold-by-inspire-investing-llc-2026-10-24/",
+        "https://www.marketbeat.com/instant-alerts/filing-valero-energy-corporation-vlo-stock-sold-by-conning-inc-2026-10-29/",
+        "https://www.alphaspread.com/security/nyse/vlo/ownership/block/insider-trading",
+        "https://www.marketbeat.com/instant-alerts/filing-valero-energy-corporation-vlo-stock-sold-by-oppenheimer-co-inc-2026-10-27/",
+        "https://www.stocktitan.net/overview/VLO/",
+        "https://www.marketbeat.com/instant-alerts/filing-ameriprise-financial-inc-sells-559617-shares-of-valero-energy-corporation-vlo-2026-03-15/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Valero rates Buy on strong growth, momentum and low absolute multiples, but sits just above Hold.",
+    "thesis": "Valero scores 67, a Buy, driven mainly by a strong trend score of 83: shares are up 127.2% from 12 months ago to 1 month ago and are 46.9 pp ahead of SPY over the last 126 trading days. Growth scores 74 on TTM revenue growth of 24.6% and latest-quarter revenue growth of 43.3% year on year, though growth slowed by 5.5 pp from the previous quarter. Valuation scores 69: in absolute terms the multiples are low, with P/S of 0.7x and EV/EBIT of 6.1x, while against its own history the overall picture is near the middle of its own history, with P/S more expensive than at 58 of the last 61 month-ends. Quality is the weak spot at 46, reflecting a thin 12.3% gross margin and 11.5% operating margin, partly offset by diluted share count down 7.8% year on year. News is mildly positive, with a Q3 earnings beat, a record refining margin of $39.24/bbl and mostly raised broker targets.",
+    "key_risks": [
+      "Record refining margins came from supply disruptions and may not persist, which would hit growth and earnings.",
+      "Growth slowed by 5.5 pp from the previous quarter, and Q4 throughput guidance is modestly below Q3.",
+      "After a large run, the price is 15.5% below its 52-week high and 1.8% below its 50-day average, so momentum could fade.",
+      "P/S is more expensive than at 58 of the last 61 month-ends, leaving less room if margins normalize.",
+      "Industry policy moves, such as EPA's small-refinery-exemption proposal, could affect refiners."
+    ],
+    "what_would_change": [
+      "A drop of 3 points would move the rating to Hold, for example if the trend score weakens or growth keeps decelerating.",
+      "Reaching Strong Buy would take 13 more points, likely needing better quality scores, such as higher margins, alongside sustained growth.",
+      "Fading refining margins or negative guidance and analyst news would pull growth and news risk scores down."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "middle",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 2096,
+        "output_tokens": 211,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 2096,
+            "output_tokens": 211,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0126,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 117086,
+        "output_tokens": 5645,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 117086,
+            "output_tokens": 5645,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3706,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8502,
+        "output_tokens": 2181,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8502,
+            "output_tokens": 2181,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0776,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3721,
+        "output_tokens": 714,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3721,
+            "output_tokens": 714,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0292,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.49,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 388.48,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 387.34
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:35",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

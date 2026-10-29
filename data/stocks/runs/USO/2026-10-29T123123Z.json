@@ -1,0 +1,902 @@
+{
+  "run_id": "2026-10-29T12:31:23Z",
+  "generated_at": "2026-10-29T12:31:59+00:00",
+  "ticker": "USO",
+  "sec_ticker": "USO",
+  "cik": "0001327068",
+  "name": "United States Oil Fund, LP",
+  "sector": "Commodity Contracts Brokers & Dealers",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 53,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 12
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 9
+    }
+  },
+  "composite": {
+    "score": 53,
+    "raw": 53.1,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -411.08,
+          "score": 0.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 1057.31,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -2637.21,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 30,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2026-06-30"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no data"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt: no debt tag with a value in the last 8 quarters"
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 4.139,
+          "score": 65.5,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.1,
+      "score": null,
+      "missing": "only 10% of its inputs had data"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 12.05,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 35.4,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 96.05,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 1.5,
+          "score": 53.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 0.67,
+          "score": 51.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -1.75,
+          "score": 94.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 87,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 166.57,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": -361990706.0,
+    "revenue_yoy_q": -411.08,
+    "revenue_yoy_q_prev": 2226.13,
+    "acceleration_pp": -2637.21,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 596621312.0,
+    "revenue_yoy_ttm": 1057.31,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 831578389.0,
+    "capex_ttm": null,
+    "sbc_ttm": null,
+    "gross_profit_source": null,
+    "operating_income_source": null,
+    "fcf_ttm": null,
+    "gross_margin_pct": null,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30",
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2026-06-30",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 1345734884.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 1345734884.0,
+      "debt": 0.0,
+      "debt_tags": [],
+      "debt_parts": [],
+      "debt_note": "no debt: no debt tag with a value in the last 8 quarters",
+      "net_debt": -1345734884.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "shares_outstanding": {
+      "val": 14823603.0,
+      "end": "2026-08-04",
+      "filed": "2026-08-07",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 357724065.0,
+        "revenue_yoy_pct": 182.17,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": -293623376.0,
+        "revenue_yoy_pct": -282.49,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 243169142.0,
+        "revenue_yoy_pct": 463.83,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 22646159.0,
+        "revenue_yoy_pct": 170.41,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": -132775208.0,
+        "revenue_yoy_pct": -137.12,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 98876169.0,
+        "revenue_yoy_pct": 133.67,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 42404806.0,
+        "revenue_yoy_pct": -82.56,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": -70828412.0,
+        "revenue_yoy_pct": -412.76,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 25561469.0,
+        "revenue_yoy_pct": 119.25,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": -53339285.0,
+        "revenue_yoy_pct": -153.95,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 986389834.0,
+        "revenue_yoy_pct": 2226.13,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": -361990706.0,
+        "revenue_yoy_pct": -411.08,
+        "operating_margin_pct": null,
+        "fcf": null,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 166.57,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 14823603.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-04"
+    },
+    "market_cap": 2469167551.71,
+    "enterprise_value": 1123432667.71,
+    "price_to_sales": 4.139,
+    "price_to_fcf": null,
+    "ev_to_ebit": null,
+    "sales_yield_pct": 24.163,
+    "fcf_yield_pct": null,
+    "ebit_yield_pct": null,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": null,
+    "history": [],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 4.139,
+        "current_yield_pct": 24.163,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": null
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      },
+      "ev_to_ebit": {
+        "current": null,
+        "current_yield_pct": null,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 166.57,
+    "date": "2026-10-28",
+    "ma50": 148.65,
+    "ma200": 123.02,
+    "vs_ma50_pct": 12.05,
+    "vs_ma200_pct": 35.4,
+    "momentum_12_1_pct": 96.05,
+    "high_52w": 169.53,
+    "drawdown_52w_pct": -1.75,
+    "return_rs_pct": 10.58,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 1.5,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 0.67
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "USO is a passive oil futures fund with no earnings guidance. Monthly account statements and price moves are not guidance news.",
+        "evidence": [],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "No brokerage upgrades, downgrades or price targets were found. The only rating change was a quantitative technical model's upgrade, which is not meaningful sell-side coverage.",
+        "evidence": [
+          {
+            "claim": "StockInvest.us upgraded USO from Buy to Strong Buy Candidate.",
+            "url": "https://stockinvest.us/stock/USO",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "There were no new lawsuits, investigations or fines in the window. The only regulatory item is an old 2020 CFTC order against the general partner.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Customer concentration does not apply to a commodity fund, and no relevant news was found.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No Form 4 transactions with dates in the window were found. The aggregator insider figures are undated and unverified.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "USCF is liquidating several sister funds, but USO is not affected. Cheaper oil ETF alternatives exist, though they are small, so nothing material changes for USO.",
+        "evidence": [
+          {
+            "claim": "USCF announced it will liquidate ZSB, WTIB, USE, USG and UDI; USO is not affected.",
+            "url": "https://www.kucoin.com/news/flash/uscf-announces-product-line-restructuring-and-fund-liquidations",
+            "event_date": "2026-10-09",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 20,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 7/7"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "analyst_actions": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**USO (United States Oil Fund, LP), 2026-09-29 to 2026-10-29.** USO is a commodity-pool ETF, so it has no earnings guidance, sell-side coverage or customers in the usual sense. I found no sources for several topics below, and I say so where that applies.\n\n**1. Guidance / results**\n- There is no guidance. USO is a passive WTI futures fund. Nothing material found for this topic.\n- USO closed at $166.57 on 2026-10-28. It is up 11% over the past month and up 133.3% over the past year. — 2026-10-28 — https://www.stocktitan.net/overview/USO/\n- The 52-week high was $169.96 on 10/23/26. — 2026-10-23 — https://www.cnbc.com/quotes/USO\n- The fund files monthly account statements on Form 8-K. The July 2026 statement showed net income of $414.7M. — period ended 2026-07-31 — https://www.sec.gov/Archives/edgar/data/0001327068/000110465926102786/tm2623039d1_ex99-1.htm\n- The August 2026 statement showed net income of $84.0M. — period ended 2026-08-31 — https://www.sec.gov/Archives/edgar/data/0001327068/000110465926111777/tm2625422d1_ex99-1.htm\n- StockTitan lists a Form 8-K filed on 2026-10-20 under a headline about a \"$270M May 2026 loss\". I could not check the filing text, so treat that as unverified. — filing date 2026-10-20 — https://www.stocktitan.net/overview/USO/\n\n**2. Analyst actions**\n- I found no upgrades, downgrades, initiations or price-target changes from any named firm. Coverage aggregators show no analyst price targets. — date unknown — https://www.tipranks.com/etf/uso\n- StockInvest.us, a quantitative technical model rather than a brokerage, upgraded USO from Buy to Strong Buy Candidate. — 2026-10-23 — https://stockinvest.us/stock/USO\n\n**3. Litigation / regulation**\n- I found no new lawsuits, investigations or fines in the window.\n- The June 2026 10-Q still describes an earlier CFTC order against USCF, the general partner. It covers April 22 to June 12, 2020 and concerns fraud and advertising findings. This is not new. — 2020-04-22 (conduct period start) — https://www.sec.gov/Archives/edgar/data/1327068/000110465926092623/uso-20260630x10q.htm\n\n**4. Customer concentration**\n- This does not apply to a fund. I found no customer news.\n- A 13F-based filing shows the largest holders in the March 2026 quarter were market makers and banks: Susquehanna, Citadel Securities, Jane Street and Goldman Sachs. Most of their positions were options. — 2026-03-31 — https://www.signalbloom.ai/13f/ticker/USO\n\n**5. Insider activity**\n- I found no Form 4 purchases or sales with a transaction date in the window.\n- StockTitan shows 2 Form 4s and a Form 3/A in USO's recent filings. The Form 3/A (2026-10-20 filing) concerns HRT Financial LP short sales of 88,454 shares. Transaction dates were not shown. — transaction date unknown — https://www.stocktitan.net/overview/USO/\n- GuruFocus cites net insider buying over 12 months of $23.4M against sales of $14.7M. This is an aggregator figure with no transaction dates, and I could not verify it. — date unknown — https://www.gurufocus.com/news/9126260/october-2026-oil-inventory-data-highlights-market-dynamics-impacting-uso-united-states-oil-fund\n- USCF held no USO shares at 2026-06-30. — 2026-06-30 — https://www.sec.gov/Archives/edgar/data/1327068/000110465926092623/uso-20260630x10q.htm\n\n**6. Product / competitive**\n- USCF announced on 2026-10-09 that it will liquidate ZSB, WTIB, USE, USG and UDI. Trading in WTIB and USE halts on 2026-11-06, with liquidation around 2026-11-13. USO is not affected. — 2026-10-09 — https://www.kucoin.com/news/flash/uscf-announces-product-line-restructuring-and-fund-liquidations (original press release, syndicated: https://theprescotttimes.com/online_features/press_releases/uscf-announces-changes-to-product-line/article_9e712955-d709-5e6d-b12c-8096d0947a26.html)\n- Pricing: the 10-Q says USCF's management fee is 0.45% of NAV. — 2026-06-30 — https://www.sec.gov/Archives/edgar/data/1327068/000110465926092623/uso-20260630x10q.htm\n- PortfoliosLab shows USO's total expense ratio at 0.86%. Cheaper oil ETFs include BBLS (0.32%, inception Aug 2026, about $8M AUM), OILK (0.69%) and DBO (0.78%). — 2026-08 (BBLS inception) — https://portfolioslab.com/symbol/USO/alternatives\n- Market drivers:\n  - Crude inventories fell 1.89M barrels against an expected build of 81,000 barrels. — 2026-10-28 — https://www.gurufocus.com/news/9147683/crude-oil-inventories-drop-sharply-uso-reacts-amid-mixed-gasoline-and-distillate-stock-changes\n  - USO fell 2.61% intraday on Houthi attacks on Saudi facilities and Gulf tensions. — 2026-10-20 — https://www.benzinga.com/trading-ideas/movers/26/10/62470714/united-states-oil-dips-whats-going-on\n  - GuruFocus, citing the EIA report, put the market cap at $1.84B. — 2026-10-28 — https://www.gurufocus.com/news/9147683/crude-oil-inventories-drop-sharply-uso-reacts-amid-mixed-gasoline-and-distillate-stock-changes",
+      "urls": [
+        "https://www.gurufocus.com/news/9126260/october-2026-oil-inventory-data-highlights-market-dynamics-impacting-uso-united-states-oil-fund",
+        "https://www.heygotrade.com/en/us-stock/uso/",
+        "https://www.cnbc.com/quotes/USO",
+        "https://www.gurufocus.com/news/9145661/api-reports-203m-barrel-crude-draw-uso-reacts-amidst-rising-gasoline-stocks",
+        "https://www.gurufocus.com/news/9147683/crude-oil-inventories-drop-sharply-uso-reacts-amid-mixed-gasoline-and-distillate-stock-changes",
+        "https://www.benzinga.com/trading-ideas/movers/26/10/62470714/united-states-oil-dips-whats-going-on",
+        "https://en.wikipedia.org/wiki/United_States_Oil_Fund",
+        "https://news.futunn.com/en/post/1002634769/united-states-oil-fund-lp-options-spot-on-on-october",
+        "https://www.stocktitan.net/overview/USO/",
+        "https://www.tipranks.com/etf/uso",
+        "https://danelfin.com/etf/USO",
+        "https://financhill.com/stocks/nysearca/uso/ratings",
+        "https://walletinvestor.com/fund-forecast/uso-fund-prediction",
+        "https://www.macroaxis.com/predict/USO/United-States-Oil",
+        "https://financhill.com/stocks/nysearca/uso",
+        "https://stockinvest.us/stock/USO",
+        "https://www.tipranks.com/etf/usvt/forecast",
+        "https://seekingalpha.com/symbol/USO/ratings/author-ratings",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465926057764/uso-20260331x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465926092623/uso-20260630x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/1376227/000110465926092626/ung-20260630x10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001479247/000114420414014586/v368928_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001479247/000114420417013891/v459169_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1479247/000110465921029196/usci-20201231x10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1479247/000141057822000220/usci-20211231x10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1479247/000110465920032921/usci-20191231x10k5973f5.htm",
+        "https://www.uscfinvestments.com/disclosures",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000119312515165990/d882479d424b3.htm",
+        "https://www.kucoin.com/news/flash/uscf-announces-product-line-restructuring-and-fund-liquidations",
+        "https://en.wikipedia.org/wiki/United_States_Commodity_Funds",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000117120020000075/i20110_uso-424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000117120020000153/i20178_uso-424b3.htm",
+        "https://finance.yahoo.com/markets/options/articles/uscf-announces-changes-product-line-213000650.html",
+        "https://portfolioslab.com/symbol/USO/alternatives",
+        "https://www.aaii.com/etf/ticker/USO",
+        "https://theprescotttimes.com/online_features/press_releases/uscf-announces-changes-to-product-line/article_9e712955-d709-5e6d-b12c-8096d0947a26.html",
+        "https://capedge.com/company/1327068/institutional",
+        "https://fintel.io/s/us/uso",
+        "https://fintel.io/so/us/uso",
+        "https://www.streetinsider.com/holdings.php?q=USO",
+        "https://www.marketbeat.com/stocks/NYSEARCA/USO/?RegistrationCode=404Redirect",
+        "https://stockanalysis.com/etf/uso/holdings/",
+        "https://aum13f.com/issuer/USO",
+        "https://www.signalbloom.ai/13f/ticker/USO",
+        "https://www.marketbeat.com/stocks/NYSEARCA/USO/institutional-ownership",
+        "https://www.marketbeat.com/stocks/NYSEARCA/USO/dividend/news",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465926035702/tm268499d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000110465926111777/tm2625422d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000110465926087855/tm2620060d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000110465926102786/tm2623039d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465926102786/tm2623039d1_8k.htm",
+        "https://www.investing.com/etfs/united-states-oil-fund",
+        "https://www.stocktitan.net/sec-filings/USO/8-k-united-states-oil-fund-lp-reports-material-event-e57140c8fce5.html",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000117120020000430/i20391_uso-8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000117120023000409/i23377_uso-8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000114420410004013/v172435_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000119312512139422/d324214d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000114420413048211/v353928_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465922112211/tm2228319d1_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465920139562/tm2038310d1_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465924028527/tm246181d1_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1327068/000110465920109614/tm2030929d1_8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001327068/000100371510000396/uso8k_2010-0731.htm"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "USO rates Hold as strong price momentum offsets a weak growth score in a thin data set.",
+    "thesis": "USO is a passive oil futures fund, and only three of six factors could be scored, so the Hold rating at a score of 53 rests on growth, trend and news. Trend is the strongest factor at 87: the price is 12.1% above its 50-day average, 35.4% above its 200-day average, shares are up 96.0% from 12 months ago to 1 month ago, and the price is 1.8% below its 52-week high. Growth scores only 30 because reported revenue for a futures fund mostly reflects gains and losses on contracts, giving swings like a latest-quarter revenue decline of 411.1% year on year against TTM revenue growth of 1057.3%, with growth slowed by 2637.2 pp from the previous quarter. News risk is neutral at 50, with no guidance, analyst, litigation or insider items of note. The only valuation input is a P/S of 4.1, and there is no comparison with its own history.",
+    "key_risks": [
+      "The fund's value tracks oil futures, so a fall in crude prices would quickly reverse the strong trend score.",
+      "After a 96.0% run-up the shares sit 1.8% below their 52-week high, leaving room for a sharp pullback.",
+      "Futures roll costs can make returns lag spot oil over time.",
+      "Revenue is driven by volatile trading gains and losses, keeping the growth score erratic.",
+      "Cheaper oil ETF alternatives exist and could draw assets over time."
+    ],
+    "what_would_change": [
+      "A move to Buy needs 12 more points, most plausibly from a steadier, positive growth reading alongside sustained momentum.",
+      "A drop to Sell would follow a 9-point decline, for example if oil prices fall and the trend score weakens from 87.",
+      "Negative news such as new regulatory action against the general partner would pull the news risk score below 50."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 102175,
+        "output_tokens": 3032,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 102175,
+            "output_tokens": 3032,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3047,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6432,
+        "output_tokens": 617,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6432,
+            "output_tokens": 617,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0381,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3527,
+        "output_tokens": 626,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3527,
+            "output_tokens": 626,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0266,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.3694,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 164.81,
+    "as_of": "2026-10-29T13:04:18Z",
+    "prev_close": 166.57
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 08:31",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}

@@ -1,0 +1,1155 @@
+{
+  "run_id": "2026-10-29T12:32:23Z",
+  "generated_at": "2026-10-29T12:33:13+00:00",
+  "ticker": "ET",
+  "sec_ticker": "ET",
+  "cik": "0001276187",
+  "name": "Energy Transfer LP",
+  "sector": "Natural Gas Transmission",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 65,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: diluted shares YoY"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 0 month-ends, P/FCF 0 month-ends, EV/EBIT 0 month-ends (needs 24)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 65 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 15
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 1
+    }
+  },
+  "composite": {
+    "score": 65,
+    "raw": 64.5,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 78.43,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 33.27,
+          "score": 92.7,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 46.31,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 98,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 23.58,
+          "score": 22.6,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 10.04,
+          "score": 43.4,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 4.86,
+          "score": 34.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 0.15,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.85,
+      "score": 46,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 12.91,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.01,
+          "score": 1.8,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 1,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 0.664,
+          "score": 100.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 13.664,
+          "score": 89.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": 12.862,
+          "score": 79.2,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": 2.329,
+          "score": 79.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 0 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 85,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -0.31,
+          "score": 48.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 5.45,
+          "score": 63.6,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 26.6,
+          "score": 83.9,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -0.64,
+          "score": 48.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -1.47,
+          "score": 47.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -4.69,
+          "score": 82.8,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 65,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 59,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 20.71,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 34334000000.0,
+    "revenue_yoy_q": 78.43,
+    "revenue_yoy_q_prev": 32.12,
+    "acceleration_pp": 46.31,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 107379000000.0,
+    "revenue_yoy_ttm": 33.27,
+    "gross_profit_ttm": 25316000000.0,
+    "operating_income_ttm": 10784000000.0,
+    "operating_cash_flow_ttm": 12119000000.0,
+    "capex_ttm": 6900000000.0,
+    "sbc_ttm": 166000000.0,
+    "gross_profit_source": "revenue - CostOfGoodsAndServicesSold",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 5219000000.0,
+    "gross_margin_pct": 23.58,
+    "operating_margin_pct": 10.04,
+    "fcf_margin_pct": 4.86,
+    "capex_intensity_pct": 6.43,
+    "sbc_pct_revenue": 0.15,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 116000000.0,
+      "source": "balance sheet: contract 2025-06-30 to 2026-06-30",
+      "base": 621000000.0,
+      "base_date": "2025-06-30",
+      "revenue_growth_pct": 33.27,
+      "expected": 206581247.28513807,
+      "excess": -90581247.28513807,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": -0.0075
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 4.86,
+      "fcf_margin_year_earlier_pct": 7.08,
+      "median_margin_pct": 6.06,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 5219000000.0,
+    "fcf_scored_margin_pct": 4.86,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 1020000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 1020000000.0,
+      "debt": 68410000000.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 68410000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 67390000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "shares_outstanding": {
+      "val": 3443299601.0,
+      "end": "2026-07-31",
+      "filed": "2026-08-06",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 20739000000.0,
+        "revenue_yoy_pct": -9.59,
+        "operating_margin_pct": 10.77,
+        "fcf": 1672000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 20532000000.0,
+        "revenue_yoy_pct": 0.15,
+        "operating_margin_pct": 10.54,
+        "fcf": 592000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 21629000000.0,
+        "revenue_yoy_pct": 13.87,
+        "operating_margin_pct": 11.0,
+        "fcf": 2977000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 20729000000.0,
+        "revenue_yoy_pct": 13.15,
+        "operating_margin_pct": 11.09,
+        "fcf": 1459000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 20772000000.0,
+        "revenue_yoy_pct": 0.16,
+        "operating_margin_pct": 10.5,
+        "fcf": 1788000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 19541000000.0,
+        "revenue_yoy_pct": -4.83,
+        "operating_margin_pct": 11.66,
+        "fcf": 1118000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 21020000000.0,
+        "revenue_yoy_pct": -2.82,
+        "operating_margin_pct": 11.85,
+        "fcf": 1693000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 19242000000.0,
+        "revenue_yoy_pct": -7.17,
+        "operating_margin_pct": 12.0,
+        "fcf": 1103000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 19954000000.0,
+        "revenue_yoy_pct": -3.94,
+        "operating_margin_pct": 10.78,
+        "fcf": 1275000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 25320000000.0,
+        "revenue_yoy_pct": 29.57,
+        "operating_margin_pct": 8.2,
+        "fcf": -225000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 27771000000.0,
+        "revenue_yoy_pct": 32.12,
+        "operating_margin_pct": 10.74,
+        "fcf": 1462000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 34334000000.0,
+        "revenue_yoy_pct": 78.43,
+        "operating_margin_pct": 10.41,
+        "fcf": 2707000000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 20.71,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 3443299601.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-31"
+    },
+    "market_cap": 71310734736.71,
+    "enterprise_value": 138700734736.71,
+    "price_to_sales": 0.664,
+    "price_to_fcf": 13.664,
+    "ev_to_ebit": 12.862,
+    "sales_yield_pct": 150.579,
+    "fcf_yield_pct": 7.319,
+    "ebit_yield_pct": 7.775,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 2.329,
+    "history": [],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 0.664,
+        "current_yield_pct": 150.579,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": null
+      },
+      "price_to_fcf": {
+        "current": 13.664,
+        "current_yield_pct": 7.319,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      },
+      "ev_to_ebit": {
+        "current": 12.862,
+        "current_yield_pct": 7.775,
+        "points": 0,
+        "median": null,
+        "low": null,
+        "high": null,
+        "negative_points": 0,
+        "median_yield_pct": null,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": null
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "0 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 20.71,
+    "date": "2026-10-28",
+    "ma50": 20.77,
+    "ma200": 19.64,
+    "vs_ma50_pct": -0.31,
+    "vs_ma200_pct": 5.45,
+    "momentum_12_1_pct": 26.6,
+    "high_52w": 21.73,
+    "drawdown_52w_pct": -4.69,
+    "return_rs_pct": 8.44,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -0.64,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -1.47
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001276187-26-000033",
+    "filing_date": "2026-08-04",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1276187/000127618726000033/ex991eterq22026.htm",
+    "summary": "Energy Transfer raised its full-year 2026 Adjusted EBITDA guidance to $18.8–$19.1 billion (from $18.2–$18.6 billion) and expects 2026 growth capital of $5.6–$5.9 billion.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "between $18.8 billion and $19.1 billion",
+        "stated_change": "raised",
+        "sentence": "The Partnership now expects its Adjusted EBITDA guidance for the full year of 2026 to range between $18.8 billion and $19.1 billion, compared to the previous range of between $18.2 billion and $18.6 billion.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "capex",
+        "period": "FY2026",
+        "amount_text": "$5.6 billion to $5.9 billion",
+        "stated_change": "not stated",
+        "sentence": "The Partnership expects to invest $5.6 billion to $5.9 billion in growth capital for 2026.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001276187-26-000021",
+      "filing_date": "2026-05-05",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1276187/000127618726000021/ex991eterq12026.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "Full-year guidance did not change in the past month. The last raise came in August, and Q3 results are due November 3. The 20th straight distribution increase is a routine positive but not a guidance change.",
+        "evidence": [
+          {
+            "claim": "Energy Transfer raised its quarterly distribution for the twentieth consecutive time, to $0.3425 per unit ($1.37 annualized).",
+            "url": "https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-announces-twentieth-consecutive-increase",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Energy Transfer will release third quarter 2026 earnings on November 3, 2026 before the market opens.",
+            "url": "https://www.businesswire.com/news/home/20261001987770/en/Energy-Transfer-Announces-Third-Quarter-2026-Earnings-Release-and-Earnings-Call-Timing",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Mizuho modestly raised its target to $26 and kept a Buy. Other firms maintained their ratings, and there were no upgrades or downgrades.",
+        "evidence": [
+          {
+            "claim": "Mizuho raised its price target on ET to $26 from $25, maintaining Buy.",
+            "url": "https://www.tipranks.com/stocks/et/forecast",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Barclays keeps USD 24.00 target for Energy Transfer stock.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/energy-transfer-stock-barclays-keeps-usd-24-00-target-for-energy-transfer-stock/70364129",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          },
+          {
+            "claim": "Goldman Sachs maintained a Hold rating with a $22 price target.",
+            "url": "https://stockanalysis.com/stocks/et/forecast/",
+            "event_date": "2026-10-07",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or investigations turned up in the window. FERC rehearing requests were on the October agenda, but no outcome was stated.",
+        "evidence": [
+          {
+            "claim": "FERC's October 2026 meeting agenda included rehearing and clarification requests from Energy Transfer and Kinder Morgan concerning remedial relief.",
+            "url": "https://www.whitecase.com/insight-alert/summary-ferc-meeting-agenda-october-2026",
+            "event_date": "2026-10-15",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No customer wins, losses or concentration disclosures in the window. The Vaquero deal adds long-term fee-based contracts.",
+        "evidence": [
+          {
+            "claim": "Vaquero's system is supported by approximately 100,000 dedicated acres and long-term fee-based contracts with an average remaining term of about 10 years.",
+            "url": "https://www.citybiz.co/article/914620/energy-transfer-to-acquire-vaquero-midstream-for-2-625-billion/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions were found in the window. The notable director purchases in August fall before it.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "ET agreed to a $2.625 billion bolt-on purchase of Vaquero Midstream, which expands its Permian pipeline and processing footprint. The sources are not primary or major-tier, so the rating is capped at +1.",
+        "evidence": [
+          {
+            "claim": "Energy Transfer to acquire Vaquero Midstream for $2.625 billion, adding a 300-mile West Texas pipeline network and Delaware Basin gathering and processing assets.",
+            "url": "https://www.worldpipelines.com/business-news/08102026/energy-transfer-to-acquire-vaquero-midstream/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 6/8"
+          },
+          {
+            "claim": "Energy Transfer to acquire Vaquero Midstream for $2.625 billion; the Caymus processing complex could be expanded toward 1.2 Bcf/d.",
+            "url": "https://www.citybiz.co/article/914620/energy-transfer-to-acquire-vaquero-midstream-for-2-625-billion/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 6/6"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Energy Transfer (ET) news, 2026-09-29 to 2026-10-29**\n\n**1. Guidance / results**\n- No guidance change found in the window. The last raise was on 2026-08-04, before the window. Full-year 2026 Adjusted EBITDA guidance went to $18.8–19.1B from $18.2–18.6B. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0001276187/000127618726000033/ex991eterq22026.htm\n- Q3 2026 results are due 2026-11-03 before the market opens, with a call at 9:00 ET. That is after the window. — announced 2026-10-01 — https://www.businesswire.com/news/home/20261001987770/en/Energy-Transfer-Announces-Third-Quarter-2026-Earnings-Release-and-Earnings-Call-Timing\n- Consensus for Q3 is EPS of about $0.40 on revenue of about $30.98B. — date unknown — https://www.marketbeat.com/earnings/reports/2026-11-3-energy-transfer-lp-stock/\n- The distribution was raised for the 20th straight quarter, to $0.3425 per unit ($1.37 annualized). — 2026-10-22 — https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-announces-twentieth-consecutive-increase\n- ET announced a $2.625B bolt-on acquisition of Vaquero Midstream. Consideration is $1.95B cash plus about 33.3M new ET units. — 2026-10-06 — https://www.worldpipelines.com/business-news/08102026/energy-transfer-to-acquire-vaquero-midstream/\n- Another source dates the same announcement 2026-10-07. — 2026-10-07 — https://www.chemanalyst.com/NewsAndDeals/NewsDetails/energy-transfer-strikes-2-625b-vaquero-midstream-acquisition-44860\n- I found no pre-announcement or guidance update tied to the Vaquero deal.\n\n**2. Analyst actions**\n- Mizuho raised its price target to $26 from $25 (Buy). — 2026-10-13 — https://www.tipranks.com/stocks/et/forecast\n- Barclays maintained a $24 target (Buy). — 2026-10-15 — https://www.ad-hoc-news.de/boerse/news/corporate-news/energy-transfer-stock-barclays-keeps-usd-24-00-target-for-energy-transfer-stock/70364129\n- J.P. Morgan reiterated a $25 target (Buy). — 2026-10-09 — https://www.tipranks.com/stocks/et/forecast\n- Goldman Sachs maintained Hold with a $22 target. — 2026-10-07 — https://stockanalysis.com/stocks/et/forecast/\n- Scotiabank maintained Buy with a $24 target. — 2026-10-07 — https://stockanalysis.com/stocks/et/forecast/\n- Morgan Stanley reiterated Hold with a $25 target. — 2026-09-23, before the window — https://stockanalysis.com/stocks/et/forecast/\n- Consensus is Strong Buy with an average target of $24.74 (range $22–28) per S&P Global data. — 2026-10-08 — https://stockanalysis.com/stocks/et/forecast/\n- TipRanks shows an average target of $24.46. — date unknown — https://www.tipranks.com/stocks/et/forecast\n- I found no upgrades, downgrades or initiations in the window.\n\n**3. Litigation / regulation**\n- FERC's 2026-10-15 meeting agenda included rehearing and clarification requests from ET and Kinder Morgan. They concern a 2025-11-20 order on remedial relief for a vacated order. ET asked that recouped assessments include interest. The agenda summary does not state the outcome. — 2026-12-22 is the filing date given in the source, so the event date is 2025-12-22 for the filing; the meeting was 2026-10-15 — https://www.whitecase.com/insight-alert/summary-ferc-meeting-agenda-october-2026\n- The Rover/Stoneman House $20M FERC penalty case was closed by a Texas federal judge in July 2026, before the window. — 2026-07 (day unknown) — https://www.eenews.net/articles/federal-judge-puts-fercs-energy-transfer-enforcement-case-on-ice/\n- Vaquero deal approvals, such as HSR clearance, were not found.\n- Desert Southwest: FERC had completed scoping meetings along the route as of the Q2 release. — 2026-08-04 — https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-reports-second-quarter-2026-results-and-updates\n- No new lawsuits, fines or investigations found in the window.\n\n**4. Customer concentration**\n- No new customer wins, losses or contract changes found in the window.\n- Vaquero's system has about 100,000 dedicated acres and long-term fee-based contracts, with an average remaining term of about 10 years. — 2026-10-06 — https://www.citybiz.co/article/914620/energy-transfer-to-acquire-vaquero-midstream-for-2-625-billion/\n- Earlier contracts (all before the window):\n  - Oracle: about 900 MMcf/d to three data centers. — https://www.sec.gov/Archives/edgar/data/1276187/000127618725000116/ex991eterq32025.htm\n  - Entergy Louisiana: a 20-year agreement for 250,000 MMBtu/d. — same URL\n- Management said in August that new gas power-customer deals would likely be smaller laterals rather than projects like Desert Southwest. — 2026-08-04 — https://www.morningstar.com/stocks/energy-transfer-earnings-another-guidance-raise-strong-throughput\n- I did not find a customer-concentration disclosure in the window.\n\n**5. Insider activity**\n- No Form 4 transactions found inside the window. The latest I found are before it:\n  - Director Kelcy Warren bought 1,000,000 units in open-market purchases at about $21.26–21.27, with no 10b5-1 plan. — 2026-08-18 (earliest transaction date; the second tranche was 2026-08-19) — https://www.sec.gov/Archives/edgar/data/0001276187/000119312526359388/ownership.xml\n  - Director James Perry bought 12,359 units at $20.2276. — 2026-08-07 — https://www.sec.gov/Archives/edgar/data/0001276187/000119312526342811/ownership.xml\n- OpenInsider's list shows no sales and no other Form 4 transactions after those dates, but I did not check it against EDGAR. — date unknown — http://openinsider.com/ET\n\n**6. Product / competitive**\n- The Vaquero deal adds a 300-mile West Texas pipeline network and Delaware Basin gathering and processing assets. — 2026-10-06 — https://www.worldpipelines.com/business-news/08102026/energy-transfer-to-acquire-vaquero-midstream/\n- The Caymus processing complex could be expanded toward 1.2 Bcf/d. — 2026-10-06 — https://www.citybiz.co/article/914620/energy-transfer-to-acquire-vaquero-midstream-for-2-625-billion/\n- ET, Sunoco, SunocoCorp and USA Compression moved their primary listings to the Texas Stock Exchange. — 2026-10-05 — https://www.energytransfer.com/\n- Hugh Brinson Phase I was expected to reach 1.5 Bcf/d by 2026-09-01. I found no confirmation that it did. — 2026-08-04 — https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-reports-second-quarter-2026-results-and-updates\n- Competitor news: EQT agreed to acquire Range Resources in an all-stock deal. It is a producer-side deal and not directly about ET. — 2026-10-26 — https://naturalgasintel.com/news/eqt-positions-for-next-era-with-deal-to-create-us-natural-gas-giant\n\n**Gaps:** Search was limited, so I did not check EDGAR directly for 8-Ks or Form 4s filed in October. I also did not check the Vaquero press release's 8-K for expected accretion or closing timing.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001276187/000127618726000021/ex991eterq12026.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001276187/000127618726000033/ex991eterq22026.htm",
+        "https://www.businesswire.com/news/home/20261001987770/en/Energy-Transfer-Announces-Third-Quarter-2026-Earnings-Release-and-Earnings-Call-Timing",
+        "https://www.marketbeat.com/instant-alerts/upcoming-energy-transfer-et-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+        "https://www.marketbeat.com/earnings/reports/2026-11-3-energy-transfer-lp-stock/",
+        "https://seekingalpha.com/article/4926218-energy-transfer-a-7-percent-yield-with-upsizing-distribution-growth-on-the-horizon",
+        "https://m.investing.com/news/earnings/energy-transfer-beats-estimates-raises-2026-guidance-93CH-4834028?ampMode=1",
+        "https://seekingalpha.com/article/4955601-energy-transfer-the-q3-reality-check",
+        "https://www.morningstar.com/stocks/energy-transfer-earnings-another-guidance-raise-strong-throughput",
+        "https://www.financialcontent.com/article/bizwire-2026-10-1-energy-transfer-announces-third-quarter-2026-earnings-release-and-earnings-call-timing",
+        "https://www.cnn.com/markets/stocks/ET",
+        "https://stockanalysis.com/stocks/et/forecast/",
+        "https://simplywall.st/stocks/us/energy/nyse-et/energy-transfer/future",
+        "https://uk.finance.yahoo.com/quote/ET/analyst-insights/",
+        "https://tradersunion.com/currencies/forecast/et-usd/",
+        "https://simplywall.st/stocks/us/energy/nyse-et/energy-transfer",
+        "https://www.tipranks.com/stocks/et/forecast",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/energy-transfer-stock-barclays-keeps-usd-24-00-target-for-energy-transfer-stock/70364129",
+        "https://www.marketbeat.com/stocks/NYSE/ET/price-target",
+        "https://www.whitecase.com/insight-alert/summary-ferc-meeting-agenda-october-2026",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618726000013/et-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618724000040/Financial_Report.xlsx",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618724000024/et-20231231.htm",
+        "https://www.ferc.gov/news-events/news/summaries-october-2026-commission-meeting",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618725000018/et-20241231.htm",
+        "https://www.ferc.gov/news-events/news/decisions-notices/10152026-10152026",
+        "https://www.ferc.gov/civil-penalties/all-civil-penalty-actions-2026",
+        "https://www.eenews.net/articles/federal-judge-puts-fercs-energy-transfer-enforcement-case-on-ice/",
+        "https://www.ferc.gov/news-events/events/notational-order-2026-10-20-10202026",
+        "https://www.intelligentcio.com/north-america/2025/02/11/energy-transfer-and-cloudburst-sign-agreement-for-natural-gas-supply-to-data-centre-project-in-central-texas/",
+        "https://www.worldpipelines.com/project-news/11022025/energy-transfer-and-cloudburst-sign-agreement-for-natural-gas-supply-to-data-centre-project-in-central-texas/",
+        "https://www.etftrends.com/energy-infrastructure-content-hub/energy-transfer-strikes-deal-data-center-natural-gas-supply/",
+        "https://www.jw.com/news/result-cloudburstdc-energytransfer-natural-gas/",
+        "https://pgjonline.com/news/2025/february/energy-transfer-secures-natural-gas-supply-deal-with-cloudburst-for-texas-data-center",
+        "https://www.nasdaq.com/press-release/energy-transfer-and-cloudburst-sign-agreement-natural-gas-supply-data-center-project",
+        "https://www.powermag.com/energy-transfer-will-provide-natural-gas-to-texas-data-center-project/",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618725000116/ex991eterq32025.htm",
+        "https://www.world-energy.org/article/49494.html",
+        "https://energytransferfacts.com/blog/energy-transfer-cements-data-center-leadership-with-trio-of-major-gas-deals/",
+        "https://www.sec.gov/Archives/edgar/data/0001276187/000119312526342811/ownership.xml",
+        "http://openinsider.com/ET",
+        "http://openinsider.com/ETE",
+        "https://www.secform4.com/insider-trading/1276187.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001276187/000119312526359388/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/ET/form-4-energy-transfer-lp-insider-trading-activity-300080efa63e.html",
+        "https://www.stocktitan.net/sec-filings/ET/form-4-energy-transfer-lp-insider-trading-activity-71ad0bda183e.html",
+        "https://www.stocktitan.net/sec-filings/ET/form-4-energy-transfer-lp-insider-trading-activity-f09514a2400d.html",
+        "https://www.stocktitan.net/sec-filings/ET/form-4-energy-transfer-lp-insider-trading-activity-1ef65aba754a.html",
+        "https://www.energytransfer.com/wp-content/uploads/2025/08/ET-August-2025-Investor-Presentation_Final-2.pdf",
+        "https://www.bairdmaritime.com/shipping/ports/energy-transfer-nears-greenlight-on-lake-charles-lng-project",
+        "https://www.gasprocessingnews.com/news/2025/05/energy-transfer-nears-greenlight-on-lake-charles-lng-project/",
+        "https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-reports-second-quarter-2026-results-and-updates",
+        "https://rbnenergy.com/daily-posts/analyst-insight/energy-transfer-suspends-lake-charles-lng-development",
+        "https://finance.yahoo.com/news/energy-transfer-lp-et-q3-050226433.html",
+        "https://etfdb.com/energy-infrastructure-content-hub/energy-natural-gas-opportunities/",
+        "https://en.wikipedia.org/wiki/Energy_Transfer",
+        "https://eastdaley.com/daley-note/with-lake-charles-lng-suspension-et-beaches-its-white-whale",
+        "https://midstreamcalendar.com/2026/08/04/energy-transfer-starts-hugh-brinson-pipeline-advances-5-6-billion-to-5-9-billion-growth-plan/",
+        "https://www.law360.com/energy/articles/2534435",
+        "https://www.worldpipelines.com/business-news/08102026/energy-transfer-to-acquire-vaquero-midstream/",
+        "https://naturalgasintel.com/news/eqt-positions-for-next-era-with-deal-to-create-us-natural-gas-giant",
+        "https://www.morningstar.com/news/business-wire/20261005350460/energy-transfer-to-acquire-vaquero-midstream-in-a-2625-billion-transaction",
+        "https://www.chemanalyst.com/NewsAndDeals/NewsDetails/energy-transfer-strikes-2-625b-vaquero-midstream-acquisition-44860",
+        "https://www.citybiz.co/article/914620/energy-transfer-to-acquire-vaquero-midstream-for-2-625-billion/",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618724000083/et-20240630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618724000074/ex991eterq22024.htm",
+        "https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-announces-twentieth-consecutive-increase",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618725000108/energytransferlppressrelea.htm",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618724000096/energytransferlppressrelea.htm",
+        "https://finance.yahoo.com/energy/articles/energy-transfer-announces-twentieth-consecutive-201500754.html",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618723000078/energytransferlppressrelea.htm",
+        "https://www.nasdaq.com/press-release/energy-transfer-announces-twentieth-consecutive-increase-quarterly-cash-distribution",
+        "https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-lp-announces-cash-distribution-series-i-9",
+        "https://www.energytransfer.com/",
+        "https://www.sec.gov/Archives/edgar/data/1276187/000127618723000049/energytransferlppressrelea.htm",
+        "https://www.energytransfer.com/investor-relations/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Energy Transfer rates Buy on strong growth and low absolute valuation, but a weak balance sheet keeps it at the edge.",
+    "thesis": "Energy Transfer scores 65, the lowest point of the Buy band. Growth is the standout factor at 98, with TTM revenue growth of 33.3% and latest-quarter revenue growth of 78.4% year on year, as growth sped up by 46.3 pp from the previous quarter. Valuation scores 85 because the multiples are low in absolute terms: P/S of 0.7x, P/FCF of 13.7x, EV/EBIT of 12.9x, and FCF yield 2.3 pp above the 10-year Treasury yield; there is no comparison with its own history. Holding the score back are a balance sheet score of 1, with net debt at 12.91 times FCF and cash covering only 0.01 of debt, and middling quality at 46, with a 23.6% gross margin, 10.0% operating margin and 4.9% FCF margin. Trend (65) and news (59) are moderately supportive, helped by the Vaquero Midstream deal and Mizuho's target raise with a Buy kept.",
+    "key_risks": [
+      "Heavy leverage: net debt is 12.91 times FCF and cash covers only 0.01 of debt",
+      "Thin margins, with a 4.9% FCF margin leaving little cushion if volumes or prices soften",
+      "The $2.625 billion Vaquero purchase and $5.6–$5.9 billion of 2026 growth capital add spending pressure on an already stretched balance sheet",
+      "Q3 results on November 3 could disappoint after the August guidance raise",
+      "Shares are trailing the market slightly: 0.6 pp behind SPY and 1.5 pp behind QQQ over the last 126 trading days"
+    ],
+    "what_would_change": [
+      "A drop of just 1 point in the composite score would move the rating down to Hold, for example from weaker growth or trend after Q3 results",
+      "A slowdown from the current revenue growth pace would pull the growth score down from 98 and likely tip the rating to Hold",
+      "Reaching Strong Buy needs 15 more points, which would realistically require a much stronger balance sheet score through lower net debt relative to FCF",
+      "Another guidance raise with Q3 results or analyst upgrades could lift the news score and add a cushion above the Hold line"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1816,
+        "output_tokens": 318,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1816,
+            "output_tokens": 318,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0136,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 122879,
+        "output_tokens": 3538,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 122879,
+            "output_tokens": 3538,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3611,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7670,
+        "output_tokens": 1987,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7670,
+            "output_tokens": 1987,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0704,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3520,
+        "output_tokens": 780,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3520,
+            "output_tokens": 780,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0297,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4748,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 20.71,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 20.41
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 08:32",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40873632953",
+    "tickers": [
+      "EQNR",
+      "VG",
+      "EQT",
+      "EOG",
+      "FANG",
+      "EPD",
+      "PBR",
+      "APA",
+      "USO",
+      "DOW",
+      "PTEN",
+      "ET",
+      "LYB",
+      "OLN",
+      "UGA",
+      "DVN",
+      "WLK",
+      "COP",
+      "FLNG",
+      "TDW",
+      "DINO",
+      "VLO",
+      "MPC",
+      "TNK",
+      "BWET"
+    ]
+  }
+}
