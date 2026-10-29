@@ -1,0 +1,1750 @@
+{
+  "run_id": "2026-10-29T14:01:49Z",
+  "generated_at": "2026-10-29T14:03:05+00:00",
+  "ticker": "CXW",
+  "sec_ticker": "CXW",
+  "cik": "0001070985",
+  "name": "CoreCivic, Inc.",
+  "sector": "Real Estate Investment Trusts",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 54,
+  "confidence": "Medium",
+  "confidence_detail": {
+    "level": "Medium",
+    "points": 1.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 11
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 10
+    }
+  },
+  "composite": {
+    "score": 54,
+    "raw": 53.7,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 27.27,
+          "score": 84.7,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 24.35,
+          "score": 80.8,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 1.46,
+          "score": 57.3,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 77,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 9.88,
+          "score": 43.1,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 2.37,
+          "score": 27.1,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 1.06,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": -8.96,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 59,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 21.17,
+          "score": 0.0,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.08,
+          "score": 9.6,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 4,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 1.219,
+          "score": 97.3,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 51.364,
+          "score": 20.4,
+          "weight": 0.15,
+          "note": null
+        },
+        "ev_to_ebit": {
+          "value": 17.425,
+          "score": 63.9,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -3.043,
+          "score": 12.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "price_to_sales_percentile": {
+          "value": 88.5,
+          "score": 11.5,
+          "weight": 0.1,
+          "note": "cheaper than now in 88.5% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 86.1,
+          "score": 13.9,
+          "weight": 0.15,
+          "note": "cheaper than now in 86.1% of 61 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": 86.1,
+          "score": 13.9,
+          "weight": 0.15,
+          "note": "cheaper than now in 86.1% of 61 month-ends (ranked on yields)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 30,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -6.6,
+          "score": 17.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 19.49,
+          "score": 98.7,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 76.02,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 40.04,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 39.21,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -13.82,
+          "score": 51.1,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 80,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 30.63,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "Revenues",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 684917000.0,
+    "revenue_yoy_q": 27.27,
+    "revenue_yoy_q_prev": 25.81,
+    "acceleration_pp": 1.46,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 2484036000.0,
+    "revenue_yoy_ttm": 24.35,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 245491000.0,
+    "operating_cash_flow_ttm": 200164000.0,
+    "capex_ttm": 141191000.0,
+    "sbc_ttm": 26252000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "revenue - CostsAndExpenses",
+    "fcf_ttm": 58973000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 9.88,
+    "fcf_margin_pct": 2.37,
+    "capex_intensity_pct": 5.68,
+    "sbc_pct_revenue": 1.06,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 2.37,
+      "fcf_margin_year_earlier_pct": 8.58,
+      "median_margin_pct": 3.71,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 58973000.0,
+    "fcf_scored_margin_pct": 2.37,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 108934000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 108934000.0,
+      "debt": 1357521000.0,
+      "debt_tags": [
+        "DebtLongtermAndShorttermCombinedAmount"
+      ],
+      "debt_parts": [
+        {
+          "tag": "DebtLongtermAndShorttermCombinedAmount",
+          "val": 1357521000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 1248587000.0,
+      "unknown": []
+    },
+    "share_outliers": [
+      {
+        "end": "2023-06-30",
+        "val": 113628.0
+      },
+      {
+        "end": "2023-09-30",
+        "val": 113605.0
+      }
+    ],
+    "diluted_shares": 98891000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": -8.96,
+    "shares_outstanding": {
+      "val": 98893489.0,
+      "end": "2026-07-31",
+      "filed": "2026-08-06",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 483705000.0,
+        "revenue_yoy_pct": 4.2,
+        "operating_margin_pct": 7.69,
+        "fcf": 66144000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 491246000.0,
+        "revenue_yoy_pct": 4.2,
+        "operating_margin_pct": 10.93,
+        "fcf": -5182000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 500686000.0,
+        "revenue_yoy_pct": 9.32,
+        "operating_margin_pct": 10.86,
+        "fcf": 59737000.0,
+        "diluted_shares": 112306000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 490109000.0,
+        "revenue_yoy_pct": 5.7,
+        "operating_margin_pct": 9.86,
+        "fcf": 49331000.0,
+        "diluted_shares": 110954000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 491558000.0,
+        "revenue_yoy_pct": 1.62,
+        "operating_margin_pct": 9.0,
+        "fcf": 73650000.0,
+        "diluted_shares": 110271000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 479293000.0,
+        "revenue_yoy_pct": -2.43,
+        "operating_margin_pct": 7.96,
+        "fcf": 16013000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 488627000.0,
+        "revenue_yoy_pct": -2.41,
+        "operating_margin_pct": 9.69,
+        "fcf": 19955000.0,
+        "diluted_shares": 109489000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 538165000.0,
+        "revenue_yoy_pct": 9.81,
+        "operating_margin_pct": 12.05,
+        "fcf": 61850000.0,
+        "diluted_shares": 108627000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 580437000.0,
+        "revenue_yoy_pct": 18.08,
+        "operating_margin_pct": 8.74,
+        "fcf": 16109000.0,
+        "diluted_shares": 106853000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 603953000.0,
+        "revenue_yoy_pct": 26.01,
+        "operating_margin_pct": 9.23,
+        "fcf": -45128000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 614729000.0,
+        "revenue_yoy_pct": 25.81,
+        "operating_margin_pct": 11.39,
+        "fcf": -6920000.0,
+        "diluted_shares": 98720000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 684917000.0,
+        "revenue_yoy_pct": 27.27,
+        "operating_margin_pct": 10.07,
+        "fcf": 94912000.0,
+        "diluted_shares": 98891000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 30.63,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 98893489.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-07-31"
+    },
+    "market_cap": 3029107568.07,
+    "enterprise_value": 4277694568.07,
+    "price_to_sales": 1.219,
+    "price_to_fcf": 51.364,
+    "ev_to_ebit": 17.425,
+    "sales_yield_pct": 82.006,
+    "fcf_yield_pct": 1.947,
+    "ebit_yield_pct": 5.739,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "reported",
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -3.043,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 0.565,
+        "price_to_fcf": 5.573,
+        "ev_to_ebit": 18.756,
+        "sales_yield_pct": 177.085,
+        "fcf_yield_pct": 17.943,
+        "ebit_yield_pct": 5.332
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 0.705,
+        "price_to_fcf": 4.693,
+        "ev_to_ebit": 17.45,
+        "sales_yield_pct": 141.803,
+        "fcf_yield_pct": 21.306,
+        "ebit_yield_pct": 5.731
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 0.653,
+        "price_to_fcf": 4.345,
+        "ev_to_ebit": 16.771,
+        "sales_yield_pct": 153.182,
+        "fcf_yield_pct": 23.016,
+        "ebit_yield_pct": 5.963
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 0.662,
+        "price_to_fcf": 4.406,
+        "ev_to_ebit": 16.89,
+        "sales_yield_pct": 151.061,
+        "fcf_yield_pct": 22.697,
+        "ebit_yield_pct": 5.921
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 0.588,
+        "price_to_fcf": 6.025,
+        "ev_to_ebit": 12.395,
+        "sales_yield_pct": 170.11,
+        "fcf_yield_pct": 16.598,
+        "ebit_yield_pct": 8.068
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 0.721,
+        "price_to_fcf": 7.387,
+        "ev_to_ebit": 13.702,
+        "sales_yield_pct": 138.738,
+        "fcf_yield_pct": 13.537,
+        "ebit_yield_pct": 7.298
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 0.802,
+        "price_to_fcf": 8.221,
+        "ev_to_ebit": 14.502,
+        "sales_yield_pct": 124.674,
+        "fcf_yield_pct": 12.165,
+        "ebit_yield_pct": 6.896
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 0.84,
+        "price_to_fcf": 8.687,
+        "ev_to_ebit": 11.964,
+        "sales_yield_pct": 119.083,
+        "fcf_yield_pct": 11.511,
+        "ebit_yield_pct": 8.358
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 0.725,
+        "price_to_fcf": 7.499,
+        "ev_to_ebit": 11.027,
+        "sales_yield_pct": 137.948,
+        "fcf_yield_pct": 13.334,
+        "ebit_yield_pct": 9.069
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 0.703,
+        "price_to_fcf": 7.27,
+        "ev_to_ebit": 10.846,
+        "sales_yield_pct": 142.303,
+        "fcf_yield_pct": 13.755,
+        "ebit_yield_pct": 9.22
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 0.624,
+        "price_to_fcf": 6.008,
+        "ev_to_ebit": 11.298,
+        "sales_yield_pct": 160.236,
+        "fcf_yield_pct": 16.645,
+        "ebit_yield_pct": 8.851
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 0.579,
+        "price_to_fcf": 5.573,
+        "ev_to_ebit": 10.901,
+        "sales_yield_pct": 172.743,
+        "fcf_yield_pct": 17.945,
+        "ebit_yield_pct": 9.173
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 0.686,
+        "price_to_fcf": 6.6,
+        "ev_to_ebit": 11.837,
+        "sales_yield_pct": 145.85,
+        "fcf_yield_pct": 15.151,
+        "ebit_yield_pct": 8.448
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 0.845,
+        "price_to_fcf": 95.333,
+        "ev_to_ebit": 14.697,
+        "sales_yield_pct": 118.355,
+        "fcf_yield_pct": 1.049,
+        "ebit_yield_pct": 6.804
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 0.735,
+        "price_to_fcf": 82.985,
+        "ev_to_ebit": 13.589,
+        "sales_yield_pct": 135.965,
+        "fcf_yield_pct": 1.205,
+        "ebit_yield_pct": 7.359
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 0.677,
+        "price_to_fcf": 76.381,
+        "ev_to_ebit": 12.997,
+        "sales_yield_pct": 147.722,
+        "fcf_yield_pct": 1.309,
+        "ebit_yield_pct": 7.694
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 0.622,
+        "price_to_fcf": 16.363,
+        "ev_to_ebit": 13.339,
+        "sales_yield_pct": 160.783,
+        "fcf_yield_pct": 6.111,
+        "ebit_yield_pct": 7.497
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 0.589,
+        "price_to_fcf": 15.504,
+        "ev_to_ebit": 12.984,
+        "sales_yield_pct": 169.696,
+        "fcf_yield_pct": 6.45,
+        "ebit_yield_pct": 7.702
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 0.563,
+        "price_to_fcf": 14.813,
+        "ev_to_ebit": 12.698,
+        "sales_yield_pct": 177.612,
+        "fcf_yield_pct": 6.751,
+        "ebit_yield_pct": 7.875
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 0.534,
+        "price_to_fcf": 13.779,
+        "ev_to_ebit": 12.514,
+        "sales_yield_pct": 187.419,
+        "fcf_yield_pct": 7.258,
+        "ebit_yield_pct": 7.991
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 0.582,
+        "price_to_fcf": 15.042,
+        "ev_to_ebit": 13.065,
+        "sales_yield_pct": 171.685,
+        "fcf_yield_pct": 6.648,
+        "ebit_yield_pct": 7.654
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 0.6,
+        "price_to_fcf": 15.505,
+        "ev_to_ebit": 13.267,
+        "sales_yield_pct": 166.552,
+        "fcf_yield_pct": 6.449,
+        "ebit_yield_pct": 7.537
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 0.664,
+        "price_to_fcf": 10.896,
+        "ev_to_ebit": 14.255,
+        "sales_yield_pct": 150.711,
+        "fcf_yield_pct": 9.178,
+        "ebit_yield_pct": 7.015
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 0.694,
+        "price_to_fcf": 11.392,
+        "ev_to_ebit": 14.607,
+        "sales_yield_pct": 144.147,
+        "fcf_yield_pct": 8.778,
+        "ebit_yield_pct": 6.846
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 0.783,
+        "price_to_fcf": 12.86,
+        "ev_to_ebit": 15.648,
+        "sales_yield_pct": 127.689,
+        "fcf_yield_pct": 7.776,
+        "ebit_yield_pct": 6.391
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 0.883,
+        "price_to_fcf": 9.556,
+        "ev_to_ebit": 15.832,
+        "sales_yield_pct": 113.246,
+        "fcf_yield_pct": 10.465,
+        "ebit_yield_pct": 6.316
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 0.887,
+        "price_to_fcf": 9.595,
+        "ev_to_ebit": 15.874,
+        "sales_yield_pct": 112.779,
+        "fcf_yield_pct": 10.422,
+        "ebit_yield_pct": 6.3
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 0.868,
+        "price_to_fcf": 9.391,
+        "ev_to_ebit": 15.66,
+        "sales_yield_pct": 115.237,
+        "fcf_yield_pct": 10.649,
+        "ebit_yield_pct": 6.386
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 0.914,
+        "price_to_fcf": 10.558,
+        "ev_to_ebit": 16.169,
+        "sales_yield_pct": 109.433,
+        "fcf_yield_pct": 9.471,
+        "ebit_yield_pct": 6.185
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 0.937,
+        "price_to_fcf": 10.822,
+        "ev_to_ebit": 16.427,
+        "sales_yield_pct": 106.769,
+        "fcf_yield_pct": 9.241,
+        "ebit_yield_pct": 6.088
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 0.894,
+        "price_to_fcf": 10.329,
+        "ev_to_ebit": 15.946,
+        "sales_yield_pct": 111.857,
+        "fcf_yield_pct": 9.681,
+        "ebit_yield_pct": 6.271
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 0.929,
+        "price_to_fcf": 12.849,
+        "ev_to_ebit": 15.326,
+        "sales_yield_pct": 107.59,
+        "fcf_yield_pct": 7.783,
+        "ebit_yield_pct": 6.525
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 0.752,
+        "price_to_fcf": 10.391,
+        "ev_to_ebit": 13.439,
+        "sales_yield_pct": 133.037,
+        "fcf_yield_pct": 9.623,
+        "ebit_yield_pct": 7.441
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 0.807,
+        "price_to_fcf": 11.16,
+        "ev_to_ebit": 14.029,
+        "sales_yield_pct": 123.875,
+        "fcf_yield_pct": 8.961,
+        "ebit_yield_pct": 7.128
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 0.778,
+        "price_to_fcf": 8.992,
+        "ev_to_ebit": 12.921,
+        "sales_yield_pct": 128.569,
+        "fcf_yield_pct": 11.121,
+        "ebit_yield_pct": 7.739
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 0.714,
+        "price_to_fcf": 8.255,
+        "ev_to_ebit": 12.273,
+        "sales_yield_pct": 140.053,
+        "fcf_yield_pct": 12.114,
+        "ebit_yield_pct": 8.148
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 0.779,
+        "price_to_fcf": 9.012,
+        "ev_to_ebit": 12.938,
+        "sales_yield_pct": 128.289,
+        "fcf_yield_pct": 11.097,
+        "ebit_yield_pct": 7.729
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 1.248,
+        "price_to_fcf": 13.87,
+        "ev_to_ebit": 16.745,
+        "sales_yield_pct": 80.151,
+        "fcf_yield_pct": 7.21,
+        "ebit_yield_pct": 5.972
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 1.215,
+        "price_to_fcf": 13.503,
+        "ev_to_ebit": 16.421,
+        "sales_yield_pct": 82.326,
+        "fcf_yield_pct": 7.406,
+        "ebit_yield_pct": 6.09
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 1.143,
+        "price_to_fcf": 12.708,
+        "ev_to_ebit": 15.717,
+        "sales_yield_pct": 87.477,
+        "fcf_yield_pct": 7.869,
+        "ebit_yield_pct": 6.362
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 1.061,
+        "price_to_fcf": 10.473,
+        "ev_to_ebit": 16.052,
+        "sales_yield_pct": 94.255,
+        "fcf_yield_pct": 9.549,
+        "ebit_yield_pct": 6.23
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 1.147,
+        "price_to_fcf": 11.327,
+        "ev_to_ebit": 16.969,
+        "sales_yield_pct": 87.147,
+        "fcf_yield_pct": 8.829,
+        "ebit_yield_pct": 5.893
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 1.28,
+        "price_to_fcf": 12.638,
+        "ev_to_ebit": 18.378,
+        "sales_yield_pct": 78.102,
+        "fcf_yield_pct": 7.912,
+        "ebit_yield_pct": 5.441
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 1.233,
+        "price_to_fcf": 15.127,
+        "ev_to_ebit": 18.67,
+        "sales_yield_pct": 81.085,
+        "fcf_yield_pct": 6.611,
+        "ebit_yield_pct": 5.356
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 1.183,
+        "price_to_fcf": 14.514,
+        "ev_to_ebit": 18.123,
+        "sales_yield_pct": 84.51,
+        "fcf_yield_pct": 6.89,
+        "ebit_yield_pct": 5.518
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 1.125,
+        "price_to_fcf": 13.804,
+        "ev_to_ebit": 17.489,
+        "sales_yield_pct": 88.853,
+        "fcf_yield_pct": 7.244,
+        "ebit_yield_pct": 5.718
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 1.103,
+        "price_to_fcf": 12.848,
+        "ev_to_ebit": 15.952,
+        "sales_yield_pct": 90.68,
+        "fcf_yield_pct": 7.784,
+        "ebit_yield_pct": 6.269
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 1.107,
+        "price_to_fcf": 12.892,
+        "ev_to_ebit": 15.991,
+        "sales_yield_pct": 90.368,
+        "fcf_yield_pct": 7.757,
+        "ebit_yield_pct": 6.253
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 1.008,
+        "price_to_fcf": 11.739,
+        "ev_to_ebit": 14.975,
+        "sales_yield_pct": 99.244,
+        "fcf_yield_pct": 8.519,
+        "ebit_yield_pct": 6.678
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 0.924,
+        "price_to_fcf": 16.929,
+        "ev_to_ebit": 14.55,
+        "sales_yield_pct": 108.183,
+        "fcf_yield_pct": 5.907,
+        "ebit_yield_pct": 6.873
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 0.979,
+        "price_to_fcf": 17.923,
+        "ev_to_ebit": 15.113,
+        "sales_yield_pct": 102.182,
+        "fcf_yield_pct": 5.579,
+        "ebit_yield_pct": 6.617
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 0.949,
+        "price_to_fcf": 17.379,
+        "ev_to_ebit": 14.805,
+        "sales_yield_pct": 105.381,
+        "fcf_yield_pct": 5.754,
+        "ebit_yield_pct": 6.754
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 0.856,
+        "price_to_fcf": 35.848,
+        "ev_to_ebit": 13.831,
+        "sales_yield_pct": 116.854,
+        "fcf_yield_pct": 2.79,
+        "ebit_yield_pct": 7.23
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 0.915,
+        "price_to_fcf": 38.342,
+        "ev_to_ebit": 14.433,
+        "sales_yield_pct": 109.254,
+        "fcf_yield_pct": 2.608,
+        "ebit_yield_pct": 6.929
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 0.99,
+        "price_to_fcf": 41.484,
+        "ev_to_ebit": 15.191,
+        "sales_yield_pct": 100.977,
+        "fcf_yield_pct": 2.411,
+        "ebit_yield_pct": 6.583
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 0.89,
+        "price_to_fcf": 80.314,
+        "ev_to_ebit": 13.582,
+        "sales_yield_pct": 112.314,
+        "fcf_yield_pct": 1.245,
+        "ebit_yield_pct": 7.363
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 1.283,
+        "price_to_fcf": 115.747,
+        "ev_to_ebit": 17.386,
+        "sales_yield_pct": 77.932,
+        "fcf_yield_pct": 0.864,
+        "ebit_yield_pct": 5.752
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 1.263,
+        "price_to_fcf": 113.918,
+        "ev_to_ebit": 17.19,
+        "sales_yield_pct": 79.184,
+        "fcf_yield_pct": 0.878,
+        "ebit_yield_pct": 5.817
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 1.323,
+        "price_to_fcf": 55.706,
+        "ev_to_ebit": 18.468,
+        "sales_yield_pct": 75.614,
+        "fcf_yield_pct": 1.795,
+        "ebit_yield_pct": 5.415
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 1.284,
+        "price_to_fcf": 54.08,
+        "ev_to_ebit": 18.077,
+        "sales_yield_pct": 77.888,
+        "fcf_yield_pct": 1.849,
+        "ebit_yield_pct": 5.532
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 1.219,
+        "price_to_fcf": 51.363,
+        "ev_to_ebit": 17.425,
+        "sales_yield_pct": 82.008,
+        "fcf_yield_pct": 1.947,
+        "ebit_yield_pct": 5.739
+      }
+    ],
+    "share_outliers": [
+      {
+        "end": "2023-06-30",
+        "val": 113628.0
+      },
+      {
+        "end": "2023-09-30",
+        "val": 113605.0
+      }
+    ],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 1.219,
+        "current_yield_pct": 82.006,
+        "points": 61,
+        "median": 0.856,
+        "low": 0.534,
+        "high": 1.323,
+        "negative_points": 0,
+        "median_yield_pct": 116.854,
+        "percentile": 88.5,
+        "cheaper_points": 54,
+        "dearer_points": 7,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": 51.364,
+        "current_yield_pct": 1.947,
+        "points": 61,
+        "median": 12.708,
+        "low": 4.345,
+        "high": 115.741,
+        "negative_points": 0,
+        "median_yield_pct": 7.869,
+        "percentile": 86.1,
+        "cheaper_points": 52,
+        "dearer_points": 8,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 17.425,
+        "current_yield_pct": 5.739,
+        "points": 61,
+        "median": 14.975,
+        "low": 10.846,
+        "high": 18.755,
+        "negative_points": 0,
+        "median_yield_pct": 6.678,
+        "percentile": 86.1,
+        "cheaper_points": 52,
+        "dearer_points": 8,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 54 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "expensive",
+          "phrase": "more expensive than at 52 of the last 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": "expensive",
+          "phrase": "more expensive than at 52 of the last 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 30.63,
+    "date": "2026-10-28",
+    "ma50": 32.79,
+    "ma200": 25.63,
+    "vs_ma50_pct": -6.6,
+    "vs_ma200_pct": 19.49,
+    "momentum_12_1_pct": 76.02,
+    "high_52w": 35.54,
+    "drawdown_52w_pct": -13.82,
+    "return_rs_pct": 49.12,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 40.04,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 39.21
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001193125-26-335025",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1070985/000119312526335025/d173726dex991.htm",
+    "summary": "CoreCivic updated its full-year 2026 guidance. The update reflects four facility sales to ICE, which produce an expected ~$1.8 billion gain in Q3 2026 and ~$1.6 billion in net proceeds, and debt repayments that leave about $739.1 million outstanding. The Prairie Facility activation is expected to pressure H2 2026 margins, have an immaterial effect on 2026 earnings and generate about $75 million in annual revenue once fully activated; planned 2026 capital expenditures are specified by category.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "operating_margin",
+        "period": "future quarters",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "We anticipate these facilities will continue to contribute to an increase in operating margins in future quarters as we expect the occupancy at these facilities to continue to increase.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "operating_margin",
+        "period": "H2 FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "We expect the activation of the 1,600-bed Prairie Correctional Facility (Prairie Facility), as further described hereinafter, to negatively impact margins during the second half of 2026 as we hire staff and incur expenses to prepare to receive detainees.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "Q3 FY2026",
+        "amount_text": "approximately $1.8 billion",
+        "stated_change": "not stated",
+        "sentence": "The gross sales price for these four facility sales totals $2.2 billion, resulting in an aggregate gain on sale of approximately $1.8 billion to be reported in the third quarter of 2026.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "approximately $1.6 billion",
+        "stated_change": "not stated",
+        "sentence": "After federal and state income taxes of approximately $0.5 billion and transaction costs, we anticipate our net proceeds from the facility sales to be approximately $1.6 billion.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "approximately $739.1 million",
+        "stated_change": "not stated",
+        "sentence": "Following these debt repayments, the Company’s total debt outstanding is expected to be approximately $739.1 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "remainder of FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Taking into account start-up activities and the phased commencement of intake operations, we currently expect an immaterial impact to earnings for the remainder of 2026.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "revenue",
+        "period": "annual, once Prairie Facility fully acti",
+        "amount_text": "approximately $75 million",
+        "stated_change": "not stated",
+        "sentence": "Once the facility is fully activated, we expect this facility to generate total annual revenue of approximately $75 million.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "not stated",
+        "sentence": "Based on current business conditions, we are providing the following updated financial guidance for the full year 2026:",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "capex",
+        "period": "FY2026",
+        "amount_text": "$30.0 million to $35.0 million",
+        "stated_change": "not stated",
+        "sentence": "During 2026, we expect to invest $30.0 million to $35.0 million in maintenance capital expenditures on real estate assets, $35.0 million to $40.0 million for maintenance capital expenditures on other assets and information technology, and $15.0 million for other capital investments.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "capex",
+        "period": "FY2026",
+        "amount_text": "$35.0 million to $40.0 million",
+        "stated_change": "not stated",
+        "sentence": "During 2026, we expect to invest $30.0 million to $35.0 million in maintenance capital expenditures on real estate assets, $35.0 million to $40.0 million for maintenance capital expenditures on other assets and information technology, and $15.0 million for other capital investments.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "capex",
+        "period": "FY2026",
+        "amount_text": "$15.0 million",
+        "stated_change": "not stated",
+        "sentence": "During 2026, we expect to invest $30.0 million to $35.0 million in maintenance capital expenditures on real estate assets, $35.0 million to $40.0 million for maintenance capital expenditures on other assets and information technology, and $15.0 million for other capital investments.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "capex",
+        "period": "FY2026",
+        "amount_text": "$35.0 million to $40.0 million",
+        "stated_change": "not stated",
+        "sentence": "We also expect to invest $35.0 million to $40.0 million for capital expenditures associated with previously idled facilities we are activating and for additional potential facility activations, in order to prepare these facilities to quickly accept residential populations if opportunities arise.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 1,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 1,
+        "previous": 2,
+        "sentences": [
+          "CoreCivic is a diversified, government-solutions company with the scale and experience needed to solve tough government challenges in flexible, cost-effective ways."
+        ]
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 1,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001193125-26-208929",
+      "filing_date": "2026-05-06",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1070985/000119312526208929/d302982dex991.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the past month. The last update came with Q2 results on 2026-08-05, and Q3 results are due 2026-11-04.",
+        "evidence": [
+          {
+            "claim": "CoreCivic announced it will release 2026 third quarter results after the close on November 4, 2026, with a conference call on November 5, 2026.",
+            "url": "https://ir.corecivic.com/news-releases/news-release-details/corecivic-announces-2026-third-quarter-earnings-release-and",
+            "event_date": "2026-10-05",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 24,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Mildly positive. Jones Trading reaffirmed Buy ahead of Q3 and Weiss upgraded the stock to buy (b), while TD Cowen held at Hold and the Argus target reports conflict. All of these come from secondary sources.",
+        "evidence": [
+          {
+            "claim": "Analyst Jones maintains Buy rating on CoreCivic (CXW) ahead of Q3 results, citing DHS detention funding secured through 2029.",
+            "url": "https://www.gurufocus.com/news/9137367/analyst-jones-maintains-buy-rating-on-corecivic-cxw-ahead-of-q3-results",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Weiss Ratings upgraded CoreCivic from a \"buy (b-)\" rating to a \"buy (b)\" rating; consensus is Moderate Buy with an average target price of $39.40.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/5"
+          },
+          {
+            "claim": "TD Cowen reiterated a Hold rating on CoreCivic.",
+            "url": "https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new suits or regulatory actions named CoreCivic in the window. The ACLU's FOIA suit targets ICE records about its CoreCivic contracting, not the company itself.",
+        "evidence": [
+          {
+            "claim": "ACLU of New Mexico sued ICE seeking records regarding detention center renewal contracts with CoreCivic.",
+            "url": "https://www.aclu-nm.org/press-releases/immigrants-rights-advocates-demand-records-from-ice-regarding-detention-center-renewal-contracts/",
+            "event_date": "2026-10-16",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No new contract wins or losses in the window. ICE remains the dominant customer, and it can terminate contracts at the facilities CoreCivic has sold to it.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider trade in the window was a routine 10b5-1 plan sale of 12,500 shares by CAO Cole Carter. There have been no insider purchases over the past year.",
+        "evidence": [
+          {
+            "claim": "Cole G. Carter sold 12,500 shares at $32.02 under a 10b5-1 plan, holding 165,883 shares afterward.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526412476/ownership.xml",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 6/6, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "No material product or competitive news in the window. The February Bloomberg report on ICE consolidating to government-owned sites is older background only.",
+        "evidence": [],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n- No guidance change, pre-announcement or withdrawal found in the window. The last update was on 2026-08-05, with Q2 results and raised full-year guidance. — 2026-08-05 — https://ir.corecivic.com/news-releases/news-release-details/corecivic-reports-second-quarter-2026-financial-results\n- Q3 results are due after the close on 2026-11-04. The call is on 2026-11-05. — announced 2026-10-05 — https://ir.corecivic.com/news-releases/news-release-details/corecivic-announces-2026-third-quarter-earnings-release-and\n- Guidance figures differ by source:\n  - Net income of $1.497B–$1.516B (company Q2 release; the prior range was $147.8M–$157.8M). — 2026-08-05 — https://ir.corecivic.com/news-releases/news-release-details/corecivic-reports-second-quarter-2026-financial-results\n  - Adjusted EBITDA of $453.8M–$461.8M (SEC 8-K exhibit). I could not tell from the excerpt which of the two ranges shown is the updated one. — 2026-08-05 — https://www.sec.gov/Archives/edgar/data/0001070985/000119312526335025/d173726dex991.htm\n  - Net income of $1.492B–$1.511B and diluted EPS of $15.62–$15.82 (Simply Wall St). This is a secondary source and appears to be an earlier version. — date unknown — https://simplywall.st/stocks/us/commercial-services/nyse-cxw/corecivic/news/corecivic-cxw-lifted-its-2026-guidance-is-the-stock-still-un/amp\n  - EPS of $2.61–$2.70 (MarketBeat). The basis isn't stated. — date unknown — https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/\n- Q2 results beat expectations. EPS was $0.38 against a $0.34 consensus. Revenue was $684.92M against $618.63M expected. — 2026-08-05 — https://www.defenseworld.net/2026/10/26/corecivic-inc-nysecxw-stock-has-average-target-price-of-39-40.html\n- The board added $500M to the buyback, taking the total authorization to $1.2B. — 2026-08-04 — https://www.sec.gov/Archives/edgar/data/0001070985/000119312526335025/d173726d8k.htm\n\n## 2. Analyst actions\n- Jones Trading (\"Analyst Jones\" in the source) reaffirmed Buy ahead of Q3. It expects better-than-anticipated results and cited DHS detention funding secured through 2029. — 2026-10-22 — https://www.gurufocus.com/news/9137367/analyst-jones-maintains-buy-rating-on-corecivic-cxw-ahead-of-q3-results\n- Argus changed its target twice, and the sources conflict:\n  - Argus raised its target to $38.00 (secondary source). — 2026-10-14 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/argus-raised-target-to-usd-38-00-for-corecivic-stock/70349652\n  - Argus lowered its target to $35.00 (Yahoo Finance listing). — 2026-10-07 — https://finance.yahoo.com/research/reports/ARGUS_3793_QuantitativeReport_1791331200000\n- Weiss Ratings upgraded CXW from \"buy (b-)\" to \"buy (b)\". — 2026-10-13 — https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/\n- TD Cowen reiterated Hold. MarketBeat says only \"on Friday\", so the exact date is unclear (probably 2026-10-23 or 2026-10-16). — https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/\n- Consensus is \"Moderate Buy\" (4 Buy, 1 Hold) with an average target of $39.40. — as of 2026-10-23 — same MarketBeat URL\n- Earlier targets, outside the window: Northland $40 (2026-06-26) and UBS $35 (2026-07-07). Noble Financial reiterated outperform on 2026-08-10. — same MarketBeat URL\n\n## 3. Litigation and regulation\n- The ACLU of New Mexico sued ICE under FOIA for records on ICE's direct contracting with CoreCivic. CoreCivic is not a defendant. — 2026-10-16 — https://www.aclu-nm.org/press-releases/immigrants-rights-advocates-demand-records-from-ice-regarding-detention-center-renewal-contracts/\n- No new suits, fines or investigations naming CoreCivic as a defendant turned up in the window. Earlier items, outside the window:\n  - A judge sanctioned CoreCivic for destroying video in a Torrance County detainee-suicide suit, which settled in March 2026. — December 2025 hearing, settled 2026-03 — https://theintercept.com/2026/05/24/ice-corecivic-death-private-prison-judge/\n  - A court denied CoreCivic a stay of the California City conditions injunction. — 2026-05-18 — https://www.courthousenews.com/corecivic-cant-stay-challenge-to-ice-detention-conditions/\n\n## 4. Customer concentration\n- No new contract wins or losses were announced in the window. ICE remains the key customer, as shown by these earlier items:\n  - Prairie Correctional Facility (Minnesota): a 5-year ICE contract starting 2026-08-11. CoreCivic expects detainees in Q4 2026 and a full ramp by Q2 2027. — 2026-08-04 — https://ir.corecivic.com/news-releases/news-release-details/corecivic-announces-new-contract-award-prairie-correctional\n  - Prairie is expected to generate about $75M a year at full activation. — 2026-08-04 — https://m.uk.investing.com/news/stock-market-news/corecivic-wins-ice-contract-to-reactivate-minnesota-facility-93CH-4808006?ampMode=1\n  - CoreCivic sold four ICE-used facilities to the government for $2.2B gross: California City and Otay Mesa on 2026-07-02, Prairie and Midwest on 2026-08-04. It still manages them under ICE contracts, but ICE can terminate those contracts for non-appropriation or convenience. — https://ir.corecivic.com/news-releases/news-release-details/corecivic-reports-second-quarter-2026-financial-results\n  - CoreCivic has begun talks with ICE about selling additional facilities. — same Q2 release\n- Truthout reports CoreCivic and GEO have received over $1B in ICE contracts since Trump took office. — date unknown — https://truthout.org/articles/private-prison-companies-are-pouring-money-into-gop-coffers-ahead-of-midterms/\n\n## 5. Insider activity\n- Chief Administrative Officer Cole G. Carter sold 12,500 shares at $32.02 under a 10b5-1 plan adopted 2025-11-14. He held 165,883 shares afterward. — 2026-10-01 — https://www.sec.gov/Archives/edgar/data/0001070985/000119312526412476/ownership.xml\n- Carter's sales are monthly and identical in size. The Form 144 shows sales on 07-01, 08-01 and 09-01. — 2026-10-01 — https://www.stocktitan.net/sec-filings/CXW/144-core-civic-inc-sec-filing-c637b984aac0.html\n- No insider purchases are reported over the past 12 months. GuruFocus cites about $18.0M sold over that period. — 2026-10-22 — https://www.gurufocus.com/news/9137367/analyst-jones-maintains-buy-rating-on-corecivic-cxw-ahead-of-q3-results\n- MarketBeat cites $15.43M of insider sales in the last quarter. — date unknown — https://www.marketbeat.com/instant-alerts/filing-corecivic-inc-cxw-shares-newly-bought-by-hanseatic-management-services-inc-2026-10-29/\n- I found no other Form 4 filings dated in the window. Director sales fell before it: Mark Emkes sold 30,000 shares on 2026-08-24 (https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-11105ea294ab.html), and John Prann Jr. sold 3,098 shares on 2026-08-26 (https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-0e2d5e60e9b1.html).\n\n## 6. Product and competitive news\n- Nothing material found in the window. Background from outside the window: Bloomberg reported ICE plans to cut its network of more than 200 detention sites to 34 government-owned facilities. That would pressure CoreCivic and GEO. — 2026-02-19 — https://www.bloomberg.com/news/articles/2026-02-19/trump-s-immigration-push-to-warehouses-could-cut-out-corecivic-geogroup",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526335025/d173726dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000119312526046527/d41544dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526208929/d302982dex991.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526208929/d302982d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000119312526046527/d41544d8k.htm",
+        "https://www.marketbeat.com/instant-alerts/filing-corecivic-inc-cxw-shares-newly-bought-by-hanseatic-management-services-inc-2026-10-29/",
+        "https://simplywall.st/stocks/us/commercial-services/nyse-cxw/corecivic/news/corecivic-cxw-lifted-its-2026-guidance-is-the-stock-still-un/amp",
+        "https://ir.corecivic.com/news-releases/news-release-details/corecivic-reports-second-quarter-2026-financial-results",
+        "https://www.gurufocus.com/news/9137367/analyst-jones-maintains-buy-rating-on-corecivic-cxw-ahead-of-q3-results",
+        "https://www.marketbeat.com/instant-alerts/consensus-corecivic-inc-nyse-cxw-stock-has-average-target-price-of-3940-according-to-brokerages-2026-10-23/",
+        "https://finance.yahoo.com/research/reports/ARGUS_3793_QuantitativeReport_1791331200000",
+        "https://www.tickergate.com/stocks/cxw/stock-forecast",
+        "https://financhill.com/stocks/nyse/cxw/ratings",
+        "https://www.defenseworld.net/2026/10/26/corecivic-inc-nysecxw-stock-has-average-target-price-of-39-40.html",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/argus-raised-target-to-usd-38-00-for-corecivic-stock/70349652",
+        "https://www.benzinga.com/quote/cxw/analyst-ratings",
+        "https://benzinga.com/quote/CXW/analyst-ratings",
+        "https://www.prisonlegalnews.org/news/2026/jul/1/after-spoliation-sanction-corecivic-settles-suit-over-suicide-in-new-mexico-ice-lockup/",
+        "https://theintercept.com/2026/05/24/ice-corecivic-death-private-prison-judge/",
+        "https://en.wikipedia.org/wiki/Prairie_Correctional_Facility",
+        "https://www.courthousenews.com/corecivic-cant-stay-challenge-to-ice-detention-conditions/",
+        "https://en.wikipedia.org/wiki/Cibola_County_Correctional_Center",
+        "https://www.aclu-nm.org/press-releases/immigrants-rights-advocates-demand-records-from-ice-regarding-detention-center-renewal-contracts/",
+        "https://calmatters.org/justice/2025/11/ice-california-city-detainee-lawsuit/",
+        "https://en.wikipedia.org/wiki/Leavenworth_Detention_Center",
+        "https://www.kshb.com/news/local-news/doj-files-statement-of-interest-backing-corecivic-ice-facility-in-leavenworth",
+        "https://en.wikipedia.org/wiki/List_of_deaths_in_ICE_detention",
+        "https://en.wikipedia.org/wiki/Dilley_Immigration_Processing_Center",
+        "https://en.wikipedia.org/wiki/South_Texas_Family_Residential_Center",
+        "https://m.uk.investing.com/news/stock-market-news/corecivic-wins-ice-contract-to-reactivate-minnesota-facility-93CH-4808006?ampMode=1",
+        "https://www.corrections1.com/ice-awards-130m-contract-to-launch-californias-largest-detention-center",
+        "https://calmatters.org/justice/2026/07/corecivic-sells-ice-detention-centers/",
+        "https://www.mprnews.org/story/2026/08/04/appleton-detention-facility-could-start-holding-ice-detainees-this-fall",
+        "https://ca.investing.com/news/stock-market-news/corecivic-wins-ice-contract-to-reactivate-minnesota-facility-93CH-4773867",
+        "https://ir.corecivic.com/news-releases/news-release-details/corecivic-announces-new-contract-award-prairie-correctional",
+        "https://www.benzinga.com/news/26/08/61214058/sell-alert-david-garfinkle-cashes-out-125k-corecivic-stock",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526349753/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526292852/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526369079/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526378533/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-e166012d3fc4.html",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-11105ea294ab.html",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-57bddc2b6e73.html",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-35c41fc50ce3.html",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-0e2d5e60e9b1.html",
+        "https://www.bloomberg.com/news/articles/2026-02-19/trump-s-immigration-push-to-warehouses-could-cut-out-corecivic-geogroup",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000095017025024745/cxw-20241231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000095017023003390/cxw-20221231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000095017024017235/cxw-20231231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000119312526060669/cxw-20251231.htm",
+        "https://www.themarshallproject.org/2026/01/06/trump-arrest-immigrants-private-prisons",
+        "https://www.bisnow.com/national/news/commercial-real-estate/corecivic-geo-group-could-get-1b-in-new-detention-center-contracts-130591",
+        "https://truthout.org/articles/private-prison-companies-are-pouring-money-into-gop-coffers-ahead-of-midterms/",
+        "https://www.pbs.org/newshour/nation/trump-administration-using-no-bid-contracts-boosting-big-firms-to-get-more-ice-detention-beds",
+        "https://www.webull.com/news/15680556413371392",
+        "https://www.gurufocus.com/news/9108353/corecivic-inc-cxw-chief-administrative-officer-cole-carter-sells-12500-shares",
+        "https://rallies.ai/news/corecivic-chief-administrative-officer-cole-g-carter-disposes-of-12500-shares-worth-400250-a0b428131ab540ca",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526412476/ownership.xml",
+        "https://www.stocktitan.net/sec-filings/CXW/form-4-core-civic-inc-insider-trading-activity-f8bb1068f513.html",
+        "https://www.stocktitan.net/sec-filings/CXW/144-core-civic-inc-sec-filing-c637b984aac0.html",
+        "https://www.sec.gov/Archives/edgar/data/1070985/000156459021016309/cxw-def14a_20210330.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/corecivic-announces-2026-third-quarter-120000650.html",
+        "https://www.nasdaq.com/press-release/corecivic-announces-2026-third-quarter-earnings-release-and-conference-call-dates",
+        "https://www.sec.gov/Archives/edgar/data/0001070985/000119312526335025/d173726d8k.htm",
+        "https://ir.corecivic.com/news-releases/news-release-details/corecivic-announces-2026-third-quarter-earnings-release-and",
+        "https://www.globenewswire.com/news-release/2026/10/05/3374472/0/en/corecivic-announces-2026-third-quarter-earnings-release-and-conference-call-dates.html",
+        "https://ir.corecivic.com/",
+        "https://ir.corecivic.com/news-releases",
+        "https://stockhouse.com/news/press-releases/2026/10/05/corecivic-announces-2026-third-quarter-earnings-release-and-conference-call",
+        "https://rallies.ai/news/corecivic-updates-financial-calendar-with-third-quarter-earnings-release-conference-call-timing-f724848973639dda"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "CoreCivic rates Hold: strong growth and momentum offset by a weak balance sheet and full valuation.",
+    "thesis": "CoreCivic scores 54, a Hold, sitting 11 points below Buy and 10 points above Sell. Growth (77) and trend (80) are the strengths, with TTM revenue growth of 24.4%, latest-quarter revenue growth of 27.3% year on year, and shares 40.0 pp ahead of SPY over the last 126 trading days. Quality is middling at 59: the operating margin is 9.9% but the FCF margin is only 2.4%, helped by a diluted share count down 9.0% year on year. The balance sheet scores just 4, with net debt at 21.17 times free cash flow and cash covering only 0.08 of debt. Valuation scores 30: P/FCF of 51.4 is high in absolute terms, the FCF yield is 3.0 pp below the 10-year Treasury yield, and the stock is expensive against its own history, more expensive than at 54 of the last 61 month-ends on P/S.",
+    "key_risks": [
+      "Heavy dependence on ICE, which can terminate contracts at facilities CoreCivic has sold to it",
+      "Thin free cash flow relative to debt (net debt 21.17 times FCF) leaves little cushion",
+      "Valuation is expensive against its own history, and P/FCF of 51.4 is high in absolute terms",
+      "Prairie Facility activation is expected to pressure second-half 2026 margins",
+      "Shares are already 13.8% below their 52-week high and 6.6% below the 50-day average, so momentum could fade"
+    ],
+    "what_would_change": [
+      "Up to Buy (11 points needed): a much stronger balance sheet score, for example if the ~$1.6 billion in sale proceeds and debt paydown to about $739.1 million show up in filed results",
+      "Up: better free cash flow conversion lifting quality and valuation scores, or positive guidance with Q3 results on 2026-11-04",
+      "Down to Sell (10 points away): growth slowing sharply or the trend score breaking down as the share price weakens further",
+      "Down: an adverse ICE contract or policy change, such as more consolidation into government-owned sites, turning news risk negative"
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 4772,
+        "output_tokens": 2317,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 4772,
+            "output_tokens": 2317,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0654,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 120865,
+        "output_tokens": 5026,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 120865,
+            "output_tokens": 5026,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.372,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 9345,
+        "output_tokens": 1778,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 9345,
+            "output_tokens": 1778,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0729,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3777,
+        "output_tokens": 949,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3777,
+            "output_tokens": 949,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0341,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5444,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 31.74,
+    "as_of": "2026-10-29T14:04:36Z",
+    "prev_close": 30.63
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 10:01",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

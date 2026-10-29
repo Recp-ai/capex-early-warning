@@ -1,0 +1,710 @@
+{
+  "run_id": "2026-10-29T13:33:44Z",
+  "generated_at": "2026-10-29T13:34:31+00:00",
+  "ticker": "IBIT",
+  "sec_ticker": "IBIT",
+  "cik": "0001980994",
+  "name": "iShares Bitcoin Trust ETF",
+  "sector": "Commodity Contracts Brokers & Dealers",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 45,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 4.0,
+        "text": "4 of 6 factors had no data: Growth, Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 45 is within 2 points of the Hold edge (45)"
+      }
+    ],
+    "factors_with_data": 2
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 20
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 1
+    }
+  },
+  "composite": {
+    "score": 45,
+    "raw": 44.5,
+    "weights_used": {
+      "trend": 0.5,
+      "news_risk": 0.5
+    },
+    "available": [
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "financials reported in an unknown currency, prices in USD"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": 0.94,
+          "score": 54.7,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 10.96,
+          "score": 77.4,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -27.5,
+          "score": 3.1,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -1.15,
+          "score": 47.7,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -1.98,
+          "score": 46.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -28.45,
+          "score": 19.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 39,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 46.14,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": null,
+    "taxonomy": null,
+    "foreign": null,
+    "annual_only": true,
+    "revenue_tag": null
+  },
+  "valuation": {
+    "missing": "financials reported in an unknown currency, prices in USD"
+  },
+  "trend": {
+    "close": 46.14,
+    "date": "2026-10-28",
+    "ma50": 45.71,
+    "ma200": 41.58,
+    "vs_ma50_pct": 0.94,
+    "vs_ma200_pct": 10.96,
+    "momentum_12_1_pct": -27.5,
+    "high_52w": 64.49,
+    "drawdown_52w_pct": -28.45,
+    "return_rs_pct": 7.93,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -1.15,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -1.98
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "IBIT is a bitcoin trust that gives no guidance. The only in-window item is an unchanged 0.25% sponsor fee, which is neutral.",
+        "evidence": [
+          {
+            "claim": "Sponsor fee is 0.25%.",
+            "url": "https://www.blackrock.com/us/individual/products/333011/ishares-bitcoin-trust-etf",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "No named-firm rating or target change on IBIT turned up in the window. The JPMorgan bitcoin call is about the underlying asset, not the fund, and was not read.",
+        "evidence": [],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits or enforcement actions name IBIT. The SEC procedural changes and the approval of competitors' 3x products are indirect and mixed.",
+        "evidence": [
+          {
+            "claim": "SEC approved a rule change clearing Volatility Shares' 3x bitcoin and ether ETFs.",
+            "url": "https://www.blockhead.co/2026/10/07/the-sec-just-approved-3x-bitcoin-etfs-but-is-the-product-built-to-decay/",
+            "event_date": "2026-10-02",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 27,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 4/4"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "There are no customers in the usual sense. October fund flows were mixed, with large IBIT inflow days offset by outflow days and modest net outflows across the category.",
+        "evidence": [
+          {
+            "claim": "BlackRock's IBIT recorded a $665.16 million inflow, its largest since October 7, 2025.",
+            "url": "https://www.theblock.co/news/markets/2026-10-20-blackrock-ibit-bitcoin-etf-665-million-421102",
+            "event_date": "2026-10-19",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "BlackRock's IBIT accounted for all $65.4 million in bitcoin ETF outflows.",
+            "url": "https://cryptobriefing.com/blackrock-ibit-bitcoin-etf-outflow-65-million/",
+            "event_date": "2026-10-12",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "As a trust, IBIT has no Form 4 filers, and no insider transactions were found.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "BlackRock filed for PBIT, a buffered bitcoin ETF built on IBIT options, which slightly extends the IBIT ecosystem. Lower-fee rivals remain, but there was no new fee pressure in the window.",
+        "evidence": [
+          {
+            "claim": "BlackRock filed for a buffer bitcoin ETF, the iShares Bitcoin Managed Protection ETF, that would use IBIT options.",
+            "url": "https://finance.yahoo.com/markets/crypto/articles/blackrock-files-buffer-bitcoin-etf-091330489.html",
+            "event_date": "2026-10-19",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 10,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 6/6"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Scope:** IBIT is a grantor trust that holds bitcoin. It gives no earnings guidance and has no sell-side coverage in the usual sense. It also has no officers or directors who file Form 4s, and no customers in the operating-company sense. I ran a limited number of searches, so \"nothing found\" means I found nothing in them, not that nothing exists.\n\n## 1. Guidance / results\n- No guidance, pre-announcement or results versus expectations. The latest periodic filing I found is the 10-Q for the quarter ended 2026-06-30 (date unknown); I found no Q3 10-Q yet. — date unknown — https://www.sec.gov/Archives/edgar/data/0001980994/000143774926026004/bit20260630c_10q.htm\n- Sponsor fee is unchanged at 0.25%. — 2026-10-27 — https://www.blackrock.com/us/individual/products/333011/ishares-bitcoin-trust-etf\n- Fund-level data: assets of about $67.1B and a 2026-10-28 close of $46.14. — 2026-10-28 — https://finance.yahoo.com/quote/IBIT/\n- BlackRock's NAV was $45.62, with YTD NAV total return of -8.69% as of 2026-10-26. — 2026-10-27 — https://www.blackrock.com/us/individual/products/333011/ishares-bitcoin-trust-etf\n\n## 2. Analyst actions\n- I found no named-firm upgrade, downgrade, initiation or price target on IBIT in the window.\n- A headline says JPMorgan has a $215,000 bitcoin base case. It is about bitcoin, not IBIT, and I did not read the article. — 2026-10-20 — https://www.investing.com/etfs/ibit-nasdaq\n- A Seeking Alpha contributor upgrade is dated 2026-06-21, which is outside the window. — 2026-06-21 — https://seekingalpha.com/article/4916514-ibit-bitcoin-is-likely-in-the-final-few-months-of-the-bear-market\n\n## 3. Litigation and regulation\n- I found no lawsuits, investigations or fines naming IBIT.\n- BlackRock filed a registration statement for the iShares Bitcoin Managed Protection ETF (PBIT). It is a filing, not an approval. — 2026-10-19 — https://finance.yahoo.com/markets/crypto/articles/blackrock-files-buffer-bitcoin-etf-091330489.html\n- The SEC approved a Cboe BZX rule change clearing Volatility Shares' 3x bitcoin and ether ETFs. This affects competing products, not IBIT. — 2026-10-02 — https://www.blockhead.co/2026/10/07/the-sec-just-approved-3x-bitcoin-etfs-but-is-the-product-built-to-decay/\n- The SEC changed its quorum rule on 2026-09-30 and paused hands-on review of new fund filings on 2026-10-01. Commissioner Hester Peirce left on 2026-10-02, leaving two sitting members. — 2026-09-30 — https://hoge.gg/crypto-etf-approvals-who-approves-them-now-2026/\n- The comment period on the SEC's proposed \"Regulation Crypto Assets\" ended 2026-10-20. — 2026-10-20 — https://www.sec.gov/Archives/edgar/data/0002082889/000121390026101332/ea0305963-posam1_bitwise.htm\n- The SEC approval of higher IBIT options position limits (250,000 to 1,000,000 contracts) was about 103 days before today, so it falls outside the window. — date unknown — https://cryptorank.io/news/feed/a0059-sec-approves-higher-ibit-options-limits-as-bitcoin-etf-market-matures\n\n## 4. Customer concentration\n- There are no customers as such. The nearest analogue is authorized participants and ownership concentration, and I found nothing on changes in either during the window.\n- Q2 2026 13F data, outside the window, shows market makers and banks among the top holders of crypto ETFs. Jane Street was the largest, at $1.14B across 34 funds. — date unknown — https://cryptoetf.today/en/crypto-etf-institutional-holders\n- IBIT dominates spot-bitcoin ETF flows. — date unknown — https://www.coindesk.com/markets/2026/06/11/blackrock-s-income-paying-bitcoin-etf-nears-launch-at-a-fee-that-undercuts-rivals\n- Flow data in the window (SoSoValue figures, which differ slightly by source):\n  - IBIT outflow of $207.7M, within a total outflow of $487.1M. — 2026-10-07 — https://www.tftc.io/bitcoin-etf-flows\n  - Total outflow of $484.9M for the same day, per Farside. — 2026-10-07 — https://www.tradingview.com/news/cryptobriefing:d0a9213b4094b:0-blackrock-s-ibit-accounts-for-all-65-4-million-in-bitcoin-etf-outflows-on-october-12/\n  - IBIT outflow of $65.4M, the only fund with flows that day. — 2026-10-12 — https://cryptobriefing.com/blackrock-ibit-bitcoin-etf-outflow-65-million/\n  - IBIT inflow of $665.16M, its largest since 2025-10-07, within a total of $526.6M. — 2026-10-19 — https://www.theblock.co/news/markets/2026-10-20-blackrock-ibit-bitcoin-etf-665-million-421102\n  - Total outflow of $635.5M, the largest since June 2025, per Benzinga. — 2026-10-22 — https://www.benzinga.com/etfs/specialty-etfs/26/10/62635335/bitcoin-back-above-80k-ibit-breaks-outflow-spell\n  - Total of $635.6M, with IBIT at -$254.1M, per Phemex. — 2026-10-22 — https://phemex.com/academy/bitcoin-etf-inflows-outflows-2026-ibit-institutional-demand\n  - IBIT inflow of $110.3M, all of that day's net inflow. — 2026-10-26 — https://www.tokenpost.com/news/investing/41563\n  - Phemex says IBIT also had -$110.3M on 2026-10-23, but TokenPost puts the total 10-23 outflow at $137.94M. I could not reconcile the two. — 2026-10-23 — https://phemex.com/academy/bitcoin-etf-inflows-outflows-2026-ibit-institutional-demand\n  - Phemex also reports a $151.5M IBIT inflow on 2026-10-27. — 2026-10-27 — https://phemex.com/academy/bitcoin-etf-inflows-outflows-2026-ibit-institutional-demand\n- October month-to-date, US spot bitcoin ETFs had about $202M of net outflows through 2026-10-26. — 2026-10-26 — https://www.benzinga.com/etfs/specialty-etfs/26/10/62635335/bitcoin-back-above-80k-ibit-breaks-outflow-spell\n\n## 5. Insider activity\n- None found. A trust has no officers or directors filing Form 4s, and I found no Form 4 or 10b5-1 items for IBIT.\n- The only related Form 4-type item would be BlackRock's own proprietary IBIT position. A 13F-based report, which is not a Form 4, put it at about 12.8M shares as of Q4 2025. — date unknown — https://www.gate.com/crypto-wiki/article/13f-bitcoin-etf-filings\n\n## 6. Product and competitive news\n- BlackRock filed for PBIT. It would buy IBIT call options and sell higher-strike calls, with protection starting at roughly 90% of the reference value. Its fee is undisclosed. — 2026-10-19 — https://finance.yahoo.com/markets/crypto/articles/blackrock-files-buffer-bitcoin-etf-091330489.html\n- It would be BlackRock's third bitcoin ETF filing, after IBIT and the income-oriented BITA. — 2026-10-19 — https://alpha-maven.com/story/crypto/blackrock-seeks-sec-approval-for-bitcoin-etf-that-caps-losses-limits-gains-biggo-finance\n- Competition on fees:\n  - Morgan Stanley's MSBT launched at 0.14%, below IBIT's 0.25%. — 2026-04-08 — https://www.thecoinanalysis.com/news/bitcoin/morgan-stanleys-spot-bitcoin-etf-launches-challenging-blackrocks-dominance-196\n  - Grayscale's Bitcoin Mini Trust charges 0.15%. — date unknown — https://www.theblock.co/post/395568/morgan-stanley-sets-spot-bitcoin-etf-fee-at-0-14-undercutting-every-rival-on-the-market\n- Both launches fall outside the window, and I found no new fee cut by IBIT in it.\n- The 3x bitcoin ETP approval (see section 3) adds leveraged competition around bitcoin exposure, though not a direct competitor to spot funds. — 2026-10-02 — https://www.blockhead.co/2026/10/07/the-sec-just-approved-3x-bitcoin-etfs-but-is-the-product-built-to-decay/",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001980994/000143774926015538/bit20260331_10q.htm",
+        "https://www.heygotrade.com/en/us-stock/ibit/",
+        "https://www.investing.com/etfs/ibit-nasdaq",
+        "https://www.nasdaq.com/articles/october-2026-options-now-available-ishares-bitcoin-trust-etf-ibit",
+        "https://www.theblock.co/news/markets/2026-10-20-blackrock-ibit-bitcoin-etf-665-million-421102",
+        "https://marketchameleon.com/Overview/IBIT",
+        "https://finance.yahoo.com/quote/IBIT/",
+        "https://www.benzinga.com/etfs/specialty-etfs/26/10/62635335/bitcoin-back-above-80k-ibit-breaks-outflow-spell",
+        "https://www.blackrock.com/us/individual/products/333011/ishares-bitcoin-trust-etf",
+        "https://www.tradingview.com/news/cryptobriefing:d0a9213b4094b:0-blackrock-s-ibit-accounts-for-all-65-4-million-in-bitcoin-etf-outflows-on-october-12/",
+        "https://cryptobriefing.com/blackrock-ibit-bitcoin-etf-outflow-65-million/",
+        "https://www.tftc.io/bitcoin-etf-flows",
+        "https://www.tokenpost.com/news/investing/41563",
+        "https://cryptodaily.co.uk/2026/10/blackrock-ibit-665m-inflow-biggest-since-october-2025",
+        "https://phemex.com/academy/bitcoin-etf-inflows-outflows-2026-ibit-institutional-demand",
+        "https://blog.kcex.com/crypto-insights/bitcoin-etf-outflows-october-2026-ibit-fbtc-flows/",
+        "https://www.tradingview.com/news/newsbtc:8fee6a1e0094b:0-sec-approves-higher-ibit-options-limits-as-bitcoin-etf-market-matures/",
+        "https://www.federalregister.gov/documents/2025/03/20/2025-04661/self-regulatory-organizations-nasdaq-ise-llc-notice-of-filing-of-amendment-no-1-and-order",
+        "https://www.sec.gov/files/rules/sro/ise/2024/34-101128.pdf",
+        "https://worktraining.com/knowledge/sec-reviews-nasdaq-ise-proposal-to-raise-position-limits-on-bitcoin-etf-options",
+        "https://cryptorank.io/news/feed/d7348-sec-approves-ibit-option-limit",
+        "https://www.sec.gov/files/rules/sro/nyseamer/2024/34-101386.pdf",
+        "https://cryptorank.io/news/feed/a0059-sec-approves-higher-ibit-options-limits-as-bitcoin-etf-market-matures",
+        "https://nosmokesport.com/crypto-news/ibit-options-limits-increased/",
+        "https://www.sec.gov/file/34-103746",
+        "https://www.fool.com/investing/2025/11/21/billionaires-betting-on-blackrock-etf-soar-ibit/",
+        "https://etfdb.com/etf/IBIT/",
+        "https://stockanalysis.com/etf/ibit/",
+        "https://www.benzinga.com/crypto/cryptocurrency/26/10/62459126/blackrocks-new-bitcoin-etf-proposal-targets-upside-while-seeking-downside-protection-heres-more",
+        "https://finance.yahoo.com/markets/crypto/articles/blackrock-files-buffer-bitcoin-etf-091330489.html",
+        "https://www.fool.com/investing/2026/10/20/blackrock-pbit-bitcoin-etf-aims-to-tame-the-swings/",
+        "https://www.bitget.com/wiki/ibit-stock-price-prediction-2025",
+        "https://www.bitunix.com/hub/academy/market-research/crypto-market-trends/ibit-price-prediction-2026",
+        "https://capedge.com/company/1980994/institutional",
+        "https://www.etftrends.com/coinshares-content-hub/advisors-led-institutional-bitcoin-growth-q3-filings/",
+        "https://www.sec.gov/Archives/edgar/data/0001980994/000143774926026004/bit20260630c_10q.htm",
+        "https://fintel.io/so/us/ibit",
+        "https://13fhub.com/stocks/ETF-IBIT",
+        "https://aum13f.com/issuer/IBIT",
+        "https://www.investorlens.capital/stocks/IBIT",
+        "https://cryptoetf.today/en/crypto-etf-institutional-holders",
+        "https://www.gate.com/crypto-wiki/article/13f-bitcoin-etf-filings",
+        "https://www.fool.com/investing/2026/10/27/blackrock-just-announced-a-new-bitcoin-etf-should/",
+        "https://www.theblock.co/post/395568/morgan-stanley-sets-spot-bitcoin-etf-fee-at-0-14-undercutting-every-rival-on-the-market",
+        "https://www.coindesk.com/markets/2026/06/11/blackrock-s-income-paying-bitcoin-etf-nears-launch-at-a-fee-that-undercuts-rivals",
+        "https://finance.yahoo.com/markets/crypto/articles/bitcoin-etf-news-blackrock-building-085449223.html",
+        "https://bitcoinmagazine.com/news/blackrock-files-ticker-bitcoin-premium-etf",
+        "https://tradersunion.com/news/cryptocurrency-news/show/2326716-blackrock-income-bitcoin-etf-low-fee/",
+        "https://www.spark.money/research/bitcoin-spot-etf-global-expansion-beyond-us",
+        "https://www.thecoinanalysis.com/news/bitcoin/morgan-stanleys-spot-bitcoin-etf-launches-challenging-blackrocks-dominance-196",
+        "https://crypto-economy.com/blackrock-is-about-to-launch-bitcoin-etf/",
+        "https://www.sec.gov/Archives/edgar/data/0002039525/000121390026104143/ea0306697-424b3_bitwisexrp.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002082889/000121390026104149/ea0306698-424b3_bitwisechain.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002082889/000121390026101332/ea0305963-posam1_bitwise.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002039525/000121390026101333/ea0305964-posam2_bitwisexrp.htm",
+        "https://www.sec.gov/Archives/edgar/data/2034012/000119312526056117/gsui_424b3.htm",
+        "https://finance.yahoo.com/markets/crypto/articles/sec-just-broke-2x-ceiling-104256696.html",
+        "https://www.blockhead.co/2026/10/07/the-sec-just-approved-3x-bitcoin-etfs-but-is-the-product-built-to-decay/",
+        "https://time.com/6553701/sec-bitcoin-etfs-x-account-compromised/",
+        "https://alpha-maven.com/story/crypto/blackrock-seeks-sec-approval-for-bitcoin-etf-that-caps-losses-limits-gains-biggo-finance",
+        "https://hoge.gg/crypto-etf-approvals-who-approves-them-now-2026/",
+        "https://seekingalpha.com/article/4816423-ibit-were-at-the-top-double-downgrade",
+        "https://seekingalpha.com/article/4796318-ibit-patience-needed-as-bitcoin-consolidates-rating-downgrade",
+        "https://seekingalpha.com/article/4916514-ibit-bitcoin-is-likely-in-the-final-few-months-of-the-bear-market",
+        "https://www.bitget.com/news/detail/12560605090501",
+        "https://www.marketbeat.com/instant-alerts/ishares-bitcoin-trust-nasdaqibit-stock-holdings-boosted-by-moors-cabot-inc-2025-03-12",
+        "https://www.nasdaq.com/articles/why-bitcoin-etfs-ibit-may-be-set-surge-2026",
+        "https://www.barchart.com/story/news/36429003/why-bitcoin-etfs-like-ibit-may-be-set-to-surge-in-2026",
+        "https://www.marketbeat.com/stocks/NASDAQ/IBIT/earnings",
+        "https://www.marketbeat.com/instant-alerts/barclays-plc-buys-new-shares-in-ishares-bitcoin-trust-nasdaqibit-2025-04-16"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "sec:companyfacts": "no revenue in us-gaap or ifrs-full XBRL facts",
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "IBIT rates Hold at 45, one point above Sell, on weak 12-month momentum and neutral news.",
+    "thesis": "IBIT is a bitcoin trust, so the usual growth, quality, balance sheet and valuation factors have no data, and the score of 45 rests only on trend (39) and news risk (50), weighted equally. The trend score is held down by shares down 27.5% from 12 months ago to 1 month ago and a price 28.4% below its 52-week high, plus shares 1.1 pp behind SPY and 2.0 pp behind QQQ over the last 126 trading days. Shorter-term signals are firmer, with the price 0.9% above its 50-day average and 11.0% above its 200-day average. News is neutral across all six topics: no guidance, no fund-specific analyst actions or litigation, an unchanged 0.25% sponsor fee, and mixed October flows. With the score sitting right on the Hold edge, the rating is fragile.",
+    "key_risks": [
+      "The fund tracks bitcoin, so its price can swing sharply with the underlying asset.",
+      "Weak 12-month momentum: shares down 27.5% from 12 months ago to 1 month ago, and price 28.4% below its 52-week high.",
+      "Lower-fee rival bitcoin ETFs could draw assets if fee pressure returns.",
+      "Fund flows were mixed in October, with modest net outflows across the category.",
+      "Regulatory shifts around crypto products, such as SEC procedural changes, could affect the category."
+    ],
+    "what_would_change": [
+      "A drop of just 1 point in the score, such as a weaker trend score from renewed price declines, would move the rating to Sell.",
+      "Moving up to Buy would need 20 more points, which would take a sustained rebound in momentum and relative strength against SPY and QQQ.",
+      "Clearly negative news, such as regulatory action or new fee pressure on IBIT, would lower the news risk score and likely push the rating to Sell.",
+      "Positive fund-specific developments, such as strong sustained inflows, could lift the news score toward the Buy band."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 123000,
+        "output_tokens": 4538,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 123000,
+            "output_tokens": 4538,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3714,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7387,
+        "output_tokens": 1029,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7387,
+            "output_tokens": 1029,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0501,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3504,
+        "output_tokens": 683,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3504,
+            "output_tokens": 683,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0277,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4492,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 45.425,
+    "as_of": "2026-10-29T14:04:35Z",
+    "prev_close": 46.14
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:33",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

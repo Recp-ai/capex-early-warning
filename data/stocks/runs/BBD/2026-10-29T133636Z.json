@@ -1,0 +1,804 @@
+{
+  "run_id": "2026-10-29T13:36:36Z",
+  "generated_at": "2026-10-29T14:02:46+00:00",
+  "ticker": "BBD",
+  "sec_ticker": "BBD",
+  "cik": "0001160330",
+  "name": "BANK BRADESCO",
+  "sector": "State Commercial Banks",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Strong Sell",
+  "rating_before_overlay": "Strong Sell",
+  "score": 27,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 4.0,
+        "text": "4 of 6 factors had no data: Growth, Quality, Balance sheet, Valuation"
+      }
+    ],
+    "factors_with_data": 2
+  },
+  "bands": {
+    "up": {
+      "label": "Sell",
+      "at": 30,
+      "points": 3
+    },
+    "down": null
+  },
+  "composite": {
+    "score": 27,
+    "raw": 27.0,
+    "weights_used": {
+      "trend": 0.5,
+      "news_risk": 0.5
+    },
+    "available": [
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": null,
+          "score": null,
+          "weight": 0.3,
+          "note": "missing"
+        },
+        "acceleration_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no revenue in XBRL"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "no balance sheet in XBRL"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "financials reported in an unknown currency, prices in USD"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -23.99,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -25.38,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 5.55,
+          "score": 54.2,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -33.44,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -34.27,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -39.47,
+          "score": 0.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 14,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 40,
+      "metrics": {
+        "guidance": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Strong Sell",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 2.73,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": null,
+    "taxonomy": null,
+    "foreign": null,
+    "annual_only": true,
+    "revenue_tag": null
+  },
+  "valuation": {
+    "missing": "financials reported in an unknown currency, prices in USD"
+  },
+  "trend": {
+    "close": 2.73,
+    "date": "2026-10-28",
+    "ma50": 3.59,
+    "ma200": 3.66,
+    "vs_ma50_pct": -23.99,
+    "vs_ma200_pct": -25.38,
+    "momentum_12_1_pct": 5.55,
+    "high_52w": 4.51,
+    "drawdown_52w_pct": -39.47,
+    "return_rs_pct": -24.36,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -33.44,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -34.27
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": -1,
+        "summary": "Bradesco reaffirmed its 2026 guidance but said NII net of provisions is tracking the lower end of the R$42–48bn range. Rising NPLs and credit-cost pressure expected into 2027 tilt the outlook modestly negative.",
+        "evidence": [
+          {
+            "claim": "Bradesco reaffirmed its 2026 guidance for NII net of provisions at R$42–48bn and is tracking the lower end.",
+            "url": "https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241",
+            "event_date": "2026-10-23",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "The over-90-day NPL ratio rose to 4.6%, and management expects credit-cost pressure to last until an inflection in 2Q or 3Q 2027.",
+            "url": "https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241",
+            "event_date": "2026-10-23",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "3Q26 recurring net income was R$7.1bn, up 14.6% y/y and 0.8% q/q.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 0/0"
+          },
+          {
+            "claim": "EPS was $0.1309 against $0.1328 expected, and revenue was $7.66bn against $7.47bn expected.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-banco-bradesco-posts-mixed-q3-2026-results-as-revenue-beats-93CH-4970118",
+            "event_date": "2026-10-23",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": -1,
+        "summary": "Early-October upgrades were followed by a wave of post-results downgrades and target cuts from Itaú BBA, JPMorgan and reportedly Citi. Coverage on balance has turned negative.",
+        "evidence": [
+          {
+            "claim": "Itaú BBA downgraded Bradesco to Market Perform and cut its end-2027 target from R$22 to R$20.",
+            "url": "https://www.infomoney.com.br/mercados/bradesco-bbdc4-rebaixado-perde-recomendacao-de-compra-do-itau-bba-apos-3t-e-piora-do-cenario-em-2027/",
+            "event_date": "2026-10-27",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 4/5"
+          },
+          {
+            "claim": "Itaú BBA removed its buy recommendation on Bradesco and cut its price target.",
+            "url": "https://guiadoinvestidor.com.br/mercado/bradesco-bbdc4-perde-recomendacao-de-compra-itau-bba-corta-preco-alvo-e-ve-lucro-quase-parado-em-2027/",
+            "event_date": "2026-10-27",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 2/3"
+          },
+          {
+            "claim": "Bradesco suffered a second downgrade, with JPMorgan cutting its price target by almost 30%.",
+            "url": "https://www.infomoney.com.br/mercados/bradesco-bbdc4-sofre-segundo-rebaixamento-e-jpmorgan-corta-preco-alvo-em-quase-30/",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          },
+          {
+            "claim": "JPMorgan raised its recommendation on Bradesco, lifting the target from R$22 to R$26.",
+            "url": "https://revistaoeste.com/economia/jpmorgan-rebaixa-recomendacao-para-o-banco-do-brasil-e-eleva-bradesco/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, fines or investigations surfaced in the window. Filings cover only routine capital-raise matters.",
+        "evidence": [
+          {
+            "claim": "The auction of unsubscribed shares sold all receipts offered, for R$283m gross.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004846/bbd20261002_6k.htm",
+            "event_date": "2026-10-02",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 27,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/1, names 0/0 · missing: 283"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Bradesco, a diversified retail and corporate bank, discloses no single-customer dependence. Nothing material was found.",
+        "evidence": [
+          {
+            "claim": "Management said it reduced exposure to more volatile client clusters.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm",
+            "event_date": "2026-10-22",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 1/1"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "Directors bought preferred shares and no sales were found, but the transactions date to mid-September, outside the 30-day window. Buyer identities are also inconsistent across articles.",
+        "evidence": [
+          {
+            "claim": "A Banco Bradesco director purchased 46,874 preferred shares.",
+            "url": "https://www.fool.com/coverage/filings/2026/10/12/banco-bradesco-director-purchases-usd843-000-shares-is-bbd-still-a-buy/",
+            "event_date": "2026-09-18",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 41,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          },
+          {
+            "claim": "Director Caffarelli bought 31,266 preference shares.",
+            "url": "https://www.fool.com/coverage/filings/2026/10/06/banco-bradesco-director-caffarelli-buys-31-266-preference-shares-is-the-brazilian-bank-due-to-rally/",
+            "event_date": "2026-09-18",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 41,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Loan growth was solid, but wholesale mix is compressing NIM. No launches or competitive events were found, so the picture is mixed.",
+        "evidence": [
+          {
+            "claim": "Loan book reached R$1.15tn, up 11.1% y/y, and insurance ROAE was 22%.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-banco-bradesco-posts-mixed-q3-2026-results-as-revenue-beats-93CH-4970118",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Wholesale growth is compressing NIM to 8.9%, and management is prioritizing secured lending.",
+            "url": "https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241",
+            "event_date": "2026-10-23",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 3
+        },
+        "analyst_actions": {
+          "verified": 4,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**1. Guidance and results**\n- Bradesco reaffirmed its 2026 guidance for NII net of provisions at R$42–48bn and said it is tracking the lower end. — 2026-10-23 — https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241\n- Full-year loan growth guidance of 8.5–10.5% was reported as intact. Another source says the bank beat on revenue, not missed. — 2026-10-23 — https://247wallst.com/cards/bank-bradesco-q3-2026-earnings-bbd-01m5mgj9kmawjrw56qsev87g9z\n- 3Q26 recurring net income was R$7.1bn, up 14.6% y/y and 0.8% q/q. Total revenue was R$38.0bn. The R$10bn capital increase is complete. — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm\n- Versus consensus, EPS was $0.1309 against $0.1328 expected, and revenue was $7.66bn against $7.47bn. — 2026-10-23 — https://www.investing.com/news/transcripts/earnings-call-transcript-banco-bradesco-posts-mixed-q3-2026-results-as-revenue-beats-93CH-4970118\n- 247wallst reports both EPS and revenue as misses, so the sources conflict on revenue. — 2026-10-23 — https://247wallst.com/cards/bank-bradesco-q3-2026-earnings-bbd-01m5mgj9kmawjrw56qsev87g9z\n- A separate aggregator shows 3Q26 net income of BRL 7,330m. This is likely a different accounting basis from the 7.1bn recurring figure. — 2026-10-22 — https://www.marketscreener.com/news/banco-bradesco-s-a-reports-earnings-results-for-the-third-quarter-and-nine-months-ended-september-3-ce785cdede8cfe2c\n- The over-90-day NPL ratio rose to 4.6%. Management expects credit-cost pressure to last until an inflection in 2Q or 3Q 2027. — 2026-10-23 — https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241\n\n**2. Analyst actions**\n- JPMorgan upgraded to Overweight from Neutral, with the preferred-share target raised from R$22 to R$26. — 2026-10-06 — https://revistaoeste.com/economia/jpmorgan-rebaixa-recomendacao-para-o-banco-do-brasil-e-eleva-bradesco/\n- JPMorgan then cut to Neutral and lowered its target by almost 30%. The article is dated Oct 29, so the event date is approximate. — 2026-10-29 — https://www.infomoney.com.br/mercados/bradesco-bbdc4-sofre-segundo-rebaixamento-e-jpmorgan-corta-preco-alvo-em-quase-30/\n- Itaú BBA downgraded to Market Perform and cut its end-2027 target from R$22 to R$20. It now sees 2027 net income of R$28.5bn, about 12% below its prior estimate. — 2026-10-27 — https://www.infomoney.com.br/mercados/bradesco-bbdc4-rebaixado-perde-recomendacao-de-compra-do-itau-bba-apos-3t-e-piora-do-cenario-em-2027/ and https://guiadoinvestidor.com.br/mercado/bradesco-bbdc4-perde-recomendacao-de-compra-itau-bba-corta-preco-alvo-e-ve-lucro-quase-parado-em-2027/\n- Citi reportedly cut to Neutral from Buy a few hours before the Itaú BBA move. — date unknown (about 2026-10-28) — https://www.tikr.com/pt/blog/bradesco-sinks-5-on-itau-bba-downgrade-as-brazilian-bank-stocks-slide\n- HSBC downgraded to Hold with a $3.90 target. — 2026-10-08 — https://stockanalysis.com/stocks/bbd/forecast/\n- Goldman Sachs kept Neutral and raised its target from $3.80 to $4.20. — 2026-10-09 — https://stockanalysis.com/stocks/bbd/forecast/\n- Weiss Ratings upgraded to Buy (B-). — 2026-10-08 — https://www.dailypolitical.com/2026/10/20/banco-bradesco-bbd-analysts-recent-ratings-changes.html\n- Bradesco Corretora upgraded to Overweight. — 2026-10-06 — https://www.marketbeat.com/instant-alerts/analyst-banco-bradesco-nyse-bbd-raised-to-overweight-at-jpmorgan-chase-co-2026-10-06/\n- Preferred shares fell 6.1% to R$14.77 intraday. — 2026-10-28 — https://www.moneytimes.com.br/bradesco-bbdc4-apos-frustracao-eleitoral-itau-bba-corta-acao-veja-novo-preco-alvo/\n- Some US aggregators cite a roughly 29% one-day ADR drop on Oct 26. I could not corroborate it with a primary source, so treat it as unverified. — 2026-10-26 — https://www.tradingkey.com/news/market-movers/262239630-market-movers-bbd-20261026\n\n**3. Litigation and regulation**\n- I found no new lawsuits, fines or investigations in the window. The search returned only old items (2016 class action, 2020 fines).\n- The 3Q26 6-K references Central Bank of Brazil action on the capital increase on Oct 8. I only saw a fragment, so confirm before relying on it. — 2026-10-08 — https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm\n- The auction of unsubscribed shares sold all receipts offered, for R$283m gross. — 2026-10-02 — https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004846/bbd20261002_6k.htm\n- BlackRock disclosed holding about 10.06% of preferred shares. — 2026-10-08 — https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004912/bbd20261013_6k.htm\n\n**4. Customer concentration**\n- Nothing material found. As a retail and corporate bank, Bradesco has no disclosed single-customer dependence.\n- Management said it reduced exposure to more volatile client clusters. — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm\n- NPLs rose partly in FGI/FGO government-guaranteed lines and in John Deere Bank's portfolio. — 2026-10-22 — same 6-K\n\n**5. Insider activity**\nThese are all purchases, and I found no sales. The transaction dates fall before the window, with filings and coverage in October.\n- A director bought 46,874 preferred shares at a weighted average of 17.98, via Form 4. The Motley Fool names this buyer as Rubens Aguiar Alvarez in one article and Paulo Roberto Simoes Da Cunha in another, so the identity is unresolved. The 17.98 is probably in BRL, near the R$17.86 subscription price, though the articles label it $. — 2026-09-18 — https://www.fool.com/coverage/filings/2026/10/12/banco-bradesco-director-purchases-usd843-000-shares-is-brazil-s-banking-system-rebounding-to-make-bbd-a-buy/ and https://www.fool.com/coverage/filings/2026/10/12/banco-bradesco-director-purchases-usd843-000-shares-is-bbd-still-a-buy/\n- A purchase of 31,266 preferred shares is attributed to Paulo Rogerio Caffarelli in one article and to Regina Helena Jorge Nunes in another. These may be the same filing misattributed. — 2026-09-18 — https://www.fool.com/coverage/filings/2026/10/06/banco-bradesco-director-caffarelli-buys-31-266-preference-shares-is-the-brazilian-bank-due-to-rally/ and https://www.fool.com/coverage/filings/2026/10/13/banco-bradesco-director-nunes-purchases-usd562-000-preferred-shares-is-bbd-s-rally-going-to-continue/\n- Executives Carlos Pedras and Cintia De Souza each reportedly bought about $1.0–1.08M of common shares. This comes from a low-tier aggregator, so verify it against the Form 4s. — date unknown — https://www.timothysykes.com/news/banco-bradesco-sa-bbd-news-2026_10_20-2/\n\n**6. Product and competitive**\n- Wholesale growth is compressing NIM to 8.9%, and management is prioritizing secured lending. — 2026-10-23 — https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241\n- Loan book reached R$1.15tn, up 11.1% y/y. Insurance ROAE was 22%. — 2026-10-23 — https://www.investing.com/news/transcripts/earnings-call-transcript-banco-bradesco-posts-mixed-q3-2026-results-as-revenue-beats-93CH-4970118\n- Management is refocusing client segments (Prime/Principal) and pushing GenAI-driven efficiency. — 2026-10-23 — https://finance.yahoo.com/quote/BBD/earnings/BBD-Q3-2026-earnings_call-659709.html\n- No product launches, delays or new-competitor events dated within the window were found.",
+      "urls": [
+        "https://finance.yahoo.com/quote/BBD/earnings/BBD-Q3-2026-earnings_call-659709.html",
+        "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004992/bbdbook3q26_6k.htm",
+        "https://rallies.ai/news/banco-bradesco-publishes-transcript-of-3q26-earnings-call-888f9f523dae1e97",
+        "https://www.panabee.com/news/banco-bradesco-earnings-q2-2026",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-banco-bradesco-posts-mixed-q3-2026-results-as-revenue-beats-93CH-4970118",
+        "https://www.marketscreener.com/news/banco-bradesco-s-a-reports-earnings-results-for-the-third-quarter-and-nine-months-ended-september-3-ce785cdede8cfe2c",
+        "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426002862/bbdbook1q26_6k.htm",
+        "https://za.investing.com/news/stock-market-news/bradesco-q3-2026-slides-revenue-growth-strong-amid-credit-headwinds-93CH-4523241",
+        "https://247wallst.com/cards/bank-bradesco-q3-2026-earnings-bbd-01m5mgj9kmawjrw56qsev87g9z",
+        "https://stockanalysis.com/stocks/bbd/forecast/",
+        "https://stockstotrade.com/news/banco-bradesco-sa-bbd-news-2026_10_28/",
+        "https://www.tradingkey.com/news/market-movers/262239630-market-movers-bbd-20261026",
+        "https://www.timothysykes.com/news/banco-bradesco-sa-bbd-news-2026_10_28-2/",
+        "https://stockstotrade.com/news/banco-bradesco-sa-bbd-news-2026_10_26/",
+        "https://www.dailypolitical.com/2026/10/20/banco-bradesco-bbd-analysts-recent-ratings-changes.html",
+        "https://www.timothysykes.com/news/banco-bradesco-sa-bbd-news-2026_10_26/",
+        "https://www.timothysykes.com/news/banco-bradesco-sa-bbd-news-2026_10_20-2/",
+        "https://benzinga.com/quote/bbd/analyst-ratings",
+        "https://finance.yahoo.com/news/investor-alert-lundin-law-pc-213400992.html",
+        "https://wiki.private.law/en/bradesco-private",
+        "https://securities.stanford.edu/filings-case.html?id=105811",
+        "https://globalcompetitionreview.com/article/cade-settles-bank-over-alleged-fintech-app-abuse",
+        "https://www.bcb.gov.br/conteudo/decap/DecisoesColegiadas/PE%20257524%20-%20Banco%20Bradesco.pdf",
+        "https://en.wikipedia.org/wiki/Banco_Bradesco",
+        "https://en.wikipedia.org/wiki/Banco_Central_burglary_at_Fortaleza",
+        "https://investing.com/news/stock-market-news/brazil-court-clears-bradesco-ceo-in-tax-probe,-shares-jump-495469",
+        "https://www.foxnews.com/world/brazil-police-seek-indictment-of-private-bank-bradescos-ceo",
+        "https://www.fool.com/coverage/filings/2026/10/12/banco-bradesco-director-purchases-usd843-000-shares-is-brazil-s-banking-system-rebounding-to-make-bbd-a-buy/",
+        "https://www.fool.com/coverage/filings/2026/10/12/banco-bradesco-director-purchases-usd843-000-shares-is-bbd-still-a-buy/",
+        "https://www.fool.com/coverage/filings/2026/10/06/banco-bradesco-director-caffarelli-buys-31-266-preference-shares-is-the-brazilian-bank-due-to-rally/",
+        "https://www.fool.com/coverage/filings/2026/10/13/banco-bradesco-director-nunes-purchases-usd562-000-preferred-shares-is-bbd-s-rally-going-to-continue/",
+        "https://finance.yahoo.com/markets/stocks/articles/banco-bradesco-director-nunes-purchases-191202029.html",
+        "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004846/bbd20261002_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001160330/000129281426004912/bbd20261013_6k.htm",
+        "https://www.riotimesonline.com/fintechs-digital-banks-brazil-2026/",
+        "https://internationalfinance.com/magazine/banking-and-finance-magazine/brazils-pix-transforms-digital-payments/",
+        "https://www.openpr.com/news/4508985/brazil-retail-banking-market-report-2026-nubank-surpasses",
+        "https://www.gentedesalta.com/economia/pix-cuando-estado-crea-mercado-n13234",
+        "https://seucreditodigital.com.br/seguro-pix-do-nubank-e-do-bradesco-superam-os-concorrentes-neste-ponto/",
+        "https://www.thisweekinfintech.com/p/a-treasure-trove-of-pix",
+        "https://marcelvanoostfintechlatam.substack.com/p/dafne-cisneros-joins-clara-as-country",
+        "https://www.euronews.com/next/2022/08/25/ictineo-m-a-banco-bradesco",
+        "https://investing.com/news/economy/brazils-pix-payments-are-killing-cash-are-credit-cards-next-3360994",
+        "https://www.infomoney.com.br/mercados/bradesco-bbdc4-rebaixado-perde-recomendacao-de-compra-do-itau-bba-apos-3t-e-piora-do-cenario-em-2027/",
+        "https://www.moneytimes.com.br/bradesco-bbdc4-apos-frustracao-eleitoral-itau-bba-corta-acao-veja-novo-preco-alvo/",
+        "https://www.infomoney.com.br/mercados/bradesco-bbdc4-sofre-segundo-rebaixamento-e-jpmorgan-corta-preco-alvo-em-quase-30/",
+        "https://www.tikr.com/pt/blog/bradesco-sinks-5-on-itau-bba-downgrade-as-brazilian-bank-stocks-slide",
+        "https://www.seudinheiro.com/2026/empresas/o-que-fez-o-itau-bba-abandonar-o-otimismo-com-o-bradesco-bbdc4/",
+        "https://guiadoinvestidor.com.br/mercado/bradesco-bbdc4-perde-recomendacao-de-compra-itau-bba-corta-preco-alvo-e-ve-lucro-quase-parado-em-2027/",
+        "https://brasilemfolhas.com.br/2026/10/itau-bba-rebaixa-recomendacao-das-acoes-do-bradesco/",
+        "https://moneyinvest.com.br/itau-bba-rebaixa-bradesco-bbdc4-e-corta-preco-alvo-das-acoes/",
+        "https://maisretorno.com/portal/acoes-da-mosaico-caem-mais-de-4-com-rebaixamento-pelo-itau-bba",
+        "https://www.gurufocus.com/news/9111950/bbd-upgraded-by-jp-morgan-rating-raised-to-overweight",
+        "https://www.marketbeat.com/instant-alerts/analyst-banco-bradesco-nyse-bbd-raised-to-overweight-at-jpmorgan-chase-co-2026-10-06/",
+        "https://www.marketscreener.com/news/banco-bradesco-s-a-pfd-shares-rise-after-jpmorgan-upgrade-ce785dd9dd8ff02c",
+        "https://bpmoney.com.br/mercado/acoes/jpmorgan-rebaixa-banco-do-brasil-eleva-bradesco-apos-rali-2/",
+        "https://revistaoeste.com/economia/jpmorgan-rebaixa-recomendacao-para-o-banco-do-brasil-e-eleva-bradesco/",
+        "https://stockstotrade.com/news/banco-bradesco-sa-bbd-news-2026_10_20/",
+        "https://www.defenseworld.net/2026/10/07/banco-bradesco-nysebbd-upgraded-to-overweight-at-jpmorgan-chase-co.html",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/jpmorgan-upgrades-banco-bradesco-stock-to-overweight/70249451",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/banco-bradesco-stock-gained-4-16-percent-as-jpmorgan-upgraded-it/70246222",
+        "https://www.tipranks.com/news/the-fly/banco-bradesco-downgraded-to-neutral-from-overweight-at-jpmorgan-2"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "sec:companyfacts": "no revenue in us-gaap or ifrs-full XBRL facts",
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Bradesco rates Strong Sell on a weak share-price trend and negative guidance and analyst news.",
+    "thesis": "Bank Bradesco scores 27, a Strong Sell, based on only two of six factors, since growth, quality, balance sheet and valuation could not be scored. The trend factor scores 14: the price is 24.0% below its 50-day average, 25.4% below its 200-day average and 39.5% below its 52-week high, with shares 33.4 pp behind SPY over the last 126 trading days. The news risk factor scores 40. The bank reaffirmed its 2026 guidance but said NII net of provisions is tracking the lower end of the R$42–48bn range, and it expects rising NPLs and credit-cost pressure into 2027. Post-results downgrades and target cuts from Itaú BBA, JPMorgan and reportedly Citi turned analyst coverage negative on balance.",
+    "key_risks": [
+      "Rising non-performing loans and credit costs expected into 2027",
+      "NII net of provisions tracking the low end of the R$42–48bn guidance range",
+      "Wholesale loan mix compressing net interest margin",
+      "Negative analyst revisions after results, with target cuts from major brokers",
+      "Persistent price weakness, with the price 39.5% below its 52-week high"
+    ],
+    "what_would_change": [
+      "A 3-point score gain would lift the rating to Sell, for example from the price recovering toward its 50-day and 200-day averages",
+      "Upgrades or raised targets reversing the recent analyst downgrades would improve the news risk score",
+      "Guidance moving toward the middle of the NII range or easing credit-cost expectations would help the news risk score",
+      "Further price declines or more downgrades would keep the stock firmly in Strong Sell"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 107504,
+        "output_tokens": 5660,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 107504,
+            "output_tokens": 5660,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3416,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7611,
+        "output_tokens": 2710,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7611,
+            "output_tokens": 2710,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0846,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3462,
+        "output_tokens": 576,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3462,
+            "output_tokens": 576,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0254,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4516,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 2.665,
+    "as_of": "2026-10-29T14:04:40Z",
+    "prev_close": 2.73
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:36",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

@@ -1,0 +1,852 @@
+{
+  "run_id": "2026-10-29T14:03:10Z",
+  "generated_at": "2026-10-29T14:04:11+00:00",
+  "ticker": "GFI",
+  "sec_ticker": "GFI",
+  "cik": "0001172724",
+  "name": "GOLD FIELDS LTD",
+  "sector": "Gold and Silver Ores",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 55,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 1.0,
+        "text": "1 of 6 factors had no data: Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), operating margin"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Litigation and regulation, Product and competitive news"
+      }
+    ],
+    "factors_with_data": 5
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 10
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 11
+    }
+  },
+  "composite": {
+    "score": 55,
+    "raw": 54.5,
+    "weights_used": {
+      "growth": 0.25,
+      "quality": 0.25,
+      "balance_sheet": 0.125,
+      "trend": 0.1875,
+      "news_risk": 0.1875
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 15.57,
+          "score": 66.1,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 10.58,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 82,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 45.33,
+          "score": 56.7,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31"
+        },
+        "fcf_margin_pct": {
+          "value": 8.14,
+          "score": 44.4,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": 0.08,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 0.05,
+          "score": 74.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.75,
+      "score": 65,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": 3.86,
+          "score": 42.1,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 0.34,
+          "score": 37.6,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 40,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -11.22,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -15.4,
+          "score": 11.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 3.38,
+          "score": 50.6,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -19.79,
+          "score": 15.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -20.62,
+          "score": 14.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -41.1,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 19,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 49,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 36.23,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "Revenue",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 10.58,
+    "ttm_end": "2024-12-31",
+    "revenue_ttm": 5201600000.0,
+    "revenue_yoy_ttm": 15.57,
+    "gross_profit_ttm": 2357900000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 1607000000.0,
+    "capex_ttm": 1183400000.0,
+    "sbc_ttm": 4400000.0,
+    "gross_profit_source": "revenue - CostOfSales",
+    "operating_income_source": null,
+    "fcf_ttm": 423600000.0,
+    "gross_margin_pct": 45.33,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": 8.14,
+    "capex_intensity_pct": 22.75,
+    "sbc_pct_revenue": 0.08,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 8.14,
+      "fcf_margin_year_earlier_pct": 3.07,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 423600000.0,
+    "fcf_scored_margin_pct": 8.14,
+    "balance_sheet": {
+      "date": "2024-12-31",
+      "cash": 860200000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 860200000.0,
+      "debt": 2495600000.0,
+      "debt_tags": [
+        "Borrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "Borrowings",
+          "val": 2495600000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": 1635400000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 895503589.0,
+    "diluted_shares_end": "2024-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.05,
+    "shares_outstanding": {
+      "val": 895024247.0,
+      "end": "2024-12-31",
+      "filed": "2025-03-27",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 36.23,
+    "date": "2026-10-28",
+    "ma50": 40.81,
+    "ma200": 42.82,
+    "vs_ma50_pct": -11.22,
+    "vs_ma200_pct": -15.4,
+    "momentum_12_1_pct": 3.38,
+    "high_52w": 61.51,
+    "drawdown_52w_pct": -41.1,
+    "return_rs_pct": -10.71,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -19.79,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -20.62
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No formal guidance change in the window. At a late-September investor forum, Gold Fields reaffirmed its 2026 production guidance of 2.4–2.6Moz and pointed to the top end, consistent with the earlier H1 update.",
+        "evidence": [
+          {
+            "claim": "Gold Fields reaffirmed 2026 production guidance of 2.4–2.6Moz and expects the top end of the range.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/rbc-keeps-usd-54-00-target-for-gold-fields-stock/70408778",
+            "event_date": "2026-09-29",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/3, names 2/2 · missing: 2.4, 2.6"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Zacks upgraded the stock from strong sell to hold, and RBC kept an outperform rating with a $54 target. Goldman Sachs started coverage at Neutral with a $38 target, citing project and cost risks, so the picture is only modestly positive.",
+        "evidence": [
+          {
+            "claim": "Zacks Research upgraded Gold Fields from \"strong sell\" to \"hold\".",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-gold-fields-nyse-gfi-upgraded-at-zacks-research-2026-10-29/",
+            "event_date": "2026-10-27",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "RBC Dominion Securities set a $54.00 price target and kept an \"outperform\" rating on Gold Fields.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-rbc-dominion-securities-reiterates-5400-price-target-for-gold-fields-nyse-gfi-2026-10-22/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 5/5"
+          },
+          {
+            "claim": "Goldman Sachs started coverage of Gold Fields at Neutral with a USD 38 target.",
+            "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/goldman-sachs-starts-coverage-of-gold-fields-stock-at-usd-38/70329923",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": -1,
+        "summary": "Ghana is weighing whether local companies should take over some big mines as it decides on the Tarkwa lease renewal, a material risk to a key asset. Separately, underground development at Windfall in Quebec was paused after a permit lapsed.",
+        "evidence": [
+          {
+            "claim": "Ghana weighs local mine ownership as Gold Fields' Tarkwa lease renewal looms; the leases expire in April.",
+            "url": "https://www.bloomberg.com/news/articles/2026-10-22/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms",
+            "event_date": "2026-10-22",
+            "direction": "negative",
+            "tier": "major",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Ghana weighs local mine ownership as Gold Fields renewal looms; the leases expire in April.",
+            "url": "https://www.mining.com/web/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms/",
+            "event_date": "2026-10-22",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Gold Fields halted Windfall work as a Quebec permit lapsed; the permit expired at the end of August, CEO Fraser said.",
+            "url": "https://www.mining.com/gold-fields-halts-windfall-work-as-quebec-permit-lapses/",
+            "event_date": "2026-09-30",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 29,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Litigation and regulation",
+        "weak_sources_note": "Capped at -1 (was -2): a rating above ±1 needs 1 verified primary- or major-tier negative source dated within the last 30 days; 0 of its 3 sources qualify",
+        "rating_before_cap": -2
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material found; gold is sold into liquid markets.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No director dealings found inside the window. The most recent purchases date from June.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Gold Fields agreed to buy BHP's idled Kambalda Nickel Concentrator and associated tenements in Western Australia, which modestly expands its Australian footprint. The Northern Star bid was rejected just before the window, and the CEO has played down raising it.",
+        "evidence": [
+          {
+            "claim": "Gold Fields acquires BHP's Kambalda Nickel Concentrator and associated tenements; financial terms were not disclosed.",
+            "url": "https://www.goldfields.com/download/media-release-gold-fields-acquires-nickel-concentrator-and-exploration-assets-in-kambalda.pdf",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "SSLError"
+          },
+          {
+            "claim": "BHP offloads its Kambalda concentrator to Gold Fields; completion is expected in calendar 2027.",
+            "url": "https://www.australianmining.com.au/bhp-offloads-kambalda-concentrator-to-gold-fields",
+            "event_date": "2026-10-07",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 22,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Gold Fields CEO plays down the prospect of a higher Northern Star offer, saying Northern Star first needs to acknowledge a potential path to a tie-up.",
+            "url": "https://www.mining.com/web/gold-fields-ceo-plays-down-prospect-of-higher-northern-star-offer/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 3
+        },
+        "product_competitive": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 3
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance\n- Gold Fields reaffirmed 2026 production guidance of 2.4–2.6Moz and said it expects the top end of the range. Reported by ad-hoc-news (a secondary source) with a 2026-09-29 date. The Mining Forum Americas presentation is listed as 28 Sept on the company site. — 2026-09-29 — https://www.ad-hoc-news.de/boerse/news/corporate-news/rbc-keeps-usd-54-00-target-for-gold-fields-stock/70408778 ; https://www.investing.com/news/transcripts/gold-fields-at-mining-forum-americas-2026-growth-cash-and-a-bid-93CH-4923811\n- No change to guidance found inside the window. The last formal update was the H1 6-K. It put \n2026 attributable gold-equivalent production at the upper end of the 2.4–2.6Moz range\n. It also warned that \nGruyere and Tarkwa remain at risk of delivering below their full-year guidance\n. — 2026-08-25 (before the window) — https://www.sec.gov/Archives/edgar/data/0001172724/000162828026058981/h12026unauditedinterimre.htm\n- Q3 results are due 2026-11-04, after the window. — 2026-11-04 — https://www.ad-hoc-news.de/boerse/news/corporate-news/rbc-keeps-usd-54-00-target-for-gold-fields-stock/70408778\n\n## 2. Analyst actions\n- Zacks Research \nupgraded Gold Fields from \"strong sell\" to \"hold\"\n. The report was issued on a Tuesday, which I read as 2026-10-27. — 2026-10-27 — https://www.marketbeat.com/instant-alerts/analyst-gold-fields-nyse-gfi-upgraded-at-zacks-research-2026-10-29/\n- RBC Dominion Securities \nset a $54.00 price target and kept an \"outperform\" rating\n. — 2026-10-22 — https://www.marketbeat.com/instant-alerts/analyst-rbc-dominion-securities-reiterates-5400-price-target-for-gold-fields-nyse-gfi-2026-10-22/\n- Goldman Sachs initiated at Neutral with a $38 target. Sources disagree on the date:\n  - 2026-10-14 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/goldman-sachs-starts-coverage-of-gold-fields-stock-at-usd-38/70329923 (also CNBC's TipRanks feed: https://www.cnbc.com/quotes/GFI)\n  - 2026-10-15 — https://www.marketbeat.com/instant-alerts/analyst-rbc-dominion-securities-reiterates-5400-price-target-for-gold-fields-nyse-gfi-2026-10-22/\n  - The Goldman note \ncited dependence on Windfall, Tarkwa risk and Australian cost pressure\n.\n- RBC Capital kept a Buy and a $54 target on 2026-10-14 per Markets Insider (via ad-hoc-news). CNBC's TipRanks feed lists a Buy from RBC dated 10-13. — 2026-10-14 — https://www.ad-hoc-news.de/boerse/news/nebenwerte/goldman-sachs-starts-coverage-of-gold-fields-stock-at-usd-38/70329923\n- MarketBeat's consensus target was $52.46. Its Goldman headline says \"upgraded\", but the article text describes an initiation. — 2026-10-22 — https://www.marketbeat.com/instant-alerts/analyst-rbc-dominion-securities-reiterates-5400-price-target-for-gold-fields-nyse-gfi-2026-10-22/\n\n## 3. Litigation and regulation\n- No lawsuits, fines, antitrust or export-control items found.\n- Windfall (Quebec): underground development was paused after a bulk-exploration permit expired. \nThe permit expired at the end of August, CEO Fraser said.\n Environmental approval was \ninitially expected by June\n and is still pending. Fraser said he was hopeful of approval before year-end. — 2026-09-30 (CEO comments; permit expiry end-Aug) — https://www.mining.com/gold-fields-halts-windfall-work-as-quebec-permit-lapses/\n- Tarkwa (Ghana): the lands minister said Ghana is weighing whether local companies should take over some big mines as it decides on the lease renewal. The leases \nexpire in April\n (2027). — 2026-10-22 — https://www.bloomberg.com/news/articles/2026-10-22/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms ; https://www.mining.com/web/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms/\n- The BHP Kambalda deal needs regulatory approvals. \nCompletion is expected in calendar 2027.\n — 2026-10-07 — https://www.australianmining.com.au/bhp-offloads-kambalda-concentrator-to-gold-fields\n\n## 4. Customer concentration\n- Nothing material found.\n\n## 5. Insider activity\n- No Form 4 or JSE director dealings found dated within 2026-09-29 to 2026-10-29. The most recent found are outside the window:\n  - Director McGill bought 500 ADS at $37.70 — 2026-06-02 — https://www.stocktitan.net/sec-filings/GFI/form-4-gold-fields-ltd-insider-trading-activity-86f65b023ca0.html\n  - Chair MacKenzie bought 500 shares at R549.97 — 2026-06-23 — https://www.stocktitan.net/sec-filings/GFI/6-k-gold-fields-ltd-current-report-foreign-issuer-67da9d2c1696.html\n- No sales or clustered selling found.\n\n## 6. Product and competitive news\n- Northern Star takeover: Northern Star rejected Gold Fields' unsolicited A$38.7bn proposal on 2026-09-28, one day before the window opens. Terms were \n0.3125 new Gold Fields shares plus A$7.25 cash per share\n. Elliott holds about 6.2% of Northern Star. — 2026-09-28 — https://www.cnbc.com/2026/09/28/northern-star-shares-gold-fields-takeover-bid.html ; https://www.miningweekly.com/article/australias-northern-star-rejects-27bn-takeover-approach-from-gold-fields-2026-09-28\n- Follow-up: the CEO played down a higher offer. He said \nNorthern Star first needs to acknowledge a potential path to a tie-up\n. Northern Star replied that the Gold Fields proposal did not meet its value threshold. The article is dated \"Thursday\", roughly 2026-10-15. — date approximate — https://www.mining.com/web/gold-fields-ceo-plays-down-prospect-of-higher-northern-star-offer/\n- Morningstar put the chance of a higher offer at 50%, per the FT via Miningmx. — date unknown — https://www.miningmx.com/trending/67690-gold-fields-bid-exposes-australias-missing-gold-champion/\n- Kambalda: Gold Fields agreed to buy BHP's idled Kambalda Nickel Concentrator and associated tenements. \nFinancial terms were not disclosed.\n — 2026-10-07 — https://www.goldfields.com/download/media-release-gold-fields-acquires-nickel-concentrator-and-exploration-assets-in-kambalda.pdf ; https://www.australianmining.com.au/bhp-offloads-kambalda-concentrator-to-gold-fields",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001172724/000162828026055525/h12026tradingstatement.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001172724/000162828026058981/h12026unauditedinterimre.htm",
+        "https://www.goldfields.com/reports/q4-2026/ceo-statement.php",
+        "https://www.marketscreener.com/news/gold-fields-limited-un-change-production-guidance-for-the-fiscal-year-2026-ce7f5bd3d881ff24",
+        "https://www.theglobeandmail.com/investing/markets/stocks/GFI-N/pressreleases/3804639/gold-fields-flags-surge-in-h1-2026-earnings-and-reaffirms-full-year-guidance/",
+        "https://quartr.com/events/gold-fields-gfi-h1-2026_FkOQdRmu",
+        "https://quartr.com/events/gold-fields-limited-gfi-h1-2026-tu_FkOQdlIl",
+        "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm",
+        "https://www.goldfields.com/reports/q2-2026/ceo-statement.php",
+        "https://www.investing.com/news/transcripts/gold-fields-at-mining-forum-americas-2026-growth-cash-and-a-bid-93CH-4923811",
+        "https://www.marketbeat.com/instant-alerts/analyst-gold-fields-nyse-gfi-upgraded-at-zacks-research-2026-10-29/",
+        "https://www.marketbeat.com/instant-alerts/analyst-gold-fields-nyse-gfi-stock-rating-upgraded-by-the-goldman-sachs-group-2026-10-16/",
+        "https://simplywall.st/stocks/za/materials/jse-gfi/gold-fields-shares/future",
+        "https://www.marketbeat.com/instant-alerts/analyst-rbc-dominion-securities-reiterates-5400-price-target-for-gold-fields-nyse-gfi-2026-10-22/",
+        "https://tickeron.com/ticker/GFI/",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/rbc-keeps-usd-54-00-target-for-gold-fields-stock/70408778",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/goldman-sachs-starts-coverage-as-gold-fields-stock-gets-usd-38-target/70372107",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/goldman-sachs-starts-coverage-of-gold-fields-stock-at-usd-38/70329923",
+        "https://www.benzinga.com/stock/GFI/ratings",
+        "https://www.investing.com/news/company-news/gold-fields-h1-2026-slides-cash-flow-surges-on-salares-norte-ramp-93CH-4875677",
+        "https://www.canadianminingjournal.com/news/gold-gold-fields-receives-eis-approval-for-salares-norte-project-in-chile/",
+        "https://www.goldfields.com/pdf/investors/quarterly-reports/2025/q4-presentation.pdf",
+        "https://www.northernminer.com/news/salares-norte-lifts-gold-fields-as-other-mines-falter/1003893930/",
+        "https://www.geomechanics.io/news/article/salares-norte-lifts-gold-fields-production-and-capex-implications-for-mine-planners",
+        "https://miningmx.com/news/gold/2026-08-12-gold-fields-salares-norte-shines-but-windfall-capex-at-risk/",
+        "https://www.mining.com/salares-norte-lifts-gold-fields-as-other-mines-falter/",
+        "https://en.wikipedia.org/wiki/Gold_Fields",
+        "https://www.fxleaders.com/news/2026/08/25/gold-fields-share-price-jse-gfi-targets-r91-high-as-salares-norte-drives-strong-cash-flow-but-windfall-tarkwa-risks-stay/",
+        "https://www.mining.com/gold-fields-halts-windfall-work-as-quebec-permit-lapses/",
+        "https://goldfields.com/",
+        "https://www.citinewsroom.com/2026/10/gold-fields-us4-26bn-local-spend-puts-mining-value-retention-in-focus/",
+        "https://www.miningmx.com/trending/67690-gold-fields-bid-exposes-australias-missing-gold-champion/",
+        "https://www.cnbc.com/quotes/GFI",
+        "https://www.mining.com/web/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms/",
+        "https://www.goldfields.com/investor-overview.php",
+        "https://www.bloomberg.com/news/articles/2026-10-22/ghana-weighs-local-mine-ownership-as-gold-fields-renewal-looms",
+        "https://en.wikipedia.org/wiki/Gruyere_Gold_Mine",
+        "https://en.wikipedia.org/wiki/Osisko_Mining",
+        "https://www.gurufocus.com/news/8898824/insider-buying-jacqueline-mcgill-acquires-shares-in-gold-fields-ltd-gfi",
+        "https://www.tipranks.com/news/company-announcements/gold-fields-chair-mackenzie-buys-shares-in-open-market-trade",
+        "https://www.stocktitan.net/sec-filings/GFI/form-4-gold-fields-ltd-insider-trading-activity-629e11bdfd18.html",
+        "https://www.stocktitan.net/sec-filings/GFI/6-k-gold-fields-ltd-current-report-foreign-issuer-67da9d2c1696.html",
+        "https://www.stocktitan.net/sec-filings/GFI/form-4-gold-fields-ltd-insider-trading-activity-86f65b023ca0.html",
+        "https://www.stocktitan.net/sec-filings/GFI/6-k-gold-fields-ltd-current-report-foreign-issuer-28aeab61b9ea.html",
+        "https://www.sec.gov/Archives/edgar/data/1172724/000120561315000034/goldfields.htm",
+        "https://www.sec.gov/Archives/edgar/data/1172724/000120561316000218/goldfields-dealings.htm",
+        "https://www.sec.gov/Archives/edgar/data/1172724/000120561313000156/goldfields_dealing.htm",
+        "https://www.mining.com/northern-star-rejects-opportunistic-gold-fields-27b-takeover-bid/",
+        "https://www.miningweekly.com/article/australias-northern-star-rejects-27bn-takeover-approach-from-gold-fields-2026-09-28",
+        "https://www.mining.com/web/gold-fields-ceo-plays-down-prospect-of-higher-northern-star-offer/",
+        "https://pulse2.com/northern-star-rejects-gold-fields-27-1-billion-takeover-proposal/",
+        "https://www.cnbc.com/2026/09/28/northern-star-shares-gold-fields-takeover-bid.html",
+        "https://primexbt.com/news/northern-star-rejects-27-billion-gold-fields-takeover-proposal/",
+        "https://investingnews.com/northern-star-rejects-gold-fields/",
+        "https://www.benzinga.com/25/03/44458684/gruyere-power-struggle-gold-fields-surprise-offer-rejected-countermove-denied",
+        "https://benzinga.com/z/44458684",
+        "https://www.itiger.com/news/2522094126",
+        "https://im-mining.com/2026/10/07/bhp-agrees-to-sell-kambalda-nickel-concentrator-to-gold-fields/",
+        "https://www.goldfields.com/download/media-release-gold-fields-acquires-nickel-concentrator-and-exploration-assets-in-kambalda.pdf",
+        "https://www.mining-technology.com/news/bhp-kambalda-nickel-gold-fields/",
+        "https://www.australianmining.com.au/bhp-offloads-kambalda-concentrator-to-gold-fields",
+        "https://www.ecofinagency.com/news-industry/0710-59526-gold-fields-expands-beyond-gold-with-planned-kambalda-nickel-acquisitions",
+        "https://www.mining.com/web/bhp-sells-shuttered-australian-nickel-plant-to-gold-fields/",
+        "https://www.geomechanics.io/news/article/bhpgold-fields-kambalda-nickel-concentrator-deal-processing-and-planning-notes-for-engineers",
+        "https://kalkine.com.au/news/mining/why-lunnon-metals-asxlm8-ended-the-september-quarter-with-a430m-of-cash-after-completing-lady-herial-gold-mining-near-kambalda",
+        "https://en.wikipedia.org/wiki/Kambalda_Nickel_Operations",
+        "https://secure.northernminer.com/news/gold-fields-halts-windfall-work-as-quebec-permit-lapses/1003895311/",
+        "https://www.northernminer.com/news/gold-fields-halts-windfall-work-as-quebec-permit-lapses/1003895311/",
+        "https://www.linkedin.com/in/williamhenrylazenby/",
+        "https://www.linkedin.com/in/michaeltnm/",
+        "https://secure.northernminer.com/category/regulatory-issues/",
+        "https://www.geomechanics.io/news/article/gold-fields-windfall-permit-lapse-project-risk-and-schedule-notes-for-mine-planners",
+        "https://www.miningmx.com/news/gold/66722-gold-fields-sticks-to-2029-windfall-target-despite-permit-delay/",
+        "https://www.mining.com/gold-is-tariff-proof-canada-has-11-billion-a-year-of-it-stuck-in-permitting/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Gold Fields rates Hold: solid revenue growth and decent quality offset by a weak share-price trend and Ghana lease risk.",
+    "thesis": "Gold Fields scores 55, a Hold, with valuation left out because the inputs for this foreign filer could not be reconciled. Growth is the strongest factor at 82, with TTM revenue growth of 15.6% and growth sped up by 10.6 pp from the previous quarter. Quality scores 65 on a 45.3% gross margin, an 8.1% FCF margin and almost no dilution (diluted share count up 0.1% year on year). The balance sheet is middling at 40, with net debt at 3.86 times free cash flow and cash covering 0.34 of debt. The trend factor drags hardest at 19: the price is 15.4% below its 200-day average, 41.1% below its 52-week high, and the shares are 19.8 pp behind SPY over the last 126 trading days.",
+    "key_risks": [
+      "Ghana is weighing local takeovers of big mines while it decides on the Tarkwa lease renewal, a material risk to a key asset.",
+      "Underground development at Windfall in Quebec was paused after a permit lapsed, adding project and cost risk.",
+      "Weak price trend: shares 11.2% below the 50-day average and 41.1% below the 52-week high.",
+      "Leverage is meaningful, with net debt at 3.86 times free cash flow and cash covering only 0.34 of debt.",
+      "Results depend heavily on the gold price, which could reverse the recent revenue growth."
+    ],
+    "what_would_change": [
+      "Up to Buy needs 10 more points, most plausibly from a recovery in the share-price trend (score 19) or a favourable Tarkwa lease outcome lifting news risk.",
+      "Down to Sell would take an 11-point drop, for example an adverse Ghana decision, a further slide in the trend factor, or growth fading from 15.6%.",
+      "Lower net debt relative to free cash flow would strengthen the balance sheet score from 40.",
+      "A usable valuation reading, once price and share count are reconciled, could push the score either way."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 115899,
+        "output_tokens": 4644,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 115899,
+            "output_tokens": 4644,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3582,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6965,
+        "output_tokens": 2385,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6965,
+            "output_tokens": 2385,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0756,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3705,
+        "output_tokens": 695,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3705,
+            "output_tokens": 695,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0287,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4625,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 35.3,
+    "as_of": "2026-10-29T14:04:40Z",
+    "prev_close": 36.23
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 10:03",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

@@ -1,0 +1,811 @@
+{
+  "run_id": "2026-10-29T14:02:12Z",
+  "generated_at": "2026-10-29T14:03:09+00:00",
+  "ticker": "AU",
+  "sec_ticker": "AU",
+  "cik": "0001973832",
+  "name": "AngloGold Ashanti PLC",
+  "sector": "Gold and Silver Ores",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 67,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 6.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 3.0,
+        "text": "3 of 6 factors had no data: Quality, Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 67 is within 2 points of the Buy edge (65)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 3
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 13
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 67,
+    "raw": 66.7,
+    "weights_used": {
+      "growth": 0.4,
+      "trend": 0.3,
+      "news_risk": 0.3
+    },
+    "available": [
+      "growth",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "quality",
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 70.78,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 44.35,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 49.24,
+          "score": 61.6,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2025-12-31"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2025-12-31"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": 18.14,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.35,
+      "score": null,
+      "missing": "only 35% of its inputs had data"
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": null
+        },
+        "cash_to_debt": {
+          "value": 1.49,
+          "score": 89.7,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 0.4,
+      "score": null,
+      "missing": "only 40% of its inputs had data"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -13.01,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -10.03,
+          "score": 24.9,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 53.28,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -10.43,
+          "score": 29.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -11.26,
+          "score": 28.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -31.97,
+          "score": 13.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 39,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": -1,
+          "score": 25.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 87.25,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "RevenueFromContractsWithCustomers",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 44.35,
+    "ttm_end": "2025-12-31",
+    "revenue_ttm": 9893000000.0,
+    "revenue_yoy_ttm": 70.78,
+    "gross_profit_ttm": 4871000000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 4784000000.0,
+    "capex_ttm": null,
+    "sbc_ttm": null,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": null,
+    "fcf_ttm": null,
+    "gross_margin_pct": 49.24,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2025-12-31",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2025-12-31"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2025-12-31",
+      "cash": 2905000000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 133000000.0,
+      "investment_tags": [
+        {
+          "tag": "CurrentFinancialAssetsAtAmortisedCost",
+          "val": 133000000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 3038000000.0,
+      "debt": 2044000000.0,
+      "debt_tags": [
+        "Borrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "Borrowings",
+          "val": 2044000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -994000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 509093536.0,
+    "diluted_shares_end": "2025-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 18.14,
+    "shares_outstanding": {
+      "val": 505007465.0,
+      "end": "2025-12-31",
+      "filed": "2026-03-26",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 87.25,
+    "date": "2026-10-28",
+    "ma50": 100.3,
+    "ma200": 96.98,
+    "vs_ma50_pct": -13.01,
+    "vs_ma200_pct": -10.03,
+    "momentum_12_1_pct": 53.28,
+    "high_52w": 128.26,
+    "drawdown_52w_pct": -31.97,
+    "return_rs_pct": -1.35,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -10.43,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -11.26
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change in the window. Management said it expects to meet 2026 production guidance near the ~3.0Moz midpoint. It also flagged flooding at Iduapriem and a fatality at Obuasi, which other assets are offsetting.",
+        "evidence": [
+          {
+            "claim": "At Mining Forum Americas, AngloGold Ashanti said it expects to meet 2026 production guidance, landing near the ~3.0Moz midpoint.",
+            "url": "https://www.investing.com/news/transcripts/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-4923603",
+            "event_date": "2026-09-29",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Management cited flooding at Iduapriem and a fatality at Obuasi that closed the KMS shaft, with other assets offsetting the setbacks.",
+            "url": "https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html",
+            "event_date": "2026-09-29",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Goldman Sachs initiated coverage at Buy with a $104 target in mid-October. The rating is capped at +1 because only lower-tier sources report it.",
+        "evidence": [
+          {
+            "claim": "Goldman Sachs initiated coverage of AngloGold Ashanti with a Buy rating and a $104 price target.",
+            "url": "https://www.defenseworld.net/2026/10/23/anglogold-ashanti-plc-nyseau-stock-has-average-price-target-of-120-14.html",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Goldman Sachs set a $104 price target on AngloGold Ashanti.",
+            "url": "https://site.financialmodelingprep.com/market-news/anglogold-ashanti-stock-analysis-price-target-fair-value-production-outlook",
+            "event_date": "2026-10-15",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 14,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": -1,
+        "summary": "The JSE publicly censured AngloGold for publishing price-sensitive results on Sens 27 minutes after they went out via Business Wire. This is a modest reputational and regulatory negative; no new lawsuits or fines were found.",
+        "evidence": [
+          {
+            "claim": "The JSE publicly censured AngloGold Ashanti for breaching listings requirements by publishing results on Sens 27 minutes after release via Business Wire.",
+            "url": "https://www.moneyweb.co.za/news/companies-and-deals/jse-censures-anglogold-ashanti-over-delayed-sens-earnings-disclosure/",
+            "event_date": "2026-10-02",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 27,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "AngloGold Ashanti was censured by the JSE after its earnings release reached the market before the JSE.",
+            "url": "https://thenational.co.za/news/2026-10-02-anglogold-ashanti-censured-after-earnings-release-reached-market-before-jse/",
+            "event_date": "2026-10-02",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 27,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material; gold is sold to bullion banks and refineries, so there is no customer-concentration news.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions found in the window; the most recent Form 4s predate it.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Management highlighted Nevada growth: Arthur has a 4.9Moz reserve, with about $300m allocated to feasibility work and pre-ordering. The source is single and lower-tier.",
+        "evidence": [
+          {
+            "claim": "Arthur in Nevada has a 4.9Moz reserve, and AngloGold Ashanti plans to convert about 1Moz of resources to reserves in 2026, allocating about $300m to feasibility and pre-ordering.",
+            "url": "https://in.investing.com/news/stock-market-news/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-5611721",
+            "event_date": "2026-09-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Management said Arthur could average roughly 500koz a year.",
+            "url": "https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html",
+            "event_date": "2026-09-29",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 30,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 2
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**AngloGold Ashanti (AU) news, 2026-09-29 to 2026-10-29**\n\n**1. Guidance**\n- No guidance change found in the window. At Mining Forum Americas, management said it expects to meet 2026 production guidance and land near the ~3.0Moz midpoint. — 2026-09-29 — https://www.investing.com/news/transcripts/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-4923603\n- The same presentation cited setbacks: flooding at Iduapriem and a fatality at Obuasi that closed the KMS shaft. Eight other assets are offsetting them. — 2026-09-29 — https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html\n- The speaker is named differently by source. Investing.com says Kelvin Dushnisky is chief executive; Yahoo/MarketBeat say Alberto Calderon. I did not resolve this. — 2026-09-29 — https://www.investing.com/news/transcripts/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-4923603 ; https://www.tradingview.com/news/marketbeat:3d94654bc094b:0-anglogold-ashanti-targets-2026-guidance-midpoint-eyes-major-growth-projects/\n- Prior reaffirmation, outside the window: full-year 2026 guidance was reaffirmed with Q2 results. — 2026-07-31 — https://www.sec.gov/Archives/edgar/data/1973832/000197383226000125/agahy1june2026earningsrele.htm\n- Q3 results are due on 2026-11-05, after the window. Consensus is EPS $1.81 on revenue of $3.08bn (MarketBeat). — 2026-11-05 — https://www.marketbeat.com/earnings/reports/2026-11-5-anglogold-ashanti-limited-stock/\n- Q2 EPS was $1.98 against a $2.03 consensus (MarketBeat), a miss. — 2026-07-30 — https://www.marketbeat.com/earnings/reports/2026-11-5-anglogold-ashanti-limited-stock/\n\n**2. Analyst actions**\n- Goldman Sachs initiated at Buy with a $104 price target. — 2026-10-15 — https://www.defenseworld.net/2026/10/23/anglogold-ashanti-plc-nyseau-stock-has-average-price-target-of-120-14.html\n- Financial Modeling Prep also cites the Goldman $104 target. — 2026-10-15 — https://site.financialmodelingprep.com/market-news/anglogold-ashanti-stock-analysis-price-target-fair-value-production-outlook\n- RBC Dominion Securities set a $110 target with an Outperform rating, reported as \"Thursday\". I infer Oct 22 from the article's Oct 23 date. — 2026-10-22 (inferred) — https://www.defenseworld.net/2026/10/23/anglogold-ashanti-plc-nyseau-stock-has-average-price-target-of-120-14.html\n- JPMorgan raised its target to $140 from $134 and kept Overweight. The note followed the Sept 25 Nevada site visit. The exact date is not given and may fall just before the window. — date unknown — https://intellectia.ai/news/stock/anglogold-ashanti-shares-drop-nearly-4-following-downgrade\n- Just before the window:\n  - BMO downgraded to Market Perform from Outperform, with a $115 target. — 2026-09-10 — https://www.marketscreener.com/news/anglogold-ashanti-shares-fall-after-downgrade-from-bmo-capital-ce785bded089f421\n  - RBC raised its target to $119 from $111. — 2026-09-16 — https://www.marketscreener.com/news/anglogold-ashanti-shares-fall-after-downgrade-from-bmo-capital-ce785bded089f421\n\n**3. Litigation and regulation**\n- The JSE publicly censured AngloGold for breaching its listings requirements. The company published price-sensitive results on the JSE's Sens platform 27 minutes after they went out via Business Wire. — 2026-10-02 — https://www.moneyweb.co.za/news/companies-and-deals/jse-censures-anglogold-ashanti-over-delayed-sens-earnings-disclosure/\n- Sources differ on which results were involved. The National says Q2 results. Ad-Hoc News says the interim results of 2025-08-01. — 2026-10-02 — https://thenational.co.za/news/2026-10-02-anglogold-ashanti-censured-after-earnings-release-reached-market-before-jse/ ; https://www.ad-hoc-news.de/boerse/news/corporate-news/anglogold-ashanti-stock-faces-jse-censure-over-disclosure-timing/70224695\n- No new lawsuits, fines or approvals were found in the window. The Colombia force majeure and Quebradona licence disputes and the Brazil tailings-dam actions are earlier disclosures in the 20-F. — date unknown — https://minedocs.com/32/AngloGold-Ashanti-F20F-12312025.pdf\n- Quebradona approvals \"may be fast-tracked\", per management at the forum. — 2026-09-29 — https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html\n- Management also said there are no current permitting problems at North Bullfrog (Nevada). — 2026-09-29 — https://in.investing.com/news/stock-market-news/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-5611721\n\n**4. Customer concentration**\n- Nothing material found. The only relevant item is general: gold doré is refined and sold to bullion banks and refineries (GuruFocus). — date unknown — https://www.gurufocus.com/news/9119004/materials-sector-earnings-spotlight-anglogold-ashanti-au-achieves-top-profitability-grade\n\n**5. Insider activity**\n- No Form 4 or director-dealing filings dated within the window turned up in my searches. GuruFocus (2026-10-12/14) reports no insider buying in the past 12 months. — date unknown — https://www.gurufocus.com/news/9124160/anglogold-ashanti-plc-au-shares-fall-31-what-gf-score-of-85-tells-investors\n- Most recent Form 4 items I found, all before the window:\n  - Director Busia sold 400 shares at about $89.09. — 2026-05-19 — https://www.stocktitan.net/sec-filings/AU/form-4-anglo-gold-ashanti-plc-insider-trading-activity-1cd149d4ce71.html\n  - Directors received RSU grants of 1,580 units each (Tilk 2,371). — 2026-05-11 — https://beta.finance.yahoo.com/quote/AU/insider-roster/\n  - Calderon sold 38,542 shares at $106.34 and Doran sold 5,126 at $106.30, both to cover tax on vested awards. — 2026-03-06 — https://www.stocktitan.net/sec-filings/AU/6-k-anglo-gold-ashanti-plc-current-report-foreign-issuer-e485038e007d.html\n- No clustered selling or 10b5-1 plan sales found.\n\n**6. Product and competitive news**\n- AngloGold hosted an investor site visit to the Beatty Gold District in Nevada, and announced a non-executive director appointment the same day. — 2026-09-25 — https://www.anglogoldashanti.com/\n- Arthur (Nevada) has a 4.9Moz reserve. Management plans to convert about 1Moz of resources to reserves in 2026 and has allocated about $300m to feasibility work and pre-ordering. — 2026-09-29 — https://in.investing.com/news/stock-market-news/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-5611721\n- Management said Arthur could average roughly 500koz a year. — 2026-09-29 — https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html\n- Egypt's president said Cairo wants to widen its partnership with AngloGold beyond Sukari. The company announced further investment plans but gave no figures. — 2026-09-28, one day before the window — https://www.dailynewsegypt.com/2026/09/28/anglogold-ashanti-plans-further-investment-in-promising-egyptian-mining-sites/\n- Paul Graves was appointed an independent non-executive director in October 2026. — date unknown — https://simplywall.st/stocks/us/materials/nyse-au/anglogold-ashanti/news/anglogold-ashanti-stock-sinks-after-sector-selloff-and-downg\n- AU shares fell 6.9% to $85.19, about 18.6% down over the month. No company-specific cause was given. — 2026-10-22 — https://www.gurufocus.com/news/9138258/a-look-at-anglogold-ashanti-plc-au-after-69-decline-gf-value-6628-vs-price-8519\n- On the preceding Oct 14 the stock closed at $88.84, down 3.1%. — 2026-10-14 — https://www.gurufocus.com/news/9124160/anglogold-ashanti-plc-au-shares-fall-31-what-gf-score-of-85-tells-investors",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/1973832/000197383226000125/agahy1june2026earningsrele.htm",
+        "https://www.gurufocus.com/news/9119004/materials-sector-earnings-spotlight-anglogold-ashanti-au-achieves-top-profitability-grade",
+        "https://www.marketbeat.com/earnings/reports/2026-11-5-anglogold-ashanti-limited-stock/",
+        "https://www.anglogoldashanti.com/",
+        "https://www.investing.com/news/transcripts/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-4923603",
+        "https://www.tradingview.com/news/marketbeat:3d94654bc094b:0-anglogold-ashanti-targets-2026-guidance-midpoint-eyes-major-growth-projects/",
+        "https://finance.yahoo.com/markets/commodities/articles/anglogold-ashanti-targets-2026-guidance-070212899.html",
+        "https://kalkinemedia.com/us/stocks/gold/can-anglogold-ashanti-nyseau-turn-gold-price-records-into-growth",
+        "https://www.quiverquant.com/news/AngloGold+Ashanti+shares+climb+on+record+2025+cash+flow,+hefty+dividend,+and+fresh+2026+outlook",
+        "https://simplywall.st/stocks/us/materials/nyse-au/anglogold-ashanti/future",
+        "https://www.marketscreener.com/quote/stock/ANGLOGOLD-ASHANTI-PLC-11712/consensus/",
+        "https://simplywall.st/stocks/us/materials/nyse-au/anglogold-ashanti",
+        "https://seekingalpha.com/article/4912857-anglogold-ashanti-downgrading-to-sell-as-the-gold-market-just-flashed-red",
+        "https://site.financialmodelingprep.com/market-news/anglogold-ashanti-stock-analysis-price-target-fair-value-production-outlook",
+        "https://intellectia.ai/news/stock/anglogold-ashanti-shares-drop-nearly-4-following-downgrade",
+        "https://www.defenseworld.net/2026/10/23/anglogold-ashanti-plc-nyseau-stock-has-average-price-target-of-120-14.html",
+        "https://www.benzinga.com/stock/AU/ratings",
+        "https://benzinga.com/quote/au/analyst-ratings",
+        "https://minedocs.com/32/AngloGold-Ashanti-F20F-12312025.pdf",
+        "https://www.moneyweb.co.za/news/companies-and-deals/jse-censures-anglogold-ashanti-over-delayed-sens-earnings-disclosure/",
+        "https://www.citizen.co.za/business/jse-censures-anglogold-ashanti-over-delayed-sens-earnings-disclosure/",
+        "https://thenational.co.za/news/2026-10-02-anglogold-ashanti-censured-after-earnings-release-reached-market-before-jse/",
+        "https://www.streetinsider.com/Reuters/Exclusive-Prosecutors+in+Brazil+state+sue+AngloGold+Ashanti+over+dam+safety/21556980.html",
+        "https://www.stocktitan.net/sec-filings/AU/6-k-anglo-gold-ashanti-plc-current-report-foreign-issuer-df2e7e581d7c.html",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/anglogold-ashanti-stock-faces-jse-censure-over-disclosure-timing/70224695",
+        "https://amlnetwork.org/watchdog-database/corporate-laundering/anglogold-ashanti-plc/",
+        "https://www.investing.com/news/company-news/anglogold-ashanti-director-sells-over-32-million-in-shares-93CH-4405388",
+        "https://www.investing.com/news/company-news/anglogold-ashanti-director-gillian-doran-sells-shares-worth-18-million-93CH-4379218",
+        "https://thevault.exchange/?get_group_doc=143%2F1646898431-9March2022DealingsinsecuritiesbyanexecutivedirectorofAngloGoldAshanti.pdf",
+        "https://nationaltoday.com/us/co/denver/news/2026/03/09/anglogold-ashanti-executives-sell-shares-to-cover-tax-liabilities/",
+        "https://www.stocktitan.net/sec-filings/AU/6-k-anglo-gold-ashanti-plc-current-report-foreign-issuer-fda57e7ba238.html",
+        "https://www.stocktitan.net/sec-filings/AU/form-4-anglo-gold-ashanti-plc-insider-trading-activity-1cd149d4ce71.html",
+        "https://www.stocktitan.net/news/AU/dealings-in-securities-by-executive-directors-of-anglo-gold-ashanti-u3bs7y224pnc.html",
+        "https://www.stocktitan.net/sec-filings/AU/6-k-anglo-gold-ashanti-plc-current-report-foreign-issuer-e485038e007d.html",
+        "https://www.tipranks.com/news/company-announcements/anglogold-ashanti-directors-share-dealings-highlighted",
+        "https://en.wikipedia.org/wiki/Centamin",
+        "https://www.mining-technology.com/news/anglogold-ashanti-augusta-gold/",
+        "https://simplywall.st/stocks/us/materials/nyse-au/anglogold-ashanti/news/anglogold-ashanti-stock-sinks-after-sector-selloff-and-downg",
+        "https://tracxn.com/d/acquisitions/acquisitions-by-anglogold-ashanti/__T8tQ11ITV4BUxn2qFu4IzfhVHbEPFyjCV1tJlbEjaTo",
+        "https://in.investing.com/news/stock-market-news/anglogold-ashanti-at-mining-forum-americas-2026-growth-cash-and-discipline-93CH-5611721",
+        "https://mining.com/web/anglos-sanches-says-brazil-must-negotiate-with-everyone",
+        "https://www.dailynewsegypt.com/2026/09/28/anglogold-ashanti-plans-further-investment-in-promising-egyptian-mining-sites/",
+        "https://farmonaut.com/mining/anglogold-ashanti-limited-ashanti-gold-mine-advances-2025",
+        "https://myjoyonline.com/northern-ashanti-mines-challenges-minerals-commission-over-konongo-takeover-disputes-8-3m-debt",
+        "https://3news.com/news/northern-ashanti-mines-rejects-minerals-commissions-claim-of-lawful-take-over",
+        "https://www.gurufocus.com/news/9124160/anglogold-ashanti-plc-au-shares-fall-31-what-gf-score-of-85-tells-investors",
+        "https://www.marketscreener.com/news/anglogold-ashanti-shares-fall-after-downgrade-from-bmo-capital-ce785bded089f421",
+        "https://www.gurufocus.com/news/9138258/a-look-at-anglogold-ashanti-plc-au-after-69-decline-gf-value-6628-vs-price-8519",
+        "https://www.bitget.com/news/detail/12560605821251",
+        "https://www.aol.com/articles/anglogold-ashanti-cut-underweight-absa-160211000.html",
+        "https://www.globalbankingandfinance.com/anglogold-ashanti-ang-jo-falls-2026-10-23/",
+        "https://investorshub.advfn.com/market-news/article/35376/anglogold-ashanti-shares-fall-4-9-as-gold-prices-decline",
+        "https://www.sec.gov/Archives/edgar/data/1973832/000162828024042760/schemedocument30september2.htm",
+        "https://www.sec.gov/Archives/edgar/data/1973832/000162828024047414/dealinginsecuritiesbyanexe.htm",
+        "https://www.sec.gov/Archives/edgar/data/1973832/000162828024049361/dealingsinsecuritiesbyanex.htm",
+        "https://www.sec.gov/Archives/edgar/data/1973832/000162828024048340/dealingsinsecuritiesbyexec.htm",
+        "https://beta.finance.yahoo.com/quote/AU/insider-roster/",
+        "https://www.stocktitan.net/sec-filings/AU/form-4-anglo-gold-ashanti-plc-insider-trading-activity-75cf1776a33a.html",
+        "https://www.stocktitan.net/sec-filings/AU/form-4-anglo-gold-ashanti-plc-insider-trading-activity-c0d74276566b.html",
+        "https://www.stocktitan.net/sec-filings/AU/form-4-anglo-gold-ashanti-plc-insider-trading-activity-442bc90102d9.html"
+      ],
+      "searches": 7
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "AngloGold Ashanti rates Buy on very strong revenue growth, held back by weak price trend and mixed news.",
+    "thesis": "AngloGold Ashanti scores 67, a Buy, but only three of six factors could be scored, so growth, trend and news carry the whole rating. Growth scores 100, with TTM revenue growth of 70.8% and growth sped up by 44.4 pp from the previous quarter. The trend factor scores 39: the price is 13.0% below its 50-day average, 10.0% below its 200-day average and 32.0% below its 52-week high, even though shares are up 53.3% from 12 months ago to 1 month ago. News risk is neutral at 50, as a JSE censure over a late results announcement offsets positive commentary on the Arthur project in Nevada. Quality, balance sheet and valuation are unscored, though gross margin is 49.2% and cash to debt is 1.49.",
+    "key_risks": [
+      "The score is only 3 points above the Hold threshold, so a small slip in any factor could cut the rating.",
+      "Weak recent price action: shares are 10.4 pp behind SPY over the last 126 trading days and 32.0% below their 52-week high.",
+      "Diluted share count up 18.1% year on year, which dilutes per-share gains from revenue growth.",
+      "Operational setbacks, including flooding at Iduapriem and a fatality at Obuasi, could threaten the ~3.0Moz 2026 production guidance.",
+      "Revenue growth this strong likely depends on gold prices, so a gold price fall could reverse the growth score."
+    ],
+    "what_would_change": [
+      "A drop of 3 points in the score, for example from further price weakness pushing the trend score lower or a slowdown in revenue growth, would move the rating down to Hold.",
+      "Reaching Strong Buy needs 13 more points, most plausibly from a recovering share price lifting the trend score from 39.",
+      "Verified positive news, such as confirmed analyst upgrades or progress on Arthur, could lift the news risk score from 50; new regulatory issues would lower it.",
+      "Once quality, balance sheet and valuation can be scored, they could move the composite either way."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 110716,
+        "output_tokens": 4995,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 7,
+        "per_request": [
+          {
+            "input_tokens": 110716,
+            "output_tokens": 4995,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 7
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3414,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7696,
+        "output_tokens": 2026,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7696,
+            "output_tokens": 2026,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0713,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3665,
+        "output_tokens": 711,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3665,
+            "output_tokens": 711,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0289,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4416,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 85.32,
+    "as_of": "2026-10-29T14:04:40Z",
+    "prev_close": 87.25
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 10:02",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

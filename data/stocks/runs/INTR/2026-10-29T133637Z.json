@@ -1,0 +1,843 @@
+{
+  "run_id": "2026-10-29T13:36:37Z",
+  "generated_at": "2026-10-29T14:02:28+00:00",
+  "ticker": "INTR",
+  "sec_ticker": "INTR",
+  "cik": "0001864163",
+  "name": "Inter & Co, Inc.",
+  "sector": "Commercial Banks, NEC",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 54,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 5.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), operating margin, stock comp. / revenue"
+      },
+      {
+        "issue": "unknown_cash_debt",
+        "points": 1.0,
+        "text": "debt unknown: LoansAndAdvancesToCustomers is $35.60B on 2024-12-31, more than the $128.9M the debt tags read add up to (Borrowings)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 11
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 10
+    }
+  },
+  "composite": {
+    "score": 54,
+    "raw": 54.14,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 34.67,
+          "score": 94.6,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 1.27,
+          "score": 56.4,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 77,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 97.76,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31"
+        },
+        "fcf_margin_pct": {
+          "value": 57.45,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": 13.73,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.6,
+      "score": 75,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": "missing: debt unknown: LoansAndAdvancesToCustomers is $35.60B on 2024-12-31, more than the $128.9M the debt tags read add up to (Borrowings)"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": "missing: debt unknown: LoansAndAdvancesToCustomers is $35.60B on 2024-12-31, more than the $128.9M the debt tags read add up to (Borrowings)"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "debt unknown: LoansAndAdvancesToCustomers is $35.60B on 2024-12-31, more than the $128.9M the debt tags read add up to (Borrowings)"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -30.14,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -39.82,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -43.19,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -54.21,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -55.04,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -59.75,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 0,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 50,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 4.11,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "BRL",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "Revenue",
+    "revenue_yoy_q": null,
+    "acceleration_pp": 1.27,
+    "ttm_end": "2024-12-31",
+    "revenue_ttm": 6400165000.0,
+    "revenue_yoy_ttm": 34.67,
+    "gross_profit_ttm": 6256735000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 3759060000.0,
+    "capex_ttm": 81974000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "revenue - CostOfSales",
+    "operating_income_source": null,
+    "fcf_ttm": 3677086000.0,
+    "gross_margin_pct": 97.76,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": 57.45,
+    "capex_intensity_pct": 1.28,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 57.45,
+      "fcf_margin_year_earlier_pct": 158.36,
+      "median_margin_pct": null,
+      "quarters": 0,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": 3677086000.0,
+    "fcf_scored_margin_pct": 57.45,
+    "balance_sheet": {
+      "date": "2024-12-31",
+      "cash": 1108394000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 1108394000.0,
+      "debt": null,
+      "debt_tags": [
+        "Borrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "Borrowings",
+          "val": 128924000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": null,
+      "unknown": [
+        "debt unknown: LoansAndAdvancesToCustomers is $35.60B on 2024-12-31, more than the $128.9M the debt tags read add up to (Borrowings)"
+      ]
+    },
+    "share_outliers": [],
+    "diluted_shares": 2540716879.0,
+    "diluted_shares_end": "2021-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 13.73,
+    "shares_outstanding": {
+      "val": 228521790.0,
+      "end": "2021-12-31",
+      "filed": "2022-05-02",
+      "classes": 1
+    },
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 4.11,
+    "date": "2026-10-28",
+    "ma50": 5.88,
+    "ma200": 6.83,
+    "vs_ma50_pct": -30.14,
+    "vs_ma200_pct": -39.82,
+    "momentum_12_1_pct": -43.19,
+    "high_52w": 10.21,
+    "drawdown_52w_pct": -59.75,
+    "return_rs_pct": -45.13,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -54.21,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -55.04
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change, pre-announcement or withdrawal in the window. Q3 results are expected around 2026-11-12, and the post-election share drop was political, not company guidance.",
+        "evidence": [
+          {
+            "claim": "MarketBeat estimates Inter & Co's Q3 report for 2026-11-12 after the close, with consensus EPS of $0.1881 on revenue of $539.72M.",
+            "url": "https://www.marketbeat.com/earnings/reports/2026-11-12-inter-co-inc-class-a-common-shares--stock/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 5/6, names 3/3 · missing: 11"
+          },
+          {
+            "claim": "Kalkine says the premarket drop in Inter & Co followed Brazil's runoff and was driven by politics, not a company filing.",
+            "url": "https://kalkine.ca/news/general-news/inter-co-nasdaqintr-what-drove-the-3477-premarket-drop-following-brazils-runoff",
+            "event_date": "2026-10-26",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "JPMorgan and UBS both raised price targets and kept positive ratings, while Zacks Research cut the stock to strong sell. On balance this is modestly positive. No post-election rating changes were found.",
+        "evidence": [
+          {
+            "claim": "JPMorgan raised its Inter & Co price target to $11 from $9 and kept an Overweight rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaqintr-stock-price-2026-10-20/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 2/2, names 1/3 · missing: JPMorgan, Overweight"
+          },
+          {
+            "claim": "UBS Group raised its Inter & Co price target to $10 from $8.80 and kept a Buy rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaqintr-stock-price-2026-10-20/",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 4/4 · missing: 8.80"
+          },
+          {
+            "claim": "Zacks Research cut Inter & Co to strong sell from hold.",
+            "url": "https://www.defenseworld.net/2026/10/21/inter-co-inc-nasdaqintr-given-new-10-00-price-target-at-ubs-group.html",
+            "event_date": "2026-10-09",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 20,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No lawsuits, investigations or fines were found. Banco Inter's purchase of Wiz's 39.75% stake in Inter Seguros for R$409.49M is a routine deal that still needs central bank and CADE approval.",
+        "evidence": [
+          {
+            "claim": "Banco Inter agreed to acquire Wiz's 39.75% stake in Inter Seguros for R$409.49 million, adjusted by CDI.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1864163/000186416326000085/interco-6kaquisicaosegur.htm",
+            "event_date": "2026-10-19",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 10,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 1/2, names 5/5 · missing: 409.49"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nothing material. Inter is a retail-focused bank with a broad client base, so there is no customer concentration concern in the news.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions were found. Inter is a foreign private issuer, so Form 4s generally do not apply, and the only holder disclosure (Squadra) predates the window and is from an outside investor.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "A senior leadership reshuffle and an S&P Global BMI index addition were modest corporate items. Against them, Lula's election win hit Brazilian fintechs broadly, adding political uncertainty for the sector, so the picture is mixed.",
+        "evidence": [
+          {
+            "claim": "Inter & Co revamped its senior leadership, naming Francisco Santos Chief Growth Officer and Alexandre Riccio COO and Executive Vice Chairman.",
+            "url": "https://www.tipranks.com/news/company-announcements/inter-co-revamps-senior-leadership-elevates-growth-and-operations-chiefs",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Inter stock was in focus after its addition to the S&P Global BMI Index.",
+            "url": "https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co/news/inter-stock-in-focus-after-sp-global-bmi-index-addition",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "StoneCo sank 29% and Inter & Co fell 36% on Lula's unexpected election win, hitting Brazilian fintechs broadly.",
+            "url": "https://www.tikr.com/blog/stoneco-sinks-29-inter-co-down-36-pagseguro-down-25-on-lulas-unexpected-election-win",
+            "event_date": "2026-10-26",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 0,
+          "unverified": 2,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Inter & Co (INTR), 2026-09-29 to 2026-10-29**\n\n**1. Guidance / results**\n- No guidance change, pre-announcement or withdrawal found in this window. Q3 results are not out yet. MarketBeat estimates the report for 2026-11-12 after the close, with the call on 2026-11-13. Its consensus is EPS of $0.1881 on revenue of $539.72M. — 2026-10-29 — https://www.marketbeat.com/earnings/reports/2026-11-12-inter-co-inc-class-a-common-shares--stock/\n- Last reported result, Q2 (before this window): EPS of $0.19 against a $0.1814 consensus, while revenue of $475.45M missed the $513.31M estimate. — 2026-08-05 — https://www.marketbeat.com/stocks/NASDAQ/INTR/earnings/\n- Q2 net income was a record R$421M, up 34% year on year. The loan book was R$55.4B, up 29%, and the efficiency ratio was 42.1%. — 2026-08-05 — https://quartr.com/companies/inter-co-inc_14505\n- 2026-10-26: INTR fell about 34–36% in one day after Lula won Brazil's presidential runoff.\n  - Benzinga had it down 34.1% premarket. — 2026-10-26 — https://www.benzinga.com/markets/latin-america/26/10/62586956/brazilian-stocks-record-crash-lula-election-ewz\n  - Tikr reported 36%. — 2026-10-26 — https://www.tikr.com/blog/stoneco-sinks-29-inter-co-down-36-pagseguro-down-25-on-lulas-unexpected-election-win\n  - The CNN quote page shows a $4.11 close, with a 7.22% drop on the day it was captured. — date unknown — https://www.cnn.com/markets/stocks/INTR\n  - The CNBC quote page shows $4.43 on 2026-10-27. — 2026-10-27 — https://www.cnbc.com/quotes/INTR\n- Kalkine says politics, not a company filing, drove the drop. — 2026-10-26 — https://kalkine.ca/news/general-news/inter-co-nasdaqintr-what-drove-the-3477-premarket-drop-following-brazils-runoff\n\n**2. Analyst actions**\n- JPMorgan raised its target to $11 from $9 and kept Overweight. — 2026-10-06 — https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaqintr-stock-price-2026-10-20/\n- UBS raised its target to $10 from $8.80 and kept Buy. — 2026-10-20 — https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaqintr-stock-price-2026-10-20/\n- Zacks Research cut INTR to \"strong sell\" from \"hold\". — 2026-10-09 — https://www.defenseworld.net/2026/10/21/inter-co-inc-nasdaqintr-given-new-10-00-price-target-at-ubs-group.html\n- Weiss Ratings reissued \"hold (c)\". — 2026-10-06 — https://www.defenseworld.net/2026/10/21/inter-co-inc-nasdaqintr-given-new-10-00-price-target-at-ubs-group.html\n- MarketBeat consensus is \"Hold\" with a $9.80 target. That was before the 2026-10-26 selloff. — 2026-10-20 — https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaqintr-stock-price-2026-10-20/\n- I found no post-election rating changes. I also found no dated Goldman Sachs action in the window. The Goldman note on TipRanks has no date in the result.\n\n**3. Litigation / regulation**\n- Banco Inter agreed to buy Wiz's 39.75% of Inter Seguros for R$409.49M. The price is adjusted for the CDI rate. Closing needs approval from Brazil's central bank and CADE, the antitrust regulator. — 2026-10-19 — https://www.sec.gov/Archives/edgar/data/1864163/000186416326000085/interco-6kaquisicaosegur.htm (approvals: https://rallies.ai/news/wiz-co-agrees-to-sell-3975-stake-in-inter-seguros-to-banco-inter-for-r-40949-million-8e90d1cefa48474b)\n- Brazil's central bank ended mandatory Pix participation for institutions with more than 500,000 accounts. This is a sector rule and does not name Inter. — 2026-09-18 — https://www.riotimesonline.com/brazil-pix-rules-central-bank-500000-accounts-2026/\n- I found no lawsuits, investigations or fines against Inter in this window.\n\n**4. Customer concentration**\n- Nothing material found. Inter is a retail-focused bank with 45.3M clients as of Q2. — 2026-06-30 — https://quartr.com/companies/inter-co-inc_14505\n\n**5. Insider activity**\n- No Form 4 data found. Inter files as a foreign private issuer (6-K filings), so Form 4s would not normally apply.\n- Squadra Investimentos disclosed a 4.93% stake. This is an outside holder, not an insider. — 2026-09-09 — https://www.cnn.com/markets/stocks/INTR\n\n**6. Product / competitive / corporate**\n- Leadership overhaul: Francisco Santos became Chief Growth Officer. Alexandre Riccio became COO and Executive Vice Chairman. — 2026-10-13 — https://www.tipranks.com/news/company-announcements/inter-co-revamps-senior-leadership-elevates-growth-and-operations-chiefs\n- S&P Global BMI Index addition. — 2026-10-16 — https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co/news/inter-stock-in-focus-after-sp-global-bmi-index-addition\n- The Level II BDR program is being wound down. The INBR32 trading halt is complete, and a sales facility has launched. — 2026-10-19 — https://investors.inter.co/en/\n- Competitive read-across: Brazilian fintech peers also fell on 2026-10-26. Nu fell about 17–21% and StoneCo about 29%. — 2026-10-26 — https://finance.yahoo.com/markets/stocks/articles/stoneco-sinks-29-inter-co-135315464.html\n- Earlier launches, outside the window: the Miami branch opened on 2026-06-08 (https://www.gurufocus.com/news/8905344/inter-intr-expands-us-presence-with-miami-branch-opening?mobile=true), and the US wearables launched on 2026-07-13 (https://brazilcham.com/news/posts/inter-launches-wearables-in-the-us-with-contactless-payment-rings-and-wristbands).",
+      "urls": [
+        "https://www.gurufocus.com/stock/INTR/summary",
+        "https://www.sec.gov/Archives/edgar/data/69422/000149315226022253/ex99-1.htm",
+        "https://www.marketbeat.com/earnings/reports/2026-11-12-inter-co-inc-class-a-common-shares--stock/",
+        "https://stockanalysis.com/stocks/intr/revenue/",
+        "https://www.marketbeat.com/instant-alerts/inter-co-inc-nasdaqintr-announces-earnings-results-hits-expectations-2026-08-05/",
+        "https://quartr.com/companies/inter-co-inc_14505",
+        "https://www.marketbeat.com/stocks/NASDAQ/INTR/earnings/",
+        "https://www.tradingview.com/symbols/NASDAQ-INTR/",
+        "https://www.stocktitan.net/sec-filings/INTR/6-k-inter-co-inc-current-report-foreign-issuer-7ffe9189a811.html",
+        "https://www.stocktitan.net/sec-filings/INTR/6-k-inter-co-inc-current-report-foreign-issuer-589923733722.html",
+        "https://www.investing.com/equities/inter-and-co-a-consensus-estimates",
+        "https://www.marketbeat.com/stocks/NASDAQ/INTR/forecast/",
+        "https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co/future",
+        "https://www.pricetargets.com/NASDAQ/INTR/",
+        "https://www.tradingkey.com/markets/stocks/intr/forecast",
+        "https://www.wallstreetzen.com/stocks/us/nasdaq/intr/stock-forecast",
+        "https://tickernerd.com/stock/intr-forecast/",
+        "https://benzinga.com/quote/INTR/analyst-ratings",
+        "https://www.tipranks.com/news/the-fly/interco-upgraded-to-buy-from-neutral-at-goldman-sachs",
+        "https://www.webull.com/news/15777189344289792",
+        "https://www.tipranks.com/news/company-announcements/inter-co-revamps-senior-leadership-elevates-growth-and-operations-chiefs",
+        "https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co/news/inter-stock-in-focus-after-sp-global-bmi-index-addition",
+        "https://www.cnn.com/markets/stocks/INTR",
+        "https://www.sec.gov/Archives/edgar/data/1864163/000186416326000085/interco-6kaquisicaosegur.htm",
+        "https://en.wikipedia.org/wiki/Inter%26Co",
+        "https://investors.inter.co/en/",
+        "https://rallies.ai/news/wiz-co-agrees-to-sell-3975-stake-in-inter-seguros-to-banco-inter-for-r-40949-million-8e90d1cefa48474b",
+        "https://en.wikipedia.org/wiki/2026%E2%80%9327_Inter_Milan_season",
+        "https://www.marketscreener.com/news/brazilian-stocks-real-fall-sharply-after-surprise-election-outcome-update-ce785cdcdd80ff27",
+        "https://finance.yahoo.com/markets/stocks/articles/brazilian-stocks-tumble-lula-wins-132206701.html",
+        "https://fluentinquality.substack.com/p/nu-holdings-and-mercadolibre-just",
+        "https://www.benzinga.com/trading-ideas/movers/26/10/62591970/nu-stock-crashes-after-lula-defeats-bolsonaro-in-runoff",
+        "https://finance.yahoo.com/markets/stocks/articles/brazilian-stocks-sink-surprising-presidential-180258978.html",
+        "https://247wallst.com/investing/2026/10/26/brazilian-stocks-tumble-as-lula-wins-surprise-fourth-term-nu-holdings-sinks-25-petrobras-tumbles-21-mercadolibre-drops-15/",
+        "https://wallstreetdigest.com/stories/brazil-stock-fund-tumbles-after-lula-wins-presidential-run-o-7e1195/",
+        "https://www.fool.com/investing/2022/10/03/why-shares-of-mercadolibre-stoneco-and-pagseguro-d",
+        "https://www.fool.com/investing/2022/10/06/why-shares-of-mercadolibre-nu-holdings-and-xp-inc",
+        "https://www.marketbeat.com/instant-alerts/analyst-ubs-group-issues-positive-forecast-for-inter-co-inc-nasdaq-intr-stock-price-2026-10-20/",
+        "https://www.timothysykes.com/news/intercoinc-intr-news-2026_10_23-2/",
+        "https://www.timothysykes.com/news/intercoinc-intr-news-2026_10_23/",
+        "https://www.timothysykes.com/news/intercoinc-intr-news-2026_10_24/",
+        "https://www.defenseworld.net/2026/10/21/inter-co-inc-nasdaqintr-given-new-10-00-price-target-at-ubs-group.html",
+        "https://www.defenseworld.net/2026/10/21/inter-co-inc-nasdaqintr-shares-gap-up-on-analyst-upgrade.html",
+        "https://www.tipranks.com/news/the-fly/interco-price-target-raised-to-10-50-from-9-20-at-ubs-thefly",
+        "https://www.tipranks.com/news/the-fly/interco-price-target-raised-to-10-from-9-at-goldman-sachs-thefly",
+        "https://www.marketbeat.com/instant-alerts/filing-samlyn-capital-llc-acquires-1459151-shares-of-inter-co-inc-intr-2025-09-06",
+        "https://www.connectingthedotsinpayments.com/bc-fines-paypal-r-5-million-for-pix-rule-violations/",
+        "https://www.riotimesonline.com/brazil-pix-rules-central-bank-500000-accounts-2026/",
+        "https://ielp.worldtradelaw.net/2026/08/is-brazils-pix-payment-system-an-unfair-trade-practice/",
+        "https://en.wikipedia.org/wiki/Banco_do_Nordeste",
+        "https://www.riotimesonline.com/brazil-central-bank-pix-access-restriction-cyberattacks-security-2026/",
+        "https://en.wikipedia.org/wiki/Central_Bank_of_Brazil",
+        "https://en.wikipedia.org/wiki/Pix_(payment_system)",
+        "https://ciberlatam.com/en/news/brazil-tightens-pix-rules-fines",
+        "https://en.wikipedia.org/wiki/Ilan_Goldfajn",
+        "https://www.gurufocus.com/news/8905344/inter-intr-expands-us-presence-with-miami-branch-opening?mobile=true",
+        "https://simplywall.st/community/narratives/us/banks/nasdaq-intr/inter-co/2mus249c-intr-marginally-improved-margins-and-revenue-are-expected-to-sustain-fair-value/updates/21-inter-and-cos-analyst-price-target-has-been-revised-slightly",
+        "https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co/news/did-inters-new-battery-free-payment-wearables-just-shift-int/amp",
+        "https://simplywall.st/stocks/us/banks/nasdaq-intr/inter-co",
+        "https://brazilcham.com/news/posts/inter-launches-wearables-in-the-us-with-contactless-payment-rings-and-wristbands",
+        "https://www.stocktitan.net/news/INTR/inter-launches-wearables-in-the-u-s-taking-banking-beyond-the-9hfj7onqhwin.html",
+        "https://fintech.garden/news/2026-07-16-inter-brings-battery-free-payment-ring-and-wristband-to-us-market/",
+        "https://www.stocktitan.net/sec-filings/INTR/6-k-inter-co-inc-current-report-foreign-issuer-ff0a2bfe0186.html",
+        "https://www.cnbc.com/quotes/INTR",
+        "https://pluang.com/en/news-feed/inter-co-lula-menang-alasan-optimis-saham-intr",
+        "https://www.tikr.com/blog/stoneco-sinks-29-inter-co-down-36-pagseguro-down-25-on-lulas-unexpected-election-win",
+        "https://finance.yahoo.com/markets/stocks/articles/stoneco-sinks-29-inter-co-135315464.html",
+        "https://edition.cnn.com/markets/stocks/INTR",
+        "https://www.benzinga.com/markets/latin-america/26/10/62586956/brazilian-stocks-record-crash-lula-election-ewz",
+        "https://www.tradingview.com/news/benzinga:9ad316442094b:0-brazilian-stocks-set-for-record-single-day-crash-after-lula-upset/",
+        "https://www.basisreport.com/news/intr-inter-co-lula-win-super-app-thesis",
+        "https://kalkine.ca/news/general-news/inter-co-nasdaqintr-what-drove-the-3477-premarket-drop-following-brazils-runoff"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Inter & Co rates Hold: strong growth and quality are offset by a severe share-price downtrend.",
+    "thesis": "Inter & Co scores 54, a Hold, because solid fundamentals are pulled down by very weak price action. Growth scores 77, with TTM revenue growth of 34.7% and growth sped up by 1.3 pp from the previous quarter. Quality scores 75 on a 97.8% gross margin and a 57.5% FCF margin, though the diluted share count up 13.7% year on year weighs on it. Trend scores 0: the price is 59.8% below its 52-week high, 39.8% below its 200-day average, and shares are 54.2 pp behind SPY over the last 126 trading days, with Lula's election win hitting Brazilian fintechs broadly. News risk is neutral at 50, and the balance sheet and valuation could not be scored, so the rating rests on growth, quality, trend and news alone.",
+    "key_risks": [
+      "Political uncertainty in Brazil after Lula's election win, which hit Brazilian fintechs broadly",
+      "Deep price downtrend, with the price 30.1% below its 50-day average and 59.8% below its 52-week high",
+      "Shareholder dilution, with the diluted share count up 13.7% year on year",
+      "Q3 results expected around 2026-11-12 could disappoint after a period of fast growth",
+      "A senior leadership reshuffle adds execution uncertainty"
+    ],
+    "what_would_change": [
+      "An upgrade to Buy needs 11 more points, most plausibly from a recovery in the trend score from 0 as the price stabilises against its moving averages",
+      "A downgrade to Sell would follow a 10-point drop, for example if growth or quality scores weaken in the Q3 results",
+      "Positive news such as confirmed analyst upgrades or clearer Brazilian policy could lift the news risk score above 50, while further political pressure could push it lower",
+      "Scoring the balance sheet and valuation factors could move the composite either way"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 169343,
+        "output_tokens": 3241,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 169343,
+            "output_tokens": 3241,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.4511,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 6798,
+        "output_tokens": 2259,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 6798,
+            "output_tokens": 2259,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0724,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3933,
+        "output_tokens": 653,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3933,
+            "output_tokens": 653,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0288,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.5523,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 4.155,
+    "as_of": "2026-10-29T14:04:31Z",
+    "prev_close": 4.11
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:36",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

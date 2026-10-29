@@ -1,0 +1,1642 @@
+{
+  "run_id": "2026-10-29T13:34:06Z",
+  "generated_at": "2026-10-29T13:35:03+00:00",
+  "ticker": "OSCR",
+  "sec_ticker": "OSCR",
+  "cik": "0001568651",
+  "name": "Oscar Health, Inc.",
+  "sector": "Hospital & Medical Service Plans",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 63,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: gross margin"
+      },
+      {
+        "issue": "fcf_spike",
+        "points": 1.0,
+        "text": "FCF spike (cause not in tagged data): FCF $662.8M in the quarter to 2025-12-31 on revenue of $9.0M; FCF $2.61B in the quarter to 2026-03-31 on revenue of $5.7M; FCF $2.08B in the quarter to 2026-06-30 on revenue of $6.1M; TTM FCF margin 14807.6% vs 5850.6% a year earlier; scored on normalised FCF (median quarterly margin 7543.1% of the last 8 quarters x TTM revenue)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 63 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 2
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 19
+    }
+  },
+  "composite": {
+    "score": 63,
+    "raw": 63.3,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": -6.19,
+          "score": 9.5,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 44.02,
+          "score": 98.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -38.25,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 34,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing: no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+        },
+        "operating_margin_pct": {
+          "value": 2128.95,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 7543.14,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": "normalised FCF; reported FCF margin 14807.6%"
+        },
+        "sbc_pct_revenue": {
+          "value": 254.21,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 30.49,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.8,
+      "score": 62,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -1.85,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": 19.82,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 343.589,
+          "score": 0.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 4.555,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": "normalised FCF; reported P/FCF 2.3x"
+        },
+        "ev_to_ebit": {
+          "value": 3.238,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": 16.964,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": "normalised FCF"
+        },
+        "price_to_sales_percentile": {
+          "value": 96.5,
+          "score": 3.5,
+          "weight": 0.1,
+          "note": "cheaper than now in 96.5% of 57 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": 71.1,
+          "score": 28.9,
+          "weight": 0.15,
+          "note": "cheaper than now in 71.1% of 57 month-ends (ranked on yields)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 16 of 34 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 64,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -4.05,
+          "score": 29.8,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 29.89,
+          "score": 100.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 51.35,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 60.91,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 60.08,
+          "score": 100.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -11.19,
+          "score": 57.2,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 83,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 59,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 30.48,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-06-30",
+    "revenue_q": 6095000.0,
+    "revenue_yoy_q": -6.19,
+    "revenue_yoy_q_prev": 32.06,
+    "acceleration_pp": -38.25,
+    "ttm_end": "2026-06-30",
+    "revenue_ttm": 29579000.0,
+    "revenue_yoy_ttm": 44.02,
+    "gross_profit_ttm": null,
+    "operating_income_ttm": 629723000.0,
+    "operating_cash_flow_ttm": 4418570000.0,
+    "capex_ttm": 38625000.0,
+    "sbc_ttm": 75193000.0,
+    "gross_profit_source": null,
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 4379945000.0,
+    "gross_margin_pct": null,
+    "operating_margin_pct": 2128.95,
+    "fcf_margin_pct": 14807.62,
+    "capex_intensity_pct": 130.58,
+    "sbc_pct_revenue": 254.21,
+    "missing_inputs": {
+      "gross_margin_pct": "no GrossProfit or cost-of-revenue tag covers the TTM to 2026-06-30"
+    },
+    "prepayments": null,
+    "fcf_spike": {
+      "triggered": true,
+      "reasons": [
+        "FCF $662.8M in the quarter to 2025-12-31 on revenue of $9.0M",
+        "FCF $2.61B in the quarter to 2026-03-31 on revenue of $5.7M",
+        "FCF $2.08B in the quarter to 2026-06-30 on revenue of $6.1M",
+        "TTM FCF margin 14807.6% vs 5850.6% a year earlier"
+      ],
+      "fcf_margin_pct": 14807.62,
+      "fcf_margin_year_earlier_pct": 5850.62,
+      "median_margin_pct": 7543.14,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4,
+      "normalised_fcf": 2231185448.904969
+    },
+    "fcf_basis": "normalised",
+    "fcf_scored_ttm": 2231185448.904969,
+    "fcf_normalised_ttm": 2231185448.904969,
+    "fcf_normalised_margin_pct": 7543.14,
+    "fcf_scored_margin_pct": 7543.14,
+    "balance_sheet": {
+      "date": "2026-06-30",
+      "cash": 4075612000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 4479906000.0,
+      "investment_tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "val": 4479906000.0
+        }
+      ],
+      "investment_note": null,
+      "cash_and_investments": 8555518000.0,
+      "debt": 431629000.0,
+      "debt_tags": [
+        "LongTermDebtNoncurrent"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "val": 431629000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -8123889000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 333432000.0,
+    "diluted_shares_end": "2026-06-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 30.49,
+    "shares_outstanding": null,
+    "quarterly": [
+      {
+        "end": "2023-09-30",
+        "revenue": 5541000.0,
+        "revenue_yoy_pct": -71.47,
+        "operating_margin_pct": -1051.15,
+        "fcf": -1155745000.0,
+        "diluted_shares": 223099000.0
+      },
+      {
+        "end": "2023-12-31",
+        "revenue": 5724000.0,
+        "revenue_yoy_pct": -12.76,
+        "operating_margin_pct": -2541.53,
+        "fcf": 290766000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 5634000.0,
+        "revenue_yoy_pct": 12.61,
+        "operating_margin_pct": 3293.54,
+        "fcf": 628413000.0,
+        "diluted_shares": 293796000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 5231000.0,
+        "revenue_yoy_pct": 2.87,
+        "operating_margin_pct": 1296.35,
+        "fcf": 489589000.0,
+        "diluted_shares": 303965000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 4899000.0,
+        "revenue_yoy_pct": -11.59,
+        "operating_margin_pct": -987.43,
+        "fcf": -507707000.0,
+        "diluted_shares": 243106000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 4812000.0,
+        "revenue_yoy_pct": -15.93,
+        "operating_margin_pct": -3070.05,
+        "fcf": 340001000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 4330000.0,
+        "revenue_yoy_pct": -23.15,
+        "operating_margin_pct": 6861.96,
+        "fcf": 869516000.0,
+        "diluted_shares": 305938000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 6497000.0,
+        "revenue_yoy_pct": 24.2,
+        "operating_margin_pct": -3547.53,
+        "fcf": 499790000.0,
+        "diluted_shares": 255531000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 8801000.0,
+        "revenue_yoy_pct": 79.65,
+        "operating_margin_pct": -1468.58,
+        "fcf": -973665000.0,
+        "diluted_shares": 259273000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 8965000.0,
+        "revenue_yoy_pct": 86.31,
+        "operating_margin_pct": -3722.78,
+        "fcf": 662841000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 5718000.0,
+        "revenue_yoy_pct": 32.06,
+        "operating_margin_pct": 12313.48,
+        "fcf": 2610186000.0,
+        "diluted_shares": 329751000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 6095000.0,
+        "revenue_yoy_pct": -6.19,
+        "operating_margin_pct": 6376.29,
+        "fcf": 2080583000.0,
+        "diluted_shares": 333432000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 30.48,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 333432000.0,
+      "source": "diluted weighted-average shares",
+      "date": "2026-06-30"
+    },
+    "market_cap": 10163007360.0,
+    "enterprise_value": 2039118360.0,
+    "price_to_sales": 343.589,
+    "price_to_fcf": 4.555,
+    "ev_to_ebit": 3.238,
+    "sales_yield_pct": 0.291,
+    "fcf_yield_pct": 21.954,
+    "ebit_yield_pct": 30.882,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "normalised",
+    "price_to_fcf_reported": 2.32,
+    "fcf_yield_reported_pct": 43.097,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 16.964,
+    "history": [
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 2.819,
+        "price_to_fcf": 3.306,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 35.473,
+        "fcf_yield_pct": 30.244,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 3.855,
+        "price_to_fcf": 4.522,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.937,
+        "fcf_yield_pct": 22.114,
+        "ebit_yield_pct": -431.521
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 2.846,
+        "price_to_fcf": 3.338,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 35.135,
+        "fcf_yield_pct": 29.957,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 2.717,
+        "price_to_fcf": 2.338,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 36.803,
+        "fcf_yield_pct": 42.763,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 2.386,
+        "price_to_fcf": 2.053,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 41.912,
+        "fcf_yield_pct": 48.7,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 3.032,
+        "price_to_fcf": 2.609,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 32.986,
+        "fcf_yield_pct": 38.329,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 5.387,
+        "price_to_fcf": 3.301,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 18.563,
+        "fcf_yield_pct": 30.296,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 4.055,
+        "price_to_fcf": 2.484,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.664,
+        "fcf_yield_pct": 40.253,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 3.031,
+        "price_to_fcf": 1.857,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 32.995,
+        "fcf_yield_pct": 53.851,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 3.833,
+        "price_to_fcf": 3.299,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.09,
+        "fcf_yield_pct": 30.316,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 3.274,
+        "price_to_fcf": 2.818,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.545,
+        "fcf_yield_pct": 35.492,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 5.11,
+        "price_to_fcf": 4.398,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 19.568,
+        "fcf_yield_pct": 22.737,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 18.13,
+        "price_to_fcf": 1.127,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.516,
+        "fcf_yield_pct": 88.75,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 21.402,
+        "price_to_fcf": 1.33,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.672,
+        "fcf_yield_pct": 75.179,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 22.024,
+        "price_to_fcf": 1.369,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 4.54,
+        "fcf_yield_pct": 73.057,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 30.953,
+        "price_to_fcf": 1.924,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.231,
+        "fcf_yield_pct": 51.982,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 33.99,
+        "price_to_fcf": 2.112,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.942,
+        "fcf_yield_pct": 47.338,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 31.712,
+        "price_to_fcf": 1.971,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.153,
+        "fcf_yield_pct": 50.738,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 38.138,
+        "price_to_fcf": 2.37,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.622,
+        "fcf_yield_pct": 42.189,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 33.88,
+        "price_to_fcf": 2.106,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 2.952,
+        "fcf_yield_pct": 47.491,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 31.143,
+        "price_to_fcf": 1.936,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 3.211,
+        "fcf_yield_pct": 51.665,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 85.459,
+        "price_to_fcf": 5.311,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.17,
+        "fcf_yield_pct": 18.828,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 91.994,
+        "price_to_fcf": 5.717,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 1.087,
+        "fcf_yield_pct": 17.49,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 125.876,
+        "price_to_fcf": 7.823,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.794,
+        "fcf_yield_pct": 12.782,
+        "ebit_yield_pct": -48.277
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 168.787,
+        "price_to_fcf": 6.481,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.592,
+        "fcf_yield_pct": 15.43,
+        "ebit_yield_pct": -17.547
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 154.358,
+        "price_to_fcf": 5.927,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.648,
+        "fcf_yield_pct": 16.872,
+        "ebit_yield_pct": -22.773
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 180.309,
+        "price_to_fcf": 6.924,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.555,
+        "fcf_yield_pct": 14.444,
+        "ebit_yield_pct": -14.83
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 266.747,
+        "price_to_fcf": 9.984,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.375,
+        "fcf_yield_pct": 10.016,
+        "ebit_yield_pct": -0.745
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 211.42,
+        "price_to_fcf": 7.913,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.473,
+        "fcf_yield_pct": 12.637,
+        "ebit_yield_pct": -1.176
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 236.277,
+        "price_to_fcf": 8.844,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.423,
+        "fcf_yield_pct": 11.308,
+        "ebit_yield_pct": -0.933
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 251.358,
+        "price_to_fcf": 6.112,
+        "ev_to_ebit": 65.055,
+        "sales_yield_pct": 0.398,
+        "fcf_yield_pct": 16.36,
+        "ebit_yield_pct": 1.537
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 291.328,
+        "price_to_fcf": 7.084,
+        "ev_to_ebit": 82.871,
+        "sales_yield_pct": 0.343,
+        "fcf_yield_pct": 14.115,
+        "ebit_yield_pct": 1.207
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 230.755,
+        "price_to_fcf": 5.611,
+        "ev_to_ebit": 55.872,
+        "sales_yield_pct": 0.433,
+        "fcf_yield_pct": 17.821,
+        "ebit_yield_pct": 1.79
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 196.064,
+        "price_to_fcf": 4.768,
+        "ev_to_ebit": 47.085,
+        "sales_yield_pct": 0.51,
+        "fcf_yield_pct": 20.974,
+        "ebit_yield_pct": 2.124
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 152.054,
+        "price_to_fcf": 3.698,
+        "ev_to_ebit": 31.196,
+        "sales_yield_pct": 0.658,
+        "fcf_yield_pct": 27.044,
+        "ebit_yield_pct": 3.206
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 187.805,
+        "price_to_fcf": 4.567,
+        "ev_to_ebit": 44.103,
+        "sales_yield_pct": 0.532,
+        "fcf_yield_pct": 21.896,
+        "ebit_yield_pct": 2.267
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 188.769,
+        "price_to_fcf": 3.108,
+        "ev_to_ebit": 35.485,
+        "sales_yield_pct": 0.53,
+        "fcf_yield_pct": 32.17,
+        "ebit_yield_pct": 2.818
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 169.388,
+        "price_to_fcf": 2.789,
+        "ev_to_ebit": 28.521,
+        "sales_yield_pct": 0.59,
+        "fcf_yield_pct": 35.851,
+        "ebit_yield_pct": 3.506
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 168.096,
+        "price_to_fcf": 2.768,
+        "ev_to_ebit": 28.057,
+        "sales_yield_pct": 0.595,
+        "fcf_yield_pct": 36.127,
+        "ebit_yield_pct": 3.564
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 219.071,
+        "price_to_fcf": 3.607,
+        "ev_to_ebit": 9.084,
+        "sales_yield_pct": 0.456,
+        "fcf_yield_pct": 27.72,
+        "ebit_yield_pct": 11.008
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 340.354,
+        "price_to_fcf": 5.605,
+        "ev_to_ebit": 22.928,
+        "sales_yield_pct": 0.294,
+        "fcf_yield_pct": 17.842,
+        "ebit_yield_pct": 4.361
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 223.04,
+        "price_to_fcf": 3.673,
+        "ev_to_ebit": 9.537,
+        "sales_yield_pct": 0.448,
+        "fcf_yield_pct": 27.227,
+        "ebit_yield_pct": 10.485
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 207.281,
+        "price_to_fcf": 2.809,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.482,
+        "fcf_yield_pct": 35.6,
+        "ebit_yield_pct": -12.692
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 235.524,
+        "price_to_fcf": 3.192,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.425,
+        "fcf_yield_pct": 31.331,
+        "ebit_yield_pct": -8.091
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 223.954,
+        "price_to_fcf": 3.035,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.447,
+        "fcf_yield_pct": 32.95,
+        "ebit_yield_pct": -9.502
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 190.636,
+        "price_to_fcf": 2.583,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.525,
+        "fcf_yield_pct": 38.708,
+        "ebit_yield_pct": -9.11
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 152.445,
+        "price_to_fcf": 2.066,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.656,
+        "fcf_yield_pct": 48.405,
+        "ebit_yield_pct": -15.291
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 152.233,
+        "price_to_fcf": 2.063,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.657,
+        "fcf_yield_pct": 48.473,
+        "ebit_yield_pct": -15.349
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 125.17,
+        "price_to_fcf": 1.659,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.799,
+        "fcf_yield_pct": 60.263,
+        "ebit_yield_pct": -2147.657
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 105.256,
+        "price_to_fcf": 1.395,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.95,
+        "fcf_yield_pct": 71.665,
+        "ebit_yield_pct": null
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 169.401,
+        "price_to_fcf": 2.246,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 0.59,
+        "fcf_yield_pct": 44.528,
+        "ebit_yield_pct": -30.889
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 244.5,
+        "price_to_fcf": 3.241,
+        "ev_to_ebit": 90.661,
+        "sales_yield_pct": 0.409,
+        "fcf_yield_pct": 30.851,
+        "ebit_yield_pct": 1.103
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 313.682,
+        "price_to_fcf": 4.159,
+        "ev_to_ebit": 286.242,
+        "sales_yield_pct": 0.319,
+        "fcf_yield_pct": 24.047,
+        "ebit_yield_pct": 0.349
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 343.378,
+        "price_to_fcf": 4.552,
+        "ev_to_ebit": 370.195,
+        "sales_yield_pct": 0.291,
+        "fcf_yield_pct": 21.967,
+        "ebit_yield_pct": 0.27
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 337.727,
+        "price_to_fcf": 4.477,
+        "ev_to_ebit": 2.963,
+        "sales_yield_pct": 0.296,
+        "fcf_yield_pct": 22.335,
+        "ebit_yield_pct": 33.752
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 347.647,
+        "price_to_fcf": 4.609,
+        "ev_to_ebit": 3.429,
+        "sales_yield_pct": 0.288,
+        "fcf_yield_pct": 21.698,
+        "ebit_yield_pct": 29.165
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 343.589,
+        "price_to_fcf": 4.555,
+        "ev_to_ebit": 3.238,
+        "sales_yield_pct": 0.291,
+        "fcf_yield_pct": 21.954,
+        "ebit_yield_pct": 30.882
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 343.589,
+        "current_yield_pct": 0.291,
+        "points": 57,
+        "median": 152.439,
+        "low": 2.386,
+        "high": 347.222,
+        "negative_points": 0,
+        "median_yield_pct": 0.656,
+        "percentile": 96.5,
+        "cheaper_points": 54,
+        "dearer_points": 1,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "price_to_fcf": {
+        "current": 4.555,
+        "current_yield_pct": 21.954,
+        "points": 57,
+        "median": 3.299,
+        "low": 1.127,
+        "high": 9.984,
+        "negative_points": 0,
+        "median_yield_pct": 30.316,
+        "percentile": 71.1,
+        "cheaper_points": 40,
+        "dearer_points": 16,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      },
+      "ev_to_ebit": {
+        "current": 3.238,
+        "current_yield_pct": 30.882,
+        "points": 34,
+        "median": 323.102,
+        "low": 2.963,
+        "high": null,
+        "negative_points": 16,
+        "median_yield_pct": 0.309,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 16 of 34 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2022-02-28"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 54 of the last 57 month-ends"
+        },
+        "price_to_fcf": {
+          "label": "expensive",
+          "phrase": "more expensive than at 40 of the last 57 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative in 16 of 34 month-ends)",
+          "not_comparable": "negative in 16 of 34 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 30.48,
+    "date": "2026-10-28",
+    "ma50": 31.77,
+    "ma200": 23.47,
+    "vs_ma50_pct": -4.05,
+    "vs_ma200_pct": 29.89,
+    "momentum_12_1_pct": 51.35,
+    "high_52w": 34.32,
+    "drawdown_52w_pct": -11.19,
+    "return_rs_pct": 69.99,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 60.91,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 60.08
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001568651-26-000066",
+    "filing_date": "2026-08-06",
+    "period_end": "2026-06-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000066/oscarhealthsecondquarter20.htm",
+    "summary": "Oscar says it is raising its full-year 2026 guidance, but the excerpts give no specific guidance figures.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "“Oscar delivered record profitability in the first half of the year and we are raising our full-year 2026 guidance,” said Mark Bertolini, CEO of Oscar Health.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "We caution investors that amounts presented in accordance with our definition of Adjusted EBITDA may not be comparable to similar measures disclosed by our competitors, because not all companies and analysts calculate Adjusted EBITDA in the same manner."
+        ]
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001568651-26-000036",
+      "filing_date": "2026-05-06",
+      "period_end": "2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000036/oscarhealthfirstquarter202.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "Oscar did not change its guidance in the last month. Its latest update came on 2026-09-16, just before the window, when it raised earnings from operations to $600–800M and reaffirmed revenue of $18.7–19.0B. Q3 results are due Nov 5.",
+        "evidence": [
+          {
+            "claim": "Oscar raised its 2026 earnings from operations guidance to $600–800M from $500–700M, cut its MLR guide to 81.0–82.0%, and reaffirmed revenue of $18.7–19.0B.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000074/oscr-20260916.htm",
+            "event_date": "2026-09-16",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 43,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 9/9, names 1/2"
+          },
+          {
+            "claim": "Oscar Health will report 2026 third quarter results before market open on November 5, with a conference call at 8:00 AM ET.",
+            "url": "https://www.businesswire.com/news/home/20261012481128/en/Oscar-Health-Inc.-2026-Third-Quarter-Earnings-Conference-Call",
+            "event_date": "2026-10-12",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 17,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "In the window, UBS kept its Neutral rating and raised its price target to $36 from $26. There were no upgrades or downgrades, and the consensus remains Hold.",
+        "evidence": [
+          {
+            "claim": "UBS maintained Neutral on Oscar Health and raised its price target to $36 from $26.",
+            "url": "https://finance.yahoo.com/quote/OSCR/",
+            "event_date": "2026-10-12",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 17,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Consensus rating is Hold with an average price target of $34.90.",
+            "url": "https://www.marketbeat.com/stocks/NYSE/OSCR/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 2/2"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "There were no new lawsuits, investigations or fines in the window. The IPO class action and the CMS rule litigation are background only.",
+        "evidence": [],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Oscar sells to individuals on the ACA exchanges, so no single customer dominates. Industry-wide enrollment declines and subsidy policy are background risks rather than a concentration issue.",
+        "evidence": [
+          {
+            "claim": "KFF estimated individual-market enrollment fell 18%, from 25.2 million in June 2025 to 20.5 million in June 2026.",
+            "url": "https://www.healthcarefinancenews.com/news/health-plans-expand-aca-offerings-insurers-redraw-2027-markets",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "No insider transactions dated inside the window could be confirmed. Recent insider sales, many under 10b5-1 plans, all fall before the window.",
+        "evidence": [],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Oscar unveiled its 2027 lineup. It enters South Carolina, grows to 713 counties in 21 states and launches new products, while some rivals are leaving the exchanges. All sources here are lower-tier.",
+        "evidence": [
+          {
+            "claim": "Oscar is expanding to 713 counties across 21 states for 2027, including a new market in South Carolina, and is launching RetireEase for early retirees.",
+            "url": "https://www.hioscar.com/blog/press-release-open-enrollment-2027-new-products",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 4/4"
+          },
+          {
+            "claim": "Oscar Health expands to 21 states, adds a South Carolina market, and partners with Allstate Health Solutions for supplemental options in Florida and Texas.",
+            "url": "https://www.investing.com/news/company-news/oscar-health-expands-to-21-states-adds-south-carolina-market-93CH-4959410",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Oscar is adding 140 new counties for 2027 and plans to add 400 to 600 new counties by 2029.",
+            "url": "https://www.healthcaredive.com/news/centene-oscar-unitedhealthcare-new-counties-aca-2027/833442/",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**1. Guidance and results**\n- No guidance change inside the window. Oscar's last change was on 2026-09-16, just before the window. It cut its 2026 MLR guide to 81.0–82.0% and raised earnings from operations to $600–800M, from $500–700M. It reaffirmed revenue of $18.7–19.0B and an SG&A ratio of 15.6–16.1% — 2026-09-16 — https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000074/oscr-20260916.htm\n- Q3 results are due before the open on Nov 5, with a call at 8:00 AM ET — announced 2026-10-12 — https://www.businesswire.com/news/home/20261012481128/en/Oscar-Health-Inc.-2026-Third-Quarter-Earnings-Conference-Call\n- MarketBeat's consensus for Q3 is a loss of $0.1438 per share on $4.69B revenue — as of 2026-10-29 — https://www.marketbeat.com/instant-alerts/upcoming-oscar-health-oscr-set-to-release-quarterly-earnings-on-thursday-2026-10-29/\n- Q2 (reported 2026-08-06) beat on both lines, per MarketBeat: EPS of $1.10 against $0.40 expected, and revenue of $4.88B against $4.73B — https://www.marketbeat.com/instant-alerts/upcoming-oscar-health-oscr-set-to-release-quarterly-earnings-on-thursday-2026-10-29/\n- The Q2 beat included $164M of favorable prior-period development, about $160M of it from final 2025 risk adjustment — 2026-08-06 — https://www.tradingview.com/news/zacks:916f8596b094b:0-oscar-health-raises-2026-operating-earnings-outlook-as-margins-improve/\n\n**2. Analyst actions**\n- UBS kept its Neutral rating and raised its price target to $36 from $26 — 2026-10-12 — https://finance.yahoo.com/quote/OSCR/\n- Goldman Sachs (Scott Fidel) raised its target to $34 from $30 and kept Neutral. The source doesn't give the date, and stockanalysis.com's page age suggests it predates the window — date unknown — https://stockanalysis.com/stocks/oscr/\n- I found no upgrades, downgrades or initiations dated inside the window.\n- Just before the window, on 2026-09-17, Barclays kept Overweight and raised its target to $49. Baird kept Neutral with a $33 target, and Stephens kept Equal-Weight with a $34 target — https://www.benzinga.com/trading-ideas/movers/26/09/61849460/oscar-health-stock-rises-following-raised-2026-guidance-and-wall-street-price-target-hikes\n- The consensus figures differ by source:\n  - Hold, $34.90 average target, range $16–$49 — as of 2026-10-28 — https://www.marketbeat.com/stocks/NYSE/OSCR/\n  - Hold, $36.40 average target — as of 2026-10-28 — https://stockanalysis.com/stocks/oscr/\n  - $34.00 average target — as of 2026-10-24 — https://tickflow.io/stock/OSCR/forecast\n\n**3. Litigation and regulation**\n- I found nothing new and material in the window: no new suits, investigations or fines.\n- Background from the Q2 10-Q: on 2026-06-12 a federal court nullified several of CMS's 2025 Program Integrity Rule provisions in *City of Columbus v. Kennedy*. Oscar says this leaves some of the earlier rules in place for plan year 2027, subject to appeal or further CMS action — https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000069/oscr-20260630.htm\n- The 2022 IPO securities class action (*Carpenter*, S.D.N.Y.) is still described in the filings. I found no development in the window — https://www.sec.gov/Archives/edgar/data/1568651/000156865125000037/oscr-20250930.htm\n- ACA open enrollment starts Nov 1. Insurers asked for a median 15% premium increase for 2027, per KFF — date unknown — https://www.beckerspayer.com/payer/aca/how-insurers-aca-footprints-are-changing-in-2027/\n\n**4. Customer concentration**\n- I found nothing material. Oscar sells to individuals through the ACA exchanges rather than to a few large customers. Premiums come from members and from CMS premium tax credits (APTC), per the FY2021 10-K, so federal subsidy policy matters more than any single customer — https://www.sec.gov/Archives/edgar/data/1568651/000156865122000011/oscr-20211231.htm\n- KFF estimated individual-market enrollment fell 18%, from 25.2M in June 2025 to 20.5M in June 2026 — 2026-10-14 — https://www.healthcarefinancenews.com/news/health-plans-expand-aca-offerings-insurers-redraw-2027-markets\n- Healthcare Dive reports Oscar covers about 2.9M ACA enrollees — date unknown — https://www.healthcaredive.com/news/centene-oscar-unitedhealthcare-new-counties-aca-2027/833442/\n\n**5. Insider activity**\n- I could not confirm any Form 4 transaction dated inside the window. A data aggregator shows its latest filing on Oct 13, but I couldn't see the transaction details — https://massive.com/quote/oscr/insider-trading\n- The most recent transactions I could date all fall before 2026-09-29:\n  - CFO Richard Blackley sold 28,869 shares at $31.45 under a 10b5-1 plan — 2026-09-03 — https://massive.com/quote/oscr/insider-trading\n  - Director Vanessa Wittman sold 25,000 shares at $32.24 under a 10b5-1 plan — 2026-09-18 — https://massive.com/quote/oscr/insider-trading\n  - Director Mario Schlosser sold 750,000 shares at an average of $30.43 — earliest transaction 2026-08-27 — https://www.stocktitan.net/sec-filings/OSCR/form-4.html\n  - Schlosser filed a Form 144 to sell 31,422 shares — 2026-09-03 — https://www.stocktitan.net/sec-filings/OSCR/144-oscar-health-inc-sec-filing-b92b88fbc239.html\n  - secform4.com lists a Bertolini sale of 1,238,996 shares at $28.87 dated 2026-09-18. Other sources tie his $35.7M sale to around July 1, so the dates conflict and I couldn't resolve them — https://www.secform4.com/insider-trading/1568651.htm and https://www.gurufocus.com/news/8941941/oscar-health-oscr-stock-surges-after-ceos-share-sale-linked-to-tax-obligations\n- MarketBeat counts 874,451 shares ($26.76M) sold by insiders over the last quarter, so selling is clustered. This is an aggregator figure — 2026-10-20 — https://www.marketbeat.com/instant-alerts/filing-oscar-health-inc-oscr-stock-acquired-by-genesee-capital-advisors-llc-2026-10-20/\n- The only open-market-style buy in the past year was Bertolini's 1,000,000 shares at $11.92, a private placement from the company — 2026-04-06 — https://insidersignals.substack.com/p/mark-bertolini-just-put-1192-million\n\n**6. Product and competitive news**\n- Oscar unveiled its 2027 lineup — 2026-10-20 — https://www.hioscar.com/blog/press-release-open-enrollment-2027-new-products\n  - It enters South Carolina and expands to 713 counties in 21 states, up 24%.\n  - It launches RetireEase for early retirees and expands HelloMeno to 15 states.\n  - It expands Hy-Vee Health with Oscar into Nebraska, Missouri and Kansas.\n- Also announced 2026-10-20: a partnership with Allstate Health Solutions for supplemental cash-pay options in Florida and Texas, and more than 250 new plans with bundled dental and vision — https://www.investing.com/news/company-news/oscar-health-expands-to-21-states-adds-south-carolina-market-93CH-4959410\n- Healthcare Dive reports the 2027 expansion as 140 new counties. It says Oscar plans to add 400–600 new counties by 2029 and describes the company as one of the fastest-growing carriers on the exchanges — 2026-10-20 — https://www.healthcaredive.com/news/centene-oscar-unitedhealthcare-new-counties-aca-2027/833442/\n- Centene's Ambetter is adding 55 counties. Other insurers are leaving the exchanges, which Oscar may benefit from — 2026-10-20 — https://www.fiercehealthcare.com/payers/centene-oscar-health-outline-2027-aca-marketplace-plans",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000066/oscarhealthsecondquarter20.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000036/oscarhealthfirstquarter202.htm",
+        "https://finance.yahoo.com/healthcare/articles/oscar-health-inc-2026-third-120100814.html",
+        "https://www.businesswire.com/news/home/20261012481128/en/Oscar-Health-Inc.-2026-Third-Quarter-Earnings-Conference-Call",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000162828021022811/oscr-3q21xpressrelease.htm",
+        "https://seekingalpha.com/news/4518332-oscar-health-outlines-28-percent-rate-hikes-for-2026-as-pricing-strategy-adapts-to-higher",
+        "https://www.marketbeat.com/instant-alerts/upcoming-oscar-health-oscr-set-to-release-quarterly-earnings-on-thursday-2026-10-29/",
+        "https://www.tipranks.com/stocks/oscr/earnings",
+        "https://finviz.com/news/401202/oscar-health-inc-2026-third-quarter-earnings-conference-call",
+        "https://www.biopharmawatch.com/news/OSCR/oscar-health-2026-q3-earnings-call",
+        "https://www.marketbeat.com/stocks/NYSE/OSCR/",
+        "https://stockanalysis.com/stocks/oscr/",
+        "https://www.cnn.com/markets/stocks/OSCR",
+        "https://simplywall.st/stocks/us/insurance/nyse-oscr/oscar-health/future",
+        "https://finance.yahoo.com/quote/OSCR/",
+        "https://247wallst.com/companies/OSCR/price-prediction/",
+        "https://tickflow.io/stock/OSCR/forecast",
+        "https://www.marketbeat.com/stocks/NYSE/OSCR/price-target",
+        "https://simplywall.st/community/narratives/us/insurance/nyse-oscr/oscar-health/4bgh92m4-analysts-raise-oscar-health-price-target-amid-profitability-hopes-and-new-healthcare-initiatives/updates/15-oscar-healths-analyst-fair-value-price-target-increased-by",
+        "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000069/oscr-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865125000037/oscr-20250930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865125000025/oscr-20250630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865125000015/oscr-20250331.htm",
+        "https://www.healthcaredive.com/news/centene-oscar-unitedhealthcare-new-counties-aca-2027/833442/",
+        "https://seekingalpha.com/article/4850730-oscar-health-aca-chaos-ichra-growth-and-a-potential-2027-re-rating",
+        "https://www.fiercehealthcare.com/payers/centene-oscar-health-outline-2027-aca-marketplace-plans",
+        "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000040/oscr-20260331.htm",
+        "https://www.beckerspayer.com/payer/aca/how-insurers-aca-footprints-are-changing-in-2027/",
+        "https://seekingalpha.com/news/4609449-oscar-health-stock-turns-357m-insider-selling-into-a-new-52-week-high",
+        "https://insidersignals.substack.com/p/mark-bertolini-just-put-1192-million",
+        "https://www.benzinga.com/trading-ideas/movers/26/04/51704577/oscar-health-stock-jumps-after-ceo-buys-11-92-million-in-shares",
+        "https://www.gurufocus.com/news/8941941/oscar-health-oscr-stock-surges-after-ceos-share-sale-linked-to-tax-obligations",
+        "https://www.secform4.com/insider-trading/1568651.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000119312523081327/d487122d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000114036125015601/ny20043707x1_def14a.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000114036124021911/ny20011563x1_def14a.htm",
+        "https://massive.com/quote/oscr/insider-trading",
+        "https://www.aol.com/articles/did-oscar-health-ceo-just-121001000.html",
+        "https://www.hioscar.com/blog/press-release-open-enrollment-2027-new-products",
+        "https://www.gurufocus.com/news/9131362/oscar-introduces-a-new-wave-of-consumer-health-products",
+        "https://finance.yahoo.com/healthcare/articles/oscar-introduces-wave-consumer-health-100100727.html",
+        "https://insurancenewsnet.com/oarticle/oscar-introduces-a-new-wave-of-consumer-health-products",
+        "https://www.healthcarefinancenews.com/news/health-plans-expand-aca-offerings-insurers-redraw-2027-markets",
+        "https://www.investing.com/news/company-news/oscar-health-expands-to-21-states-adds-south-carolina-market-93CH-4959410",
+        "https://www.nasdaq.com/press-release/oscar-introduces-new-wave-consumer-health-products-2026-10-20",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865124000006/oscr-20231231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865122000011/oscr-20211231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1568651/000156865123000045/oscr-20230630.htm",
+        "https://www.investing.com/news/insider-trading-news/oscar-health-director-mario-schlosser-sells-3018m-in-stock-93CH-4768600",
+        "https://www.marketbeat.com/instant-alerts/filing-oscar-health-inc-oscr-stock-acquired-by-genesee-capital-advisors-llc-2026-10-20/",
+        "https://www.theglobeandmail.com/investing/markets/stocks/OSCR/pressreleases/6740938/oscar-health-oscr-receives-a-hold-from-ubs/",
+        "https://insidertradealerts.com/ticker/OSCR/",
+        "https://www.stocktitan.net/sec-filings/OSCR/form-4.html",
+        "https://www.stocktitan.net/sec-filings/OSCR/144-oscar-health-inc-sec-filing-b92b88fbc239.html",
+        "https://www.stocktitan.net/sec-filings/OSCR/form-4-oscar-health-inc-insider-trading-activity-538bcfa69cb0.html",
+        "https://alphai.io/stock/OSCR",
+        "https://fintel.io/s/us/oscr",
+        "https://www.gurufocus.com/news/3005107/oscar-health-oscr-faces-downgrade-and-price-target-cut-by-analyst-oscr-stock-news",
+        "https://www.gurufocus.com/news/2941436/oscar-health-oscr-downgraded-by-raymond-james-amid-market-volatility-oscr-stock-news",
+        "https://www.gurufocus.com/news/4103921/oscar-health-oscr-receives-analyst-upgrade-and-price-target-boost-oscr-stock-news",
+        "https://finance.yahoo.com/markets/stocks/articles/nike-downgraded-oscar-health-upgraded-134221091.html",
+        "https://x.com/stocktalkweekly/status/1943652047259148433",
+        "https://finance.yahoo.com/markets/stocks/articles/analyst-just-upgraded-oscar-health-150233407.html",
+        "https://www.barchart.com/story/news/2326995/this-analyst-just-upgraded-oscar-health-stock-here-s-why",
+        "https://www.streetinsider.com/Analyst+Comments/Barclays+Upgrades+Oscar+Health+Inc+(OSCR)+to+Overweight,+we+see+a+visible+path+to+an+undemanding+13%E2%80%9315x+PE+valuation/26626501.html",
+        "https://www.sec.gov/Archives/edgar/data/0001568651/000156865126000074/oscr-20260916.htm",
+        "https://www.theglobeandmail.com/investing/markets/stocks/OSCR/pressreleases/4652582/oscar-health-boosts-2026-earnings-outlook-affirms-revenue/",
+        "https://www.tipranks.com/news/company-announcements/oscar-health-boosts-2026-earnings-outlook-affirms-revenue",
+        "https://seekingalpha.com/news/4643286-oscar-health-improves-full-year-medical-loss-ratio-outlook",
+        "https://www.tradingview.com/news/tradingview:4d5677db13d84:0-oscar-health-raises-2026-operating-earnings-target-to-600-800m-tightens-mlr-guidance/",
+        "https://www.tradingview.com/news/zacks:916f8596b094b:0-oscar-health-raises-2026-operating-earnings-outlook-as-margins-improve/",
+        "https://kalkinemedia.com/us/news/announcements/oscar-health-revises-2026-financial-outlook-during-investor-day-presentation",
+        "https://www.benzinga.com/trading-ideas/movers/26/09/61849460/oscar-health-stock-rises-following-raised-2026-guidance-and-wall-street-price-target-hikes"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Oscar Health rates Hold at 63, two points below Buy, with strong trend and cash offsetting weak growth.",
+    "thesis": "Oscar Health scores 63, just under the Buy edge at 65. The balance sheet scores a full 100, with net cash and cash at 19.82 times debt. Trend scores 83: the price is 29.9% above its 200-day average, with shares up 51.4% from 12 months ago to 1 month ago and 60.9 pp ahead of SPY over the last 126 trading days. Growth is the weak spot at 34. TTM revenue growth of 44.0% sits alongside a latest-quarter revenue decline of 6.2% year on year, and growth slowed by 38.2 pp from the previous quarter. Valuation scores 64: P/FCF of 4.6x and EV/EBIT of 3.2x are low in absolute terms, but P/S of 343.6x is high in absolute terms, and the stock is expensive against its own history (EV/EBIT not comparable), with P/S more expensive than at 54 of the last 57 month-ends.",
+    "key_risks": [
+      "Revenue momentum has turned: a latest-quarter decline of 6.2% year on year after growth slowed by 38.2 pp.",
+      "Dilution: diluted share count up 30.5% year on year.",
+      "Valuation is expensive against its own history, with P/FCF more expensive than at 40 of the last 57 month-ends.",
+      "ACA exchange enrollment declines and subsidy policy could pressure membership and margins.",
+      "Q3 results on Nov 5 could test the raised guidance for earnings from operations of $600–800M and revenue of $18.7–19.0B."
+    ],
+    "what_would_change": [
+      "A 2-point gain in the composite would move the rating to Buy. A rebound in quarterly revenue growth that lifts the growth score from 34 could do it.",
+      "Q3 results that confirm or raise guidance could improve the growth or news scores enough to cross 65.",
+      "A drop to Sell needs a 19-point fall, for example a sharp reversal in the trend score from 83 alongside weaker results or negative news.",
+      "Continued heavy dilution or a guidance cut would weigh on quality and news scores and push the rating further from Buy."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "guidance": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 1845,
+        "output_tokens": 342,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 1845,
+            "output_tokens": 342,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0142,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 113871,
+        "output_tokens": 4482,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 113871,
+            "output_tokens": 4482,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3526,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7818,
+        "output_tokens": 1857,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7818,
+            "output_tokens": 1857,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0684,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 4011,
+        "output_tokens": 990,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 4011,
+            "output_tokens": 990,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0358,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.471,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 31.175,
+    "as_of": "2026-10-29T14:04:38Z",
+    "prev_close": 30.48
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:34",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}

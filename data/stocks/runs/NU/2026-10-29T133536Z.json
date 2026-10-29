@@ -1,0 +1,855 @@
+{
+  "run_id": "2026-10-29T13:35:36Z",
+  "generated_at": "2026-10-29T14:01:46+00:00",
+  "ticker": "NU",
+  "sec_ticker": "NU",
+  "cik": "0001691493",
+  "name": "Nu Holdings Ltd.",
+  "sector": "Finance Services",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 49,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_factor",
+        "points": 2.0,
+        "text": "2 of 6 factors had no data: Balance sheet, Valuation"
+      },
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: revenue YoY (quarter), operating margin, FCF margin"
+      },
+      {
+        "issue": "unknown_cash_debt",
+        "points": 1.0,
+        "text": "debt unknown: LoansAndAdvancesToCustomers is $5.32B on 2024-12-31, more than the $1.73B the debt tags read add up to (Borrowings)"
+      }
+    ],
+    "factors_with_data": 4
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 16
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 5
+    }
+  },
+  "composite": {
+    "score": 49,
+    "raw": 48.79,
+    "weights_used": {
+      "growth": 0.2857,
+      "quality": 0.2857,
+      "trend": 0.2143,
+      "news_risk": 0.2143
+    },
+    "available": [
+      "growth",
+      "quality",
+      "trend",
+      "news_risk"
+    ],
+    "missing": [
+      "balance_sheet",
+      "valuation"
+    ]
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": null,
+          "score": null,
+          "weight": 0.45,
+          "note": "missing"
+        },
+        "revenue_yoy_ttm": {
+          "value": 43.44,
+          "score": 97.8,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -24.1,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 0.55,
+      "score": 53,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 45.61,
+          "score": 57.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31"
+        },
+        "fcf_margin_pct": {
+          "value": null,
+          "score": null,
+          "weight": 0.25,
+          "note": "missing: no operating cash flow or capex for the TTM to 2024-12-31"
+        },
+        "sbc_pct_revenue": {
+          "value": 2.37,
+          "score": 97.5,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 0.65,
+          "score": 66.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.5,
+      "score": 72,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.6,
+          "note": "missing: debt unknown: LoansAndAdvancesToCustomers is $5.32B on 2024-12-31, more than the $1.73B the debt tags read add up to (Borrowings)"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": null,
+          "weight": 0.4,
+          "note": "missing: debt unknown: LoansAndAdvancesToCustomers is $5.32B on 2024-12-31, more than the $1.73B the debt tags read add up to (Borrowings)"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "debt unknown: LoansAndAdvancesToCustomers is $5.32B on 2024-12-31, more than the $1.73B the debt tags read add up to (Borrowings)"
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": null,
+          "score": null,
+          "weight": 0.2,
+          "note": "missing"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        }
+      },
+      "coverage": 0.0,
+      "score": null,
+      "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -17.01,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": -17.48,
+          "score": 6.3,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": -22.81,
+          "score": 9.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -23.82,
+          "score": 9.3,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -24.65,
+          "score": 8.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -36.19,
+          "score": 6.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 7,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 54,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 3.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T11:34:05Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 3.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T11:34:05Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 11.97,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "ifrs-full",
+    "foreign": true,
+    "annual_only": true,
+    "revenue_tag": "Revenue",
+    "revenue_yoy_q": null,
+    "acceleration_pp": -24.1,
+    "ttm_end": "2024-12-31",
+    "revenue_ttm": 11517075000.0,
+    "revenue_yoy_ttm": 43.44,
+    "gross_profit_ttm": 5252909000.0,
+    "operating_income_ttm": null,
+    "operating_cash_flow_ttm": 2399044000.0,
+    "capex_ttm": null,
+    "sbc_ttm": 272382000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": null,
+    "fcf_ttm": null,
+    "gross_margin_pct": 45.61,
+    "operating_margin_pct": null,
+    "fcf_margin_pct": null,
+    "capex_intensity_pct": null,
+    "sbc_pct_revenue": 2.37,
+    "missing_inputs": {
+      "operating_margin_pct": "no OperatingIncomeLoss, CostsAndExpenses or OperatingExpenses tag covers the TTM to 2024-12-31",
+      "fcf_margin_pct": "no operating cash flow or capex for the TTM to 2024-12-31"
+    },
+    "prepayments": null,
+    "fcf_spike": null,
+    "fcf_basis": "reported",
+    "fcf_scored_ttm": null,
+    "fcf_scored_margin_pct": null,
+    "balance_sheet": {
+      "date": "2024-12-31",
+      "cash": 9185742000.0,
+      "cash_tag": "CashAndCashEquivalents",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 9185742000.0,
+      "debt": null,
+      "debt_tags": [
+        "Borrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "Borrowings",
+          "val": 1730357000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": null,
+      "unknown": [
+        "debt unknown: LoansAndAdvancesToCustomers is $5.32B on 2024-12-31, more than the $1.73B the debt tags read add up to (Borrowings)"
+      ]
+    },
+    "share_outliers": [
+      {
+        "end": "2019-12-31",
+        "val": 306210.0
+      }
+    ],
+    "diluted_shares": 4888918000.0,
+    "diluted_shares_end": "2024-12-31",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 0.65,
+    "shares_outstanding": null,
+    "quarterly": []
+  },
+  "valuation": {
+    "missing": "foreign filer (20-F/40-F): price per share and reported share count / currency not reconciled"
+  },
+  "trend": {
+    "close": 11.97,
+    "date": "2026-10-28",
+    "ma50": 14.42,
+    "ma200": 14.51,
+    "vs_ma50_pct": -17.01,
+    "vs_ma200_pct": -17.48,
+    "momentum_12_1_pct": -22.81,
+    "high_52w": 18.76,
+    "drawdown_52w_pct": -36.19,
+    "return_rs_pct": -14.74,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -23.82,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -24.65
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "error": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or outlook update in the window; the last results (Q2 2026, a beat) came on 2026-08-13 and Q3 results are due 2026-11-12.",
+        "evidence": [
+          {
+            "claim": "Q3 results are expected 2026-11-12, with consensus EPS of about $0.2232 on revenue of $5.97B.",
+            "url": "https://www.marketbeat.com/earnings/reports/2026-11-12-nu-holdings-ltd-stock/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 3/6, names 1/1 · missing: 11, 0.2232, 5.97"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 1,
+        "summary": "Analyst news was positive. Monness, Crespi, Hardt initiated at Buy with a $20 target, and UBS and JPMorgan both raised targets while keeping Buy. There were no downgrades in the window.",
+        "evidence": [
+          {
+            "claim": "Monness, Crespi, Hardt initiated Nu Holdings at Buy with a $20 price target.",
+            "url": "https://www.streetinsider.com/Analyst+Comments/Monness,+Crespi,+Hardt+Starts+Nu+Holdings+(Nubank)+(NU)+at+Buy/27230739.html",
+            "event_date": "2026-10-26",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "UBS raised its price target on NU from $18.20 to $20.50 and maintained Buy.",
+            "url": "https://www.cnn.com/markets/stocks/NU",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "UBS raised its price target from $18 to $21, maintaining Buy.",
+            "url": "https://stockanalysis.com/stocks/nu/ratings/",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "JPMorgan raised its price target to $23 from $20 and maintained Buy.",
+            "url": "https://stockanalysis.com/stocks/nu/ratings/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/2"
+          },
+          {
+            "claim": "Goldman Sachs maintained Hold with a $23 price target.",
+            "url": "https://stockanalysis.com/stocks/nu/ratings/",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits or regulatory actions in the window. The Banco Porto Real deal for a Brazilian banking licence still awaits Central Bank approval.",
+        "evidence": [
+          {
+            "claim": "Central Bank approval of Nubank's acquisition of Banco Porto Real is still pending.",
+            "url": "https://www.riotimesonline.com/nubank-acquisition-porto-real-2026/",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 6/6"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "Nu is a retail bank with no large-customer exposure. Its concentration is geographic, mainly in Brazil, and nothing new came out in the window.",
+        "evidence": [],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only insider trade in the window was a small, pre-planned 10b5-1 sale of 25,000 shares by Cristina Junqueira, continuing a routine pattern. There were no purchases.",
+        "evidence": [
+          {
+            "claim": "Cristina Junqueira sold 25,000 Class A shares at about $15.01 via a family trust under a Rule 10b5-1 plan adopted 2026-03-27.",
+            "url": "https://www.stocktitan.net/sec-filings/NU/form-4-nu-holdings-ltd-insider-trading-activity-182b8ae4710f.html",
+            "event_date": "2026-10-05",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 24,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 7/8, names 4/4 · missing: 15.01"
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 0,
+        "summary": "Nu denied it is pursuing Monzo, which removed an M&A overhang. It also rolled out an AI compliance platform and launched an F1-linked marketing campaign, none of it material competitively.",
+        "evidence": [
+          {
+            "claim": "Nu said in an SEC statement that it is \"not pursuing a transaction with Monzo\" and that its capital allocation framework is unchanged.",
+            "url": "https://www.americanbanker.com/news/nubank-shuts-down-rumors-its-buying-monzo",
+            "event_date": "2026-09-30",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 29,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Nubank completed the rollout of an AI compliance platform from Cardamon.",
+            "url": "https://www.crowdfundinsider.com/2026/10/316561-nubank-expands-in-the-us-deploys-ai-compliance-tools-and-rules-out-monzo-deal/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 3/3"
+          },
+          {
+            "claim": "Nubank Ultravioleta launched a campaign tied to its Mercedes-AMG PETRONAS F1 Team partnership.",
+            "url": "https://nu.com/en/newsroom/company/nubank-ultravioleta-brings-the-excellence-and-high-performance-of-the-mercedes-amg-petronas-f1-team-to-the-financial-world-in-a-new-campaign",
+            "event_date": "2026-10-27",
+            "direction": "neutral",
+            "tier": "other",
+            "age_days": 2,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "analyst_actions": {
+          "verified": 4,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "insider_activity": {
+          "verified": 0,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 3,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n- No guidance change, pre-announcement or outlook update found in the window. Nu's last results were Q2 2026 on 2026-08-13, before the window. \nGross revenue was nearly $5.9B, up 39% YoY.\n — 2026-08-13 — https://www.sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm\n- Q2 EPS was $0.2160 against a $0.1984 consensus, a beat. — 2026-08-13 — https://www.marketbeat.com/earnings/reports/2026-11-12-nu-holdings-ltd-stock/\n- Q3 results are expected 2026-11-12, after the window. \nConsensus is EPS of about $0.2232 on revenue of $5.97B.\n — 2026-11-12 (expected) — https://www.marketbeat.com/earnings/reports/2026-11-12-nu-holdings-ltd-stock/\n- Credit quality is the item to watch. \nThe 15-90 NPL ratio improved to 4.8% in Q2, while 90+ NPLs rose 35 bps to 6.9%.\n — 2026-08-13 — https://www.sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm\n- Brazil's presidential runoff was on 2026-10-25. One outlet reports \nNU fell 17% to $12.59 after Lula's runoff win.\n Treat this as market commentary, not company news. — date unknown (runoff 2026-10-25) — https://www.fxleaders.com/news/2026/10/27/nu-stock-plunges-17-to-12-59-as-lulas-brazil-runoff-win-sparks-sell-off/\n\n## 2. Analyst actions\n- Monness, Crespi, Hardt initiated at Buy with a $20 target. — 2026-10-26 — https://www.streetinsider.com/Analyst+Comments/Monness,+Crespi,+Hardt+Starts+Nu+Holdings+(Nubank)+(NU)+at+Buy/27230739.html and https://finviz.com/stock?t=NU\n- UBS raised its target and kept Buy. The sources give two figures:\n  - $18.20 to $20.50 — 2026-10-20 — https://www.cnn.com/markets/stocks/NU\n  - $18 to $21 — 2026-10-20 — https://stockanalysis.com/stocks/nu/ratings/\n- JPMorgan raised its target to $23 from $20 and kept Buy. — 2026-10-05 (CNN) / 2026-10-06 (StockAnalysis); the two sources differ by a day — https://www.cnn.com/markets/stocks/NU and https://stockanalysis.com/stocks/nu/ratings/\n- Goldman Sachs kept Hold with a $23 target. — 2026-10-01 — https://stockanalysis.com/stocks/nu/ratings/\n- Consensus is Buy. \nOf 22 analysts, 17 rate Buy and 4 Hold, with an average target of $18.92.\n — date unknown — https://www.fxleaders.com/news/2026/10/27/nu-stock-plunges-17-to-12-59-as-lulas-brazil-runoff-win-sparks-sell-off/\n- I found no upgrades or downgrades in the window. Itau BBA's downgrade to Market Perform was 2026-09-16, just before it. — https://finviz.com/stock?t=NU\n\n## 3. Litigation and regulation\n- No new lawsuits, investigations, fines or antitrust actions found in the window.\n- Pending: Nu agreed on 2026-07-20 to buy Banco Porto Real to get a Brazilian banking licence. \nThe deal responds to Joint Resolution No. 17 on brand-name usage.\n — 2026-07-20 — https://www.sec.gov/Archives/edgar/data/1691493/000129281426003814/nu20260720_6k.htm\n  - \nCentral Bank approval is still pending.\n — date unknown — https://www.riotimesonline.com/nubank-acquisition-porto-real-2026/\n  - \nWithout a banking licence, Nubank would have to drop \"bank\" from its name by November 2026.\n — date unknown — https://www.riotimesonline.com/nubank-acquisition-porto-real-2026/\n- Background, before the window: \nNu Mexico received final authorisation to operate as a bank.\n — 2026-07-09 — https://www.finextra.com/newsarticle/48081/nubank-receives-banking-authorisation-in-mexico\n- Background, before the window: \nUS OCC conditional approval for a de novo national bank came in January.\n — 2026-01 — https://www.finextra.com/newsarticle/48081/nubank-receives-banking-authorisation-in-mexico\n\n## 4. Customer concentration\n- Nothing material on large-customer wins or losses; Nu is a retail bank. The concentration is geographic. \nNu had almost 118M customers in Brazil, 15.8M in Mexico and over 5M in Colombia at Q2.\n — 2026-08-13 — https://www.sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm\n\n## 5. Insider activity\n- Cristina Junqueira (US CEO & Chief Growth Officer) sold 25,000 Class A shares at about $15.01 via a family trust. \nThe sale was under a Rule 10b5-1 plan adopted 2026-03-27.\n — 2026-10-05 — https://www.stocktitan.net/sec-filings/NU/form-4-nu-holdings-ltd-insider-trading-activity-182b8ae4710f.html\n- This is a recurring pattern, but the earlier sales fall before the window. She sold 90,000 shares on 2026-08-24/25 under the same plan, and 50,000 on 2026-08-14 and 300,000 on 2026-03-23. — http://www.openinsider.com/NU and https://www.sec.gov/Archives/edgar/data/0001691493/000095010326012947/ownership.xml\n- I found no other officer or director transactions with a date in the window. One tracker says the \nlatest filing was Oct 16, with no purchases in 12 months.\n I couldn't confirm what that filing was. — date unknown — https://massive.com/quote/nu/insider-trading\n\n## 6. Product and competitive news\n- Monzo: Sky News and the FT reported on 2026-09-26 that Nu was weighing a Monzo bid. \nThe stock fell about 8% at the close.\n — 2026-09-28 — https://startupfortune.com/nubank-denies-pursuing-monzo-after-report-wiped-out-billions-in-value/\n- \nNu filed a statement with the SEC saying it is \"not pursuing a transaction with Monzo\" and its capital allocation framework is unchanged.\n — 2026-09-30 — https://www.americanbanker.com/news/nubank-shuts-down-rumors-its-buying-monzo\n- The stock rebounded about 7% after the denial. — 2026-09-30 — https://www.globalbankingandfinance.com/brazils-nubank-pursuing-deal-monzo/\n- \nNu completed rollout of an AI compliance platform from Cardamon.\n — early 2026-10 (exact date unknown) — https://www.crowdfundinsider.com/2026/10/316561-nubank-expands-in-the-us-deploys-ai-compliance-tools-and-rules-out-monzo-deal/\n- Nubank Ultravioleta launched a campaign tied to its Mercedes-AMG PETRONAS F1 partnership, aimed at high-income customers. — 2026-10-27 — https://nu.com/en/newsroom/company/nubank-ultravioleta-brings-the-excellence-and-high-performance-of-the-mercedes-amg-petronas-f1-team-to-the-financial-world-in-a-new-campaign\n- I found no reports of share gains or losses, pricing changes or new competitors in the window.\n- The US product launch was before the window. It was reported on 2026-09-10 and included Nu Global. — https://www.bankingdive.com/news/nubank-us-launch-multicurrency-account-bank-partner-occ-charter-application/830583/",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/1691493/000129281423004660/nu20231114_6k1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm",
+        "https://simplywall.st/stocks/us/banks/nyse-nu/nu-holdings/past",
+        "https://finance.yahoo.com/markets/stocks/articles/nu-holdings-nu-earned-1-154042168.html",
+        "https://www.marketbeat.com/earnings/reports/2026-11-12-nu-holdings-ltd-stock/",
+        "https://www.tipranks.com/stocks/nu/earnings",
+        "https://www.marketbeat.com/stocks/NYSE/NU/earnings/",
+        "https://public.com/stocks/nu/earnings",
+        "https://invezz.com/ng/news/2026/10/26/nu-holdings-stock-slumps-after-lula-win-a-golden-opportunity-to-buy/",
+        "https://www.cnn.com/markets/stocks/NU",
+        "https://stockanalysis.com/stocks/nu/ratings/",
+        "https://simplywall.st/stocks/us/banks/nyse-nu/nu-holdings/future",
+        "https://www.chartmill.com/stock/quote/NU/analyst-ratings",
+        "https://www.fxleaders.com/news/2026/10/27/nu-stock-plunges-17-to-12-59-as-lulas-brazil-runoff-win-sparks-sell-off/",
+        "https://financhill.com/stock-forecast/nu-stock-prediction",
+        "https://tickeron.com/ticker/NU/forecasts-predictions/",
+        "https://stockstotrade.com/news/nu-holdings-ltd-nu-news-2026_10_23/",
+        "https://www.ad-hoc-news.de/boerse/news/nebenwerte/fifteen-analysts-assign-nu-holdings-stock-a-usd-17-94-average-target/70349312",
+        "https://www.bloomberg.com/news/articles/2025-04-24/nubank-wins-mexican-bank-license-in-bid-to-expand-product-lineup",
+        "https://www.finextra.com/newsarticle/45885/nubank-receives-banking-licence-approval-in-mexico",
+        "https://latinlawyer.com/article/nubank-gets-banking-licence-in-mexico",
+        "https://www.retailbankerinternational.com/news/nubank-mexican-subsidiary-licence/",
+        "https://www.fintechfutures.com/challenger-banks/nubanks-mexican-arm-secures-banking-licence-approval-from-cnbv",
+        "https://www.finextra.com/newsarticle/48081/nubank-receives-banking-authorisation-in-mexico",
+        "https://fintechnews.am/fintech-mexico/53656/nubank-mexico-banking-license/",
+        "https://international.nubank.com.br/company/nu-mexico-receives-banking-license-approval-paving-the-way-for-product-portfolio-expansion-and-increased-financial-inclusion/",
+        "https://en.wikipedia.org/wiki/Nubank",
+        "https://www.riotimesonline.com/nubank-mexico-full-banking-license-cnbv-operations-authorization-2026/",
+        "http://www.openinsider.com/NU",
+        "https://www.sec.gov/Archives/edgar/data/0001691493/000095010326012947/ownership.xml",
+        "https://massive.com/quote/nu/insider-trading",
+        "https://www.sec.gov/Archives/edgar/data/1691493/000129281424002731/nu20240712_6k.htm",
+        "https://en.wikipedia.org/wiki/Form_4",
+        "https://www.sec.gov/Archives/edgar/data/1691493/000129281424004195/nufs3q24_6k.htm",
+        "https://insidertradealerts.com/ticker/NU/",
+        "https://www.stocktitan.net/sec-filings/NU/form-4-nu-holdings-ltd-insider-trading-activity-00266b2befa2.html",
+        "https://www.stocktitan.net/sec-filings/NU/form-4-nu-holdings-ltd-insider-trading-activity-182b8ae4710f.html",
+        "https://compoundingalpha.substack.com/p/how-nubank-built-a-135m-user-empire",
+        "https://www.crowdfundinsider.com/2025/04/238506-brazils-digital-bank-nubank-launches-debt-renegotiation-campaign-new-products-to-enable-financial-inclusion/",
+        "https://nu.com/en/newsroom/company/nubank-ultravioleta-brings-the-excellence-and-high-performance-of-the-mercedes-amg-petronas-f1-team-to-the-financial-world-in-a-new-campaign",
+        "https://lufkindailynews.com/news_reuters/business/nubank-launches-us-high-yield-savings-account-credit-cards-remittances/article_34524664-782c-55b4-a0ea-a514c9890902.html",
+        "https://nu.com/en/newsroom/consumers/nubank-unveils-new-nucoin-benefits-a-program-that-rewards-customers-who-choose-the-bank-to-manage-their-financial-lives",
+        "https://news.lavx.hu/article/nubank-launches-u-s-banking-products-targeting-incumbents-95-market-share",
+        "https://www.renascence.io/news/83874/nubank-us-launch-digital-bank-debuts-nu-global-and-fee-free-card",
+        "https://www.bankingdive.com/news/nubank-us-launch-multicurrency-account-bank-partner-occ-charter-application/830583/",
+        "https://vccwave.com/blog/nubank-u-s-expansion/",
+        "https://ground.news/article/nubank-denies-seeking-transaction-with-fintech-monzo-shares-have-strong-high-in-ny",
+        "https://www.crowdfundinsider.com/2026/10/316561-nubank-expands-in-the-us-deploys-ai-compliance-tools-and-rules-out-monzo-deal/",
+        "https://www.americanbanker.com/news/nubank-shuts-down-rumors-its-buying-monzo",
+        "https://www.pymnts.com/news/acquiring/2026/nubank-says-it-has-no-plans-to-acquire-monzo/",
+        "https://payspacemagazine.com/news/nubank-denies-reports-it-is-pursuing-monzo-acquisition/",
+        "https://tradersunion.com/news/financial-news/show/3596318-nubank-not-pursuing-monzo-deal/",
+        "https://startupfortune.com/nubank-denies-pursuing-monzo-after-report-wiped-out-billions-in-value/",
+        "https://www.eubiznews.com/article/nubank-denies-monzo-takeover-signals-focus-on-organic-growth-omgps",
+        "https://www.globalbankingandfinance.com/brazils-nubank-pursuing-deal-monzo/",
+        "https://www.pymnts.com/bank-regulation/2025/nubank-seeks-banking-license-brazil-comply-with-new-rule-branding/",
+        "https://thepaypers.com/fintech/news/nubank-plans-to-obtain-a-brazil-banking-licence-in-2026",
+        "https://www.pymnts.com/news/banking/2026/nubank-strikes-bank-deal-to-secure-brazilian-license/",
+        "https://www.riotimesonline.com/brazil-fintech-2026-complete-guide/",
+        "https://www.riotimesonline.com/what-is-nubank-explained-2026/",
+        "https://www.sec.gov/Archives/edgar/data/1691493/000129281426003814/nu20260720_6k.htm",
+        "https://www.riotimesonline.com/nubank-acquisition-porto-real-2026/",
+        "https://en.wikipedia.org/wiki/Central_Bank_of_Brazil",
+        "https://www.barchart.com/story/news/36431243/nubank-intends-to-obtain-banking-license-in-brazil-in-2026",
+        "https://www.streetinsider.com/Analyst+Comments/Citi+Downgrades+Nu+Holdings+(Nubank)+(NU)+to+Neutral,+Deceleration+headwinds+to+cap+further+re-rating+YoY/21683122.html",
+        "https://www.streetinsider.com/Analyst+Comments/UPDATE:+HSBC+Starts+Nu+Holdings+(Nubank)+(NU)+at+Hold/19407165.html",
+        "https://www.streetinsider.com/Hot+New+Coverage/Itau+BBA+Starts+Nu+Holdings+(Nubank)+(NU)+at+Underperform/19418178.html",
+        "https://finviz.com/stock?t=NU",
+        "https://www.streetinsider.com/Analyst+Comments/Monness,+Crespi,+Hardt+Starts+Nu+Holdings+(Nubank)+(NU)+at+Buy/27230739.html",
+        "https://app.dealroom.co/news/feed/bofa-downgrades-nu-holdings-to-underperform-after-cfo-transition-announcement",
+        "https://finance.yahoo.com/markets/stocks/articles/nu-stock-slips-premarket-bofa-081132046.html",
+        "https://www.timothysykes.com/news/nu-holdings-ltd-nu-news-2026_06_26/",
+        "https://ts2.tech/en/nu-holdings-stock-holds-up-as-citi-downgrade-hits-nubank-shares/",
+        "https://www.timothysykes.com/news/nu-holdings-ltd-nu-news-2026_07_08/"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {
+    "guidance": "no 8-K with Item 2.02 (earnings release) on EDGAR; foreign filers report on 6-K"
+  },
+  "writeup": {
+    "headline": "Nu Holdings rates Hold as strong growth and margins are offset by a very weak share price trend.",
+    "thesis": "Nu Holdings scores 49, a Hold, sitting just 5 points above the Sell line. The fundamentals that could be measured are decent: TTM revenue growth of 43.4% and a gross margin of 45.6% support growth and quality scores of 53 and 72, with stock-based pay at 2.4% of revenue and diluted share count up 0.7% year on year. Growth is cooling, though, slowing by 24.1 pp from the previous quarter. The main drag is the trend score of 7: the price is 17.5% below its 200-day average, 36.2% below its 52-week high and 23.8 pp behind SPY over the last 126 trading days. News is mildly positive (score 54) on analyst initiations and target raises, while balance sheet and valuation could not be scored and were left out of the rating.",
+    "key_risks": [
+      "Revenue growth is decelerating sharply, slowing by 24.1 pp from the previous quarter",
+      "Persistent share price weakness, with shares down 22.8% from 12 months ago to 1 month ago",
+      "Heavy geographic concentration in Brazil, exposing results to its economy, currency and credit cycle",
+      "Pending Central Bank approval of the Banco Porto Real banking licence deal",
+      "Q3 results due 2026-11-12 could reset sentiment either way"
+    ],
+    "what_would_change": [
+      "A drop of 5 or more points, for example from further trend weakness or a growth slowdown in Q3 results, would move the rating to Sell",
+      "A rise of 16 points to reach Buy would need a clear recovery in the trend score alongside sustained growth",
+      "A Q3 results beat with guidance upgrades would lift the news and growth factors",
+      "Approval of the Brazilian banking licence or new regulatory issues could shift the news risk score"
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 117309,
+        "output_tokens": 4933,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 117309,
+            "output_tokens": 4933,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3639,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 7193,
+        "output_tokens": 2130,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 7193,
+            "output_tokens": 2130,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0714,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3879,
+        "output_tokens": 620,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3879,
+            "output_tokens": 620,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0279,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4632,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 12.075,
+    "as_of": "2026-10-29T14:04:39Z",
+    "prev_close": 11.97
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "weekday",
+    "run_et": "2026-10-29 09:35",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40882912169",
+    "tickers": [
+      "EWZ",
+      "EWJ",
+      "IBIT",
+      "COLO",
+      "CLF",
+      "OMC",
+      "MOH",
+      "OSCR",
+      "BAH",
+      "LDOS",
+      "KBR",
+      "TTEK",
+      "NU",
+      "BBD",
+      "INTR",
+      "GEO",
+      "CXW",
+      "AU",
+      "NEM",
+      "GFI",
+      "EWS",
+      "EWY"
+    ]
+  }
+}
