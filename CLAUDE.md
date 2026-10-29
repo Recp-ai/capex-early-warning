@@ -57,7 +57,9 @@ cew/calls.py        earnings 8-K Exhibit 99.1 -> capex guidance + phrase counts 
 cew/fetch_taiwan.py TWSE monthly revenue -> data/taiwan/monthly_revenue.csv
 cew/scoring.py      rule-based scores (credit, Taiwan, filings incl. leases), composite, level hysteresis,
                     credit contagion stage (context only), confirmation, jumps, event-email rule
-cew/analyst.py      Claude step 1 "research" (web search, loops through pause_turn), step 2
+cew/analyst.py      Claude step 1 "research" (web search, loops through pause_turn; `research_max_tokens`, 16000,
+                    because thinking counts against the cap; a reply that ends at the cap is `truncated` and
+                    `notes_for_model` tells the next step the notes were cut off), step 2
                     "assessment" (structured-output JSON: news scores, digest, follow-up statuses), run
                     `assessment_samples` times and merged by `combine`; and `extract` for filing text
 cew/followups.py    previous run's watch_next -> this run's follow-ups (carried up to follow_ups.max_runs)

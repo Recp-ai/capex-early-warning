@@ -9,6 +9,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
+import yaml
 
 import stock_fakes as F
 from cew import sources, util
@@ -578,6 +579,16 @@ def test_research_continues_through_pause_turn(monkeypatch):
     for topic in ("Guidance changes", "Analyst actions", "Litigation and regulation", "Customer concentration",
                   "Insider activity", "Product and competitive news"):
         assert topic in prompt
+
+
+def test_research_cap_leaves_room_for_thinking_and_flags_a_cut_off_reply(monkeypatch):
+    cfg = yaml.safe_load((Path(__file__).resolve().parents[1] / "config" / "stocks.yaml").read_text())
+    assert cfg["research_max_tokens"] == 16000
+    fake = F.fake_claude(monkeypatch, [F.research_reply("1. Guidance changes: raised. 2. Analyst act", [], 8, "max_tokens")])
+    usage = __import__("cew").models.new_usage("claude-sonnet-5-5")
+    out = research.research("claude-sonnet-5-5", "MSFT", "Microsoft", "Software", date(2026, 10, 14), 30, 8, usage)
+    assert fake.calls[0]["max_tokens"] == 16000 and out["truncated"]
+    assert "output limit" in __import__("cew").analyst.notes_for_model(out)
 
 
 def test_insider_items_are_dated_by_their_form_4_transaction_date(sandbox, monkeypatch):

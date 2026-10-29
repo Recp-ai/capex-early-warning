@@ -9,6 +9,7 @@ models:
 # Actions variables RESEARCH_MODEL / ASSESSMENT_MODEL, then the values above.
 # Prices for the cost estimate live in config/models.yaml.
 max_web_searches: 16            # cap on Claude web searches per run (the four topics plus follow-ups)
+research_max_tokens: 16000      # output cap per research request; thinking counts against it (4096 cut notes off)
 assessment_samples: 2           # scoring passes over the same research notes; news scores are averaged
                                 # (rounded half down) and the spread between passes is recorded
 assessment_unstable_spread: 2   # passes this many points apart on a news category flag it "unstable"

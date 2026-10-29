@@ -129,8 +129,9 @@ WRITEUP_SCHEMA = analyst._obj({
 
 
 def research(model: str, ticker: str, name: str, sector: str | None, today, window_days: int,
-             max_searches: int, usage: dict) -> dict:
-    """Web-search research; continues through pause_turn. Usage of every response is added to `usage`."""
+             max_searches: int, usage: dict, max_tokens: int = analyst.RESEARCH_MAX_TOKENS) -> dict:
+    """Web-search research; continues through pause_turn. Usage of every response is added to `usage`.
+    `truncated` is set when the reply ended at max_tokens (thinking counts against it), so notes are incomplete."""
     client = analyst._client()
     start = (today - timedelta(days=window_days)).isoformat()
     content = RESEARCH_PROMPT.format(today=today.isoformat(), name=name, ticker=ticker, start=start,
@@ -139,7 +140,7 @@ def research(model: str, ticker: str, name: str, sector: str | None, today, wind
     tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max_searches}]
     responses = []
     for _ in range(6):
-        resp = client.messages.create(model=model, max_tokens=4096, system=RESEARCH_SYSTEM, messages=messages, tools=tools)
+        resp = client.messages.create(model=model, max_tokens=max_tokens, system=RESEARCH_SYSTEM, messages=messages, tools=tools)
         models.add_request(usage, resp)  # per request: prices can depend on prompt size
         responses.append(resp)
         if resp.stop_reason != "pause_turn":
@@ -158,7 +159,10 @@ def research(model: str, ticker: str, name: str, sector: str | None, today, wind
                 u = getattr(r, "url", None)
                 if u and u not in urls:
                     urls.append(u)
-    return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
+    out = {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
+    if responses[-1].stop_reason in ("max_tokens", "pause_turn"):
+        out["truncated"] = True
+    return out
 
 
 def _call(model: str, system: str, prompt: str | list, schema: dict, usage: dict, max_tokens: int = 6000) -> dict:
@@ -210,14 +214,16 @@ def run_news(cfg: dict, selection: dict, ticker: str, name: str, sector: str | N
     try:
         out["research"] = research(selection["research"], ticker, name, sector, today,
                                    int(cfg.get("news_window_days", 30)), int(cfg.get("max_web_searches", 8)),
-                                   usage_by_step["research"])
+                                   usage_by_step["research"],
+                                   int(cfg.get("research_max_tokens", analyst.RESEARCH_MAX_TOKENS)))
     except Exception as e:
         out["research"] = {"notes": "", "urls": [], "error": f"{type(e).__name__}: {str(e)[:300]}"}
     usage_by_step["scoring"] = models.new_usage(selection["scoring"])
     notes = out["research"].get("notes", "")
     try:
         tiers_cfg = domains.with_matches(tiers_cfg, domains.urls_in(notes), ticker, name)  # the company's own sites
-        out["topics"] = topics(selection["scoring"], today, brief, notes, sources.hosts_by_tier(notes, tiers_cfg),
+        out["topics"] = topics(selection["scoring"], today, brief, analyst.notes_for_model(out["research"]),
+                               sources.hosts_by_tier(notes, tiers_cfg),
                                usage_by_step["scoring"], cfg)
     except Exception as e:
         out["error"] = f"topic ratings failed: {type(e).__name__}: {str(e)[:300]}"

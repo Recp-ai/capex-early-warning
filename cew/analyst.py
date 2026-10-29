@@ -158,11 +158,29 @@ def _numbered(items: list[str]) -> str:
     return "\n".join(f"{i}. {x}" for i, x in enumerate(items, 1))
 
 
+# Output cap per research request. The model's thinking counts against it, so 4,096 cut the notes off
+# (often before any text) once thinking took ~2,500 tokens; the reply only uses what it needs.
+RESEARCH_MAX_TOKENS = 16000
+CUT_OFF_NOTE = ("[The research reply hit its output limit here; topics after this point have no notes. "
+                "Say so rather than treating them as quiet.]")
+
+
+def notes_for_model(r: dict) -> str:
+    """The research notes as passed to the next model step, with a marker when the reply was cut off."""
+    notes = (r or {}).get("notes", "")
+    if not (r or {}).get("truncated"):
+        return notes
+    return f"{notes}\n\n{CUT_OFF_NOTE}" if notes else (
+        "(no research notes: the research reply hit its output limit before writing any notes)")
+
+
 def research(model: str, max_searches: int, today: str, usage: dict | None = None,
-             focus: str | None = None, follow_ups: list[str] | None = None) -> dict:
+             focus: str | None = None, follow_ups: list[str] | None = None,
+             max_tokens: int = RESEARCH_MAX_TOKENS) -> dict:
     """Run the web-search research call; returns notes text and the cited URLs.
 
-    Token usage of every response (pause_turn continuations included) is added to `usage`.
+    `stop_reason` is the last response's; `truncated` is set when it ended at max_tokens (or still paused
+    after the last continuation), so the notes are incomplete. Token usage of every response (pause_turn continuations included) is added to `usage`.
     `focus` names the events behind an event-day run; `follow_ups` are the last run's watch-next items.
     """
     client = _client()
@@ -173,7 +191,7 @@ def research(model: str, max_searches: int, today: str, usage: dict | None = Non
     tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max_searches}]
     responses = []
     for _ in range(6):  # continue through pause_turn for long server-side searches
-        resp = client.messages.create(model=model, max_tokens=4096, system=RESEARCH_SYSTEM,
+        resp = client.messages.create(model=model, max_tokens=max_tokens, system=RESEARCH_SYSTEM,
                                       messages=messages, tools=tools)
         models.add_usage(usage, resp)
         responses.append(resp)
@@ -193,7 +211,11 @@ def research(model: str, max_searches: int, today: str, usage: dict | None = Non
                 u = getattr(r, "url", None)
                 if u and u not in urls:
                     urls.append(u)
-    return {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"]}
+    stop = responses[-1].stop_reason
+    out = {"notes": "\n".join(texts).strip(), "urls": urls, "searches": usage["web_searches"], "stop_reason": stop}
+    if stop in ("max_tokens", "pause_turn"):
+        out["truncated"] = True
+    return out
 
 
 def _tiers(hosts: dict[str, list[str]] | None) -> str:
@@ -280,12 +302,12 @@ def run(cfg: dict, data_brief: dict, previous: dict | None, enabled: bool,
                  "model_sources": selection.get("sources", {}), "usage": usage}
     try:
         out["research"] = research(research_model, cfg.get("max_web_searches", 16), today, usage["research"],
-                                   focus, follow_ups)
+                                   focus, follow_ups, int(cfg.get("research_max_tokens", RESEARCH_MAX_TOKENS)))
     except Exception as e:
         out["research"] = {"notes": "", "urls": [], "error": str(e)}
     n = max(1, int(cfg.get("assessment_samples", 2)))
-    notes = out["research"].get("notes", "")
-    tiers = sources.hosts_by_tier(notes, cfg)
+    tiers = sources.hosts_by_tier(out["research"].get("notes", ""), cfg)
+    notes = notes_for_model(out["research"])
     samples, errors = [], []
     for i in range(n):  # one after another, so samples after the first read the cached prompt
         try:

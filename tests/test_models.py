@@ -111,6 +111,38 @@ def test_research_sums_every_pause_turn_response(monkeypatch):
     assert fake.calls[1]["messages"][-1]["role"] == "assistant"  # continued the paused turn
 
 
+def test_research_cap_leaves_room_for_thinking_and_flags_a_cut_off_reply(monkeypatch):
+    import yaml
+    from pathlib import Path
+    cfg = yaml.safe_load((Path(__file__).resolve().parents[1] / "config" / "signals.yaml").read_text())
+    assert cfg["research_max_tokens"] == analyst.RESEARCH_MAX_TOKENS == 16000  # 4096 left no room after thinking
+    fake = FakeMessages([NS(stop_reason="max_tokens", usage=_usage(200_000, 4_096, 16),
+                            content=[NS(type="thinking", thinking="", signature="s"),
+                                     NS(type="web_search_tool_result", content=[NS(url="https://a.example")])])])
+    monkeypatch.setattr(analyst, "_client", lambda: NS(messages=fake))
+    r = analyst.research("claude-sonnet-5-5", 16, "2026-10-29", None)
+    assert fake.calls[0]["max_tokens"] == 16000
+    assert r["notes"] == "" and r["truncated"] and r["stop_reason"] == "max_tokens"
+    assert "output limit before writing any notes" in analyst.notes_for_model(r)
+    cut = analyst.notes_for_model({"notes": "1. AI-lab financing ...", "truncated": True})
+    assert cut.startswith("1. AI-lab financing ...") and analyst.CUT_OFF_NOTE in cut
+    assert analyst.notes_for_model({"notes": "complete", "stop_reason": "end_turn"}) == "complete"
+
+
+def test_run_tells_the_assessment_when_the_notes_were_cut_off(monkeypatch):
+    assessment = {"news_scores": {k: {"score": 0, "summary": "s", "evidence": []}
+                                  for k in ("ai_lab_financing", "supplier_signals", "physical_buildout")},
+                  "credit_news_adjustment": {"delta": 0, "reason": ""}, "headline": "h",
+                  "digest_markdown": "d", "watch_next": []}
+    fake = FakeMessages([NS(stop_reason="max_tokens", usage=_usage(20_000, 1_000, 5), content=[_text("partial")])]
+                        + [NS(stop_reason="end_turn", usage=_usage(8_000, 2_000), content=[_text(json.dumps(assessment))])] * 2)
+    monkeypatch.setattr(analyst, "_client", lambda: NS(messages=fake))
+    out = analyst.run({**CFG, "research_max_tokens": 12000}, {}, None, True, models.resolve(CFG, {}))
+    assert fake.calls[0]["max_tokens"] == 12000 and out["research"]["truncated"]
+    assert out["research"]["notes"] == "partial"  # stored notes stay as written
+    assert "partial\n\n" + analyst.CUT_OFF_NOTE in fake.calls[1]["messages"][0]["content"]
+
+
 def test_run_uses_each_steps_model_and_records_usage(monkeypatch):
     assessment = {"news_scores": {k: {"score": 1, "summary": "s", "evidence": []}
                                   for k in ("ai_lab_financing", "supplier_signals", "physical_buildout")},
