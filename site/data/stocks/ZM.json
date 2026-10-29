@@ -1,6 +1,6 @@
 {
-  "run_id": "2026-10-28T20:49:03Z",
-  "generated_at": "2026-10-28T20:50:24+00:00",
+  "run_id": "2026-10-29T11:04:52Z",
+  "generated_at": "2026-10-29T11:05:54+00:00",
   "ticker": "ZM",
   "sec_ticker": "ZM",
   "cik": "0001585521",
@@ -22,12 +22,17 @@
   "confidence": "Medium",
   "confidence_detail": {
     "level": "Medium",
-    "points": 1.0,
+    "points": 2.0,
     "reasons": [
       {
         "issue": "near_band_edge",
         "points": 1.0,
         "text": "score 64 is within 2 points of the Buy edge (65)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Analyst actions"
       }
     ],
     "factors_with_data": 6
@@ -46,7 +51,7 @@
   },
   "composite": {
     "score": 64,
-    "raw": 63.75,
+    "raw": 63.6,
     "weights_used": {
       "growth": 0.2,
       "quality": 0.2,
@@ -168,8 +173,8 @@
           "note": null
         },
         "fcf_yield_vs_10y_pp": {
-          "value": 1.448,
-          "score": 68.1,
+          "value": 1.418,
+          "score": 67.7,
           "weight": 0.2,
           "note": null
         },
@@ -240,7 +245,7 @@
       "missing": null
     },
     "news_risk": {
-      "score": 60,
+      "score": 59,
       "metrics": {
         "guidance": {
           "value": 1,
@@ -249,8 +254,8 @@
           "note": null
         },
         "analyst_actions": {
-          "value": 1,
-          "score": 75.0,
+          "value": 0,
+          "score": 50.0,
           "weight": 0.15,
           "note": null
         },
@@ -267,14 +272,14 @@
           "note": null
         },
         "insider_activity": {
-          "value": 0,
-          "score": 50.0,
+          "value": -1,
+          "score": 25.0,
           "weight": 0.1,
           "note": null
         },
         "product_competitive": {
-          "value": 0,
-          "score": 50.0,
+          "value": 1,
+          "score": 75.0,
           "weight": 0.2,
           "note": null
         }
@@ -291,20 +296,20 @@
     "note": null,
     "capex": {
       "level": "GREEN",
-      "total": 2.0,
+      "total": 0.0,
       "max": 18.0,
       "red_confirmed": false,
-      "run_id": "2026-10-25T21:12:14Z",
-      "age_days": 3
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
     }
   },
   "capex_context": {
     "level": "GREEN",
-    "total": 2.0,
+    "total": 0.0,
     "max": 18.0,
     "red_confirmed": false,
-    "run_id": "2026-10-25T21:12:14Z",
-    "age_days": 3
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
   },
   "price": {
     "close": 100.26,
@@ -510,9 +515,9 @@
     "fcf_negative": false,
     "ebit_negative": false,
     "fcf_basis": "reported",
-    "ust10y_pct": 4.96,
-    "ust10y_date": "2026-10-22",
-    "fcf_yield_vs_10y_pp": 1.448,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": 1.418,
     "history": [
       {
         "date": "2021-10-29",
@@ -1155,8 +1160,8 @@
     "rs_qqq_pp": -5.21
   },
   "ust10y": {
-    "value": 4.96,
-    "date": "2026-10-22"
+    "value": 4.99,
+    "date": "2026-10-27"
   },
   "guidance": {
     "accession": "0001585521-26-000119",
@@ -1303,53 +1308,64 @@
     "topics": {
       "guidance": {
         "rating": 1,
-        "summary": "At its Zoomtopia investor session Zoom gave its first long-term revenue target (6–8% growth to FY2030) and raised its long-term operating margin target to about 40%. Analysts said the targets beat expectations. FY27 guidance was not changed inside the window.",
+        "summary": "No near-term guidance change in the window. At Zoomtopia, Zoom gave its first time-bound long-term targets: 6%–8% annual revenue growth by fiscal 2030 and a roughly 40% non-GAAP operating margin. Both are modestly above current trends, but only lower-tier sources report them.",
         "evidence": [
           {
-            "claim": "Zoom set FY2030 targets of 6–8% revenue growth, double-digit enterprise growth, about 80% non-GAAP gross margin and about 40% non-GAAP operating margin.",
-            "url": "https://quartr.com/companies/zoom-communications-inc_6524",
+            "claim": "Zoom targets 6%–8% annual revenue growth by fiscal 2030, double-digit enterprise growth, stable online revenue and a roughly 40% non-GAAP operating margin.",
+            "url": "https://marketbeat.com/instant-alerts/event-zoom-communications-targets-6-8-growth-by-2030-as-ai-strategy-takes-center-stage-2026-10-20/?amp=",
             "event_date": "2026-10-20",
             "direction": "positive",
             "tier": "other",
-            "age_days": 8,
+            "age_days": 9,
             "background": false,
             "status": "verified",
-            "check": "numbers 5/5, names 3/3"
+            "check": "numbers 4/4, names 2/2"
           },
           {
-            "claim": "KeyBanc said this was Zoom's first top-line target and that it was ahead of its expectations and consensus; Mizuho said the long-term operating margin target rose to about 40% from 33–36%.",
-            "url": "https://www.investing.com/news/analyst-ratings/keybanc-reiterates-sector-weight-on-zoom-video-stock-93CH-4963229",
+            "claim": "Zoom set an FY2030 non-GAAP gross margin target near 80%.",
+            "url": "https://www.gurufocus.com/news/9132720/zoom-zm-sets-ambitious-2030-margin-targets-amid-modest-overvaluation",
             "event_date": "2026-10-20",
             "direction": "positive",
             "tier": "other",
-            "age_days": 8,
+            "age_days": 9,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
+          },
+          {
+            "claim": "Full Fiscal Year 2027: Total revenue is expected to be between $5.085 billion and $5.095 billion.",
+            "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/zm-20260731ex991.htm",
+            "event_date": "2026-08-25",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 65,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 3/3, names 4/4"
           }
         ],
         "label": "Guidance changes"
       },
       "analyst_actions": {
-        "rating": 1,
-        "summary": "Oppenheimer upgraded Zoom to Outperform with a $130 target after Zoomtopia, and several firms reiterated Buy ratings. UBS trimmed its target to $112 and kept Neutral.",
+        "rating": 0,
+        "summary": "Oppenheimer upgraded Zoom to Outperform with a $130 target, and several firms reiterated Buy ratings. UBS trimmed its target to $112 and kept Neutral.",
         "evidence": [
           {
-            "claim": "Oppenheimer upgraded Zoom to Outperform from Perform with a $130 price target.",
-            "url": "https://www.benzinga.com/analyst-stock-ratings/upgrades/26/10/62494862/this-zoom-analyst-turns-bullish-here-are-top-5-upgrades-for-wednesday",
+            "claim": "Oppenheimer upgraded Zoom Communications to Outperform from Perform with a $130 price target.",
+            "url": "https://www.defenseworld.net/2026/10/26/insider-selling-zoom-communications-nasdaqzm-director-sells-383334-72-in-stock.html",
             "event_date": "2026-10-21",
             "direction": "positive",
             "tier": "other",
-            "age_days": 7,
+            "age_days": 8,
             "background": false,
             "status": "unreachable",
             "check": "HTTP 403"
           },
           {
-            "claim": "BTIG kept a Buy rating and a $125 target on Zoom.",
-            "url": "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/10/62504766/why-is-zoom-communications-stock-gaining-wednesday",
+            "claim": "UBS cut its price target to $112 from $115 and kept a Neutral rating.",
+            "url": "https://www.defenseworld.net/2026/10/26/insider-selling-zoom-communications-nasdaqzm-director-sells-383334-72-in-stock.html",
             "event_date": null,
-            "direction": "positive",
+            "direction": "negative",
             "tier": "other",
             "age_days": null,
             "background": false,
@@ -1357,112 +1373,160 @@
             "check": "HTTP 403"
           },
           {
-            "claim": "UBS lowered its price target to $112 from $115 and kept a Neutral rating.",
-            "url": "https://stockanalysis.com/stocks/zm/",
-            "event_date": null,
-            "direction": "negative",
-            "tier": "other",
-            "age_days": null,
-            "background": false,
-            "status": "verified",
-            "check": "numbers 2/2, names 2/2"
-          }
-        ],
-        "label": "Analyst actions"
-      },
-      "litigation_regulation": {
-        "rating": 0,
-        "summary": "A patent infringement suit was filed by LearnMaster LLC, a routine and likely immaterial matter. No new regulatory actions were found.",
-        "evidence": [
-          {
-            "claim": "LearnMaster LLC sued Zoom and Microsoft for patent infringement over presentation technology.",
-            "url": "https://news.bloomberglaw.com/ip-law/zoom-microsoft-hit-with-suits-over-patented-presentation-tech",
-            "event_date": "2026-10-20",
-            "direction": "negative",
+            "claim": "Rosenblatt reiterated Buy with a $130 target and BTIG reiterated Buy with a $125 target.",
+            "url": "https://www.defenseworld.net/2026/10/26/insider-selling-zoom-communications-nasdaqzm-director-sells-383334-72-in-stock.html",
+            "event_date": "2026-10-21",
+            "direction": "neutral",
             "tier": "other",
             "age_days": 8,
             "background": false,
-            "status": "verified",
-            "check": "numbers 0/0, names 4/4"
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Analyst actions",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "Nothing new was filed in the window. The BIPA class action over AI Companion voiceprints was filed just before the window opened and is still at an early stage.",
+        "evidence": [
+          {
+            "claim": "Sheldon v. Zoom, a BIPA class action, was filed September 25, 2026 in N.D. Cal.; no class has been certified.",
+            "url": "https://settlementinsight.com/zoom-class-action-lawsuit",
+            "event_date": "2026-09-25",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 34,
+            "background": true,
+            "status": "unreachable",
+            "check": "HTTP 403"
           }
         ],
         "label": "Litigation and regulation"
       },
       "customer_concentration": {
         "rating": 0,
-        "summary": "No customer concentration disclosures and no major customer wins or losses were found. Enterprise is over 62% of the revenue mix.",
+        "summary": "No single-customer reliance or named customer win or loss was reported. The CFO said most top Contact Center deals came from net-new customers, which indicates a broadening customer base.",
         "evidence": [
           {
-            "claim": "Enterprise revenue grew 7.5% and is now over 62% of the mix.",
-            "url": "https://quartr.com/companies/zoom-communications-inc_6524",
+            "claim": "90% of the top 100 Contact Center deals were net-new customers, and 70% included Zoom Phone.",
+            "url": "https://www.tradingview.com/news/marketbeat:0fb4b33e8094b:0-zoom-communications-targets-6-8-growth-by-2030-as-ai-strategy-takes-center-stage/",
             "event_date": "2026-10-20",
-            "direction": "neutral",
+            "direction": "positive",
             "tier": "other",
-            "age_days": 8,
+            "age_days": 9,
             "background": false,
             "status": "verified",
-            "check": "numbers 2/2, names 1/1"
+            "check": "numbers 3/3, names 4/4"
           }
         ],
         "label": "Customer concentration"
       },
       "insider_activity": {
-        "rating": 0,
-        "summary": "Several insiders, including the CFO, made small sales, mostly under pre-arranged 10b5-1 plans. There were no purchases, and the amounts are not material.",
+        "rating": -1,
+        "summary": "CEO Eric Yuan and directors McMaster and Subotovsky all sold shares under 10b5-1 plans during the month, and no insider bought. The sales are routine and modest in size.",
         "evidence": [
           {
-            "claim": "CFO Michelle Chang sold 10,156 shares at $101.93 under a 10b5-1 plan.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000153/wk-form4_1792796333.xml",
-            "event_date": "2026-10-21",
+            "claim": "CEO Eric Yuan sold 11,512 shares at $93.72 and 588 shares at $94.20.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000139/wk-form4_1791404929.xml",
+            "event_date": "2026-10-05",
             "direction": "negative",
             "tier": "primary",
-            "age_days": 7,
+            "age_days": 24,
             "background": false,
             "status": "verified",
-            "check": "numbers 5/5, names 2/2 · Form 4 XML normalised",
+            "check": "numbers 4/4, names 2/2 · Form 4 XML normalised",
             "form4_check": 2
           },
           {
-            "claim": "Director Herbert McMaster sold 3,000 shares under a 10b5-1 plan.",
+            "claim": "Director Herbert McMaster sold 3,000 shares at $94.71.",
             "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000141/wk-form4_1791933153.xml",
             "event_date": "2026-10-08",
             "direction": "negative",
             "tier": "primary",
-            "age_days": 20,
+            "age_days": 21,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "Director Herbert McMaster sold 1,500 shares at $101.25, leaving 6,979 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000155/wk-form4_1792796368.xml",
+            "event_date": "2026-10-21",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 8,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 3/3, names 3/3 · Form 4 XML normalised",
+            "form4_check": 2
+          },
+          {
+            "claim": "Director Santiago Subotovsky sold 3,436 shares at $100.49 and 376 shares at $101.19.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000154/wk-form4_1792796350.xml",
+            "event_date": "2026-10-21",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 8,
             "background": false,
             "status": "verified",
             "check": "numbers 4/4, names 3/3 · Form 4 XML normalised",
             "form4_check": 2
           },
           {
-            "claim": "Director Santiago Subotovsky sold trust-held shares under a 10b5-1 plan.",
-            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000154/wk-form4_1792796350.xml",
-            "event_date": "2026-10-15",
-            "direction": "negative",
+            "claim": "Eric Yuan's Form 4 shows a code M exercise or conversion of 46,823 shares and a code F tax-withholding disposal of 23,824 shares.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000143/wk-form4_1791933194.xml",
+            "event_date": "2026-10-09",
+            "direction": "neutral",
             "tier": "primary",
-            "age_days": 13,
+            "age_days": 20,
             "background": false,
             "status": "verified",
-            "check": "numbers 3/3, names 3/3 · Form 4 XML normalised",
+            "check": "numbers 3/3, names 2/3 · Form 4 XML normalised",
             "form4_check": 2
           }
         ],
         "label": "Insider activity"
       },
       "product_competitive": {
-        "rating": 0,
-        "summary": "Zoom announced AI platform launches at Zoomtopia, but the notes give too little sourced detail to show a material competitive shift.",
+        "rating": 1,
+        "summary": "At Zoomtopia, Zoom launched a Unified Context Layer, new AI agents and admin controls, and expanded Microsoft Teams interoperability. Some features are available now; others roll out through Q1 2027. No product delays or pricing changes were reported.",
         "evidence": [
           {
-            "claim": "Zoom named Cricut as a customer experience reference customer, saying it cut wait times 89%.",
-            "url": "https://siliconangle.com/2026/10/22/zooms-next-act-from-video-company-to-ai-data-platform",
+            "claim": "At Zoomtopia 2026 Zoom introduced a Unified Context Layer and new AI-powered products.",
+            "url": "https://news.zoom.com/zoomtopia-2026-news/",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 9,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 6/6"
+          },
+          {
+            "claim": "Zoom unveiled Centralized AI Management, AI Guardrails, Deepfake Risk Detection and Sensitivity Labels that sync with Microsoft Purview.",
+            "url": "https://za.investing.com/news/assorted/zoom-unveils-unified-context-layer-and-new-ai-tools-at-zoomtopia-432SI-4514711",
             "event_date": "2026-10-20",
             "direction": "positive",
             "tier": "other",
-            "age_days": 8,
+            "age_days": 9,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Zoom set a date for Zoom Rooms joining Teams meetings and will sell Meetings into organisations standardised on another platform.",
+            "url": "https://uctoday.com/this-week-in-uc-c-zoomtopia-opens-the-door-to-teams",
+            "event_date": "2026-10-20",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 9,
             "background": false,
             "status": "verified",
-            "check": "numbers 1/1, names 2/2"
+            "check": "numbers 0/0, names 4/4"
           }
         ],
         "label": "Product and competitive news"
@@ -1471,19 +1535,19 @@
     "source_check": {
       "counts": {
         "guidance": {
-          "verified": 1,
+          "verified": 2,
           "unverified": 0,
           "unreachable": 1
         },
         "analyst_actions": {
-          "verified": 1,
+          "verified": 0,
           "unverified": 0,
-          "unreachable": 2
+          "unreachable": 3
         },
         "litigation_regulation": {
-          "verified": 1,
+          "verified": 0,
           "unverified": 0,
-          "unreachable": 0
+          "unreachable": 1
         },
         "customer_concentration": {
           "verified": 1,
@@ -1491,14 +1555,14 @@
           "unreachable": 0
         },
         "insider_activity": {
-          "verified": 3,
+          "verified": 5,
           "unverified": 0,
           "unreachable": 0
         },
         "product_competitive": {
-          "verified": 1,
+          "verified": 2,
           "unverified": 0,
-          "unreachable": 0
+          "unreachable": 1
         }
       }
     },
@@ -1508,71 +1572,81 @@
     "enabled": true,
     "research": {
       "urls": [
-        "https://finance.yahoo.com/quote/ZM/news/",
-        "https://www.fool.com/quote/nasdaq/zm/",
-        "https://www.google.com/finance/quote/ZM:NASDAQ",
+        "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000200/zm-20251031ex991.htm",
+        "https://www.gurufocus.com/news/9132720/zoom-zm-sets-ambitious-2030-margin-targets-amid-modest-overvaluation",
+        "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000027/zm-20250224ex991.htm",
         "https://www.cnn.com/markets/stocks/ZM",
-        "https://stockanalysis.com/stocks/zm/",
-        "https://www.benzinga.com/analyst-stock-ratings/upgrades/26/10/62494862/this-zoom-analyst-turns-bullish-here-are-top-5-upgrades-for-wednesday",
-        "https://www.marketbeat.com/stocks/NASDAQ/ZM/dividend",
-        "https://www.marketbeat.com/instant-alerts/zoom-video-communications-nasdaqzm-upgraded-to-hold-at-cantor-fitzgerald-2025-01-18",
-        "https://www.marketbeat.com/instant-alerts/zoom-video-communications-inc-nasdaqzm-stock-position-increased-by-arkadios-wealth-advisors-2025-01-18",
-        "https://www.tipranks.com/news/zm-earnings-zoom-communications-stock-rises-on-beat-and-raise-quarter",
-        "https://www.marketbeat.com/instant-alerts/consensus-zoom-communications-inc-nasdaq-zm-stock-has-consensus-target-price-of-11362-according-to-analysts-2026-10-03/",
-        "https://www.investing.com/equities/zoom-video-communications-consensus-estimates",
+        "https://www.tradingview.com/news/marketbeat:0fb4b33e8094b:0-zoom-communications-targets-6-8-growth-by-2030-as-ai-strategy-takes-center-stage/",
+        "https://www.marketbeat.com/stocks/NASDAQ/ZM/forecast/",
         "https://finance.yahoo.com/quote/ZM/",
-        "https://public.com/stocks/zm/forecast-price-target",
-        "https://tradersunion.com/currencies/forecast/zoom/",
+        "https://www.stocktitan.net/news/ZM/",
+        "https://marketbeat.com/instant-alerts/event-zoom-communications-targets-6-8-growth-by-2030-as-ai-strategy-takes-center-stage-2026-10-20/?amp=",
+        "https://www.benzinga.com/quote/ZM/analyst-ratings",
+        "https://www.zacks.com/stock/research/ZM/price-target-stock-forecast",
+        "https://stockanalysis.com/stocks/zm/",
         "https://www.benzinga.com/quote/ZM/price-targets",
         "https://simplywall.st/stocks/us/software/nasdaq-zm/zoom-communications",
+        "https://site.financialmodelingprep.com/market-news/zoom-communications-zm-stock-ai-strategy-price-target",
         "https://www.chartmill.com/stock/quote/ZM/analyst-ratings",
-        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000154/wk-form4_1792796350.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000153/wk-form4_1792796333.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000141/wk-form4_1791933153.xml",
-        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000149/wk-form4_1791933313.xml",
-        "https://www.marketbeat.com/instant-alerts/insider-zoom-communications-nasdaq-zm-insider-sells-75884270-in-stock-2026-10-13/",
-        "https://www.marketbeat.com/instant-alerts/insider-zoom-communications-nasdaq-zm-stock-insider-santiago-subotovsky-sells-717-shares-2026-10-23/",
-        "https://www.stocktitan.net/sec-filings/ZM/form-4-zoom-communications-inc-insider-trading-activity-d7be8f4ee038.html",
-        "https://www.stocktitan.net/sec-filings/ZM/form-4-zoom-communications-inc-insider-trading-activity-f090d05c4ec9.html",
-        "https://www.stocktitan.net/sec-filings/ZM/form-4-zoom-communications-inc-insider-trading-activity-376477483d1f.html",
-        "https://www.callcentrehelper.com/zoom-new-ai-automation-features-278310.htm",
-        "https://news.zoom.com/zoomtopia-2026-news/",
-        "https://apacnewsnetwork.com/2026/10/zoom-unveils-new-ai-layer-at-zoomtopia-2026-to-automate-business-work/",
-        "https://www.globenewswire.com/news-release/2026/10/20/3384802/0/en/zoom-advances-its-ai-strategy-with-a-new-unified-context-layer-that-helps-turn-meeting-conversations-into-completed-work.html",
-        "https://smestreet.in/technology/zoom-expands-ai-capabilities-across-meetings-and-customer-service-12751931",
-        "https://www.webpronews.com/zoom-unified-context-layer-zoomtopia-2026",
-        "https://www.cioandleader.com/zoom-advances-its-ai-strategy-with-a-new-unified-context-layer-that-helps-turn-meeting-conversations-into-completed-work/",
-        "https://www.globenewswire.com/news-release/2026/10/22/3386000/0/de/zoom-baut-seine-ki-strategie-mit-einer-neuen-unified-context-layer-l%C3%B6sung-aus-die-gespr%C3%A4che-in-meetings-in-konkrete-arbeitsergebnisse-%C3%BCberf%C3%BChrt.html",
-        "https://techedgeai.com/zoom-unveils-unified-context-layer-for-ai-powered-workflows/",
-        "https://quartr.com/companies/zoom-communications-inc_6524",
-        "https://www.investing.com/news/analyst-ratings/keybanc-reiterates-sector-weight-on-zoom-video-stock-93CH-4963229",
-        "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/10/62504766/why-is-zoom-communications-stock-gaining-wednesday",
-        "https://www.sec.gov/Archives/edgar/data/1423774/000142377421000030/a202104128-kexhibit991.htm",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552121000292/zm-20211031ex991.htm",
-        "https://www.tokenpost.com/news/insights/37198",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552120000056/zm-20200304ex991.htm",
-        "https://www.tradingview.com/news/benzinga:9782f3c37094b:0-why-is-zoom-communications-stock-gaining-wednesday/",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000138/zm-20250731ex991.htm",
-        "https://news.bloomberglaw.com/ip-law/zoom-microsoft-hit-with-suits-over-patented-presentation-tech",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552122000213/zm-20221031.htm",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552121000295/zm-20211031.htm",
-        "https://www.marketscreener.com/news/zoom-communications-inc-investigated-for-securities-fraud-violations-contact-the-djs-law-group-to-ce7d5adfd08cf722",
-        "https://www.prnewswire.com/news-releases/zoom-communications-inc-investigated-for-securities-fraud-violations---contact-the-djs-law-group-to-discuss-your-rights--zm-302585785.html",
-        "https://news.bloomberglaw.com/privacy-and-data-security/zoom-says-its-being-probed-by-sec-two-u-s-attorneys-offices",
-        "https://exlitem.com/jury-verdicts-settlements/zoom-150m-securities-fraud-class-action-settlement",
+        "https://www.defenseworld.net/2026/10/26/insider-selling-zoom-communications-nasdaqzm-director-sells-383334-72-in-stock.html",
+        "https://benzinga.com/quote/zm/analyst-ratings",
+        "https://www.law360.com/articles/1261581/shareholders-sue-zoom-over-privacy-hacking-concerns",
+        "https://www.cnbc.com/2021/08/01/zoom-reaches-85-million-settlement-over-user-privacy-and-hacker-zoombombing.html",
+        "https://www.federalregister.gov/documents/2020/11/13/2020-25130/zoom-video-communications-inc-analysis-to-aid-public-comment",
+        "https://www.claimdepot.com/cases/zoom-class-action-alleges-ai-companion-collected-biometric-voiceprints-without-illinois-users-consent",
+        "https://www.caidp.org/cases/zoom/",
+        "https://www.cybersecurityattorney.com/the-zoom-ftc-case-a-real-example-of-how-misleading-privacy-statements-can-trigger-years-of-regulatory-oversight/",
+        "https://zlk.com/tickers/zm/litigation",
         "https://settlementinsight.com/zoom-class-action-lawsuit",
-        "https://www.gopher.security/news/zoom-settles-150m-class-action-over-privacy-and-security-issues",
-        "https://news.zoom.com/",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000026/zm-20260225ex991.htm",
-        "https://www.sec.gov/Archives/edgar/data/1585521/000158552123000249/zm-20231031.htm",
-        "https://telecomreseller.com/2026/10/21/zoom-announces-new-updates-to-its-partner-program-to-advance-channel-first-strategy/",
-        "https://www.itvoice.in/zoom-announces-new-updates-to-its-partner-program-to-advance-channel-first-strategy",
-        "https://www.zoom.com/en/products/whats-new/",
-        "https://channelpostmea.com/2026/10/21/zoom-communications-introduces-new-unified-context-layer",
-        "https://www.cloudcommunications.com/news/zoom-announces-new-updates-to-its-partner-program-to-advance-channel-first-strategy",
-        "https://siliconangle.com/2026/10/22/zooms-next-act-from-video-company-to-ai-data-platform"
+        "https://www.businesswire.com/news/home/20251009099450/en/Zoom-Communications-Inc.-Investigated-for-Securities-Fraud-Violations---Contact-the-DJS-Law-Group-to-Discuss-Your-Rights-%E2%80%93-ZM",
+        "https://finance.yahoo.com/markets/stocks/articles/zooms-ceo-sold-company-stock-123101813.html",
+        "https://www.fool.com/coverage/filings/2026/07/11/zoom-s-ceo-sold-company-stock-worth-usd5-1-million-what-does-that-mean-for-investors/",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000104/wk-form4_1784158213.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000131/wk-form4_1788467599.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000113/wk-form4_1786136621.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000139/wk-form4_1791404929.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000143/wk-form4_1791933194.xml",
+        "https://www.secform4.com/insider-trading/1585521.htm",
+        "https://massive.com/quote/zm/insider-trading",
+        "https://insidertradealerts.com/ticker/ZM/",
+        "https://www.callcentrehelper.com/zoom-launches-ai-companion-30-268996.htm",
+        "https://news.zoom.com/zoom-ai-companion/",
+        "https://finance.yahoo.com/news/zoom-unveils-ai-companion-3-170000876.html",
+        "https://www.computerweekly.com/news/366636310/Zoom-launches-AI-Companion-30-with-agentic-workflows",
+        "https://news.zoom.com/ec26-zoom-ai/",
+        "https://news.zoom.com/ai-companion-3-0-and-zoom-workplace/",
+        "https://news.zoom.com/zoomtopia2025/",
+        "https://news.zoom.com/zoom-introduces-ai-companion-2-0/",
+        "https://www.inc.com/chloe-aiello/zooms-new-ai-features-go-way-beyond-videoconferencing/91241892",
+        "https://finance.yahoo.com/markets/stocks/articles/zoom-communications-q2-earnings-call-230310924.html",
+        "https://www.sec.gov/Archives/edgar/data/1585521/000158552123000035/zm-20230131.htm",
+        "https://www.marketscale.com/industries/software-and-technology/zooms-2030-growth-target-rests-on-customers-buying-more-than-meetings",
+        "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000042/zm-20250131.htm",
+        "https://www.globenewswire.com/news-release/2024/11/25/2987069/0/en/Zoom-Communications-Reports-Financial-Results-for-the-Third-Quarter-of-Fiscal-Year-2025.html",
+        "https://www.channeldive.com/news/zoom-thrives-world-awash-churn-partners-competitive-takeouts-atc-c3/813295/",
+        "https://dcfanalyst.com/blogs/overview/zm-overview",
+        "https://www.globenewswire.com/news-release/2026/08/25/3350878/0/en/zoom-communications-reports-financial-results-for-the-second-quarter-of-fiscal-year-2027.html",
+        "https://getfinn.us/companies/zm/",
+        "https://www.marketbeat.com/instant-alerts/insider-insider-selling-zoom-communications-nasdaq-zm-director-sells-15187500-in-stock-2026-10-23/",
+        "https://www.marketbeat.com/instant-alerts/insider-zoom-communications-nasdaq-zm-director-herbert-raymond-mcmaster-sells-3000-shares-of-company-stock-2026-10-13/",
+        "https://www.marketbeat.com/instant-alerts/insider-zoom-communications-nasdaq-zm-stock-insider-santiago-subotovsky-sells-717-shares-2026-10-23/",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000155/wk-form4_1792796368.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000154/wk-form4_1792796350.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001585521/000158552126000141/wk-form4_1791933153.xml",
+        "https://kalkinemedia.com/us/news/announcements/director-herbert-mcmaster-disposes-of-3000-zoom-communications-shares-on-october-8-2026",
+        "https://kalkine.com/news/announcements/mcmaster-sells-1500-zoom-communications-shares-at-10125",
+        "https://ascii.jp/en/elem/000/004/444/4444962/",
+        "https://cxfoundation.com/news/zoom-unified-context-layer",
+        "https://uctoday.com/this-week-in-uc-c-zoomtopia-opens-the-door-to-teams",
+        "https://www.01net.it/zoom-unified-context-layer-ai-zoomtopia-2026/",
+        "https://news.zoom.com/zoomtopia-2026-news/",
+        "https://www.destinationcrm.com/Articles/CRM-News/CRM-Across-the-Wire/Zoom-Launches-Unified-Context-Layer-at-Zoomtopia-177173.aspx&gsessionid=w6kPq9-UFzQL4P-pVhG0fI9-Aw0BWuQi1dFaPnv3r7J6BZTWFpDvLw",
+        "https://www.webpronews.com/zoom-unified-context-layer-zoomtopia-2026",
+        "https://za.investing.com/news/assorted/zoom-unveils-unified-context-layer-and-new-ai-tools-at-zoomtopia-432SI-4514711",
+        "https://www.archynewsy.com/zoom-pivots-to-ai-data-platform-at-zoomtopia-2026/",
+        "https://www.archynewsy.com/zoom-unveils-unified-context-layer-and-ai-capabilities/"
       ],
-      "searches": 7
+      "searches": 8
     }
   },
   "news_from": null,
@@ -1582,19 +1656,18 @@
   "errors": {},
   "writeup": {
     "headline": "Zoom rates Hold at 64, one point below Buy, as strong cash generation offsets slow growth.",
-    "thesis": "Zoom scores 64, a Hold that sits just 1 point below the Buy line. The business is highly profitable and cash-rich: a 77.3% gross margin, 23.7% operating margin and 38.6% free cash flow margin, a diluted share count down 2.8% year on year, and net cash with no debt give it top marks on quality and balance sheet. Growth is the weak spot, with TTM revenue growth of 5.0%, latest-quarter growth of 4.9%, and growth slowed by 0.5 pp from the previous quarter. Valuation is moderate in absolute terms at 6.0x sales, 15.6x free cash flow and 19.2x EV/EBIT, with FCF yield 1.4 pp above the 10-year Treasury yield, and overall sits near the middle of its own history, though P/S is more expensive than at 48 of the last 61 month-ends. Recent news leans mildly positive after Zoomtopia's long-term targets and an Oppenheimer upgrade, while the shares trail SPY and QQQ over the last 126 trading days.",
+    "thesis": "Zoom scores 64, just one point under the Buy line, held back mainly by modest growth: TTM revenue growth of 5.0%, with growth slowed by 0.5 pp from the previous quarter. Quality and the balance sheet carry the score: a 77.3% gross margin, a 38.6% FCF margin, diluted share count down 2.8% year on year, and net cash with no debt. Valuation is middling. In absolute terms the stock trades at 6.0x sales, 15.6x FCF and 19.2x EV/EBIT, with an FCF yield 1.4 pp above the 10-year Treasury yield, and overall it sits near the middle of its own history. The trend and news factors are mildly positive. The price is 9.0% above its 200-day average but shares are 4.4 pp behind SPY over the last 126 trading days, and new long-term targets and product launches at Zoomtopia are partly offset by insider selling.",
     "key_risks": [
-      "Revenue growth is only around 5% and slowed by 0.5 pp, leaving little room for disappointment",
-      "Stock-based compensation equals 14.6% of revenue, a real cost behind the strong free cash flow",
-      "Shares are 4.4 pp behind SPY and 5.2 pp behind QQQ over the last 126 trading days",
-      "Long-term targets of 6–8% growth and about 40% operating margin must be delivered to justify current sentiment",
-      "AI-driven competition in communications software could pressure pricing or the enterprise mix"
+      "Low single-digit revenue growth could slow further from TTM revenue growth of 5.0%.",
+      "Stock-based compensation is 14.6% of revenue, which weighs on underlying profitability.",
+      "P/S is more expensive than at 48 of the last 61 month-ends.",
+      "Competition from Microsoft Teams and other AI collaboration tools could pressure pricing and growth.",
+      "An early-stage BIPA class action over AI Companion voiceprints could add legal costs."
     ],
     "what_would_change": [
-      "A 1-point score gain would move the rating to Buy, for example from growth re-accelerating above the latest 4.9% pace or firmer price trend",
-      "Better relative performance against SPY and QQQ would lift the trend score from 57",
-      "A drop to Sell would need about 20 points of deterioration, such as revenue turning to decline alongside negative news on guidance or analysts",
-      "A reversal of the positive guidance and analyst news would cut the news score from 60 and push the rating further from Buy"
+      "A gain of just 1 point would move the rating to Buy, for example from re-accelerating revenue growth that lifts the growth score of 42.",
+      "Better relative price performance against SPY and QQQ would lift the trend score of 57 and could tip the rating to Buy.",
+      "A fall to Sell would need a 20-point drop, such as a sharp growth decline combined with worsening news or margins."
     ]
   },
   "writeup_check": {
@@ -1606,47 +1679,21 @@
   },
   "cost": {
     "steps": {
-      "guidance": {
-        "model": "claude-opus-5-5",
-        "requests": 1,
-        "input_tokens": 2936,
-        "output_tokens": 1411,
-        "cache_write_tokens": 0,
-        "cache_read_tokens": 0,
-        "web_searches": 0,
-        "per_request": [
-          {
-            "input_tokens": 2936,
-            "output_tokens": 1411,
-            "cache_write_tokens": 0,
-            "cache_read_tokens": 0,
-            "web_searches": 0
-          }
-        ],
-        "price": {
-          "input": 4.0,
-          "output": 20.0,
-          "verify": false
-        },
-        "cost_usd": 0.04,
-        "tiers": [],
-        "tiered_requests": 0
-      },
       "research": {
         "model": "claude-sonnet-5-5",
         "requests": 1,
-        "input_tokens": 100970,
-        "output_tokens": 4591,
+        "input_tokens": 123124,
+        "output_tokens": 5116,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
-        "web_searches": 7,
+        "web_searches": 8,
         "per_request": [
           {
-            "input_tokens": 100970,
-            "output_tokens": 4591,
+            "input_tokens": 123124,
+            "output_tokens": 5116,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
-            "web_searches": 7
+            "web_searches": 8
           }
         ],
         "price": {
@@ -1654,22 +1701,22 @@
           "output": 10.0,
           "verify": false
         },
-        "cost_usd": 0.3178,
+        "cost_usd": 0.3774,
         "tiers": [],
         "tiered_requests": 0
       },
       "scoring": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 8368,
-        "output_tokens": 2449,
+        "input_tokens": 8593,
+        "output_tokens": 3079,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 8368,
-            "output_tokens": 2449,
+            "input_tokens": 8593,
+            "output_tokens": 3079,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1680,22 +1727,22 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0825,
+        "cost_usd": 0.096,
         "tiers": [],
         "tiered_requests": 0
       },
       "writeup": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 3774,
-        "output_tokens": 752,
+        "input_tokens": 3893,
+        "output_tokens": 649,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
         "per_request": [
           {
-            "input_tokens": 3774,
-            "output_tokens": 752,
+            "input_tokens": 3893,
+            "output_tokens": 649,
             "cache_write_tokens": 0,
             "cache_read_tokens": 0,
             "web_searches": 0
@@ -1706,31 +1753,31 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0301,
+        "cost_usd": 0.0286,
         "tiers": [],
         "tiered_requests": 0
       }
     },
-    "total_usd": 0.4704,
+    "total_usd": 0.502,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "quote": {
-    "price": 100.35,
-    "as_of": "2026-10-28T20:00:02Z",
+    "price": 100.26,
+    "as_of": "2026-10-28T20:00:00Z",
     "prev_close": 97.4
   },
   "close_note": {
     "scored_on": "2026-10-28",
     "latest": "2026-10-28",
     "latest_from": "quote",
-    "run_et": "2026-10-28 16:49",
+    "run_et": "2026-10-29 07:04",
     "note": null,
-    "close_window": "Run at 4:49 pm ET, between the 4:00 pm close and about 6:00 pm ET, when Tiingo may not have published today's daily close yet"
+    "close_window": null
   },
   "email": "skipped (email off)",
   "batch": {
-    "run_id": "40766001137",
+    "run_id": "40862009653",
     "tickers": [
       "NVDA",
       "ORCL",
@@ -1760,12 +1807,6 @@
     ]
   },
   "chart": [
-    [
-      "2021-10-18",
-      274.23,
-      null,
-      null
-    ],
     [
       "2021-10-19",
       276.4,
@@ -2057,7 +2098,7 @@
     [
       "2021-12-28",
       183.77,
-      232.69,
+      null,
       null
     ],
     [
@@ -2958,7 +2999,7 @@
       "2022-08-03",
       112.97,
       108.81,
-      148.2
+      null
     ],
     [
       "2022-08-04",
@@ -9340,6 +9381,28 @@
     ]
   ],
   "history": [
+    {
+      "timestamp": "2026-10-29T11:04:52Z",
+      "ticker": "ZM",
+      "rating": "Hold",
+      "score": "64",
+      "confidence": "Medium",
+      "growth": "42",
+      "quality": "83",
+      "balance_sheet": "100",
+      "valuation": "56",
+      "trend": "57",
+      "news_risk": "59",
+      "price": "100.26",
+      "price_date": "2026-10-28",
+      "research_model": "claude-sonnet-5-5",
+      "scoring_model": "claude-opus-5-5",
+      "cost_usd": "0.502",
+      "overlay": "",
+      "quote_price": "100.26",
+      "quote_as_of": "2026-10-28T20:00:00Z",
+      "news_from": ""
+    },
     {
       "timestamp": "2026-10-28T20:49:03Z",
       "ticker": "ZM",

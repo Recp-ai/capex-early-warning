@@ -1,0 +1,1305 @@
+{
+  "run_id": "2026-10-29T11:06:51Z",
+  "generated_at": "2026-10-29T11:07:53+00:00",
+  "ticker": "SNDK",
+  "sec_ticker": "SNDK",
+  "cik": "0002023554",
+  "name": "Sandisk Corp",
+  "sector": "Computer Storage Devices",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Buy",
+  "rating_before_overlay": "Buy",
+  "score": 67,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 3.0,
+    "reasons": [
+      {
+        "issue": "fcf_spike",
+        "points": 1.0,
+        "text": "FCF spike (cause not in tagged data): TTM FCF margin 56.8% vs -1.6% a year earlier; scored on normalised FCF (median quarterly margin 10.8% of the last 8 quarters x TTM revenue)"
+      },
+      {
+        "issue": "short_valuation_history",
+        "points": 1.0,
+        "text": "valuation history: P/S 15 month-ends, P/FCF 12 month-ends, EV/EBIT 15 month-ends (needs 24)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 67 is within 2 points of the Buy edge (65)"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Strong Buy",
+      "at": 80,
+      "points": 13
+    },
+    "down": {
+      "label": "Hold",
+      "below": 65,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 67,
+    "raw": 66.9,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 371.59,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 175.3,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": 120.56,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 71.47,
+          "score": 94.1,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 61.19,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": 10.78,
+          "score": 51.8,
+          "weight": 0.25,
+          "note": "normalised FCF; reported FCF margin 56.8%"
+        },
+        "sbc_pct_revenue": {
+          "value": 1.15,
+          "score": 100.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "dilution_yoy_pct": {
+          "value": 6.9,
+          "score": 12.4,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 74,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -0.41,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": null,
+          "score": 100.0,
+          "weight": 0.4,
+          "note": "no debt"
+        }
+      },
+      "coverage": 1.0,
+      "score": 100,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 10.158,
+          "score": 32.7,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": 94.254,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "normalised FCF; reported P/FCF 17.9x"
+        },
+        "ev_to_ebit": {
+          "value": 16.218,
+          "score": 67.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -3.929,
+          "score": 0.9,
+          "weight": 0.2,
+          "note": "normalised FCF"
+        },
+        "price_to_sales_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.1,
+          "note": "missing: 15 month-ends of history (needs 24)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 12 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing: 15 month-ends of history (needs 24)"
+        }
+      },
+      "coverage": 0.6,
+      "score": 22,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -10.62,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 12.32,
+          "score": 80.8,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 880.09,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": 22.92,
+          "score": 89.4,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": 22.09,
+          "score": 88.1,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -39.84,
+          "score": 0.3,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 63,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 55,
+      "metrics": {
+        "guidance": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Buy",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 1404.77,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-07-03",
+    "revenue_q": 8965000000.0,
+    "revenue_yoy_q": 371.59,
+    "revenue_yoy_q_prev": 251.03,
+    "acceleration_pp": 120.56,
+    "ttm_end": "2026-07-03",
+    "revenue_ttm": 20248000000.0,
+    "revenue_yoy_ttm": 175.3,
+    "gross_profit_ttm": 14472000000.0,
+    "operating_income_ttm": 12389000000.0,
+    "operating_cash_flow_ttm": 11671000000.0,
+    "capex_ttm": 177000000.0,
+    "sbc_ttm": 232000000.0,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 11494000000.0,
+    "gross_margin_pct": 71.47,
+    "operating_margin_pct": 61.19,
+    "fcf_margin_pct": 56.77,
+    "capex_intensity_pct": 0.87,
+    "sbc_pct_revenue": 1.15,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 1217000000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability",
+      "base": 25000000.0,
+      "base_date": "2025-06-27",
+      "revenue_growth_pct": 175.3,
+      "expected": 43823929.29979606,
+      "excess": 1173176070.700204,
+      "max_share_of_ocf": 0.25,
+      "applies": false,
+      "share_of_ocf": 0.1005
+    },
+    "fcf_spike": {
+      "triggered": true,
+      "reasons": [
+        "TTM FCF margin 56.8% vs -1.6% a year earlier"
+      ],
+      "fcf_margin_pct": 56.77,
+      "fcf_margin_year_earlier_pct": -1.63,
+      "median_margin_pct": 10.78,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4,
+      "normalised_fcf": 2182234316.1539536
+    },
+    "fcf_basis": "normalised",
+    "fcf_scored_ttm": 2182234316.1539536,
+    "fcf_normalised_ttm": 2182234316.1539536,
+    "fcf_normalised_margin_pct": 10.78,
+    "fcf_scored_margin_pct": 10.78,
+    "balance_sheet": {
+      "date": "2026-07-03",
+      "cash": 4762000000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 4762000000.0,
+      "debt": 0.0,
+      "debt_tags": [
+        "LongTermDebt"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 0.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -4762000000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 155000000.0,
+    "diluted_shares_end": "2026-07-03",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 6.9,
+    "shares_outstanding": {
+      "val": 146419001.0,
+      "end": "2026-08-07",
+      "filed": "2026-08-17",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-12-29",
+        "revenue": 1665000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": -14.71,
+        "fcf": null,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-29",
+        "revenue": 1705000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 3.81,
+        "fcf": -41000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2024-06-28",
+        "revenue": 1760000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 11.31,
+        "fcf": -168000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-09-27",
+        "revenue": 1883000000.0,
+        "revenue_yoy_pct": null,
+        "operating_margin_pct": 15.45,
+        "fcf": -198000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2024-12-27",
+        "revenue": 1876000000.0,
+        "revenue_yoy_pct": 12.67,
+        "operating_margin_pct": 10.39,
+        "fcf": 47000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2025-03-28",
+        "revenue": 1695000000.0,
+        "revenue_yoy_pct": -0.59,
+        "operating_margin_pct": -110.97,
+        "fcf": -18000000.0,
+        "diluted_shares": 145000000.0
+      },
+      {
+        "end": "2025-06-27",
+        "revenue": 1901000000.0,
+        "revenue_yoy_pct": 8.01,
+        "operating_margin_pct": 0.95,
+        "fcf": 49000000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-10-03",
+        "revenue": 2308000000.0,
+        "revenue_yoy_pct": 22.57,
+        "operating_margin_pct": 7.63,
+        "fcf": 438000000.0,
+        "diluted_shares": 149000000.0
+      },
+      {
+        "end": "2026-01-02",
+        "revenue": 3025000000.0,
+        "revenue_yoy_pct": 61.25,
+        "operating_margin_pct": 35.21,
+        "fcf": 980000000.0,
+        "diluted_shares": 156000000.0
+      },
+      {
+        "end": "2026-04-03",
+        "revenue": 5950000000.0,
+        "revenue_yoy_pct": 251.03,
+        "operating_margin_pct": 69.09,
+        "fcf": 2993000000.0,
+        "diluted_shares": 157000000.0
+      },
+      {
+        "end": "2026-07-03",
+        "revenue": 8965000000.0,
+        "revenue_yoy_pct": 371.59,
+        "operating_margin_pct": 78.49,
+        "fcf": 7083000000.0,
+        "diluted_shares": null
+      }
+    ]
+  },
+  "valuation": {
+    "price": 1404.77,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 146419001.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-08-07"
+    },
+    "market_cap": 205685020034.77,
+    "enterprise_value": 200923020034.77,
+    "price_to_sales": 10.158,
+    "price_to_fcf": 94.254,
+    "ev_to_ebit": 16.218,
+    "sales_yield_pct": 9.844,
+    "fcf_yield_pct": 1.061,
+    "ebit_yield_pct": 6.166,
+    "fcf_negative": false,
+    "ebit_negative": false,
+    "fcf_basis": "normalised",
+    "price_to_fcf_reported": 17.895,
+    "fcf_yield_reported_pct": 5.588,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -3.929,
+    "history": [
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 1.142,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 87.577,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -5.867
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 2.442,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.955,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -2.813
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 4.338,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.053,
+        "fcf_yield_pct": null,
+        "ebit_yield_pct": -1.599
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 4.276,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.385,
+        "fcf_yield_pct": -0.248,
+        "ebit_yield_pct": -4.497
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 4.546,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.996,
+        "fcf_yield_pct": -0.234,
+        "ebit_yield_pct": -4.229
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 10.068,
+        "price_to_fcf": 1395.022,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.933,
+        "fcf_yield_pct": 0.072,
+        "ebit_yield_pct": -0.699
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 11.1,
+        "price_to_fcf": 1538.119,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.009,
+        "fcf_yield_pct": 0.065,
+        "ebit_yield_pct": -0.634
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 11.1,
+        "price_to_fcf": 1538.07,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 9.009,
+        "fcf_yield_pct": 0.065,
+        "ebit_yield_pct": -0.634
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 19.157,
+        "price_to_fcf": 2654.499,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 5.22,
+        "fcf_yield_pct": 0.038,
+        "ebit_yield_pct": -0.366
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 20.184,
+        "price_to_fcf": 794.207,
+        "ev_to_ebit": 48.86,
+        "sales_yield_pct": 4.954,
+        "fcf_yield_pct": 0.126,
+        "ebit_yield_pct": 2.047
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 27.076,
+        "price_to_fcf": 1065.388,
+        "ev_to_ebit": 65.78,
+        "sales_yield_pct": 3.693,
+        "fcf_yield_pct": 0.094,
+        "ebit_yield_pct": 1.52
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 14.467,
+        "price_to_fcf": 569.226,
+        "ev_to_ebit": 34.822,
+        "sales_yield_pct": 6.912,
+        "fcf_yield_pct": 0.176,
+        "ebit_yield_pct": 2.872
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 11.993,
+        "price_to_fcf": 111.28,
+        "ev_to_ebit": 19.217,
+        "sales_yield_pct": 8.338,
+        "fcf_yield_pct": 0.899,
+        "ebit_yield_pct": 5.204
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 13.319,
+        "price_to_fcf": 123.581,
+        "ev_to_ebit": 21.384,
+        "sales_yield_pct": 7.508,
+        "fcf_yield_pct": 0.809,
+        "ebit_yield_pct": 4.676
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 10.754,
+        "price_to_fcf": 99.778,
+        "ev_to_ebit": 17.191,
+        "sales_yield_pct": 9.299,
+        "fcf_yield_pct": 1.002,
+        "ebit_yield_pct": 5.817
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 10.158,
+        "current_yield_pct": 9.844,
+        "points": 15,
+        "median": 11.1,
+        "low": 1.142,
+        "high": 27.078,
+        "negative_points": 0,
+        "median_yield_pct": 9.009,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2025-08-29"
+      },
+      "price_to_fcf": {
+        "current": 94.254,
+        "current_yield_pct": 1.061,
+        "points": 12,
+        "median": 1204.819,
+        "low": 99.8,
+        "high": null,
+        "negative_points": 2,
+        "median_yield_pct": 0.083,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-08-29"
+      },
+      "ev_to_ebit": {
+        "current": 16.218,
+        "current_yield_pct": 6.166,
+        "points": 15,
+        "median": null,
+        "low": 17.191,
+        "high": null,
+        "negative_points": 9,
+        "median_yield_pct": -0.634,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": null,
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2025-08-29"
+      }
+    },
+    "vs_own_history": {
+      "label": null,
+      "text": "no comparison with its own history",
+      "multiples": {
+        "price_to_sales": {
+          "label": null,
+          "phrase": null,
+          "missing": "15 month-ends of history (needs 24)"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": null,
+          "missing": "12 month-ends of history (needs 24)"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": null,
+          "missing": "15 month-ends of history (needs 24)"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 1404.77,
+    "date": "2026-10-28",
+    "ma50": 1571.68,
+    "ma200": 1250.65,
+    "vs_ma50_pct": -10.62,
+    "vs_ma200_pct": 12.32,
+    "momentum_12_1_pct": 880.09,
+    "high_52w": 2335.0,
+    "drawdown_52w_pct": -39.84,
+    "return_rs_pct": 32.0,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": 22.92,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": 22.09
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001628280-26-053346",
+    "filing_date": "2026-08-05",
+    "period_end": "2026-07-03",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm",
+    "summary": "Sandisk expects fiscal first quarter 2027 revenue of $10.30 billion to $10.80 billion and Non-GAAP diluted EPS of $44.00 to $46.00.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "Q1 FY2027",
+        "amount_text": "$10.30 billion to $10.80 billion",
+        "stated_change": "not stated",
+        "sentence": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "eps",
+        "period": "Q1 FY2027",
+        "amount_text": "$44.00 to $46.00",
+        "stated_change": "not stated",
+        "sentence": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-028879",
+      "filing_date": "2026-04-30",
+      "period_end": "2026-04-03",
+      "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026028879/sndkq3-26ex991xpressrelease.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 0,
+        "summary": "No guidance change or pre-announcement in the window. Q1 FY27 results are due after the close today, and the August outlook of $10.30–10.80B revenue and $44–46 non-GAAP EPS still stands.",
+        "evidence": [
+          {
+            "claim": "Sandisk will report first quarter fiscal year 2027 results on October 29.",
+            "url": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-report-first-quarter-fiscal-year-2027-results-october-29",
+            "event_date": "2026-10-29",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 0,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.",
+            "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm",
+            "event_date": "2026-08-05",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 85,
+            "background": true,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst actions were mixed. Mizuho raised its target and Zacks upgraded, while Cantor Fitzgerald cut its target and Weiss downgraded.",
+        "evidence": [
+          {
+            "claim": "Mizuho raised its price target to $2,050 from $1,875 and kept Outperform.",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+            "event_date": "2026-10-06",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 23,
+            "background": false,
+            "status": "unverified",
+            "check": "numbers 0/2, names 2/2 · missing: 2050, 1875"
+          },
+          {
+            "claim": "Zacks Research upgraded Sandisk to Strong-Buy from Hold.",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+            "event_date": "2026-10-13",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 16,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Weiss Ratings downgraded Sandisk to Hold (C+) from Buy (B-).",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+            "event_date": "2026-10-14",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 5/5"
+          },
+          {
+            "claim": "Cantor Fitzgerald maintained Overweight and cut its price target to $2,200 from $2,900.",
+            "url": "https://finance.yahoo.com/quote/SNDK/",
+            "event_date": "2026-10-26",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 3,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "No new lawsuits, investigations or regulatory actions in the window. The 10-K carries only generic risk language.",
+        "evidence": [
+          {
+            "claim": "The 10-K contains generic risk factor language on litigation, antitrust and securities class actions.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026057406/sndk-20260703.htm",
+            "event_date": null,
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 0/0"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "No confirmed customer wins or losses in the window. A single secondary report names Sandisk as exclusive storage partner for Meta VR glasses, but there is no primary confirmation.",
+        "evidence": [
+          {
+            "claim": "Sandisk was reported as exclusive storage partner for Meta VR Glasses, with launch planned for spring 2027.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration"
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The only in-window insider trade is a small, routine 10b5-1 sale by the Chief Legal Officer. No purchases were found.",
+        "evidence": [
+          {
+            "claim": "Chief Legal Officer Bernard Shek sold 600 shares at $1,734.94 under a 10b5-1 plan.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000045/edgardoc.xml",
+            "event_date": "2026-10-01",
+            "direction": "negative",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 5/5 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "Positive industry and product news from secondary sources. TrendForce expects NAND contract prices to rise 15–20% this quarter, Sandisk launched a new memory card line, and it advanced a High Bandwidth Flash spec with SK hynix.",
+        "evidence": [
+          {
+            "claim": "TrendForce expects NAND contract prices to rise 15–20% sequentially in the current quarter.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/prediction-sandisk-stock-soar-oct-153601931.html",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 2/2"
+          },
+          {
+            "claim": "Sandisk and SK hynix advanced a High Bandwidth Flash (HBF) technical specification through the Open Compute Project.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": "2026-10-21",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 8,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          },
+          {
+            "claim": "Sandisk launched the Guardian Series high-endurance memory cards for dash cams and home-security cameras, from $28.99.",
+            "url": "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 3,
+          "unverified": 1,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 2
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "## 1. Guidance and results\n- Sandisk's Q1 FY27 results are due after the close today. I found no results, pre-announcement, or guidance change in the window. — 2026-10-29 — https://investor.sandisk.com/news-releases/news-release-details/sandisk-report-first-quarter-fiscal-year-2027-results-october-29\n- \nStanding guidance, given with Q4 results: Q1 FY27 revenue $10.3–10.8B, gross margin 83–85%, non-GAAP EPS $44–46, and the buyback raised to $15.5B.\n — 2026-08-05 (before the window) — https://seekingalpha.com/news/4627102-sandisk-forecasts-q1-fy2027-revenue-of-10_3b-10_8b-and-non-gaap-eps-of-44-46-while-expanding\n- Consensus EPS estimates differ by source:\n  - \n$45.22 (Barchart/Yahoo).\n — date unknown — https://finance.yahoo.com/markets/stocks/articles/sandisk-earnings-preview-expect-123010342.html\n  - \n$46.67, with revenue of $10.72B (TipRanks).\n — date unknown — https://www.tipranks.com/news/sandisk-stock-forecast-what-financial-analysts-expect-ahead-of-q1-earnings\n  - \n$46.22, with revenue of $10.64B (TradingKey).\n — date unknown — https://www.tradingkey.com/analysis/stocks/us-stocks/262247048-sandisk-earnings-preview-nand-data-center-demand-sndk-tradingkey\n- \nWedbush raised its Q1 estimates to revenue of $11.45B and EPS of $49.04, from $10.38B and $45.17.\n — date unknown — https://www.tipranks.com/news/sandisk-stock-forecast-what-financial-analysts-expect-ahead-of-q1-earnings\n- \nThe stock is down 32% since early July, which the article attributes to profit-taking amid worries about the AI build-out.\n — 2026-10-22 — https://finance.yahoo.com/markets/stocks/articles/prediction-sandisk-stock-soar-oct-153601931.html\n\n## 2. Analyst actions\n- \nMizuho raised its target to $2,050 from $1,875 and kept Outperform.\n — 2026-10-06 — https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/\n- \nEvercore ISI adjusted its target to $2,800 from $3,100.\n The same list shows an identical Evercore change on Aug 6, so the October item may be a repeat. — 2026-10-08 — https://www.marketscreener.com/quote/stock/SANDISK-CORPORATION-182801077/consensus/\n- \nZacks Research upgraded to Strong-Buy from Hold.\n — 2026-10-13 — https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/\n- \nWeiss Ratings downgraded to Hold (C+) from Buy (B-).\n — 2026-10-14 — https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/\n- \nCitigroup reiterated Buy.\n — 2026-10-01 — https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/\n- \nCantor Fitzgerald maintained Overweight and cut its target to $2,200 from $2,900.\n — 2026-10-26 — https://finance.yahoo.com/quote/SNDK/\n- \nBernstein maintained a $3,000 target and Wedbush kept Buy with a $2,000 target.\n — date unknown — https://www.tipranks.com/news/sandisk-stock-forecast-what-financial-analysts-expect-ahead-of-q1-earnings\n- Consensus target figures differ:\n  - \n$2,120.65 across 28 analysts (MarketBeat).\n — date unknown — https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/\n  - \n$2,154.17 (Barchart).\n — date unknown — https://finance.yahoo.com/markets/stocks/articles/sandisk-earnings-preview-expect-123010342.html\n- Rosenblatt's Buy initiation with a $2,400 target was on 2026-09-22, which is before the window. — https://www.marketscreener.com/quote/stock/SANDISK-CORPORATION-182801077/consensus/\n\n## 3. Litigation and regulation\n- I found nothing material in the window: no new suits, investigations, fines or export-control actions. The latest 10-K only has generic risk language on litigation, antitrust and securities class actions. — date unknown — https://www.sec.gov/Archives/edgar/data/0002023554/000162828026057406/sndk-20260703.htm\n- \nThe proxy states Western Digital (WDC) no longer held any Sandisk shares as of July 3, 2026.\n — 2026-07-03 (before the window) — https://www.sec.gov/Archives/edgar/data/2023554/000130817926000423/sndk-20261005.htm\n\n## 4. Customer concentration\n- I found no new customer wins, losses or contract changes in the window.\n- Existing disclosure from the August results call: \neight NVM customer engagements, including three U.S. hyperscalers, with $93.9B total contract value.\n — 2026-08-05 — https://www.tradingview.com/news/marketbeat:64c194a67094b:0-sandisk-targets-ai-flash-boom-with-94b-customer-deals-20b-buyback/\n- \nA third-party summary says concentration is meaningful, since only eight customers support the contract portfolio.\n — 2026-08-05 — https://x.com/TheValueist/status/2085131426467319824\n- \nSandisk was reported as exclusive storage partner for Meta VR Glasses, with launch planned for spring 2027.\n This comes from a secondary source, and I found no primary release. — 2026-10-14 — https://tech-insider.org/nand-shortage-ssd-prices-2026/\n\n## 5. Insider activity\n- No purchases found.\n- \nChief Legal Officer Bernard Shek sold 600 shares at $1,734.94 under a 10b5-1 plan adopted 2026-03-04.\n — 2026-10-01 — https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000045/edgardoc.xml\n- This continues a monthly 600-share pattern: \nSeptember 1\n (https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000074/edgardoc.xml), \nAugust 3\n, and \nJuly 1\n (https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000056/edgardoc.xml). Shek also sold 2,308 shares at $1,767.33 on 2026-09-08. — https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000027/edgardoc.xml\n- The other Form 4s I found have transaction dates before the window. They show clustered 10b5-1 selling in early and mid-September:\n  - CEO Goeckeler sold shares on \n2026-09-14\n (https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000032/edgardoc.xml) and \n2026-09-17\n (https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000041/edgardoc.xml).\n  - CFO Visoso sold 1,000 shares on \n2026-09-15\n (https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000033/edgardoc.xml).\n  - CTO Ilkbahar sold shares on 2026-09-03 (https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000028/edgardoc.xml).\n- I did not find Form 4s for other insiders with October transaction dates. Coverage may be incomplete.\n\n## 6. Product and competitive news\n- \nSandisk launched the Guardian Series high-endurance memory cards for dash cams and home-security cameras, from $28.99.\n — 2026-10-13 — https://tech-insider.org/nand-shortage-ssd-prices-2026/\n- \nSandisk and SK hynix advanced a High Bandwidth Flash (HBF) technical specification through the Open Compute Project.\n The source dates the announcement to Oct. 21, and it is secondary. — 2026-10-21 — https://tech-insider.org/nand-shortage-ssd-prices-2026/\n- \nTrendForce expects NAND contract prices to rise 15–20% sequentially in the current quarter.\n — 2026-10-22 — https://finance.yahoo.com/markets/stocks/articles/prediction-sandisk-stock-soar-oct-153601931.html\n- \nA separate TrendForce-based note cites enterprise SSD contract prices up 23–28%.\n — date unknown — https://simplywall.st/stocks/us/tech/nasdaq-sndk/sandisk/future\n- \nSandisk's NAND capacity is reportedly about 30% below its 2022 peak.\n — date unknown — https://tech-insider.org/nand-shortage-ssd-prices-2026/\n- I found no delays, share-shift data or new competitors in the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828026004121/sndkq2fy26ex991-pressrelea.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026028879/sndkq3-26ex991xpressrelease.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/sandisk-earnings-preview-expect-123010342.html",
+        "https://www.investing.com/equities/sandisk-corp-earnings",
+        "https://finance.yahoo.com/markets/stocks/articles/prediction-sandisk-stock-soar-oct-153601931.html",
+        "https://www.tipranks.com/stocks/sndk/earnings",
+        "https://finance.yahoo.com/quote/SNDK/",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026029401/sndk-20260403.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312526057313/d70029d424b7.htm",
+        "https://www.marketbeat.com/stocks/NASDAQ/SNDK/forecast/",
+        "https://www.marketscreener.com/quote/stock/SANDISK-CORPORATION-182801077/consensus/",
+        "https://simplywall.st/stocks/us/tech/nasdaq-sndk/sandisk/future",
+        "https://finance.yahoo.com/quote/SNDK/analyst-insights/",
+        "https://www.chartmill.com/stock/quote/SNDK/analyst-ratings",
+        "https://stockanalysis.com/stocks/sndk/",
+        "https://www.rblt.com/news/5-star-analyst-resets-sandisk-stock-price-target-by-175",
+        "https://news.alphastreet.com/sandisk-jumps-5-5-after-cantor-fitzgerald-maintains-overweight/",
+        "https://www.forbes.com/sites/investor-hub/article/sandisk-stock-over-574-where-its-heading-2026/",
+        "https://www.benzinga.com/quote/sndk/analyst-ratings",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000011/form_10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000014/form_10ka.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407017171/f32384e10vq.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407019966/f33805e8vk.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000095013407023196/f34387e10vq.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018009000038/form_10q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018015000051/sndkq31510-q.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000089161808000397/f42698e10vq.htm",
+        "https://www.tomshardware.com/news/wd-faces-class-action-lawsuit-over-sandisk-extreme-pro-ssd-failures",
+        "https://topclassactions.com/lawsuit-settlements/consumer-products/electronics/sandisk-memory-card-class-action-dismissed/",
+        "https://x.com/TheValueist/status/2085131426467319824",
+        "https://finance.yahoo.com/news/sandisk-rides-nand-shortage-ai-131034446.html",
+        "https://www.investing.com/analysis/sandisks-42b-bet-why-market-is-pricing-a-saaslike-backlog-as-a-commodity-cycle-200680287",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312525132306/d934557ds1a.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000095012324007621/filename2.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018016000068/sndk201510-k.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312525085694/d934557ds1.htm",
+        "https://www.tradingview.com/news/marketbeat:64c194a67094b:0-sandisk-targets-ai-flash-boom-with-94b-customer-deals-20b-buyback/",
+        "https://www.sec.gov/Archives/edgar/data/0001000180/000100018014000050/sndkq21410-q.htm",
+        "https://finance.yahoo.com/news/sandisk-sndk-19-5-locking-042447310.html",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000041/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000032/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000028/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000074/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000033/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000058/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000136324926000056/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000045/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000029/edgardoc.xml",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000124264826000027/edgardoc.xml",
+        "https://www.tomshardware.com/pc-components/ssds/sandisk-brings-back-affordable-storage-to-rescue-buyers-from-the-ssd-crisis-new-320-and-520-sata-ssds-are-ready-to-launch",
+        "https://finance.yahoo.com/markets/stocks/articles/sandisk-nand-price-hike-kioxia-111836307.html",
+        "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-20-sandisk-introduces-nas-ssds-to-power-fast-high-endurance-storage-for-prosumers-and-small-businesses",
+        "https://tech-insider.org/nand-shortage-ssd-prices-2026/",
+        "https://tech-insider.org/sandisk-1tb-microsd-express-switch-2-price-2026/",
+        "https://www.techpowerup.com/342762/sandisk-raises-nand-flash-prices-by-50-for-november-amid-supply-shortage",
+        "https://tech-insider.org/sandisk-nas-600-nas-800-ssd-launch-2026/",
+        "https://www.tomshardware.com/pc-components/ssds/sandisk-to-double-price-of-3d-nand-for-enterprise-ssds-in-q1-2026-hyperscalers-to-pay-top-dollar-for-storage-as-ai-continues-to-roll",
+        "https://www.itiger.com/news/2517043979",
+        "https://investor.sandisk.com/news-releases/news-release-details/sandisk-report-first-quarter-fiscal-year-2027-results-october-29",
+        "https://www.morningstar.com/news/business-wire/20260929992289/sandisk-to-report-first-quarter-fiscal-year-2027-results-on-october-29-2026",
+        "https://investor.sandisk.com/news-events/news-releases",
+        "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-09-29-sandisk-to-report-first-quarter-fiscal-year-2027-results-on-october-29-2026",
+        "https://investor.sandisk.com/",
+        "https://www.tipranks.com/news/sandisk-stock-forecast-what-financial-analysts-expect-ahead-of-q1-earnings",
+        "https://seekingalpha.com/news/4627102-sandisk-forecasts-q1-fy2027-revenue-of-10_3b-10_8b-and-non-gaap-eps-of-44-46-while-expanding",
+        "https://public.com/stocks/sndk/earnings",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262247048-sandisk-earnings-preview-nand-data-center-demand-sndk-tradingkey",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026057406/sndk-20260703.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828026029401/sndk-20260403.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000119312526122705/d136592d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000130817926000423/sndk-20261005.htm",
+        "https://www.sec.gov/Archives/edgar/data/2023554/000162828025044483/sndk014126-arsa.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026028879/sndk-20260430.htm",
+        "https://www.sec.gov/Archives/edgar/data/0002023554/000130817926000425/sndk015568-ars.pdf"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Sandisk rates Buy on explosive growth and net cash, held back by high absolute valuation.",
+    "thesis": "Sandisk scores 67, a Buy, just 3 points above the Hold line. Growth scores 100 on TTM revenue growth of 175.3% and latest-quarter revenue growth of 371.6% year on year, with growth having sped up by 120.6 pp from the previous quarter. The balance sheet also scores 100 thanks to net cash and no debt. Quality is solid at 74, with a 71.5% gross margin and 61.2% operating margin, but this is scored on a normalised FCF margin of 10.8% rather than the reported 56.8%, and the diluted share count is up 6.9% year on year. Valuation scores only 22: in absolute terms P/S of 10.2x and P/FCF of 94.3x on normalised FCF are high, with the FCF yield 3.9 pp below the 10-year Treasury yield, and there is no comparison with its own history.",
+    "key_risks": [
+      "Memory pricing is cyclical; the surge in revenue and margins could reverse if NAND prices fall.",
+      "High absolute valuation leaves little cushion if results or guidance disappoint.",
+      "Shares are volatile: price 39.8% below its 52-week high and 10.6% below its 50-day average.",
+      "Q1 FY27 results are due after the close today, against an outlook of $10.30–10.80B revenue and $44–46 non-GAAP EPS.",
+      "Diluted share count up 6.9% year on year dilutes existing holders."
+    ],
+    "what_would_change": [
+      "A drop of 3 points, for example from weaker trend or a negative news or guidance shift around today's results, would move the rating to Hold.",
+      "Rising 13 points to Strong Buy would likely need a better valuation score, such as normalised FCF catching up with reported FCF.",
+      "A slowdown in revenue growth would pull the growth score down from 100 and could tip the rating to Hold."
+    ]
+  },
+  "writeup_check": {
+    "history_label": null,
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 119679,
+        "output_tokens": 5809,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 119679,
+            "output_tokens": 5809,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3774,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8042,
+        "output_tokens": 2330,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8042,
+            "output_tokens": 2330,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0788,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3740,
+        "output_tokens": 648,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3740,
+            "output_tokens": 648,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0279,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4841,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 1404.77,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 1304.84
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:06",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40862009653",
+    "tickers": [
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
+    ]
+  }
+}

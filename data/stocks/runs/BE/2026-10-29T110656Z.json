@@ -1,0 +1,1744 @@
+{
+  "run_id": "2026-10-29T11:06:56Z",
+  "generated_at": "2026-10-29T11:07:58+00:00",
+  "ticker": "BE",
+  "sec_ticker": "BE",
+  "cik": "0001664703",
+  "name": "Bloom Energy Corp",
+  "sector": "Electrical Industrial Apparatus",
+  "website": "",
+  "models": {
+    "sources": {
+      "research": "input",
+      "scoring": "input"
+    },
+    "research": "claude-sonnet-5-5",
+    "scoring": "claude-opus-5-5"
+  },
+  "llm": true,
+  "rating": "Hold",
+  "rating_before_overlay": "Hold",
+  "score": 47,
+  "confidence": "Low",
+  "confidence_detail": {
+    "level": "Low",
+    "points": 4.0,
+    "reasons": [
+      {
+        "issue": "missing_sub_metric",
+        "points": 1.0,
+        "text": "missing inputs: stock comp. / revenue"
+      },
+      {
+        "issue": "fcf_ex_prepayments",
+        "points": 1.0,
+        "text": "excess prepayments: contract liabilities rose $666.1M over the year, $605.8M more than revenue growth of 112.2% explains (88% of operating cash flow; threshold 25%)"
+      },
+      {
+        "issue": "near_band_edge",
+        "points": 1.0,
+        "text": "score 47 is within 2 points of the Hold edge (45)"
+      },
+      {
+        "issue": "weak_sources",
+        "points": 1.0,
+        "text": "news topics capped for weak sources: Customer concentration"
+      }
+    ],
+    "factors_with_data": 6
+  },
+  "bands": {
+    "up": {
+      "label": "Buy",
+      "at": 65,
+      "points": 18
+    },
+    "down": {
+      "label": "Sell",
+      "below": 45,
+      "points": 3
+    }
+  },
+  "composite": {
+    "score": 47,
+    "raw": 46.8,
+    "weights_used": {
+      "growth": 0.2,
+      "quality": 0.2,
+      "balance_sheet": 0.1,
+      "valuation": 0.2,
+      "trend": 0.15,
+      "news_risk": 0.15
+    },
+    "available": [
+      "growth",
+      "quality",
+      "balance_sheet",
+      "valuation",
+      "trend",
+      "news_risk"
+    ],
+    "missing": []
+  },
+  "factors": {
+    "growth": {
+      "metrics": {
+        "revenue_yoy_q": {
+          "value": 139.81,
+          "score": 100.0,
+          "weight": 0.45,
+          "note": null
+        },
+        "revenue_yoy_ttm": {
+          "value": 112.21,
+          "score": 100.0,
+          "weight": 0.3,
+          "note": null
+        },
+        "acceleration_pp": {
+          "value": -27.88,
+          "score": 0.0,
+          "weight": 0.25,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 75,
+      "missing": null
+    },
+    "quality": {
+      "metrics": {
+        "gross_margin_pct": {
+          "value": 32.49,
+          "score": 37.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "operating_margin_pct": {
+          "value": 14.89,
+          "score": 54.7,
+          "weight": 0.25,
+          "note": null
+        },
+        "fcf_margin_pct": {
+          "value": -4.44,
+          "score": 11.1,
+          "weight": 0.25,
+          "note": "FCF ex-prepayments; reported FCF margin 11.5%"
+        },
+        "sbc_pct_revenue": {
+          "value": null,
+          "score": null,
+          "weight": 0.15,
+          "note": "missing"
+        },
+        "dilution_yoy_pct": {
+          "value": 38.04,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 0.85,
+      "score": 28,
+      "missing": null
+    },
+    "balance_sheet": {
+      "metrics": {
+        "net_debt_to_fcf": {
+          "value": -0.02,
+          "score": 100.0,
+          "weight": 0.6,
+          "note": "net cash"
+        },
+        "cash_to_debt": {
+          "value": 1.0,
+          "score": 80.1,
+          "weight": 0.4,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 92,
+      "missing": null
+    },
+    "valuation": {
+      "metrics": {
+        "price_to_sales": {
+          "value": 17.695,
+          "score": 14.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "price_to_fcf": {
+          "value": null,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": "negative FCF ex-prepayments"
+        },
+        "ev_to_ebit": {
+          "value": 118.832,
+          "score": 0.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "fcf_yield_vs_10y_pp": {
+          "value": -5.241,
+          "score": 0.0,
+          "weight": 0.2,
+          "note": "FCF ex-prepayments"
+        },
+        "price_to_sales_percentile": {
+          "value": 85.2,
+          "score": 14.8,
+          "weight": 0.1,
+          "note": "cheaper than now in 85.2% of 61 month-ends (ranked on yields)"
+        },
+        "price_to_fcf_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative now and in 43 of 61 month-ends)"
+        },
+        "ev_to_ebit_percentile": {
+          "value": null,
+          "score": null,
+          "weight": 0.0,
+          "note": "not comparable (negative in 40 of 61 month-ends)"
+        }
+      },
+      "coverage": 1.0,
+      "score": 4,
+      "missing": null
+    },
+    "trend": {
+      "metrics": {
+        "vs_ma50_pct": {
+          "value": -7.99,
+          "score": 10.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "vs_ma200_pct": {
+          "value": 3.4,
+          "score": 58.5,
+          "weight": 0.2,
+          "note": null
+        },
+        "momentum_12_1_pct": {
+          "value": 168.36,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "rs_spy_pp": {
+          "value": -29.88,
+          "score": 0.2,
+          "weight": 0.125,
+          "note": null
+        },
+        "rs_qqq_pp": {
+          "value": -30.71,
+          "score": 0.0,
+          "weight": 0.125,
+          "note": null
+        },
+        "drawdown_52w_pct": {
+          "value": -34.05,
+          "score": 9.9,
+          "weight": 0.15,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "score": 40,
+      "missing": null
+    },
+    "news_risk": {
+      "score": 68,
+      "metrics": {
+        "guidance": {
+          "value": 2,
+          "score": 100.0,
+          "weight": 0.25,
+          "note": null
+        },
+        "analyst_actions": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.15,
+          "note": null
+        },
+        "litigation_regulation": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.2,
+          "note": null
+        },
+        "customer_concentration": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "insider_activity": {
+          "value": 0,
+          "score": 50.0,
+          "weight": 0.1,
+          "note": null
+        },
+        "product_competitive": {
+          "value": 1,
+          "score": 75.0,
+          "weight": 0.2,
+          "note": null
+        }
+      },
+      "coverage": 1.0,
+      "missing": null
+    }
+  },
+  "overlay": {
+    "ai_exposed": false,
+    "applies": false,
+    "capped": false,
+    "rating_before": "Hold",
+    "note": null,
+    "capex": {
+      "level": "GREEN",
+      "total": 0.0,
+      "max": 18.0,
+      "red_confirmed": false,
+      "run_id": "2026-10-29T02:43:22Z",
+      "age_days": 0
+    }
+  },
+  "capex_context": {
+    "level": "GREEN",
+    "total": 0.0,
+    "max": 18.0,
+    "red_confirmed": false,
+    "run_id": "2026-10-29T02:43:22Z",
+    "age_days": 0
+  },
+  "price": {
+    "close": 228.08,
+    "date": "2026-10-28"
+  },
+  "fundamentals": {
+    "currency": "USD",
+    "taxonomy": "us-gaap",
+    "foreign": false,
+    "annual_only": false,
+    "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "latest_quarter_end": "2026-09-30",
+    "revenue_q": 1231028000.0,
+    "revenue_yoy_q": 139.81,
+    "revenue_yoy_q_prev": 167.69,
+    "acceleration_pp": -27.88,
+    "ttm_end": "2026-09-30",
+    "revenue_ttm": 3810940000.0,
+    "revenue_yoy_ttm": 112.21,
+    "gross_profit_ttm": 1238115000.0,
+    "operating_income_ttm": 567405000.0,
+    "operating_cash_flow_ttm": 690968000.0,
+    "capex_ttm": 254264000.0,
+    "sbc_ttm": null,
+    "gross_profit_source": "GrossProfit",
+    "operating_income_source": "OperatingIncomeLoss",
+    "fcf_ttm": 436704000.0,
+    "gross_margin_pct": 32.49,
+    "operating_margin_pct": 14.89,
+    "fcf_margin_pct": 11.46,
+    "capex_intensity_pct": 6.67,
+    "sbc_pct_revenue": null,
+    "missing_inputs": {},
+    "prepayments": {
+      "increase": 666060000.0,
+      "source": "cash flow statement: IncreaseDecreaseInContractWithCustomerLiability + IncreaseDecreaseInDeferredRevenueAndCustomerAdvancesAndDeposits",
+      "base": 53675000.0,
+      "base_date": "2025-09-30",
+      "revenue_growth_pct": 112.21,
+      "expected": 60230386.60034927,
+      "excess": 605829613.3996507,
+      "max_share_of_ocf": 0.25,
+      "applies": true,
+      "share_of_ocf": 0.8768
+    },
+    "fcf_spike": {
+      "triggered": false,
+      "reasons": [],
+      "fcf_margin_pct": 11.46,
+      "fcf_margin_year_earlier_pct": 7.53,
+      "median_margin_pct": 3.89,
+      "quarters": 8,
+      "quarter_fcf_to_revenue": 1.0,
+      "margin_jump_x": 2.0,
+      "margin_jump_min_pct": 30.0,
+      "median_quarters": 8,
+      "min_quarters": 4
+    },
+    "fcf_basis": "ex-prepayments",
+    "fcf_scored_ttm": -169125613.3996507,
+    "fcf_ex_prepayments_ttm": -169125613.3996507,
+    "fcf_ex_prepayments_margin_pct": -4.44,
+    "fcf_scored_margin_pct": -4.44,
+    "balance_sheet": {
+      "date": "2026-09-30",
+      "cash": 2486702000.0,
+      "cash_tag": "CashAndCashEquivalentsAtCarryingValue",
+      "short_term_investments": 0.0,
+      "investment_tags": [],
+      "investment_note": null,
+      "cash_and_investments": 2486702000.0,
+      "debt": 2479449000.0,
+      "debt_tags": [
+        "LongTermDebt",
+        "ShortTermBorrowings"
+      ],
+      "debt_parts": [
+        {
+          "tag": "LongTermDebt",
+          "val": 2476449000.0
+        },
+        {
+          "tag": "ShortTermBorrowings",
+          "val": 3000000.0
+        }
+      ],
+      "debt_note": null,
+      "net_debt": -7253000.0,
+      "unknown": []
+    },
+    "share_outliers": [],
+    "diluted_shares": 324289000.0,
+    "diluted_shares_end": "2026-09-30",
+    "diluted_shares_derived": null,
+    "dilution_yoy_pct": 38.04,
+    "shares_outstanding": {
+      "val": 295656689.0,
+      "end": "2026-10-19",
+      "filed": "2026-10-22",
+      "classes": 1
+    },
+    "quarterly": [
+      {
+        "end": "2023-12-31",
+        "revenue": 341281000.0,
+        "revenue_yoy_pct": -23.58,
+        "operating_margin_pct": 3.79,
+        "fcf": 105579000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2024-03-31",
+        "revenue": 226095000.0,
+        "revenue_yoy_pct": -12.63,
+        "operating_margin_pct": -21.68,
+        "fcf": -168701000.0,
+        "diluted_shares": 225587000.0
+      },
+      {
+        "end": "2024-06-30",
+        "revenue": 326465000.0,
+        "revenue_yoy_pct": 14.43,
+        "operating_margin_pct": -7.08,
+        "fcf": -187514000.0,
+        "diluted_shares": 227167000.0
+      },
+      {
+        "end": "2024-09-30",
+        "revenue": 321796000.0,
+        "revenue_yoy_pct": -16.08,
+        "operating_margin_pct": -3.0,
+        "fcf": -83761000.0,
+        "diluted_shares": 227957000.0
+      },
+      {
+        "end": "2024-12-31",
+        "revenue": 566959000.0,
+        "revenue_yoy_pct": 66.13,
+        "operating_margin_pct": 18.47,
+        "fcf": 473122000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2025-03-31",
+        "revenue": 319262000.0,
+        "revenue_yoy_pct": 41.21,
+        "operating_margin_pct": -5.97,
+        "fcf": -124941000.0,
+        "diluted_shares": 230210000.0
+      },
+      {
+        "end": "2025-06-30",
+        "revenue": 396256000.0,
+        "revenue_yoy_pct": 21.38,
+        "operating_margin_pct": -0.88,
+        "fcf": -220356000.0,
+        "diluted_shares": 232542000.0
+      },
+      {
+        "end": "2025-09-30",
+        "revenue": 513331000.0,
+        "revenue_yoy_pct": 59.52,
+        "operating_margin_pct": 1.53,
+        "fcf": 7368000.0,
+        "diluted_shares": 234931000.0
+      },
+      {
+        "end": "2025-12-31",
+        "revenue": 772765000.0,
+        "revenue_yoy_pct": 36.3,
+        "operating_margin_pct": 11.33,
+        "fcf": 395119000.0,
+        "diluted_shares": null
+      },
+      {
+        "end": "2026-03-31",
+        "revenue": 746401000.0,
+        "revenue_yoy_pct": 133.79,
+        "operating_margin_pct": 9.67,
+        "fcf": 47428000.0,
+        "diluted_shares": 319708000.0
+      },
+      {
+        "end": "2026-06-30",
+        "revenue": 1060746000.0,
+        "revenue_yoy_pct": 167.69,
+        "operating_margin_pct": 17.18,
+        "fcf": 174791000.0,
+        "diluted_shares": 323331000.0
+      },
+      {
+        "end": "2026-09-30",
+        "revenue": 1231028000.0,
+        "revenue_yoy_pct": 139.81,
+        "operating_margin_pct": 18.31,
+        "fcf": -180634000.0,
+        "diluted_shares": 324289000.0
+      }
+    ]
+  },
+  "valuation": {
+    "price": 228.08,
+    "price_date": "2026-10-28",
+    "shares": {
+      "shares": 295656689.0,
+      "source": "cover page shares outstanding",
+      "date": "2026-10-19"
+    },
+    "market_cap": 67433377627.12,
+    "enterprise_value": 67426124627.12,
+    "price_to_sales": 17.695,
+    "price_to_fcf": null,
+    "ev_to_ebit": 118.832,
+    "sales_yield_pct": 5.651,
+    "fcf_yield_pct": -0.251,
+    "ebit_yield_pct": 0.842,
+    "fcf_negative": true,
+    "ebit_negative": false,
+    "fcf_basis": "ex-prepayments",
+    "price_to_fcf_reported": 154.414,
+    "fcf_yield_reported_pct": 0.648,
+    "ust10y_pct": 4.99,
+    "ust10y_date": "2026-10-27",
+    "fcf_yield_vs_10y_pp": -5.241,
+    "history": [
+      {
+        "date": "2021-10-29",
+        "price_to_sales": 6.689,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 14.949,
+        "fcf_yield_pct": -2.716,
+        "ebit_yield_pct": -1.087
+      },
+      {
+        "date": "2021-11-30",
+        "price_to_sales": 5.884,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 16.995,
+        "fcf_yield_pct": -3.68,
+        "ebit_yield_pct": -2.04
+      },
+      {
+        "date": "2021-12-31",
+        "price_to_sales": 4.696,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.296,
+        "fcf_yield_pct": -4.611,
+        "ebit_yield_pct": -2.51
+      },
+      {
+        "date": "2022-01-31",
+        "price_to_sales": 3.229,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.97,
+        "fcf_yield_pct": -6.706,
+        "ebit_yield_pct": -3.505
+      },
+      {
+        "date": "2022-02-28",
+        "price_to_sales": 4.246,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 23.553,
+        "fcf_yield_pct": -2.87,
+        "ebit_yield_pct": -2.876
+      },
+      {
+        "date": "2022-03-31",
+        "price_to_sales": 4.619,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.651,
+        "fcf_yield_pct": -2.638,
+        "ebit_yield_pct": -2.651
+      },
+      {
+        "date": "2022-04-29",
+        "price_to_sales": 3.55,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 28.172,
+        "fcf_yield_pct": -3.432,
+        "ebit_yield_pct": -3.418
+      },
+      {
+        "date": "2022-05-31",
+        "price_to_sales": 3.395,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 29.451,
+        "fcf_yield_pct": -3.849,
+        "ebit_yield_pct": -4.961
+      },
+      {
+        "date": "2022-06-30",
+        "price_to_sales": 3.198,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 31.272,
+        "fcf_yield_pct": -4.087,
+        "ebit_yield_pct": -5.245
+      },
+      {
+        "date": "2022-07-29",
+        "price_to_sales": 3.921,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.506,
+        "fcf_yield_pct": -3.333,
+        "ebit_yield_pct": -4.338
+      },
+      {
+        "date": "2022-08-31",
+        "price_to_sales": 4.879,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 20.496,
+        "fcf_yield_pct": -4.056,
+        "ebit_yield_pct": -4.703
+      },
+      {
+        "date": "2022-09-30",
+        "price_to_sales": 3.838,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 26.054,
+        "fcf_yield_pct": -5.156,
+        "ebit_yield_pct": -5.893
+      },
+      {
+        "date": "2022-10-31",
+        "price_to_sales": 3.592,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 27.836,
+        "fcf_yield_pct": -5.508,
+        "ebit_yield_pct": -6.268
+      },
+      {
+        "date": "2022-11-30",
+        "price_to_sales": 3.911,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 25.566,
+        "fcf_yield_pct": -5.221,
+        "ebit_yield_pct": -5.905
+      },
+      {
+        "date": "2022-12-30",
+        "price_to_sales": 3.513,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 28.468,
+        "fcf_yield_pct": -5.813,
+        "ebit_yield_pct": -6.577
+      },
+      {
+        "date": "2023-01-31",
+        "price_to_sales": 4.58,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 21.833,
+        "fcf_yield_pct": -4.458,
+        "ebit_yield_pct": -5.041
+      },
+      {
+        "date": "2023-02-28",
+        "price_to_sales": 3.552,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 28.156,
+        "fcf_yield_pct": -7.802,
+        "ebit_yield_pct": -6.373
+      },
+      {
+        "date": "2023-03-31",
+        "price_to_sales": 3.263,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 30.643,
+        "fcf_yield_pct": -8.491,
+        "ebit_yield_pct": -6.926
+      },
+      {
+        "date": "2023-04-28",
+        "price_to_sales": 2.726,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 36.679,
+        "fcf_yield_pct": -10.164,
+        "ebit_yield_pct": -8.263
+      },
+      {
+        "date": "2023-05-31",
+        "price_to_sales": 2.346,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 42.63,
+        "fcf_yield_pct": -19.0,
+        "ebit_yield_pct": -8.876
+      },
+      {
+        "date": "2023-06-30",
+        "price_to_sales": 2.795,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 35.773,
+        "fcf_yield_pct": -15.943,
+        "ebit_yield_pct": -7.482
+      },
+      {
+        "date": "2023-07-31",
+        "price_to_sales": 3.054,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 32.748,
+        "fcf_yield_pct": -14.595,
+        "ebit_yield_pct": -6.863
+      },
+      {
+        "date": "2023-08-31",
+        "price_to_sales": 2.469,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.495,
+        "fcf_yield_pct": -18.305,
+        "ebit_yield_pct": -6.366
+      },
+      {
+        "date": "2023-09-29",
+        "price_to_sales": 2.184,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 45.779,
+        "fcf_yield_pct": -20.694,
+        "ebit_yield_pct": -7.143
+      },
+      {
+        "date": "2023-10-31",
+        "price_to_sales": 1.713,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 58.368,
+        "fcf_yield_pct": -26.385,
+        "ebit_yield_pct": -8.949
+      },
+      {
+        "date": "2023-11-30",
+        "price_to_sales": 2.217,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 45.114,
+        "fcf_yield_pct": -20.39,
+        "ebit_yield_pct": -7.879
+      },
+      {
+        "date": "2023-12-29",
+        "price_to_sales": 2.272,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 44.017,
+        "fcf_yield_pct": -19.894,
+        "ebit_yield_pct": -7.704
+      },
+      {
+        "date": "2024-01-31",
+        "price_to_sales": 1.738,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 57.549,
+        "fcf_yield_pct": -26.009,
+        "ebit_yield_pct": -9.82
+      },
+      {
+        "date": "2024-02-29",
+        "price_to_sales": 1.47,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 68.023,
+        "fcf_yield_pct": -24.462,
+        "ebit_yield_pct": -10.204
+      },
+      {
+        "date": "2024-03-28",
+        "price_to_sales": 1.884,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.075,
+        "fcf_yield_pct": -19.087,
+        "ebit_yield_pct": -8.121
+      },
+      {
+        "date": "2024-04-30",
+        "price_to_sales": 1.866,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.6,
+        "fcf_yield_pct": -19.275,
+        "ebit_yield_pct": -8.195
+      },
+      {
+        "date": "2024-05-31",
+        "price_to_sales": 2.978,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 33.575,
+        "fcf_yield_pct": -7.706,
+        "ebit_yield_pct": -4.84
+      },
+      {
+        "date": "2024-06-28",
+        "price_to_sales": 2.234,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 44.767,
+        "fcf_yield_pct": -10.274,
+        "ebit_yield_pct": -6.28
+      },
+      {
+        "date": "2024-07-31",
+        "price_to_sales": 2.471,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 40.469,
+        "fcf_yield_pct": -9.288,
+        "ebit_yield_pct": -5.736
+      },
+      {
+        "date": "2024-08-30",
+        "price_to_sales": 2.118,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 47.209,
+        "fcf_yield_pct": -14.974,
+        "ebit_yield_pct": -5.014
+      },
+      {
+        "date": "2024-09-30",
+        "price_to_sales": 1.878,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 53.245,
+        "fcf_yield_pct": -16.889,
+        "ebit_yield_pct": -5.537
+      },
+      {
+        "date": "2024-10-31",
+        "price_to_sales": 1.707,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 58.569,
+        "fcf_yield_pct": -18.578,
+        "ebit_yield_pct": -5.98
+      },
+      {
+        "date": "2024-11-29",
+        "price_to_sales": 5.147,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 19.427,
+        "fcf_yield_pct": -6.159,
+        "ebit_yield_pct": -0.983
+      },
+      {
+        "date": "2024-12-31",
+        "price_to_sales": 4.165,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 24.011,
+        "fcf_yield_pct": -7.612,
+        "ebit_yield_pct": -1.185
+      },
+      {
+        "date": "2025-01-31",
+        "price_to_sales": 4.422,
+        "price_to_fcf": null,
+        "ev_to_ebit": null,
+        "sales_yield_pct": 22.616,
+        "fcf_yield_pct": -7.17,
+        "ebit_yield_pct": -1.125
+      },
+      {
+        "date": "2025-02-28",
+        "price_to_sales": 3.789,
+        "price_to_fcf": null,
+        "ev_to_ebit": 257.601,
+        "sales_yield_pct": 26.391,
+        "fcf_yield_pct": -1.774,
+        "ebit_yield_pct": 0.388
+      },
+      {
+        "date": "2025-03-31",
+        "price_to_sales": 3.101,
+        "price_to_fcf": null,
+        "ev_to_ebit": 214.332,
+        "sales_yield_pct": 32.244,
+        "fcf_yield_pct": -2.167,
+        "ebit_yield_pct": 0.467
+      },
+      {
+        "date": "2025-04-30",
+        "price_to_sales": 2.748,
+        "price_to_fcf": 482.512,
+        "ev_to_ebit": 88.316,
+        "sales_yield_pct": 36.384,
+        "fcf_yield_pct": 0.207,
+        "ebit_yield_pct": 1.132
+      },
+      {
+        "date": "2025-05-30",
+        "price_to_sales": 2.771,
+        "price_to_fcf": 486.462,
+        "ev_to_ebit": 88.969,
+        "sales_yield_pct": 36.089,
+        "fcf_yield_pct": 0.206,
+        "ebit_yield_pct": 1.124
+      },
+      {
+        "date": "2025-06-30",
+        "price_to_sales": 3.589,
+        "price_to_fcf": 630.004,
+        "ev_to_ebit": 112.706,
+        "sales_yield_pct": 27.866,
+        "fcf_yield_pct": 0.159,
+        "ebit_yield_pct": 0.887
+      },
+      {
+        "date": "2025-07-31",
+        "price_to_sales": 5.42,
+        "price_to_fcf": 197.321,
+        "ev_to_ebit": 127.709,
+        "sales_yield_pct": 18.451,
+        "fcf_yield_pct": 0.507,
+        "ebit_yield_pct": 0.783
+      },
+      {
+        "date": "2025-08-29",
+        "price_to_sales": 7.674,
+        "price_to_fcf": 279.384,
+        "ev_to_ebit": 177.597,
+        "sales_yield_pct": 13.031,
+        "fcf_yield_pct": 0.358,
+        "ebit_yield_pct": 0.563
+      },
+      {
+        "date": "2025-09-30",
+        "price_to_sales": 12.259,
+        "price_to_fcf": 446.307,
+        "ev_to_ebit": 279.075,
+        "sales_yield_pct": 8.158,
+        "fcf_yield_pct": 0.224,
+        "ebit_yield_pct": 0.358
+      },
+      {
+        "date": "2025-10-31",
+        "price_to_sales": 17.289,
+        "price_to_fcf": 229.66,
+        "ev_to_ebit": 351.05,
+        "sales_yield_pct": 5.784,
+        "fcf_yield_pct": 0.435,
+        "ebit_yield_pct": 0.285
+      },
+      {
+        "date": "2025-11-28",
+        "price_to_sales": 14.291,
+        "price_to_fcf": 189.831,
+        "ev_to_ebit": 291.207,
+        "sales_yield_pct": 6.997,
+        "fcf_yield_pct": 0.527,
+        "ebit_yield_pct": 0.343
+      },
+      {
+        "date": "2025-12-31",
+        "price_to_sales": 11.367,
+        "price_to_fcf": 150.993,
+        "ev_to_ebit": 232.852,
+        "sales_yield_pct": 8.797,
+        "fcf_yield_pct": 0.662,
+        "ebit_yield_pct": 0.429
+      },
+      {
+        "date": "2026-01-30",
+        "price_to_sales": 19.803,
+        "price_to_fcf": 263.043,
+        "ev_to_ebit": 401.207,
+        "sales_yield_pct": 5.05,
+        "fcf_yield_pct": 0.38,
+        "ebit_yield_pct": 0.249
+      },
+      {
+        "date": "2026-02-27",
+        "price_to_sales": 18.697,
+        "price_to_fcf": 654.369,
+        "ev_to_ebit": 516.351,
+        "sales_yield_pct": 5.349,
+        "fcf_yield_pct": 0.153,
+        "ebit_yield_pct": 0.194
+      },
+      {
+        "date": "2026-03-31",
+        "price_to_sales": 16.273,
+        "price_to_fcf": 569.541,
+        "ev_to_ebit": 449.713,
+        "sales_yield_pct": 6.145,
+        "fcf_yield_pct": 0.176,
+        "ebit_yield_pct": 0.222
+      },
+      {
+        "date": "2026-04-30",
+        "price_to_sales": 37.3,
+        "price_to_fcf": 394.637,
+        "ev_to_ebit": 552.886,
+        "sales_yield_pct": 2.681,
+        "fcf_yield_pct": 0.253,
+        "ebit_yield_pct": 0.181
+      },
+      {
+        "date": "2026-05-29",
+        "price_to_sales": 37.516,
+        "price_to_fcf": 396.921,
+        "ev_to_ebit": 556.082,
+        "sales_yield_pct": 2.666,
+        "fcf_yield_pct": 0.252,
+        "ebit_yield_pct": 0.18
+      },
+      {
+        "date": "2026-06-30",
+        "price_to_sales": 39.846,
+        "price_to_fcf": 421.572,
+        "ev_to_ebit": 590.574,
+        "sales_yield_pct": 2.51,
+        "fcf_yield_pct": 0.237,
+        "ebit_yield_pct": 0.169
+      },
+      {
+        "date": "2026-07-31",
+        "price_to_sales": 21.513,
+        "price_to_fcf": 196.062,
+        "ev_to_ebit": 189.716,
+        "sales_yield_pct": 4.648,
+        "fcf_yield_pct": 0.51,
+        "ebit_yield_pct": 0.527
+      },
+      {
+        "date": "2026-08-31",
+        "price_to_sales": 21.564,
+        "price_to_fcf": 196.529,
+        "ev_to_ebit": 190.169,
+        "sales_yield_pct": 4.637,
+        "fcf_yield_pct": 0.509,
+        "ebit_yield_pct": 0.526
+      },
+      {
+        "date": "2026-09-30",
+        "price_to_sales": 28.952,
+        "price_to_fcf": 263.861,
+        "ev_to_ebit": 255.501,
+        "sales_yield_pct": 3.454,
+        "fcf_yield_pct": 0.379,
+        "ebit_yield_pct": 0.391
+      },
+      {
+        "date": "2026-10-28",
+        "price_to_sales": 19.408,
+        "price_to_fcf": null,
+        "ev_to_ebit": 130.342,
+        "sales_yield_pct": 5.152,
+        "fcf_yield_pct": -0.229,
+        "ebit_yield_pct": 0.767
+      }
+    ],
+    "share_outliers": [],
+    "vs_history": {
+      "price_to_sales": {
+        "current": 17.695,
+        "current_yield_pct": 5.651,
+        "points": 61,
+        "median": 3.592,
+        "low": 1.47,
+        "high": 39.841,
+        "negative_points": 0,
+        "median_yield_pct": 27.836,
+        "percentile": 85.2,
+        "cheaper_points": 52,
+        "dearer_points": 9,
+        "not_comparable": null,
+        "max_negative_share": null,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "price_to_fcf": {
+        "current": null,
+        "current_yield_pct": -0.251,
+        "points": 61,
+        "median": null,
+        "low": 151.057,
+        "high": null,
+        "negative_points": 43,
+        "median_yield_pct": -4.458,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative now and in 43 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      },
+      "ev_to_ebit": {
+        "current": 118.832,
+        "current_yield_pct": 0.842,
+        "points": 61,
+        "median": null,
+        "low": 88.339,
+        "high": null,
+        "negative_points": 40,
+        "median_yield_pct": -3.505,
+        "percentile": null,
+        "cheaper_points": null,
+        "dearer_points": null,
+        "not_comparable": "negative in 40 of 61 month-ends",
+        "max_negative_share": 0.2,
+        "min_points": 24,
+        "from": "2021-10-29"
+      }
+    },
+    "vs_own_history": {
+      "label": "expensive",
+      "text": "expensive against its own history (P/FCF and EV/EBIT not comparable)",
+      "multiples": {
+        "price_to_sales": {
+          "label": "expensive",
+          "phrase": "more expensive than at 52 of the last 61 month-ends"
+        },
+        "price_to_fcf": {
+          "label": null,
+          "phrase": "not comparable (negative now and in 43 of 61 month-ends)",
+          "not_comparable": "negative now and in 43 of 61 month-ends"
+        },
+        "ev_to_ebit": {
+          "label": null,
+          "phrase": "not comparable (negative in 40 of 61 month-ends)",
+          "not_comparable": "negative in 40 of 61 month-ends"
+        }
+      }
+    }
+  },
+  "trend": {
+    "close": 228.08,
+    "date": "2026-10-28",
+    "ma50": 247.89,
+    "ma200": 220.58,
+    "vs_ma50_pct": -7.99,
+    "vs_ma200_pct": 3.4,
+    "momentum_12_1_pct": 168.36,
+    "high_52w": 345.85,
+    "drawdown_52w_pct": -34.05,
+    "return_rs_pct": -20.8,
+    "rs_days": 126,
+    "spy_return_pct": 9.08,
+    "rs_spy_pp": -29.88,
+    "qqq_return_pct": 9.91,
+    "rs_qqq_pp": -30.71
+  },
+  "ust10y": {
+    "value": 4.99,
+    "date": "2026-10-27"
+  },
+  "guidance": {
+    "accession": "0001628280-26-066890",
+    "filing_date": "2026-10-22",
+    "period_end": "2026-09-30",
+    "period_source": "release",
+    "period_rejected": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+    "summary": "Bloom Energy raised its full year 2026 revenue guidance to $4.4 billion - $4.6 billion, the third raise of its 2026 outlook this year.",
+    "read": true,
+    "guidance": [
+      {
+        "metric": "revenue",
+        "period": "FY2026",
+        "amount_text": "$4.4 billion - $4.6 billion",
+        "stated_change": "raised",
+        "sentence": "• Raises full year 2026 revenue guidance to $4.4 billion - $4.6 billion, representing 122% year-over-year growth at the midpoint",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Our year-to-date performance and customer demand give us confidence to raise our 2026 outlook for the third time this year.”",
+        "verified": true,
+        "problem": null
+      },
+      {
+        "metric": "other",
+        "period": "FY2026",
+        "amount_text": "",
+        "stated_change": "raised",
+        "sentence": "Bloom Energy is increasing its financial guidance for full-year 2026 as follows:",
+        "verified": true,
+        "problem": null
+      }
+    ],
+    "dropped": 0,
+    "phrases": {
+      "headwind": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "uncertain": {
+        "count": 1,
+        "previous": 1,
+        "sentences": [
+          "With respect to Bloom Energy’s expectations regarding its 2026 outlook, Bloom Energy is not able to provide a quantitative reconciliation of non-GAAP gross margin, non-GAAP operating income, and non-GAAP EPS measures to the corresponding GAAP measures without unreasonable efforts due to the uncertainty regarding, and the potential variability of, reconciling items such as stock-based compensation "
+        ]
+      },
+      "softness": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "challenging": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "macro": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "cautious": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "pacing": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "digestion": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      },
+      "delay": {
+        "count": 0,
+        "previous": 0,
+        "sentences": []
+      }
+    },
+    "previous": {
+      "accession": "0001628280-26-050150",
+      "filing_date": "2026-07-28",
+      "period_end": "2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    "note": null
+  },
+  "news": {
+    "topics": {
+      "guidance": {
+        "rating": 2,
+        "summary": "Bloom raised its full-year 2026 revenue guidance to $4.4–4.6 billion, its third raise this year, after a record Q3. Results beat expectations on both revenue and EPS.",
+        "evidence": [
+          {
+            "claim": "Raises full year 2026 revenue guidance to $4.4 billion - $4.6 billion, representing 122% year-over-year growth at the midpoint",
+            "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "primary",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 4/4, names 1/1"
+          },
+          {
+            "claim": "Bloom Energy raised full-year 2026 revenue guidance to $4.4–4.6B from a prior $3.9–4.2B, the third raise of the year.",
+            "url": "https://fool.com/earnings/takeaways/2026/10/23/bloom-energy-q3-earnings-3-key-takeaways-for-long-term-investors",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2"
+          },
+          {
+            "claim": "Bloom Energy beat Q3 2026 estimates with EPS of $0.94 versus a $0.69 forecast and revenue of $1.24B versus $1.06B.",
+            "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-bloom-energy-beats-q3-2026-estimates-stock-falls-93CH-4967732",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Guidance changes"
+      },
+      "analyst_actions": {
+        "rating": 0,
+        "summary": "Analyst moves after earnings were mixed. Jefferies, BTIG, JPMorgan and Roth cut their price targets, while Morgan Stanley, Barclays and Wells Fargo raised theirs.",
+        "evidence": [
+          {
+            "claim": "BTIG cut its price target on Bloom Energy to $250 from $295.",
+            "url": "https://www.cnn.com/markets/stocks/BE",
+            "event_date": "2026-10-23",
+            "direction": "negative",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 3/3"
+          },
+          {
+            "claim": "Morgan Stanley raised its price target on Bloom Energy to $335 from $310.",
+            "url": "https://www.cnn.com/markets/stocks/BE",
+            "event_date": "2026-10-23",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 6,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          },
+          {
+            "claim": "Wells Fargo raised its price target on Bloom Energy.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-stock-gets-price-target-increase-from-wells-fargo-company-2026-10-26/",
+            "event_date": null,
+            "direction": "positive",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 0/0, names 4/4"
+          },
+          {
+            "claim": "Truist raised its price target on Bloom Energy to $240 from $218 and kept a Hold rating.",
+            "url": "https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-given-new-24000-price-target-at-truist-financial-2026-10-16/",
+            "event_date": "2026-10-16",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 13,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 4/4"
+          }
+        ],
+        "label": "Analyst actions"
+      },
+      "litigation_regulation": {
+        "rating": 0,
+        "summary": "The only matter is a pending securities class action over Chinese-sourced scandium, which predates the window. No new lawsuits or regulatory actions surfaced.",
+        "evidence": [
+          {
+            "claim": "Securities class action Nevins v. Bloom Energy, No. 3:26-cv-07944 (N.D. Cal.), covers a class period of February 27, 2025 to July 8, 2026.",
+            "url": "https://www.ktmc.com/be-bloom-energy-corporation-class-action-lawsuit/",
+            "event_date": null,
+            "direction": "negative",
+            "tier": "other",
+            "age_days": null,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 7/7, names 7/7"
+          }
+        ],
+        "label": "Litigation and regulation"
+      },
+      "customer_concentration": {
+        "rating": 0,
+        "summary": "AEP announced a roughly $4 billion, 702 MW fuel-cell project for Google that uses Bloom technology, which points to strong hyperscaler demand. No customer losses or concentration data were reported.",
+        "evidence": [
+          {
+            "claim": "AEP unveiled a $4 billion fuel cell investment backed by a long-term Google deal using Bloom Energy technology.",
+            "url": "https://www.benzinga.com/markets/large-cap/26/10/62362413/aep-unveils-4-billion-fuel-cell-investment-backed-by-long-term-google-deal",
+            "event_date": "2026-10-14",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 15,
+            "background": false,
+            "status": "unreachable",
+            "check": "HTTP 403"
+          }
+        ],
+        "label": "Customer concentration",
+        "weak_sources_note": "Capped at 0 (was +1): only other-tier sources, none verified",
+        "rating_before_cap": 1
+      },
+      "insider_activity": {
+        "rating": 0,
+        "summary": "The Chief Commercial Officer made a routine sale under a pre-arranged 10b5-1 trading plan, and directors made small acquisitions. Nothing material.",
+        "evidence": [
+          {
+            "claim": "Aman Joshi sold 8,437 shares at $277.17 under a 10b5-1 plan.",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526412560/ownership.xml",
+            "event_date": "2026-10-01",
+            "direction": "neutral",
+            "tier": "primary",
+            "age_days": 28,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 5/5, names 2/2 · Form 4 XML normalised",
+            "form4_check": 2
+          }
+        ],
+        "label": "Insider activity"
+      },
+      "product_competitive": {
+        "rating": 1,
+        "summary": "On the Q3 call, management cited a tenfold rise in stack production capacity with stable headcount. It also pointed to carbon capture and 800V DC offerings.",
+        "evidence": [
+          {
+            "claim": "Stack production capacity increased tenfold with a stable headcount of about 600 on the production line.",
+            "url": "https://www.fool.com/earnings/call-transcripts/2026/10/22/bloom-energy-be-q3-2026-earnings-call-transcript/",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 1/1, names 1/1"
+          },
+          {
+            "claim": "The CEO said customers would accept a 10–15% cost premium for zero-carbon power, and that Bloom can deliver within that range.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-q3-earnings-call-124100470.html",
+            "event_date": "2026-10-22",
+            "direction": "positive",
+            "tier": "other",
+            "age_days": 7,
+            "background": false,
+            "status": "verified",
+            "check": "numbers 2/2, names 1/1"
+          }
+        ],
+        "label": "Product and competitive news"
+      }
+    },
+    "source_check": {
+      "counts": {
+        "guidance": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "analyst_actions": {
+          "verified": 4,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "litigation_regulation": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "customer_concentration": {
+          "verified": 0,
+          "unverified": 0,
+          "unreachable": 1
+        },
+        "insider_activity": {
+          "verified": 1,
+          "unverified": 0,
+          "unreachable": 0
+        },
+        "product_competitive": {
+          "verified": 2,
+          "unverified": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "reused_from": null
+  },
+  "claude": {
+    "enabled": true,
+    "research": {
+      "notes": "**Bloom Energy (BE): news from 2026-09-29 to 2026-10-29**\n\n**1. Guidance and results**\n- Q3 revenue was $1,235.8M, up 138.1% year over year. Guidance for full-year 2026 revenue was raised to $4.4–4.6B. — 2026-10-22 — https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm\n- The prior range was $3.9–4.2B, so this is the third raise of the year. — 2026-10-22 — https://fool.com/earnings/takeaways/2026/10/23/bloom-energy-q3-earnings-3-key-takeaways-for-long-term-investors\n- Non-GAAP operating income guidance was raised to $960M–$1.03B. — 2026-10-22 — https://www.benzinga.com/news/26/10/62549307/bloom-energy-q3-2026-earnings-call-transcript\n- EPS guidance is $3.10–3.40 (aggregator source). — 2026-10-22 — https://finance.biggo.com/news/US_BE_2026-10-22\n- Results beat expectations. Non-GAAP EPS was $0.94 against a $0.69 forecast, and revenue was $1.24B against $1.06B. — 2026-10-22 — https://www.investing.com/news/transcripts/earnings-call-transcript-bloom-energy-beats-q3-2026-estimates-stock-falls-93CH-4967732\n- The stock fell 8.7% to $217.77 on the day. — 2026-10-22 — https://www.investing.com/news/company-news/bloom-energy-q3-2026-slides-revenue-surges-138-stock-falls-93CH-4967754\n- Bloom was added to the S&P 500 during the quarter. The exact date was not in the sources. — date unknown — https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx\n\n**2. Analyst actions**\n\nDates below are the dates TipRanks or other aggregators listed.\n- Jefferies kept its Hold rating. The price target was cut to $242 from $289, but a second headline says from $264. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- BTIG cut its target to $250 from $295. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- JPMorgan cut its target to $292 from $314. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- Roth cut its target to $230 from $260. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- Morgan Stanley raised its target to $335 from $310. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- RBC kept its Buy rating. Oppenheimer said cash-flow concerns remain an overhang. — 2026-10-23 — https://www.cnn.com/markets/stocks/BE\n- Barclays raised its target to $316 from $308. This is the publication date; the action date was not given. — 2026-10-26 — https://www.cnn.com/markets/stocks/BE\n- Evercore ISI reaffirmed its Buy rating. — 2026-10-26 — https://www.cnn.com/markets/stocks/BE\n- Wells Fargo raised its target. The figures were not in the snippet. — 2026-10-26 — https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-stock-gets-price-target-increase-from-wells-fargo-company-2026-10-26/\n- BMO raised its target to $260 from $227. TipRanks shows a Hold rating dated 2026-10-20. Ad-hoc-news says Outperform, dated 2026-10-21. — 2026-10-20 — https://www.tipranks.com/stocks/be/forecast\n- BMO, per the other source — 2026-10-21 — https://www.ad-hoc-news.de/boerse/news/corporate-news/bloom-energy-raises-2026-guidance-bmo-targets-bloom-energy-stock-at-usd-260-00/70413603\n- Truist raised its target to $240 from $218 and kept Hold. — 2026-10-16 — https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-given-new-24000-price-target-at-truist-financial-2026-10-16/\n- Baird raised its target to $351 from $310 (Buy). — 2026-10-15 — https://www.tipranks.com/stocks/be/forecast\n- Roth raised its target to $260 from $225, before cutting it on 10-23. — 2026-10-13 — https://www.tipranks.com/stocks/be/forecast\n- UBS raised its target to $350. TipRanks lists $325 for UBS, which may be an earlier figure. — 2026-10-08 — https://247wallst.com/investing/2026/10/08/bloom-energy-tumbles-8-even-as-ubs-lifts-its-price-target-to-350-fuelcell-energy-slides-8-plug-power-drops-3/\n- Zacks Research downgraded the stock from Strong-Buy to Hold. — 2026-10-02 — https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-given-new-24000-price-target-at-truist-financial-2026-10-16/\n- Consensus was Moderate Buy with an average target of $259 (MarketBeat). — 2026-10-26 — https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-stock-gets-price-target-increase-from-wells-fargo-company-2026-10-26/\n- TipRanks puts the average target at $296.72. — date unknown — https://www.tipranks.com/stocks/be/forecast\n\n**3. Litigation and regulation**\n- A securities class action is pending: Nevins v. Bloom Energy, No. 3:26-cv-07944, N.D. Cal. The class period is 2025-02-27 to 2026-07-08. The complaint alleges understated reliance on Chinese-sourced scandium. — filing date unknown — https://www.ktmc.com/be-bloom-energy-corporation-class-action-lawsuit/\n- The lead-plaintiff deadline was 2026-09-28, the day before the window opened. — 2026-09-28 — https://www.reflector.com/news/national/be-shareholder-alert-bloom-energy-corporation-securities-class-action-lawsuit---investors/article_a2078de3-fca5-559e-8aed-02dca12aa1e2.html\n- I found no new lawsuits, regulatory probes, fines, export-control actions or approvals in the window. The class action is not new, and the sources are law-firm notices.\n\n**4. Customers**\n- AEP announced a roughly $4B, 702 MW Wyoming fuel-cell project for Google. It uses Bloom technology, with planned carbon capture, and full operation is targeted for end-2028. — 2026-10-14 — https://www.benzinga.com/markets/large-cap/26/10/62362413/aep-unveils-4-billion-fuel-cell-investment-backed-by-long-term-google-deal\n- The U.S. Army conditionally awarded long-term leases to Bloom's partner Indelible for Bloom-powered generation at Army installations. The award date was not given; Bloom disclosed it on the Q3 call. — date unknown — https://www.fool.com/earnings/call-transcripts/2026/10/22/bloom-energy-be-q3-2026-earnings-call-transcript/\n- The balance sheet shows deferred revenue and customer deposits of $475.4M against $42.8M in the prior column. It also shows a $215.5M customer consideration asset. — 2026-09-30 — https://www.nasdaq.com/press-release/bloom-energy-reports-record-third-quarter-2026-financial-results-and-raises-full-year\n- I found no Q3 customer-concentration percentages and no customer losses in the window.\n\n**5. Insider activity**\n- Chief Commercial Officer Aman Joshi sold 8,437 shares at $277.17 under a 10b5-1 plan adopted 2025-11-26. — 2026-10-01 — https://www.sec.gov/Archives/edgar/data/0001664703/000119312526412560/ownership.xml\n- Directors Jeffrey Immelt (81 shares) and Cynthia Warner (83 shares) reported small acquisitions. The source is an aggregator, and I did not see the Form 4s. — 2026-09-30 — https://www.futunn.com/en/stock/BE-US/announcement\n- I found no other officer or director open-market trades in the window. Earlier sales by Chambers, Immelt and Joshi in August were all under 10b5-1 plans and fall outside the window. — https://massive.com/quote/be/insider-trading\n- This search may be incomplete.\n\n**6. Product and competition**\n- Management discussed carbon capture, combined heat and power, and 800V DC architecture. The CEO said customers would accept a 10–15% cost premium for zero-carbon power and that Bloom can deliver within that range. — 2026-10-22 — https://finance.yahoo.com/markets/stocks/articles/bloom-energy-q3-earnings-call-124100470.html\n- Stack production capacity rose tenfold with a stable headcount of about 600 on the production line. — 2026-10-22 — https://www.fool.com/earnings/call-transcripts/2026/10/22/bloom-energy-be-q3-2026-earnings-call-transcript/\n- Bloom delivered its first fuel-cell power block for a New Jersey AI data-center project. The date was not given. — date unknown — https://kalkinemedia.com/us/stocks/industrial/bloom-energy-nysebe-powers-up-ai-can-fuel-cells-scale-fast\n- I found no product delays, pricing changes or new competitors in the window. The Siemens–FuelCell Energy partnership (2026-07-10) is a low-quality secondary source and predates the window.",
+      "urls": [
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026050150/ex991_q226financialresults.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026027913/ex991_q126financialresults.htm",
+        "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Third-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+        "https://www.nasdaq.com/press-release/bloom-energy-reports-record-third-quarter-2026-financial-results-and-raises-full-year",
+        "https://www.investing.com/news/company-news/bloom-energy-q3-2026-slides-revenue-surges-138-stock-falls-93CH-4967754",
+        "https://www.bloomenergy.com/news/bloom-energy-reports-record-third-quarter-2026-financial-results-and-raises-full-year-2026-guidance/",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+        "https://www.benzinga.com/news/26/10/62549307/bloom-energy-q3-2026-earnings-call-transcript",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-bloom-energy-beats-q3-2026-estimates-stock-falls-93CH-4967732",
+        "https://www.cnn.com/markets/stocks/BE",
+        "https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-given-new-24000-price-target-at-truist-financial-2026-10-16/",
+        "https://www.marketbeat.com/instant-alerts/analyst-bloom-energy-nyse-be-stock-gets-price-target-increase-from-wells-fargo-company-2026-10-26/",
+        "https://www.tipranks.com/stocks/be/forecast",
+        "https://247wallst.com/investing/2026/10/08/bloom-energy-tumbles-8-even-as-ubs-lifts-its-price-target-to-350-fuelcell-energy-slides-8-plug-power-drops-3/",
+        "https://www.wallstreetzen.com/stocks/us/nyse/be/stock-forecast",
+        "https://www.timothysykes.com/news/bloom-energy-corporation-be-news-2026_10_26/",
+        "https://www.ad-hoc-news.de/boerse/news/corporate-news/bloom-energy-raises-2026-guidance-bmo-targets-bloom-energy-stock-at-usd-260-00/70413603",
+        "https://www.marketbeat.com/stocks/NYSE/BE/price-target",
+        "https://www.kmllp.com/cases-investigations/bloom-energy-corporation",
+        "https://www.ktmc.com/be-bloom-energy-corporation-class-action-lawsuit/",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000166470319000014/a2019q110qbloomenergycorp.htm",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000166470319000008/a2018q410kbloomenergycorp.htm",
+        "https://climatecasechart.com/case/jacob-v-bloom-energy-corp/",
+        "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-faces-class-action-160859020.html",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000162828025008747/be-20241231.htm",
+        "https://www.federmanlaw.com/blog/bloom-energy-corporation-shareholder-class-action-lawsuit/",
+        "https://www.reflector.com/news/national/be-shareholder-alert-bloom-energy-corporation-securities-class-action-lawsuit---investors/article_a2078de3-fca5-559e-8aed-02dca12aa1e2.html",
+        "https://enkiai.com/fuel-cell/fuel-cell/bloom-energy-sofc-aep-agreement/",
+        "https://enkiai.com/fuel-cell/bloom-energy-sofc-aep-agreement-2/",
+        "https://enkiai.com/fuel-cells/bloom-energy-fuel-cell-2026-1-gw-aep-supply-pact/",
+        "https://www.tikr.com/blog/bloom-energy-gains-as-oracles-2-8-gw-deal-and-25-billion-brookfield-pact-set-a-high-bar",
+        "https://enkiai.com/data-center/bloom-energy-fuel-cell-2026-7-65b-data-center-deals/",
+        "https://enkiai.com/fuel-cell-installations-in-data-centers-top-10-projects-companies/",
+        "https://enkiai.com/why-bloom-energy-is-crushing-the-hydrogen-market/",
+        "https://enkiai.com/solid-oxide-fuel-cells/bloom-energy-fuel-cell-2026-5b-brookfield-investment-2/",
+        "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-ai-power-deals-101003332.html",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526355893/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526355898/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526412560/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526395779/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/0001664703/000119312526355894/ownership.xml",
+        "https://en.wikipedia.org/wiki/Harken_Energy_scandal",
+        "https://www.stocktitan.net/sec-filings/BE/form-4-bloom-energy-corp-insider-trading-activity-2bac0daff65e.html",
+        "https://www.stocktitan.net/sec-filings/BE/form-4-bloom-energy-corp-insider-trading-activity-10ac7365b990.html",
+        "https://www.stocktitan.net/sec-filings/BE/form-4-bloom-energy-corp-insider-trading-activity-47e7432efd34.html",
+        "https://www.stocktitan.net/sec-filings/BE/form-4-bloom-energy-corp-insider-trading-activity-a2676a9a41a8.html",
+        "https://www.hartenergy.com/exclusives/bloom-energy-launches-new-fuel-cell-offering-205892/",
+        "https://investor.bloomenergy.com/press-releases/press-release-details/2020/Bloom-Energy-Announces-Initial-Strategy-for-Hydrogen-Market-Entry/default.aspx",
+        "https://en.wikipedia.org/wiki/List_of_fuel_cell_manufacturers",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000162828024005035/be-20231231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1664703/000162828026024240/ars202510k.pdf",
+        "https://finance.yahoo.com/energy/articles/bloom-energys-fuel-cell-technology-163200892.html",
+        "https://kalkinemedia.com/us/stocks/industrial/bloom-energy-nysebe-powers-up-ai-can-fuel-cells-scale-fast",
+        "https://www.fool.com/earnings/call-transcripts/2026/10/22/bloom-energy-be-q3-2026-earnings-call-transcript/",
+        "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-q3-earnings-call-124100470.html",
+        "https://www.benzinga.com/markets/earnings/26/10/62553223/bloom-energy-ceo-says-americas-power-grid-cant-keep-up-with-ai-boom-it-is-overwhelmed",
+        "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-corp-q3-2026-090451372.html",
+        "https://inspenet.com/en/news/aep-investment-fuel-piles-google/",
+        "https://fool.com/earnings/takeaways/2026/10/23/bloom-energy-q3-earnings-3-key-takeaways-for-long-term-investors",
+        "https://www.benzinga.com/markets/large-cap/26/10/62362413/aep-unveils-4-billion-fuel-cell-investment-backed-by-long-term-google-deal",
+        "https://en.wikipedia.org/wiki/Bloom_Energy",
+        "https://finance.biggo.com/news/US_BE_2026-10-22",
+        "https://www.investing.com/news/insider-trading-news/bloom-energy-director-john-chambers-sells-375m-in-shares-93CH-4861662",
+        "https://www.investing.com/news/insider-trading-news/bloom-energy-ceo-sridhar-sells-34-million-in-stock-93CH-4530341",
+        "https://m.investing.com/news/insider-trading-news/bloom-energy-director-john-chambers-sells-375m-in-shares-93CH-4861662?ampMode=1",
+        "https://www.futunn.com/en/stock/BE-US/announcement",
+        "https://in.investing.com/news/stock-market-news/bloom-energy-director-john-chambers-sells-375m-in-shares-93CH-5558478",
+        "https://massive.com/quote/be/insider-trading",
+        "https://247wallst.com/investing/2026/06/23/buy-hold-or-sell-bloom-energy-stock-ripped-past-345-to-an-all-time-high-is-this-ai-energy-play-a-dangerous-value-trap/",
+        "https://www.stocktitan.net/sec-filings/BE/form-4-bloom-energy-corp-insider-trading-activity-efa9903d15e5.html"
+      ],
+      "searches": 8
+    }
+  },
+  "news_from": null,
+  "news_models": null,
+  "subject_prefix": "[Stock]",
+  "disclaimer": "Automated research screen from public data and Claude's news reading. Not investment advice.",
+  "errors": {},
+  "writeup": {
+    "headline": "Bloom Energy rates Hold: explosive growth and net cash offset by a very high valuation and weak cash quality.",
+    "thesis": "Bloom Energy scores 47, a Hold that sits just 3 points above the Sell line. Growth is the standout, with TTM revenue growth of 112.2% and latest-quarter revenue growth of 139.8% year on year, though growth slowed by 27.9 pp from the previous quarter, and the balance sheet is strong with net cash. Against that, quality scores only 28: once customer prepayments are stripped out the FCF margin is -4.4% (reported 11.5%), and the diluted share count is up 38.0% year on year. Valuation scores 4. In absolute terms the multiples are high, with P/S of 17.7x, EV/EBIT of 118.8x and an FCF yield 5.2 pp below the 10-year Treasury yield, and the stock is expensive against its own history (P/FCF and EV/EBIT not comparable). The trend score of 40 reflects the price 34.0% below its 52-week high and shares 29.9 pp behind SPY over the last 126 trading days, while the news score of 68 is helped by a third guidance raise this year to $4.4–4.6 billion.",
+    "key_risks": [
+      "Valuation is high in absolute terms (P/S 17.7x, EV/EBIT 118.8x) and leaves little room for disappointment.",
+      "Cash flow leans on customer prepayments: contract liabilities rose $666.1M, and FCF ex-prepayments is negative.",
+      "Heavy dilution, with the diluted share count up 38.0% year on year.",
+      "Growth is decelerating, slowing by 27.9 pp from the previous quarter.",
+      "A pending securities class action over Chinese-sourced scandium remains unresolved."
+    ],
+    "what_would_change": [
+      "A drop of just 3 points would push the score below 45 and the rating to Sell, for example through weaker trend or news scores or a further fall in quality.",
+      "Moving up 18 points to Buy would likely need a much lower valuation or positive free cash flow without relying on prepayments, which would lift the quality and valuation scores.",
+      "A recovery in price strength against SPY and QQQ would improve the trend score of 40.",
+      "A sharper slowdown in revenue growth, or a cut to guidance, would weaken the growth and news scores."
+    ]
+  },
+  "writeup_check": {
+    "history_label": "expensive",
+    "conflicts": [],
+    "regenerated": false,
+    "dropped": [],
+    "note": null
+  },
+  "cost": {
+    "steps": {
+      "research": {
+        "model": "claude-sonnet-5-5",
+        "requests": 1,
+        "input_tokens": 122652,
+        "output_tokens": 5600,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 8,
+        "per_request": [
+          {
+            "input_tokens": 122652,
+            "output_tokens": 5600,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 8
+          }
+        ],
+        "price": {
+          "input": 2.0,
+          "output": 10.0,
+          "verify": false
+        },
+        "cost_usd": 0.3813,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "scoring": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 8366,
+        "output_tokens": 2245,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 8366,
+            "output_tokens": 2245,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0784,
+        "tiers": [],
+        "tiered_requests": 0
+      },
+      "writeup": {
+        "model": "claude-opus-5-5",
+        "requests": 1,
+        "input_tokens": 3923,
+        "output_tokens": 777,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "web_searches": 0,
+        "per_request": [
+          {
+            "input_tokens": 3923,
+            "output_tokens": 777,
+            "cache_write_tokens": 0,
+            "cache_read_tokens": 0,
+            "web_searches": 0
+          }
+        ],
+        "price": {
+          "input": 4.0,
+          "output": 20.0,
+          "verify": false
+        },
+        "cost_usd": 0.0312,
+        "tiers": [],
+        "tiered_requests": 0
+      }
+    },
+    "total_usd": 0.4909,
+    "unpriced_steps": [],
+    "web_search_per_1k": 10.0
+  },
+  "quote": {
+    "price": 228.08,
+    "as_of": "2026-10-28T20:00:00Z",
+    "prev_close": 218.5
+  },
+  "close_note": {
+    "scored_on": "2026-10-28",
+    "latest": "2026-10-28",
+    "latest_from": "quote",
+    "run_et": "2026-10-29 07:06",
+    "note": null,
+    "close_window": null
+  },
+  "email": "skipped (email off)",
+  "batch": {
+    "run_id": "40862009653",
+    "tickers": [
+      "NVDA",
+      "ORCL",
+      "GOOGL",
+      "META",
+      "SHOP",
+      "RBRK",
+      "GTLB",
+      "ZS",
+      "NTAP",
+      "PLTR",
+      "INOD",
+      "AKAM",
+      "DOCU",
+      "FSLY",
+      "ZM",
+      "NTSK",
+      "NTNX",
+      "FTNT",
+      "HIMX",
+      "MOD",
+      "FFIV",
+      "AAOI",
+      "SNDK",
+      "BE",
+      "TENB"
+    ]
+  }
+}
