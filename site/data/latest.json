@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-29",
-  "run_id": "2026-10-29T11:34:05Z",
-  "generated_at": "2026-10-29T11:37:35+00:00",
+  "date": "2026-10-30",
+  "run_id": "2026-10-30T15:32:16Z",
+  "generated_at": "2026-10-30T15:35:18+00:00",
   "trigger": "manual",
   "events": [],
   "categories": [
@@ -34,9 +34,9 @@
     "credit": {
       "score": 1,
       "reasons": [
-        "High-yield spread 3.18% (+0.10 pts over 4 weeks)",
-        "Investment-grade spread 0.88% (+0.04 pts over 4 weeks)",
-        "News adjustment +1: Broad spreads are calm, with high yield at 3.18% and investment grade at 0.88%. AI-specific credit is under strain, though. Oracle 5-year CDS reached 282-308bp across sources (282-295bp per CNBC), CoreWeave CDS is at distress levels, and Evercore says the market is 'no mas' to AI debt without operating cash flow support."
+        "High-yield spread 3.26% (+0.02 pts over 4 weeks)",
+        "Investment-grade spread 0.89% (+0.03 pts over 4 weeks)",
+        "News adjustment +1: Broad spreads are calm, but AI-specific credit stress is visible and is not captured by the index spreads. CoreWeave's five-year CDS was about 1,082bp and its 2032 bond yielded 14.9% (CNBC, Oct 19). Oracle's CDS hit a record 288bp (Oct 15, other-tier). Pimco cut its stakes in Meta and Oracle data-center bonds. Microsoft's heavily oversubscribed $25B deal partly offsets this."
       ],
       "data_ok": true
     },
@@ -51,65 +51,56 @@
     "hyperscaler_filings": {
       "score": 0,
       "reasons": [
-        "Aggregate capex 2026Q3: +20.3% QoQ (4 companies)",
+        "Aggregate capex 2026Q3: +26.9% QoQ (5 companies)",
         "Alphabet free cash flow negative ($-9.1B, quarter ending 2026-09-30)",
-        "Amazon free cash flow negative ($-8.8B, quarter ending 2026-06-30)",
+        "Amazon free cash flow negative ($-34.8B, quarter ending 2026-09-30)",
         "Meta free cash flow negative ($-1.2B, quarter ending 2026-09-30)",
         "Oracle free cash flow negative ($-5.4B, quarter ending 2026-08-31)",
-        "New lease assets (data-center leases starting) 2026Q3: +15.9% QoQ",
-        "Leases signed but not yet commenced 2026Q3: +19.5% QoQ (4 companies)"
+        "New lease assets (data-center leases starting) 2026Q3: +13.6% QoQ",
+        "Leases signed but not yet commenced 2026Q3: +19.6% QoQ (5 companies)"
       ],
       "data_ok": true
     },
     "ai_lab_financing": {
       "score": 1,
       "reasons": [
-        "Mixed. Money is still flowing to the big labs: OpenAI is close to finalizing up to $30B at a $1.25T pre-money valuation, and Anthropic has filed for an IPO. The weak points are Anthropic's $80 billion in first-half losses and distress-level credit default swap pricing at CoreWeave. No new neocloud raise surfaced this week. This is an isolated stress signal, not a funding pullback."
+        "OpenAI is still trying to raise up to $30B with no close reported. CoreWeave's debt fell again after a weak Korean neocloud IPO. An unconfirmed, other-tier report says Anthropic IPO valuation talk slipped. There were no reports of cancelled compute contracts. Weak and isolated signals."
       ],
       "evidence": [
         {
-          "claim": "OpenAI is close to finalizing up to $30B at a $1.25T pre-money valuation, and the final size is still being determined.",
-          "url": "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html",
+          "claim": "OpenAI is working on a new raise of up to $30B at a $1.25T valuation ahead of an IPO; no close has been reported.",
+          "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
           "event_date": "2026-10-22",
-          "tier": "major",
-          "age_days": 7,
-          "background": false,
-          "status": "verified",
-          "check": "numbers 2/2, names 1/1"
-        },
-        {
-          "claim": "Anthropic's IPO filing shows $80 billion in first-half losses.",
-          "url": "https://www.cnbc.com/2026/10/26/anthropic-ipo-live-updates-ai-s-1-filing.html",
-          "event_date": "2026-10-26",
-          "tier": "major",
-          "age_days": 3,
-          "background": false,
-          "status": "verified",
-          "check": "numbers 1/1, names 2/2"
-        },
-        {
-          "claim": "CoreWeave credit default swaps hit distress levels as investors sour on AI debt.",
-          "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
-          "event_date": "2026-10-15",
-          "tier": "major",
-          "age_days": 14,
-          "background": true,
-          "status": "verified",
-          "check": "numbers 0/0, names 2/2"
-        },
-        {
-          "claim": "CoreWeave 5-year CDS was above 1,100bp on Oct. 15, and its 2031 bond yield briefly topped 16% before easing to about 14%.",
-          "url": "https://www.tokenpost.com/news/investing/33690",
-          "event_date": "2026-10-15",
           "tier": "other",
-          "age_days": 14,
-          "background": true,
-          "status": "unverified",
-          "check": "numbers 5/6, names 2/2 · missing: 5"
+          "age_days": 8,
+          "background": false,
+          "status": "verified",
+          "check": "numbers 2/2, names 2/2"
+        },
+        {
+          "claim": "CoreWeave debt tumbled anew after a South Korean neocloud's IPO tanked.",
+          "url": "https://www.morningstar.com/markets/coreweave-debt-tumbles-anew-korean-neocloud-ipo-tanks",
+          "event_date": "2026-10-20",
+          "tier": "other",
+          "age_days": 10,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
+        },
+        {
+          "claim": "Anthropic IPO valuation talk reportedly slid to about $1.5T from $2T.",
+          "url": "https://beincrypto.com/openai-fundraise-anthropic-ipo-valuation/",
+          "event_date": null,
+          "tier": "other",
+          "age_days": null,
+          "background": false,
+          "status": "unreachable",
+          "check": "HTTP 403"
         }
       ],
       "data_ok": true,
       "samples": [
+        1,
         1
       ],
       "spread": 0,
@@ -118,42 +109,33 @@
     "supplier_signals": {
       "score": 0,
       "reasons": [
-        "Supplier fundamentals were positive. SK Hynix reported Q3 revenue of KRW 104.6T, up 32% quarter on quarter, with an 80% operating margin. Celestica beat and guided strongly. No 'pacing' or 'digestion' language was found. Chip stocks did sell off (AMD, Micron, Nvidia), but that is price action, not a demand signal."
+        "Supplier demand looks strong. Vertiv's Q3 orders were more than 100% up year on year, though it will stop reporting orders data, a minor transparency flag. Intel's data-center revenue rose 78%, and its weak Q4 guide was blamed on PCs and supply. No 'digestion' or 'pacing' language was found. Nvidia reports Nov 17."
       ],
       "evidence": [
         {
-          "claim": "SK Hynix Q3 revenue was KRW 104.6T, up 32% quarter on quarter, with an 80% operating margin.",
-          "url": "https://www.fool.com/earnings/call-transcripts/2026/10/28/sk-hynix-skhy-q3-2026-earnings-call-transcript/",
+          "claim": "Vertiv said Q3 orders were more than 100% up year on year and that it will stop providing orders data.",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vertiv-vrt-said-q3-earnings-080418363.html",
           "event_date": "2026-10-28",
           "tier": "other",
-          "age_days": 1,
+          "age_days": 2,
           "background": false,
           "status": "verified",
-          "check": "numbers 4/4, names 3/3"
+          "check": "numbers 2/2, names 1/1"
         },
         {
-          "claim": "Celestica beat on Q3 and gave strong guidance for next year.",
-          "url": "https://seekingalpha.com/article/4957959-celestica-soaring-on-blowout-earnings-and-guidance",
-          "event_date": null,
-          "tier": "other",
-          "age_days": null,
+          "claim": "Intel's outlook was hurt by a weak market for personal computer chips, while data-center revenue rose 78%.",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-29/intel-outlook-hurt-by-weak-market-for-personal-computer-chips",
+          "event_date": "2026-10-29",
+          "tier": "major",
+          "age_days": 1,
           "background": false,
           "status": "unreachable",
           "check": "HTTP 403"
-        },
-        {
-          "claim": "AMD fell more than 8%, Micron 6% and Nvidia 4%.",
-          "url": "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-          "event_date": "2026-10-22",
-          "tier": "major",
-          "age_days": 7,
-          "background": false,
-          "status": "verified",
-          "check": "numbers 3/3, names 2/3"
         }
       ],
       "data_ok": true,
       "samples": [
+        0,
         0
       ],
       "spread": 0,
@@ -162,52 +144,43 @@
     "physical_buildout": {
       "score": 1,
       "reasons": [
-        "There are some local frictions. Pittsburg, CA and San Diego passed 45-day data-center moratoria, and Microsoft said 3P capacity deliveries shifted to H2 because of delays at GPU-as-a-service providers. These are weak, scattered signals. Hyperscaler capex plans keep rising and GPU rents are firm."
+        "There is local friction. San Diego passed a 45-day data-center moratorium. Microsoft dropped its anchor role at Nscale's Essex site because the grid connection slipped into the 2030s, a power issue rather than a demand issue. On the other side, H100 rental prices are firm at $2.88/hr. Isolated signals, mostly from other-tier sources."
       ],
       "evidence": [
         {
-          "claim": "Microsoft said 3P capacity deliveries shifted to H2, with the delays tied to GPU-as-a-service providers.",
-          "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
-          "event_date": "2026-10-28",
-          "tier": "major",
-          "age_days": 1,
-          "background": false,
-          "status": "verified",
-          "check": "numbers 2/2, names 2/2"
-        },
-        {
-          "claim": "Pittsburg approved a 45-day moratorium on new data centers.",
-          "url": "https://www.ktvu.com/news/pittsburg-approves-45-day-data-center-moratorium-amidst-heated-pushback",
-          "event_date": "2026-10-26",
+          "claim": "San Diego City Council unanimously passed a 45-day moratorium on data centers.",
+          "url": "https://www.kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
+          "event_date": "2026-10-27",
           "tier": "other",
           "age_days": 3,
           "background": false,
           "status": "verified",
-          "check": "numbers 1/1, names 1/1"
+          "check": "numbers 1/1, names 4/4"
         },
         {
-          "claim": "San Diego City Council unanimously passed a moratorium on data centers.",
-          "url": "https://kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
-          "event_date": "2026-10-27",
+          "claim": "Microsoft ended its agreement to anchor Nscale's 50MW Essex site after the grid connection slipped into the 2030s.",
+          "url": "https://www.benzinga.com/markets/tech/26/10/62596402/microsoft-ai-data-center-misfire-exposes-brutal-reality",
+          "event_date": null,
           "tier": "other",
-          "age_days": 2,
+          "age_days": null,
           "background": false,
-          "status": "verified",
-          "check": "numbers 0/0, names 4/4"
+          "status": "unreachable",
+          "check": "HTTP 403"
         },
         {
-          "claim": "Alphabet expects capex to increase significantly in 2027.",
-          "url": "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-          "event_date": "2026-10-28",
-          "tier": "major",
-          "age_days": 1,
+          "claim": "Silicon Data's H100 neocloud rental index was $2.88/hr, up from $2.00 in December.",
+          "url": "https://fourweekmba.com/ai-nvidia-h100-rent-hits-2-88-an-hour-up-44-since-december/",
+          "event_date": "2026-10-24",
+          "tier": "other",
+          "age_days": 6,
           "background": false,
-          "status": "verified",
-          "check": "numbers 1/1, names 1/1"
+          "status": "unreachable",
+          "check": "HTTP 403"
         }
       ],
       "data_ok": true,
       "samples": [
+        1,
         1
       ],
       "spread": 0,
@@ -231,15 +204,15 @@
     "red_confirmed": false,
     "jumps": {},
     "previous_run": {
-      "timestamp": "2026-10-29T02:43:22Z",
+      "timestamp": "2026-10-29T11:34:05Z",
       "level": "GREEN"
     }
   },
   "credit_stage": {
     "changes_4w": {
-      "hy": 0.1,
-      "ig": 0.04,
-      "baa": -0.01
+      "hy": 0.02,
+      "ig": 0.03,
+      "baa": -0.04
     },
     "widening": [],
     "narrowing": [],
@@ -248,178 +221,208 @@
     "label": "Calm",
     "ten_year": {
       "direction": "falling",
-      "chg_4w": -0.27,
+      "chg_4w": -0.24,
       "label": "10y falling"
     },
     "line": "Calm · 10y falling"
   },
   "follow_ups": [
     {
-      "item": "Capex guidance for fiscal 2027 given on the Microsoft and Alphabet earnings calls",
+      "item": "Amazon Q3 results and capex commentary after the close on 2026-10-29",
       "runs": 1,
-      "listed": "2026-10-29T02:43:22Z",
+      "listed": "2026-10-29T11:34:05Z",
       "status": "resolved",
-      "note": "Microsoft is aiming at about $170B for calendar 2027, though another source says fiscal 2027.",
-      "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
-      "event_date": "2026-10-28",
+      "note": "Amazon reported an AWS backlog of $578B and said 2027 spending will be \"meaningfully more\", while shares fell 7.3% after hours.",
+      "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+      "event_date": "2026-10-29",
       "source": {
-        "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
-        "claim": "Microsoft is aiming at about $170B for calendar 2027, though another source says fiscal 2027.",
+        "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+        "claim": "Amazon reported an AWS backlog of $578B and said 2027 spending will be \"meaningfully more\", while shares fell 7.3% after hours.",
         "tier": "major",
-        "status": "verified",
-        "check": "numbers 2/2, names 1/1"
+        "status": "unverified",
+        "check": "numbers 1/3, names 2/2 · missing: 578, 7.3"
       },
       "age_days": 1,
       "background": false
     },
     {
-      "item": "Amazon and Meta Q3 results and 2027 capex commentary",
+      "item": "Market reaction to Alphabet's negative free cash flow and debt-funded capex",
       "runs": 1,
-      "listed": "2026-10-29T02:43:22Z",
+      "listed": "2026-10-29T11:34:05Z",
       "status": "still_open",
-      "note": "Amazon has not reported yet; Meta's Q3 capex of $34.91B, FCF of −$2.12B and narrowed 2026 range of $135–145B (no 2027 figure) come from an other-tier source only, so they are unconfirmed, and the filing data shows a different capex figure of $33.9B.",
-      "url": "https://fourweekmba.com/ai-metas-q3-explained-capex-outran-its-cash-by-2-1-billion/",
-      "event_date": "2026-10-21",
+      "note": "Alphabet shares reportedly closed down 12.6%, the largest one-day drop since listing, but this figure is unconfirmed by a primary or major source.",
+      "url": "https://finance.biggo.com/news/7bb27e24-6c93-412c-aa84-7d7ccd588d67",
+      "event_date": "2026-10-29",
       "source": {
-        "url": "https://fourweekmba.com/ai-metas-q3-explained-capex-outran-its-cash-by-2-1-billion/",
-        "claim": "Amazon has not reported yet; Meta's Q3 capex of $34.91B, FCF of −$2.12B and narrowed 2026 range of $135–145B (no 2027 figure) come from an other-tier source only, so they are unconfirmed, and the filing data shows a different capex figure of $33.9B.",
+        "url": "https://finance.biggo.com/news/7bb27e24-6c93-412c-aa84-7d7ccd588d67",
+        "claim": "Alphabet shares reportedly closed down 12.6%, the largest one-day drop since listing, but this figure is unconfirmed by a primary or major source.",
         "tier": "other",
-        "status": "unreachable",
-        "check": "HTTP 429"
+        "status": "verified",
+        "check": "numbers 1/1, names 1/1"
+      },
+      "age_days": 1,
+      "background": false
+    },
+    {
+      "item": "Oracle and CoreWeave CDS levels and any pulled or repriced AI-related bond deals",
+      "runs": 1,
+      "listed": "2026-10-29T11:34:05Z",
+      "status": "still_open",
+      "note": "No newer levels were found and no deals were pulled; the latest major-source reading had CoreWeave's five-year CDS at about 1,082bp and its 2032 bond yield at 14.9%.",
+      "url": "https://www.cnbc.com/2026/10/19/coreweave-oracle-ai-credit-stress.html",
+      "event_date": "2026-10-19",
+      "source": {
+        "url": "https://www.cnbc.com/2026/10/19/coreweave-oracle-ai-credit-stress.html",
+        "claim": "No newer levels were found and no deals were pulled; the latest major-source reading had CoreWeave's five-year CDS at about 1,082bp and its 2032 bond yield at 14.9%.",
+        "tier": "major",
+        "status": "verified",
+        "check": "numbers 3/3, names 2/3"
+      },
+      "age_days": 11,
+      "background": true
+    },
+    {
+      "item": "Nvidia's November earnings and any 'digestion' or 'pacing' language from suppliers",
+      "runs": 1,
+      "listed": "2026-10-29T11:34:05Z",
+      "status": "still_open",
+      "note": "Nvidia reports Nov 17 and no digestion language was found, though Microsoft cut its capex forecast to $170B from $175B.",
+      "url": "https://cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",
+      "event_date": "2026-10-28",
+      "source": {
+        "url": "https://cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",
+        "claim": "Nvidia reports Nov 17 and no digestion language was found, though Microsoft cut its capex forecast to $170B from $175B.",
+        "tier": "major",
+        "status": "unverified",
+        "check": "numbers 2/3, names 2/2 · missing: 17"
+      },
+      "age_days": 2,
+      "background": false
+    },
+    {
+      "item": "Anthropic IPO pricing and the close of OpenAI's up-to-$30B round",
+      "runs": 1,
+      "listed": "2026-10-29T11:34:05Z",
+      "status": "still_open",
+      "note": "OpenAI is still working on a raise of up to $30B at a $1.25T valuation with no close reported, and no Anthropic IPO pricing was found.",
+      "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+      "event_date": "2026-10-22",
+      "source": {
+        "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+        "claim": "OpenAI is still working on a raise of up to $30B at a $1.25T valuation with no close reported, and no Anthropic IPO pricing was found.",
+        "tier": "other",
+        "status": "verified",
+        "check": "numbers 2/2, names 3/3"
       },
       "age_days": 8,
       "background": false
     },
     {
-      "item": "FOMC decision from the Oct 27-28 meeting and its effect on the 10-year yield",
+      "item": "Spread of local data-center moratoria beyond Pittsburg, San Diego and Georgetown",
       "runs": 1,
-      "listed": "2026-10-29T02:43:22Z",
+      "listed": "2026-10-29T11:34:05Z",
       "status": "still_open",
-      "note": "The FOMC held at 3.75–4.00%, with the 10-year up 5bp to 5.042% and futures pricing about an 85% chance of a December hike, but these figures are unconfirmed by a primary or major source.",
-      "url": "https://money.usnews.com/investing/news/articles/2026-10-28/fomc-holds-rates-steady-markets-mostly-follow-suit",
-      "event_date": "2026-10-28",
+      "note": "Charlotte's city council moved to extend its data-center moratorium, while Aurora rejected a ban, so the picture is mixed.",
+      "url": "https://www.wcnc.com/article/news/politics/north-carolina-politics/charlotte-city-council-to-vote-on-extending-data-center-moratorium/275-6cf97186-f6e4-47d8-832f-dc5e28ab60b7",
+      "event_date": null,
       "source": {
-        "url": "https://money.usnews.com/investing/news/articles/2026-10-28/fomc-holds-rates-steady-markets-mostly-follow-suit",
-        "claim": "The FOMC held at 3.75–4.00%, with the 10-year up 5bp to 5.042% and futures pricing about an 85% chance of a December hike, but these figures are unconfirmed by a primary or major source.",
+        "url": "https://www.wcnc.com/article/news/politics/north-carolina-politics/charlotte-city-council-to-vote-on-extending-data-center-moratorium/275-6cf97186-f6e4-47d8-832f-dc5e28ab60b7",
+        "claim": "Charlotte's city council moved to extend its data-center moratorium, while Aurora rejected a ban, so the picture is mixed.",
         "tier": "other",
         "status": "unreachable",
-        "check": "ReadTimeout"
+        "check": "HTTP 403"
+      },
+      "age_days": null,
+      "background": false
+    },
+    {
+      "item": "Amazon and Meta Q3 results and 2027 capex commentary",
+      "runs": 2,
+      "listed": "2026-10-29T02:43:22Z",
+      "status": "resolved",
+      "note": "Amazon said 2027 spending will be \"meaningfully more\" and expects AWS growth over 40% in 2027 and 2028.",
+      "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+      "event_date": "2026-10-29",
+      "source": {
+        "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+        "claim": "Amazon said 2027 spending will be \"meaningfully more\" and expects AWS growth over 40% in 2027 and 2028.",
+        "tier": "major",
+        "status": "verified",
+        "check": "numbers 3/3, names 2/2"
       },
       "age_days": 1,
+      "background": false
+    },
+    {
+      "item": "FOMC decision from the Oct 27-28 meeting and its effect on the 10-year yield",
+      "runs": 2,
+      "listed": "2026-10-29T02:43:22Z",
+      "status": "resolved",
+      "note": "The Fed held at 3.75–4.00% in a 10-2 vote with Cook and Hammack dissenting for a hike, and the 10-year rose from 4.99% to 5.05%.",
+      "url": "https://www.vantagemarkets.com/market-news/fed-rate-decision-10-2-hold-two-hike-votes-october-29-2026/",
+      "event_date": "2026-10-28",
+      "source": {
+        "url": "https://www.vantagemarkets.com/market-news/fed-rate-decision-10-2-hold-two-hike-votes-october-29-2026/",
+        "claim": "The Fed held at 3.75–4.00% in a 10-2 vote with Cook and Hammack dissenting for a hike, and the 10-year rose from 4.99% to 5.05%.",
+        "tier": "other",
+        "status": "unreachable",
+        "check": "HTTP 403"
+      },
+      "age_days": 2,
       "background": false
     },
     {
       "item": "Brent crude at $123 as a macro headwind to margins and rates",
-      "runs": 1,
+      "runs": 2,
       "listed": "2026-10-29T02:43:22Z",
-      "status": "still_open",
-      "note": "One report says Brent settled at $115.32 versus the official $123.1 reading, but that lower figure is unconfirmed by a primary or major source.",
-      "url": "https://thenationalnews.com/business/energy/2026/10/29/oil-prices-decline-after-diplomatic-push-in-iran-war",
-      "event_date": "2026-10-28",
+      "status": "improved",
+      "note": "Brent settled at $114.88, below the $123.1 official print from Oct 27, giving a range of about $115-123.",
+      "url": "https://www.cnbc.com/2026/10/29/oil-price-today-wti-brent.html",
+      "event_date": "2026-10-29",
       "source": {
-        "url": "https://thenationalnews.com/business/energy/2026/10/29/oil-prices-decline-after-diplomatic-push-in-iran-war",
-        "claim": "One report says Brent settled at $115.32 versus the official $123.1 reading, but that lower figure is unconfirmed by a primary or major source.",
-        "tier": "other",
+        "url": "https://www.cnbc.com/2026/10/29/oil-price-today-wti-brent.html",
+        "claim": "Brent settled at $114.88, below the $123.1 official print from Oct 27, giving a range of about $115-123.",
+        "tier": "major",
         "status": "unverified",
-        "check": "numbers 1/2, names 1/2 · missing: 123.1, One"
+        "check": "numbers 1/5, names 1/1 · missing: 123.1, 27, 115, 123"
       },
       "age_days": 1,
-      "background": false
-    },
-    {
-      "item": "Restore the news research feed so the financing, supplier and buildout categories can be scored on sourced evidence",
-      "runs": 2,
-      "listed": "2026-10-25T21:12:14Z",
-      "status": "resolved",
-      "note": "The news search worked this run, although coverage of suppliers and physical build-out was thin.",
-      "url": "",
-      "event_date": null,
-      "source": null,
-      "age_days": null,
       "background": false
     },
     {
       "item": "Whether Nasdaq-100 weakness deepens while the S&P 500 holds, signalling an AI-specific rotation",
-      "runs": 2,
+      "runs": 3,
       "listed": "2026-10-25T21:12:14Z",
-      "status": "worsened",
-      "note": "AMD fell more than 8%, Micron 6% and Nvidia 4%, and official data show the Nasdaq-100 down over four weeks while the S&P 500 rose.",
-      "url": "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-      "event_date": "2026-10-22",
+      "status": "still_open",
+      "note": "The S&P fell 0.3% and the Nasdaq-100 fell 1.4% on Oct 29, and both were down further by the Oct 30 open.",
+      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-30-2026",
+      "event_date": "2026-10-29",
       "source": {
-        "url": "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-        "claim": "AMD fell more than 8%, Micron 6% and Nvidia 4%, and official data show the Nasdaq-100 down over four weeks while the S&P 500 rose.",
-        "tier": "major",
-        "status": "verified",
-        "check": "numbers 5/5, names 4/5"
+        "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-30-2026",
+        "claim": "The S&P fell 0.3% and the Nasdaq-100 fell 1.4% on Oct 29, and both were down further by the Oct 30 open.",
+        "tier": "other",
+        "status": "unreachable",
+        "check": "HTTP 403"
       },
-      "age_days": 7,
+      "age_days": 1,
       "background": false
     },
     {
       "item": "Hyperscaler free cash flow turning more negative in Q3 10-Q filings, along with any rise in debt issuance",
-      "runs": 2,
+      "runs": 3,
       "listed": "2026-10-25T21:12:14Z",
       "status": "worsened",
-      "note": "Alphabet's FCF was −$9.1B, worse than −$5.9B in Q2, and it raised $28.7B of notes and $12.4B of stock, consistent with filing data showing negative FCF at Alphabet and Meta.",
-      "url": "https://www.fool.com/investing/2026/10/28/microsoft-and-alphabet-just-reported-earnings-putting-the-ai-boom-to-the-test/",
+      "note": "Alphabet's FCF was -$9.07B and its long-term debt was $125.1B versus $21.6B a year earlier.",
+      "url": "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
       "event_date": "2026-10-28",
       "source": {
-        "url": "https://www.fool.com/investing/2026/10/28/microsoft-and-alphabet-just-reported-earnings-putting-the-ai-boom-to-the-test/",
-        "claim": "Alphabet's FCF was −$9.1B, worse than −$5.9B in Q2, and it raised $28.7B of notes and $12.4B of stock, consistent with filing data showing negative FCF at Alphabet and Meta.",
-        "tier": "other",
-        "status": "verified",
-        "check": "numbers 5/5, names 3/3"
-      },
-      "age_days": 1,
-      "background": false
-    },
-    {
-      "item": "Hyperscaler Q3 earnings and 2027 capex guidance in late October",
-      "runs": 3,
-      "listed": "2026-10-17T05:35:55Z",
-      "status": "improved",
-      "note": "Alphabet expects capex to increase significantly in 2027, while Amazon's results are still pending.",
-      "url": "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-      "event_date": "2026-10-28",
-      "source": {
-        "url": "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-        "claim": "Alphabet expects capex to increase significantly in 2027, while Amazon's results are still pending.",
+        "url": "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
+        "claim": "Alphabet's FCF was -$9.07B and its long-term debt was $125.1B versus $21.6B a year earlier.",
         "tier": "major",
         "status": "verified",
-        "check": "numbers 1/1, names 2/2"
+        "check": "numbers 3/3, names 1/2"
       },
-      "age_days": 1,
-      "background": false
-    },
-    {
-      "item": "New debt raises or refinancing terms at CoreWeave, Nscale and other neoclouds",
-      "runs": 3,
-      "listed": "2026-10-17T05:35:55Z",
-      "status": "still_open",
-      "note": "No new neocloud raise surfaced this week; Nscale's pre-IPO convertible financing has Nvidia's $1B due mid-November.",
-      "url": "https://www.nscale.com/press-releases/pre-ipo-convertible-financing",
-      "event_date": "2026-09-25",
-      "source": {
-        "url": "https://www.nscale.com/press-releases/pre-ipo-convertible-financing",
-        "claim": "No new neocloud raise surfaced this week; Nscale's pre-IPO convertible financing has Nvidia's $1B due mid-November.",
-        "tier": "other",
-        "status": "verified",
-        "check": "numbers 1/1, names 3/4"
-      },
-      "age_days": 34,
-      "background": true
-    },
-    {
-      "item": "October Taiwan AI-server revenue as the 3-month deceleration check comes online",
-      "runs": 3,
-      "listed": "2026-10-17T05:35:55Z",
-      "status": "no_news",
-      "note": "October Taiwan monthly revenue has not been published yet.",
-      "url": "",
-      "event_date": null,
-      "source": null,
-      "age_days": null,
+      "age_days": 2,
       "background": false
     }
   ],
@@ -435,155 +438,153 @@
     },
     "research": {
       "urls": [
-        "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
-        "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-        "https://www.investing.com/analysis/alphabet-microsoft-and-amazon-earnings--the-bearish-sentiment-might-help-200690214",
-        "https://www.fool.com/investing/2026/10/28/microsoft-and-alphabet-just-reported-earnings-putting-the-ai-boom-to-the-test/",
-        "https://investinglive.com/stocks/microsoft-sees-170bn-capex-in-fiscal-2027-but-says-it-will-stay-cash-flow-positive/",
-        "https://www.directionsonmicrosoft.com/microsoft-expect-capacity-constraints-capex-acceleration-to-continue/",
-        "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/microsoft-and-meta-earnings-previews",
-        "https://www.tradingkey.com/analysis/stocks/us-stocks/262060902-microsoft-msft-q4-fy2026-earnings-preview-july-29-azure-capex-tradingkey",
-        "https://explainx.ai/blog/microsoft-170-billion-calendar-2027-capex-guidance-azure-48-percent-what-it-means-2026",
-        "https://finance.yahoo.com/video/wells-fargo-cuts-meta-price-002001458.html",
-        "https://cmsinvestments.substack.com/p/meta-q3-preview-the-2027-capex-number",
-        "https://fourweekmba.com/ai-metas-q3-explained-capex-outran-its-cash-by-2-1-billion/",
-        "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62543931/meta-analysts-revise-price-target-after-q3-core-ad-strength-muse-concerns-remain",
+        "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-29-211602513.html",
+        "https://www.alpha-sense.com/earnings/amzn/",
+        "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+        "https://www.indmoney.com/blog/us-stocks/amazon-stock-q3-earnings-analysis-amzn",
+        "https://finance.yahoo.com/markets/stocks/articles/amazon-com-inc-amzn-q3-051330166.html",
+        "https://ca.finance.yahoo.com/news/live/amazon-earnings-live-q3-earnings-miss-sends-stock-lower-203345870.html",
+        "https://www.cnbc.com/2026/10/29/aws-q3-earnings-report-2026.html",
+        "https://gurufocus.com/news/9159106/amazons-earnings-miss-and-infrastructure-spending-impact-stock-performance",
+        "https://coinpedia.org/stock-market-news/amazon-stock-drops-after-earnings-can-amzn-recover-from-the-latest-sell-off/",
+        "https://mystockresearch.substack.com/p/q3-2026-earnings-update-is-meta-a",
+        "https://finance.yahoo.com/markets/article/one-line-from-metas-earnings-call-that-ensured-the-stock-will-likely-stay-dead-money-134542007.html",
         "https://fortune.com/2026/10/21/meta-q3-earnings-mark-zuckerberg-capex-muse/",
-        "https://seekingalpha.com/article/4956874-amazon-q3-preview-capex-spending-in-focus-shares-fairly-valued",
-        "https://www.thealphaagentic.com/meta-q3-2026-earnings-preview/",
-        "https://www.vantagemarkets.com/market-analysis/big-tech-earnings-preview-q3-2026/",
-        "https://finance.biggo.com/news/7704261d-f24f-48c4-b5be-014986e460d6",
-        "https://dmg03860.substack.com/p/on-the-horizon-watch-out-for-the",
-        "https://www.cnbc.com/2026/10/28/fed-meeting-today-live-updates.html",
-        "https://money.usnews.com/investing/news/articles/2026-10-28/fomc-holds-rates-steady-markets-mostly-follow-suit",
-        "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-interest-rates-held-steady-in-split-vote-warsh-says-politics-played-no-role-ahead-of-midterm-elections-191946928.html",
-        "https://www.cnbc.com/2026/10/28/us-treasurys-bonds-yields-federal-reserve.html",
-        "https://admiralmarkets.com/analytics/traders-blog/fomc-october-2026-fed-holds-rates",
-        "https://www.investing.com/news/economy-news/fomc-holds-rates-steady-markets-mostly-follow-suit-4980441",
-        "https://alanlongbon.substack.com/p/after-the-us-feds-october-hold-two",
-        "https://www.tokenpost.com/news/investing/42501",
-        "https://www.pymnts.com/news/artificial-intelligence/2026/openai-aims-to-lock-in-30-billion-funding-round-by-next-week/",
-        "https://www.thedailystar.net/news/technology/news/openai-races-raise-funding-anthropics-market-debut-report-4303276",
-        "https://www.calcalistech.com/ctechnews/article/0ik7s4qx4",
-        "https://qz.com/openai-30-billion-funding-round-anthropic-ipo-102026",
-        "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html",
-        "https://finance.yahoo.com/markets/article/anthropic-raises-65-billion-in-latest-funding-round-making-it-more-valuable-than-openai-184115591.html",
-        "https://augment.market/pulse/anthropics-reported-965b-tops-openai",
-        "https://www.cnbc.com/2026/10/26/anthropic-ipo-live-updates-ai-s-1-filing.html",
-        "https://www.cnbc.com/video/2026/10/23/openai-nears-up-to-30b-funding-round-at-1-point-25t-valuation-led-by-uae-investors-sources.html",
-        "https://news.ycombinator.com/item?id=48873836",
-        "https://www.kucoin.com/news/flash/coreweave-nebius-and-iren-shares-drop-amid-debt-and-ai-market-concerns",
-        "https://finance.yahoo.com/markets/stocks/articles/nebius-vs-coreweave-neocloud-stock-203040874.html",
-        "https://247wallst.com/investing/2026/10/28/coreweave-vs-nebius-one-runs-the-u-s-governments-debt-playbook-the-other-is-like-norway/",
-        "https://invezz.com/nz/news/2026/10/26/coreweave-nebius-iren-stocks-fall-as-musk-warns-200-neoclouds-could-collapse/",
-        "https://roboforex.com/blog/analysis/neocloud-stocks-coreweave-debt/",
-        "https://www.morningstar.com/markets/coreweave-debt-tumbles-anew-korean-neocloud-ipo-tanks",
-        "https://newmarketpitch.com/blogs/news/ai-infrastructure-nebius-vs-coreweave",
-        "https://www.stocktitan.net/articles/coreweave-nebius-ai-cloud-debt-when-it-comes-due",
-        "https://x.com/GlobalMktObserv/status/2082110078031634558",
-        "https://finance.yahoo.com/markets/stocks/articles/ai-credit-default-insurance-costs-140727215.html",
+        "https://tech-insider.org/meta-34-91b-capex-vs-google-search-12-percent-2026/",
+        "https://www.carbonfinance.io/p/meta-earnings-review-q3-fy2026",
+        "https://promptandpower.com/meta-q3-2026-earnings-preview-capex-guidance/",
+        "https://dalalbytes.com/blog/meta-q3-2026-earnings.html",
+        "https://aitechmodel.com/meta-2026-capex-guidance-135-145-billion/",
+        "https://finance.biggo.com/news/980891f5-1fe4-48a2-9840-bf8d1cfe0895",
+        "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
+        "https://financefeeds.com/alphabet-googl-stock-292-after-q3-profit-miss-negative-9-billion-free-cash-flow-bull-325-bear-266/",
+        "https://finbiteinsights.substack.com/p/alphabet-down-13-half-a-trillion",
+        "https://247wallst.com/investing/2026/10/29/alphabet-stock-drops-12-can-its-dividend-survive-the-ai-spending-boom/",
+        "https://cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",
+        "https://finance.biggo.com/news/7bb27e24-6c93-412c-aa84-7d7ccd588d67",
+        "https://www.forbes.com/sites/hershshefrin/2026/07/27/market-experiences-an-ai-capex-turning-point-with-tipping-point-to-follow/",
+        "https://shattered.io/big-tech-data-center-spending-720-billion-cash-burn-wall-street-2026/",
+        "https://www.ibtimes.com.au/alphabet-shares-record-fall-ai-costs-search-growth-1877622",
+        "https://www.barchart.com/story/news/115927/amid-capex-concerns-should-you-buy-sell-or-hold-alphabet-stock",
+        "https://www.cnbc.com/2026/10/19/coreweave-oracle-ai-credit-stress.html",
         "https://www.tokenpost.com/news/investing/33690",
-        "https://finance.yahoo.com/markets/stocks/articles/ai-revolution-reshaping-credit-markets-155003825.html",
-        "https://www.cnbc.com/2026/10/19/oracle-debt-faces-an-ai-stress-test-why-some-investors-arent-worried-.html",
         "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+        "https://www.roic.ai/news/ai-debt-fears-surge-as-tech-default-insurance-hits-record-highs-10-15-2026",
+        "https://www.securitasglobal.com/risk-perspectives/oracle-cds-record-288-basis-points-ai-debt/",
+        "https://247wallst.com/investing/2026/10/15/oracle-fell-nearly-9-as-coreweaves-bond-scare-spread/",
+        "https://www.cnbc.com/2026/10/14/coreweave-stock-bond-yields-ai-debt.html",
         "https://x.com/GlobalMktObserv/status/2110363371631468871",
-        "https://www.techflowpost.com/en-US/article/34474",
-        "https://finance.biggo.com/news/a99b8126-c0f9-4175-9b5d-c5d27112f018",
-        "https://forbes.com/sites/mayrarodriguezvalladares/2026/10/22/the-half-trillion-dollar-silicon-gamble-inside-the-ai-debt-boom",
-        "https://www.denvergazette.com/2026/10/19/aurora-meeting-on-data-center-moratorium-delayed/",
-        "https://www.datacenterwatch.org/report",
-        "https://www.ktvu.com/news/pittsburg-approves-45-day-data-center-moratorium-amidst-heated-pushback",
-        "https://localnewsmatters.org/2026/10/28/pittsburg-data-center-moratorium/",
+        "https://www.tradingview.com/news/seekingalpha:542e5efb2094b:0-credit-stress-in-ai-trade-deepens-as-oracle-coreweave-cds-spreads-hit-record-levels/",
+        "https://qz.com/openai-30-billion-funding-round-anthropic-ipo-102026",
+        "https://financefeeds.com/anthropic-ipo-targets-mid-november-as-openai-races-for-30-billion-at-1-25t-1-4t-valuation/",
+        "https://www.calcalistech.com/ctechnews/article/0ik7s4qx4",
+        "https://finance.yahoo.com/technology/ai/articles/openai-racing-raise-30-billion-124536935.html",
+        "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+        "https://futuresearch.ai/anthropic-openai-ipo-dates-valuations/",
+        "https://smartasset.com/investing/anthropic-ipo",
+        "https://beincrypto.com/openai-fundraise-anthropic-ipo-valuation/",
+        "https://www.tradingkey.com/analysis/stocks/us-stocks/262224881-openai-vies-anthropic-ipo-30-billion-round-tradingkey",
+        "https://aifundingtracker.com/ai-ipo-tracker/",
+        "https://fortworthreport.org/2026/08/12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote/",
+        "https://www.cpr.org/2026/10/27/aurora-data-center-ban-fails/",
+        "https://www.nbcsandiego.com/news/local/san-diego-city-council-to-vote-on-data-center-moratorium-this-week/4092038/",
+        "https://www.foxnews.com/politics/memphis-city-council-devolves-chaos-data-center-moratorium-vote-postponed",
+        "https://www.kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
+        "https://www.wcnc.com/article/news/politics/north-carolina-politics/charlotte-city-council-to-vote-on-extending-data-center-moratorium/275-6cf97186-f6e4-47d8-832f-dc5e28ab60b7",
+        "https://www.nbcsandiego.com/news/local/data-center-moratorium-unanimously-passes-at-san-diego-city-council/4092956/",
+        "https://abc11.com/post/raleigh-city-council-considers-month-pause-large-data-center-approvals/19913102/",
+        "https://sd25.senate.ca.gov/node/444",
+        "https://www.montereypark.ca.gov/m/newsflash/home/detail/1306",
+        "https://www.cnbc.com/2026/10/27/stock-market-today-live-updates.html",
+        "https://www.schwab.com/learn/story/fomc-meeting",
+        "https://www.cnbc.com/2026/10/28/us-treasurys-bonds-yields-federal-reserve.html",
+        "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-interest-rates-held-steady-in-split-vote-warsh-says-politics-played-no-role-ahead-of-midterm-elections-191946928.html",
+        "https://www.cnn.com/2026/10/28/business/live-news/federal-reserve-interest-rate-october",
+        "https://www.federalreserve.gov/releases/h15/",
+        "https://www.cnbc.com/amp/2026/10/28/us-treasurys-bonds-yields-federal-reserve.html",
+        "https://www.vantagemarkets.com/market-news/fed-rate-decision-10-2-hold-two-hike-votes-october-29-2026/",
+        "https://fraser.stlouisfed.org/files/docs/historical/FOMC/meetingdocuments/FOMC20071031bluebook20071025.pdf",
+        "https://thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-29-2026",
+        "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-30-2026",
+        "https://finance.yahoo.com/quote/%5ENQCICBTR/",
+        "https://edition.cnn.com/markets",
+        "https://stocktwits.com/news-articles/markets/equity/us-stock-futures-fall-as-amzn-intc-earnings-trigger-tech-sell-off-nvda-rddt-rivn-sfm-in-focus/cZUhYKdR9TI",
+        "https://www.cnbc.com/2026/10/29/oil-price-today-wti-brent.html",
+        "https://www.fxstreet.com/amp/analysis/sp500-and-nasdaq-close-at-record-highs-201904241427",
+        "https://www.fxstreet.com/amp/analysis/nasdaq-notches-fifth-straight-record-close-201912191246",
+        "https://benzinga.com/markets/asia/24/05/39058657/asia-and-europe-markets-dip-crude-hits-80-while-gold-declines-global-markets-today-while-us-slept",
+        "https://www.kiplinger.com/investing/live/nvidia-earnings-live-updates-and-commentary-november-2025",
+        "https://seekingalpha.com/article/4958511-nvidia-may-actually-raise-its-70-percent-growth-guide-in-november",
+        "https://www.investing.com/news/transcripts/earnings-call-transcript-nvidia-beats-q2-2026-estimates-as-ai-demand-stays-hot-93CH-4878028",
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581019000004/shareholderletter.htm",
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q3/NVDA-Q3-2026-Earnings-Call-19-November-2025-5_00-PM-ET.pdf",
+        "https://www.investing.com/equities/nvidia-corp-earnings",
+        "https://intellectia.ai/news/stock/nvidia-issues-strong-earnings-guidance-amid-ai-demand-surge",
+        "https://www.fool.com/investing/2025/11/19/ai-bubble-worries-are-rising-nvidias-319-billion-p",
+        "https://finviz.com/news/239203/the-5-most-interesting-analyst-questions-from-nvidias-q3-earnings-call",
+        "https://pro.thestreet.com/trade-ideas/microsoft-price-target-after-25-billion-bond-sale-update",
+        "https://www.tradingview.com/news/tradingview:f67deee0ad5f6:0-key-facts-microsoft-25b-bond-sale-10-tranches-q1-capex-45-2b/",
+        "https://www.gurufocus.com/news/9158952/microsoft-plans-25-billion-bond-issuance-to-fuel-growth-msft",
+        "https://www.investing.com/news/stock-market-news/microsoft-expects-to-raise-25-billion-in-us-bond-sale-source-says-4984856",
+        "https://seekingalpha.com/news/4661154-microsoft-taps-debt-markets-with-25b-bond-sale-to-boost-ai",
+        "https://www.cnbc.com/2026/10/29/microsoft-25-billion-debt-offering.html",
+        "https://www.business-standard.com/amp/world-news/microsoft-eyes-to-raise-at-least-25-billion-in-first-us-bond-since-2017-126102901884_1.html",
+        "https://www.zetik.com/news/article/story_id-p008-227993",
+        "https://finance.biggo.com/news/9305b76a-cfd9-4ff2-afb7-1f838f329329",
+        "https://www.kucoin.com/news/flash/intel-q3-earnings-preview-ai-server-cpu-demand-in-focus-analysts-eye-q4-guidance-and-expansion",
+        "https://finance.yahoo.com/markets/stocks/articles/intel-break-margin-test-arriving-153319298.html",
+        "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+        "https://cryptobriefing.com/intel-cfo-data-center-ai-revenue-10-billion/",
+        "https://www.bloomberg.com/news/articles/2026-10-29/intel-outlook-hurt-by-weak-market-for-personal-computer-chips",
+        "https://www.sec.gov/Archives/edgar/data/50863/000005086320000007/q4-2019earningsrelease.htm",
+        "https://www.fool.com/investing/2026/10/29/intel-server-sales-jump-78-q4-outlook-dims-rapid-e/",
+        "https://www.cnbc.com/investingclub/2026/10/29/intel-plunges-on-a-major-guidance-miss-what-went-wrong-how-to-proceed.html",
+        "https://247wallst.com/investing/2026/10/29/live-will-intels-q3-earnings-tonight-spark-a-recovery-after-20-selloff/",
+        "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
+        "https://www.bloomberg.com/news/articles/2026-09-30/biggest-us-grid-suspends-plan-for-new-data-center-power-auction",
+        "https://tech-insider.org/us-ai-data-center-delays-cancellations-7gw-capacity-crisis-2026/",
+        "http://www.zerohedge.com/energy/deeply-flawed-biggest-us-grid-scraps-emergency-data-center-power-auction-one-day-after-ferc",
+        "https://www.benzinga.com/markets/tech/26/10/62596402/microsoft-ai-data-center-misfire-exposes-brutal-reality",
+        "https://en.wikipedia.org/wiki/Maryland_Piedmont_Reliability_Project",
+        "https://eciks.org/29012-data-center-us-projects-cancellations-power",
         "https://en.wikipedia.org/wiki/Opposition_to_AI_data_centers",
-        "https://kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
-        "https://suedatacenters.org/data-centers/cancelled",
-        "https://writing.strisker.com/data-centers-daily-notes-october-28-2026/",
-        "https://www.techradar.com/pro/if-one-piece-of-your-supply-chain-is-delayed-then-your-whole-project-cant-deliver-nearly-half-of-us-data-centers-planned-for-2026-canceled-or-delayed-and-things-could-soon-get-much-worse",
-        "https://www.marketscreener.com/news/s-p-500-nasdaq-end-lower-as-revived-ai-doubts-spark-tech-selloff-ce785cdede8bf720",
-        "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-drop-over-1-093849296.html",
-        "https://www.marketscreener.com/news/nasdaq-futures-steady-as-ai-selloff-pauses-update-ce785cdfdb8af226",
-        "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-        "https://www.djournal.com/news/business/s-p-500-nasdaq-end-sharply-lower-as-revived-ai-doubts-ignite-tech-selloff/article_1c8bf1cf-3da5-4b20-b9fe-99c2ddd93eda.html",
-        "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-steady-ai-selloff-084400333.html",
-        "https://www.nasdaq.com/articles/dow-and-sp-rise-nasdaq-faces-selling-pressure",
-        "https://gulfnews.com/amp/story/business%2Fmarkets%2Ftraders-search-for-clues-behind-biggest-s-p-reversal-since-april-1.500354618",
-        "https://www.barchart.com/story/news/258704/stocks-fall-as-ai-concerns-dampen-market-sentiment?.tsrc=rss",
-        "https://www.nasdaq.com/articles/stocks-fall-ai-concerns-dampen-market-sentiment",
-        "https://www.investing.com/commodities/brent-oil",
-        "https://www.oilpriceapi.com/live/brent-crude-oil-price",
-        "https://www.oilpriceapi.com/oil-prices-today",
-        "https://oilprice.com/",
-        "https://thenationalnews.com/business/energy/2026/10/29/oil-prices-decline-after-diplomatic-push-in-iran-war",
-        "https://oilprice.com/oil-price-charts/",
-        "https://www.ifcmarkets.com/en/market-data/commodities-prices/brent",
-        "https://www.newsonair.gov.in/crude-oil-prices-rise-brent-at-67-73-wti-at-63-68-per-barrel",
-        "https://www.newsonair.gov.in/crude-oil-prices-fall-brent-at-67-93-wti-at-65-43",
-        "https://www.newsonair.gov.in/global-crude-oil-prices-rise-brent-at-64-38-wti-at-60-73-per-barrel",
-        "https://www.digitimes.com/news/a20260109PD249/revenue-ai-server-foxconn-wistron-quanta.html",
-        "https://richard367.substack.com/p/ai-server-surge-propels-taiwans-tech",
-        "https://www.taiwannews.com.tw/news/6279683",
-        "https://brownbeat.medium.com/taiwans-ai-server-giants-post-record-q3-results-as-demand-soars-60d1d8383038",
-        "https://www.taipeitimes.com/News/biz/archives/2025/10/09/2003845145",
-        "https://www.artificialintelligence-news.com/news/ai-servers-transform-taiwan-manufacturing-giants/",
-        "https://finance.yahoo.com/technology/ai/articles/taiwans-wistron-says-ai-server-123337624.html",
-        "https://tech-now.io/en/blogs/taiwans-ai-server-revolution-how-foxconn-and-odms-redefined-global-tech-leadership-in-2025",
-        "https://tech-insider.org/foxconn-q1-2026-ai-server-revenue-66-billion/",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526289345/d32785df1a.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526299963/d32785d424b4.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526280172/d32785df1.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526354777/d147827d6k.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526295501/d32785df1a.htm",
-        "https://www.kucoin.com/blog/sk-hynix-stock-outlook-after-record-q3-2026-earnings-can-the-ai-memory-boom-last",
-        "https://www.investing.com/news/company-news/sk-hynix-q3-2026-slides-revenue-tops-100t-80-margin-on-ai-boom-93CH-4977357",
-        "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526246418/filename1.htm",
-        "https://www.fool.com/earnings/call-transcripts/2026/10/28/sk-hynix-skhy-q3-2026-earnings-call-transcript/",
+        "https://engineerine.com/us-data-center-delays-2026/",
+        "https://hoodline.com/2026/10/coreweave-s-51-billion-debt-pile-sparks-fears-of-an-ai-bubble-reckoning/",
+        "https://www.morningstar.com/markets/coreweave-debt-tumbles-anew-korean-neocloud-ipo-tanks",
+        "https://blog.prompt20.com/posts/neoclouds-complete-guide/",
+        "https://davefriedman.substack.com/p/neoclouds-hold-more-than-20-billion",
+        "https://news.ycombinator.com/item?id=48873836",
+        "https://www.thestreet.com/investing/stocks/nebius-vs-coreweave-neocloud-debt-balance-sheet",
+        "https://www.useluminix.com/reports/industry-analysis/deep-dive-on-the-neocloud-gpu-rental-industry-coreweave-lambda-crusoe",
+        "https://marketwise.com/investing/neocloud-stocks-funding-coreweave-nebius-iren-terawulf/",
+        "https://valueaddvc.com/pulse/ai-data-center-debt-financing-risk-2026",
+        "https://capitalatlas.beehiiv.com/p/vertiv-the-queue-is-work-in-process",
         "https://ca.investing.com/news/stock-market-news/vertiv-earnings-analysis-questions-answered-and-next-catalysts-93CH-4910703",
-        "https://x.com/TheValueist/status/2082578818397848040?lang=en",
-        "https://www.investing.com/analysis/vertiv-the-backlog-is-massive-the-margin-of-safety-is-not-200679861",
-        "https://x.com/TheValueist/status/2084785616462414285",
-        "https://techjacksolutions.com/ai-brief/vertiv-raises-2026-guidance-to-14b-as-ai-data-center-backlog/",
-        "https://seekingalpha.com/article/4957959-celestica-soaring-on-blowout-earnings-and-guidance",
-        "https://seekingalpha.com/article/4890719-vertiv-holdings-the-15-billion-backlog-liquid-cooling-dominance-and-the-ai-infrastructure-trade-wall-street-is-still-underpricing",
-        "https://x.com/PSInvestor/status/2108970496599757047",
-        "https://ca.investing.com/analysis/vertiv-the-backlog-is-massive-the-margin-of-safety-is-not-200624020",
-        "https://www.forbes.com/sites/petercohan/2026/04/24/vertivs-15-billion-backlog-why-this-ai-stocks-86-pop-isnt-just-a-bubble/",
-        "https://www.tradingview.com/news/seekingalpha:40404a397094b:0-amazon-q3-earnings-on-deck-all-eyes-on-cloud-growth-capex/",
-        "https://www.geekwire.com/2026/amazon-earnings-preview-aws-is-booked-up-and-wall-street-wants-to-know-what-comes-next/",
-        "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-q3-earnings-preview-211300540.html",
-        "https://www.cnbc.com/2026/07/30/amazon-amzn-q2-earnings-report-2026.html",
-        "https://seekingalpha.com/article/4959129-amazon-earnings-preview-q3-2026",
-        "https://247wallst.com/investing/2026/10/29/alphabet-failed-wall-streets-new-ai-test-amazon-takes-it-tonight/",
-        "https://coindcx.com/blog/us-stock/amazon-q3-2026-earnings-preview",
-        "https://shattered.io/amazon-microsoft-earnings-consensus-202-16b-90-63b-developers-2026/",
-        "https://pomegra.io/news/nasdaq-amazon-and-intel-earnings-220b-capex-in-focus",
-        "https://finance.yahoo.com/technology/ai/articles/meta-naming-multibillion-dollar-ai-165224359.html",
-        "https://www.tradingview.com/news/seekingalpha:47b9189c6094b:0-inside-wall-street-s-27b-financing-of-meta-s-hyperion-ai-data-center/",
-        "https://www.innovativecentre.org/single-post/financing-structure-of-hyperion-by-meta",
-        "https://www.lambdavp.com/blog/meta-hyperion-data-center-spv-financing",
-        "https://privatecreditprep.com/deals/meta-hyperion-27bn-off-balance-sheet",
-        "https://blofin.com/en/academy/education/metax/how-meta-is-financing-the-ai-build",
-        "https://www.itiger.com/news/1116742132",
-        "https://www.itiger.com/hant/news/1116742132",
-        "https://www.itiger.com/hans/news/1142559708",
-        "https://data.ornn.com/",
-        "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
+        "https://www.sec.gov/Archives/edgar/data/1674101/000162828022004533/vrt-20211231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1674101/000162828025005905/vrt-20241231.htm",
+        "https://finance.yahoo.com/markets/stocks/articles/vertiv-vrt-said-q3-earnings-080418363.html",
+        "https://www.fool.com/earnings/call-transcripts/2026/10/28/vertiv-vrt-q3-2026-earnings-call-transcript/",
+        "https://seekingalpha.com/article/4894167-vertiv-backlog-silence-isnt-busting-the-bull-case-yet",
+        "https://www.tikr.com/blog/vertiv-stock-has-tripled-in-a-year-does-the-15-billion-backlog-justify-the-price",
+        "https://s205.q4cdn.com/554782763/files/doc_financials/2025/q4/Vertiv_Fourth-Quarter-2025-Results-Presentation.pdf",
+        "https://news.ycombinator.com/item?id=50092664",
+        "https://dealroom.co/news/info-wtb2ya-cracks-emerge-in-ais-debt-fueled-data-center-boom/",
+        "https://www.bloomberg.com/news/articles/2026-07-13/prime-data-centers-delays-planned-500-million-nordic-bond-sale",
+        "https://finance.yahoo.com/markets/stocks/articles/pimco-cut-ai-debt-stakes-163237915.html",
+        "https://pitchbook.com/news/articles/private-credit-chases-opportunities-in-data-center-bonanza-despite-risks",
+        "https://theedgemalaysia.com/node/823701",
+        "https://www.bit.fan/en/news/list/ai-data-center-financing-tightens-banks-bond-discounts-a5fb20de-en-keyName-d419a3fa",
+        "https://axis-intelligence.com/ai-data-center-financing-statistics/",
+        "https://conorwitt.substack.com/p/data-tapes-edition-27",
         "https://fourweekmba.com/ai-nvidia-h100-rent-hits-2-88-an-hour-up-44-since-december/",
-        "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends",
-        "https://www.spheron.network/blog/nvidia-h100-price-2026/",
+        "https://www.spheron.network/gpu-rental/",
+        "https://gurufocus.com/news/9158678/nvidias-oldergen-h100-gpu-rental-rates-stay-strong-despite-spot-price-declines-nvda",
+        "https://fal.ai/learn/serverless/nvidia-rtx-pro-6000-price",
+        "https://lambda.ai/pricing",
+        "https://www.frenzycap.com/gpu-prices",
         "https://uvik.net/blog/gpu-price-index/",
-        "https://tech-insider.org/what-renting-an-nvidia-h100-costs-per-hour-in-2026-and-when-renting-beats-buying/",
-        "https://gloom.sh/gpu-prices",
-        "https://dreaming.press/posts/gpu-rental-price-october-2026.html",
-        "https://w.media/nscale-raises-3-36bn-in-funding-as-ai-infrastructure-demand-grows/",
-        "https://www.nscale.com/press-releases/pre-ipo-convertible-financing",
-        "https://www.hpcwire.com/aiwire/2026/09/25/nscale-raises-3-36b-in-pre-ipo-convertible-financing/",
-        "https://seedtable.com/companies/nscale/funding-rounds/debt-2026-05",
-        "https://startupintros.com/news/2026-02-13-nscale-debt",
-        "https://www.finsmes.com/2026/05/nscale-raises-790m-in-debt-financing.html",
-        "https://www.sec.gov/Archives/edgar/data/0002110365/000119312526285636/filename1.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002110365/000119312526395475/ck0002110365-20260918.htm",
-        "https://www.sec.gov/Archives/edgar/data/0002110365/000119312526345235/filename1.htm",
-        "https://www.prnewswire.com/news-releases/nscale-raises-3-36b-in-pre-ipo-convertible-financing-302890199.html"
+        "https://www.mercatus-ai.com/blog/gpu-rental-prices",
+        "https://shattered.io/h100-h200-b200-cloud-gpu-pricing-2026/"
       ],
       "searches": 16,
       "stop_reason": "end_turn"
@@ -592,50 +593,41 @@
       "news_scores": {
         "ai_lab_financing": {
           "score": 1,
-          "summary": "Mixed. Money is still flowing to the big labs: OpenAI is close to finalizing up to $30B at a $1.25T pre-money valuation, and Anthropic has filed for an IPO. The weak points are Anthropic's $80 billion in first-half losses and distress-level credit default swap pricing at CoreWeave. No new neocloud raise surfaced this week. This is an isolated stress signal, not a funding pullback.",
+          "summary": "OpenAI is still trying to raise up to $30B with no close reported. CoreWeave's debt fell again after a weak Korean neocloud IPO. An unconfirmed, other-tier report says Anthropic IPO valuation talk slipped. There were no reports of cancelled compute contracts. Weak and isolated signals.",
           "evidence": [
             {
-              "claim": "OpenAI is close to finalizing up to $30B at a $1.25T pre-money valuation, and the final size is still being determined.",
-              "url": "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html",
+              "claim": "OpenAI is working on a new raise of up to $30B at a $1.25T valuation ahead of an IPO; no close has been reported.",
+              "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
               "event_date": "2026-10-22",
-              "tier": "major",
-              "age_days": 7,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 2/2, names 1/1"
-            },
-            {
-              "claim": "Anthropic's IPO filing shows $80 billion in first-half losses.",
-              "url": "https://www.cnbc.com/2026/10/26/anthropic-ipo-live-updates-ai-s-1-filing.html",
-              "event_date": "2026-10-26",
-              "tier": "major",
-              "age_days": 3,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 1/1, names 2/2"
-            },
-            {
-              "claim": "CoreWeave credit default swaps hit distress levels as investors sour on AI debt.",
-              "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
-              "event_date": "2026-10-15",
-              "tier": "major",
-              "age_days": 14,
-              "background": true,
-              "status": "verified",
-              "check": "numbers 0/0, names 2/2"
-            },
-            {
-              "claim": "CoreWeave 5-year CDS was above 1,100bp on Oct. 15, and its 2031 bond yield briefly topped 16% before easing to about 14%.",
-              "url": "https://www.tokenpost.com/news/investing/33690",
-              "event_date": "2026-10-15",
               "tier": "other",
-              "age_days": 14,
-              "background": true,
-              "status": "unverified",
-              "check": "numbers 5/6, names 2/2 · missing: 5"
+              "age_days": 8,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 2/2, names 2/2"
+            },
+            {
+              "claim": "CoreWeave debt tumbled anew after a South Korean neocloud's IPO tanked.",
+              "url": "https://www.morningstar.com/markets/coreweave-debt-tumbles-anew-korean-neocloud-ipo-tanks",
+              "event_date": "2026-10-20",
+              "tier": "other",
+              "age_days": 10,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            },
+            {
+              "claim": "Anthropic IPO valuation talk reportedly slid to about $1.5T from $2T.",
+              "url": "https://beincrypto.com/openai-fundraise-anthropic-ipo-valuation/",
+              "event_date": null,
+              "tier": "other",
+              "age_days": null,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
             }
           ],
           "samples": [
+            1,
             1
           ],
           "spread": 0,
@@ -643,21 +635,53 @@
         },
         "supplier_signals": {
           "score": 0,
-          "summary": "Supplier fundamentals were positive. SK Hynix reported Q3 revenue of KRW 104.6T, up 32% quarter on quarter, with an 80% operating margin. Celestica beat and guided strongly. No 'pacing' or 'digestion' language was found. Chip stocks did sell off (AMD, Micron, Nvidia), but that is price action, not a demand signal.",
+          "summary": "Supplier demand looks strong. Vertiv's Q3 orders were more than 100% up year on year, though it will stop reporting orders data, a minor transparency flag. Intel's data-center revenue rose 78%, and its weak Q4 guide was blamed on PCs and supply. No 'digestion' or 'pacing' language was found. Nvidia reports Nov 17.",
           "evidence": [
             {
-              "claim": "SK Hynix Q3 revenue was KRW 104.6T, up 32% quarter on quarter, with an 80% operating margin.",
-              "url": "https://www.fool.com/earnings/call-transcripts/2026/10/28/sk-hynix-skhy-q3-2026-earnings-call-transcript/",
+              "claim": "Vertiv said Q3 orders were more than 100% up year on year and that it will stop providing orders data.",
+              "url": "https://finance.yahoo.com/markets/stocks/articles/vertiv-vrt-said-q3-earnings-080418363.html",
               "event_date": "2026-10-28",
               "tier": "other",
-              "age_days": 1,
+              "age_days": 2,
               "background": false,
               "status": "verified",
-              "check": "numbers 4/4, names 3/3"
+              "check": "numbers 2/2, names 1/1"
             },
             {
-              "claim": "Celestica beat on Q3 and gave strong guidance for next year.",
-              "url": "https://seekingalpha.com/article/4957959-celestica-soaring-on-blowout-earnings-and-guidance",
+              "claim": "Intel's outlook was hurt by a weak market for personal computer chips, while data-center revenue rose 78%.",
+              "url": "https://www.bloomberg.com/news/articles/2026-10-29/intel-outlook-hurt-by-weak-market-for-personal-computer-chips",
+              "event_date": "2026-10-29",
+              "tier": "major",
+              "age_days": 1,
+              "background": false,
+              "status": "unreachable",
+              "check": "HTTP 403"
+            }
+          ],
+          "samples": [
+            0,
+            0
+          ],
+          "spread": 0,
+          "unstable": false
+        },
+        "physical_buildout": {
+          "score": 1,
+          "summary": "There is local friction. San Diego passed a 45-day data-center moratorium. Microsoft dropped its anchor role at Nscale's Essex site because the grid connection slipped into the 2030s, a power issue rather than a demand issue. On the other side, H100 rental prices are firm at $2.88/hr. Isolated signals, mostly from other-tier sources.",
+          "evidence": [
+            {
+              "claim": "San Diego City Council unanimously passed a 45-day moratorium on data centers.",
+              "url": "https://www.kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
+              "event_date": "2026-10-27",
+              "tier": "other",
+              "age_days": 3,
+              "background": false,
+              "status": "verified",
+              "check": "numbers 1/1, names 4/4"
+            },
+            {
+              "claim": "Microsoft ended its agreement to anchor Nscale's 50MW Essex site after the grid connection slipped into the 2030s.",
+              "url": "https://www.benzinga.com/markets/tech/26/10/62596402/microsoft-ai-data-center-misfire-exposes-brutal-reality",
               "event_date": null,
               "tier": "other",
               "age_days": null,
@@ -666,68 +690,18 @@
               "check": "HTTP 403"
             },
             {
-              "claim": "AMD fell more than 8%, Micron 6% and Nvidia 4%.",
-              "url": "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-              "event_date": "2026-10-22",
-              "tier": "major",
-              "age_days": 7,
+              "claim": "Silicon Data's H100 neocloud rental index was $2.88/hr, up from $2.00 in December.",
+              "url": "https://fourweekmba.com/ai-nvidia-h100-rent-hits-2-88-an-hour-up-44-since-december/",
+              "event_date": "2026-10-24",
+              "tier": "other",
+              "age_days": 6,
               "background": false,
-              "status": "verified",
-              "check": "numbers 3/3, names 2/3"
+              "status": "unreachable",
+              "check": "HTTP 403"
             }
           ],
           "samples": [
-            0
-          ],
-          "spread": 0,
-          "unstable": false
-        },
-        "physical_buildout": {
-          "score": 1,
-          "summary": "There are some local frictions. Pittsburg, CA and San Diego passed 45-day data-center moratoria, and Microsoft said 3P capacity deliveries shifted to H2 because of delays at GPU-as-a-service providers. These are weak, scattered signals. Hyperscaler capex plans keep rising and GPU rents are firm.",
-          "evidence": [
-            {
-              "claim": "Microsoft said 3P capacity deliveries shifted to H2, with the delays tied to GPU-as-a-service providers.",
-              "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
-              "event_date": "2026-10-28",
-              "tier": "major",
-              "age_days": 1,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 2/2, names 2/2"
-            },
-            {
-              "claim": "Pittsburg approved a 45-day moratorium on new data centers.",
-              "url": "https://www.ktvu.com/news/pittsburg-approves-45-day-data-center-moratorium-amidst-heated-pushback",
-              "event_date": "2026-10-26",
-              "tier": "other",
-              "age_days": 3,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 1/1, names 1/1"
-            },
-            {
-              "claim": "San Diego City Council unanimously passed a moratorium on data centers.",
-              "url": "https://kpbs.org/news/politics/2026/10/27/san-diego-city-council-unanimously-passes-moratorium-on-data-centers",
-              "event_date": "2026-10-27",
-              "tier": "other",
-              "age_days": 2,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 0/0, names 4/4"
-            },
-            {
-              "claim": "Alphabet expects capex to increase significantly in 2027.",
-              "url": "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-              "event_date": "2026-10-28",
-              "tier": "major",
-              "age_days": 1,
-              "background": false,
-              "status": "verified",
-              "check": "numbers 1/1, names 1/1"
-            }
-          ],
-          "samples": [
+            1,
             1
           ],
           "spread": 0,
@@ -736,101 +710,111 @@
       },
       "credit_news_adjustment": {
         "delta": 1,
-        "reason": "Broad spreads are calm, with high yield at 3.18% and investment grade at 0.88%. AI-specific credit is under strain, though. Oracle 5-year CDS reached 282-308bp across sources (282-295bp per CNBC), CoreWeave CDS is at distress levels, and Evercore says the market is 'no mas' to AI debt without operating cash flow support."
+        "reason": "Broad spreads are calm, but AI-specific credit stress is visible and is not captured by the index spreads. CoreWeave's five-year CDS was about 1,082bp and its 2032 bond yielded 14.9% (CNBC, Oct 19). Oracle's CDS hit a record 288bp (Oct 15, other-tier). Pimco cut its stakes in Meta and Oracle data-center bonds. Microsoft's heavily oversubscribed $25B deal partly offsets this."
       },
-      "headline": "Hyperscalers keep raising capex, but AI-specific credit stress and Nasdaq weakness bear watching.",
-      "digest_markdown": "**What changed this week**\n\nThe big tech companies doubled down on AI spending. Microsoft is aiming at about $170B of capex for 2027. Sources disagree on whether that is calendar or fiscal 2027. Alphabet expects capex to *increase significantly* in 2027. Official filings show combined Q3 capex up about 20% on the quarter. Taiwan AI-server suppliers' revenue is up a median ~77% year on year.\n\nThe cost is showing up in cash flow and debt. Alphabet, Meta, Amazon and Oracle all had negative free cash flow in their latest quarter. Alphabet issued about $29B of debt in Q3.\n\n**Where the stress is**\n\nThe pressure sits in AI-specific credit, not the broad market. Oracle's 5-year default insurance (CDS) traded around 282-308bp, depending on the source; CNBC put it at 282-295bp. CoreWeave's CDS hit distress levels. One trading desk says investors are saying \"no mas\" to AI debt that lacks cash-flow support.\n\nBroad junk and investment-grade spreads remain calm. Even so, we nudge the credit score up one notch for this.\n\nThe Nasdaq-100 is down over four weeks while the S&P 500 is up, which hints at a rotation away from AI stocks. Microsoft also said some outsourced capacity deliveries slipped to H2. Two California cities paused new data-center approvals.\n\n**Positives**\n\nSuppliers look strong. SK Hynix posted record results, and Celestica beat and guided strongly. OpenAI is close to finalizing up to $30B of new funding.\n\n**What to watch**\n\n- Amazon's results (after the close on Oct 29) and the market's reaction to Alphabet.\n- Oracle and CoreWeave credit pricing.\n- Whether markets keep pricing a December rate hike.\n- Nvidia's November results.\n\nOverall, spending intent is still rising. The early-warning signs are in financing costs, not in cancelled orders. *Not investment advice.*",
+      "headline": "Hyperscaler capex and backlogs keep climbing, but negative free cash flow and AI-specific credit stress persist.",
+      "digest_markdown": "**What changed this week**\n\nThe big tech earnings mostly pointed to *more* AI spending, not less.\n\n- **Amazon:** AWS backlog is $578B, and management expects AWS growth over 40% in 2027 and 2028. It says 2027 spending will be \"meaningfully more\".\n- **Alphabet:** expects capex to increase significantly in 2027.\n- **Combined capex:** up 26.9% quarter-on-quarter across the five big spenders.\n- **Leases:** signed-but-not-started data-center leases rose 19.6%.\n- **Taiwan suppliers:** server makers still show roughly +77% year-on-year revenue.\n\n**The cracks are in funding, not demand.**\n\n- Alphabet, Amazon, Meta and Oracle all had negative free cash flow last quarter, so they are borrowing to build. Alphabet and Amazon issued about $29B and $48B of debt.\n- Investors are noticing. Alphabet shares reportedly fell about 12.6% in one day (unconfirmed by a major outlet), and Amazon dropped 7.3% after hours.\n- The Nasdaq-100 is down about 1,100 points over four weeks while the S&P 500 is roughly flat.\n- In credit, AI-linked borrowers are under strain. CoreWeave's default-insurance cost (CDS) was about 1,082bp on Oct 19. Pimco trimmed its Meta and Oracle data-center bonds.\n- Broad credit markets remain calm, and Microsoft's $25B bond drew over $100B of orders.\n\n**Smaller signals**\n\n- San Diego passed a 45-day data-center moratorium.\n- Microsoft walked away from a UK site whose grid connection slipped into the 2030s.\n- GPU rental prices are firm at $2.88/hr.\n\n**Macro**\n\n- Brent is high but easing: about $115-123 depending on the day and source.\n- The Fed held rates, with two members voting for a hike.\n- The 10-year yield is around 5%.\n\n**Bottom line:** spending plans are intact or rising. The risk is that markets stop funding them cheaply.\n\n**Watch next:** Nvidia's Nov 17 results, further AI bond and CDS moves, and Taiwan's October sales.\n\n*Not investment advice.*",
       "follow_ups": [
         {
-          "item": "Capex guidance for fiscal 2027 given on the Microsoft and Alphabet earnings calls",
+          "item": "Amazon Q3 results and capex commentary after the close on 2026-10-29",
           "status": "resolved",
-          "note": "Microsoft is aiming at about $170B for calendar 2027, though another source says fiscal 2027.",
-          "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html",
+          "note": "Amazon reported an AWS backlog of $578B and said 2027 spending will be \"meaningfully more\", while shares fell 7.3% after hours.",
+          "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+          "event_date": "2026-10-29"
+        },
+        {
+          "item": "Market reaction to Alphabet's negative free cash flow and debt-funded capex",
+          "status": "still_open",
+          "note": "Alphabet shares reportedly closed down 12.6%, the largest one-day drop since listing, but this figure is unconfirmed by a primary or major source.",
+          "url": "https://finance.biggo.com/news/7bb27e24-6c93-412c-aa84-7d7ccd588d67",
+          "event_date": "2026-10-29"
+        },
+        {
+          "item": "Oracle and CoreWeave CDS levels and any pulled or repriced AI-related bond deals",
+          "status": "still_open",
+          "note": "No newer levels were found and no deals were pulled; the latest major-source reading had CoreWeave's five-year CDS at about 1,082bp and its 2032 bond yield at 14.9%.",
+          "url": "https://www.cnbc.com/2026/10/19/coreweave-oracle-ai-credit-stress.html",
+          "event_date": "2026-10-19"
+        },
+        {
+          "item": "Nvidia's November earnings and any 'digestion' or 'pacing' language from suppliers",
+          "status": "still_open",
+          "note": "Nvidia reports Nov 17 and no digestion language was found, though Microsoft cut its capex forecast to $170B from $175B.",
+          "url": "https://cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",
           "event_date": "2026-10-28"
         },
         {
-          "item": "Amazon and Meta Q3 results and 2027 capex commentary",
+          "item": "Anthropic IPO pricing and the close of OpenAI's up-to-$30B round",
           "status": "still_open",
-          "note": "Amazon has not reported yet; Meta's Q3 capex of $34.91B, FCF of −$2.12B and narrowed 2026 range of $135–145B (no 2027 figure) come from an other-tier source only, so they are unconfirmed, and the filing data shows a different capex figure of $33.9B.",
-          "url": "https://fourweekmba.com/ai-metas-q3-explained-capex-outran-its-cash-by-2-1-billion/",
-          "event_date": "2026-10-21"
+          "note": "OpenAI is still working on a raise of up to $30B at a $1.25T valuation with no close reported, and no Anthropic IPO pricing was found.",
+          "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+          "event_date": "2026-10-22"
+        },
+        {
+          "item": "Spread of local data-center moratoria beyond Pittsburg, San Diego and Georgetown",
+          "status": "still_open",
+          "note": "Charlotte's city council moved to extend its data-center moratorium, while Aurora rejected a ban, so the picture is mixed.",
+          "url": "https://www.wcnc.com/article/news/politics/north-carolina-politics/charlotte-city-council-to-vote-on-extending-data-center-moratorium/275-6cf97186-f6e4-47d8-832f-dc5e28ab60b7",
+          "event_date": null
+        },
+        {
+          "item": "Amazon and Meta Q3 results and 2027 capex commentary",
+          "status": "resolved",
+          "note": "Amazon said 2027 spending will be \"meaningfully more\" and expects AWS growth over 40% in 2027 and 2028.",
+          "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html",
+          "event_date": "2026-10-29"
         },
         {
           "item": "FOMC decision from the Oct 27-28 meeting and its effect on the 10-year yield",
-          "status": "still_open",
-          "note": "The FOMC held at 3.75–4.00%, with the 10-year up 5bp to 5.042% and futures pricing about an 85% chance of a December hike, but these figures are unconfirmed by a primary or major source.",
-          "url": "https://money.usnews.com/investing/news/articles/2026-10-28/fomc-holds-rates-steady-markets-mostly-follow-suit",
+          "status": "resolved",
+          "note": "The Fed held at 3.75–4.00% in a 10-2 vote with Cook and Hammack dissenting for a hike, and the 10-year rose from 4.99% to 5.05%.",
+          "url": "https://www.vantagemarkets.com/market-news/fed-rate-decision-10-2-hold-two-hike-votes-october-29-2026/",
           "event_date": "2026-10-28"
         },
         {
           "item": "Brent crude at $123 as a macro headwind to margins and rates",
-          "status": "still_open",
-          "note": "One report says Brent settled at $115.32 versus the official $123.1 reading, but that lower figure is unconfirmed by a primary or major source.",
-          "url": "https://thenationalnews.com/business/energy/2026/10/29/oil-prices-decline-after-diplomatic-push-in-iran-war",
-          "event_date": "2026-10-28"
-        },
-        {
-          "item": "Restore the news research feed so the financing, supplier and buildout categories can be scored on sourced evidence",
-          "status": "resolved",
-          "note": "The news search worked this run, although coverage of suppliers and physical build-out was thin.",
-          "url": "",
-          "event_date": null
+          "status": "improved",
+          "note": "Brent settled at $114.88, below the $123.1 official print from Oct 27, giving a range of about $115-123.",
+          "url": "https://www.cnbc.com/2026/10/29/oil-price-today-wti-brent.html",
+          "event_date": "2026-10-29"
         },
         {
           "item": "Whether Nasdaq-100 weakness deepens while the S&P 500 holds, signalling an AI-specific rotation",
-          "status": "worsened",
-          "note": "AMD fell more than 8%, Micron 6% and Nvidia 4%, and official data show the Nasdaq-100 down over four weeks while the S&P 500 rose.",
-          "url": "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
-          "event_date": "2026-10-22"
+          "status": "still_open",
+          "note": "The S&P fell 0.3% and the Nasdaq-100 fell 1.4% on Oct 29, and both were down further by the Oct 30 open.",
+          "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-30-2026",
+          "event_date": "2026-10-29"
         },
         {
           "item": "Hyperscaler free cash flow turning more negative in Q3 10-Q filings, along with any rise in debt issuance",
           "status": "worsened",
-          "note": "Alphabet's FCF was −$9.1B, worse than −$5.9B in Q2, and it raised $28.7B of notes and $12.4B of stock, consistent with filing data showing negative FCF at Alphabet and Meta.",
-          "url": "https://www.fool.com/investing/2026/10/28/microsoft-and-alphabet-just-reported-earnings-putting-the-ai-boom-to-the-test/",
+          "note": "Alphabet's FCF was -$9.07B and its long-term debt was $125.1B versus $21.6B a year earlier.",
+          "url": "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html",
           "event_date": "2026-10-28"
-        },
-        {
-          "item": "Hyperscaler Q3 earnings and 2027 capex guidance in late October",
-          "status": "improved",
-          "note": "Alphabet expects capex to increase significantly in 2027, while Amazon's results are still pending.",
-          "url": "https://www.cnbc.com/amp/2026/10/28/alphabet-googl-earnings-q3-2026.html",
-          "event_date": "2026-10-28"
-        },
-        {
-          "item": "New debt raises or refinancing terms at CoreWeave, Nscale and other neoclouds",
-          "status": "still_open",
-          "note": "No new neocloud raise surfaced this week; Nscale's pre-IPO convertible financing has Nvidia's $1B due mid-November.",
-          "url": "https://www.nscale.com/press-releases/pre-ipo-convertible-financing",
-          "event_date": "2026-09-25"
-        },
-        {
-          "item": "October Taiwan AI-server revenue as the 3-month deceleration check comes online",
-          "status": "no_news",
-          "note": "October Taiwan monthly revenue has not been published yet.",
-          "url": "",
-          "event_date": null
         }
       ],
       "watch_next": [
-        "Amazon Q3 results and capex commentary after the close on 2026-10-29",
-        "Market reaction to Alphabet's negative free cash flow and debt-funded capex",
-        "Oracle and CoreWeave CDS levels and any pulled or repriced AI-related bond deals",
-        "Nvidia's November earnings and any 'digestion' or 'pacing' language from suppliers",
-        "Anthropic IPO pricing and the close of OpenAI's up-to-$30B round",
-        "Spread of local data-center moratoria beyond Pittsburg, San Diego and Georgetown"
+        "Taiwan AI-server group October revenue (early November) for the first deceleration check",
+        "Secondary trading of Microsoft's $25B bond and any new hyperscaler or neocloud bond pricing",
+        "Pricing of Oracle's Michigan data-center notes and further Pimco-style selling of AI project bonds",
+        "Whether San Diego's 45-day moratorium is extended or made permanent",
+        "Silicon Data H100 rental index for any reversal in GPU rental prices",
+        "Intel and other suppliers' commentary on data-center supply constraints"
       ],
       "samples": {
-        "n": 1,
+        "n": 2,
         "used": 0,
         "scores": {
           "ai_lab_financing": [
+            1,
             1
           ],
           "supplier_signals": [
+            0,
             0
           ],
           "physical_buildout": [
+            1,
             1
           ]
         },
@@ -840,22 +824,20 @@
           "physical_buildout": 0
         },
         "credit_deltas": [
+          1,
           1
         ],
         "unstable": []
       }
-    },
-    "sample_errors": [
-      "sample 1: assessment stopped early (max_tokens)"
-    ]
+    }
   },
   "cost": {
     "steps": {
       "research": {
         "model": "claude-sonnet-5-5",
         "requests": 1,
-        "input_tokens": 220421,
-        "output_tokens": 8458,
+        "input_tokens": 220571,
+        "output_tokens": 7010,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 16,
@@ -864,28 +846,28 @@
           "output": 10.0,
           "verify": false
         },
-        "cost_usd": 0.6854
+        "cost_usd": 0.6712
       },
       "assessment": {
         "model": "claude-opus-5-5",
         "requests": 2,
         "input_tokens": 8,
-        "output_tokens": 14573,
-        "cache_write_tokens": 13954,
-        "cache_read_tokens": 13954,
+        "output_tokens": 13849,
+        "cache_write_tokens": 13319,
+        "cache_read_tokens": 13319,
         "web_searches": 0,
         "price": {
           "input": 4.0,
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.3668
+        "cost_usd": 0.3489
       },
       "leases": {
         "model": "claude-opus-5-5",
         "requests": 1,
-        "input_tokens": 1443,
-        "output_tokens": 234,
+        "input_tokens": 958,
+        "output_tokens": 137,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
         "web_searches": 0,
@@ -894,29 +876,29 @@
           "output": 20.0,
           "verify": false
         },
-        "cost_usd": 0.0105
+        "cost_usd": 0.0066
       }
     },
-    "total_usd": 1.0627,
+    "total_usd": 1.0267,
     "unpriced_steps": [],
     "web_search_per_1k": 10.0
   },
   "source_check": {
     "counts": {
       "ai_lab_financing": {
-        "verified": 3,
-        "unverified": 1,
-        "unreachable": 0
+        "verified": 1,
+        "unverified": 0,
+        "unreachable": 2
       },
       "supplier_signals": {
-        "verified": 2,
+        "verified": 1,
         "unverified": 0,
         "unreachable": 1
       },
       "physical_buildout": {
-        "verified": 4,
+        "verified": 1,
         "unverified": 0,
-        "unreachable": 0
+        "unreachable": 2
       }
     },
     "capped": []
@@ -962,19 +944,19 @@
         },
         "AMZN": {
           "name": "Amazon",
-          "quarter": "2026Q2",
-          "period_end": "2026-06-30",
+          "quarter": "2026Q3",
+          "period_end": "2026-09-30",
           "form": "10-Q",
-          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
-          "total_usd": 137214000000.0,
-          "previous_quarter": "2026Q1",
-          "previous_total_usd": 106347000000.0,
-          "qoq_pct": 29.02,
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+          "total_usd": 164922000000.0,
+          "previous_quarter": "2026Q2",
+          "previous_total_usd": 137214000000.0,
+          "qoq_pct": 20.19,
           "amounts": [
             {
-              "amount_text": "137,214",
+              "amount_text": "164,922",
               "kind": "total",
-              "sentence": "Leases not yet commenced 4,018 11,732 9,278 9,483 9,227 93,476 137,214"
+              "sentence": "Leases not yet commenced 2,590 12,448 11,477 12,193 11,385 114,829 164,922 [table amounts in millions]"
             }
           ]
         },
@@ -1032,6 +1014,7 @@
         "2026Q3": {
           "MSFT": 364600000000.0,
           "GOOGL": 130500000000.0,
+          "AMZN": 164922000000.0,
           "META": 355730000000.0,
           "ORCL": 288000000000.0
         }
@@ -1068,20 +1051,20 @@
       },
       "PCEPILFE": {
         "label": "Core PCE index",
-        "latest": 130.455,
-        "latest_date": "2026-08-01",
-        "chg_4w": 0.322,
-        "prev_4w": 130.133,
-        "chg_13w": 0.659,
-        "prev_13w": 129.796,
-        "chg_52w": 3.809,
-        "prev_52w": 126.646,
-        "yoy_pct": 3.01
+        "latest": 130.902,
+        "latest_date": "2026-09-01",
+        "chg_4w": 0.413,
+        "prev_4w": 130.489,
+        "chg_13w": 0.933,
+        "prev_13w": 129.969,
+        "chg_52w": 3.962,
+        "prev_52w": 126.94,
+        "yoy_pct": 3.12
       },
       "DFF": {
         "label": "Fed funds effective rate (%)",
         "latest": 3.88,
-        "latest_date": "2026-10-27",
+        "latest_date": "2026-10-28",
         "chg_4w": 0.0,
         "prev_4w": 3.88,
         "chg_13w": 0.25,
@@ -1091,36 +1074,36 @@
       },
       "DGS2": {
         "label": "2-yr Treasury yield (%)",
-        "latest": 4.7,
-        "latest_date": "2026-10-27",
-        "chg_4w": -0.19,
-        "prev_4w": 4.89,
-        "chg_13w": 0.44,
-        "prev_13w": 4.26,
-        "chg_52w": 1.22,
-        "prev_52w": 3.48
+        "latest": 4.67,
+        "latest_date": "2026-10-28",
+        "chg_4w": -0.21,
+        "prev_4w": 4.88,
+        "chg_13w": 0.45,
+        "prev_13w": 4.22,
+        "chg_52w": 1.2,
+        "prev_52w": 3.47
       },
       "DGS10": {
         "label": "10-yr Treasury yield (%)",
-        "latest": 4.99,
-        "latest_date": "2026-10-27",
-        "chg_4w": -0.27,
-        "prev_4w": 5.26,
+        "latest": 5.05,
+        "latest_date": "2026-10-28",
+        "chg_4w": -0.24,
+        "prev_4w": 5.29,
         "chg_13w": 0.38,
-        "prev_13w": 4.61,
-        "chg_52w": 0.98,
-        "prev_52w": 4.01
+        "prev_13w": 4.67,
+        "chg_52w": 1.06,
+        "prev_52w": 3.99
       },
       "T10Y2Y": {
         "label": "10y minus 2y spread (%)",
-        "latest": 0.38,
-        "latest_date": "2026-10-28",
-        "chg_4w": -0.03,
-        "prev_4w": 0.41,
-        "chg_13w": -0.07,
+        "latest": 0.37,
+        "latest_date": "2026-10-29",
+        "chg_4w": -0.09,
+        "prev_4w": 0.46,
+        "chg_13w": -0.08,
         "prev_13w": 0.45,
-        "chg_52w": -0.14,
-        "prev_52w": 0.52
+        "chg_52w": -0.12,
+        "prev_52w": 0.49
       },
       "DCOILBRENTEU": {
         "label": "Brent crude ($/bbl)",
@@ -1135,46 +1118,46 @@
       },
       "VIXCLS": {
         "label": "VIX",
-        "latest": 17.52,
-        "latest_date": "2026-10-27",
-        "chg_4w": 1.48,
-        "prev_4w": 16.04,
-        "chg_13w": -0.69,
-        "prev_13w": 18.21,
-        "chg_52w": 1.73,
-        "prev_52w": 15.79
+        "latest": 17.2,
+        "latest_date": "2026-10-29",
+        "chg_4w": 0.81,
+        "prev_4w": 16.39,
+        "chg_13w": 0.11,
+        "prev_13w": 17.09,
+        "chg_52w": 0.28,
+        "prev_52w": 16.92
       },
       "BAMLH0A0HYM2": {
         "label": "High-yield credit spread (%)",
-        "latest": 3.18,
-        "latest_date": "2026-10-27",
-        "chg_4w": 0.1,
-        "prev_4w": 3.08,
-        "chg_13w": 0.34,
+        "latest": 3.26,
+        "latest_date": "2026-10-29",
+        "chg_4w": 0.02,
+        "prev_4w": 3.24,
+        "chg_13w": 0.42,
         "prev_13w": 2.84,
-        "chg_52w": 0.38,
-        "prev_52w": 2.8
+        "chg_52w": 0.5,
+        "prev_52w": 2.76
       },
       "BAMLC0A0CM": {
         "label": "Investment-grade credit spread (%)",
-        "latest": 0.88,
-        "latest_date": "2026-10-27",
-        "chg_4w": 0.04,
-        "prev_4w": 0.84,
-        "chg_13w": 0.07,
-        "prev_13w": 0.81,
-        "chg_52w": 0.12,
-        "prev_52w": 0.76
+        "latest": 0.89,
+        "latest_date": "2026-10-29",
+        "chg_4w": 0.03,
+        "prev_4w": 0.86,
+        "chg_13w": 0.09,
+        "prev_13w": 0.8,
+        "chg_52w": 0.14,
+        "prev_52w": 0.75
       },
       "BAA10Y": {
         "label": "Baa corporate minus 10-yr Treasury spread (%)",
-        "latest": 1.45,
-        "latest_date": "2026-10-26",
-        "chg_4w": -0.01,
-        "prev_4w": 1.46,
-        "chg_13w": -0.16,
-        "prev_13w": 1.61,
-        "chg_52w": -0.2,
+        "latest": 1.43,
+        "latest_date": "2026-10-28",
+        "chg_4w": -0.04,
+        "prev_4w": 1.47,
+        "chg_13w": -0.17,
+        "prev_13w": 1.6,
+        "chg_52w": -0.22,
         "prev_52w": 1.65
       },
       "SP500": {
@@ -1190,14 +1173,14 @@
       },
       "NASDAQ100": {
         "label": "Nasdaq-100 index",
-        "latest": 29813.16,
-        "latest_date": "2026-10-28",
-        "chg_4w": -595.34,
-        "prev_4w": 30408.5,
-        "chg_13w": 2620.85,
-        "prev_13w": 27192.31,
-        "chg_52w": 3801.0,
-        "prev_52w": 26012.16
+        "latest": 29402.51,
+        "latest_date": "2026-10-29",
+        "chg_4w": -1099.05,
+        "prev_4w": 30501.56,
+        "chg_13w": 1296.16,
+        "prev_13w": 28106.35,
+        "chg_52w": 3282.66,
+        "prev_52w": 26119.85
       }
     },
     "edgar": {
@@ -1740,15 +1723,11 @@
           "debt_issued": "ProceedsFromIssuanceOfLongTermDebt"
         },
         "capex": {
-          "quarter_end": "2026-06-30",
-          "value": 54208000000.0,
-          "qoq_pct": 22.63,
-          "yoy_pct": 68.44,
+          "quarter_end": "2026-09-30",
+          "value": 77259000000.0,
+          "qoq_pct": 42.52,
+          "yoy_pct": 120.14,
           "history": [
-            [
-              "2023-09-30",
-              12479000000.0
-            ],
             [
               "2023-12-31",
               14588000000.0
@@ -1792,19 +1771,19 @@
             [
               "2026-06-30",
               54208000000.0
+            ],
+            [
+              "2026-09-30",
+              77259000000.0
             ]
           ]
         },
         "operating_cash_flow": {
-          "quarter_end": "2026-06-30",
-          "value": 45387000000.0,
-          "qoq_pct": 74.35,
-          "yoy_pct": 39.59,
+          "quarter_end": "2026-09-30",
+          "value": 42422000000.0,
+          "qoq_pct": -6.53,
+          "yoy_pct": 19.41,
           "history": [
-            [
-              "2023-09-30",
-              21217000000.0
-            ],
             [
               "2023-12-31",
               42465000000.0
@@ -1848,19 +1827,19 @@
             [
               "2026-06-30",
               45387000000.0
+            ],
+            [
+              "2026-09-30",
+              42422000000.0
             ]
           ]
         },
         "new_operating_lease_assets": {
-          "quarter_end": "2026-06-30",
-          "value": 7670000000.0,
-          "qoq_pct": 22.94,
-          "yoy_pct": 65.98,
+          "quarter_end": "2026-09-30",
+          "value": 7407000000.0,
+          "qoq_pct": -3.43,
+          "yoy_pct": 46.47,
           "history": [
-            [
-              "2023-09-30",
-              3345000000.0
-            ],
             [
               "2023-12-31",
               2977000000.0
@@ -1904,19 +1883,19 @@
             [
               "2026-06-30",
               7670000000.0
+            ],
+            [
+              "2026-09-30",
+              7407000000.0
             ]
           ]
         },
         "new_finance_lease_assets": {
-          "quarter_end": "2026-06-30",
-          "value": 563000000.0,
-          "qoq_pct": -64.03,
-          "yoy_pct": -39.91,
+          "quarter_end": "2026-09-30",
+          "value": 1472000000.0,
+          "qoq_pct": 161.46,
+          "yoy_pct": 50.67,
           "history": [
-            [
-              "2023-09-30",
-              183000000.0
-            ],
             [
               "2023-12-31",
               211000000.0
@@ -1960,19 +1939,19 @@
             [
               "2026-06-30",
               563000000.0
+            ],
+            [
+              "2026-09-30",
+              1472000000.0
             ]
           ]
         },
         "debt_issued": {
-          "quarter_end": "2026-06-30",
-          "value": 13557000000.0,
-          "qoq_pct": -74.63,
+          "quarter_end": "2026-09-30",
+          "value": 48102000000.0,
+          "qoq_pct": 254.81,
           "yoy_pct": null,
           "history": [
-            [
-              "2023-09-30",
-              0.0
-            ],
             [
               "2023-12-31",
               0.0
@@ -2016,12 +1995,16 @@
             [
               "2026-06-30",
               13557000000.0
+            ],
+            [
+              "2026-09-30",
+              48102000000.0
             ]
           ]
         },
         "free_cash_flow": {
-          "quarter_end": "2026-06-30",
-          "value": -8821000000.0
+          "quarter_end": "2026-09-30",
+          "value": -34837000000.0
         }
       },
       "META": {
@@ -2570,7 +2553,7 @@
           "mom_pct": 25.697108169499106,
           "yoy_pct": 38.41573533086287,
           "ytd_yoy_pct": 39.52740587343551,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2582,7 +2565,7 @@
           "mom_pct": -0.5726315925897248,
           "yoy_pct": 54.64861207105231,
           "ytd_yoy_pct": 41.106694993093484,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2594,7 +2577,7 @@
           "mom_pct": -1.1595788670776797,
           "yoy_pct": 66.12554142816796,
           "ytd_yoy_pct": 62.44981435880206,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2606,7 +2589,7 @@
           "mom_pct": 33.118593152595075,
           "yoy_pct": 125.4495058048851,
           "ytd_yoy_pct": 63.1715973040828,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2618,7 +2601,7 @@
           "mom_pct": -23.27315755694308,
           "yoy_pct": 76.68901002964485,
           "ytd_yoy_pct": 99.41108069855139,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2630,7 +2613,7 @@
           "mom_pct": -17.227757848676287,
           "yoy_pct": 87.1863428539576,
           "ytd_yoy_pct": 97.24836000846553,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         },
         {
           "period": "2026-09",
@@ -2642,7 +2625,7 @@
           "mom_pct": 19.616235422675878,
           "yoy_pct": 99.98511294484359,
           "ytd_yoy_pct": 50.29530615079897,
-          "fetched": "2026-10-29"
+          "fetched": "2026-10-30"
         }
       ],
       "median_yoy_by_period": {
@@ -2651,9 +2634,7 @@
       "errors": {}
     }
   },
-  "errors": {
-    "claude:samples": "sample 1: assessment stopped early (max_tokens)"
-  },
+  "errors": {},
   "email_reason": null,
   "email": "sent to 1 recipient(s)"
 }
